@@ -339,6 +339,22 @@ extension Storage {
             }
         }
     }
+    
+    static func addEventImage(image:UIImage,completion:@escaping (String)->Void) {
+        guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }
+        let fileName = NSUUID().uuidString
+        let storageRef = Ref.StorageEventImageRef.child(fileName)
+        storageRef.putData(upLoadImage, metadata: nil) { metaData, error in
+            if let error = error {
+                print("Image Save Error",error)
+                return
+            }
+            Storage.downloadStorage(userIconRef: storageRef) { url in
+                let urlString = url.absoluteString
+                completion(urlString)
+            }
+        }
+    }
 }
 
 protocol GetGenderCount {
@@ -418,4 +434,86 @@ class FetchFirestoreData {
         self.barDelegate?.getBarData(count: [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10])
     }
     
+    func fetchEventData() {
+        Ref.EventRef.addSnapshotListener { snapShot, error in
+            var eventArray = [Event]()
+            if let error = error {
+                print("EventData",error)
+            }
+            guard let data = snapShot?.documents else { return }
+            eventArray = []
+            for doc in data {
+                let safeData = doc.data()
+                let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                let eventId = safeData["eventId"] as? String ?? ""
+                let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                let eventMoney = safeData["eventMoney"] as? String ?? "1000"
+                let gatherCount = safeData["gatherCount"] as? String ?? "1"
+                let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
+                let kindCircle = safeData["kindCircle"] as? String ?? "社会人サークル"
+                let place = safeData["place"] as? String ?? "神奈川県"
+                let teamId = safeData["teamId"] as? String ?? ""
+                let teamName = safeData["teamName"] as? String ?? ""
+                let time = safeData["time"] as? String ?? ""
+                let urlEventString = safeData["urlEventString"] as? String ?? ""
+                let detailText = safeData["detailText"] as? String ?? ""
+                let courtCount = safeData["courtCount"] as? String ?? "1"
+                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId)
+                eventArray.append(event)
+            }
+            //Sort＆Search
+            self.sortDate(data: eventArray)
+        }
+    }
+    
+    func sortDate(data:[Event]) {
+ 
+         var data = data
+        data = data.sorted(by: {
+            $0.eventStartTime.compare($1.eventStartTime) == .orderedAscending
+        })
+ 
+        guard let now = DateUtils.getNow() else { return }
+      
+        
+        //開始日と募集日をsortして条件分岐する。
+        data = data.filter { event in
+            let dateString = event.eventStartTime
+            let dateData = DateUtils.dateFromString(string: dateString, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
+            let time = event.eventTime
+            let eventTime = DateUtils.dateFromString(string: time, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
+            return dateData >= now && eventTime >= now
+        }
+    }
+    
+}
+
+
+//全部イベントのデータを取って来る,1週間以内のもの
+class DateUtils {
+    class func dateFromString(string: String, format: String) -> Date? {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        let date = formatter.date(from: string)
+        return date
+    }
+
+    class func stringFromDate(date: Date, format: String) -> String {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+    
+    class func getNow()->Date? {
+        let dt = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        let datestring = dateFormatter.string(from: dt)
+        print(datestring)
+        let date = DateUtils.dateFromString(string: datestring, format: "yyyy/MM/dd HH:mm:ss Z")
+        return date
+    }
 }

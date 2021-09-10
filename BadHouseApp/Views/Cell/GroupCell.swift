@@ -5,11 +5,9 @@ import UIKit
 
 class GroupCell:UITableViewCell {
  
-    
-   
-    
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!
+    
     override  func awakeFromNib() {
         super.awakeFromNib()
     }

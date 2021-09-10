@@ -32,7 +32,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.setBackBarButton()
         //Mark:UpdateUI
         friendButton.layer.cornerRadius = 15
         friendButton.layer.masksToBounds = true

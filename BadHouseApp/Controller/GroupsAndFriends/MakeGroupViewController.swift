@@ -282,6 +282,10 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             print("Camera Start")
         }
     }
+    
+ 
+
+    
 }
 
 

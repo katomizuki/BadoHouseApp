@@ -19,6 +19,7 @@ class GroupViewController: UIViewController {
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.setBackBarButton()
         groupTableView.separatorColor = Utility.AppColor.OriginalBlue
         //Mark:NVActivityIndicatorView
         IndicatorView = NVActivityIndicatorView(frame: CGRect(x: view.frame.width / 2,

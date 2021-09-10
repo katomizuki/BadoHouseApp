@@ -17,6 +17,7 @@ struct Utility {
         static let GroupDetailVC = "GroupDetailVC"
         static let UserDetailVC = "UserDetailVC"
         static let TagVC = "TagVC"
+        static let EventDetailVC = "EventDetailVC"
     }
     struct Segue {
         static let gotoRegister = "gotoRegister"
@@ -29,6 +30,7 @@ struct Utility {
         static let TeammemberCell = "TeammemberCell"
         static let BelongTeamCell = "BelongTeamCollectionCell"
         static let GroupCell = "GroupCell"
+        static let CollectionViewCell = "CollectionViewCell"
      
     }
     struct CellId {
@@ -36,6 +38,7 @@ struct Utility {
         static let CellGroupId = "cellGroupId"
         static let MemberCellId = "memberCellId"
         static let BelongTeamId = "belongTeamId"
+        static let eventId = "eventId"
     }
     struct ImageName {
         static let swift = "swift-og"
@@ -56,5 +59,12 @@ extension Array where Element: Equatable {
         if let i = self.firstIndex(of: value) {
             self.remove(at: i)
         }
+    }
+}
+extension UINavigationItem {
+    func setBackBarButton() {
+        let backItem  = UIBarButtonItem(title: "もどる", style: .plain, target: nil, action: nil)
+        backItem.tintColor = Utility.AppColor.OriginalBlue
+        self.backBarButtonItem = backItem
     }
 }

@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "RangeUISlider",
+        "repositoryURL": "https://github.com/chicio/RangeUISlider.git",
+        "state": {
+          "branch": null,
+          "revision": "8d2041ca91ab07ba4a2857b887ab4d5ca93c81ba",
+          "version": "3.0.0"
+        }
+      },
+      {
         "package": "RxSwift",
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
