@@ -17,4 +17,9 @@ struct Event {
     var eventTitle:String
     var eventUrl:String
     var teamId:String
+    var latitude:Double
+    var longitude:Double
+    var distance:Double
+    var teamImageUrl:String
+    var placeAddress:String
 }

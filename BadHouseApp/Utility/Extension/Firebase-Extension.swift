@@ -3,6 +3,7 @@
 import Foundation
 import Firebase
 import UIKit
+import CoreLocation
 extension Auth{
     
     //Mark Register
@@ -88,6 +89,29 @@ extension Firestore{
             guard let dic = snapShot?.data() else { return }
             let user = User(dic: dic)
             compeltion(user)
+        }
+    }
+    
+    //Mark:getTeamData
+    static func getTeamData(teamId:String,completion:@escaping (TeamModel)->Void) {
+        
+        Ref.TeamRef.document(teamId).getDocument { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = snapShot?.data() else { return }
+            let teamId = data["teamId"] as? String ?? ""
+            let teamName = data["teamName"] as? String ?? ""
+            let teamPlace = data["teamPlace"] as? String ?? ""
+            let teamTime = data["teamTime"] as? String ?? ""
+            let teamLevel = data["teamLevel"] as? String ?? "1"
+            let teamUrl = data["teamUrl"] as? String ?? ""
+            let teamImageUrl = data["teamImageUrl"] as? String ?? ""
+            let createdAt = data["createdAt"] as? Timestamp ?? Timestamp()
+            let updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp()
+            let team = TeamModel(teamId: teamId, teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: teamImageUrl, teamUrl: teamUrl, createdAt: createdAt, updatedAt: updatedAt)
+            completion(team)
         }
     }
     
@@ -364,11 +388,19 @@ protocol GetGenderCount {
 protocol GetBarChartDelegate {
     func getBarData(count:[Int])
 }
+protocol GetEventDelegate {
+    func getEventData(eventArray:[Event])
+}
+protocol GetEventSearchDelegate {
+    func getEventSearchData(eventArray:[Event])
+}
 
 class FetchFirestoreData {
     
     var delegate:GetGenderCount?
     var barDelegate:GetBarChartDelegate?
+    var eventDelegate:GetEventDelegate?
+    var eventSearchDelegate:GetEventSearchDelegate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -380,7 +412,6 @@ class FetchFirestoreData {
                 guard let gender = user?.gender else { return }
                 if gender == "男性" {
                     manCount += 1
-                    print("👿")
                 } else if gender == "女性" {
                     womanCount += 1
                 } else {
@@ -434,7 +465,7 @@ class FetchFirestoreData {
         self.barDelegate?.getBarData(count: [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10])
     }
     
-    func fetchEventData() {
+    func fetchEventData(latitude:Double,longitude:Double) {
         Ref.EventRef.addSnapshotListener { snapShot, error in
             var eventArray = [Event]()
             if let error = error {
@@ -458,24 +489,26 @@ class FetchFirestoreData {
                 let urlEventString = safeData["urlEventString"] as? String ?? ""
                 let detailText = safeData["detailText"] as? String ?? ""
                 let courtCount = safeData["courtCount"] as? String ?? "1"
-                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId)
+                let latitude = safeData["latitude"] as? Double ?? 35.680
+                let longitude = safeData["longitude"] as? Double ?? 139.767
+                let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
+                let placeAddress = safeData["placeAddress"] as? String ?? ""
+                
+                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress)
                 eventArray.append(event)
             }
             //Sort＆Search
-            self.sortDate(data: eventArray)
+            self.sortDate(data: eventArray,latitude:latitude,longitude:longitude)
         }
     }
     
-    func sortDate(data:[Event]) {
- 
+    func sortDate(data:[Event],latitude:Double,longitude:Double) {
          var data = data
         data = data.sorted(by: {
             $0.eventStartTime.compare($1.eventStartTime) == .orderedAscending
         })
  
         guard let now = DateUtils.getNow() else { return }
-      
-        
         //開始日と募集日をsortして条件分岐する。
         data = data.filter { event in
             let dateString = event.eventStartTime
@@ -483,6 +516,61 @@ class FetchFirestoreData {
             let time = event.eventTime
             let eventTime = DateUtils.dateFromString(string: time, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
             return dateData >= now && eventTime >= now
+        }
+        //dataを近い順に回す。
+
+        for i in 0..<data.count {
+            let eventLatitude = data[i].latitude
+            let eventLongitude = data[i].longitude
+            let currentPosition:CLLocation = CLLocation(latitude: latitude, longitude: longitude)
+            let eventPosition:CLLocation = CLLocation(latitude: eventLatitude, longitude: eventLongitude)
+            let distance = currentPosition.distance(from: eventPosition)
+            data[i].distance = distance
+        }
+        
+        data = data.sorted(by: {
+            $0.distance < $1.distance
+        })
+        self.eventDelegate?.getEventData(eventArray: data)
+    }
+    
+    func searchText(text:String) {
+        var eventArray = [Event]()
+        Ref.EventRef.getDocuments { Snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+           guard let data = Snapshot?.documents else {return}
+            for doc in data {
+                let safeData = doc.data()
+                let placeAddress = safeData["placeAddress"] as? String ?? ""
+                let place = safeData["place"] as? String ?? ""
+                let teamName = safeData["teamName"] as? String ?? ""
+                let kindCircle = safeData["kindCircle"] as? String ?? ""
+                if placeAddress.contains(text) || place.contains(text) || teamName.contains(text) || kindCircle.contains(text){
+    
+                    let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                    let eventId = safeData["eventId"] as? String ?? ""
+                    let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                    let eventMoney = safeData["eventMoney"] as? String ?? "1000"
+                    let gatherCount = safeData["gatherCount"] as? String ?? "1"
+                    let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
+                    let teamId = safeData["teamId"] as? String ?? ""
+                    let time = safeData["time"] as? String ?? ""
+                    let urlEventString = safeData["urlEventString"] as? String ?? ""
+                    let detailText = safeData["detailText"] as? String ?? ""
+                    let courtCount = safeData["courtCount"] as? String ?? "1"
+                    let latitude = safeData["latitude"] as? Double ?? 35.680
+                    let longitude = safeData["longitude"] as? Double ?? 139.767
+                    let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
+                    
+                    
+                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress)
+                    eventArray.append(event)
+                }
+            }
+            self.eventSearchDelegate?.getEventSearchData(eventArray: eventArray)
         }
     }
     
@@ -517,3 +605,4 @@ class DateUtils {
         return date
     }
 }
+

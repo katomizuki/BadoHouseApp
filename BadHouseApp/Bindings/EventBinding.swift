@@ -6,7 +6,6 @@ import RxSwift
 
 protocol MakeEventInputProtocol {
     var dateTextInput:AnyObserver<String> { get }
-    var placeTextInput:AnyObserver<String> { get }
     var groupTextInput:AnyObserver<String> { get }
     var startTextInput:AnyObserver<String> { get }
     var finishTextInput:AnyObserver<String> { get }
@@ -16,7 +15,6 @@ protocol MakeEventInputProtocol {
 
 protocol MakeEventOutputProtocol {
     var dateTextOutput:PublishSubject<String> { get }
-    var placeTextOutput:PublishSubject<String> { get }
     var groupTextOutput:PublishSubject<String> { get }
     var startTextOutput:PublishSubject<String> { get }
     var finishTextOutput:PublishSubject<String> { get }
@@ -31,7 +29,6 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
     
     //Mark: Observable
     var dateTextOutput = PublishSubject<String>()
-    var placeTextOutput = PublishSubject<String>()
     var groupTextOutput = PublishSubject<String>()
     var titleTextOutput = PublishSubject<String>()
     var finishTextOutput = PublishSubject<String>()
@@ -43,9 +40,7 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
     var dateTextInput:AnyObserver<String> {
         dateTextOutput.asObserver()
     }
-    var placeTextInput:AnyObserver<String> {
-        placeTextOutput.asObserver()
-    }
+
     var groupTextInput:AnyObserver<String> {
         groupTextOutput.asObserver()
     }
@@ -74,11 +69,6 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
                 return text.count >= 1
             }
         
-        let placeValid = placeTextOutput
-            .asObservable()
-            .map { text in
-                return text.count >= 1
-            }
         
         let groupValid = groupTextOutput
             .asObservable()
@@ -110,7 +100,7 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
         
         
         
-        Observable.combineLatest(dateValid, placeValid, groupValid,startValid,finishValid,moneyValid,titleValid) { $0 && $1 && $2 && $3 && $4 && $5 && $6 }
+        Observable.combineLatest(dateValid, groupValid,startValid,finishValid,moneyValid,titleValid) { $0 && $1 && $2 && $3 && $4 && $5 }
             .subscribe {validAll in
                 self.validMakeSubject.onNext(validAll)
             }

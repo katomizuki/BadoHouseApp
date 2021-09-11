@@ -7,7 +7,9 @@ import Firebase
 import RangeUISlider
 
 
-class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate{
+class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
+    
+    
 
     //Mark:properties
     @IBOutlet weak var gatherCountLabel: UILabel!
@@ -30,7 +32,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
 
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
         formatter.calendar = Calendar(identifier: .gregorian)
-//        Sep 16, 2021 at 3:51 PM
         return formatter
     }()
     @IBOutlet weak var detaiTextView: UITextView!
@@ -39,18 +40,22 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     //Mark:sendEventdataProperties
     private var selectedTeam:TeamModel?
-    private var teamPlace = ""
-    private var teamTime = ""
-    private var eventTitle = ""
-    private var eventStartTime = ""
-    private var eventLastTime = ""
+    private var teamPlace = String()
+    private var teamTime = String()
+    private var eventTitle = String()
+    private var eventStartTime = String()
+    private var eventLastTime = String()
     private var kindCircle = "学生サークル"
-    private var eventLavel = ""
-    private var eventMoney = ""
-    private var courtCount = ""
-    private var gatherCount = ""
-    private var detailText = ""
+    private var eventLavel = String()
+    private var eventMoney = String()
+    private var courtCount = String()
+    private var gatherCount = String()
+    private var detailText = String()
+    private var placeAddress = String()
+    private var placeLatitude = Double()
+    private var placeLongitude = Double()
     private var dic = [String:Any]()
+    private var team:TeamModel?
     
     @IBOutlet weak var levelUISlider: RangeUISlider!
     
@@ -82,6 +87,14 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         makeEventButton.addTarget(self, action: #selector(createEvent), for: UIControl.Event.touchUpInside)
         circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
     }
+    
+    //Mark:
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            //次の画面を変数に入れる
+            let nextVC = segue.destination as! MapViewController
+            //オイラのクラスでデリゲートを受け持つで！！
+            nextVC.delegate = self
+        }
     
     //Mark:SetupBinding
     private func setupBinding() {
@@ -140,12 +153,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             }
             .disposed(by: disposeBag)
         
-        placeTextField.rx.text.asDriver()
-            .drive { text in
-                self.eventBinding.placeTextInput.onNext(text ?? "")
-                self.teamPlace = text ?? ""
-            }
-            .disposed(by: disposeBag)
         
         eventBinding.valideMakeDriver
             .drive { validAll in
@@ -179,12 +186,14 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         default:
             break
         }
-        print(kindCircle)
     }
     
     @objc private func createEvent() {
         print(#function)
         guard let teamId = selectedTeam?.teamId else { return }
+        Firestore.getTeamData(teamId: teamId) { teamData in
+            self.team = teamData
+        }
         guard let teamName = selectedTeam?.teamName else { return }
         let max = maxLevelLabel.text ?? "レベル6"
         let min = minLevelLabel.text ?? "レベル2"
@@ -192,10 +201,11 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
         detailText = detaiTextView.text ?? ""
+        let teamImageUrl = team?.teamImageUrl ?? ""
     
         
         let eventId = Ref.EventRef.document().documentID
-        let dic = ["eventId":eventId,"time":teamTime,"place":teamPlace,"teamId":teamId,"teamName":teamName,"eventStartTime":eventStartTime,"eventLastTime":eventLastTime,"eventLavel":eventLavel,"eventMoney":eventMoney,"detailText":detailText,"kindCircle":kindCircle,"courtCount":courtCount,"gatherCount":gatherCount,"eventTitle":eventTitle]
+        let dic = ["eventId":eventId,"time":teamTime,"place":teamPlace,"teamId":teamId,"teamName":teamName,"eventStartTime":eventStartTime,"eventLastTime":eventLastTime,"eventLavel":eventLavel,"eventMoney":eventMoney,"detailText":detailText,"kindCircle":kindCircle,"courtCount":courtCount,"gatherCount":gatherCount,"eventTitle":eventTitle,"latitude":placeLatitude,"longitude":placeLongitude,"teamImageUrl":teamImageUrl,"placeAddress":placeAddress] as [String : Any]
         guard let eventImage = noImageView.image else { return }
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TagVC) as! TagViewController
         vc.dic = dic
@@ -225,6 +235,16 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     @IBAction func gotoMap(_ sender: Any) {
         print(#function)
         performSegue(withIdentifier: "gotoMap", sender: nil)
+    }
+    
+    //Mark: MapDelegateMethod
+    func sendLocationData(location: [Double], placeName: String,placeAddress:String) {
+        self.teamPlace = placeName
+        self.placeLatitude = location[0]
+        self.placeLongitude = location[1]
+        self.placeTextField.text = placeName
+        self.placeAddress = placeAddress
+        
     }
     
    

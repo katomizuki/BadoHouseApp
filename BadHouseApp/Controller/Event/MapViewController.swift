@@ -4,12 +4,35 @@ import UIKit
 import MapKit
 import CoreLocation
 
+protocol SearchLocationProtocol {
+    func sendLocationData(location:[Double],placeName:String,placeAddress:String)
+}
+
 class MapViewController: UIViewController{
 
+    //Mark:Properties
     @IBOutlet weak var mapView: MKMapView!
     var locManager:CLLocationManager!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    private var placeName = String()
+    private var placeAddress = String()
+    private var placeLatitude = Double()
+    private var placeLongitude = Double()
+    var delegate:SearchLocationProtocol?
+    private var defaultRegion: MKCoordinateRegion {
+            let coordinate = CLLocationCoordinate2D( // 大阪駅
+                latitude: 35.680,
+                longitude: 139.767
+            )
+            let span = MKCoordinateSpan (
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01
+            )
+            return MKCoordinateRegion(center: coordinate, span: span)
+        }
     
+    //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.backgroundColor = Utility.AppColor.OriginalBlue
@@ -20,10 +43,10 @@ class MapViewController: UIViewController{
         let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
              mapView.addGestureRecognizer(gesture)
              mapView.setRegion(defaultRegion, animated: false)
-
+        textField.delegate = self
     }
     
-    
+    //Mark:selector
     @objc private func mapTap(_ gesture:UITapGestureRecognizer) {
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -34,34 +57,117 @@ class MapViewController: UIViewController{
                      let locality = placemark.locality, // 市区町村
                      let thoroughfare = placemark.thoroughfare, // 地名(丁目)
                      let subThoroughfare = placemark.subThoroughfare, // 番地
-                     let postalCode = placemark.postalCode, // 郵便番号
                      let location = placemark.location // 緯度経度情報
                      else {
                          return
                  }
-            print(placemark)
-            print(administrativeArea)
-            print(locality)
-            print(thoroughfare)
-            print(thoroughfare)
-            print(subThoroughfare)
-            print(location)
+            self.placeAddress = administrativeArea + locality + thoroughfare + subThoroughfare
+            let targetLocation = location.coordinate
+            let latitude = targetLocation.latitude
+            let longitude = targetLocation.longitude
+            self.placeLatitude = latitude
+            self.placeLongitude = longitude
         }
     }
-    private var defaultRegion: MKCoordinateRegion {
-            let coordinate = CLLocationCoordinate2D( // 大阪駅
-                latitude: 34.7024854,
-                longitude: 135.4937619
-            )
-            let span = MKCoordinateSpan (
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01
-            )
-            return MKCoordinateRegion(center: coordinate, span: span)
+    
+    
+    
+    
+    //Mark:IBAction
+    @IBAction func saveButton(_ sender: Any) {
+        
+        self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func search(_ sender: Any) {
+        if let search = textField.text {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(search) { placemark, error in
+                if let error = error {
+                    print("Location",error)
+                    self.showAlert()
+                    return
+                }
+                if let safePlacemark = placemark {
+                    if let firstPlacemark = safePlacemark.first {
+                        guard let preference = firstPlacemark.administrativeArea else { return }
+                        guard let locality = firstPlacemark.locality else { return }
+                        let thorough = firstPlacemark.thoroughfare ?? ""
+                        let subThorough = firstPlacemark.subThoroughfare ?? ""
+                        self.placeAddress = preference + locality + thorough + subThorough
+                        
+                        if let location = firstPlacemark.location {
+                            let targetCoordinate = location.coordinate
+                            let targetLatitude = targetCoordinate.latitude
+                            let targetLongitude = targetCoordinate.longitude
+                            self.placeLatitude = targetLatitude
+                            self.placeLongitude = targetLongitude
+                            self.placeName = search
+                            let pin = MKPointAnnotation()
+                            pin.coordinate = targetCoordinate
+                            pin.title = search
+                            self.mapView.addAnnotation(pin)
+                            self.mapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+                        }
+                    }
+                }
+            }
         }
-
+    }
+    
 }
 
 extension MapViewController:CLLocationManagerDelegate,UIGestureRecognizerDelegate {
     
 }
+
+extension MapViewController:UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let search = textField.text {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(search) { placemark, error in
+                if let error = error {
+                    print("Location",error)
+                    self.showAlert()
+                    return
+                }
+                if let safePlacemark = placemark {
+                    if let firstPlacemark = safePlacemark.first {
+                        guard let preference = firstPlacemark.administrativeArea else { return }
+                        guard let locality = firstPlacemark.locality else { return }
+                        let thorough = firstPlacemark.thoroughfare ?? ""
+                        let subThorough = firstPlacemark.subThoroughfare ?? ""
+                        self.placeAddress = preference + locality + thorough + subThorough
+                        
+                        if let location = firstPlacemark.location {
+                            let targetCoordinate = location.coordinate
+                            let targetLatitude = targetCoordinate.latitude
+                            let targetLongitude = targetCoordinate.longitude
+                            
+                            self.placeLatitude = targetLatitude
+                            self.placeLongitude = targetLongitude
+                            self.placeName = search
+                            let pin = MKPointAnnotation()
+                            pin.coordinate = targetCoordinate
+                            pin.title = search
+                            self.mapView.addAnnotation(pin)
+                            self.mapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+                        }
+                    }
+                }
+            }
+        }
+        return true
+    }
+    
+    private func showAlert() {
+        let alertVC = UIAlertController(title: "検索エラー", message: "開催場所の正式名称を入力してください", preferredStyle: UIAlertController.Style.alert)
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+        alertVC.addAction(alertAction)
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+}
+
