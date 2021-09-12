@@ -16,6 +16,10 @@
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */; };
 		D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E626EB82E300F40A51 /* MapViewController.swift */; };
+		D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* CalendarViewController.swift */; };
+		D3AC05EB26ED9C8800F40A51 /* DetailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */; };
+		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
+		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
 		D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52726E0525100C53780 /* AppDelegate.swift */; };
 		D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52926E0525100C53780 /* SceneDelegate.swift */; };
 		D3BDB52C26E0525100C53780 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52B26E0525100C53780 /* ViewController.swift */; };
@@ -73,6 +77,10 @@
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D3AC05E826ED763000F40A51 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewController.swift; sourceTree = "<group>"; };
+		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		D3BDB52426E0525100C53780 /* BadHouseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHouseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BDB52726E0525100C53780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3BDB52926E0525100C53780 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +174,16 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
+		D3AC05EE26EE279D00F40A51 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				D3BDB54526E055C900C53780 /* Utility.swift */,
+				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
+				D3AC05EC26EE274100F40A51 /* DateUtil.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		D3BDB51B26E0525100C53780 = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +228,7 @@
 				D3C4E94626E1C2B400C21E46 /* TeamModel.swift */,
 				D3FD195226E4C32C00B6740E /* EventModel.swift */,
 				D3C02CEE26E8A5C800995517 /* TeamTag.swift */,
+				D3AC05EF26EE284F00F40A51 /* FetchData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,9 +236,8 @@
 		D3BDB53C26E0541100C53780 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D3AC05EE26EE279D00F40A51 /* Other */,
 				D3BDB54E26E05D9500C53780 /* Extension */,
-				D3BDB54526E055C900C53780 /* Utility.swift */,
-				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -290,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				D3BDB52B26E0525100C53780 /* ViewController.swift */,
+				D3AC05E826ED763000F40A51 /* CalendarViewController.swift */,
+				D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -475,11 +495,13 @@
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
+				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
 				D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */,
+				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */,
 				D330032826E7013900208525 /* LevelViewController.swift in Sources */,
 				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
@@ -491,6 +513,7 @@
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
 				D330032A26E8512700208525 /* CommentViewController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */,
+				D3AC05EB26ED9C8800F40A51 /* DetailSearchViewController.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3C02CEF26E8A5C800995517 /* TeamTag.swift in Sources */,
 				D3BDB55726E0644E00C53780 /* UIButton-Extension.swift in Sources */,
@@ -506,6 +529,7 @@
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
+				D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,

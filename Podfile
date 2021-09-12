@@ -15,5 +15,6 @@ pod 'IQKeyboardManagerSwift'
 pod 'TaggerKit'
 pod "CDAlertView"
 pod 'NVActivityIndicatorView'
-
+pod 'FSCalendar'
+pod 'EmptyStateKit'
 end

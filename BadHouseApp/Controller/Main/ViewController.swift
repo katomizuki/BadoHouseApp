@@ -10,8 +10,8 @@ import MapKit
 
 
 
-class ViewController: UIViewController,GetEventDelegate{
-    
+class ViewController: UIViewController, CalendarDelegate{
+   
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
@@ -22,14 +22,20 @@ class ViewController: UIViewController,GetEventDelegate{
     var myLongitude = Double()
     private var eventArray = [Event]()
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var timeButton: UIButton!
     
     
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        timeButton.layer.cornerRadius = 15
+        timeButton.layer.masksToBounds = true
         fetchData.eventDelegate = self
         fetchData.eventSearchDelegate = self
+        fetchData.eventTimeDelegate = self
+        fetchData.detailDelegate = self
         searchBar.delegate = self
+        
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         setupLocationManager()
         let layout = UICollectionViewFlowLayout()
@@ -68,17 +74,6 @@ class ViewController: UIViewController,GetEventDelegate{
         navigationController?.isNavigationBarHidden = false
     }
     
-    //Mark: IBAction
-    @IBAction func gotoUser(_ sender: Any) {
-        IndicatorView.startAnimating()
-        let uid = Auth.getUserId()
-        Firestore.getUserData(uid: uid) { user in
-            self.IndicatorView.stopAnimating()
-            guard let user = user else { return }
-            self.user = user
-            self.performSegue(withIdentifier:  Utility.Segue.gotoUser, sender: nil)
-        }
-    }
     
     //Mark:Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,8 +81,20 @@ class ViewController: UIViewController,GetEventDelegate{
             let vc = segue.destination as! UserViewController
             vc.user = self.user
         }
+        if segue.identifier == Utility.Segue.gotoCalendar {
+            let vc = segue.destination as! CalendarViewController
+            vc.delegate = self
+        }
+        if segue.identifier == Utility.Segue.gotoDetail {
+            let vc = segue.destination as! DetailSearchViewController
+            vc.delegate = self
+        }
     }
     
+    func searchCalendar(dateString: String) {
+        fetchData.searchDateEvent(dateString:dateString)
+    }
+
     //Mark:currentLocationgetMethod
     private func setupLocationManager() {
         locationManager = CLLocationManager()
@@ -113,12 +120,7 @@ class ViewController: UIViewController,GetEventDelegate{
         present(alert, animated: true, completion: nil)
     }
     
-    //Mark:DelegateMethod
-    func getEventData(eventArray: [Event]) {
-        print(#function)
-        self.eventArray = eventArray
-        collectionView.reloadData()
-    }
+   
 }
 
 extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -191,8 +193,6 @@ extension ViewController:GetEventSearchDelegate {
         self.eventArray = eventArray
         collectionView.reloadData()
     }
-    
-    
 }
 
 extension ViewController: UISearchBarDelegate {
@@ -200,14 +200,53 @@ extension ViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else { return }
         fetchData.searchText(text: searchText)
         searchBar.resignFirstResponder()
-        print("🎨")
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(#function)
         if searchBar.text == "" {
-            print("🍏")
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
             searchBar.resignFirstResponder()
         }
+    }
+}
+
+
+
+
+
+extension ViewController: GetEventTimeDelegate{
+    
+    func getEventTimeData(eventArray: [Event]) {
+        print(eventArray)
+        self.eventArray = eventArray
+        collectionView.reloadData()
+    }
+
+    
+}
+extension ViewController:GetEventDelegate {
+    //Mark:DelegateMethod
+    func getEventData(eventArray: [Event]) {
+        print(#function)
+        self.eventArray = eventArray
+        collectionView.reloadData()
+    }
+}
+
+extension ViewController:GetDetailDataDelegate {
+    func getDetailData(eventArray: [Event]) {
+        print(#function)
+        print("👿")
+        print(eventArray)
+        self.eventArray = eventArray
+        collectionView.reloadData()
+    }
+}
+
+extension ViewController:getDetailDelegate {
+    
+    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String) {
+        fetchData.detailSearchEventData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
     }
 }

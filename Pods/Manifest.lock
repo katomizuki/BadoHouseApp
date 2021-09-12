@@ -345,6 +345,7 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - CDAlertView (0.11.0)
+  - EmptyStateKit (1.1.0)
   - Firebase (8.7.0):
     - Firebase/Core (= 8.7.0)
   - Firebase/Auth (8.7.0):
@@ -411,6 +412,7 @@ PODS:
   - FirebaseStorage (8.7.0):
     - FirebaseCore (~> 8.0)
     - GTMSessionFetcher/Core (~> 1.5)
+  - FSCalendar (2.8.2)
   - GoogleAppMeasurement (8.7.0):
     - GoogleAppMeasurement/AdIdSupport (= 8.7.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -490,10 +492,12 @@ PODS:
 
 DEPENDENCIES:
   - CDAlertView
+  - EmptyStateKit
   - Firebase
   - Firebase/Auth
   - Firebase/Firestore
   - FirebaseStorage
+  - FSCalendar
   - IQKeyboardManagerSwift
   - NVActivityIndicatorView
   - SDWebImage
@@ -504,6 +508,7 @@ SPEC REPOS:
     - abseil
     - BoringSSL-GRPC
     - CDAlertView
+    - EmptyStateKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -512,6 +517,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstallations
     - FirebaseStorage
+    - FSCalendar
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -530,6 +536,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CDAlertView: cd6624e857c85ad14560e2cd23d7eb25b983b590
+  EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
   FirebaseAnalytics: 52768800c2add1d84b751420cb4caaf8195f2c41
   FirebaseAuth: 2e7d029977648c67a5d51a263d4cbab76d34cf12
@@ -538,6 +545,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: e722ba956610c45d368d9787689e2aa41b809e68
   FirebaseInstallations: ede6fb72bb6337914e5888b399271259d0c4910c
   FirebaseStorage: 2e6e58fe31fb0061fdce3f156d0ebc964e9de6ba
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GoogleAppMeasurement: 2be61ce546ad074dbe4dd545f222ac6033bb1d9e
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
@@ -552,6 +560,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
 
-PODFILE CHECKSUM: ca51ba937dc5c2a4eb6b48d11b81c8fbcc8a27aa
+PODFILE CHECKSUM: e0d5016956944059319ca017db03488e0f99f71e
 
 COCOAPODS: 1.10.1

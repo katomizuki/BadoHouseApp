@@ -50,7 +50,6 @@ class GroupViewController: UIViewController {
                         self.friendArray.append(user)
                     }
                 }
-                print(self.friendArray)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     
                     self.IndicatorView.stopAnimating()
@@ -60,6 +59,23 @@ class GroupViewController: UIViewController {
             }
         }
     }
+    
+    //Mark:画面遷移
+    
+    
+    @IBAction func user(_ sender: Any) {
+        print("あいうえお")
+            IndicatorView.startAnimating()
+            let uid = Auth.getUserId()
+            Firestore.getUserData(uid: uid) { user in
+                self.IndicatorView.stopAnimating()
+                guard let user = user else { return }
+                self.user = user
+                self.performSegue(withIdentifier:  "userProfile", sender: nil)
+            }
+    }
+    
+    
     
     
     //Mark UserData
@@ -77,7 +93,12 @@ class GroupViewController: UIViewController {
             guard let user = self.user else { return }
                 vc.me = user
         }
+        if segue.identifier ==  "userProfile" {
+            let vc = segue.destination as! UserViewController
+            vc.user = self.user
+        }
     }
+    
 }
 
 extension GroupViewController:UITableViewDelegate,UITableViewDataSource {

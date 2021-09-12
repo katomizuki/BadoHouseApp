@@ -23,7 +23,8 @@ struct Utility {
         static let gotoRegister = "gotoRegister"
         static let gotoUser = "gotoUser"
         static let gotoMakeGroup = "gotoMakeGroup"
-        
+        static let gotoCalendar = "gotoCalendar"
+        static let gotoDetail = "gotoDetail"
 
     }
     struct Cell {

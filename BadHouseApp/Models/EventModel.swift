@@ -22,4 +22,5 @@ struct Event {
     var distance:Double
     var teamImageUrl:String
     var placeAddress:String
+    var eventLevel:String
 }

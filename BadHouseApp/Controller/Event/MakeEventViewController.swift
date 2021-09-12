@@ -88,11 +88,9 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
     }
     
-    //Mark:
+    //Mark:MapDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            //次の画面を変数に入れる
             let nextVC = segue.destination as! MapViewController
-            //オイラのクラスでデリゲートを受け持つで！！
             nextVC.delegate = self
         }
     
