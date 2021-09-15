@@ -170,7 +170,13 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.EventDetailVC) as! EventDetailViewController
-        navigationController?.pushViewController(vc, animated: true)
+        vc.event = eventArray[indexPath.row]
+        let teamId = eventArray[indexPath.row].teamId
+        Firestore.getTeamData(teamId: teamId) { team in
+            vc.team = team
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+       
     }
 }
 
@@ -237,8 +243,6 @@ extension ViewController:GetEventDelegate {
 extension ViewController:GetDetailDataDelegate {
     func getDetailData(eventArray: [Event]) {
         print(#function)
-        print("👿")
-        print(eventArray)
         self.eventArray = eventArray
         collectionView.reloadData()
     }
@@ -250,3 +254,5 @@ extension ViewController:getDetailDelegate {
         fetchData.detailSearchEventData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
     }
 }
+
+

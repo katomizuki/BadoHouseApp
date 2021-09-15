@@ -21,13 +21,13 @@ class MapViewController: UIViewController{
     private var placeLongitude = Double()
     var delegate:SearchLocationProtocol?
     private var defaultRegion: MKCoordinateRegion {
-            let coordinate = CLLocationCoordinate2D( // 大阪駅
+            let coordinate = CLLocationCoordinate2D( 
                 latitude: 35.680,
                 longitude: 139.767
             )
             let span = MKCoordinateSpan (
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01
+                latitudeDelta: 0.001,
+                longitudeDelta: 0.001
             )
             return MKCoordinateRegion(center: coordinate, span: span)
         }
@@ -75,7 +75,8 @@ class MapViewController: UIViewController{
     
     //Mark:IBAction
     @IBAction func saveButton(_ sender: Any) {
-        
+        print(placeLatitude)
+        print(placeLongitude)
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)
         dismiss(animated: true, completion: nil)
     }

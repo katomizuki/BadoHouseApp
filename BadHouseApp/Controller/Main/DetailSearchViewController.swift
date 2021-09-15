@@ -1,6 +1,7 @@
 
 
 import UIKit
+
 protocol getDetailDelegate {
     func getDetailElement(title:String,circle:String,level:String,placeAddressString:String,money:String,time:String)
 }

@@ -172,10 +172,11 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     
     //Mark BarChart
     private func setGraph() {
+      
+        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element) * 1) }
         print(rawData)
-        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element) * 10) }
         BarChartView.scaleXEnabled = false
-               BarChartView.scaleYEnabled = false
+        BarChartView.scaleYEnabled = false
         let dataSet = BarChartDataSet(entries: entries)
         dataSet.drawValuesEnabled = false
         let data = BarChartData(dataSet: dataSet)

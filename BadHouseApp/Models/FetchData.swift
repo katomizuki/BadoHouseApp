@@ -1,12 +1,10 @@
-
-
 import Foundation
 import Firebase
 import CoreLocation
+
 protocol GetGenderCount {
     func getGenderCount(count:[Int])
 }
-
 protocol GetBarChartDelegate {
     func getBarData(count:[Int])
 }
@@ -22,6 +20,9 @@ protocol GetEventTimeDelegate {
 protocol GetDetailDataDelegate {
     func getDetailData(eventArray:[Event])
 }
+protocol GetChatDataDelgate {
+    func getChatData(chatArray:[Chat])
+}
 
 class FetchFirestoreData {
     
@@ -31,6 +32,7 @@ class FetchFirestoreData {
     var eventSearchDelegate:GetEventSearchDelegate?
     var eventTimeDelegate:GetEventTimeDelegate?
     var detailDelegate:GetDetailDataDelegate?
+    var chatDelegate:GetChatDataDelgate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -55,6 +57,7 @@ class FetchFirestoreData {
     }
     
     func teamPlayerLevelCount(teamPlayers:[User]) {
+        print(teamPlayers)
         var level1 = 0
         var level2 = 0
         var level3 = 0
@@ -67,6 +70,7 @@ class FetchFirestoreData {
         var level10 = 0
         for i in 0..<teamPlayers.count {
             let level = teamPlayers[i].level
+            print(level)
             switch level {
             case "レベル1":
                 level1 += 1
@@ -124,8 +128,8 @@ class FetchFirestoreData {
                 let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
                 let placeAddress = safeData["placeAddress"] as? String ?? ""
                 let eventLavel = safeData["eventLavel"] as? String ?? ""
-                
-                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel)
+                let userId = safeData["userId"] as? String ?? ""
+                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
                 eventArray.append(event)
             }
             //Sort＆Search
@@ -196,9 +200,10 @@ class FetchFirestoreData {
                     let longitude = safeData["longitude"] as? Double ?? 139.767
                     let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
                     let eventLavel = safeData["eventLavel"] as? String ?? ""
+                    let userId = safeData["userId"] as? String ?? ""
                     
                     
-                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress,eventLevel: eventLavel)
+                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
                     eventArray.append(event)
                 }
             }
@@ -238,8 +243,9 @@ class FetchFirestoreData {
                     let longitude = safeData["longitude"] as? Double ?? 139.767
                     let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
                     let eventLavel = safeData["eventLavel"] as? String ?? ""
+                    let userId = safeData["userId"] as? String ?? ""
                     
-                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: eventStartTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress,eventLevel: eventLavel)
+                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: eventStartTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
                     eventArray.append(event)
                 }
             }
@@ -276,7 +282,8 @@ class FetchFirestoreData {
                 let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
                 let placeAddress = safeData["placeAddress"] as? String ?? ""
                 let eventLavel = safeData["eventLavel"] as? String ?? ""
-                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel)
+                let userId = safeData["userId"] as? String ?? ""
+                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
                 eventArray.append(event)
             }
      
@@ -298,7 +305,6 @@ class FetchFirestoreData {
             if time != "" {
                 eventArray = self.searchTime(time: time, event: eventArray)
             }
-            print("👼")
             self.detailDelegate?.getDetailData(eventArray: eventArray)
         }
     }
@@ -356,6 +362,49 @@ class FetchFirestoreData {
             }
         }
         return eventArray
+    }
+    
+    func getChatData(meId:String,youId:String,completion:@escaping(String)->Void){
+    
+        var string = ""
+        Ref.ChatroomRef.addSnapshotListener { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { doc in
+                let data = doc.data()
+                let userId = data["user"] as? String ?? ""
+                let userId2 = data["user2"] as? String ?? ""
+                let chatRoomId = data["chatRoomId"] as? String ?? ""
+                if (userId == meId && youId == userId2) || (userId == youId && meId == userId2) {
+                 string = chatRoomId
+                }
+            }
+            completion(string)
+        }
+    }
+    
+    func getChat(chatId:String) {
+        Ref.ChatroomRef.document(chatId).collection("Content").order(by: "sendTime").addSnapshotListener { snapShot, error in
+            var chatArray = [Chat]()
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { doc in
+                let data = doc.data()
+                let sendTime = data["sendTime"] as? Timestamp ?? Timestamp()
+                let text = data["text"] as? String ?? ""
+                let senderId = data["sender"] as? String ?? ""
+                let reciverId = data["reciver"] as? String ?? ""
+                let chat = Chat(sendTime: sendTime, text: text, senderId: senderId, reciverId: reciverId)
+                chatArray.append(chat)
+            }
+            self.chatDelegate?.getChatData(chatArray: chatArray)
+        }
     }
 }
 

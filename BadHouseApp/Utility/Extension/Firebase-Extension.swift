@@ -4,7 +4,7 @@ import Foundation
 import Firebase
 import UIKit
 import CoreLocation
-extension Auth{
+extension Auth {
     
     //Mark Register
     static func register(name:String?,email:String?,password:String?,completion:@escaping (Bool,Error?) -> Void) {
@@ -38,8 +38,6 @@ extension Auth{
             completion(true,error)
         }
     }
-    
-    
     
     //Mark:GetUserId
     static func getUserId()->String {
@@ -143,7 +141,6 @@ extension Firestore{
         //Mark:inviteTeamPlayer
         Firestore.sendTeamPlayerData(teamDic: dic, teamplayer: friends)
         Firestore.sendTeamTagData(teamId: teamId, tagArray: tagArray)
-        
     }
     
     static func sendTeamTagData(teamId:String,tagArray:[String]) {
@@ -172,6 +169,20 @@ extension Firestore{
         }
     }
     
+    static func sendChatroom(myId:String,youId:String,completion:@escaping(String)->Void) {
+                let chatRoomId = Ref.ChatroomRef.document().documentID
+                let chatRoomDic = ["chatRoomId":chatRoomId,"user":myId,"user2":youId]
+                Ref.ChatroomRef.document(chatRoomId).setData(chatRoomDic)
+                Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
+                Ref.UsersRef.document(youId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
+                completion(chatRoomId)
+    }
+    
+    static func sendChat(chatroomId:String,senderId:String,text:String,reciverId:String) {
+        let dic = ["chatRoomId":chatroomId,"sender":senderId,"text":text,"reciver":reciverId,"sendTime":Timestamp()] as [String : Any]
+        let chatId = Ref.ChatroomRef.document(chatroomId).collection("Content").document().documentID
+        Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic)
+    }
     
     
     //Mark: sendTeamPlayerData
@@ -242,6 +253,25 @@ extension Firestore{
         }
     }
     
+    static func getEventTagData(eventId:String,completion:@escaping([EventTag])->Void) {
+        var tagArray = [EventTag]()
+        Ref.EventRef.document(eventId).collection("Tag").getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let documents = snapShot?.documents else { return }
+            for document in documents {
+                let data = document.data()
+                let tagId = data["tagId"] as? String ?? ""
+                let tagContent = data["tag"] as? String ?? ""
+                let tag = EventTag(tag: tagContent, tagId: tagId)
+                tagArray.append(tag)
+            }
+            completion(tagArray)
+        }
+    }
+    
     static func getTeamPlayer(teamId:String,completion:@escaping ([String])->Void) {
         Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
             var teamPlayers = [String]()
@@ -292,6 +322,7 @@ extension Firestore{
     //Mark: sendEventData
     static func sendEventData(teamId:String,event:[String:Any],eventId:String) {
         //Mark:team→eventdata
+        print(event)
         Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event)
         Ref.EventRef.document(eventId).setData(event)
     }
@@ -364,6 +395,7 @@ extension Storage {
         }
     }
     
+    //Mark:StorageAddImage
     static func addEventImage(image:UIImage,completion:@escaping (String)->Void) {
         guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }
         let fileName = NSUUID().uuidString

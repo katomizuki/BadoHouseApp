@@ -1,4 +1,3 @@
-
 import Foundation
 import Firebase
 
@@ -29,8 +28,5 @@ class User {
         self.place = dic["place"] as? String ?? "未設定"
         self.badmintonTime = dic["badmintonTime"] as? String ?? "未設定"
         self.age = dic["age"] as? String ?? "未設定"
-        
     }
-    
-  
 }

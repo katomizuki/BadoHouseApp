@@ -38,6 +38,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     @IBOutlet weak var circleSegment: UISegmentedControl!
     @IBOutlet weak var noImageView: UIImageView!
     
+    
     //Mark:sendEventdataProperties
     private var selectedTeam:TeamModel?
     private var teamPlace = String()
@@ -188,9 +189,12 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     @objc private func createEvent() {
         print(#function)
+        var teamImageUrl = String()
         guard let teamId = selectedTeam?.teamId else { return }
         Firestore.getTeamData(teamId: teamId) { teamData in
             self.team = teamData
+            print(teamData)
+            teamImageUrl = self.team?.teamImageUrl ?? ""
         }
         guard let teamName = selectedTeam?.teamName else { return }
         let max = maxLevelLabel.text ?? "レベル6"
@@ -199,18 +203,19 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
         detailText = detaiTextView.text ?? ""
-        let teamImageUrl = team?.teamImageUrl ?? ""
-    
-        
+      
+        let userId = Auth.getUserId()
         let eventId = Ref.EventRef.document().documentID
-        let dic = ["eventId":eventId,"time":teamTime,"place":teamPlace,"teamId":teamId,"teamName":teamName,"eventStartTime":eventStartTime,"eventLastTime":eventLastTime,"eventLavel":eventLavel,"eventMoney":eventMoney,"detailText":detailText,"kindCircle":kindCircle,"courtCount":courtCount,"gatherCount":gatherCount,"eventTitle":eventTitle,"latitude":placeLatitude,"longitude":placeLongitude,"teamImageUrl":teamImageUrl,"placeAddress":placeAddress] as [String : Any]
-        guard let eventImage = noImageView.image else { return }
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TagVC) as! TagViewController
-        vc.dic = dic
-        vc.teamId = teamId
-        vc.eventId = eventId
-        vc.eventImage = eventImage
-        navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let dic = ["eventId":eventId,"time":self.teamTime,"place":self.teamPlace,"teamId":teamId,"teamName":teamName,"eventStartTime":self.eventStartTime,"eventLastTime":self.eventLastTime,"eventLavel":self.eventLavel,"eventMoney":self.eventMoney,"detailText":self.detailText,"kindCircle":self.kindCircle,"courtCount":self.courtCount,"gatherCount":self.gatherCount,"eventTitle":self.eventTitle,"latitude":self.placeLatitude,"longitude":self.placeLongitude,"teamImageUrl":teamImageUrl,"placeAddress":self.placeAddress,"userId":userId] as [String : Any]
+            guard let eventImage = self.noImageView.image else { return }
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TagVC) as! TagViewController
+            vc.dic = dic
+            vc.teamId = teamId
+            vc.eventId = eventId
+            vc.eventImage = eventImage
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     

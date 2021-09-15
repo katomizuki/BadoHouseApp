@@ -1,5 +1,3 @@
-
-
 import Foundation
 
 struct Event {
@@ -23,4 +21,5 @@ struct Event {
     var teamImageUrl:String
     var placeAddress:String
     var eventLevel:String
+    var userId:String
 }

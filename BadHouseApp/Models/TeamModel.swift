@@ -1,7 +1,6 @@
-
-
 import Foundation
 import Firebase
+
 struct TeamModel {
     var teamId:String
     var teamName:String
