@@ -1,10 +1,9 @@
-
-
 import Foundation
 import UIKit
 
 class ProfileImageView: UIImageView {
     
+    //Mark:initialize
     init() {
         super.init(frame: .zero)
         self.image = UIImage(systemName: "person")

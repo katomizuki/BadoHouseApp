@@ -1,5 +1,3 @@
-
-
 import UIKit
 import Firebase
 import NVActivityIndicatorView
@@ -19,26 +17,17 @@ class GroupViewController: UIViewController {
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setBackBarButton()
         groupTableView.separatorColor = Utility.AppColor.OriginalBlue
-        //Mark:NVActivityIndicatorView
-        IndicatorView = NVActivityIndicatorView(frame: CGRect(x: view.frame.width / 2,
-                                                              y: view.frame.height / 2,
-                                                              width: 60,
-                                                              height: 60),
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
+        setupIndicator()
         IndicatorView.startAnimating()
         fetchUserData()
-        groupTableView.delegate = self
-        groupTableView.dataSource = self
-        let nib = GroupCell.nib()
-        groupTableView.register(nib, forCellReuseIdentifier: cellId)
-        let uid = Auth.getUserId()
+        setupTableView()
+        setupData()
+    }
     
+    //Mark: setupData {
+    private func setupData() {
+        let uid = Auth.getUserId()
         Firestore.getOwnTeam(uid: uid) { teams in
             self.teamArray = teams
             Firestore.getFriendData(uid: uid) { usersId in
@@ -51,20 +40,41 @@ class GroupViewController: UIViewController {
                     }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    
                     self.IndicatorView.stopAnimating()
                     self.groupTableView.reloadData()
-                    
                 }
             }
         }
     }
     
-    //Mark:画面遷移
+    //Mark: setupDelegate
+    private func setupTableView() {
+        groupTableView.delegate = self
+        groupTableView.dataSource = self
+        let nib = GroupCell.nib()
+        groupTableView.register(nib, forCellReuseIdentifier: cellId)
+    }
     
+    //Mark:NVActivityIndicatorView
+    private func setupIndicator() {
+        let frame = CGRect(x: view.frame.width / 2,
+                           y: view.frame.height / 2,
+                           width: 60,
+                           height: 60)
+        IndicatorView = NVActivityIndicatorView(frame: frame,
+                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
+                                                color: Utility.AppColor.OriginalBlue,
+                                                padding: 0)
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor,
+                             centerY: view.centerYAnchor,
+                             width:100,
+                             height: 100)
+    }
     
+    //Mark:IBAction
     @IBAction func user(_ sender: Any) {
-        print("あいうえお")
+
             IndicatorView.startAnimating()
             let uid = Auth.getUserId()
             Firestore.getUserData(uid: uid) { user in
@@ -75,10 +85,7 @@ class GroupViewController: UIViewController {
             }
     }
     
-    
-    
-    
-    //Mark UserData
+    //Mark: fetchUserData
     private func fetchUserData() {
         let uid = Auth.getUserId()
         Firestore.getUserData(uid: uid) { user in
@@ -97,10 +104,12 @@ class GroupViewController: UIViewController {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
         }
+       
     }
     
 }
 
+//Mark:UItableViewDelegate,DataSource
 extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -131,7 +140,6 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
             let url = URL(string: teamArray[indexPath.row].teamImageUrl)
             cell.cellImagevView.sd_setImage(with: url, completed: nil)
             cell.cellImagevView.contentMode = .scaleAspectFill
-            
             cell.cellImagevView.chageCircle()
         } else if indexPath.section == 1 {
             cell.label.text = friendArray[indexPath.row].name
@@ -148,9 +156,9 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            //teamData
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
             vc.team = teamArray[indexPath.row]
+            vc.friends = friendArray
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
@@ -160,7 +168,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 8
+        return tableView.frame.height / 9
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

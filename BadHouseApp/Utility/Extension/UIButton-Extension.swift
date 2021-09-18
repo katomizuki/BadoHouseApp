@@ -1,8 +1,7 @@
-
 import Foundation
 import UIKit
+
 extension UIButton {
-    
     
     func createAuthButton(text:String)->UIButton {
         self.setTitle(text, for: UIControl.State.normal)

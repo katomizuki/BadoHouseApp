@@ -1,11 +1,9 @@
-
-
 import Foundation
 import UIKit
 
 class RegisterTextField:UITextField {
     
-    
+    //Mark:initialize
     init(placeholder:String) {
         super.init(frame:.zero)
         self.layer.cornerRadius = 15

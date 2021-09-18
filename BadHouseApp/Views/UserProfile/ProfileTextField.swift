@@ -1,9 +1,9 @@
-
-
 import Foundation
 import UIKit
 
 class ProfileTextField:UITextField {
+    
+    //Mark:initialize
     init(placeholder:String) {
         super.init(frame:.zero)
         self.borderStyle = .bezel
@@ -19,4 +19,4 @@ class ProfileTextField:UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 }
-import Foundation
+

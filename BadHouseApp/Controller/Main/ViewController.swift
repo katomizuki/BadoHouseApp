@@ -1,5 +1,3 @@
-
-
 import UIKit
 import Firebase
 import NVActivityIndicatorView
@@ -8,10 +6,8 @@ import RxSwift
 import CoreLocation
 import MapKit
 
-
-
-class ViewController: UIViewController, CalendarDelegate{
-   
+class ViewController: UIViewController{
+    
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
@@ -23,42 +19,18 @@ class ViewController: UIViewController, CalendarDelegate{
     private var eventArray = [Event]()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var timeButton: UIButton!
-    
+    private let tabBar = TabBarController()
     
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        timeButton.layer.cornerRadius = 15
-        timeButton.layer.masksToBounds = true
-        fetchData.eventDelegate = self
-        fetchData.eventSearchDelegate = self
-        fetchData.eventTimeDelegate = self
-        fetchData.detailDelegate = self
-        searchBar.delegate = self
-        
-        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        setupIndicator()
+        IndicatorView.startAnimating()
+        setupUI()
         setupLocationManager()
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        collectionView.collectionViewLayout = layout
-        
-        //Mark:NVActivityIndicatorView
-        navigationController?.isNavigationBarHidden = false
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 100,
-                           height: 100)
-        
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
-        
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: Utility.CellId.eventId)
+        setupDelegate()
+        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        setupCollectionView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,10 +42,57 @@ class ViewController: UIViewController, CalendarDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //Mark:NVActivityIndicatorView
         navigationController?.isNavigationBarHidden = false
     }
     
+    //Mark: setupUI
+    private func setupUI() {
+        timeButton.layer.cornerRadius = 15
+        timeButton.layer.masksToBounds = true
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    //Mark: setupDelegate
+    private func setupDelegate() {
+        fetchData.eventDelegate = self
+        fetchData.eventSearchDelegate = self
+        fetchData.eventTimeDelegate = self
+        fetchData.detailDelegate = self
+        searchBar.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    func scroll() {
+        print("🍏")
+    }
+    
+    //Mark: setupIndicator
+    private func setupIndicator() {
+        let frame = CGRect(x: view.frame.width / 2,
+                           y: view.frame.height / 2,
+                           width: 100,
+                           height: 100)
+        IndicatorView = NVActivityIndicatorView(frame: frame,
+                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
+                                                color: Utility.AppColor.OriginalBlue,
+                                                padding: 0)
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor,
+                             centerY: view.centerYAnchor,
+                             width:100,
+                             height: 100)
+    }
+    
+    //Mark:setupCollectionView
+    private func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        collectionView.collectionViewLayout = layout
+        let nib = UINib(nibName: "CollectionViewCell",
+                        bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: Utility.CellId.eventId)
+    }
     
     //Mark:Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,10 +109,6 @@ class ViewController: UIViewController, CalendarDelegate{
             vc.delegate = self
         }
     }
-    
-    func searchCalendar(dateString: String) {
-        fetchData.searchDateEvent(dateString:dateString)
-    }
 
     //Mark:currentLocationgetMethod
     private func setupLocationManager() {
@@ -109,7 +124,6 @@ class ViewController: UIViewController, CalendarDelegate{
         }
     }
     
-    
     //Mark:showAlert
     func showAlert() {
         let alertTitle = "位置情報取得許可されていません"
@@ -119,10 +133,9 @@ class ViewController: UIViewController, CalendarDelegate{
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
-    
-   
 }
 
+//Mark: UICollectionDelegate
 extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,6 +170,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             if teamurlString != "" {
                 let url = URL(string: teamurlString)
                 cell.userImageView.sd_setImage(with: url, completed: nil)
+                cell.userImageView.contentMode = .scaleAspectFill
             }
             cell.teamImage.sd_setImage(with: url, completed: nil)
             return cell
@@ -180,6 +194,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
 }
 
+//Mark: CLLocationMangerDelegate
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -192,6 +207,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
+//Mark: GetEventSearchDelegate
 extension ViewController:GetEventSearchDelegate {
     
     func getEventSearchData(eventArray: [Event]) {
@@ -201,9 +217,15 @@ extension ViewController:GetEventSearchDelegate {
     }
 }
 
+//Mark: UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
+        if searchText.isEmpty {
+            self.showAlert(title: "検索エラー", message: "１文字以上入力してください", actionTitle: "OK")
+            return
+        }
         fetchData.searchText(text: searchText)
         searchBar.resignFirstResponder()
     }
@@ -217,10 +239,7 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-
-
-
-
+//Mark GetEventTimeDelegate
 extension ViewController: GetEventTimeDelegate{
     
     func getEventTimeData(eventArray: [Event]) {
@@ -228,18 +247,20 @@ extension ViewController: GetEventTimeDelegate{
         self.eventArray = eventArray
         collectionView.reloadData()
     }
-
-    
 }
+
+//Mark GetEventDelegate
 extension ViewController:GetEventDelegate {
     //Mark:DelegateMethod
     func getEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
+        self.IndicatorView.stopAnimating()
         collectionView.reloadData()
     }
 }
 
+//Mark: GetDetailDataDelegate
 extension ViewController:GetDetailDataDelegate {
     func getDetailData(eventArray: [Event]) {
         print(#function)
@@ -248,10 +269,19 @@ extension ViewController:GetDetailDataDelegate {
     }
 }
 
-extension ViewController:getDetailDelegate {
+//Mark: GetDatailDelegate
+extension ViewController: getDetailDelegate {
     
     func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String) {
         fetchData.detailSearchEventData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
+    }
+}
+
+//Mark: CalendarDelegate
+extension ViewController: CalendarDelegate {
+    
+    func searchCalendar(dateString: String,text:String) {
+        fetchData.searchDateEvent(dateString:dateString,text: text)
     }
 }
 

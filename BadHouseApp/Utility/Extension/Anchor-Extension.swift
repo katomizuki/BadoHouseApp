@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 
@@ -50,5 +48,4 @@ extension UIView {
             self.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
-                
 }

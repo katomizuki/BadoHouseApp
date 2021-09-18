@@ -80,13 +80,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-   
-    
+
     //Mark: setupMethod
     private func setupLayout() {
        
@@ -106,11 +100,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         view.addSubview(profileEditButton)
         view.addSubview(InfoCollectionView)
         view.addSubview(orangeView)
-        
-        
-    
-        
-        
+
         //Mark: Anchor
         saveButton.anchor(top: view.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 40)
         logoutButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15)

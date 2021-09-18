@@ -1,10 +1,9 @@
-
-
 import Foundation
 import UIKit
 
 class RegisterButton:UIButton {
 
+    //Mark:initialize
     init(text:String) {
         super.init(frame: .zero)
         setTitle(text, for: UIControl.State.normal)

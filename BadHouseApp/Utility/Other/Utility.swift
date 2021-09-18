@@ -1,4 +1,3 @@
-
 import Foundation
 import UIKit
 
@@ -49,12 +48,14 @@ struct Utility {
    
 }
 
+//Mark:UIColor-Extension
 extension UIColor {
     static func rgb(red:CGFloat,green:CGFloat,blue:CGFloat,alpha:CGFloat = 1)->UIColor {
         return .init(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
 }
 
+//Mark:Array-Extension
 extension Array where Element: Equatable {
     mutating func remove(value: Element) {
         if let i = self.firstIndex(of: value) {
@@ -62,10 +63,5 @@ extension Array where Element: Equatable {
         }
     }
 }
-extension UINavigationItem {
-    func setBackBarButton() {
-        let backItem  = UIBarButtonItem(title: "もどる", style: .plain, target: nil, action: nil)
-        backItem.tintColor = Utility.AppColor.OriginalBlue
-        self.backBarButtonItem = backItem
-    }
-}
+
+

@@ -63,7 +63,19 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setBackBarButton()
+        setupUI()
+        setupBinding()
+        setupOwnTeamData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let image = UIImage(named: "double")
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+    }
+    
+    private func setupUI() {
         TeamPickerView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
         TeamPickerView.layer.borderWidth = 3
         TeamPickerView.layer.cornerRadius = 15
@@ -80,11 +92,22 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         makeEventButton.setTitleColor(.white, for: UIControl.State.normal)
         makeEventButton.layer.cornerRadius = 15
         makeEventButton.layer.masksToBounds = true
+        titleTextField.layer.borderColor = UIColor.lightGray.cgColor
+        placeTextField.layer.borderColor = UIColor.lightGray.cgColor
+        moneyTextField.layer.borderColor = UIColor.lightGray.cgColor
+        titleTextField.layer.borderWidth = 2
+        placeTextField.layer.borderWidth = 2
+        moneyTextField.layer.borderWidth = 2
+        titleTextField.layer.cornerRadius = 15
+        moneyTextField.layer.cornerRadius = 15
+        placeTextField.layer.cornerRadius = 15
+        titleTextField.layer.masksToBounds = true
+        moneyTextField.layer.masksToBounds = true
+        placeTextField.layer.masksToBounds = true
         
         TeamPickerView.delegate = self
         TeamPickerView.dataSource = self
-        setupBinding()
-        setupOwnTeamData()
+        
         makeEventButton.addTarget(self, action: #selector(createEvent), for: UIControl.Event.touchUpInside)
         circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
     }

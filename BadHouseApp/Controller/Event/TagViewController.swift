@@ -10,7 +10,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var testContainerView: UIView!
     @IBOutlet weak var finishButton: UIButton!
-    var plusTagArray = ["#バドミントン好き歓迎","#バドハウス大好き"]
+    var plusTagArray = [String]()
     var productTags:TKCollectionView!
     var allTags:TKCollectionView!
     var dic = [String:Any]()
@@ -30,12 +30,12 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         finishButton.layer.cornerRadius = 15
         finishButton.layer.masksToBounds = true
         
-        productTags = TKCollectionView(tags: ["#バドミントン好き歓迎","#バドハウス大好き"],
+        productTags = TKCollectionView(tags: ["#バド好き歓迎"],
                                               action: .removeTag,
                                               receiver: nil)
                
                allTags = TKCollectionView(tags: [
-                "#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△","#集合時間には遅れずに","#複数人OK","#〇〇","#△△"],
+                "#急募","#複数人OK","#ガチミントン","#シングルス","#ダブルス","#ミックス","#年齢不問","#ジュニア","#中高生歓迎","#大学生","#遅刻OK","#ゲーム中心","#練習もある","#ジュニア歓迎","#性別不問","#楽しくワイワイ","#コロナ対策有","#同年代多め","#レベル幅広く","#金額安め","#早退OK"],
                                           action: .addTag,
                                           receiver: productTags)
         

@@ -1,9 +1,8 @@
-
-
 import Foundation
 import Firebase
 import UIKit
 import CoreLocation
+
 extension Auth {
     
     //Mark Register
@@ -93,7 +92,7 @@ extension Firestore{
     //Mark:getTeamData
     static func getTeamData(teamId:String,completion:@escaping (TeamModel)->Void) {
         
-        Ref.TeamRef.document(teamId).getDocument { snapShot, error in
+        Ref.TeamRef.document(teamId).addSnapshotListener { snapShot, error in
             if let error = error {
                 print(error)
                 return
@@ -116,6 +115,11 @@ extension Firestore{
     //Mark: DeleteData
     static func deleteData(collectionName:String,documentId:String) {
         Firestore.firestore().collection(collectionName).document(documentId).delete()
+    }
+    
+    //Mark:DeleteChatData
+    static func deleteSubCollectionData(collecionName:String,documentId:String,subCollectionName:String,subId:String) {
+        Firestore.firestore().collection(collecionName).document(documentId).collection(subCollectionName).document(subId).delete()
     }
     
     //Mark:createTeam
@@ -236,6 +240,7 @@ extension Firestore{
             }
             var teamArray = [TeamModel]()
             guard let data = snapShot?.documents else { return }
+            teamArray = []
             for doc in data {
                 let safeData = doc.data()
                 let teamId = safeData["teamId"] as? String ?? ""
@@ -244,9 +249,10 @@ extension Firestore{
                 let teamPlace = safeData["teamPlace"] as? String ?? ""
                 let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
                 let teamUrl = safeData["teamURL"] as? String ?? ""
+                let teamLevel = safeData["teamLevel"] as? String ?? ""
                 let createdAt = safeData["createdAt"] as! Timestamp
                 let updatedAt = safeData["updatedAt"] as! Timestamp
-                let team = TeamModel(teamId: teamId, teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamTime, teamImageUrl: teamImageUrl, teamUrl: teamUrl, createdAt: createdAt, updatedAt: updatedAt)
+                let team = TeamModel(teamId: teamId, teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: teamImageUrl, teamUrl: teamUrl, createdAt: createdAt, updatedAt: updatedAt)
                 teamArray.append(team)
             }
             completion(teamArray)
@@ -293,8 +299,10 @@ extension Firestore{
         if bool {
             //true → plusFriend
             Ref.UsersRef.document(myId).collection("Friends").document(id).setData(["uid" : id])
+            Ref.UsersRef.document(id).collection("Friends").document(myId).setData(["uid":myId])
         } else {
             // false　→ deleteFriend
+            Ref.UsersRef.document(id).collection("Friends").document(myId).delete()
             Ref.UsersRef.document(myId).collection("Friends").document(id).delete()
         }
     }
@@ -322,7 +330,6 @@ extension Firestore{
     //Mark: sendEventData
     static func sendEventData(teamId:String,event:[String:Any],eventId:String) {
         //Mark:team→eventdata
-        print(event)
         Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event)
         Ref.EventRef.document(eventId).setData(event)
     }
@@ -335,6 +342,63 @@ extension Firestore{
             let tagId = "\(Ref.EventRef.document(eventId).documentID + String(i))"
             let dic = ["tag":tag,"teamId":teamId,"tagId":tagId]
             Ref.EventRef.document(eventId).collection("Tag").document(tagId).setData(dic)
+        }
+    }
+    
+    //Mark: sendInvite
+    static func sendInvite(teamId:String,inviter:
+    [User]) {
+        inviter.forEach { element in
+            let id = element.uid
+            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(id).setData(["uid":id])
+        }
+    }
+    
+    //Mark: getChatData
+    static func getChatData(uid:String,completion:@escaping ([String])->Void) {
+        var chatArray = [String]()
+        Ref.UsersRef.document(uid).collection("ChatRoom").addSnapshotListener { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { element in
+                let data = element.data()
+                let chatId = data["chatId"] as? String ?? ""
+                chatArray.append(chatId)
+            }
+            completion(chatArray)
+        }
+    }
+    
+    //Mark:LastGetChatData
+    static func getChatLastData(chatId:String,completion:@escaping(Chat)-> Void){
+        var textArray = [Chat]()
+        Ref.ChatroomRef.document(chatId).collection("Content").order(by: "sendTime").addSnapshotListener { snapShot, error in
+            textArray = []
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            if document.isEmpty {
+                let chat = Chat(sendTime: nil, text: "", senderId: "", reciverId: "")
+                textArray.append(chat)
+            } else {
+            document.forEach { element in
+                let data = element.data()
+                let text = data["text"] as? String ?? ""
+                let senderId = data["sender"] as? String ?? ""
+                let sendTime = data["sendTime"] as? Timestamp ?? Timestamp()
+                let reciver = data["reciver"] as? String ?? ""
+                let chat = Chat(sendTime: sendTime, text: text, senderId: senderId, reciverId: reciver)
+                textArray.append(chat)
+                }
+            }
+            guard let lastComment = textArray.last else { return }
+            print("っっｓ")
+            completion(lastComment)
         }
     }
 }

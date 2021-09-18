@@ -1,9 +1,9 @@
-
 import Foundation
 import UIKit
 
 class ProfileLabel:UILabel{
     
+    //Mark:initialize
     init() {
         super.init(frame: .zero)
         self.font = UIFont.systemFont(ofSize: 45,weight: .bold)

@@ -1,9 +1,12 @@
-
-
 import UIKit
 
 protocol getDetailDelegate {
-    func getDetailElement(title:String,circle:String,level:String,placeAddressString:String,money:String,time:String)
+    func getDetailElement(title:String,
+                          circle:String,
+                          level:String,
+                          placeAddressString:String,
+                          money:String,
+                          time:String)
 }
 
 class DetailSearchViewController: UIViewController{
@@ -24,6 +27,7 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet weak var wardTextField: UITextField!
     @IBOutlet weak var moneyTextField: UITextField!
     @IBOutlet weak var levelTextField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     private var pickerView = UIPickerView()
     private var pickerMoneyView = UIPickerView()
     private var pickerLevelView = UIPickerView()
@@ -37,9 +41,6 @@ class DetailSearchViewController: UIViewController{
     private var dateString = String()
     private var eventArray = [Event]()
     var delegate:getDetailDelegate?
-    
-
-    
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -55,14 +56,15 @@ class DetailSearchViewController: UIViewController{
         setupUnderLayer(view: timeStackView)
         setupPickerView()
         datePicker.addTarget(self, action: #selector(getDate(sender:)), for: UIControl.Event.valueChanged)
-        
+        searchButton.layer.cornerRadius = 15
+        searchButton.layer.masksToBounds = true
+        setupBorder()
     }
     
     //Mark:getCGrect
     private func getCGrect(view:UIView)->CGRect {
-        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
+        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0) 
     }
-    
     
     //Mark:setupMethod
     private func setupUnderLayer(view:UIView) {
@@ -72,12 +74,14 @@ class DetailSearchViewController: UIViewController{
         view.layer.addSublayer(bottomBorder)
     }
     
+    //Mark:setupPickerView
     private func setupPickerView() {
         setPicker(pickerView: pickerView, textField: circleTextField)
         setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
     }
     
+    //Mark:setPicker
     private func setPicker(pickerView:UIPickerView,textField:UITextField) {
         pickerView.delegate = self
         textField.inputView = pickerView
@@ -94,6 +98,7 @@ class DetailSearchViewController: UIViewController{
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
     }
+    
     @objc func getDate(sender:UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
@@ -109,7 +114,6 @@ class DetailSearchViewController: UIViewController{
         levelTextField.endEditing(true)
     }
     
-    
     //Mark:IBAction
     @IBAction func search(_ sender: Any) {
         let title = titleTextField.text ?? ""
@@ -121,9 +125,42 @@ class DetailSearchViewController: UIViewController{
         let city = cityTextField.text ?? ""
         let ward = cityTextField.text ?? ""
         let placeAddressString = prefrence + city + ward
-        
         self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupBorder() {
+        titleTextField.layer.borderColor = UIColor.lightGray.cgColor
+        moneyTextField.layer.borderColor = UIColor.lightGray.cgColor
+        cityTextField.layer.borderColor = UIColor.lightGray.cgColor
+        wardTextField.layer.borderColor = UIColor.lightGray.cgColor
+        levelTextField.layer.borderColor = UIColor.lightGray.cgColor
+        circleTextField.layer.borderColor = UIColor.lightGray.cgColor
+        prefrenceTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        titleTextField.layer.borderWidth = 2
+        moneyTextField.layer.borderWidth = 2
+        cityTextField.layer.borderWidth = 2
+        wardTextField.layer.borderWidth = 2
+        levelTextField.layer.borderWidth = 2
+        circleTextField.layer.borderWidth = 2
+        prefrenceTextField.layer.borderWidth = 2
+        
+        prefrenceTextField.layer.cornerRadius = 15
+        titleTextField.layer.cornerRadius = 15
+        moneyTextField.layer.cornerRadius = 15
+        levelTextField.layer.cornerRadius = 15
+        circleTextField.layer.cornerRadius = 15
+        wardTextField.layer.cornerRadius = 15
+        cityTextField.layer.cornerRadius = 15
+        
+        prefrenceTextField.layer.masksToBounds = true
+        titleTextField.layer.masksToBounds = true
+        moneyTextField.layer.masksToBounds = true
+        wardTextField.layer.masksToBounds = true
+        cityTextField.layer.masksToBounds = true
+        levelTextField.layer.masksToBounds = true
+        circleTextField.layer.masksToBounds = true
     }
 }
 

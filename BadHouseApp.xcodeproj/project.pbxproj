@@ -20,6 +20,11 @@
 		D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* CollectionViewCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */; };
+		D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* InviteViewController.swift */; };
+		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
+		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
+		D3A789D926F5DD8C0088E8BC /* UIVC-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */; };
+		D3A789DB26F5E85F0088E8BC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789DA26F5E85F0088E8BC /* TabBarController.swift */; };
 		D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E626EB82E300F40A51 /* MapViewController.swift */; };
 		D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* CalendarViewController.swift */; };
 		D3AC05EB26ED9C8800F40A51 /* DetailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */; };
@@ -64,6 +69,9 @@
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
+		D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */; };
+		D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE226F3019700B1C498 /* VideoCell.swift */; };
+		D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostViewController.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailViewController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventViewController.swift */; };
@@ -85,6 +93,12 @@
 		D37FA52726EB091300B8559F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		D3A789CE26F3FCA10088E8BC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D3A789CF26F414310088E8BC /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC-Extension.swift"; sourceTree = "<group>"; };
+		D3A789DA26F5E85F0088E8BC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D3AC05E826ED763000F40A51 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +142,9 @@
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
+		D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		D3CECEE226F3019700B1C498 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		D3CECEE526F3061700B1C498 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +212,14 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
+		D3A789D326F4396A0088E8BC /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				D3A789D426F439A40088E8BC /* ChatListViewController.swift */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
 		D3AC05EE26EE279D00F40A51 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +233,7 @@
 		D3BDB51B26E0525100C53780 = {
 			isa = PBXGroup;
 			children = (
+				D3A789CE26F3FCA10088E8BC /* .swiftlint.yml */,
 				D3BDB52626E0525100C53780 /* BadHouseApp */,
 				D3BDB52526E0525100C53780 /* Products */,
 				EAB088E43E3400410089E7E8 /* Pods */,
@@ -233,9 +259,6 @@
 				D3BDB53B26E0540C00C53780 /* Models */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
-				D3BDB52D26E0525100C53780 /* Main.storyboard */,
-				D3BDB53026E0525200C53780 /* Assets.xcassets */,
-				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
 				D3BDB53526E0525200C53780 /* Info.plist */,
 				D3BDB54726E0590800C53780 /* GoogleService-Info.plist */,
 			);
@@ -267,6 +290,9 @@
 		D3BDB53D26E0541E00C53780 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D3A789D326F4396A0088E8BC /* ChatList */,
+				D3CECEE426F3060500B1C498 /* VideoPost */,
+				D3CECEDF26F2FFBC00B1C498 /* TimeLine */,
 				D3C4E94326E1A54D00C21E46 /* GroupsAndFriends */,
 				D37FA52626EAFDAE00B8559F /* Event */,
 				D37FA52526EAFD5700B8559F /* User */,
@@ -279,6 +305,9 @@
 		D3BDB53E26E0542900C53780 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3BDB52D26E0525100C53780 /* Main.storyboard */,
+				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
+				D3BDB53026E0525200C53780 /* Assets.xcassets */,
 				D353D8E426F16C2F00221B7D /* Xib */,
 				D3C4E93A26E0F56900C21E46 /* Cell */,
 				D3C4E93326E0F1AC00C21E46 /* UserProfile */,
@@ -303,6 +332,7 @@
 				D3BDB55626E0644E00C53780 /* UIButton-Extension.swift */,
 				D3BDB55D26E0A97500C53780 /* Firebase-Extension.swift */,
 				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
+				D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -334,6 +364,7 @@
 				D3AC05E826ED763000F40A51 /* CalendarViewController.swift */,
 				D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */,
 				D353D8D926F05B9600221B7D /* ChatViewController.swift */,
+				D3A789DA26F5E85F0088E8BC /* TabBarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -357,6 +388,8 @@
 				D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */,
 				D37FA52726EB091300B8559F /* CollectionViewCell.swift */,
 				D353D8E026F1621F00221B7D /* ChatCell.swift */,
+				D3CECEE226F3019700B1C498 /* VideoCell.swift */,
+				D3A789D126F416E10088E8BC /* FriendCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -369,8 +402,25 @@
 				D3C4E94126E1A54000C21E46 /* MakeGroupViewController.swift */,
 				D3C4E94C26E1E9BB00C21E46 /* FriendsViewController.swift */,
 				D3FD194226E3A26700B6740E /* UserDetailViewController.swift */,
+				D3A789CF26F414310088E8BC /* InviteViewController.swift */,
 			);
 			path = GroupsAndFriends;
+			sourceTree = "<group>";
+		};
+		D3CECEDF26F2FFBC00B1C498 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		D3CECEE426F3060500B1C498 /* VideoPost */ = {
+			isa = PBXGroup;
+			children = (
+				D3CECEE526F3061700B1C498 /* PostViewController.swift */,
+			);
+			path = VideoPost;
 			sourceTree = "<group>";
 		};
 		EAB088E43E3400410089E7E8 /* Pods */ = {
@@ -394,6 +444,7 @@
 				D3BDB52126E0525100C53780 /* Frameworks */,
 				D3BDB52226E0525100C53780 /* Resources */,
 				CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */,
+				D3A789CB26F3F8710088E8BC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -485,6 +536,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D3A789CB26F3F8710088E8BC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
 		E7653B2371FC9E9AD21CB60D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,10 +586,13 @@
 				D3C4E93226E0F0BD00C21E46 /* UserViewController.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
+				D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
+				D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
+				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
@@ -529,6 +600,7 @@
 				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */,
 				D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */,
+				D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */,
 				D330032826E7013900208525 /* LevelViewController.swift in Sources */,
@@ -547,15 +619,19 @@
 				D3BDB55726E0644E00C53780 /* UIButton-Extension.swift in Sources */,
 				D330032626E61A2E00208525 /* PopViewController.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Utility.swift in Sources */,
+				D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
+				D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */,
 				D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */,
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
+				D3A789DB26F5E85F0088E8BC /* TabBarController.swift in Sources */,
+				D3A789D926F5DD8C0088E8BC /* UIVC-Extension.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */,

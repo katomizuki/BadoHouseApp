@@ -9,14 +9,12 @@ import Charts
 
 class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDelegate {
 
-    private let fetchData = FetchFirestoreData()
-    
     //Mark: Properties
+    private let fetchData = FetchFirestoreData()
     var team:TeamModel?
     var friend:User?
     var teamPlayers = [User]()
-
-    @IBOutlet weak var scrollView: UIScrollView!
+    var friends = [User]()
     @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var teamNameLabel: UILabel!
@@ -29,7 +27,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     @IBOutlet weak var priceStackView: UIStackView!
     @IBOutlet weak var pieView: PieChartView!
     @IBOutlet weak var BarChartView: BarChartView!
-    
     private let teamMemberCellId = Utility.CellId.MemberCellId
     private var genderArray = [Int]()
     private var genderValue = ["男性","女性","その他"]
@@ -39,68 +36,102 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        IndicatorView = NVActivityIndicatorView(frame: CGRect(x: view.frame.width / 2,
-                                                              y: view.frame.height / 2,
-                                                              width: 100,
-                                                              height: 100),
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
+        setupIndicator()
+        setupUI()
+        updateBorder()
+        setupDelegate()
         IndicatorView.startAnimating()
-        fetchData.delegate = self
-        fetchData.barDelegate = self
-        
-        //Mark: BorderUpdate
-        let border = CALayer()
-        border.frame = CGRect(x: placeStackView.frame.width - 1, y: 15, width: 5.0, height: placeStackView.frame.height - 25)
-        border.backgroundColor = UIColor.lightGray.cgColor
-        placeStackView.layer.addSublayer(border)
- 
-        
-        let border2 = CALayer()
-        border2.backgroundColor = UIColor.lightGray.cgColor
-        border2.frame = CGRect(x:timeStackView.frame.width - 1,y:15,width: 5.0,height: timeStackView.frame.height - 25)
-        timeStackView.layer.addSublayer(border2)
-        
-        //Mark: UpdateUI
-        teamTagStackView.distribution = .fillEqually
-        teamTagStackView.axis = .horizontal
-        teamTagStackView.spacing = 5
-        teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        setupData()
+        setUpTeamStatus()
+        setUpTeamPlayer()
+        setGraph()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let image = UIImage(named: "double")
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+    }
+    
+    //Mark: setupData
+    private func setupData() {
         guard let teamId = team?.teamId else { return }
         Firestore.getTeamTagData(teamId: teamId) { tags in
             if tags.count <= 1 {
                 let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
                 let button2 = UIButton(type: .system).cretaTagButton(text: "仲良く")
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+                button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
                 self.teamTagStackView.addArrangedSubview(button)
                 self.teamTagStackView.addArrangedSubview(button2)
             }
             for i in 0..<tags.count {
                 let title = tags[i].tag
                 let button = UIButton(type: .system).cretaTagButton(text: title)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
                 if i == 4 { return }
                 self.teamTagStackView.addArrangedSubview(button)
             }
         }
-        setUpTeamStatus()
-        setUpTeamPlayer()
-        setGraph()
     }
     
+    //Mark:setupUI
+    private func setupUI() {
+        teamTagStackView.distribution = .fillEqually
+        teamTagStackView.axis = .horizontal
+        teamTagStackView.spacing = 5
+        teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+    }
     
+    //Mark:setupDelegate
+    private func setupDelegate() {
+        fetchData.delegate = self
+        fetchData.barDelegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    //Mark: NVActivityIndicatorView
+    private func setupIndicator() {
+        let frame = CGRect(x: view.frame.width / 2,
+                           y: view.frame.height / 2,
+                           width: 100,
+                           height: 100)
+        IndicatorView = NVActivityIndicatorView(frame: frame,
+                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
+                                                color: Utility.AppColor.OriginalBlue,
+                                                padding: 0)
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
+    }
+    
+    //Mark: updateBorder
+    private func updateBorder() {
+        setupBorder(view: placeStackView)
+        setupBorder(view: timeStackView)
+    }
+    
+    //Mark: setupBorder
+    private func setupBorder(view:UIView) {
+        let border = CALayer()
+        border.frame = CGRect(x: view.frame.width - 1,
+                              y: 15,
+                              width: 5.0,
+                              height: view.frame.height - 25)
+        border.backgroundColor = UIColor.lightGray.cgColor
+        view.layer.addSublayer(border)
+    }
     
     
     //Mark:setupMethod()
     private func setUpTeamPlayer() {
         print(#function)
-        teamPlayers = []
+        
         guard let teamId = team?.teamId else { return }
         Firestore.getTeamPlayer(teamId: teamId) { membersId in
-     
+            self.teamPlayers = []
             for i in 0..<membersId.count {
                 let teamPlayerId = membersId[i]
                 Firestore.getUserData(uid: teamPlayerId) { teamPlayer in
@@ -173,7 +204,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     //Mark BarChart
     private func setGraph() {
       
-        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element) * 1) }
+        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
         print(rawData)
         BarChartView.scaleXEnabled = false
         BarChartView.scaleYEnabled = false
@@ -184,13 +215,22 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         BarChartView.rightAxis.enabled = false
         BarChartView.xAxis.labelPosition = .bottom
         BarChartView.xAxis.labelCount = rawData.count
+        BarChartView.leftAxis.labelCount = 10
         BarChartView.xAxis.labelTextColor = .darkGray
         BarChartView.xAxis.drawGridLinesEnabled = false
         BarChartView.xAxis.drawAxisLineEnabled = false
-        BarChartView.leftAxis.axisMinimum = 1
+        BarChartView.leftAxis.axisMinimum = 0
         BarChartView.leftAxis.axisMaximum = 10
         BarChartView.legend.enabled = false
-        dataSet.colors = [Utility.AppColor.OriginalBlue]
+        dataSet.colors = [.lightGray]
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoInvite" {
+            let vc = segue.destination as! InviteViewController
+            vc.friends = self.friends
+            vc.team = self.team
+        }
     }
 }
 

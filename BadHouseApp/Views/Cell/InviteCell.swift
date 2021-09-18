@@ -1,11 +1,10 @@
-
 import Foundation
 import UIKit
 
 class ContactCell:UITableViewCell {
     
     //Mark:Properties
-    var link:FriendsViewController!
+    var linkFriend:FriendsViewController!
     var count = 0
     private var button:UIButton = {
         let button = UIButton(type: .system)
@@ -17,10 +16,10 @@ class ContactCell:UITableViewCell {
     //Mark: initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -36,6 +35,6 @@ class ContactCell:UITableViewCell {
             self.backgroundColor = .clear
             count += 1
         }
-        link?.someMethodWantToCall(cell: self)
+        linkFriend?.someMethodWantToCall(cell: self)
     }
 }

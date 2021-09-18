@@ -1,11 +1,10 @@
-
-
 import UIKit
 import SDWebImage
 import MapKit
 import CoreLocation
 import Charts
 import Firebase
+import PKHUD
 
 class EventDetailViewController: UIViewController {
    
@@ -73,9 +72,19 @@ class EventDetailViewController: UIViewController {
         setupTag()
         setupUnderLine()
         setupUser()
+        self.navigationItem.backButtonDisplayMode = .minimal
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         Firestore.getUserData(uid: Auth.getUserId()) { user in
             self.me = user
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let image = UIImage(named: "double")
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
     }
     
     
@@ -119,11 +128,13 @@ class EventDetailViewController: UIViewController {
         guard let groupUrlString = event?.teamImageUrl else { return }
         let groupUrl = URL(string: groupUrlString)
         groupImageView.sd_setImage(with: groupUrl, completed: nil)
-        groupImageView.chageCircle()
+        groupImageView.layer.cornerRadius = groupImageView.frame.width / 2
+        groupImageView.layer.masksToBounds = true
+        groupImageView.contentMode = .scaleAspectFill
         
         //Mark:textLabel
-        titleLabel.text = event?.eventTitle
-        groupLabel.text = event?.teamName
+        titleLabel.text = "\(event?.eventTitle ?? "")"
+        groupLabel.text = "主催者 \(event?.teamName ?? "")"
         var start = event?.eventStartTime ?? ""
         var last = event?.eventFinishTime ?? ""
         start = changeString(string: start)
@@ -187,7 +198,7 @@ class EventDetailViewController: UIViewController {
     }
     
     private func setBarChart() {
-        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element) * 10) }
+        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
         barView.scaleXEnabled = false
         barView.scaleYEnabled = false
         let dataSet = BarChartDataSet(entries: entries)
@@ -197,13 +208,15 @@ class EventDetailViewController: UIViewController {
         barView.rightAxis.enabled = false
         barView.xAxis.labelPosition = .bottom
         barView.xAxis.labelCount = rawData.count
+        barView.leftAxis.labelCount = 10
         barView.xAxis.labelTextColor = .darkGray
         barView.xAxis.drawGridLinesEnabled = false
         barView.xAxis.drawAxisLineEnabled = false
-        barView.leftAxis.axisMinimum = 1
+        barView.leftAxis.axisMinimum = 0
         barView.leftAxis.axisMaximum = 10
         barView.legend.enabled = false
-        dataSet.colors = [Utility.AppColor.OriginalBlue]
+        dataSet.colors = [.lightGray]
+        print(rawData)
     }
     
     private func setupTag() {
@@ -218,9 +231,13 @@ class EventDetailViewController: UIViewController {
             for i in 0..<tags.count {
                 let tag = tags[i].tag
                 let button = UIButton(type: .system).cretaTagButton(text: tag)
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
+                button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                button.layer.borderWidth = 2
+                button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+                button.backgroundColor = .white
                 button.titleLabel?.numberOfLines = 0
-                if i == 3 { return }
+//                if i == 3 { return }
                 self.stackView.addArrangedSubview(button)
             }
         }
@@ -266,8 +283,20 @@ class EventDetailViewController: UIViewController {
             guard let you = you else { return }
             vc.me = me
             vc.you = you
+            vc.flag = true
         }
     }
+    static func notification() {
+        print(#function)
+    }
+    
+    @IBAction func join(_ sender: Any) {
+        print(#function)
+        HUD.flash(.success)
+        HUD.flash(.labeledSuccess(title: "参加の申請をしました", subtitle: ""))
+        
+    }
+    
 }
 
 extension EventDetailViewController:GetGenderCount {
@@ -296,16 +325,19 @@ extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.MemberCellId, for: indexPath) as! TeammemberCell
         let memberName = teamArray[indexPath.row].name
         let urlString = teamArray[indexPath.row].profileImageUrl
-        cell.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-        cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 4
-        cell.layer.cornerRadius = 15
         cell.configure(name: memberName, urlString: urlString)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
+        vc.user = teamArray[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

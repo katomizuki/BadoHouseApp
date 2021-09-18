@@ -1,4 +1,3 @@
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -7,7 +6,6 @@ import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 
-
 class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate {
     
     //Mark :Properties
@@ -15,7 +13,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let teamBinding = TeamRegisterBindings()
     var friends = [User]()
     var me:User?
-    
     @IBOutlet weak var groupImageView: UIImageView!
     private let nameTextField = RegisterTextField(placeholder: "サークル名(必須)")
     private let placeTextField = RegisterTextField(placeholder: "主な活動場所 〇〇学校〇〇センター,不定等(必須)")
@@ -23,51 +20,57 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let levelTextField = RegisterTextField(placeholder: "会費 〇〇円/月 シャトル,コート代により変動等(必須)")
     private let plusTextField = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意）")
     private let tagLabel = ProfileLabel(title: "特徴タグ")
-    
-    
-    
     private let registerButton:UIButton = RegisterButton(text: "新規登録")
-    
     private let buttonTag1 = UIButton(type: .system).createTagButton(title: "シングル可")
     private let buttonTag2 = UIButton(type: .system).createTagButton(title: "バド好き歓迎")
     private let buttonTag3 = UIButton(type: .system).createTagButton(title: "ミックス可")
     private let buttonTag4 = UIButton(type: .system).createTagButton(title: "ダブルスメイン")
-    
     private let buttonTag5 = UIButton(type: .system).createTagButton(title: "上級者限定")
     private let buttonTag6 = UIButton(type: .system).createTagButton(title: "学生限定")
     private let buttonTag7 = UIButton(type: .system).createTagButton(title: "初心者歓迎")
     private let buttonTag8 = UIButton(type: .system).createTagButton(title: "練習あります")
-    
     private let buttonTag9 = UIButton(type: .system).createTagButton(title: "子供,学生OK")
     private let buttonTag10 = UIButton(type: .system).createTagButton(title: "大会出ます!")
     private let buttonTag11 = UIButton(type: .system).createTagButton(title: "土日開催")
     private let buttonTag12 = UIButton(type: .system).createTagButton(title: "平日開催")
     private var tagArray = [String]()
-    
-    
-    
+ 
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupBinding()
+        guard let me = me else { return }
+        Firestore.getFriendData(uid: me.uid) { friendId in
+            print(friendId)
+            for i in 0..<friendId.count {
+                let id = friendId[i]
+                Firestore.getUserData(uid: id) { friend in
+                    guard let friend = friend else { return }
+                    print(friend.name)
+                    self.friends.append(friend)
+                }
+            }
+        }
     }
     
     //Mark:setupLayout
     private func setupLayout() {
         
+        //Mark: updateUI
         groupImageView.isUserInteractionEnabled = true
         groupImageView.layer.cornerRadius = 50
         groupImageView.layer.masksToBounds = true
         groupImageView.contentMode = .scaleAspectFit
         registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         
-        
+        //Mark: readyStackView
         let basicStackView = UIStackView(arrangedSubviews: [nameTextField,placeTextField,timeTextField,levelTextField,plusTextField])
         let buttonStackView = UIStackView(arrangedSubviews: [buttonTag1,buttonTag2,buttonTag3,buttonTag4])
         let buttonStackView2 = UIStackView(arrangedSubviews: [buttonTag5,buttonTag6,buttonTag7,buttonTag8])
         let buttonStackView3 = UIStackView(arrangedSubviews: [buttonTag9,buttonTag10,buttonTag11,buttonTag11,buttonTag12])
         
+        //Mark: updateStackView
         buttonStackView.axis = .horizontal
         buttonStackView.spacing = 5
         buttonStackView.distribution = .fillEqually
@@ -84,6 +87,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         basicStackView.distribution = .fillEqually
         basicStackView.spacing = 15
         
+        //Mark:addSubview
         view.addSubview(basicStackView)
         view.addSubview(tagLabel)
         view.addSubview(buttonStackView)
@@ -91,7 +95,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         view.addSubview(buttonStackView3)
         view.addSubview(registerButton)
         
-        
+        //Mark:anchor
         buttonTag1.anchor(width: 45, height:45)
         buttonTag5.anchor(width:45, height: 45)
         buttonTag9.anchor(width:45,height: 45)
@@ -109,6 +113,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonStackView3.anchor(top: buttonStackView2.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         registerButton.anchor(top:buttonStackView3.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20, paddingLeft: 20,height: 40)
         
+        //Mark:selector
         buttonTag1.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag2.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag3.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
@@ -139,8 +144,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             tagArray.remove(value: title)
         }
     }
-    
-    
     
     //Mark:setupBiding
     private func setupBinding() {
@@ -241,8 +244,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private func createTeam() {
         print(#function)
         
-        guard let me = me else { return }
-        friends.append(me)
         guard let teamName = nameTextField.text else { return }
         guard let teamTime = timeTextField.text else { return }
         guard let teamPlace = placeTextField.text else { return }
@@ -251,16 +252,9 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         guard let teamUrl = plusTextField.text else { return }
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendVC") as! FriendsViewController
-        Firestore.getFriendData(uid: me.uid) { friendId in
-            for i in 0..<friendId.count {
-                let id = friendId[i]
-                Firestore.getUserData(uid: id) { friend in
-                    guard let friend = friend else { return }
-                    self.friends.append(friend)
-                }
-            }
+       
             vc.friends = self.friends
-        }
+        
         vc.teamName = teamName
         vc.teamTime = teamTime
         vc.teamPlace = teamPlace
@@ -270,7 +264,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         vc.url = teamUrl
         vc.teamTagArray = self.tagArray
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     //Mark: IBAction
@@ -282,10 +275,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             print("Camera Start")
         }
     }
-    
- 
-
-    
 }
 
 

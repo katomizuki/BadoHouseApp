@@ -1,5 +1,3 @@
-
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -46,6 +44,10 @@ class MapViewController: UIViewController{
         textField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        textField.becomeFirstResponder()
+    }
+    
     //Mark:selector
     @objc private func mapTap(_ gesture:UITapGestureRecognizer) {
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
@@ -75,8 +77,6 @@ class MapViewController: UIViewController{
     
     //Mark:IBAction
     @IBAction func saveButton(_ sender: Any) {
-        print(placeLatitude)
-        print(placeLongitude)
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)
         dismiss(animated: true, completion: nil)
     }
@@ -86,7 +86,7 @@ class MapViewController: UIViewController{
             geocoder.geocodeAddressString(search) { placemark, error in
                 if let error = error {
                     print("Location",error)
-                    self.showAlert()
+                    self.showAlert(title: "検索エラー", message: "開催場所の正式名称を入力してください", actionTitle: "OK")
                     return
                 }
                 if let safePlacemark = placemark {
@@ -131,7 +131,7 @@ extension MapViewController:UITextFieldDelegate {
             geocoder.geocodeAddressString(search) { placemark, error in
                 if let error = error {
                     print("Location",error)
-                    self.showAlert()
+                    self.showAlert(title: "検索エラー", message: "開催場所の正式名称を入力してください", actionTitle: "OK")
                     return
                 }
                 if let safePlacemark = placemark {
@@ -161,13 +161,6 @@ extension MapViewController:UITextFieldDelegate {
             }
         }
         return true
-    }
-    
-    private func showAlert() {
-        let alertVC = UIAlertController(title: "検索エラー", message: "開催場所の正式名称を入力してください", preferredStyle: UIAlertController.Style.alert)
-        let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-        alertVC.addAction(alertAction)
-        present(alertVC, animated: true, completion: nil)
     }
     
 }

@@ -1,9 +1,6 @@
-
-
 import UIKit
 import Firebase
 import NVActivityIndicatorView
-
 
 class FriendsViewController: UIViewController {
     
@@ -23,7 +20,6 @@ class FriendsViewController: UIViewController {
     var teamTagArray = [String]()
     var url:String?
     
-    
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)
@@ -36,7 +32,6 @@ class FriendsViewController: UIViewController {
             inviter.append(friend)
         }
     }
-    
     
     //Mark: HelperMethod
     func judgeInvite(userId:String)->Int? {
@@ -51,19 +46,33 @@ class FriendsViewController: UIViewController {
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(teamTagArray)
-        inviteButton.backgroundColor = Utility.AppColor.OriginalBlue
-        inviteButton.setTitleColor(.white, for: UIControl.State.normal)
-        
+        setupTableView()
+        updateUI()
+        setupIndicator()
+    }
+    
+    //Mark:setupFriendTableView
+    private func setupTableView() {
         friendTableView.delegate = self
         friendTableView.dataSource = self
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    //Mark:updateUI()
+    private func updateUI() {
         inviteButton.backgroundColor = Utility.AppColor.OriginalLightBlue
-        //Mark:NVActivityIndicatorView
-        IndicatorView = NVActivityIndicatorView(frame: CGRect(x: view.frame.width / 2,
-                                                              y: view.frame.height / 2,
-                                                              width: 60,
-                                                              height: 60),
+        inviteButton.backgroundColor = Utility.AppColor.OriginalBlue
+        inviteButton.setTitleColor(.white, for: UIControl.State.normal)
+    }
+    
+    
+    //Mark:NVActivityIndicatorView
+    private func setupIndicator() {
+        let frame = CGRect(x: view.frame.width / 2,
+                           y: view.frame.height / 2,
+                           width: 60,
+                           height: 60)
+        IndicatorView = NVActivityIndicatorView(frame: frame,
                                                 type: NVActivityIndicatorType.ballClipRotateMultiple,
                                                 color: Utility.AppColor.OriginalBlue,
                                                 padding: 0)
@@ -89,7 +98,6 @@ class FriendsViewController: UIViewController {
     }
 }
 
-
 //Mark TableviewExtension
 extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
 
@@ -100,17 +108,19 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
-        cell.link = self
+        cell.linkFriend = self
         cell.textLabel?.text = friends[indexPath.row].name
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
             //urlがからであれば違う画像を出す なければロゴ画像を一旦出す。
             cell.imageView?.image = UIImage(named: Utility.ImageName.swift)
-            cell.imageView?.chageCircle()
+            cell.imageView?.layer.cornerRadius = 35
+            cell.imageView?.layer.masksToBounds = true
         } else {
             cell.imageView?.sd_setImage(with: url, completed: nil)
-            cell.imageView?.chageCircle()
+            cell.imageView?.layer.cornerRadius = 35
+            cell.imageView?.layer.masksToBounds = true
         }
         return cell
     }
@@ -120,6 +130,6 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return friendTableView.frame.height / 8
+        return friendTableView.frame.height / 10
     }
 }

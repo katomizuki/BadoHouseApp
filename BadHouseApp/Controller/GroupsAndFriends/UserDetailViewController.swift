@@ -1,9 +1,6 @@
-
-
 import UIKit
 import Firebase
 import SDWebImage
-
 
 class UserDetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
@@ -12,7 +9,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     var me:User?
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
-    
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var teamMemberImageView: UIImageView!
     @IBOutlet weak var friendCollectionView: UICollectionView!
@@ -32,7 +28,23 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setBackBarButton()
+        updateUI()
+        updateBorder()
+        setupDelegate()
+        setupCollection()
+        setupData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let image = UIImage(named: "double")
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+    }
+    
+    //Mark:updateUI
+    private func updateUI() {
         //Mark:UpdateUI
         friendButton.layer.cornerRadius = 15
         friendButton.layer.masksToBounds = true
@@ -44,63 +56,62 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         teamLabel.font = UIFont.boldSystemFont(ofSize: 20)
         friendLabel.font = UIFont.boldSystemFont(ofSize:
             20)
-        
-        //Mark: BorderUpdate
-        let border = CALayer()
-        border.frame = CGRect(x: ageStackView.frame.width - 1, y: 15, width: 5.0, height: ageStackView.frame.height - 25)
-        border.backgroundColor = UIColor.lightGray.cgColor
-        ageStackView.layer.addSublayer(border)
- 
-        
-        let border2 = CALayer()
-        border2.backgroundColor = UIColor.lightGray.cgColor
-        border2.frame = CGRect(x:genderStackView.frame.width - 1,y:15,width: 5.0,height: genderStackView.frame.height - 25)
-   
-        genderStackView.layer.addSublayer(border2)
-        
-        
-        let border3 = CALayer()
-        border3.backgroundColor = UIColor.lightGray.cgColor
-        border3.frame = CGRect(x:badmintonTimeStackView.frame.width - 1,y:15,width: 5.0,height: badmintonTimeStackView.frame.height - 25)
-      
-        badmintonTimeStackView.layer.addSublayer(border3)
-        
-        //Mark:UserInfo UpdateUI
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
         levelLabel.text = user?.level == "" || user?.level == nil || user?.level == "未設定" ? "未設定":user?.level
         badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
+    }
     
-        //Mark: Delegate,Datasource
+    //Mark:updateBorder
+    private func updateBorder() {
+        setupBorder(view: ageStackView)
+        setupBorder(view: genderStackView)
+        setupBorder(view: badmintonTimeStackView)
+    }
+    
+    //Mark:setupBorder
+    private func setupBorder(view:UIView) {
+        let border = CALayer()
+        border.frame = CGRect(x: view.frame.width - 1, y: 15, width: 5.0, height: view.frame.height - 25)
+        border.backgroundColor = UIColor.lightGray.cgColor
+        view.layer.addSublayer(border)
+    }
+    
+    //Mark:Delegate,DataSource
+    private func setupDelegate() {
         belongCollectionView.delegate = self
         belongCollectionView.dataSource = self
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
-        
-        //Mark:collectionViewCell
+    }
+    
+    //Mark: setupCollectionViewCell
+    private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
         belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
         let friendNib = TeammemberCell.nib()
         friendCollectionView.register(friendNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         friendCollectionView.collectionViewLayout = layout
         belongCollectionView.collectionViewLayout = layout
         getNeededMethod()
-   
-        
-        //Mark: FriendButton
+    }
+    
+    //Mark:setupData
+    private func setupData() {
         let myId = Auth.getUserId()
         guard let user = user else { return }
         Firestore.searchFriend(friend: user, myId: myId) { result in
             if result {
+                print("🐶")
                 self.friendButton.backgroundColor = Utility.AppColor.OriginalBlue
                 self.friendButton.setTitle("友達解除", for: UIControl.State.normal)
                 self.friendButton.setTitleColor(.white, for: UIControl.State.normal)
            
             } else {
+                print("🎨")
                 self.friendButton.backgroundColor = .white
                 self.friendButton.setTitle("友達申請", for: UIControl.State.normal)
                 self.friendButton.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
@@ -108,9 +119,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
                 self.friendButton.layer.borderWidth = 4
             }
         }
-        
     }
-    
     
     //Mark:getNeededMethod
     private func getNeededMethod() {
@@ -121,10 +130,21 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         Firestore.getOwnTeam(uid: memberId) { teams in
             self.ownTeam = teams
             Firestore.getFriendData(uid: memberId) { friends in
-//                self.userFriend = friends
-        
-                self.belongCollectionView.reloadData()
-                self.friendCollectionView.reloadData()
+                self.userFriend = []
+              print("⚡")
+                for i in 0..<friends.count {
+                    let uid = friends[i]
+                    Firestore.getUserData(uid: uid) { friend in
+                        guard let friend = friend else { return }
+                        self.userFriend.append(friend)
+                        print(friend.name)
+                    }
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    self.belongCollectionView.reloadData()
+                    self.friendCollectionView.reloadData()
+                }
             }
         }
     }
@@ -140,6 +160,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             self.friendButton.setTitle("友達解除", for: UIControl.State.normal)
             self.friendButton.setTitleColor(.white, for: UIControl.State.normal)
             Firestore.friendAction(myId: myId, friend: user, bool: true)
+            print("さささ")
         } else {
             friendButton.backgroundColor = .white
             friendButton.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
@@ -147,13 +168,13 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             friendButton.layer.borderWidth = 4
             friendButton.layer.cornerRadius = 15
             friendButton.layer.masksToBounds = true
-          
+            print("ss")
             self.friendButton.setTitle("友達申請", for: UIControl.State.normal)
             Firestore.friendAction(myId: myId, friend: user, bool: false)
         }
     }
     
-    
+    //Mark:IBAction tap
     @IBAction func commentTap(_ sender: Any) {
         print(#function)
         let viewController = CommentViewController() //popoverで表示するViewController
@@ -178,8 +199,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
 
 }
 
-
-//Mark: UserCollectionView
+//Mark: UserCollectionViewDelegate
 extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -214,8 +234,6 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
-
-  
 }
 
 

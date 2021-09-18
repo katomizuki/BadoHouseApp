@@ -23,6 +23,9 @@ protocol GetDetailDataDelegate {
 protocol GetChatDataDelgate {
     func getChatData(chatArray:[Chat])
 }
+protocol GetChatRoomDataDelegate {
+    func getChatRoomData(chatRoomArray:[ChatRoom])
+}
 
 class FetchFirestoreData {
     
@@ -33,6 +36,7 @@ class FetchFirestoreData {
     var eventTimeDelegate:GetEventTimeDelegate?
     var detailDelegate:GetDetailDataDelegate?
     var chatDelegate:GetChatDataDelgate?
+    var chatRoomDelegate:GetChatRoomDataDelegate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -211,7 +215,7 @@ class FetchFirestoreData {
         }
     }
     
-    func searchDateEvent(dateString:String) {
+    func searchDateEvent(dateString:String,text:String) {
         var eventArray = [Event]()
         let startIndex = dateString.index(dateString.startIndex, offsetBy: 0)
         let endIndex = dateString.index(dateString.startIndex, offsetBy: 10)
@@ -249,6 +253,7 @@ class FetchFirestoreData {
                     eventArray.append(event)
                 }
             }
+            eventArray = eventArray.filter { $0.placeAddress.contains(text) || $0.eventPlace.contains(text) }
             self.eventTimeDelegate?.getEventTimeData(eventArray: eventArray)
         }
     }
@@ -404,6 +409,29 @@ class FetchFirestoreData {
                 chatArray.append(chat)
             }
             self.chatDelegate?.getChatData(chatArray: chatArray)
+        }
+    }
+    func getChatRoomModel(chatId:[String]){
+            var chatRoomModelArray = [ChatRoom]()
+        for i in 0..<chatId.count {
+            print(chatId[i])
+            Ref.ChatroomRef.document(chatId[i]).getDocument { snapShot, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard let data = snapShot?.data() else { return }
+                let chatRoomId = data["chatRoomId"] as? String ?? ""
+                let user = data["user"] as? String ?? ""
+                let user2 = data["user2"] as? String ?? ""
+                let chatRoomModel = ChatRoom(chatRoom: chatRoomId, user: user, user2: user2)
+                chatRoomModelArray.append(chatRoomModel)
+                print(chatRoomModel)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            print(chatRoomModelArray)
+            self.chatRoomDelegate?.getChatRoomData(chatRoomArray: chatRoomModelArray)
         }
     }
 }

@@ -1,13 +1,12 @@
-
-
 import Foundation
 import UIKit
-//全部イベントのデータを取って来る,1週間以内のもの
+
 class DateUtils {
     class func dateFromString(string: String, format: String) -> Date? {
         let formatter: DateFormatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.dateFormat = format
+        
         let date = formatter.date(from: string)
         return date
     }
@@ -16,6 +15,7 @@ class DateUtils {
         let formatter: DateFormatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.dateFormat = format
+        
         return formatter.string(from: date)
     }
     
