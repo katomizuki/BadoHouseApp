@@ -13,7 +13,6 @@ pod 'FirebaseStorage'
 pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
 pod 'TaggerKit'
-pod "CDAlertView"
 pod 'NVActivityIndicatorView'
 pod 'FSCalendar'
 pod 'EmptyStateKit'

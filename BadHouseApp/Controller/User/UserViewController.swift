@@ -1,5 +1,3 @@
-
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -11,6 +9,8 @@ import FirebaseAuth
 class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
     //Mark: properties
+    
+  
     var user:User?
     private let cellId = "cellId"
     private let diposeBag = DisposeBag()
@@ -44,11 +44,12 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     private var introduction = ""
-    private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存")
-    private let logoutButton = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
+    private let saveButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
+    private let logoutButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
     private let profileImageView = ProfileImageView()
     private let nameLabel = ProfileLabel()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
+    private let dismissButton = UIButton(type: .system).createAuthButton(text: "もどる")
     lazy var InfoCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero,collectionViewLayout: layout)
@@ -77,8 +78,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         orangeView.dataSource = self
         orangeView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         orangeView.separatorColor = Utility.AppColor.OriginalBlue
-        
-        
     }
 
     //Mark: setupMethod
@@ -91,7 +90,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         InfoCollectionView.isScrollEnabled = false
         nameLabel.textColor = Utility.AppColor.OriginalBlue
         
-        
         //Mark addSubView
         view.addSubview(saveButton)
         view.addSubview(logoutButton)
@@ -102,8 +100,8 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         view.addSubview(orangeView)
 
         //Mark: Anchor
-        saveButton.anchor(top: view.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 40)
-        logoutButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15)
+        saveButton.anchor(top: view.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
+        logoutButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
         profileImageView.anchor(top: view.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 10, centerX: view.centerXAnchor)
         profileEditButton.anchor(top: profileImageView.topAnchor, right: profileImageView.rightAnchor,  width: 70, height: 60)
@@ -112,7 +110,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
        
         
         //Mark: selector
-        logoutButton.addTarget(self, action: #selector(logout), for: UIControl.Event.touchUpInside)
+        saveButton.addTarget(self, action: #selector(logout), for: UIControl.Event.touchUpInside)
         
         //Mark: textFieldUPdate
         nameLabel.text = user?.name
@@ -130,19 +128,20 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     //Mark: Logout
     @objc func logout() {
-        do {
-            print(#function)
-            try Auth.auth().signOut()
-            let vc = RegisterViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
-        } catch {
-            print("Logout",error)
-        }
+//        do {
+//            print(#function)
+//            try Auth.auth().signOut()
+//            let vc = RegisterViewController()
+//            vc.modalPresentationStyle = .fullScreen
+//            present(vc, animated: true, completion: nil)
+//        } catch {
+//            print("Logout",error)
+//        }
+        dismiss(animated: true, completion: nil)
     }
     
     private func setupBinding() {
-        saveButton.rx.tap
+        logoutButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
                 guard let self = self else { return }

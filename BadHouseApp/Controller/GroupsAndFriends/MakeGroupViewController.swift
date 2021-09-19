@@ -54,6 +54,14 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let image = UIImage(named: "double")
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+    }
+    
     //Mark:setupLayout
     private func setupLayout() {
         

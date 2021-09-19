@@ -13,6 +13,10 @@ class GroupViewController: UIViewController {
     private let sectionArray = ["所属サークル","お友達"]
     @IBOutlet weak var groupTableView: UITableView!
     private var IndicatorView:NVActivityIndicatorView!
+    @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet weak var myName: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -23,6 +27,18 @@ class GroupViewController: UIViewController {
         fetchUserData()
         setupTableView()
         setupData()
+        myImageView.layer.cornerRadius = 40
+        myImageView.layer.masksToBounds = true
+        let id = Auth.getUserId()
+        Firestore.getUserData(uid: id) { user in
+            guard let user = user else { return }
+            let urlString = user.profileImageUrl
+            let url = URL(string: urlString)
+            self.myImageView.sd_setImage(with: url, completed: nil)
+            self.myName.text = user.name
+        }
+        
+        
     }
     
     //Mark: setupData {
@@ -40,6 +56,7 @@ class GroupViewController: UIViewController {
                     }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
                     self.IndicatorView.stopAnimating()
                     self.groupTableView.reloadData()
                 }
@@ -104,7 +121,10 @@ class GroupViewController: UIViewController {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
         }
-       
+    }
+    
+    @IBAction func scroll(_ sender: Any) {
+        groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
     }
     
 }
@@ -168,7 +188,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 9
+        return tableView.frame.height / 8
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

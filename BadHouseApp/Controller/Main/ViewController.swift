@@ -63,9 +63,7 @@ class ViewController: UIViewController{
         collectionView.dataSource = self
     }
     
-    func scroll() {
-        print("🍏")
-    }
+   
     
     //Mark: setupIndicator
     private func setupIndicator() {
@@ -133,6 +131,12 @@ class ViewController: UIViewController{
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func scroll(_ sender: Any) {
+        print(#function)
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
+    }
+    
 }
 
 //Mark: UICollectionDelegate
@@ -190,8 +194,8 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             vc.team = team
             self.navigationController?.pushViewController(vc, animated: true)
         }
-       
     }
+    
 }
 
 //Mark: CLLocationMangerDelegate

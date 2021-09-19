@@ -89,6 +89,7 @@ extension Firestore{
         }
     }
     
+    
     //Mark:getTeamData
     static func getTeamData(teamId:String,completion:@escaping (TeamModel)->Void) {
         
