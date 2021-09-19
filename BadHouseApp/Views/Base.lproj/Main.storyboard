@@ -1193,7 +1193,7 @@
                         <outlet property="timeLabel" destination="Hfj-iy-lcK" id="OQb-zy-foF"/>
                         <outlet property="timeStackView" destination="b29-gA-CfK" id="7bf-hf-o9k"/>
                         <segue destination="oj7-Ug-OXr" kind="show" identifier="goto" id="KCo-PJ-OZR"/>
-                        <segue destination="r26-CP-u6r" kind="presentation" identifier="gotoGroup" id="6ya-7k-cFI"/>
+                        <segue destination="r26-CP-u6r" kind="presentation" identifier="gotoGroup" modalPresentationStyle="fullScreen" id="6ya-7k-cFI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfN-ks-TqJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1210,15 +1210,74 @@
             <objects>
                 <viewController id="r26-CP-u6r" customClass="GroupChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSU-UL-UDT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2m-n4-zaA">
+                                <rect key="frame" x="0.0" y="53" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Hr7-nk-aYI"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="flV-rf-5BJ"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-ua-dg9">
+                                <rect key="frame" x="0.0" y="97" width="414" height="676"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H7T-k1-K8w">
+                                <rect key="frame" x="30" y="795" width="327" height="33"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="327" id="HgU-Ic-PCE"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LO-8v-daL">
+                                <rect key="frame" x="357" y="793" width="37" height="35"/>
+                                <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Nht-5Y-6JV"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="送信">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="send:" destination="9tS-ME-tid" eventType="touchUpInside" id="ilV-BP-E66"/>
+                                    <action selector="sendChat:" destination="r26-CP-u6r" eventType="touchUpInside" id="QOH-GL-Hmx"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="IZg-uR-SFp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d2m-n4-zaA" firstAttribute="trailing" secondItem="y1L-ua-dg9" secondAttribute="trailing" id="3EK-UQ-FPE"/>
+                            <constraint firstItem="y1L-ua-dg9" firstAttribute="leading" secondItem="IZg-uR-SFp" secondAttribute="leading" id="5Ck-Kh-xnc"/>
+                            <constraint firstItem="3LO-8v-daL" firstAttribute="leading" secondItem="H7T-k1-K8w" secondAttribute="trailing" id="7sk-yd-bzf"/>
+                            <constraint firstItem="d2m-n4-zaA" firstAttribute="leading" secondItem="y1L-ua-dg9" secondAttribute="leading" id="8N3-j8-M6h"/>
+                            <constraint firstItem="y1L-ua-dg9" firstAttribute="top" secondItem="d2m-n4-zaA" secondAttribute="bottom" id="LtL-wl-hvc"/>
+                            <constraint firstItem="d2m-n4-zaA" firstAttribute="top" secondItem="IZg-uR-SFp" secondAttribute="top" constant="9" id="NgI-Gg-qBH"/>
+                            <constraint firstItem="IZg-uR-SFp" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3LO-8v-daL" secondAttribute="trailing" symbolic="YES" id="XcQ-Xv-DX2"/>
+                            <constraint firstItem="H7T-k1-K8w" firstAttribute="leading" secondItem="IZg-uR-SFp" secondAttribute="leading" constant="30" id="fcF-Xz-dRu"/>
+                            <constraint firstItem="3LO-8v-daL" firstAttribute="top" secondItem="y1L-ua-dg9" secondAttribute="bottom" constant="20" id="kwI-Hs-onX"/>
+                            <constraint firstItem="H7T-k1-K8w" firstAttribute="bottom" secondItem="3LO-8v-daL" secondAttribute="bottom" id="npI-32-htZ"/>
+                            <constraint firstItem="y1L-ua-dg9" firstAttribute="trailing" secondItem="IZg-uR-SFp" secondAttribute="trailing" id="rdQ-oC-nGP"/>
+                            <constraint firstItem="IZg-uR-SFp" firstAttribute="bottom" secondItem="H7T-k1-K8w" secondAttribute="bottom" constant="34" id="vz5-ig-1Lc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="navBar" destination="d2m-n4-zaA" id="3kk-Oh-xar"/>
+                        <outlet property="tableView" destination="y1L-ua-dg9" id="6pa-wy-iMc"/>
+                        <outlet property="textView" destination="H7T-k1-K8w" id="4k9-Q6-S1j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="2305"/>
+            <point key="canvasLocation" x="1003" y="2305"/>
         </scene>
         <!--Invite View Controller-->
         <scene sceneID="0Bs-Vl-gkg">
@@ -1826,6 +1885,7 @@
                     <connections>
                         <outlet property="tableView" destination="jmi-8B-HbB" id="SCa-CZ-9Fx"/>
                         <segue destination="9tS-ME-tid" kind="presentation" identifier="gotoChatRoom" modalPresentationStyle="fullScreen" id="yTq-EE-doi"/>
+                        <segue destination="r26-CP-u6r" kind="presentation" identifier="groupChat" modalPresentationStyle="fullScreen" id="lGT-go-2bO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVc-13-tnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2850,7 +2910,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="TJv-Zf-4Gw"/>
-        <segue reference="Pfg-9J-Z4d"/>
+        <segue reference="yTq-EE-doi"/>
+        <segue reference="lGT-go-2bO"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.left.fill" catalog="system" width="128" height="106"/>

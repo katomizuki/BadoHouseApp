@@ -76,6 +76,7 @@
 		D3DA98BC26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BB26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift */; };
 		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
 		D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */; };
+		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailViewController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventViewController.swift */; };
@@ -152,6 +153,7 @@
 		D3DA98BB26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSSearchViewController.swift; sourceTree = "<group>"; };
 		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
+		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		D3BDB53B26E0540C00C53780 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */,
 				D3BDB56326E0B05D00C53780 /* UserModel.swift */,
 				D3C4E94626E1C2B400C21E46 /* TeamModel.swift */,
 				D3FD195226E4C32C00B6740E /* EventModel.swift */,
@@ -622,6 +625,7 @@
 				D3BDB52C26E0525100C53780 /* ViewController.swift in Sources */,
 				D3C4E95526E3304600C21E46 /* UIImage-Extension.swift in Sources */,
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift in Sources */,
+				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
 				D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */,
 				D330032A26E8512700208525 /* CommentViewController.swift in Sources */,

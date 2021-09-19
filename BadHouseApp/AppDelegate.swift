@@ -15,6 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UNUserNotificationCenter.current().delegate = self
             }
         }
+//                do {
+//                    print(#function)
+//                    try Auth.auth().signOut()
+//                    let vc = RegisterViewController()
+//                    vc.modalPresentationStyle = .fullScreen
+//                } catch {
+//                    print("Logout",error)
+//                }
      
         return true
     }

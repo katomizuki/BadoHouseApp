@@ -30,6 +30,10 @@ protocol GetUserDataDelegate {
     func getUserData(userArray:[User])
 }
 
+protocol GetGroupChatDelegate {
+    func getGroupChat(chatArray:[GroupChatModel])
+}
+
 class FetchFirestoreData {
     
     var delegate:GetGenderCount?
@@ -41,6 +45,7 @@ class FetchFirestoreData {
     var chatDelegate:GetChatDataDelgate?
     var chatRoomDelegate:GetChatRoomDataDelegate?
     var userDelegate:GetUserDataDelegate?
+    var groupChatDataDelegate:GetGroupChatDelegate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -457,6 +462,30 @@ class FetchFirestoreData {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             print(chatRoomModelArray)
             self.chatRoomDelegate?.getChatRoomData(chatRoomArray: chatRoomModelArray)
+        }
+    }
+    
+    func getGroupChat(teamId:String) {
+        var groupChat = [GroupChatModel]()
+        Ref.TeamRef.document(teamId).collection("GroupChat").order(by: "timeStamp").addSnapshotListener { snapShot, error in
+            if let error = error  {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            groupChat = []
+            document.forEach { data in
+                let safeData = data.data()
+                let senderId = safeData["senderId"] as? String ?? ""
+                let senderName = safeData["senderName"] as? String ?? ""
+                let senderUrl = safeData["senderUrl"] as? String ?? ""
+                let chatId = safeData["chatId"] as? String ?? ""
+                let timeStamp = safeData["timeStamp"] as? Timestamp ?? Timestamp()
+                let text = safeData["text"] as? String ?? ""
+                let groupChatModel = GroupChatModel(senderId: senderId, senderUrl: senderUrl, senderName: senderName, chatId: chatId, timeStamp: timeStamp, text: text)
+                groupChat.append(groupChatModel)
+            }
+            self.groupChatDataDelegate?.getGroupChat(chatArray: groupChat)
         }
     }
 }

@@ -8,7 +8,7 @@ class InviteViewController: UIViewController {
     var friends = [User]()
     var inviter = [User]()
     var team: TeamModel?
-    private var cellId = "inviteCellId"
+    private var cellId = Utility.CellId.inviteCellId
 
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
@@ -55,8 +55,9 @@ class InviteViewController: UIViewController {
     //Mark:IBAction
     @IBAction func invite(_ sender: Any) {
         print(#function)
-        guard let teamId = team?.teamId else { return }
-        Firestore.sendInvite(teamId: teamId, inviter: self.inviter)
+        guard let team = self.team else { return }
+        Firestore.sendInvite(team: team, inviter: self.inviter)
+        
         dismiss(animated: true, completion: nil)
     }
     

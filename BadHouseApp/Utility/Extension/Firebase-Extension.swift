@@ -89,6 +89,17 @@ extension Firestore{
         }
     }
     
+    static func sendGroupChat(teamId:String,me:User,text:String) {
+        let senderId = me.uid
+        let senderUrl = me.profileImageUrl
+        let senderName = me.name
+        let id = Ref.TeamRef.document(teamId).collection("GroupChat").document().documentID
+        let dic = ["senderId":senderId,"senderUrl":senderUrl,"senderName":senderName,"chatId":id,"timeStamp":Timestamp(),"text":text] as [String : Any]
+        Ref.TeamRef.document(teamId).collection("GroupChat").document(id).setData(dic)
+    }
+    
+   
+    
     
     //Mark:getTeamData
     static func getTeamData(teamId:String,completion:@escaping (TeamModel)->Void) {
@@ -122,6 +133,7 @@ extension Firestore{
     static func deleteSubCollectionData(collecionName:String,documentId:String,subCollectionName:String,subId:String) {
         Firestore.firestore().collection(collecionName).document(documentId).collection(subCollectionName).document(subId).delete()
     }
+    
     
     //Mark:createTeam
     static func createTeam(teamName:String,teamPlace:String,teamTime:String,teamLevel:String,teamImageUrl:String,friends:[User],teamUrl:String,tagArray:[String]) {
@@ -349,11 +361,22 @@ extension Firestore{
     }
     
     //Mark: sendInvite
-    static func sendInvite(teamId:String,inviter:
+    static func sendInvite(team:TeamModel,inviter:
     [User]) {
+        let teamId = team.teamId
+        let dic = ["teamId":teamId,
+                   "teamName":team.teamName,
+                   "teamPlace":team.teamPlace,
+                   "teamTime":team.teamTime,
+                   "teamImageUrl":team.teamImageUrl,
+                   "teamLevel":team.teamLevel,
+                   "teamURL":team.teamUrl,
+                   "createdAt":team.createdAt,
+                   "updatedAt":team.updatedAt] as [String : Any]
         inviter.forEach { element in
             let id = element.uid
             Ref.TeamRef.document(teamId).collection("TeamPlayer").document(id).setData(["uid":id])
+            Ref.UsersRef.document(id).collection("OwnTeam").document(teamId).setData(dic)
         }
     }
     

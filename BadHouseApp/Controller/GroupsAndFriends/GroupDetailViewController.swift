@@ -49,7 +49,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let image = UIImage(named: "double")
+        
+        let image = UIImage(named: Utility.ImageName.double)
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
@@ -226,18 +227,22 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoInvite" {
+        if segue.identifier == Utility.Segue.gotoInvite {
             let vc = segue.destination as! InviteViewController
             vc.friends = self.friends
             vc.team = self.team
         }
+        if segue.identifier == Utility.Segue.gotoGroup {
+            let vc = segue.destination as! GroupChatViewController
+            vc.team = self.team
+        }
     }
     @IBAction func gotoGroup(_ sender: Any) {
-        performSegue(withIdentifier: "gotoGroup", sender: nil)
+        performSegue(withIdentifier: Utility.Segue.gotoGroup, sender: nil)
     }
     
     @IBAction func go(_ sender: Any) {
-        performSegue(withIdentifier: "gotoGroup", sender: nil)
+        performSegue(withIdentifier: Utility.Segue.gotoGroup, sender: nil)
     }
     
 }

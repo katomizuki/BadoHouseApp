@@ -24,6 +24,10 @@ struct Utility {
         static let gotoMakeGroup = "gotoMakeGroup"
         static let gotoCalendar = "gotoCalendar"
         static let gotoDetail = "gotoDetail"
+        static let gotoGroup = "gotoGroup"
+        static let gotoInvite = "gotoInvite"
+        static let gotoChatRoom = "gotoChatRoom"
+        static let groupChat = "groupChat"
 
     }
     struct Cell {
@@ -39,10 +43,12 @@ struct Utility {
         static let MemberCellId = "memberCellId"
         static let BelongTeamId = "belongTeamId"
         static let eventId = "eventId"
+        static let inviteCellId = "inviteCellId"
     }
     struct ImageName {
         static let swift = "swift-og"
         static let logoImage = "swift-og"
+        static let double = "double"
     }
     
    
