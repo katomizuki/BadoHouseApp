@@ -299,10 +299,12 @@ extension Firestore{
         
         if bool {
             //true → plusFriend
+            print("plus")
             Ref.UsersRef.document(myId).collection("Friends").document(id).setData(["uid" : id])
             Ref.UsersRef.document(id).collection("Friends").document(myId).setData(["uid":myId])
         } else {
             // false　→ deleteFriend
+            print("delete")
             Ref.UsersRef.document(id).collection("Friends").document(myId).delete()
             Ref.UsersRef.document(myId).collection("Friends").document(id).delete()
         }

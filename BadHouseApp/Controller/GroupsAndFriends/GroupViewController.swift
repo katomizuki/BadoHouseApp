@@ -2,8 +2,9 @@ import UIKit
 import Firebase
 import NVActivityIndicatorView
 
-class GroupViewController: UIViewController {
-    
+
+class GroupViewController: UIViewController{
+   
     //Mark:Properties
     var user:User?
     var teamArray = [TeamModel]()
@@ -37,8 +38,6 @@ class GroupViewController: UIViewController {
             self.myImageView.sd_setImage(with: url, completed: nil)
             self.myName.text = user.name
         }
-        
-        
     }
     
     //Mark: setupData {
@@ -197,6 +196,6 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
-    
-    
 }
+
+

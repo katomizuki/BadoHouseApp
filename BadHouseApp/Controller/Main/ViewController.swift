@@ -5,9 +5,10 @@ import RxCocoa
 import RxSwift
 import CoreLocation
 import MapKit
+import EmptyStateKit
 
-class ViewController: UIViewController{
-    
+class ViewController: UIViewController, EmptyStateDelegate{
+   
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
@@ -31,6 +32,7 @@ class ViewController: UIViewController{
         setupDelegate()
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         setupCollectionView()
+        setupEmptyState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +45,18 @@ class ViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+    }
+    
+    private func setupEmptyState() {
+        view.emptyState.delegate = self
+        var format = EmptyStateFormat()
+        format.buttonColor = Utility.AppColor.OriginalBlue
+        format.buttonWidth = 200
+        format.titleAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
+        format.animation = EmptyStateAnimation.scale(0.3, 2.0)
+        format.imageSize = CGSize(width: 200, height: 200)
+        view.emptyState.format = format
     }
     
     //Mark: setupUI
@@ -215,8 +229,8 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController:GetEventSearchDelegate {
     
     func getEventSearchData(eventArray: [Event]) {
-        print(eventArray)
         self.eventArray = eventArray
+        print(#function)
         collectionView.reloadData()
     }
 }
@@ -236,9 +250,12 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(#function)
+        guard let text = searchBar.text else { return }
         if searchBar.text == "" {
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
             searchBar.resignFirstResponder()
+        } else {
+            fetchData.searchText(text: text)
         }
     }
 }
@@ -247,7 +264,10 @@ extension ViewController: UISearchBarDelegate {
 extension ViewController: GetEventTimeDelegate{
     
     func getEventTimeData(eventArray: [Event]) {
-        print(eventArray)
+        print(#function)
+        if eventArray.isEmpty {
+            view.emptyState.show(State.noSearch)
+        }
         self.eventArray = eventArray
         collectionView.reloadData()
     }
@@ -286,6 +306,14 @@ extension ViewController: CalendarDelegate {
     
     func searchCalendar(dateString: String,text:String) {
         fetchData.searchDateEvent(dateString:dateString,text: text)
+    }
+}
+
+extension ViewController{
+    
+    func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
+        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        view.emptyState.hide()
     }
 }
 

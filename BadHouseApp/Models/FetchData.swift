@@ -26,6 +26,9 @@ protocol GetChatDataDelgate {
 protocol GetChatRoomDataDelegate {
     func getChatRoomData(chatRoomArray:[ChatRoom])
 }
+protocol GetUserDataDelegate {
+    func getUserData(userArray:[User])
+}
 
 class FetchFirestoreData {
     
@@ -37,6 +40,7 @@ class FetchFirestoreData {
     var detailDelegate:GetDetailDataDelegate?
     var chatDelegate:GetChatDataDelgate?
     var chatRoomDelegate:GetChatRoomDataDelegate?
+    var userDelegate:GetUserDataDelegate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -57,6 +61,27 @@ class FetchFirestoreData {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.delegate?.getGenderCount(count: [manCount,womanCount,otherCount])
+        }
+    }
+    
+    func searchFriends(text:String) {
+        var userArray = [User]()
+        Ref.UsersRef.getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { data in
+                let safeData = data.data()
+                let name = safeData["name"] as? String ?? ""
+                let id = safeData["uid"] as? String ?? ""
+                if name.contains(text) && id != Auth.getUserId() {
+                     let user = User(dic: safeData)
+                    userArray.append(user)
+                }
+            }
+            self.userDelegate?.getUserData(userArray: userArray)
         }
     }
     

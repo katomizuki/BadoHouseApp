@@ -40,8 +40,8 @@ class ChatListViewController: UIViewController {
         tableView.dataSource = self
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
-//        setupData()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         IndicatorView.startAnimating()
         setupData()

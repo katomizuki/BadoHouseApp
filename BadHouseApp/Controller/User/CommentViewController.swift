@@ -1,10 +1,3 @@
-//
-//  CommentViewController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/09/08.
-//
-
 import UIKit
 
 class CommentViewController: UIViewController {
@@ -20,8 +13,4 @@ class CommentViewController: UIViewController {
         label.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: 150, height:80)
         view.backgroundColor = .systemGray3
     }
-    
-
-   
-
 }

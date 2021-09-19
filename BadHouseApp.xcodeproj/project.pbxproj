@@ -72,6 +72,10 @@
 		D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */; };
 		D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE226F3019700B1C498 /* VideoCell.swift */; };
 		D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostViewController.swift */; };
+		D3DA98BA26F6D8C200DFF8B1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98B926F6D8C200DFF8B1 /* State.swift */; };
+		D3DA98BC26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BB26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift */; };
+		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
+		D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailViewController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventViewController.swift */; };
@@ -144,6 +148,10 @@
 		D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		D3CECEE226F3019700B1C498 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		D3CECEE526F3061700B1C498 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		D3DA98B926F6D8C200DFF8B1 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		D3DA98BB26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSSearchViewController.swift; sourceTree = "<group>"; };
+		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
+		D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +204,7 @@
 				D330032726E7013900208525 /* LevelViewController.swift */,
 				D330032526E61A2E00208525 /* PopViewController.swift */,
 				D3C4E93126E0F0BD00C21E46 /* UserViewController.swift */,
+				D3DA98BB26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -215,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				D3A789D426F439A40088E8BC /* ChatListViewController.swift */,
+				D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */,
 			);
 			path = ChatList;
 			sourceTree = "<group>";
@@ -331,6 +341,7 @@
 				D3BDB55D26E0A97500C53780 /* Firebase-Extension.swift */,
 				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
 				D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */,
+				D3DA98B926F6D8C200DFF8B1 /* State.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -388,6 +399,7 @@
 				D353D8E026F1621F00221B7D /* ChatCell.swift */,
 				D3CECEE226F3019700B1C498 /* VideoCell.swift */,
 				D3A789D126F416E10088E8BC /* FriendCell.swift */,
+				D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -609,7 +621,9 @@
 				D3C4E94D26E1E9BB00C21E46 /* FriendsViewController.swift in Sources */,
 				D3BDB52C26E0525100C53780 /* ViewController.swift in Sources */,
 				D3C4E95526E3304600C21E46 /* UIImage-Extension.swift in Sources */,
+				D3DA98BC26F6E6BA00DFF8B1 /* FriendSSearchViewController.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
+				D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */,
 				D330032A26E8512700208525 /* CommentViewController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */,
 				D3AC05EB26ED9C8800F40A51 /* DetailSearchViewController.swift in Sources */,
@@ -623,6 +637,7 @@
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
+				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */,
@@ -638,6 +653,7 @@
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,
 				D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */,
 				D3C4E93C26E0F57700C21E46 /* CollectionCell.swift in Sources */,
+				D3DA98BA26F6D8C200DFF8B1 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -232,6 +232,14 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             vc.team = self.team
         }
     }
+    @IBAction func gotoGroup(_ sender: Any) {
+        performSegue(withIdentifier: "gotoGroup", sender: nil)
+    }
+    
+    @IBAction func go(_ sender: Any) {
+        performSegue(withIdentifier: "gotoGroup", sender: nil)
+    }
+    
 }
 
 
@@ -246,10 +254,6 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: teamMemberCellId, for: indexPath) as! TeammemberCell
         let memberName = teamPlayers[indexPath.row].name
         let urlString = teamPlayers[indexPath.row].profileImageUrl
-        cell.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-        cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 4
-        cell.layer.cornerRadius = 15
         cell.configure(name: memberName, urlString: urlString)
         return cell
     }
