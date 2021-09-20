@@ -1,3 +1,4 @@
+
 import UIKit
 import Firebase
 
@@ -33,7 +34,7 @@ class InviteViewController: UIViewController {
         }
         return nil
     }
-    
+
     //Mark: lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,25 +43,25 @@ class InviteViewController: UIViewController {
         inviteButton.layer.cornerRadius = 15
         inviteButton.layer.masksToBounds = true
     }
-    
-    
-    
+
+
+
     //Mark setupTableView
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FriendsCell.self, forCellReuseIdentifier: cellId)
     }
-    
+
     //Mark:IBAction
     @IBAction func invite(_ sender: Any) {
         print(#function)
         guard let team = self.team else { return }
         Firestore.sendInvite(team: team, inviter: self.inviter)
-        
+
         dismiss(animated: true, completion: nil)
     }
-    
+
 
 }
 
@@ -91,7 +92,7 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.height / 10
     }

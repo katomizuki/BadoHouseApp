@@ -197,6 +197,7 @@ class EventDetailViewController: UIViewController {
         pieChartDataSet.colors = colors
     }
     
+    //Mark: setupBar
     private func setBarChart() {
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
         barView.scaleXEnabled = false
@@ -216,9 +217,9 @@ class EventDetailViewController: UIViewController {
         barView.leftAxis.axisMaximum = 10
         barView.legend.enabled = false
         dataSet.colors = [.lightGray]
-        print(rawData)
     }
     
+    //setupTag
     private func setupTag() {
         guard let eventId = event?.eventId else { return }
         Firestore.getEventTagData(eventId: eventId) { tags in
@@ -230,7 +231,7 @@ class EventDetailViewController: UIViewController {
             }
             for i in 0..<tags.count {
                 let tag = tags[i].tag
-                let button = UIButton(type: .system).cretaTagButton(text: tag)
+                let button = UIButton(type: .system).cretaTagButton(text: " \(tag) ")
                 button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
                 button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
                 button.layer.borderWidth = 2
@@ -243,6 +244,7 @@ class EventDetailViewController: UIViewController {
         }
     }
     
+    //Mark setupUnderLine
     private func setupUnderLine() {
         setupUnderLayer(view: lastTimeStackView)
         setupUnderLayer(view: gatherStackView)
@@ -253,6 +255,7 @@ class EventDetailViewController: UIViewController {
         setupUnderLayer(view: placeStackView)
     }
     
+    //Mark: setupLayer
     private func setupUnderLayer(view:UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
@@ -264,6 +267,7 @@ class EventDetailViewController: UIViewController {
         return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
     }
     
+    //Mark:setupUser
     private func setupUser() {
         guard let userId = event?.userId else { return }
         Firestore.getUserData(uid: userId) { user in
@@ -276,6 +280,7 @@ class EventDetailViewController: UIViewController {
         }
     }
     
+    //Mark: prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoChat" {
             let vc = segue.destination as! ChatViewController
@@ -294,11 +299,23 @@ class EventDetailViewController: UIViewController {
         print(#function)
         HUD.flash(.success)
         HUD.flash(.labeledSuccess(title: "参加の申請をしました", subtitle: ""))
-        
+       
+        guard let eventId = event?.eventId else { return }
+        Firestore.searchPreJoin(myId: Auth.getUserId(), eventId: eventId) { bool in
+            if bool == false {
+                Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId)
+            } else  {
+                self.showAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", actionTitle: "OK")
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
 }
 
+//Mark:genderDelegate
 extension EventDetailViewController:GetGenderCount {
     
     func getGenderCount(count: [Int]) {
@@ -307,6 +324,7 @@ extension EventDetailViewController:GetGenderCount {
     }
 }
 
+//Mark chatrtDelegate
 extension EventDetailViewController: GetBarChartDelegate {
     
     func getBarData(count: [Int]) {
@@ -315,6 +333,7 @@ extension EventDetailViewController: GetBarChartDelegate {
     }
 }
 
+//Mark:collectionViewdelegate
 extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

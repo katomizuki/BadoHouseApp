@@ -9,3 +9,5 @@ struct GroupChatModel {
     var timeStamp:Timestamp
     var text:String
 }
+
+

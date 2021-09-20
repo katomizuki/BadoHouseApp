@@ -17,5 +17,8 @@ pod 'NVActivityIndicatorView'
 pod 'FSCalendar'
 pod 'EmptyStateKit'
 pod 'PKHUD'
+pod 'AMPagerTabs'
+pod 'XLPagerTabStrip', '~> 9.0'
+
 
 end

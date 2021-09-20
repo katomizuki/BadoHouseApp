@@ -338,6 +338,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - AMPagerTabs (0.3.0)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -489,8 +490,10 @@ PODS:
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
   - TaggerKit (0.6.1)
+  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
+  - AMPagerTabs
   - EmptyStateKit
   - Firebase
   - Firebase/Auth
@@ -502,10 +505,12 @@ DEPENDENCIES:
   - PKHUD
   - SDWebImage
   - TaggerKit
+  - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
   trunk:
     - abseil
+    - AMPagerTabs
     - BoringSSL-GRPC
     - EmptyStateKit
     - Firebase
@@ -531,9 +536,11 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - TaggerKit
+    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  AMPagerTabs: 8e9fc3ef9ce8381e3d2396c40d80d083b842c34a
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
@@ -559,7 +566,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: a967e31c968434d34abdf1133a915e91e0c4897d
+PODFILE CHECKSUM: fb33b13a617b731e04e3793e139f31981f747b96
 
 COCOAPODS: 1.10.1

@@ -33,6 +33,9 @@ protocol GetUserDataDelegate {
 protocol GetGroupChatDelegate {
     func getGroupChat(chatArray:[GroupChatModel])
 }
+protocol GetPrejoinDataDelegate {
+    func getPrejoin(preJoin:[String])
+}
 
 class FetchFirestoreData {
     
@@ -46,6 +49,7 @@ class FetchFirestoreData {
     var chatRoomDelegate:GetChatRoomDataDelegate?
     var userDelegate:GetUserDataDelegate?
     var groupChatDataDelegate:GetGroupChatDelegate?
+    var preDelegate:GetPrejoinDataDelegate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -486,6 +490,32 @@ class FetchFirestoreData {
                 groupChat.append(groupChatModel)
             }
             self.groupChatDataDelegate?.getGroupChat(chatArray: groupChat)
+        }
+    }
+    
+     func getEventPreJoinData(eventArray:[Event]) {
+        var stringArray = [String]()
+        print(eventArray)
+        for i in 0..<eventArray.count {
+            let eventId = eventArray[i].eventId
+            Ref.EventRef.document(eventId).collection("PreJoin").getDocuments { snapShot, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                print("🎨")
+                guard let document = snapShot?.documents else { return }
+                document.forEach { data in
+                    
+                    let safeData = data.data()
+                    let id = safeData["id"] as? String ?? ""
+                    print(id)
+                    stringArray.append(id)
+                }
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.preDelegate?.getPrejoin(preJoin: stringArray)
         }
     }
 }

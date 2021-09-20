@@ -398,6 +398,73 @@ extension Firestore{
         }
     }
     
+    static func sendePreJoin(myId:String, eventId:String) {
+        Ref.EventRef.document(eventId).collection("PreJoin").document(myId).setData(["id":myId])
+    }
+    
+    static func searchPreJoin(myId:String,eventId:String,completion:@escaping(Bool)->Void) {
+        var bool = false
+        Ref.EventRef.document(eventId).collection("PreJoin").getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { data in
+                let safeData = data.data()
+                let id = safeData["id"] as? String ?? ""
+                if myId == id {
+                    bool = true
+                }
+            }
+            completion(bool)
+        }
+    }
+    
+    static func getmyEventId(completion:@escaping([Event])->Void) {
+        var eventArray = [Event]()
+        Ref.EventRef.getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = snapShot?.documents else { return }
+            let myEvent = data.filter { document in
+                let safeData = document.data()
+                let leaderId = safeData["userId"] as? String ?? ""
+                return leaderId == Auth.getUserId()
+            }
+            myEvent.forEach { data in
+                let safeData = data.data()
+                let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                let eventId = safeData["eventId"] as? String ?? ""
+                let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                let eventMoney = safeData["eventMoney"] as? String ?? "1000"
+                let gatherCount = safeData["gatherCount"] as? String ?? "1"
+                let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
+                let kindCircle = safeData["kindCircle"] as? String ?? "社会人サークル"
+                let place = safeData["place"] as? String ?? "神奈川県"
+                let teamId = safeData["teamId"] as? String ?? ""
+                let teamName = safeData["teamName"] as? String ?? ""
+                let time = safeData["time"] as? String ?? ""
+                let urlEventString = safeData["urlEventString"] as? String ?? ""
+                let detailText = safeData["detailText"] as? String ?? ""
+                let courtCount = safeData["courtCount"] as? String ?? "1"
+                let latitude = safeData["latitude"] as? Double ?? 35.680
+                let longitude = safeData["longitude"] as? Double ?? 139.767
+                let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
+                let placeAddress = safeData["placeAddress"] as? String ?? ""
+                let eventLavel = safeData["eventLavel"] as? String ?? ""
+                let userId = safeData["userId"] as? String ?? ""
+                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
+                eventArray.append(event)
+            }
+            completion(eventArray)
+        }
+    }
+    
+    
+    
     //Mark:LastGetChatData
     static func getChatLastData(chatId:String,completion:@escaping(Chat)-> Void){
         var textArray = [Chat]()
@@ -423,7 +490,6 @@ extension Firestore{
                 }
             }
             guard let lastComment = textArray.last else { return }
-            print("っっｓ")
             completion(lastComment)
         }
     }

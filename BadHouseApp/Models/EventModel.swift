@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 
 struct Event {
     var eventId:String
@@ -22,4 +23,5 @@ struct Event {
     var placeAddress:String
     var eventLevel:String
     var userId:String
+    
 }

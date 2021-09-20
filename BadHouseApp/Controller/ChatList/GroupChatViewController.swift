@@ -51,6 +51,11 @@ class GroupChatViewController: UIViewController {
         fetchData.getGroupChat(teamId: teamId)
         fetchData.groupChatDataDelegate = self
     }
+    
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }
 

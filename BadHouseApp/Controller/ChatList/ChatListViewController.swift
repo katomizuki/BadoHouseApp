@@ -3,7 +3,7 @@ import Firebase
 import SDWebImage
 import NVActivityIndicatorView
 
-class ChatListViewController: UIViewController {
+class ChatListViewController:UIViewController{
    
     //Mark:Properties
     @IBOutlet weak var tableView: UITableView!
@@ -27,6 +27,9 @@ class ChatListViewController: UIViewController {
     private let section = ["グループチャット","ダイレクトメッセージ"]
     private var selectedTeam:TeamModel?
     
+
+   
+    
     //Mark:lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,11 @@ class ChatListViewController: UIViewController {
         setupTableView()
         setupFetchDataDelegate()
         setupOwnTeamData()
+
     }
+    
+    
+  
     
     private func setupFetchDataDelegate () {
         fetchData.chatDelegate = self
@@ -273,4 +280,6 @@ extension ChatListViewController: GetChatRoomDataDelegate {
         }
     }
 }
+
+
 
