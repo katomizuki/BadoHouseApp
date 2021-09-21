@@ -19,6 +19,6 @@ pod 'EmptyStateKit'
 pod 'PKHUD'
 pod 'AMPagerTabs'
 pod 'XLPagerTabStrip', '~> 9.0'
-
+pod "CDAlertView"
 
 end

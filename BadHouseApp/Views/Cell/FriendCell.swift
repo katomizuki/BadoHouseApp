@@ -19,8 +19,7 @@ class FriendsCell:UITableViewCell {
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
     }
-    
-    required init?(coder: NSCoder) {
+    required init?(coder: NSCoder){
         fatalError()
     }
     

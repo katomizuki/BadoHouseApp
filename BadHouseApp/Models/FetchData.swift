@@ -34,7 +34,10 @@ protocol GetGroupChatDelegate {
     func getGroupChat(chatArray:[GroupChatModel])
 }
 protocol GetPrejoinDataDelegate {
-    func getPrejoin(preJoin:[String])
+    func getPrejoin(preJoin:[[String]])
+}
+protocol GetJoinDataDelegate {
+    func getJoin(joinArray:[[String]])
 }
 
 class FetchFirestoreData {
@@ -50,6 +53,7 @@ class FetchFirestoreData {
     var userDelegate:GetUserDataDelegate?
     var groupChatDataDelegate:GetGroupChatDelegate?
     var preDelegate:GetPrejoinDataDelegate?
+    var joinDelegate:GetJoinDataDelegate?
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -448,7 +452,6 @@ class FetchFirestoreData {
     func getChatRoomModel(chatId:[String]){
             var chatRoomModelArray = [ChatRoom]()
         for i in 0..<chatId.count {
-            print(chatId[i])
             Ref.ChatroomRef.document(chatId[i]).getDocument { snapShot, error in
                 if let error = error {
                     print(error)
@@ -494,28 +497,51 @@ class FetchFirestoreData {
     }
     
      func getEventPreJoinData(eventArray:[Event]) {
-        var stringArray = [String]()
-        print(eventArray)
+        var stringArray = [[String]]()
         for i in 0..<eventArray.count {
             let eventId = eventArray[i].eventId
-            Ref.EventRef.document(eventId).collection("PreJoin").getDocuments { snapShot, error in
+            Ref.EventRef.document(eventId).collection("PreJoin").addSnapshotListener { snapShot, error in
                 if let error = error {
                     print(error)
                     return
                 }
-                print("🎨")
                 guard let document = snapShot?.documents else { return }
+                var tempArray = [String]()
                 document.forEach { data in
-                    
                     let safeData = data.data()
                     let id = safeData["id"] as? String ?? ""
                     print(id)
-                    stringArray.append(id)
+                    tempArray.append(id)
                 }
+                stringArray.append(tempArray)
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.preDelegate?.getPrejoin(preJoin: stringArray)
+        }
+    }
+    
+    func fetchJoinData(eventArray:[Event]) {
+        var stringArray = [[String]]()
+        for i in 0..<eventArray.count {
+            let eventId = eventArray[i].eventId
+            Ref.EventRef.document(eventId).collection("Join").addSnapshotListener { snapShot, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard let document = snapShot?.documents else { return }
+                var tempArray = [String]()
+                document.forEach { data in
+                    let safeData = data.data()
+                    let id = safeData["id"] as? String ?? ""
+                    tempArray.append(id)
+                }
+                stringArray.append(tempArray)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.joinDelegate?.getJoin(joinArray: stringArray)
         }
     }
 }

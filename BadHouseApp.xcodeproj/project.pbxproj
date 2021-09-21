@@ -232,6 +232,8 @@
 		D3A789D326F4396A0088E8BC /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
+				D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */,
+				D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */,
 				D3A789D426F439A40088E8BC /* ChatListViewController.swift */,
 				D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */,
 			);
@@ -316,8 +318,6 @@
 				D37FA52526EAFD5700B8559F /* User */,
 				D3BDB56126E0B02100C53780 /* Main */,
 				D3BDB53F26E0543700C53780 /* Authentication */,
-				D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */,
-				D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

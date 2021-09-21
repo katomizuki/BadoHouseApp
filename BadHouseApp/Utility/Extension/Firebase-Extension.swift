@@ -89,6 +89,21 @@ extension Firestore{
         }
     }
     
+    static func changeTrue(uid:String) {
+        Ref.UsersRef.document(uid).collection("PreJoin").getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { data in
+                let safeData = data.data()
+                let id = safeData["id"] as? String ?? ""
+                Ref.UsersRef.document(uid).collection("PreJoin").document(id).setData(["id":id,"alertOrNot":true])
+            }
+        }
+    }
+    
     static func sendGroupChat(teamId:String,me:User,text:String) {
         let senderId = me.uid
         let senderUrl = me.profileImageUrl
@@ -398,8 +413,9 @@ extension Firestore{
         }
     }
     
-    static func sendePreJoin(myId:String, eventId:String) {
+    static func sendePreJoin(myId:String, eventId:String,leaderId:String) {
         Ref.EventRef.document(eventId).collection("PreJoin").document(myId).setData(["id":myId])
+        Ref.UsersRef.document(leaderId).collection("PreJoin").document(myId).setData(["id":myId,"alertOrNot":false])
     }
     
     static func searchPreJoin(myId:String,eventId:String,completion:@escaping(Bool)->Void) {
@@ -463,6 +479,9 @@ extension Firestore{
         }
     }
     
+    static func sendJoin(eventId:String,uid:String) {
+        Ref.EventRef.document(eventId).collection("Join").document(uid).setData(["id":uid])
+    }
     
     
     //Mark:LastGetChatData

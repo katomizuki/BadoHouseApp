@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 //                do {
-//                    print(#function)
+//
 //                    try Auth.auth().signOut()
 //                    let vc = RegisterViewController()
 //                    vc.modalPresentationStyle = .fullScreen

@@ -120,7 +120,6 @@ class GroupViewController: UIViewController{
             let vc = segue.destination as! UserViewController
             vc.user = self.user
         }
-       
     }
     
     @IBAction func scroll(_ sender: Any) {

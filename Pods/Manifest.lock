@@ -345,6 +345,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
+  - CDAlertView (0.11.0)
   - EmptyStateKit (1.1.0)
   - Firebase (8.7.0):
     - Firebase/Core (= 8.7.0)
@@ -494,6 +495,7 @@ PODS:
 
 DEPENDENCIES:
   - AMPagerTabs
+  - CDAlertView
   - EmptyStateKit
   - Firebase
   - Firebase/Auth
@@ -512,6 +514,7 @@ SPEC REPOS:
     - abseil
     - AMPagerTabs
     - BoringSSL-GRPC
+    - CDAlertView
     - EmptyStateKit
     - Firebase
     - FirebaseAnalytics
@@ -542,6 +545,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   AMPagerTabs: 8e9fc3ef9ce8381e3d2396c40d80d083b842c34a
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
+  CDAlertView: cd6624e857c85ad14560e2cd23d7eb25b983b590
   EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
   FirebaseAnalytics: 52768800c2add1d84b751420cb4caaf8195f2c41
@@ -568,6 +572,6 @@ SPEC CHECKSUMS:
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: fb33b13a617b731e04e3793e139f31981f747b96
+PODFILE CHECKSUM: 26ed66d2a99e005d29e7a1d1ef7d24c4f4e89835
 
 COCOAPODS: 1.10.1

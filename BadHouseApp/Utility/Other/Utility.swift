@@ -10,6 +10,7 @@ struct Utility {
         static let OriginalLightBlue:UIColor = .rgb(red: 150, green: 186, blue: 255)
         static let OriginalPastelBlue:UIColor = .rgb(red: 127, green: 237, blue: 257)
     }
+
  
     struct Storyboard {
         static let LoginVC = "LoginVC"

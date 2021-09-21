@@ -32,6 +32,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private var genderValue = ["男性","女性","その他"]
     private var IndicatorView:NVActivityIndicatorView!
     private var rawData: [Int] = []
+    @IBOutlet weak var withdrawButton: UIButton!
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -84,6 +85,9 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         teamTagStackView.axis = .horizontal
         teamTagStackView.spacing = 5
         teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        withdrawButton.layer.cornerRadius = 15
+        withdrawButton.layer.masksToBounds = true
+        withdrawButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
     
     //Mark:setupDelegate
@@ -243,6 +247,15 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     
     @IBAction func go(_ sender: Any) {
         performSegue(withIdentifier: Utility.Segue.gotoGroup, sender: nil)
+    }
+    @IBAction func withdraw(_ sender: Any) {
+        print(#function)
+        guard let teamId = team?.teamId else { return }
+        //OwnTeamからDelete,teamPlayerからdelete
+        Firestore.deleteSubCollectionData(collecionName: "Users", documentId: Auth.getUserId(), subCollectionName: "OwnTeam", subId: teamId)
+        Firestore.deleteSubCollectionData(collecionName: "Teams", documentId: teamId, subCollectionName: "TeamPlayer", subId: Auth.getUserId())
+        navigationController?.popViewController(animated: true
+        )
     }
     
 }

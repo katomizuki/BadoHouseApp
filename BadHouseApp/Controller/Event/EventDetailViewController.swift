@@ -7,7 +7,7 @@ import Firebase
 import PKHUD
 
 class EventDetailViewController: UIViewController {
-   
+    
     //Mark :Properties
     var event:Event?
     var team:TeamModel?
@@ -38,16 +38,16 @@ class EventDetailViewController: UIViewController {
     private var defaultRegion: MKCoordinateRegion {
         let x =  event?.latitude ?? 0.0
         let y = event?.longitude ?? 0.0
-            let coordinate = CLLocationCoordinate2D(
-                latitude: x,
-                longitude: y
-            )
-            let span = MKCoordinateSpan (
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01
-            )
-            return MKCoordinateRegion(center: coordinate, span: span)
-        }
+        let coordinate = CLLocationCoordinate2D(
+            latitude: x,
+            longitude: y
+        )
+        let span = MKCoordinateSpan (
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
+        )
+        return MKCoordinateRegion(center: coordinate, span: span)
+    }
     private var me :User?
     private var you :User?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -60,6 +60,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var moneyStackView: UIStackView!
     @IBOutlet weak var placeStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
+    private var chatId:String?
     
     //Mark:Lifecycle
     override func viewDidLoad() {
@@ -139,7 +140,7 @@ class EventDetailViewController: UIViewController {
         var last = event?.eventFinishTime ?? ""
         start = changeString(string: start)
         last = changeString(string: last)
-        timeLabel.text = "\(start)分 ~"
+        timeLabel.text = "\(start)分~"
         timeToLabel.text = "\(last)分"
         gatherCountLabel.text = "\(event?.eventGatherCount ?? "") 人"
         courtLabel.text = "\(event?.eventCourtCount ?? "") 面"
@@ -238,7 +239,7 @@ class EventDetailViewController: UIViewController {
                 button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
                 button.backgroundColor = .white
                 button.titleLabel?.numberOfLines = 0
-//                if i == 3 { return }
+                if i == 5 { return }
                 self.stackView.addArrangedSubview(button)
             }
         }
@@ -291,26 +292,46 @@ class EventDetailViewController: UIViewController {
             vc.flag = true
         }
     }
-    static func notification() {
-        print(#function)
-    }
     
     @IBAction func join(_ sender: Any) {
         print(#function)
-        HUD.flash(.success)
-        HUD.flash(.labeledSuccess(title: "参加の申請をしました", subtitle: ""))
-       
+        guard let leaderId = event?.userId else { return }
+        fetchData.getChatData(meId: Auth.getUserId(), youId: leaderId) { chatId in
+            if chatId.isEmpty {
+                Firestore.sendChatroom(myId: Auth.getUserId(), youId: leaderId) { id in
+                    self.chatId = id
+                }
+            } else {
+                self.chatId = chatId
+            }
+        }
+  
         guard let eventId = event?.eventId else { return }
         Firestore.searchPreJoin(myId: Auth.getUserId(), eventId: eventId) { bool in
             if bool == false {
-                Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId)
+                //alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
+                let alert = UIAlertController(title: "参加申請をしますか？", message: "チャットで主催者に自動で連絡がいきます。", preferredStyle: .alert)
+                let cancleAction = UIAlertAction(title: "キャンセル", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    guard let chatId = self.chatId else { return }
+                    guard let name = self.me?.name else { return }
+                    
+                    Firestore.sendChat(chatroomId: chatId, senderId: Auth.getUserId(), text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
+                    
+                    Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId,leaderId: leaderId)
+                    self.performSegue(withIdentifier: "gotoChat", sender: nil)
+                }
+                alert.addAction(alertAction)
+                alert.addAction(cancleAction)
+                self.present(alert,animated: true,completion: nil)
             } else  {
                 self.showAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", actionTitle: "OK")
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.navigationController?.popViewController(animated: true)
-        }
+        
+        
     }
     
 }

@@ -47,6 +47,8 @@ class ViewController: UIViewController, EmptyStateDelegate{
         navigationController?.isNavigationBarHidden = false
     }
     
+   
+    
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
@@ -151,6 +153,9 @@ class ViewController: UIViewController, EmptyStateDelegate{
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
     }
     
+    //Mark:現在のイベントの日付をすぎたイベントを消す&それにかかわるUser情報に入っているPreJoinとJoinを消す。
+    
+    
 }
 
 //Mark: UICollectionDelegate
@@ -209,6 +214,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
     
 }
 

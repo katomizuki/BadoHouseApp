@@ -2,6 +2,7 @@ import UIKit
 import Firebase
 import SDWebImage
 import NVActivityIndicatorView
+import CDAlertView
 
 class ChatListViewController:UIViewController{
    
@@ -26,6 +27,7 @@ class ChatListViewController:UIViewController{
     private var teams = [TeamModel]()
     private let section = ["グループチャット","ダイレクトメッセージ"]
     private var selectedTeam:TeamModel?
+    @IBOutlet weak var notificationButton: UIBarButtonItem!
     
 
    
@@ -38,7 +40,7 @@ class ChatListViewController:UIViewController{
         setupTableView()
         setupFetchDataDelegate()
         setupOwnTeamData()
-
+        setupNotification()
     }
     
     
@@ -55,6 +57,28 @@ class ChatListViewController:UIViewController{
         tableView.dataSource = self
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
+    }
+    
+    //Mark:setupNotification
+    private func setupNotification() {
+        self.notification(uid: Auth.getUserId()) { bool in
+            if bool == true {
+
+                let alertType = CDAlertViewType.notification
+                let alert = CDAlertView(title: "新規参加申請が来ております。", message: "お知らせ画面で確認しよう!", type: alertType)
+                let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
+
+                alert.add(action: alertAction)
+                alert.hideAnimations = { (center, transform, alpha) in
+                    transform = .identity
+                    alpha = 0
+                }
+                alert.show() { (alert) in
+                    print("completed")
+                }
+              Firestore.changeTrue(uid: Auth.getUserId())
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
