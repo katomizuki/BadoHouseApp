@@ -33,6 +33,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         setupCollectionView()
         setupEmptyState()
+        Firestore.deleteEvent()
     }
     
     override func viewDidAppear(_ animated: Bool) {

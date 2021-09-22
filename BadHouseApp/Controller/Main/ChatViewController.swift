@@ -22,6 +22,7 @@ class ChatViewController: UIViewController {
         return formatter
     }()
    
+
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var subNav: UINavigationBar!
     
@@ -35,6 +36,9 @@ class ChatViewController: UIViewController {
         backButton.isHidden = flag
         subNav.isHidden = flag
         sendButton.isEnabled = false
+        chatTextView.delegate = self
+    
+        
     }
     
     //Mark:updateUI
@@ -68,8 +72,6 @@ class ChatViewController: UIViewController {
         let nib = ChatCell.nib()
         chatTableView.register(nib, forCellReuseIdentifier: cellId)
         chatTextView.delegate = self
-        chatTextView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-        chatTextView.layer.borderWidth = 1
         chatTextView.layer.masksToBounds = true
         chatTextView.layer.cornerRadius = 15
         chatTextView.autoresizingMask = .flexibleHeight
@@ -89,6 +91,7 @@ class ChatViewController: UIViewController {
         Firestore.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
         fetchData.getChat(chatId: chatId)
     }
+    
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -105,8 +108,17 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatCell
         guard let date = messages[indexPath.row].sendTime?.dateValue() else { return cell }
+        cell.mytextView.font = UIFont(name: "Kailasa", size: 14)
+        cell.textView.font = UIFont(name: "Kailasa", size: 14)
         let dateText = self.formatter.string(from: date)
+        let dateTextFirst = String(dateText.suffix(11))
+        cell.mytextView.text = ""
+        cell.textView.text = ""
+        cell.timeLabel.text = ""
+        cell.mytimeLabel.text = ""
+      
         let text = messages[indexPath.row].text
+        cell.message = text
         let id = messages[indexPath.row].senderId
         if id == Auth.getUserId() {
             cell.userImageView.isHidden = true
@@ -114,24 +126,30 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
             cell.textView.isHidden = true
             cell.mytimeLabel.isHidden = false
             cell.mytextView.isHidden = false
-            cell.mytimeLabel.text = dateText
+            cell.nameLabel.isHidden = true
+            cell.mytimeLabel.text = dateTextFirst
             cell.mytextView.text = text
+            cell.message = text
         } else {
+            cell.userImageView.isHidden = false
             let urlString = you?.profileImageUrl ?? ""
             let url = URL(string: urlString)
             cell.userImageView.sd_setImage(with: url, completed: nil)
             cell.mytextView.isHidden = true
             cell.mytimeLabel.isHidden = true
-            cell.userImageView.isHidden = false
             cell.textView.isHidden = false
             cell.timeLabel.isHidden = false
-            cell.timeLabel.text = dateText
+            cell.nameLabel.isHidden = false
+            cell.nameLabel.text =  you?.name
+            cell.timeLabel.text = dateTextFirst
             cell.textView.text = text
+            cell.yourMessaege = text
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.rowHeight = 100
         return UITableView.automaticDimension
     }
     
@@ -149,7 +167,9 @@ extension ChatViewController: UITextViewDelegate {
         } else {
             sendButton.isEnabled = true
         }
+
     }
+
 }
 
 //Mark:GetChatDelegate
@@ -163,6 +183,6 @@ extension ChatViewController: GetChatDataDelgate {
         chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }
     }
-    
 }
+
 

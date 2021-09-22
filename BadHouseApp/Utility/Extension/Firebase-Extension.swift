@@ -483,6 +483,31 @@ extension Firestore{
         Ref.EventRef.document(eventId).collection("Join").document(uid).setData(["id":uid])
     }
     
+    static func deleteEvent() {
+        guard let now = DateUtils.getNow() else { return }
+        Ref.EventRef.addSnapshotListener { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = snapShot?.documents else { return }
+            data.forEach { element in
+                let safeData = element.data()
+                let endTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+                let eventId = safeData["eventId"] as? String ?? ""
+                let userId = safeData["userId"] as? String ?? ""
+                let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
+                if date < now {
+                    //今よりすぎていたら自動で消す,(イベントコレクション),
+                    Firestore.deleteData(collectionName: "Event", documentId: eventId)
+//                    Ref.UsersRef.document(userId).collection("PreJoin").document().delete()
+                }
+            }
+        }
+    }
+    
+    
+    
     
     //Mark:LastGetChatData
     static func getChatLastData(chatId:String,completion:@escaping(Chat)-> Void){

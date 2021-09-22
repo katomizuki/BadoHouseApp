@@ -8,17 +8,30 @@ class ChatCell: UITableViewCell {
             guard let message = message else { return }
             let width = estimateFrameSize(text: message).width + 20
             messageConstraint.constant = width
+            mytextView.text = message
+            print("🍎")
+            print(width)
+            print(message)
+        }
+    }
+    var yourMessaege:String? {
+        didSet {
+            guard let message = yourMessaege else { return }
+            let width = estimateFrameSize(text: message).width + 20
+            widthConstraint.constant = width
             textView.text = message
+            
         }
     }
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var messageConstraint: NSLayoutConstraint!
     @IBOutlet weak var mytimeLabel: UILabel!
     @IBOutlet weak var mytextView: UITextView!
+    @IBOutlet weak var messageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nameLabel: UILabel!
     
-    
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     //Mark: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,10 +42,10 @@ class ChatCell: UITableViewCell {
         mytextView.layer.cornerRadius = 15
         mytextView.layer.masksToBounds = true
         backgroundColor = .clear
-        textView.invalidateIntrinsicContentSize()
-        mytextView.invalidateIntrinsicContentSize()
-        textView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
-        mytextView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
+        textView.autoresizingMask = [.flexibleHeight]
+        mytextView.autoresizingMask = [.flexibleHeight]
+
+
     }
     
     //Mark: nibMethod
@@ -51,3 +64,4 @@ class ChatCell: UITableViewCell {
     }
     
 }
+

@@ -222,7 +222,11 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if indexPath.section == 0 {
+            return false
+        } else {
+            return true
+        }
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Utility.AppColor.OriginalBlue
@@ -295,7 +299,7 @@ extension ChatListViewController: GetChatRoomDataDelegate {
                 self.lastCommentArray.append(lastComment)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.IndicatorView.stopAnimating()
             self.tableView.reloadData()
         }

@@ -225,14 +225,14 @@ class FetchFirestoreData {
                 let place = safeData["place"] as? String ?? ""
                 let teamName = safeData["teamName"] as? String ?? ""
                 let kindCircle = safeData["kindCircle"] as? String ?? ""
-                if placeAddress.contains(text) || place.contains(text) || teamName.contains(text) || kindCircle.contains(text){
+                let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
+                if placeAddress.contains(text) || place.contains(text) || teamName.contains(text) || kindCircle.contains(text) || eventTitle.contains(text) {
                     
                     let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
                     let eventId = safeData["eventId"] as? String ?? ""
                     let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
                     let eventMoney = safeData["eventMoney"] as? String ?? "1000"
                     let gatherCount = safeData["gatherCount"] as? String ?? "1"
-                    let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
                     let teamId = safeData["teamId"] as? String ?? ""
                     let time = safeData["time"] as? String ?? ""
                     let urlEventString = safeData["urlEventString"] as? String ?? ""

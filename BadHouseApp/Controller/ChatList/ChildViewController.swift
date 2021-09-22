@@ -130,10 +130,9 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             Firestore.sendJoin(eventId: eventId, uid: userId)
             tableView.reloadData()
-            print("☔")
+
           }
         let cancleAction = UIAlertAction(title: "いいえ", style: .default) { _ in
-            print("⚡")
         }
         alertVC.addAction(alertAction)
         alertVC.addAction(cancleAction)

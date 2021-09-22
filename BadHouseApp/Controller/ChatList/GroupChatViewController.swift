@@ -20,11 +20,17 @@ class GroupChatViewController: UIViewController {
         return formatter
     }()
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupData()
+        textView.layer.cornerRadius = 15
+        textView.layer.masksToBounds = true
+        sendButton.layer.cornerRadius = 15
+        sendButton.layer.masksToBounds = true
+        
         Firestore.getUserData(uid: Auth.getUserId()) { me in
             self.me = me
         }
@@ -36,6 +42,7 @@ class GroupChatViewController: UIViewController {
         guard let me = self.me else { return }
         guard let text = textView.text else { return }
         Firestore.sendGroupChat(teamId: teamId, me: me, text: text)
+        textView.text = ""
     }
     
     private func setupTableView() {
@@ -70,28 +77,50 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
         let date = chatArray[indexPath.row].timeStamp.dateValue()
         let dateText = self.formatter.string(from: date)
         let text = chatArray[indexPath.row].text
+        cell.mytextView.font = UIFont(name: "Kailasa", size: 14)
+        cell.textView.font = UIFont(name: "Kailasa", size: 14)
+        let dateTextFirst = String(dateText.suffix(11))
+        cell.timeLabel.text = ""
+        cell.mytimeLabel.text = ""
+        cell.mytextView.text = ""
+        cell.textView.text = ""
+        cell.message = ""
+        cell.message = text
         let senderId = self.chatArray[indexPath.row].senderId
         if senderId == Auth.getUserId() {
             cell.userImageView.isHidden = true
             cell.timeLabel.isHidden = true
             cell.textView.isHidden = true
+            cell.nameLabel.isHidden = true
             cell.mytimeLabel.isHidden = false
             cell.mytextView.isHidden = false
-            cell.mytimeLabel.text = dateText
+            cell.mytimeLabel.text = dateTextFirst
             cell.mytextView.text = text
+            cell.message = text
         } else {
             cell.userImageView.isHidden = false
             cell.textView.isHidden = false
             cell.timeLabel.isHidden = false
+            cell.nameLabel.isHidden = false
             cell.mytextView.isHidden = true
             cell.mytimeLabel.isHidden = true
             cell.textView.text = chatArray[indexPath.row].text
             let urlString = chatArray[indexPath.row].senderUrl
             let url = URL(string: urlString)
+            cell.nameLabel.text = chatArray[indexPath.row].senderName
             cell.userImageView.sd_setImage(with: url, completed: nil)
-            cell.timeLabel.text = dateText
+            cell.timeLabel.text = dateTextFirst
+            cell.yourMessaege = text
+            
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
 
@@ -100,6 +129,9 @@ extension GroupChatViewController:GetGroupChatDelegate {
         self.chatArray = []
         self.chatArray = chatArray
         tableView.reloadData()
+        if chatArray.count != 0 {
+        tableView.scrollToRow(at: IndexPath(row: chatArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
+        }
     }
     
     
