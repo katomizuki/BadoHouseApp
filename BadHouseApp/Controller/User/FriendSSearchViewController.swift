@@ -23,6 +23,7 @@ class FriendSSearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FriendSearchCell.self, forCellReuseIdentifier: "searchCell")
+        tableView.separatorStyle = .none
     }
     
     func method(cell:UITableViewCell) {

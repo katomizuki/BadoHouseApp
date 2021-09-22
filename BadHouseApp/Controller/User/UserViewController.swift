@@ -60,12 +60,9 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return collectionView
     }()
-    
     private let orangeView = UITableView()
-    
-
-    
     var cellTitleArray = ["居住地","性別","年代","バドミントン歴","レベル"]
+    @IBOutlet weak var scrollView: UIView!
     
     
     //Mark: LifeCycle
@@ -91,18 +88,18 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         nameLabel.textColor = Utility.AppColor.OriginalBlue
         
         //Mark addSubView
-        view.addSubview(saveButton)
-        view.addSubview(logoutButton)
-        view.addSubview(profileImageView)
-        view.addSubview(nameLabel)
-        view.addSubview(profileEditButton)
-        view.addSubview(InfoCollectionView)
-        view.addSubview(orangeView)
+        scrollView.addSubview(saveButton)
+        scrollView.addSubview(logoutButton)
+        scrollView.addSubview(profileImageView)
+        scrollView.addSubview(nameLabel)
+        scrollView.addSubview(profileEditButton)
+        scrollView.addSubview(InfoCollectionView)
+        scrollView.addSubview(orangeView)
 
         //Mark: Anchor
-        saveButton.anchor(top: view.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
-        logoutButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
-        profileImageView.anchor(top: view.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
+        saveButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
+        logoutButton.anchor(top: scrollView.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
+        profileImageView.anchor(top: scrollView.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 10, centerX: view.centerXAnchor)
         profileEditButton.anchor(top: profileImageView.topAnchor, right: profileImageView.rightAnchor,  width: 70, height: 60)
         orangeView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
@@ -128,15 +125,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     //Mark: Logout
     @objc func logout() {
-//        do {
-//            print(#function)
-//            try Auth.auth().signOut()
-//            let vc = RegisterViewController()
-//            vc.modalPresentationStyle = .fullScreen
-//            present(vc, animated: true, completion: nil)
-//        } catch {
-//            print("Logout",error)
-//        }
         dismiss(animated: true, completion: nil)
     }
     

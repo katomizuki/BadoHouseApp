@@ -24,7 +24,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let buttonTag1 = UIButton(type: .system).createTagButton(title: "シングル可")
     private let buttonTag2 = UIButton(type: .system).createTagButton(title: "バド好き歓迎")
     private let buttonTag3 = UIButton(type: .system).createTagButton(title: "ミックス可")
-    private let buttonTag4 = UIButton(type: .system).createTagButton(title: "ダブルスメイン")
+    private let buttonTag4 = UIButton(type: .system).createTagButton(title: "ダブルス")
     private let buttonTag5 = UIButton(type: .system).createTagButton(title: "上級者限定")
     private let buttonTag6 = UIButton(type: .system).createTagButton(title: "学生限定")
     private let buttonTag7 = UIButton(type: .system).createTagButton(title: "初心者歓迎")
@@ -33,6 +33,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let buttonTag10 = UIButton(type: .system).createTagButton(title: "大会出ます!")
     private let buttonTag11 = UIButton(type: .system).createTagButton(title: "土日開催")
     private let buttonTag12 = UIButton(type: .system).createTagButton(title: "平日開催")
+    @IBOutlet weak var scrollView: UIView!
     private var tagArray = [String]()
  
     //Mark:LifeCycle
@@ -93,15 +94,15 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         
         basicStackView.axis = .vertical
         basicStackView.distribution = .fillEqually
-        basicStackView.spacing = 15
+        basicStackView.spacing = 20
         
         //Mark:addSubview
-        view.addSubview(basicStackView)
-        view.addSubview(tagLabel)
-        view.addSubview(buttonStackView)
-        view.addSubview(buttonStackView2)
-        view.addSubview(buttonStackView3)
-        view.addSubview(registerButton)
+        scrollView.addSubview(basicStackView)
+        scrollView.addSubview(tagLabel)
+        scrollView.addSubview(buttonStackView)
+        scrollView.addSubview(buttonStackView2)
+        scrollView.addSubview(buttonStackView3)
+        scrollView.addSubview(registerButton)
         
         //Mark:anchor
         buttonTag1.anchor(width: 45, height:45)
@@ -111,15 +112,15 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         basicStackView.anchor(top:groupImageView.bottomAnchor,
                               left:view.leftAnchor,
                               right:view.rightAnchor,
-                              paddingTop: 10,
+                              paddingTop: 15,
                               paddingRight: 20,
                               paddingLeft: 20)
         
-        buttonStackView.anchor(top: basicStackView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingRight: 20, paddingLeft: 20)
-        tagLabel.anchor(top: basicStackView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop:10,paddingRight: 200,paddingLeft: 20)
+        buttonStackView.anchor(top: basicStackView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingRight: 20, paddingLeft: 20)
+        tagLabel.anchor(top: basicStackView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop:15,paddingRight: 200,paddingLeft: 20)
         buttonStackView2.anchor(top:buttonStackView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         buttonStackView3.anchor(top: buttonStackView2.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
-        registerButton.anchor(top:buttonStackView3.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20, paddingLeft: 20,height: 40)
+        registerButton.anchor(top:buttonStackView3.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20, paddingLeft: 20,height: 45)
         
         //Mark:selector
         buttonTag1.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
@@ -234,7 +235,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         teamBinding.validRegisterDriver
             .drive { validAll in
                 self.registerButton.isEnabled = validAll
-                self.registerButton.backgroundColor = validAll ? Utility.AppColor.OriginalPastelBlue : .darkGray
+                self.registerButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
         

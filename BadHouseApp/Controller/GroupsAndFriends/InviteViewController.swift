@@ -51,6 +51,7 @@ class InviteViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FriendsCell.self, forCellReuseIdentifier: cellId)
+        tableView.separatorStyle = .none
     }
 
     //Mark:IBAction
@@ -75,25 +76,29 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! FriendsCell
         cell.linkInvite = self
-        cell.textLabel?.text = friends[indexPath.row].name
+        cell.nameLabel.text = friends[indexPath.row].name
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
-            cell.imageView?.image = UIImage(named: Utility.ImageName.swift)
-            cell.imageView?.layer.cornerRadius = 30
-            cell.imageView?.layer.masksToBounds = true
+            cell.iv.image = UIImage(named: Utility.ImageName.swift)
+            cell.iv.layer.cornerRadius = 25
+            cell.iv.layer.masksToBounds = true
+            cell.clipsToBounds = true
         } else {
-            cell.imageView?.sd_setImage(with: url, completed: nil)
-            cell.imageView?.layer.cornerRadius = 30
-            cell.imageView?.layer.masksToBounds = true
+            cell.iv.sd_setImage(with: url, completed: nil)
+            cell.iv.layer.cornerRadius = 25
+            cell.iv.layer.masksToBounds = true
+            cell.iv.clipsToBounds = true
         }
         return cell
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.height / 10
     }
+    
+
 }

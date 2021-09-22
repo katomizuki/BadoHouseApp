@@ -49,6 +49,9 @@ class FriendsViewController: UIViewController {
         setupTableView()
         updateUI()
         setupIndicator()
+        inviteButton.layer.cornerRadius = 15
+        inviteButton.layer.masksToBounds = true
+        friendTableView.separatorStyle = .none
     }
     
     //Mark:setupFriendTableView
@@ -109,18 +112,18 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
     
         let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
         cell.linkFriend = self
-        cell.textLabel?.text = friends[indexPath.row].name
+        cell.nameLabel.text = friends[indexPath.row].name
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
             //urlがからであれば違う画像を出す なければロゴ画像を一旦出す。
-            cell.imageView?.image = UIImage(named: Utility.ImageName.swift)
-            cell.imageView?.layer.cornerRadius = 35
-            cell.imageView?.layer.masksToBounds = true
+            cell.iv.image = UIImage(named: Utility.ImageName.swift)
+            cell.iv.layer.cornerRadius = 25
+            cell.iv.layer.masksToBounds = true
         } else {
-            cell.imageView?.sd_setImage(with: url, completed: nil)
-            cell.imageView?.layer.cornerRadius = 35
-            cell.imageView?.layer.masksToBounds = true
+            cell.iv.sd_setImage(with: url, completed: nil)
+            cell.iv.layer.cornerRadius = 25
+            cell.iv.layer.masksToBounds = true
         }
         return cell
     }

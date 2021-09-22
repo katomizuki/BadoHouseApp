@@ -30,6 +30,8 @@ class MapViewController: UIViewController{
             return MKCoordinateRegion(center: coordinate, span: span)
         }
     
+    @IBOutlet weak var searchButton: UIButton!
+    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,10 @@ class MapViewController: UIViewController{
              mapView.addGestureRecognizer(gesture)
              mapView.setRegion(defaultRegion, animated: false)
         textField.delegate = self
+        searchButton.layer.masksToBounds = true
+        searchButton.layer.cornerRadius = 10
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
