@@ -14,7 +14,6 @@ import Firebase
 
 class RegisterViewController:UIViewController{
    
-    
    
     private let disposeBag = DisposeBag()
     private let registerBinding = RegisterBindings()
@@ -37,6 +36,9 @@ class RegisterViewController:UIViewController{
     //Mark :LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if Auth.auth().currentUser == nil {
+            performSegue(withIdentifier: "goWalk", sender: nil)
+        }
         setupGradient()
         setupLayout()
         setupBinding()
@@ -50,10 +52,11 @@ class RegisterViewController:UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         navigationController?.isNavigationBarHidden = true
     }
     
-    
+
     //Mark: setup Method
     private func setupLayout() {
         //Mark updateUI
@@ -226,7 +229,6 @@ extension RegisterViewController: GIDSignInDelegate {
                             } else {
                                 print("Google SignI🌅")
                                 guard let id = result?.user.uid else { return }
-                                guard let uid = userId else { return }
                                 guard let email = email else { return }
                                 guard let name = fullName else { return }
                                 Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
@@ -289,3 +291,4 @@ extension RegisterViewController:LoginButtonDelegate {
         print("logout fb")
     }
 }
+

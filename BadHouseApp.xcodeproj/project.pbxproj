@@ -23,6 +23,8 @@
 		D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* CollectionViewCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */; };
+		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
+		D38807D426FF216F00D3AB7F /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D326FF216E00D3AB7F /* WalkThroughController.swift */; };
 		D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* InviteViewController.swift */; };
 		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
 		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
@@ -72,6 +74,7 @@
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
+		D3CD2FA026FF418900D46AD3 /* スクリーンショット 2021-09-25 20.37.29.png in Resources */ = {isa = PBXBuildFile; fileRef = D3CD2F9F26FF418800D46AD3 /* スクリーンショット 2021-09-25 20.37.29.png */; };
 		D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */; };
 		D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE226F3019700B1C498 /* VideoCell.swift */; };
 		D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostViewController.swift */; };
@@ -107,6 +110,8 @@
 		D37FA52726EB091300B8559F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
+		D38807D326FF216E00D3AB7F /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +160,7 @@
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
+		D3CD2F9F26FF418800D46AD3 /* スクリーンショット 2021-09-25 20.37.29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "スクリーンショット 2021-09-25 20.37.29.png"; sourceTree = "<group>"; };
 		D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		D3CECEE226F3019700B1C498 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		D3CECEE526F3061700B1C498 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 				D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */,
 				D3AC05E626EB82E300F40A51 /* MapViewController.swift */,
 				D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */,
+				D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 				D3BDB52D26E0525100C53780 /* Main.storyboard */,
 				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
 				D3BDB53026E0525200C53780 /* Assets.xcassets */,
+				D3CD2F9F26FF418800D46AD3 /* スクリーンショット 2021-09-25 20.37.29.png */,
 				D353D8E426F16C2F00221B7D /* Xib */,
 				D3C4E93A26E0F56900C21E46 /* Cell */,
 				D3C4E93326E0F1AC00C21E46 /* UserProfile */,
@@ -348,6 +356,7 @@
 			children = (
 				D3BDB54026E0546000C53780 /* RegisterViewController.swift */,
 				D3BDB54326E0547300C53780 /* LoginViewController.swift */,
+				D38807D326FF216E00D3AB7F /* WalkThroughController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -542,6 +551,7 @@
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D3BDB53126E0525200C53780 /* Assets.xcassets in Resources */,
+				D3CD2FA026FF418900D46AD3 /* スクリーンショット 2021-09-25 20.37.29.png in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
@@ -651,6 +661,7 @@
 				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
+				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */,
 				D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */,
 				D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */,
@@ -685,6 +696,7 @@
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */,
+				D38807D426FF216F00D3AB7F /* WalkThroughController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */,
 				D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */,

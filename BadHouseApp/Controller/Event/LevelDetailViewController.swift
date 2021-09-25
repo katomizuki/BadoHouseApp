@@ -1,40 +1,36 @@
-
+//
+//  LevelDetailViewController.swift
+//  BadHouseApp
+//
+//  Created by ミズキ on 2021/09/25.
+//
 
 import UIKit
-import Foundation
-class LevelViewController: UIViewController {
-    
-    
-    
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var slider: UISlider!
+
+class LevelDetailViewController: UIViewController {
+
     @IBOutlet weak var levelLabel: UILabel!
-    var selectedLevel = String()
-    
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var textView: UITextView!
+    private var selectedLevel = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
         levelLabel.text = selectedLevel
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
-        saveButton.backgroundColor = Utility.AppColor.OriginalBlue
-        saveButton.setTitleColor(.white, for: UIControl.State.normal)
-        saveButton.layer.cornerRadius = 20
-        saveButton.layer.masksToBounds = true
+       
         backButton.layer.cornerRadius = 14
         backButton.layer.masksToBounds = true
         backButton.backgroundColor = Utility.AppColor.OriginalBlue
         backButton.setTitleColor(.white, for: UIControl.State.normal)
         backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        backButton.addTarget(self, action: #selector(backtoUser), for: UIControl.Event.touchUpInside)
     }
-    
-    @objc func backtoUser() {
+   
+    @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
     @objc func changeLevel(sender:UISlider) {
         let level = Double(sender.value)
         //分割して条件分岐する
@@ -84,15 +80,8 @@ class LevelViewController: UIViewController {
             textView.text = "全国大会入賞、上位、関東リーグ1部~2部。\n実業団所属しているなどのバドミントン界の超サイヤ人"
         }
     }
-   
     
-    @IBAction func back(_ sender: Any) {
-        selectedLevel = levelLabel.text ?? "1"
-        let vc = self.presentingViewController as! UserViewController
-        vc.level = selectedLevel
-        dismiss(animated: true, completion: nil)
-    }
-    
+
     private func setupSlider(level:String) {
         print(level)
         switch level {
@@ -106,7 +95,7 @@ class LevelViewController: UIViewController {
             slider.value = 0.3
             textView.text =
                 "バドミントンを初めて1年以上。\n簡単な試合ができる。\n[中学校,高校]部活動に入部していた時期がある。\n[大学]サークルの練習で稀に練習している（月に1度以下）\n[社会人]サークルで練習している"
-          
+
         case "4":
             slider.value = 0.4
             textView.text =
@@ -133,5 +122,6 @@ class LevelViewController: UIViewController {
             textView.text = "全国大会入賞、上位、関東リーグ1部~2部。\n実業団所属しているなどのバドミントン界の超サイヤ人"
         }
     }
-    
+
+
 }

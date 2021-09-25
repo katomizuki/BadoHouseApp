@@ -36,16 +36,17 @@ class ViewController: UIViewController, EmptyStateDelegate{
         setupCollectionView()
         setupEmptyState()
         Firestore.deleteEvent()
-        
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+//        performSegue(withIdentifier: "goWalk", sender: nil)
         if Auth.auth().currentUser == nil {
             performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
         }
     }
+  
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -71,7 +71,7 @@ extension DaughterViewController:IndicatorInfoProvider {
 extension DaughterViewController:GetJoinDataDelegate {
     
     func getJoin(joinArray: [[String]]) {
-        IndicatorView.startAnimating()
+//        IndicatorView.startAnimating()
         notificationArray = [[User]]()
         for i in 0..<joinArray.count {
             var tempArray = [User]()
@@ -88,8 +88,6 @@ extension DaughterViewController:GetJoinDataDelegate {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
             self.IndicatorView.stopAnimating()
-            print("🎨")
-            print(self.notificationArray)
             self.tableView.reloadData()
         }
     }

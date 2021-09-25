@@ -14,7 +14,6 @@ class ChildViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupData()
         setupTableView()
         setupIndicator()
     }
@@ -58,7 +57,7 @@ extension ChildViewController:IndicatorInfoProvider {
 
 extension ChildViewController:GetPrejoinDataDelegate {
     func getPrejoin(preJoin: [[String]]) {
-        IndicatorView.startAnimating()
+//        IndicatorView.startAnimating()
         self.notificationArray = [[User]]()
         for i in 0..<preJoin.count {
             var tempArray = [User]()
@@ -76,7 +75,6 @@ extension ChildViewController:GetPrejoinDataDelegate {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
             self.IndicatorView.stopAnimating()
-
             self.tableView.reloadData()
         }
     }
@@ -119,7 +117,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(eventArray[indexPath.section],notificationArray[indexPath.row])
+ 
         let alertVC = UIAlertController(title: "参加申請を許可しますか？", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { _ in
             let eventId = self.eventArray[indexPath.section].eventId

@@ -5,6 +5,7 @@ import RxSwift
 import RxCocoa
 import Firebase
 import RangeUISlider
+import FacebookCore
 
 
 class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
@@ -120,8 +121,10 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     //Mark:MapDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoMap" {
             let nextVC = segue.destination as! MapViewController
             nextVC.delegate = self
+        }
         }
     
     //Mark:SetupBinding

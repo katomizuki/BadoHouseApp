@@ -84,7 +84,7 @@ class ChatListViewController:UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        IndicatorView.startAnimating()
+        
         setupData()
         setupOwnTeamData()
         let image = UIImage(named: Utility.ImageName.double)
