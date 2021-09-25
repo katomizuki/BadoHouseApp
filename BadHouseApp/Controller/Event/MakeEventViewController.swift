@@ -73,14 +73,12 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     }
     
     private func setupUI() {
-        TeamPickerView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-        TeamPickerView.layer.borderWidth = 3
         TeamPickerView.layer.cornerRadius = 15
         TeamPickerView.layer.masksToBounds = true
         detaiTextView.layer.cornerRadius = 15
         detaiTextView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
         detaiTextView.layer.masksToBounds = true
-        detaiTextView.layer.borderWidth = 4
+        detaiTextView.layer.borderWidth = 2
         
         levelUISlider.delegate = self
         levelUISlider.leftKnobColor = Utility.AppColor.OriginalBlue

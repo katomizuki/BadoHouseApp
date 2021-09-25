@@ -333,6 +333,7 @@ class FetchFirestoreData {
             if title != "" {
                 eventArray = eventArray.filter { $0.eventTitle.contains(title) }
             }
+            
             if circle != "" {
                 eventArray = eventArray.filter{ $0.kindCircle == circle }
             }

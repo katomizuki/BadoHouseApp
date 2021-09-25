@@ -66,7 +66,7 @@ extension Firestore{
     }
     
     //Mark UserDataUpdate
-    static func updateUserInfo(dic:[String:Any],completion:@escaping ()->Void) {
+    static func updateUserInfo(dic:[String:Any]) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
             if let error = error {
@@ -74,7 +74,6 @@ extension Firestore{
                 return
             }
             print("更新成功")
-            completion()
         }
     }
     
@@ -575,9 +574,8 @@ extension Storage {
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
-                Firestore.updateUserInfo(dic: dicWithImage) {
-                    completion()
-                }
+                Firestore.updateUserInfo(dic: dicWithImage)
+                   
             }
         }
     }

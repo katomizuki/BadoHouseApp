@@ -21,6 +21,7 @@ class TeammemberCell:UICollectionViewCell {
         teamMemberImage.layer.masksToBounds = true
         teamMemberImage.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
         teamMemberImage.layer.borderWidth = 2
+        teamMemberImage.contentMode = .scaleAspectFill
     }
     
     //Mark:ConfigureMethod
@@ -31,6 +32,5 @@ class TeammemberCell:UICollectionViewCell {
         if urlString == "" { return }
         let url = URL(string: urlString)
         teamMemberImage.sd_setImage(with: url, completed: nil)
-        
     }
 }

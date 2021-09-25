@@ -1,5 +1,6 @@
 import UIKit
 import FSCalendar
+import CDAlertView
 
 protocol CalendarDelegate {
     func searchCalendar(dateString:String,text:String)
@@ -35,12 +36,35 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     //Mark:Selector
     @objc func search() {
         if searchDateString.isEmpty {
-            self.showAlert(title: "検索エラー", message: "日程を指定してください", actionTitle: "OK")
+            let alertType = CDAlertViewType.error
+            let alert = CDAlertView(title: "検索エラー", message: "日程を指定してください", type: alertType)
+            let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
+            
+            alert.add(action: alertAction)
+            alert.hideAnimations = { (center, transform, alpha) in
+                transform = .identity
+                alpha = 0
+            }
+            alert.show() { (alert) in
+                print("completed")
+            }
             return
         }
         guard let text = textField.text else { return }
         if text.isEmpty {
-            self.showAlert(title: "検索エラー", message: "１文字以上入力してください", actionTitle: "OK")
+            let alertType = CDAlertViewType.error
+            let alert = CDAlertView(title: "検索エラー", message: "１文字以上入力してください", type: alertType)
+            let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
+            
+            alert.add(action: alertAction)
+            alert.hideAnimations = { (center, transform, alpha) in
+                transform = .identity
+                alpha = 0
+            }
+            alert.show() { (alert) in
+                print("completed")
+            }
+
             return
         }
         self.delegate?.searchCalendar(dateString: searchDateString,text: text)

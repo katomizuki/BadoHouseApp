@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 import NVActivityIndicatorView
 
-
 class GroupViewController: UIViewController{
    
     //Mark:Properties

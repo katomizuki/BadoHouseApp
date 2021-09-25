@@ -7,6 +7,7 @@ import CoreLocation
 import MapKit
 import EmptyStateKit
 import UserNotifications
+import CDAlertView
 
 class ViewController: UIViewController, EmptyStateDelegate{
    
@@ -40,6 +41,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         if Auth.auth().currentUser == nil {
             performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
         }
@@ -239,7 +241,18 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
-            self.showAlert(title: "検索エラー", message: "１文字以上入力してください", actionTitle: "OK")
+            let alertType = CDAlertViewType.error
+            let alert = CDAlertView(title: "検索エラー", message: "１文字以上入力してください", type: alertType)
+            let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
+            
+            alert.add(action: alertAction)
+            alert.hideAnimations = { (center, transform, alpha) in
+                transform = .identity
+                alpha = 0
+            }
+            alert.show() { (alert) in
+                print("completed")
+            }
             return
         }
         fetchData.searchText(text: searchText)

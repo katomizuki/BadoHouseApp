@@ -15,16 +15,12 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet weak var titleStackView: UIStackView!
     @IBOutlet weak var circleStackView: UIStackView!
     @IBOutlet weak var levelStackView: UIStackView!
-    @IBOutlet weak var preferenceStackView: UIStackView!
     @IBOutlet weak var cityStackView: UIStackView!
-    @IBOutlet weak var wardStackView: UIStackView!
     @IBOutlet weak var moneyStackView: UIStackView!
     @IBOutlet weak var timeStackView: UIStackView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var circleTextField: UITextField!
-    @IBOutlet weak var prefrenceTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var wardTextField: UITextField!
     @IBOutlet weak var moneyTextField: UITextField!
     @IBOutlet weak var levelTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -32,7 +28,6 @@ class DetailSearchViewController: UIViewController{
     private let pickerMoneyView = UIPickerView()
     private let pickerLevelView = UIPickerView()
     private let placePickerView = UIPickerView()
-    private var city = ["川崎市,横浜市"]
     private var data = ["学生サークル", "社会人サークル", "その他練習"]
     private var place = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
                          "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
@@ -56,9 +51,7 @@ class DetailSearchViewController: UIViewController{
         setupUnderLayer(view: titleStackView)
         setupUnderLayer(view: circleStackView)
         setupUnderLayer(view: levelStackView)
-        setupUnderLayer(view: preferenceStackView)
         setupUnderLayer(view: cityStackView)
-        setupUnderLayer(view: wardStackView)
         setupUnderLayer(view: moneyStackView)
         setupUnderLayer(view: timeStackView)
         setupPickerView()
@@ -86,7 +79,6 @@ class DetailSearchViewController: UIViewController{
         setPicker(pickerView: pickerView, textField: circleTextField)
         setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
-        setPicker(pickerView: placePickerView, textField: prefrenceTextField)
     }
     
     //Mark:setPicker
@@ -105,7 +97,6 @@ class DetailSearchViewController: UIViewController{
         circleTextField.endEditing(true)
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
-        prefrenceTextField.endEditing(true)
     }
     
     @objc func getDate(sender:UIDatePicker) {
@@ -121,7 +112,6 @@ class DetailSearchViewController: UIViewController{
         circleTextField.endEditing(true)
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
-        prefrenceTextField.endEditing(true)
     }
     
     //Mark:IBAction
@@ -131,10 +121,7 @@ class DetailSearchViewController: UIViewController{
         let level = levelTextField.text ?? ""
         let money = moneyTextField.text ?? ""
         let time = self.dateString
-        let prefrence = prefrenceTextField.text ?? ""
-        let city = cityTextField.text ?? ""
-        let ward = cityTextField.text ?? ""
-        let placeAddressString = prefrence + city + ward
+        let placeAddressString = cityTextField.text ?? ""
         self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
         dismiss(animated: true, completion: nil)
     }
@@ -143,31 +130,23 @@ class DetailSearchViewController: UIViewController{
         titleTextField.layer.borderColor = UIColor.lightGray.cgColor
         moneyTextField.layer.borderColor = UIColor.lightGray.cgColor
         cityTextField.layer.borderColor = UIColor.lightGray.cgColor
-        wardTextField.layer.borderColor = UIColor.lightGray.cgColor
         levelTextField.layer.borderColor = UIColor.lightGray.cgColor
         circleTextField.layer.borderColor = UIColor.lightGray.cgColor
-        prefrenceTextField.layer.borderColor = UIColor.lightGray.cgColor
         
         titleTextField.layer.borderWidth = 2
         moneyTextField.layer.borderWidth = 2
         cityTextField.layer.borderWidth = 2
-        wardTextField.layer.borderWidth = 2
         levelTextField.layer.borderWidth = 2
         circleTextField.layer.borderWidth = 2
-        prefrenceTextField.layer.borderWidth = 2
         
-        prefrenceTextField.layer.cornerRadius = 15
         titleTextField.layer.cornerRadius = 15
         moneyTextField.layer.cornerRadius = 15
         levelTextField.layer.cornerRadius = 15
         circleTextField.layer.cornerRadius = 15
-        wardTextField.layer.cornerRadius = 15
         cityTextField.layer.cornerRadius = 15
         
-        prefrenceTextField.layer.masksToBounds = true
         titleTextField.layer.masksToBounds = true
         moneyTextField.layer.masksToBounds = true
-        wardTextField.layer.masksToBounds = true
         cityTextField.layer.masksToBounds = true
         levelTextField.layer.masksToBounds = true
         circleTextField.layer.masksToBounds = true
@@ -186,8 +165,6 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
             return data.count
         } else if pickerView == self.pickerMoneyView {
             return money.count
-        } else if pickerView == self.placePickerView {
-            return place.count
         } else {
             return level.count
         }
@@ -196,10 +173,8 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
             return self.data[row]
-        } else if pickerView == self.pickerMoneyView{
+        } else if pickerView == self.pickerMoneyView {
             return self.money[row]
-        } else if pickerView == self.placePickerView {
-            return self.place[row]
         } else {
             return self.level[row]
         }
@@ -211,8 +186,6 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
             circleTextField.text = data[row]
         } else if pickerView == self.pickerMoneyView {
             moneyTextField.text = money[row]
-        } else if pickerView == self.placePickerView {
-            prefrenceTextField.text = place[row]
         } else {
             levelTextField.text = level[row]
         }

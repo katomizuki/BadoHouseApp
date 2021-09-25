@@ -5,6 +5,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
+import CDAlertView
 
 class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
@@ -129,6 +130,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     private func setupBinding() {
+        print(#function)
         logoutButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
@@ -146,18 +148,29 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 ]
                 if self.hasChangedImage {
                     guard let image = self.profileImageView.image else { return }
-                    //SaveAction
+//                    //SaveAction
                     Storage.addProfileImageToStorage(image: image, dic: dic) {
                         print("Image Save Success")
+                        self.hasChangedImage = false
                     }
                 } else {
+                    print("🌀")
+                    Firestore.updateUserInfo(dic: dic)
                 }
-                Firestore.updateUserInfo(dic: dic) {
-                    print("UserData Update")
-                    self.dismiss(animated: true, completion: nil)
+                let alertType = CDAlertViewType.success
+                let alert = CDAlertView(title: "ユーザー情報を保存しました", message: "", type: alertType)
+                let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
+                
+                alert.add(action: alertAction)
+                alert.hideAnimations = { (center, transform, alpha) in
+                    transform = .identity
+                    alpha = 0
                 }
-            }
-            .disposed(by: diposeBag)
+                alert.show() { (alert) in
+                    print("completed")
+                }
+            }.disposed(by:diposeBag)
+        
     }
 }
 
@@ -177,6 +190,7 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
     
     //Mark Binding
     private func bindingsCell(cell:InfoCollectionViewCell) {
+        print("🎨")
         cell.nameTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -275,7 +289,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
                presentationController?.sourceRect = cell.bounds
                viewController.keyword = cellTitleArray[indexPath.row]
                viewController.presentationController?.delegate = self
-               present(viewController, animated: true, completion: nil)    
+               present(viewController, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController,
@@ -284,7 +298,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-       
+
         orangeView.reloadData()
     }
     
