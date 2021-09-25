@@ -4,7 +4,7 @@ import Firebase
 import NVActivityIndicatorView
 
 class DaughterViewController: UIViewController {
-    
+
     //Mark:Properties
     @IBOutlet weak var tableView: UITableView!
     private var eventArray = [Event]()
@@ -38,6 +38,7 @@ class DaughterViewController: UIViewController {
             self.fetchData.fetchJoinData(eventArray: event)
         }
     }
+    
     //Mark:NVActivityIndicatorView
     private func setupIndicator() {
         let frame = CGRect(x: view.frame.width / 2,
@@ -81,16 +82,19 @@ extension DaughterViewController:GetJoinDataDelegate {
                     tempArray.append(user)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.notificationArray.append(tempArray)
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
             self.IndicatorView.stopAnimating()
+            print("🎨")
+            print(self.notificationArray)
             self.tableView.reloadData()
         }
     }
 }
+
 
 extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     
@@ -110,8 +114,6 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return eventArray.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId, for: indexPath) as! GroupCell
@@ -133,6 +135,26 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alertVc = UIAlertController(title: "承認待ちにもどしますか", message: "", preferredStyle: UIAlertController.Style.alert)
+        let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { action in
+            print("alert")
+            let eventId = self.eventArray[indexPath.section].eventId
+            let userId = self.notificationArray[indexPath.section][indexPath.row].uid
+            Firestore.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
+            self.notificationArray[indexPath.section].remove(at: indexPath.row)
+            Firestore.sendPreJoin(eventId: eventId, userId: userId)
+            tableView.reloadData()
+        }
+        
+        let cancleAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default) { action in
+            print("cancle")
+        }
+        alertVc.addAction(alertAction)
+        alertVc.addAction(cancleAction)
+        present(alertVc, animated: true, completion: nil)
     }
     
     

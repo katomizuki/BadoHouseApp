@@ -14,10 +14,13 @@ class ChildViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupData()
+//        setupData()
         setupTableView()
         setupIndicator()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupData()
     }
     
     private func setupTableView() {
@@ -29,14 +32,7 @@ class ChildViewController: UIViewController {
     
     //Mark:NVActivityIndicatorView
     private func setupIndicator() {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 60,
-                           height: 60)
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+        IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
@@ -63,6 +59,7 @@ extension ChildViewController:IndicatorInfoProvider {
 extension ChildViewController:GetPrejoinDataDelegate {
     func getPrejoin(preJoin: [[String]]) {
         IndicatorView.startAnimating()
+        self.notificationArray = [[User]]()
         for i in 0..<preJoin.count {
             var tempArray = [User]()
             for j in 0..<preJoin[i].count {
@@ -73,12 +70,14 @@ extension ChildViewController:GetPrejoinDataDelegate {
                     print(tempArray)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.notificationArray.append(tempArray)
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
             self.IndicatorView.stopAnimating()
+            print("⚡")
+            print(self.notificationArray)
             self.tableView.reloadData()
         }
     }
@@ -130,7 +129,6 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             Firestore.sendJoin(eventId: eventId, uid: userId)
             tableView.reloadData()
-
           }
         let cancleAction = UIAlertAction(title: "いいえ", style: .default) { _ in
         }
@@ -145,5 +143,9 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+    }
+    
+    func tableView(_ tableView: UITableView, selectionFollowsFocusForRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }

@@ -21,6 +21,8 @@ extension Auth {
             guard let uid = result?.user.uid else { return }
             Firestore.setUserData(uid: uid, password: password, email: email, name: name) { result in
                 completion(result, error)
+                let boolArray = [Bool]()
+                UserDefaults.standard.set(boolArray, forKey: uid)
             }
         }
     }
@@ -482,9 +484,13 @@ extension Firestore{
     static func sendJoin(eventId:String,uid:String) {
         Ref.EventRef.document(eventId).collection("Join").document(uid).setData(["id":uid])
     }
+    static func sendPreJoin(eventId:String,userId:String) {
+        Ref.EventRef.document(eventId).collection("PreJoin").document(userId).setData(["id":userId])
+    }
     
     static func deleteEvent() {
         guard let now = DateUtils.getNow() else { return }
+    
         Ref.EventRef.addSnapshotListener { snapShot, error in
             if let error = error {
                 print(error)
@@ -495,7 +501,6 @@ extension Firestore{
                 let safeData = element.data()
                 let endTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
                 let eventId = safeData["eventId"] as? String ?? ""
-                let userId = safeData["userId"] as? String ?? ""
                 let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
                 if date < now {
                     //今よりすぎていたら自動で消す,(イベントコレクション),

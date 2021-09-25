@@ -6,6 +6,7 @@ import RxSwift
 import CoreLocation
 import MapKit
 import EmptyStateKit
+import UserNotifications
 
 class ViewController: UIViewController, EmptyStateDelegate{
    
@@ -34,6 +35,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
         setupCollectionView()
         setupEmptyState()
         Firestore.deleteEvent()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,8 +49,6 @@ class ViewController: UIViewController, EmptyStateDelegate{
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-    
-   
     
     private func setupEmptyState() {
         view.emptyState.delegate = self
@@ -80,18 +80,9 @@ class ViewController: UIViewController, EmptyStateDelegate{
         collectionView.dataSource = self
     }
     
-   
-    
     //Mark: setupIndicator
     private func setupIndicator() {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 100,
-                           height: 100)
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+        IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,

@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Firebase
+import NVActivityIndicatorView
 
 extension UIViewController {
     func showAlert(title:String,message:String,actionTitle:String) {
@@ -32,10 +33,18 @@ extension UIViewController {
             completion(result)
         }
     }
+    
+    func setupIndicatorView()->NVActivityIndicatorView {
+        let frame = CGRect(x: view.frame.width / 2,
+                           y: view.frame.height / 2,
+                           width: 100,
+                           height: 100)
+        return  NVActivityIndicatorView(frame: frame,
+                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
+                                                color: Utility.AppColor.OriginalBlue,
+                                                padding: 0)
+    }
 }
 
-struct PreJoin {
-    var id:String
-    var alertOrNot:Bool
-}
+
 

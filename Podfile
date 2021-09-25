@@ -17,8 +17,12 @@ pod 'NVActivityIndicatorView'
 pod 'FSCalendar'
 pod 'EmptyStateKit'
 pod 'PKHUD'
-pod 'AMPagerTabs'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod "CDAlertView"
+pod 'GoogleSignIn', '~> 5.0.0'
+pod 'FacebookSDK'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 
 end

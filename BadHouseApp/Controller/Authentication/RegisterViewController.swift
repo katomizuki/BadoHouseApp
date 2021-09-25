@@ -1,18 +1,25 @@
-
-
 import Foundation
 import UIKit
 import FirebaseAuth
 import RxSwift
 import NVActivityIndicatorView
 import RxCocoa
+import GoogleSignIn
+import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FacebookCore
+import FacebookLogin
+import Firebase
 
-
-class RegisterViewController:UIViewController {
+class RegisterViewController:UIViewController{
+   
     
+   
     private let disposeBag = DisposeBag()
     private let registerBinding = RegisterBindings()
     private var IndicatorView:NVActivityIndicatorView!
+    private let fbButton = FBLoginButton()
     
     //Mark :Properties
     private let titleLabel = RegisterTitleLabel(text: "バドハウス")
@@ -21,6 +28,10 @@ class RegisterViewController:UIViewController {
     private let passwordTextField = RegisterTextField(placeholder: "パスワード")
     private let registerButton:UIButton = RegisterButton(text: "新規登録")
     private let alreadyButton:UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
+    private let googlView = GIDSignInButton()
+    private var displayName = String()
+    private var pictureURL = String()
+    private var pictureURLString = String()
     
     
     //Mark :LifeCycle
@@ -29,6 +40,12 @@ class RegisterViewController:UIViewController {
         setupGradient()
         setupLayout()
         setupBinding()
+        googlView.style = .wide
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        fbButton.delegate = self
+        //許可するもの
+        fbButton.permissions = ["public_profile, email"]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +61,7 @@ class RegisterViewController:UIViewController {
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         
         //Mark: StackView
-        let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton])
+        let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googlView,fbButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
@@ -61,7 +78,7 @@ class RegisterViewController:UIViewController {
                          right:view.rightAnchor,
                          paddingRight: 20,
                          paddingLeft: 20,
-                         centerX: view.centerXAnchor, centerY: view.centerYAnchor)
+                         centerX: view.centerXAnchor, centerY: view.centerYAnchor,height: 400)
         titleLabel.anchor(bottom:stackView.topAnchor,paddingBottom: 20, centerX: view.centerXAnchor)
         alreadyButton.anchor(top:stackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
         
@@ -184,6 +201,91 @@ class RegisterViewController:UIViewController {
            alertVC.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
            self.present(alertVC, animated: true, completion: nil)
        }
-    
 }
 
+extension RegisterViewController: GIDSignInDelegate {
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+                        print("\(error.localizedDescription)")
+                    } else {
+                        // Perform any operations on signed in user here.
+                        let userId = user.userID                  // For client-side use only!
+//                        let idToken = user.authentication.idToken // Safe to send to the server
+                        let fullName = user.profile.name
+//                        let givenName = user.profile.givenName
+//                        let familyName = user.profile.familyName
+                        let email = user.profile.email
+                        //ここで名前とemailとメールアドレスを取得できるのでfirestoreに送る。
+                        guard let auth = user.authentication else { return }
+                        
+                        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+                        Auth.auth().signIn(with: credential) { result, error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            } else {
+                                print("Google SignI🌅")
+                                guard let id = result?.user.uid else { return }
+                                guard let uid = userId else { return }
+                                guard let email = email else { return }
+                                guard let name = fullName else { return }
+                                Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
+                                    if result == true {
+                                        let boolArray = [Bool]()
+                                        UserDefaults.standard.set(boolArray, forKey: id)
+                                        self.dismiss(animated: true, completion: nil)
+                                    }
+                                }
+                            }
+                        }
+                    }
+    }
+    
+    //追記部分(デリゲートメソッド)エラー来た時
+       func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+                 withError error: Error!) {
+           print(error.localizedDescription)
+       }
+}
+
+extension RegisterViewController:LoginButtonDelegate {
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        //loginする
+            if error == nil{
+                if result?.isCancelled == true{
+                    //キャンセルされた場合は何もしないで返す
+                    return
+                }
+            }
+
+            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+
+            //ここからfirebase
+            Auth.auth().signIn(with: credential) { (result, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self.displayName = (result?.user.displayName)!
+                //string型に強制変換
+                self.pictureURLString = (result?.user.photoURL!.absoluteString)!
+                //画像の大きさを変更（大きくした）
+                self.pictureURLString = self.pictureURLString + "?type=large"
+                guard let name = result?.user.displayName else { return }
+                guard let email = result?.user.email else { return }
+                guard let id = result?.user.uid else { return }
+                Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
+                    if result == true {
+                        let boolArray = [Bool]()
+                        UserDefaults.standard.set(boolArray, forKey: id)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("logout fb")
+    }
+}

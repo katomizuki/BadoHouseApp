@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class PopViewController: UIViewController{
@@ -38,10 +36,8 @@ class PopViewController: UIViewController{
         }
         tableView.reloadData()
     }
-    
-
-
 }
+
 extension PopViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

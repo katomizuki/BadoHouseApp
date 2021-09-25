@@ -15,10 +15,10 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     var me:User?
     @IBOutlet weak var groupImageView: UIImageView!
     private let nameTextField = RegisterTextField(placeholder: "サークル名(必須)")
-    private let placeTextField = RegisterTextField(placeholder: "主な活動場所 〇〇学校〇〇センター,不定等(必須)")
-    private let timeTextField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等(必須)")
-    private let levelTextField = RegisterTextField(placeholder: "会費 〇〇円/月 シャトル,コート代により変動等(必須)")
-    private let plusTextField = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意）")
+    private let placeTextField = RegisterTextField(placeholder: "主な活動場所 〇〇スポーツセンター,不定等")
+    private let timeTextField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等")
+    private let levelTextField = RegisterTextField(placeholder: "会費 〇〇円/月 シャトル代により変動等")
+    private let plusTextField = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意)")
     private let tagLabel = ProfileLabel(title: "特徴タグ")
     private let registerButton:UIButton = RegisterButton(text: "新規登録")
     private let buttonTag1 = UIButton(type: .system).createTagButton(title: "シングル可")

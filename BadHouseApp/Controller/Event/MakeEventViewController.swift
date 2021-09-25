@@ -9,8 +9,6 @@ import RangeUISlider
 
 class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
     
-    
-
     //Mark:properties
     @IBOutlet weak var gatherCountLabel: UILabel!
     @IBOutlet weak var courtCountLabel: UILabel!
@@ -29,7 +27,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     var pickerArray = [TeamModel]()
     lazy var dateFormatter:DateFormatter = {
         let formatter = DateFormatter()
-
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
         formatter.calendar = Calendar(identifier: .gregorian)
         return formatter
@@ -37,7 +34,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     @IBOutlet weak var detaiTextView: UITextView!
     @IBOutlet weak var circleSegment: UISegmentedControl!
     @IBOutlet weak var noImageView: UIImageView!
-    
     
     //Mark:sendEventdataProperties
     private var selectedTeam:TeamModel?
@@ -57,8 +53,9 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private var placeLongitude = Double()
     private var dic = [String:Any]()
     private var team:TeamModel?
-    
     @IBOutlet weak var levelUISlider: RangeUISlider!
+    private let moneyArray = ["100","200","300","400","500","600","700","800","900","1000","1100","1200","1300","1400","1500","1600","1700","1800","1900","2000","2100","2200","2300","2400","2500","2600","2700","2800","2900","3000"]
+    private let moneyPickerView = UIPickerView()
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -107,9 +104,20 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         
         TeamPickerView.delegate = self
         TeamPickerView.dataSource = self
+        moneyPickerView.delegate = self
+        moneyPickerView.dataSource = self
+        moneyTextField.inputView = moneyPickerView
+        let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
+        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
+        toolBar.setItems([doneButtonItem], animated: true)
+        moneyTextField.inputAccessoryView = toolBar
         
         makeEventButton.addTarget(self, action: #selector(createEvent), for: UIControl.Event.touchUpInside)
         circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
+    }
+    @objc func donePicker() {
+        moneyTextField.endEditing(true)
     }
     
     //Mark:MapDelegate
@@ -284,10 +292,25 @@ extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerArray.count
+        if pickerView == self.TeamPickerView {
+            return pickerArray.count
+        } else {
+            return moneyArray.count
+        }
+      
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerArray[row].teamName
+        if pickerView == self.TeamPickerView {
+            return pickerArray[row].teamName
+        } else {
+            return moneyArray[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == moneyPickerView {
+            moneyTextField.text = moneyArray[row]
+        }
     }
 }
 
@@ -359,3 +382,6 @@ extension MakeEventViewController:UINavigationControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+
+

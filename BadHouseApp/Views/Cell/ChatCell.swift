@@ -9,15 +9,12 @@ class ChatCell: UITableViewCell {
             let width = estimateFrameSize(text: message).width + 20
             messageConstraint.constant = width
             mytextView.text = message
-            print("🍎")
-            print(width)
-            print(message)
         }
     }
     var yourMessaege:String? {
         didSet {
             guard let message = yourMessaege else { return }
-            let width = estimateFrameSize(text: message).width + 20
+            let width = estimateFrameSize(text: message).width + 10
             widthConstraint.constant = width
             textView.text = message
             

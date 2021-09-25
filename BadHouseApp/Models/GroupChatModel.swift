@@ -6,7 +6,7 @@ struct GroupChatModel {
     var senderUrl:String
     var senderName:String
     var chatId:String
-    var timeStamp:Timestamp
+    var timeStamp:Timestamp?
     var text:String
 }
 

@@ -71,15 +71,12 @@ class FriendsViewController: UIViewController {
     
     //Mark:NVActivityIndicatorView
     private func setupIndicator() {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 60,
-                           height: 60)
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballClipRotateMultiple,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+        IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor,
+                             centerY: view.centerYAnchor,
+                             width:100,
+                             height: 100)
     }
     
     //Mark:IBAction

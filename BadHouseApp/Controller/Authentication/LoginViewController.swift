@@ -1,18 +1,26 @@
-
-
 import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
 import Firebase
 import NVActivityIndicatorView
+import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FacebookCore
+import FacebookLogin
 
 
 class LoginViewController:UIViewController {
     
+    
+    
+    
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()
     private var IndicatorView:NVActivityIndicatorView!
+    private let fbButton = FBLoginButton()
+    private let googlView = GIDSignInButton()
     
     //Mark :Properties
     private let titleLabel = RegisterTitleLabel(text: "バドハウス")
@@ -26,6 +34,12 @@ class LoginViewController:UIViewController {
         setupGradient()
         setupLayout()
         setupBinding()
+        googlView.style = .wide
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        fbButton.delegate = self
+        //許可するもの
+        fbButton.permissions = ["public_profile, email"]
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -40,7 +54,7 @@ class LoginViewController:UIViewController {
        
         
         //Mark:StackView
-        let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton])
+        let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googlView,fbButton])
         basicStackView.axis = .vertical
         basicStackView.distribution = .fillEqually
         basicStackView.spacing = 20
@@ -52,7 +66,7 @@ class LoginViewController:UIViewController {
         
         //Mark:Anchor
         emailTextField.anchor(height:45)
-        basicStackView.anchor(left:view.leftAnchor, right:view.rightAnchor, paddingRight: 20, paddingLeft: 20, centerY: view.centerYAnchor)
+        basicStackView.anchor(left:view.leftAnchor, right:view.rightAnchor, paddingRight: 20, paddingLeft: 20, centerY: view.centerYAnchor,height: 350)
         titleLabel.anchor(bottom:basicStackView.topAnchor,paddingBottom: 20, centerX: view.centerXAnchor)
         dontHaveButton.anchor(top:basicStackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
         
@@ -162,4 +176,56 @@ class LoginViewController:UIViewController {
            alertVC.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
            self.present(alertVC, animated: true, completion: nil)
        }
+}
+
+extension LoginViewController:GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+                        print("\(error.localizedDescription)")
+                    } else {
+                      
+                        //ここで名前とemailとメールアドレスを取得できるのでfirestoreに送る。
+                        guard let auth = user.authentication else { return }
+                        
+                        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+                        Auth.auth().signIn(with: credential) { result, error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                                return
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }
+    }
+}
+
+extension LoginViewController: LoginButtonDelegate {
+    
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("logout fb")
+    }
+
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if error == nil{
+            if result?.isCancelled == true{
+                //キャンセルされた場合は何もしないで返す
+                return
+            }
+        }
+
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        //ここからfirebase
+        Auth.auth().signIn(with: credential) { (result, error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
 }

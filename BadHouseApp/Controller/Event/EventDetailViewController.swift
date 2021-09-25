@@ -317,7 +317,12 @@ class EventDetailViewController: UIViewController {
                 let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
                     guard let chatId = self.chatId else { return }
                     guard let name = self.me?.name else { return }
-                    
+//                    var boolArray = [Bool]()
+//
+//                    boolArray = UserDefaults.standard.array(forKey: leaderId) as! [Bool]
+//                    boolArray.append(false)
+//                    UserDefaults.standard.set(boolArray, forKey: leaderId)
+
                     Firestore.sendChat(chatroomId: chatId, senderId: Auth.getUserId(), text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                     
                     Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId,leaderId: leaderId)

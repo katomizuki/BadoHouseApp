@@ -28,12 +28,19 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet weak var moneyTextField: UITextField!
     @IBOutlet weak var levelTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
-    private var pickerView = UIPickerView()
-    private var pickerMoneyView = UIPickerView()
-    private var pickerLevelView = UIPickerView()
+    private let pickerView = UIPickerView()
+    private let pickerMoneyView = UIPickerView()
+    private let pickerLevelView = UIPickerView()
+    private let placePickerView = UIPickerView()
     private var city = ["川崎市,横浜市"]
     private var data = ["学生サークル", "社会人サークル", "その他練習"]
-    private var place = ["神奈川県"]
+    private var place = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+                         "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+                         "新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県",
+                         "静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県",
+                         "奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県",
+                         "徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県",
+                         "熊本県","大分県","宮崎県","鹿児島県","沖縄県"]
     private var money = ["500円~1000円","1000円~2000円","2000円~"]
     private var level = ["レベル1","レベル2","レベル3","レベル4","レベル5","レベル6","レベル7","レベル8","レベル9","レベル10"]
     private let fetchData = FetchFirestoreData()
@@ -79,6 +86,7 @@ class DetailSearchViewController: UIViewController{
         setPicker(pickerView: pickerView, textField: circleTextField)
         setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
+        setPicker(pickerView: placePickerView, textField: prefrenceTextField)
     }
     
     //Mark:setPicker
@@ -93,10 +101,11 @@ class DetailSearchViewController: UIViewController{
     }
     
     //Mark:Selector
-    @objc private func donePicker() {
+    @objc func donePicker() {
         circleTextField.endEditing(true)
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
+        prefrenceTextField.endEditing(true)
     }
     
     @objc func getDate(sender:UIDatePicker) {
@@ -112,6 +121,7 @@ class DetailSearchViewController: UIViewController{
         circleTextField.endEditing(true)
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
+        prefrenceTextField.endEditing(true)
     }
     
     //Mark:IBAction
@@ -176,6 +186,8 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
             return data.count
         } else if pickerView == self.pickerMoneyView {
             return money.count
+        } else if pickerView == self.placePickerView {
+            return place.count
         } else {
             return level.count
         }
@@ -186,6 +198,8 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
             return self.data[row]
         } else if pickerView == self.pickerMoneyView{
             return self.money[row]
+        } else if pickerView == self.placePickerView {
+            return self.place[row]
         } else {
             return self.level[row]
         }
@@ -197,6 +211,8 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
             circleTextField.text = data[row]
         } else if pickerView == self.pickerMoneyView {
             moneyTextField.text = money[row]
+        } else if pickerView == self.placePickerView {
+            prefrenceTextField.text = place[row]
         } else {
             levelTextField.text = level[row]
         }

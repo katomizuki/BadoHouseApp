@@ -11,6 +11,9 @@
 		D330032626E61A2E00208525 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* PopViewController.swift */; };
 		D330032826E7013900208525 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* LevelViewController.swift */; };
 		D330032A26E8512700208525 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032926E8512700208525 /* CommentViewController.swift */; };
+		D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B126FD3DEE0027592A /* UIColor-Extension.swift */; };
+		D34852B426FD3E160027592A /* Array-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B326FD3E160027592A /* Array-Extension.swift */; };
+		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* ChatViewController.swift */; };
 		D353D8DD26F05DD000221B7D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D353D8DC26F05DD000221B7D /* MessageKit */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -94,6 +97,9 @@
 		D330032526E61A2E00208525 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		D330032926E8512700208525 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		D34852B126FD3DEE0027592A /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
+		D34852B326FD3E160027592A /* Array-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Extension.swift"; sourceTree = "<group>"; };
+		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -294,6 +300,7 @@
 				D3C02CEE26E8A5C800995517 /* TeamTag.swift */,
 				D3AC05EF26EE284F00F40A51 /* FetchData.swift */,
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
+				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,6 +361,8 @@
 				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
 				D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */,
 				D3DA98B926F6D8C200DFF8B1 /* State.swift */,
+				D34852B126FD3DEE0027592A /* UIColor-Extension.swift */,
+				D34852B326FD3E160027592A /* Array-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -467,6 +476,7 @@
 				D3BDB52226E0525100C53780 /* Resources */,
 				CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */,
 				D3A789CB26F3F8710088E8BC /* ShellScript */,
+				4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -541,6 +551,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -611,6 +638,7 @@
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
+				D34852B426FD3E160027592A /* Array-Extension.swift in Sources */,
 				D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */,
@@ -619,6 +647,7 @@
 				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
+				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
@@ -648,6 +677,7 @@
 				D330032626E61A2E00208525 /* PopViewController.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Utility.swift in Sources */,
 				D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */,
+				D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3CF6D1326F8AE6C007C4DF3 /* DaughterViewController.swift in Sources */,

@@ -26,15 +26,19 @@ class GroupChatViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupData()
-        textView.layer.cornerRadius = 15
-        textView.layer.masksToBounds = true
-        sendButton.layer.cornerRadius = 15
-        sendButton.layer.masksToBounds = true
+        updateUI()
         
         Firestore.getUserData(uid: Auth.getUserId()) { me in
             self.me = me
         }
         navBar.topItem?.title = team?.teamName
+    }
+    
+    private func updateUI() {
+        textView.layer.cornerRadius = 15
+        textView.layer.masksToBounds = true
+        sendButton.layer.cornerRadius = 15
+        sendButton.layer.masksToBounds = true
     }
     
     @IBAction func sendChat(_ sender: Any) {
@@ -74,7 +78,7 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatCell
-        let date = chatArray[indexPath.row].timeStamp.dateValue()
+        guard let date = chatArray[indexPath.row].timeStamp?.dateValue() else { return cell }
         let dateText = self.formatter.string(from: date)
         let text = chatArray[indexPath.row].text
         cell.mytextView.font = UIFont(name: "Kailasa", size: 14)
