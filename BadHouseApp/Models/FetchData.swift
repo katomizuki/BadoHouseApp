@@ -112,7 +112,6 @@ class FetchFirestoreData {
         var level10 = 0
         for i in 0..<teamPlayers.count {
             let level = teamPlayers[i].level
-            print(level)
             switch level {
             case "レベル1":
                 level1 += 1
@@ -149,29 +148,9 @@ class FetchFirestoreData {
             }
             guard let data = snapShot?.documents else { return }
             eventArray = []
-            for doc in data {
-                let safeData = doc.data()
-                let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventId = safeData["eventId"] as? String ?? ""
-                let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventMoney = safeData["eventMoney"] as? String ?? "1000"
-                let gatherCount = safeData["gatherCount"] as? String ?? "1"
-                let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
-                let kindCircle = safeData["kindCircle"] as? String ?? "社会人サークル"
-                let place = safeData["place"] as? String ?? "神奈川県"
-                let teamId = safeData["teamId"] as? String ?? ""
-                let teamName = safeData["teamName"] as? String ?? ""
-                let time = safeData["time"] as? String ?? ""
-                let urlEventString = safeData["urlEventString"] as? String ?? ""
-                let detailText = safeData["detailText"] as? String ?? ""
-                let courtCount = safeData["courtCount"] as? String ?? "1"
-                let latitude = safeData["latitude"] as? Double ?? 35.680
-                let longitude = safeData["longitude"] as? Double ?? 139.767
-                let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
-                let placeAddress = safeData["placeAddress"] as? String ?? ""
-                let eventLavel = safeData["eventLavel"] as? String ?? ""
-                let userId = safeData["userId"] as? String ?? ""
-                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
+            data.forEach { doc in
+                let safeData = doc.data() as [String:Any]
+                let event = Event(dic:safeData)
                 eventArray.append(event)
             }
             //Sort＆Search
@@ -219,7 +198,7 @@ class FetchFirestoreData {
                 return
             }
             guard let data = Snapshot?.documents else {return}
-            for doc in data {
+            data.forEach { doc in
                 let safeData = doc.data()
                 let placeAddress = safeData["placeAddress"] as? String ?? ""
                 let place = safeData["place"] as? String ?? ""
@@ -227,25 +206,7 @@ class FetchFirestoreData {
                 let kindCircle = safeData["kindCircle"] as? String ?? ""
                 let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
                 if placeAddress.contains(text) || place.contains(text) || teamName.contains(text) || kindCircle.contains(text) || eventTitle.contains(text) {
-                    
-                    let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                    let eventId = safeData["eventId"] as? String ?? ""
-                    let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                    let eventMoney = safeData["eventMoney"] as? String ?? "1000"
-                    let gatherCount = safeData["gatherCount"] as? String ?? "1"
-                    let teamId = safeData["teamId"] as? String ?? ""
-                    let time = safeData["time"] as? String ?? ""
-                    let urlEventString = safeData["urlEventString"] as? String ?? ""
-                    let detailText = safeData["detailText"] as? String ?? ""
-                    let courtCount = safeData["courtCount"] as? String ?? "1"
-                    let latitude = safeData["latitude"] as? Double ?? 35.680
-                    let longitude = safeData["longitude"] as? Double ?? 139.767
-                    let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
-                    let eventLavel = safeData["eventLavel"] as? String ?? ""
-                    let userId = safeData["userId"] as? String ?? ""
-                    
-                    
-                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
+                    let event = Event(dic:safeData)
                     eventArray.append(event)
                 }
             }
@@ -260,34 +221,14 @@ class FetchFirestoreData {
         let keyDate = String(dateString[startIndex..<endIndex])
         Ref.EventRef.getDocuments { snapShot, error in
             guard let data = snapShot?.documents else { return }
-            for doc in data {
+            data.forEach { doc in
                 let safeData = doc.data()
                 let eventStartTime = safeData["eventStartTime"] as? String ?? ""
                 let firstIndex = eventStartTime.index(eventStartTime.startIndex, offsetBy: 0)
                 let lastIndex = eventStartTime.index(eventStartTime.startIndex, offsetBy: 10)
                 let startTimeString = String(eventStartTime[firstIndex..<lastIndex])
                 if startTimeString == keyDate {
-                    let placeAddress = safeData["placeAddress"] as? String ?? ""
-                    let place = safeData["place"] as? String ?? ""
-                    let teamName = safeData["teamName"] as? String ?? ""
-                    let kindCircle = safeData["kindCircle"] as? String ?? ""
-                    let eventId = safeData["eventId"] as? String ?? ""
-                    let lastTime = safeData["eventLastTime"] as? String ?? ""
-                    let eventMoney = safeData["eventMoney"] as? String ?? "未設定"
-                    let gatherCount = safeData["gatherCount"] as? String ?? "1"
-                    let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
-                    let teamId = safeData["teamId"] as? String ?? ""
-                    let time = safeData["time"] as? String ?? ""
-                    let urlEventString = safeData["urlEventString"] as? String ?? ""
-                    let detailText = safeData["detailText"] as? String ?? ""
-                    let courtCount = safeData["courtCount"] as? String ?? "1"
-                    let latitude = safeData["latitude"] as? Double ?? 35.680
-                    let longitude = safeData["longitude"] as? Double ?? 139.767
-                    let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
-                    let eventLavel = safeData["eventLavel"] as? String ?? ""
-                    let userId = safeData["userId"] as? String ?? ""
-                    
-                    let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: eventStartTime, eventFinishTime: lastTime, eventCourtCount: courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle, eventTitle: eventTitle, eventUrl: urlEventString, teamId: teamId, latitude: latitude, longitude: longitude, distance: 0.0, teamImageUrl: teamImageUrl, placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
+                    let event = Event(dic:safeData)
                     eventArray.append(event)
                 }
             }
@@ -304,29 +245,9 @@ class FetchFirestoreData {
                 return
             }
             guard let data = snapShot?.documents else { return }
-            for doc in data {
+            data.forEach { doc in
                 let safeData = doc.data()
-                let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventId = safeData["eventId"] as? String ?? ""
-                let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventMoney = safeData["eventMoney"] as? String ?? "1000"
-                let gatherCount = safeData["gatherCount"] as? String ?? "1"
-                let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
-                let kindCircle = safeData["kindCircle"] as? String ?? "社会人サークル"
-                let place = safeData["place"] as? String ?? "神奈川県"
-                let teamId = safeData["teamId"] as? String ?? ""
-                let teamName = safeData["teamName"] as? String ?? ""
-                let time = safeData["time"] as? String ?? ""
-                let urlEventString = safeData["urlEventString"] as? String ?? ""
-                let detailText = safeData["detailText"] as? String ?? ""
-                let courtCount = safeData["courtCount"] as? String ?? "1"
-                let latitude = safeData["latitude"] as? Double ?? 35.680
-                let longitude = safeData["longitude"] as? Double ?? 139.767
-                let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
-                let placeAddress = safeData["placeAddress"] as? String ?? ""
-                let eventLavel = safeData["eventLavel"] as? String ?? ""
-                let userId = safeData["userId"] as? String ?? ""
-                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
+                let event = Event(dic: safeData)
                 eventArray.append(event)
             }
      
@@ -355,11 +276,9 @@ class FetchFirestoreData {
     
     func searchMoney(money:String,events:[Event])->[Event] {
         var eventArray = [Event]()
-        print(money)
         for i in 0..<events.count {
             let eventMoney = Int(events[i].money) ?? 500
             if money == "500円~1000円" {
-                print(money)
                 if 500 <= eventMoney && eventMoney <= 1000 {
                     eventArray.append(events[i])
                 }
@@ -398,18 +317,14 @@ class FetchFirestoreData {
     }
     
     func searchTime(time:String ,event:[Event])->[Event] {
+        print(#function)
         var eventArray = [Event]()
-        for i in 0..<event.count {
-            let startTime = event[i].eventStartTime
-            if time == startTime {
-                eventArray.append(event[i])
-            }
-        }
+        eventArray = event.filter { $0.eventStartTime == time }
         return eventArray
     }
     
     func getChatData(meId:String,youId:String,completion:@escaping(String)->Void){
-    
+        print(#function)
         var string = ""
         Ref.ChatroomRef.addSnapshotListener { snapShot, error in
             if let error = error {
@@ -440,11 +355,7 @@ class FetchFirestoreData {
             guard let document = snapShot?.documents else { return }
             document.forEach { doc in
                 let data = doc.data()
-                let sendTime = data["sendTime"] as? Timestamp ?? Timestamp()
-                let text = data["text"] as? String ?? ""
-                let senderId = data["sender"] as? String ?? ""
-                let reciverId = data["reciver"] as? String ?? ""
-                let chat = Chat(sendTime: sendTime, text: text, senderId: senderId, reciverId: reciverId)
+                let chat = Chat(dic:data)
                 chatArray.append(chat)
             }
             self.chatDelegate?.getChatData(chatArray: chatArray)
@@ -459,10 +370,7 @@ class FetchFirestoreData {
                     return
                 }
                 guard let data = snapShot?.data() else { return }
-                let chatRoomId = data["chatRoomId"] as? String ?? ""
-                let user = data["user"] as? String ?? ""
-                let user2 = data["user2"] as? String ?? ""
-                let chatRoomModel = ChatRoom(chatRoom: chatRoomId, user: user, user2: user2)
+                let chatRoomModel = ChatRoom(dic: data)
                 chatRoomModelArray.append(chatRoomModel)
                 print(chatRoomModel)
             }
@@ -484,13 +392,7 @@ class FetchFirestoreData {
             groupChat = []
             document.forEach { data in
                 let safeData = data.data()
-                let senderId = safeData["senderId"] as? String ?? ""
-                let senderName = safeData["senderName"] as? String ?? ""
-                let senderUrl = safeData["senderUrl"] as? String ?? ""
-                let chatId = safeData["chatId"] as? String ?? ""
-                let timeStamp = safeData["timeStamp"] as? Timestamp ?? Timestamp()
-                let text = safeData["text"] as? String ?? ""
-                let groupChatModel = GroupChatModel(senderId: senderId, senderUrl: senderUrl, senderName: senderName, chatId: chatId, timeStamp: timeStamp, text: text)
+                let groupChatModel = GroupChatModel(dic: safeData)
                 groupChat.append(groupChatModel)
             }
             self.groupChatDataDelegate?.getGroupChat(chatArray: groupChat)
@@ -517,7 +419,7 @@ class FetchFirestoreData {
                 stringArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.preDelegate?.getPrejoin(preJoin: stringArray)
         }
     }
@@ -541,7 +443,7 @@ class FetchFirestoreData {
                 stringArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.joinDelegate?.getJoin(joinArray: stringArray)
         }
     }

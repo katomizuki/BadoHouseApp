@@ -55,10 +55,15 @@ class DetailSearchViewController: UIViewController{
         setupUnderLayer(view: moneyStackView)
         setupUnderLayer(view: timeStackView)
         setupPickerView()
+        updateUI()
+        setupBorder()
+    }
+    
+    //Mark updateUI
+    private func updateUI() {
         datePicker.addTarget(self, action: #selector(getDate(sender:)), for: UIControl.Event.valueChanged)
         searchButton.layer.cornerRadius = 15
         searchButton.layer.masksToBounds = true
-        setupBorder()
     }
     
     //Mark:getCGrect

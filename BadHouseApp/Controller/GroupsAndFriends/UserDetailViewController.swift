@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import SDWebImage
+import FacebookCore
 
 class UserDetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
@@ -33,9 +34,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         setupDelegate()
         setupCollection()
         setupData()
-        Firestore.getUserData(uid: Auth.getUserId()) { me in
-            self.me = me
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +138,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    print(self.userFriend)
                     self.belongCollectionView.reloadData()
                     self.friendCollectionView.reloadData()
                 }
@@ -172,15 +169,15 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     @IBAction func gotoChat(_ sender: Any) {
-        performSegue(withIdentifier: "DM", sender: nil)
+        performSegue(withIdentifier: Utility.Segue.gotoDM, sender: nil)
     }
     
     @IBAction func DM(_ sender: Any) {
-        performSegue(withIdentifier: "DM", sender: nil)
+        performSegue(withIdentifier: Utility.Segue.gotoDM, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DM" {
+        if segue.identifier == Utility.Segue.gotoDM {
             let vc = segue.destination as! ChatViewController
             guard let you = user else { return }
             guard let me = self.me else { return }
@@ -195,10 +192,8 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.belongCollectionView {
-            print(ownTeam.count)
             return ownTeam.count
         } else if collectionView == self.friendCollectionView {
-            print(userFriend.count)
             return userFriend.count
         }
         return 0

@@ -69,8 +69,6 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         guard let text = name else { return }
         if searchTag(text: text) == nil {
             plusTagArray.append(name ?? "")
-            print(dic)
-
         }
     }
     

@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import Firebase
 import NVActivityIndicatorView
+import CDAlertView
 
 extension UIViewController {
     func showAlert(title:String,message:String,actionTitle:String) {
@@ -22,9 +23,7 @@ extension UIViewController {
             guard let data = snapShot?.documents else { return }
             data.forEach { data in
                 let safeData = data.data()
-                let id = safeData["id"] as? String ?? ""
-                let alertOrNot = safeData["alertOrNot"] as? Bool ?? true
-                let pre = PreJoin(id: id, alertOrNot: alertOrNot)
+                let pre = PreJoin(dic:safeData)
                 boolArray.append(pre)
             }
             if boolArray.filter({ $0.alertOrNot == false }).count >= 1 {
@@ -43,6 +42,20 @@ extension UIViewController {
                                                 type: NVActivityIndicatorType.ballSpinFadeLoader,
                                                 color: Utility.AppColor.OriginalBlue,
                                                 padding: 0)
+    }
+    
+    func setupCDAlert(title:String,message:String,action:String,alertType:CDAlertViewType) {
+        let alert = CDAlertView(title: title, message: message, type: alertType)
+        let alertAction = CDAlertViewAction(title: action, font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
+        
+        alert.add(action: alertAction)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
     }
 }
 

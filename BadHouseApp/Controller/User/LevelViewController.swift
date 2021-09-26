@@ -19,6 +19,10 @@ class LevelViewController: UIViewController {
         levelLabel.text = selectedLevel
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
+        updateUI()
+    }
+    
+    private func updateUI() {
         saveButton.backgroundColor = Utility.AppColor.OriginalBlue
         saveButton.setTitleColor(.white, for: UIControl.State.normal)
         saveButton.layer.cornerRadius = 20
@@ -94,7 +98,6 @@ class LevelViewController: UIViewController {
     }
     
     private func setupSlider(level:String) {
-        print(level)
         switch level {
         case "1":
             slider.value = 0.1

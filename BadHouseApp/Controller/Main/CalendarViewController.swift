@@ -18,10 +18,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
+    }
+    
+    private func updateUI() {
         calendar.delegate = self
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        //Mark:addsubView
         view.addSubview(button)
         view.addSubview(textField)
+        
+        //Mark:anchor
         button.anchor(top:textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
@@ -29,42 +37,24 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
                       paddingRight: 30,
                       paddingLeft: 30,height: 45)
         textField.anchor(top:calendar.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight: 30,paddingLeft: 30,height: 45)
+        
+        //mark:addTarget
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
         textField.addTarget(self, action: #selector(placeSearch), for: UIControl.Event.valueChanged)
+
     }
+    
+    
     
     //Mark:Selector
     @objc func search() {
         if searchDateString.isEmpty {
-            let alertType = CDAlertViewType.error
-            let alert = CDAlertView(title: "検索エラー", message: "日程を指定してください", type: alertType)
-            let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
-            
-            alert.add(action: alertAction)
-            alert.hideAnimations = { (center, transform, alpha) in
-                transform = .identity
-                alpha = 0
-            }
-            alert.show() { (alert) in
-                print("completed")
-            }
+            self.setupCDAlert(title: "検索エラー", message: "日程を指定してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
         guard let text = textField.text else { return }
         if text.isEmpty {
-            let alertType = CDAlertViewType.error
-            let alert = CDAlertView(title: "検索エラー", message: "１文字以上入力してください", type: alertType)
-            let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
-            
-            alert.add(action: alertAction)
-            alert.hideAnimations = { (center, transform, alpha) in
-                transform = .identity
-                alpha = 0
-            }
-            alert.show() { (alert) in
-                print("completed")
-            }
-
+            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
         self.delegate?.searchCalendar(dateString: searchDateString,text: text)

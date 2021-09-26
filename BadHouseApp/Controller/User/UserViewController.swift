@@ -10,37 +10,35 @@ import CDAlertView
 class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
     //Mark: properties
-    
-  
     var user:User?
-    private let cellId = "cellId"
+    private let cellId = Utility.CellId.userCellId
     private let diposeBag = DisposeBag()
     private var hasChangedImage = false
     private var name = ""
     private var email = ""
     var level:String = "" {
         didSet {
-        orangeView.reloadData()
+        userTableView.reloadData()
     }
-}
+  }
     var gender = "" {
         didSet {
-            orangeView.reloadData()
+            userTableView.reloadData()
         }
     }
     var place = "" {
         didSet {
-            orangeView.reloadData()
+            userTableView.reloadData()
         }
     }
     var age = "" {
         didSet {
-            orangeView.reloadData()
+            userTableView.reloadData()
         }
     }
     var badmintonTime = "" {
         didSet {
-            orangeView.reloadData()
+            userTableView.reloadData()
         }
     }
     
@@ -61,7 +59,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return collectionView
     }()
-    private let orangeView = UITableView()
+    private let userTableView = UITableView()
     var cellTitleArray = ["居住地","性別","年代","バドミントン歴","レベル"]
     @IBOutlet weak var scrollView: UIView!
     
@@ -72,10 +70,14 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         navigationController?.isNavigationBarHidden = true
         setupLayout()
         setupBinding()
-        orangeView.delegate = self
-        orangeView.dataSource = self
-        orangeView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        orangeView.separatorColor = Utility.AppColor.OriginalBlue
+        setupUserTableView()
+    }
+    
+    private func setupUserTableView() {
+        userTableView.delegate = self
+        userTableView.dataSource = self
+        userTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        userTableView.separatorColor = Utility.AppColor.OriginalBlue
     }
 
     //Mark: setupMethod
@@ -95,7 +97,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         scrollView.addSubview(nameLabel)
         scrollView.addSubview(profileEditButton)
         scrollView.addSubview(InfoCollectionView)
-        scrollView.addSubview(orangeView)
+        scrollView.addSubview(userTableView)
 
         //Mark: Anchor
         saveButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
@@ -103,8 +105,8 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         profileImageView.anchor(top: scrollView.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 10, centerX: view.centerXAnchor)
         profileEditButton.anchor(top: profileImageView.topAnchor, right: profileImageView.rightAnchor,  width: 70, height: 60)
-        orangeView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
-        InfoCollectionView.anchor(top: orangeView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
+        userTableView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
+        InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
        
         
         //Mark: selector
@@ -120,8 +122,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         badmintonTime = user?.badmintonTime ?? "未設定"
         place = user?.place ?? "未設定"
         age = user?.age ?? "未設定"
-    
-        
     }
     
     //Mark: Logout
@@ -154,21 +154,9 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                         self.hasChangedImage = false
                     }
                 } else {
-                    print("🌀")
                     Firestore.updateUserInfo(dic: dic)
                 }
-                let alertType = CDAlertViewType.success
-                let alert = CDAlertView(title: "ユーザー情報を保存しました", message: "", type: alertType)
-                let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
-                
-                alert.add(action: alertAction)
-                alert.hideAnimations = { (center, transform, alpha) in
-                    transform = .identity
-                    alpha = 0
-                }
-                alert.show() { (alert) in
-                    print("completed")
-                }
+                self.setupCDAlert(title: "ユーザー情報を保存しました", message: "", action: "OK", alertType: .success)
             }.disposed(by:diposeBag)
         
     }
@@ -190,7 +178,6 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
     
     //Mark Binding
     private func bindingsCell(cell:InfoCollectionViewCell) {
-        print("🎨")
         cell.nameTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -266,14 +253,13 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         } else if title == "年代" {
             cell.detailTextLabel?.text = age
         }
-        
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == "レベル" {
             //present
-           performSegue(withIdentifier: "gotoLevel", sender: nil)
+            performSegue(withIdentifier: Utility.Segue.gotoLevel, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
                     return
@@ -299,11 +285,11 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
 
-        orangeView.reloadData()
+        userTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoLevel" {
+        if segue.identifier == Utility.Segue.gotoLevel {
             let vc = segue.destination as! LevelViewController
             vc.selectedLevel = self.level
         }

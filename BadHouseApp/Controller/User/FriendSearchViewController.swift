@@ -9,11 +9,16 @@ class FriendSSearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
+    private let cellId = Utility.CellId.searchCell
     
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupDelegate()
+    }
+    
+    private func setupDelegate() {
         searchBar.delegate = self
         fetchData.userDelegate = self
     }
@@ -22,7 +27,7 @@ class FriendSSearchViewController: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(FriendSearchCell.self, forCellReuseIdentifier: "searchCell")
+        tableView.register(FriendSearchCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
     
@@ -47,7 +52,7 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! FriendSearchCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! FriendSearchCell
         cell.link = self
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
@@ -89,6 +94,8 @@ extension FriendSSearchViewController:GetUserDataDelegate {
         print(#function)
         print(userArray)
         self.friendList = userArray
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }

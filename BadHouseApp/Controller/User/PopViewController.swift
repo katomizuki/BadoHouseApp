@@ -13,18 +13,16 @@ class PopViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .orange
-        
+        setUpTableView()
+    }
+    
+    private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
         self.view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
-        setUpTableView()
-    }
-    
-    private func setUpTableView() {
         if keyword == "性別" {
             cellArray = ["男性","女性","その他"]
         } else if keyword == "バドミントン歴" {

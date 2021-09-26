@@ -12,17 +12,13 @@ import FacebookLogin
 
 
 class LoginViewController:UIViewController {
-    
-    
-    
-    
+
+    //Mark :Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()
     private var IndicatorView:NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
     private let googlView = GIDSignInButton()
-    
-    //Mark :Properties
     private let titleLabel = RegisterTitleLabel(text: "バドハウス")
     private let emailTextField = RegisterTextField(placeholder: "メールアドレス")
     private let passwordTextField = RegisterTextField(placeholder: "パスワード")
@@ -41,6 +37,7 @@ class LoginViewController:UIViewController {
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
@@ -126,7 +123,6 @@ class LoginViewController:UIViewController {
                 self.loginButton.backgroundColor = validAll ? Utility.AppColor.StandardColor : .darkGray
             }
             .disposed(by: disposeBag)
-
     }
     
     //Mark :selector
@@ -183,10 +179,7 @@ extension LoginViewController:GIDSignInDelegate {
         if let error = error {
                         print("\(error.localizedDescription)")
                     } else {
-                      
-                        //ここで名前とemailとメールアドレスを取得できるのでfirestoreに送る。
                         guard let auth = user.authentication else { return }
-                        
                         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
                         Auth.auth().signIn(with: credential) { result, error in
                             if let error = error {
@@ -197,8 +190,8 @@ extension LoginViewController:GIDSignInDelegate {
                             }
                         }
                     }
-    }
-}
+              }
+      }
 
 extension LoginViewController: LoginButtonDelegate {
     
@@ -210,13 +203,11 @@ extension LoginViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if error == nil{
             if result?.isCancelled == true{
-                //キャンセルされた場合は何もしないで返す
                 return
             }
         }
 
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        //ここからfirebase
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
                 print(error)

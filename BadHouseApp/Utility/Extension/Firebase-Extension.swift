@@ -126,16 +126,8 @@ extension Firestore{
                 return
             }
             guard let data = snapShot?.data() else { return }
-            let teamId = data["teamId"] as? String ?? ""
-            let teamName = data["teamName"] as? String ?? ""
-            let teamPlace = data["teamPlace"] as? String ?? ""
-            let teamTime = data["teamTime"] as? String ?? ""
-            let teamLevel = data["teamLevel"] as? String ?? "1"
-            let teamUrl = data["teamUrl"] as? String ?? ""
-            let teamImageUrl = data["teamImageUrl"] as? String ?? ""
-            let createdAt = data["createdAt"] as? Timestamp ?? Timestamp()
-            let updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp()
-            let team = TeamModel(teamId: teamId, teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: teamImageUrl, teamUrl: teamUrl, createdAt: createdAt, updatedAt: updatedAt)
+            let dic = data as [String:Any]
+            let team = TeamModel(dic: dic)
             completion(team)
         }
     }
@@ -184,18 +176,16 @@ extension Firestore{
     }
     
     //Mark GetTeamTagData
-    static func getTeamTagData(teamId:String,completion:@escaping ([TeamTag])->Void) {
+    static func getTeamTagData(teamId:String,completion:@escaping ([Tag])->Void) {
         Ref.TeamRef.document(teamId).collection("TeamTag").getDocuments { snapShot, error in
-            var teamTag = [TeamTag]()
+            var teamTag = [Tag]()
             if let error = error {
                 print("TeamTag Error",error)
             }
             guard let data = snapShot?.documents else { return }
-            for doc in data {
+            data.forEach { doc in
                 let safeData = doc.data()
-                let tagId = safeData["tagId"] as? String ?? ""
-                let tagString = safeData["tag"] as? String ?? ""
-                let tag = TeamTag(tag: tagString, tagId: tagId)
+                let tag = Tag(dic: safeData)
                 teamTag.append(tag)
             }
             completion(teamTag)
@@ -251,7 +241,7 @@ extension Firestore{
             }
             guard let dataArray = snapShot?.documents else { return }
             friendId = []
-            for data in dataArray {
+            dataArray.forEach { data in
                 let safeData = data.data()
                 let id = safeData["uid"] as! String
                 friendId.append(id)
@@ -270,37 +260,27 @@ extension Firestore{
             var teamArray = [TeamModel]()
             guard let data = snapShot?.documents else { return }
             teamArray = []
-            for doc in data {
+            data.forEach { doc in
                 let safeData = doc.data()
-                let teamId = safeData["teamId"] as? String ?? ""
-                let teamName = safeData["teamName"] as? String ?? ""
-                let teamTime = safeData["teamTime"] as? String ?? ""
-                let teamPlace = safeData["teamPlace"] as? String ?? ""
-                let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
-                let teamUrl = safeData["teamURL"] as? String ?? ""
-                let teamLevel = safeData["teamLevel"] as? String ?? ""
-                let createdAt = safeData["createdAt"] as! Timestamp
-                let updatedAt = safeData["updatedAt"] as! Timestamp
-                let team = TeamModel(teamId: teamId, teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: teamImageUrl, teamUrl: teamUrl, createdAt: createdAt, updatedAt: updatedAt)
+                let dic = safeData as [String:Any]
+                let team = TeamModel(dic: dic)
                 teamArray.append(team)
             }
             completion(teamArray)
         }
     }
     
-    static func getEventTagData(eventId:String,completion:@escaping([EventTag])->Void) {
-        var tagArray = [EventTag]()
+    static func getEventTagData(eventId:String,completion:@escaping([Tag])->Void) {
+        var tagArray = [Tag]()
         Ref.EventRef.document(eventId).collection("Tag").getDocuments { snapShot, error in
             if let error = error {
                 print(error)
                 return
             }
             guard let documents = snapShot?.documents else { return }
-            for document in documents {
+            documents.forEach { document in
                 let data = document.data()
-                let tagId = data["tagId"] as? String ?? ""
-                let tagContent = data["tag"] as? String ?? ""
-                let tag = EventTag(tag: tagContent, tagId: tagId)
+                let tag = Tag(dic:data)
                 tagArray.append(tag)
             }
             completion(tagArray)
@@ -312,7 +292,7 @@ extension Firestore{
             var teamPlayers = [String]()
             guard let documents = snapShot?.documents else { return }
             teamPlayers = []
-            for data in documents {
+            documents.forEach { data in
                 let safeData = data.data()
                 let teamPlayerId = safeData["uid"] as? String ?? ""
                 teamPlayers.append(teamPlayerId)
@@ -452,28 +432,8 @@ extension Firestore{
                 return leaderId == Auth.getUserId()
             }
             myEvent.forEach { data in
-                let safeData = data.data()
-                let startTime = safeData["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventId = safeData["eventId"] as? String ?? ""
-                let lastTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventMoney = safeData["eventMoney"] as? String ?? "1000"
-                let gatherCount = safeData["gatherCount"] as? String ?? "1"
-                let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
-                let kindCircle = safeData["kindCircle"] as? String ?? "社会人サークル"
-                let place = safeData["place"] as? String ?? "神奈川県"
-                let teamId = safeData["teamId"] as? String ?? ""
-                let teamName = safeData["teamName"] as? String ?? ""
-                let time = safeData["time"] as? String ?? ""
-                let urlEventString = safeData["urlEventString"] as? String ?? ""
-                let detailText = safeData["detailText"] as? String ?? ""
-                let courtCount = safeData["courtCount"] as? String ?? "1"
-                let latitude = safeData["latitude"] as? Double ?? 35.680
-                let longitude = safeData["longitude"] as? Double ?? 139.767
-                let teamImageUrl = safeData["teamImageUrl"] as? String ?? ""
-                let placeAddress = safeData["placeAddress"] as? String ?? ""
-                let eventLavel = safeData["eventLavel"] as? String ?? ""
-                let userId = safeData["userId"] as? String ?? ""
-                let event = Event(eventId: eventId, eventTime: time, eventPlace: place, teamName: teamName, eventStartTime: startTime, eventFinishTime: lastTime, eventCourtCount:courtCount, eventGatherCount: gatherCount, detailText: detailText, money: eventMoney, kindCircle: kindCircle,eventTitle: eventTitle,eventUrl: urlEventString,teamId: teamId,latitude: latitude,longitude: longitude,distance: 0.0, teamImageUrl: teamImageUrl,placeAddress: placeAddress,eventLevel: eventLavel,userId: userId)
+                let safeData = data.data() as [String:Any]
+                let event = Event(dic: safeData)
                 eventArray.append(event)
             }
             completion(eventArray)
@@ -504,7 +464,7 @@ extension Firestore{
                 if date < now {
                     //今よりすぎていたら自動で消す,(イベントコレクション),
                     Firestore.deleteData(collectionName: "Event", documentId: eventId)
-//                    Ref.UsersRef.document(userId).collection("PreJoin").document().delete()
+
                 }
             }
         }
@@ -524,16 +484,13 @@ extension Firestore{
             }
             guard let document = snapShot?.documents else { return }
             if document.isEmpty {
-                let chat = Chat(sendTime: nil, text: "", senderId: "", reciverId: "")
+                let dic = ["sendTime": nil,"text":"","sender":"","reciver":""] as [String:Any]
+                let chat = Chat(dic: dic)
                 textArray.append(chat)
             } else {
             document.forEach { element in
                 let data = element.data()
-                let text = data["text"] as? String ?? ""
-                let senderId = data["sender"] as? String ?? ""
-                let sendTime = data["sendTime"] as? Timestamp ?? Timestamp()
-                let reciver = data["reciver"] as? String ?? ""
-                let chat = Chat(sendTime: sendTime, text: text, senderId: senderId, reciverId: reciver)
+                let chat = Chat(dic:data)
                 textArray.append(chat)
                 }
             }

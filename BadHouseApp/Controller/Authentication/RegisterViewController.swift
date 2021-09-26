@@ -37,7 +37,7 @@ class RegisterViewController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser == nil {
-            performSegue(withIdentifier: "goWalk", sender: nil)
+            performSegue(withIdentifier: Utility.Segue.goWalk, sender: nil)
         }
         setupGradient()
         setupLayout()

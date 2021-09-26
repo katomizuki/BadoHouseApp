@@ -9,7 +9,7 @@ class GroupChatViewController: UIViewController {
     private var chatArray = [GroupChatModel]()
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var tableView: UITableView!
-    private let cellId = "cellId"
+    private let cellId = Utility.CellId.chatCellId
     private let fetchData = FetchFirestoreData()
     private var me:User?
     private let formatter:DateFormatter = {

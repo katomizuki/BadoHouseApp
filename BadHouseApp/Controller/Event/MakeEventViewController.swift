@@ -1,11 +1,9 @@
-
-
 import UIKit
 import RxSwift
 import RxCocoa
 import Firebase
 import RangeUISlider
-import FacebookCore
+//import FacebookCore
 
 
 class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
@@ -65,6 +63,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         setupBinding()
         setupOwnTeamData()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let image = UIImage(named: "double")
@@ -73,6 +72,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
     }
     
+    //Mark setupUI
     private func setupUI() {
         TeamPickerView.layer.cornerRadius = 15
         TeamPickerView.layer.masksToBounds = true
@@ -115,6 +115,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         makeEventButton.addTarget(self, action: #selector(createEvent), for: UIControl.Event.touchUpInside)
         circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
     }
+    //Mark selector
     @objc func donePicker() {
         moneyTextField.endEditing(true)
     }
@@ -225,7 +226,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         guard let teamId = selectedTeam?.teamId else { return }
         Firestore.getTeamData(teamId: teamId) { teamData in
             self.team = teamData
-            print(teamData)
             teamImageUrl = self.team?.teamImageUrl ?? ""
         }
         guard let teamName = selectedTeam?.teamName else { return }
@@ -279,7 +279,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         self.placeLongitude = location[1]
         self.placeTextField.text = placeName
         self.placeAddress = placeAddress
-        
     }
     
    
@@ -322,7 +321,6 @@ extension MakeEventViewController:RangeUISliderDelegate{
     }
     
     func rangeIsChanging(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
-        print(minValueSelected)
         switch minValueSelected {
         case 0..<1:
             minLevelLabel.text = "レベル1"

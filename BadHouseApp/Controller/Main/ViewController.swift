@@ -36,12 +36,10 @@ class ViewController: UIViewController, EmptyStateDelegate{
         setupCollectionView()
         setupEmptyState()
         Firestore.deleteEvent()
-       
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        performSegue(withIdentifier: "goWalk", sender: nil)
         if Auth.auth().currentUser == nil {
             performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
         }
@@ -53,6 +51,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
         navigationController?.isNavigationBarHidden = false
     }
     
+    //Mark:setupEmptyState
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
@@ -135,12 +134,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
     
     //Mark:showAlert
     func showAlert() {
-        let alertTitle = "位置情報取得許可されていません"
-        let alertMessage = "設定アプリの「プライバシー>位置情報サービス」から変更してください"
-        let alert:UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.actionSheet)
-        let defaultAction:UIAlertAction = UIAlertAction (title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(defaultAction)
-        present(alert, animated: true, completion: nil)
+        self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
     
     @IBAction func scroll(_ sender: Any) {
@@ -148,7 +142,6 @@ class ViewController: UIViewController, EmptyStateDelegate{
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
     }
     
-    //Mark:現在のイベントの日付をすぎたイベントを消す&それにかかわるUser情報に入っているPreJoinとJoinを消す。
     
     
 }
@@ -178,7 +171,6 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             }
             text = text.replacingOccurrences(of: "/", with: "月")
             text = text.replacingOccurrences(of: ":", with: "時")
-            
             cell.timeLabel.text = text + "分 スタート"
             cell.titleLabel.text = self.eventArray[indexPath.row].eventTitle
             cell.teamLabel.text = self.eventArray[indexPath.row].teamName
@@ -232,7 +224,9 @@ extension ViewController:GetEventSearchDelegate {
     func getEventSearchData(eventArray: [Event]) {
         self.eventArray = eventArray
         print(#function)
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -242,18 +236,7 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
-            let alertType = CDAlertViewType.error
-            let alert = CDAlertView(title: "検索エラー", message: "１文字以上入力してください", type: alertType)
-            let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
-            
-            alert.add(action: alertAction)
-            alert.hideAnimations = { (center, transform, alpha) in
-                transform = .identity
-                alpha = 0
-            }
-            alert.show() { (alert) in
-                print("completed")
-            }
+            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
         fetchData.searchText(text: searchText)
@@ -281,7 +264,9 @@ extension ViewController: GetEventTimeDelegate{
             view.emptyState.show(State.noSearch)
         }
         self.eventArray = eventArray
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -292,7 +277,9 @@ extension ViewController:GetEventDelegate {
         print(#function)
         self.eventArray = eventArray
         self.IndicatorView.stopAnimating()
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -301,7 +288,9 @@ extension ViewController:GetDetailDataDelegate {
     func getDetailData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 

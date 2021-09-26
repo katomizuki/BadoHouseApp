@@ -1,7 +1,6 @@
 import UIKit
 import Firebase
 import SDWebImage
-import NVActivityIndicatorView
 import CDAlertView
 
 class ChatListViewController:UIViewController{
@@ -16,7 +15,6 @@ class ChatListViewController:UIViewController{
     private var me:User?
     private var you:User?
     private var lastCommentArray = [Chat]()
-    private var IndicatorView:NVActivityIndicatorView!
     private let formatter:DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -37,7 +35,6 @@ class ChatListViewController:UIViewController{
     //Mark:lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupIndicator()
         setupTableView()
         setupFetchDataDelegate()
         setupOwnTeamData()
@@ -65,26 +62,13 @@ class ChatListViewController:UIViewController{
 //        }
         self.notification(uid: Auth.getUserId()) { bool in
             if bool == true {
-                
-                let alertType = CDAlertViewType.notification
-                let alert = CDAlertView(title: "新規参加申請が来ております。", message: "お知らせ画面で確認しよう!", type: alertType)
-                let alertAction = CDAlertViewAction(title: "OK", font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
-                
-                alert.add(action: alertAction)
-                alert.hideAnimations = { (center, transform, alpha) in
-                    transform = .identity
-                    alpha = 0
-                }
-                alert.show() { (alert) in
-                    print("completed")
-                }
+                self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
                 Firestore.changeTrue(uid: Auth.getUserId())
             }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         setupData()
         setupOwnTeamData()
         let image = UIImage(named: Utility.ImageName.double)
@@ -92,16 +76,6 @@ class ChatListViewController:UIViewController{
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
         UIApplication.shared.applicationIconBadgeNumber = 0
-    }
-    
-    //Mark:
-    private func setupIndicator () {
-        IndicatorView = self.setupIndicatorView()
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width:100,
-                             height: 100)
     }
     
     //Mark: setupData
@@ -125,9 +99,6 @@ class ChatListViewController:UIViewController{
         }
     }
 }
-
-
-
 
 //Mark:tableViewdelegate,datasource
 extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
@@ -155,6 +126,8 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         cell.cellImagevView.layer.cornerRadius = 30
         cell.cellImagevView.layer.masksToBounds = true
         cell.label.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        //Mark GroupChatCell
         if indexPath.section == 0 {
             cell.commentLabel.isHidden = true
             cell.timeLabel.isHidden = true
@@ -164,7 +137,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             cell.label.text = teams[indexPath.row].teamName
             cell.cellImagevView.contentMode = .scaleAspectFill
             
-            
+            //Mark DMCell
         } else if indexPath.section == 1 {
             
             let userId = self.chatModelArray[indexPath.row].user
@@ -233,36 +206,38 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
-            let id = chatModelArray[indexPath.row].chatRoom
-            let userId = sortUserArray[indexPath.row].uid
-            Firestore.deleteData(collectionName: "ChatRoom", documentId: id)
-            Ref.ChatroomRef.document(id).collection("Content").getDocuments { snapShot, error in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let document = snapShot?.documents else { return }
-                document.forEach { element in
-                    let chatId = element.documentID
-                    Ref.ChatroomRef.document(id).collection("Content").document(chatId).delete()
-                }
-            }
-            Firestore.deleteSubCollectionData(collecionName: "User", documentId: Auth.getUserId(), subCollectionName: "ChatRoom", subId: id)
-            if userId == Auth.getUserId() {
-                let uid = sortAnotherUserArray[indexPath.row].uid
-                Firestore.deleteSubCollectionData(collecionName: "User", documentId: uid, subCollectionName: "ChatRoom", subId: id)
-            } else {
-                Firestore.deleteSubCollectionData(collecionName: "User", documentId: userId, subCollectionName: "ChatRoom", subId: id)
-            }
-            chatArray.remove(at: indexPath.row)
-            sortUserArray.remove(at: indexPath.row)
-            sortAnotherUserArray.remove(at: indexPath.row)
-            chatModelArray.remove(at: indexPath.row)
-            tableView.reloadData()
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == UITableViewCell.EditingStyle.delete {
+//            let id = chatModelArray[indexPath.row].chatRoom
+//            let userId = sortUserArray[indexPath.row].uid
+//            Firestore.deleteData(collectionName: "ChatRoom", documentId: id)
+//            Ref.ChatroomRef.document(id).collection("Content").getDocuments { snapShot, error in
+//                if let error = error {
+//                    print(error)
+//                    return
+//                }
+//                guard let document = snapShot?.documents else { return }
+//                document.forEach { element in
+//                    let chatId = element.documentID
+//                    Ref.ChatroomRef.document(id).collection("Content").document(chatId).delete()
+//                }
+//            }
+//            Firestore.deleteSubCollectionData(collecionName: "User", documentId: Auth.getUserId(), subCollectionName: "ChatRoom", subId: id)
+//            if userId == Auth.getUserId() {
+//                let uid = sortAnotherUserArray[indexPath.row].uid
+//                Firestore.deleteSubCollectionData(collecionName: "User", documentId: uid, subCollectionName: "ChatRoom", subId: id)
+//            } else {
+//                Firestore.deleteSubCollectionData(collecionName: "User", documentId: userId, subCollectionName: "ChatRoom", subId: id)
+//            }
+//            chatArray.remove(at: indexPath.row)
+//            sortUserArray.remove(at: indexPath.row)
+//            sortAnotherUserArray.remove(at: indexPath.row)
+//            chatModelArray.remove(at: indexPath.row)
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Utility.Segue.gotoChatRoom {
@@ -311,7 +286,7 @@ extension ChatListViewController: GetChatRoomDataDelegate {
                 self.lastCommentArray.append(lastComment)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             let sortArray = self.lastCommentArray.enumerated().sorted { a, b in
                 guard let time = a.element.sendTime?.dateValue() else { return false }
                 guard let time2 = b.element.sendTime?.dateValue() else { return false }
@@ -324,7 +299,6 @@ extension ChatListViewController: GetChatRoomDataDelegate {
                 self.sortAnotherUserArray.append(self.anotherUserArray[index])
                 self.sortLastCommentArray.append(self.lastCommentArray[index])
             }
-            self.IndicatorView.stopAnimating()
             self.tableView.reloadData()
         }
     }

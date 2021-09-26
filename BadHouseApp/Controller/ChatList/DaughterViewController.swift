@@ -1,7 +1,6 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
-import NVActivityIndicatorView
 
 class DaughterViewController: UIViewController {
 
@@ -9,13 +8,13 @@ class DaughterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
-    private var notificationArray = [[User]]()
-    private var IndicatorView:NVActivityIndicatorView!
+    private var notificationArray = [[User]]()    
     
+    //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupIndicator()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         setupData()
@@ -34,29 +33,10 @@ class DaughterViewController: UIViewController {
         fetchData.joinDelegate = self
         Firestore.getmyEventId { event in
             self.eventArray = event
-            print(event)
             self.fetchData.fetchJoinData(eventArray: event)
         }
     }
-    
-    //Mark:NVActivityIndicatorView
-    private func setupIndicator() {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 60,
-                           height: 60)
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width:100,
-                             height: 100)
-    }
-    
-    
+   
     
 }
 
@@ -71,7 +51,6 @@ extension DaughterViewController:IndicatorInfoProvider {
 extension DaughterViewController:GetJoinDataDelegate {
     
     func getJoin(joinArray: [[String]]) {
-//        IndicatorView.startAnimating()
         notificationArray = [[User]]()
         for i in 0..<joinArray.count {
             var tempArray = [User]()
@@ -87,7 +66,6 @@ extension DaughterViewController:GetJoinDataDelegate {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
-            self.IndicatorView.stopAnimating()
             self.tableView.reloadData()
         }
     }

@@ -4,7 +4,7 @@ import MapKit
 import CoreLocation
 import Charts
 import Firebase
-import PKHUD
+import CDAlertView
 
 class EventDetailViewController: UIViewController {
     
@@ -97,7 +97,6 @@ class EventDetailViewController: UIViewController {
                 let id = teamPlayers[i]
                 Firestore.getUserData(uid: id) { teamPlayer in
                     guard let member = teamPlayer else { return }
-                    print(member)
                     self.teamArray.append(member)
                 }
             }
@@ -283,7 +282,7 @@ class EventDetailViewController: UIViewController {
     
     //Mark: prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoChat" {
+        if segue.identifier == Utility.Segue.gotoChat {
             let vc = segue.destination as! ChatViewController
             guard let me = me else { return }
             guard let you = you else { return }
@@ -326,13 +325,13 @@ class EventDetailViewController: UIViewController {
                     Firestore.sendChat(chatroomId: chatId, senderId: Auth.getUserId(), text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                     
                     Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId,leaderId: leaderId)
-                    self.performSegue(withIdentifier: "gotoChat", sender: nil)
+                    self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)
                 }
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
                 self.present(alert,animated: true,completion: nil)
             } else  {
-                self.showAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", actionTitle: "OK")
+                self.setupCDAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", action: "OK", alertType: CDAlertViewType.notification)
             }
         }
         

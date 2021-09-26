@@ -4,7 +4,7 @@ import Firebase
 class ChatViewController: UIViewController {
     
     //Mark:Properties
-    private let cellId = "cellId"
+    private let cellId = Utility.CellId.chatCellId
     @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!
@@ -21,11 +21,8 @@ class ChatViewController: UIViewController {
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter
     }()
-   
-
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var subNav: UINavigationBar!
-    
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -33,12 +30,6 @@ class ChatViewController: UIViewController {
         updateTextView()
         getData()
         updateUI()
-        backButton.isHidden = flag
-        subNav.isHidden = flag
-        sendButton.isEnabled = false
-        chatTextView.delegate = self
-    
-        
     }
     
     //Mark:updateUI
@@ -47,6 +38,9 @@ class ChatViewController: UIViewController {
         sendButton.layer.masksToBounds = true
         navigationItem.title = you?.name
         subNav.topItem?.title = you?.name
+        backButton.isHidden = flag
+        subNav.isHidden = flag
+        sendButton.isEnabled = false
     }
     
     //Mark:getData
@@ -77,7 +71,6 @@ class ChatViewController: UIViewController {
         chatTextView.autoresizingMask = .flexibleHeight
         chatTextView.invalidateIntrinsicContentSize()
         fetchData.chatDelegate = self
- 
     }
     
     //Mark :IBAction
@@ -95,9 +88,7 @@ class ChatViewController: UIViewController {
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
-
 //Mark:UITableViewDelegate,DataSource
 extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
     
@@ -178,7 +169,7 @@ extension ChatViewController: GetChatDataDelgate {
     func getChatData(chatArray: [Chat]) {
         self.messages = []
         self.messages = chatArray
-        chatTableView.reloadData()
+        self.chatTableView.reloadData()
         if messages.count != 0 {
         chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }

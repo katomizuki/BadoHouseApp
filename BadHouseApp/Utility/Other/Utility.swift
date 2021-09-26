@@ -29,30 +29,32 @@ struct Utility {
         static let gotoInvite = "gotoInvite"
         static let gotoChatRoom = "gotoChatRoom"
         static let groupChat = "groupChat"
-
+        static let gotoLevel = "gotoLevel"
+        static let gotoChat = "gotoChat"
+        static let gotoDM = "DM"
+        static let goWalk = "goWalk"
     }
     struct Cell {
         static let TeammemberCell = "TeammemberCell"
-        static let BelongTeamCell = "BelongTeamCollectionCell"
         static let GroupCell = "GroupCell"
-        static let CollectionViewCell = "CollectionViewCell"
-     
     }
+    
     struct CellId {
         static let FriendCellId = "cellFriendId"
         static let CellGroupId = "cellGroupId"
         static let MemberCellId = "memberCellId"
-        static let BelongTeamId = "belongTeamId"
         static let eventId = "eventId"
         static let inviteCellId = "inviteCellId"
+        static let userCellId = "userCellId"
+        static let searchCell = "searchCell"
+        static let chatCellId = "chatCellId"
     }
+    
     struct ImageName {
         static let swift = "swift-og"
         static let logoImage = "swift-og"
         static let double = "double"
     }
-    
-   
 }
 
 

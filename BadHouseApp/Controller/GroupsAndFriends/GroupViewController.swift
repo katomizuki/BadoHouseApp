@@ -181,6 +181,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
         } else if indexPath.section == 1 {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
             vc.user = friendArray[indexPath.row]
+            vc.me = self.user
             navigationController?.pushViewController(vc, animated: true)
         }
     }

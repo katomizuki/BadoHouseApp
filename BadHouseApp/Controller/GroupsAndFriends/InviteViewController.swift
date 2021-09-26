@@ -1,4 +1,3 @@
-
 import UIKit
 import Firebase
 
@@ -38,7 +37,6 @@ class InviteViewController: UIViewController {
     //Mark: lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupTableView()
         inviteButton.layer.cornerRadius = 15
         inviteButton.layer.masksToBounds = true
@@ -59,11 +57,8 @@ class InviteViewController: UIViewController {
         print(#function)
         guard let team = self.team else { return }
         Firestore.sendInvite(team: team, inviter: self.inviter)
-
         dismiss(animated: true, completion: nil)
     }
-
-
 }
 
 //Mark:tableViewdelegate,datsource
