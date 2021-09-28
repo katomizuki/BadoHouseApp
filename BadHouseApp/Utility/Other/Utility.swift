@@ -51,8 +51,7 @@ struct Utility {
     }
     
     struct ImageName {
-        static let swift = "swift-og"
-        static let logoImage = "swift-og"
+        static let logoImage = "logo"
         static let double = "double"
     }
 }

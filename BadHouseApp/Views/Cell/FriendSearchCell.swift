@@ -33,6 +33,8 @@ class FriendSearchCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.iv.layer.cornerRadius = 25
+        self.iv.layer.masksToBounds = true
         accessoryView = button
         button.addTarget(self, action: #selector(plusFriend), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)

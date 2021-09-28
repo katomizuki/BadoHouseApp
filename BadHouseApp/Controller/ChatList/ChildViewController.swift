@@ -47,6 +47,8 @@ class ChildViewController: UIViewController {
         }
     }
     
+   
+    
 }
 extension ChildViewController:IndicatorInfoProvider {
     
@@ -57,7 +59,6 @@ extension ChildViewController:IndicatorInfoProvider {
 
 extension ChildViewController:GetPrejoinDataDelegate {
     func getPrejoin(preJoin: [[String]]) {
-//        IndicatorView.startAnimating()
         self.notificationArray = [[User]]()
         for i in 0..<preJoin.count {
             var tempArray = [User]()
@@ -146,3 +147,5 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
         return false
     }
 }
+
+

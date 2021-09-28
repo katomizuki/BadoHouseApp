@@ -16,6 +16,7 @@ class GroupViewController: UIViewController{
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myName: UILabel!
     @IBOutlet weak var countLabel: UILabel!
+    private let fetchData = FetchFirestoreData()
     
     
     //Mark:LifeCycle
@@ -29,6 +30,7 @@ class GroupViewController: UIViewController{
         setupData()
         myImageView.layer.cornerRadius = 40
         myImageView.layer.masksToBounds = true
+        fetchData.friendDelegate = self
         let id = Auth.getUserId()
         Firestore.getUserData(uid: id) { user in
             guard let user = user else { return }
@@ -46,18 +48,7 @@ class GroupViewController: UIViewController{
             self.teamArray = teams
             Firestore.getFriendData(uid: uid) { usersId in
                 self.friendArray = [User]()
-                for i in 0..<usersId.count {
-                    let id = usersId[i]
-                    Firestore.getUserData(uid: id) { user in
-                        guard let user = user else { return }
-                        self.friendArray.append(user)
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
-                    self.IndicatorView.stopAnimating()
-                    self.groupTableView.reloadData()
-                }
+                self.fetchData.friendData(idArray: usersId)
             }
         }
     }
@@ -72,14 +63,7 @@ class GroupViewController: UIViewController{
     
     //Mark:NVActivityIndicatorView
     private func setupIndicator() {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 60,
-                           height: 60)
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+        IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
@@ -89,7 +73,6 @@ class GroupViewController: UIViewController{
     
     //Mark:IBAction
     @IBAction func user(_ sender: Any) {
-
             IndicatorView.startAnimating()
             let uid = Auth.getUserId()
             Firestore.getUserData(uid: uid) { user in
@@ -150,24 +133,12 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
-        cell.accessoryType = .disclosureIndicator
-        cell.label.font = UIFont.boldSystemFont(ofSize: 16)
-        cell.selectionStyle = .none
         if indexPath.section == 0 {
-            cell.label.text = teamArray[indexPath.row].teamName
-            let url = URL(string: teamArray[indexPath.row].teamImageUrl)
-            cell.cellImagevView.sd_setImage(with: url, completed: nil)
-            cell.cellImagevView.contentMode = .scaleAspectFill
-            cell.cellImagevView.chageCircle()
+            let team = teamArray[indexPath.row]
+            cell.team = team
         } else if indexPath.section == 1 {
-            cell.label.text = friendArray[indexPath.row].name
-            let url = URL(string: friendArray[indexPath.row].profileImageUrl)
-            if friendArray[indexPath.row].profileImageUrl == "" {
-                cell.cellImagevView.image = UIImage(named: Utility.ImageName.logoImage)
-            } else {
-            cell.cellImagevView.sd_setImage(with: url, completed: nil)
-            }
-            cell.cellImagevView.chageCircle()
+            let user = friendArray[indexPath.row]
+            cell.user = user
         }
         return cell
     }
@@ -195,3 +166,15 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
 }
 
 
+extension GroupViewController :GetFriendDelegate {
+    
+    func getFriend(friendArray: [User]) {
+        self.friendArray = []
+        self.friendArray = friendArray
+            self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
+            self.IndicatorView.stopAnimating()
+            self.groupTableView.reloadData()
+    }
+    
+    
+}

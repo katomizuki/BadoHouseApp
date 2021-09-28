@@ -8,6 +8,7 @@ import MapKit
 import EmptyStateKit
 import UserNotifications
 import CDAlertView
+import FacebookCore
 
 class ViewController: UIViewController, EmptyStateDelegate{
    
@@ -49,7 +50,9 @@ class ViewController: UIViewController, EmptyStateDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        
     }
+   
     
     //Mark:setupEmptyState
     private func setupEmptyState() {
@@ -69,7 +72,13 @@ class ViewController: UIViewController, EmptyStateDelegate{
         timeButton.layer.cornerRadius = 15
         timeButton.layer.masksToBounds = true
         navigationController?.isNavigationBarHidden = false
+        let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
+        imageView.anchor(width: 44, height: 44)
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
     }
+    
+    
     
     //Mark: setupDelegate
     private func setupDelegate() {
@@ -158,31 +167,8 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         if eventArray.isEmpty {
             return cell
         } else {
-            cell.placeLabel.text = "at " + self.eventArray[indexPath.row].eventPlace
-            var text = self.eventArray[indexPath.row].eventStartTime
-            let from = text.index(text.startIndex, offsetBy: 5)
-            let to = text.index(text.startIndex, offsetBy: 15)
-            text = String(text[from...to])
-            let index = text.index(text.startIndex, offsetBy: 5)
-            text.insert("日", at: index)
-            if text.prefix(1) == "0" {
-                let index = text.index(text.startIndex, offsetBy: 0)
-                text.remove(at: index)
-            }
-            text = text.replacingOccurrences(of: "/", with: "月")
-            text = text.replacingOccurrences(of: ":", with: "時")
-            cell.timeLabel.text = text + "分 スタート"
-            cell.titleLabel.text = self.eventArray[indexPath.row].eventTitle
-            cell.teamLabel.text = self.eventArray[indexPath.row].teamName
-            let urlString = self.eventArray[indexPath.row].eventUrl
-            let url = URL(string: urlString)
-            let teamurlString = self.eventArray[indexPath.row].teamImageUrl
-            if teamurlString != "" {
-                let url = URL(string: teamurlString)
-                cell.userImageView.sd_setImage(with: url, completed: nil)
-                cell.userImageView.contentMode = .scaleAspectFill
-            }
-            cell.teamImage.sd_setImage(with: url, completed: nil)
+            let event = eventArray[indexPath.row]
+            cell.event = event
             return cell
         }
     }
@@ -316,6 +302,7 @@ extension ViewController{
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         view.emptyState.hide()
     }
+
 }
 
 

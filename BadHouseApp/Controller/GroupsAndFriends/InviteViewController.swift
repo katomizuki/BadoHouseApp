@@ -75,18 +75,13 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
-            cell.iv.image = UIImage(named: Utility.ImageName.swift)
-            cell.iv.layer.cornerRadius = 25
-            cell.iv.layer.masksToBounds = true
-            cell.clipsToBounds = true
+            cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
         } else {
             cell.iv.sd_setImage(with: url, completed: nil)
-            cell.iv.layer.cornerRadius = 25
-            cell.iv.layer.masksToBounds = true
-            cell.iv.clipsToBounds = true
         }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }

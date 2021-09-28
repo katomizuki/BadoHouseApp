@@ -114,13 +114,10 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         let url = URL(string: urlString)
         if urlString == "" {
             //urlがからであれば違う画像を出す なければロゴ画像を一旦出す。
-            cell.iv.image = UIImage(named: Utility.ImageName.swift)
-            cell.iv.layer.cornerRadius = 25
-            cell.iv.layer.masksToBounds = true
+            cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
+        
         } else {
             cell.iv.sd_setImage(with: url, completed: nil)
-            cell.iv.layer.cornerRadius = 25
-            cell.iv.layer.masksToBounds = true
         }
         return cell
     }

@@ -39,6 +39,12 @@ protocol GetPrejoinDataDelegate {
 protocol GetJoinDataDelegate {
     func getJoin(joinArray:[[String]])
 }
+protocol GetFriendDelegate {
+    func getFriend(friendArray:[User])
+}
+protocol GetChatListDelegate {
+    func getChatList(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
+}
 
 class FetchFirestoreData {
     
@@ -54,6 +60,49 @@ class FetchFirestoreData {
     var groupChatDataDelegate:GetGroupChatDelegate?
     var preDelegate:GetPrejoinDataDelegate?
     var joinDelegate:GetJoinDataDelegate?
+    var friendDelegate:GetFriendDelegate?
+    var chatListDelegate:GetChatListDelegate?
+    
+    func friendData(idArray:[String]) {
+        var array = [User]()
+        for i in 0..<idArray.count {
+            let uid = idArray[i]
+            Firestore.getUserData(uid: uid) { friend in
+                guard let friend = friend else { return }
+                array.append(friend)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.friendDelegate?.getFriend(friendArray: array)
+        }
+    }
+    
+    func getChatListData(chatModelArray:[ChatRoom]) {
+        var userArray = [User]()
+        var anotherArray = [User]()
+        var lastCommentArray = [Chat]()
+        for i in 0..<chatModelArray.count {
+            let userId = chatModelArray[i].user
+            let anotherId = chatModelArray[i].user2
+            let chatId = chatModelArray[i].chatRoom
+        
+            Firestore.getUserData(uid: userId) { user in
+                guard let user = user else { return }
+                userArray.append(user)
+            }
+            Firestore.getUserData(uid: anotherId) { another in
+                guard let another = another else { return }
+                anotherArray.append(another)
+            }
+            Firestore.getChatLastData(chatId: chatId) { lastComment in
+                lastCommentArray.append(lastComment)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
+        }
+        
+    }
     
     func getGenderCount(teamPlayers:[User]) {
         var manCount = 0
@@ -419,7 +468,7 @@ class FetchFirestoreData {
                 stringArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.preDelegate?.getPrejoin(preJoin: stringArray)
         }
     }
@@ -443,7 +492,7 @@ class FetchFirestoreData {
                 stringArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.joinDelegate?.getJoin(joinArray: stringArray)
         }
     }

@@ -15,13 +15,6 @@ class ChatListViewController:UIViewController{
     private var me:User?
     private var you:User?
     private var lastCommentArray = [Chat]()
-    private let formatter:DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        formatter.locale = Locale(identifier: "ja_JP")
-        return formatter
-    }()
     private var teams = [TeamModel]()
     private let section = ["グループチャット","ダイレクトメッセージ"]
     private var selectedTeam:TeamModel?
@@ -31,6 +24,7 @@ class ChatListViewController:UIViewController{
     private var sortAnotherUserArray = [User]()
     private var groupChatArray = [GroupChatModel]()
     private var sortGroupArray = [TeamModel]()
+    private var sortChatModelArray = [ChatRoom]()
     
     //Mark:lifeCycle
     override func viewDidLoad() {
@@ -39,13 +33,31 @@ class ChatListViewController:UIViewController{
         setupFetchDataDelegate()
         setupOwnTeamData()
         setupNotification()
+        setupNav()
     }
     
     private func setupFetchDataDelegate () {
         fetchData.chatDelegate = self
         fetchData.chatRoomDelegate = self
+        fetchData.chatListDelegate = self
     }
     
+    private func setupNav() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.largeTitleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        appearance.backgroundColor = .white
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationItem.title = "トーク"
+        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
+    }
+
     //Mark:setupTableView
     private func setupTableView() {
         tableView.delegate = self
@@ -56,14 +68,12 @@ class ChatListViewController:UIViewController{
     
     //Mark:setupNotification
     private func setupNotification() {
-//        let boolArray = UserDefaults.standard.array(forKey: Auth.getUserId()) as? [Bool]
-//        boolArray?.isEmpty == false {
-//            
-//        }
         self.notification(uid: Auth.getUserId()) { bool in
             if bool == true {
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
                 Firestore.changeTrue(uid: Auth.getUserId())
+                LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "練習に申し込んだ方と連絡はとれましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
+
             }
         }
     }
@@ -98,6 +108,21 @@ class ChatListViewController:UIViewController{
             }
         }
     }
+    
+    
+    private func cleanArray() {
+        self.anotherUserArray = []
+        self.userArray = []
+        self.lastCommentArray = []
+        self.chatModelArray = []
+        self.sortUserArray = []
+        self.sortAnotherUserArray = []
+        self.sortLastCommentArray = []
+        self.sortChatModelArray = []
+    }
+    @objc private func handleNotification() {
+        performSegue(withIdentifier: "gotoNotification", sender: nil)
+    }
 }
 
 //Mark:tableViewdelegate,datasource
@@ -122,50 +147,20 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId,for: indexPath) as! GroupCell
-        
-        cell.cellImagevView.layer.cornerRadius = 30
-        cell.cellImagevView.layer.masksToBounds = true
-        cell.label.font = UIFont.boldSystemFont(ofSize: 14)
-        
         //Mark GroupChatCell
         if indexPath.section == 0 {
             cell.commentLabel.isHidden = true
             cell.timeLabel.isHidden = true
-            let urlString = teams[indexPath.row].teamImageUrl
-            let url = URL(string: urlString)
-            cell.cellImagevView.sd_setImage(with: url, completed: nil)
-            cell.label.text = teams[indexPath.row].teamName
-            cell.cellImagevView.contentMode = .scaleAspectFill
-            
+            cell.team = teams[indexPath.row]
             //Mark DMCell
         } else if indexPath.section == 1 {
-            
-            let userId = self.chatModelArray[indexPath.row].user
-            
             cell.commentLabel.isHidden = false
             cell.timeLabel.isHidden = true
-            cell.commentLabel.text = sortLastCommentArray[indexPath.row].text
-            
-            let date = sortLastCommentArray[indexPath.row].sendTime
-            if  date != nil {
-                if let safeTimeStamp = date {
-                    let safeDate = safeTimeStamp.dateValue()
-                    let dateText = self.formatter.string(from: safeDate)
-                    cell.timeLabel.text = dateText
-                    cell.timeLabel.isHidden = false
-                }
-            }
-            if Auth.getUserId() == userId {
-                cell.label.text = sortAnotherUserArray[indexPath.row].name
-                let urlString = sortAnotherUserArray[indexPath.row].profileImageUrl
-                let url = URL(string: urlString)
-                cell.cellImagevView.sd_setImage(with: url, completed: nil)
-                cell.cellImagevView.chageCircle()
+            cell.setTimeLabelandCommentLabel(chat:sortLastCommentArray[indexPath.row])
+            if Auth.getUserId() == self.sortChatModelArray[indexPath.row].user {
+                cell.user = sortAnotherUserArray[indexPath.row]
             } else {
-                cell.label.text = sortUserArray[indexPath.row].name
-                let urlString = sortUserArray[indexPath.row].profileImageUrl
-                let url = URL(string: urlString)
-                cell.cellImagevView.sd_setImage(with: url, completed: nil)
+                cell.user = sortUserArray[indexPath.row]
             }
         }
         return cell
@@ -177,20 +172,29 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0 {
             let team = teams[indexPath.row]
             self.selectedTeam = team
-            performSegue(withIdentifier: Utility.Segue.groupChat, sender: nil)
-        } else if indexPath.section == 1 {
-            let userId = self.chatModelArray[indexPath.row].user
-            if Auth.getUserId() == userId {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
+            vc.team = self.selectedTeam
+            navigationController?.pushViewController(vc, animated: true)
+    
+        } else if indexPath.section == 1{
+            if Auth.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
-                performSegue(withIdentifier: Utility.Segue.gotoChatRoom, sender: nil)
+                let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+                vc.me = me
+                vc.you = you
+                navigationController?.pushViewController(vc, animated: true)
             } else {
                 me = sortAnotherUserArray[indexPath.row]
                 you = sortUserArray[indexPath.row]
-                performSegue(withIdentifier: Utility.Segue.gotoChatRoom, sender: nil)
+                let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+                vc.me = me
+                vc.you = you
+                navigationController?.pushViewController(vc, animated: true)
             }
-        }
     }
+        }
+    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0 {
@@ -205,51 +209,6 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == UITableViewCell.EditingStyle.delete {
-//            let id = chatModelArray[indexPath.row].chatRoom
-//            let userId = sortUserArray[indexPath.row].uid
-//            Firestore.deleteData(collectionName: "ChatRoom", documentId: id)
-//            Ref.ChatroomRef.document(id).collection("Content").getDocuments { snapShot, error in
-//                if let error = error {
-//                    print(error)
-//                    return
-//                }
-//                guard let document = snapShot?.documents else { return }
-//                document.forEach { element in
-//                    let chatId = element.documentID
-//                    Ref.ChatroomRef.document(id).collection("Content").document(chatId).delete()
-//                }
-//            }
-//            Firestore.deleteSubCollectionData(collecionName: "User", documentId: Auth.getUserId(), subCollectionName: "ChatRoom", subId: id)
-//            if userId == Auth.getUserId() {
-//                let uid = sortAnotherUserArray[indexPath.row].uid
-//                Firestore.deleteSubCollectionData(collecionName: "User", documentId: uid, subCollectionName: "ChatRoom", subId: id)
-//            } else {
-//                Firestore.deleteSubCollectionData(collecionName: "User", documentId: userId, subCollectionName: "ChatRoom", subId: id)
-//            }
-//            chatArray.remove(at: indexPath.row)
-//            sortUserArray.remove(at: indexPath.row)
-//            sortAnotherUserArray.remove(at: indexPath.row)
-//            chatModelArray.remove(at: indexPath.row)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoChatRoom {
-            let vc = segue.destination as! ChatViewController
-            vc.me = self.me
-            vc.you = self.you
-        }
-        if segue.identifier == Utility.Segue.groupChat {
-            let vc = segue.destination as! GroupChatViewController
-            vc.team = self.selectedTeam
-        }
-    }
 }
 
 extension ChatListViewController: GetChatDataDelgate {
@@ -263,47 +222,43 @@ extension ChatListViewController: GetChatRoomDataDelegate {
     
     func getChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
-        self.anotherUserArray = []
-        self.userArray = []
-        self.lastCommentArray = []
-        self.sortUserArray = []
-        self.sortAnotherUserArray = []
-        self.sortLastCommentArray = []
+        fetchData.getChatListData(chatModelArray: chatRoomArray)
         self.chatModelArray = chatRoomArray
-        for i in 0..<chatModelArray.count {
-            let id1 = chatModelArray[i].user
-            let id2 = chatModelArray[i].user2
-            let chatId = chatModelArray[i].chatRoom
-            Firestore.getUserData(uid: id1) { user1 in
-                guard let user = user1 else { return }
-                self.userArray.append(user)
-            }
-            Firestore.getUserData(uid: id2) { user2 in
-                guard let user = user2 else { return }
-                self.anotherUserArray.append(user)
-            }
-            Firestore.getChatLastData(chatId: chatId) { lastComment in
-                self.lastCommentArray.append(lastComment)
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let sortArray = self.lastCommentArray.enumerated().sorted { a, b in
-                guard let time = a.element.sendTime?.dateValue() else { return false }
-                guard let time2 = b.element.sendTime?.dateValue() else { return false }
-                return time > time2
-            }
-            
-            for i in 0..<sortArray.count {
-                let index = sortArray[i].offset
-                self.sortUserArray.append(self.userArray[index])
-                self.sortAnotherUserArray.append(self.anotherUserArray[index])
-                self.sortLastCommentArray.append(self.lastCommentArray[index])
-            }
-            self.tableView.reloadData()
-        }
     }
 }
 
-
-
-
+extension ChatListViewController :GetChatListDelegate {
+    func getChatList(userArray: [User], anotherArray: [User], lastChatArray: [Chat],chatModelArray:[ChatRoom]) {
+        cleanArray()
+        self.userArray = userArray
+        self.anotherUserArray = anotherArray
+        self.lastCommentArray = lastChatArray
+        self.chatModelArray = chatModelArray
+        let sortArray = self.sortArray()
+        makeSortArray(sortArray: sortArray)
+        self.tableView.reloadData()
+    }
+    
+    private func sortArray()->[EnumeratedSequence<[Chat]>.Element] {
+        let sortArray = self.lastCommentArray.enumerated().sorted { a, b in
+            guard let time = a.element.sendTime?.dateValue() else { return false }
+            guard let time2 = b.element.sendTime?.dateValue() else { return false }
+            return time > time2
+        }
+        return sortArray
+    }
+    
+    private func makeSortArray(sortArray:[EnumeratedSequence<[Chat]>.Element]) {
+        for i in 0..<sortArray.count {
+            let index = sortArray[i].offset
+            self.sortUserArray.append(self.userArray[index])
+            self.sortAnotherUserArray.append(self.anotherUserArray[index])
+            self.sortLastCommentArray.append(self.lastCommentArray[index])
+            self.sortChatModelArray.append(self.chatModelArray[index])
+        }
+    }
+    
+  
+    
+    
+}

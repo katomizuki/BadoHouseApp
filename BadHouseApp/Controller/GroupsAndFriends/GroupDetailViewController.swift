@@ -236,18 +236,20 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             vc.friends = self.friends
             vc.team = self.team
         }
-        if segue.identifier == Utility.Segue.gotoGroup {
-            let vc = segue.destination as! GroupChatViewController
-            vc.team = self.team
-        }
+      
     }
     @IBAction func gotoGroup(_ sender: Any) {
-        performSegue(withIdentifier: Utility.Segue.gotoGroup, sender: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
+        vc.team = self.team
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func go(_ sender: Any) {
-        performSegue(withIdentifier: Utility.Segue.gotoGroup, sender: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
+        vc.team = self.team
+        navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func withdraw(_ sender: Any) {
         print(#function)
         guard let teamId = team?.teamId else { return }

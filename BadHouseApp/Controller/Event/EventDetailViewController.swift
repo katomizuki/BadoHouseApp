@@ -74,6 +74,11 @@ class EventDetailViewController: UIViewController {
         setupUnderLine()
         setupUser()
         self.navigationItem.backButtonDisplayMode = .minimal
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
+        imageView.anchor(width: 44, height: 44)
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         Firestore.getUserData(uid: Auth.getUserId()) { user in
             self.me = user
@@ -85,9 +90,7 @@ class EventDetailViewController: UIViewController {
         let image = UIImage(named: "double")
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
     }
-    
     
     //Mark:SetupMethod
     private func setData() {
@@ -330,14 +333,12 @@ class EventDetailViewController: UIViewController {
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
                 self.present(alert,animated: true,completion: nil)
+                LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
             } else  {
                 self.setupCDAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", action: "OK", alertType: CDAlertViewType.notification)
             }
         }
-        
-        
     }
-    
 }
 
 //Mark:genderDelegate
@@ -384,5 +385,5 @@ extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    
+  
 }

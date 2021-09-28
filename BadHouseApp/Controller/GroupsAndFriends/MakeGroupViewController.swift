@@ -70,7 +70,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         groupImageView.isUserInteractionEnabled = true
         groupImageView.layer.cornerRadius = 50
         groupImageView.layer.masksToBounds = true
-        groupImageView.contentMode = .scaleAspectFit
+        groupImageView.contentMode = .scaleAspectFill
         registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         
         //Mark: readyStackView

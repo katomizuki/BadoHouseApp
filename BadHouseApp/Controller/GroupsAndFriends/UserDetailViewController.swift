@@ -4,7 +4,7 @@ import SDWebImage
 import FacebookCore
 
 class UserDetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-    
+   
     //Mark: Properties
     var user:User?
     var me:User?
@@ -25,13 +25,14 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     @IBOutlet weak var genderStackView: UIStackView!
     @IBOutlet weak var badmintonTimeStackView: UIStackView!
     @IBOutlet weak var levelStackView: UIStackView!
+    private let fetchData = FetchFirestoreData()
+   
     
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
         updateBorder()
-        setupDelegate()
         setupCollection()
         setupData()
     }
@@ -85,6 +86,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         belongCollectionView.dataSource = self
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
+        fetchData.friendDelegate = self
     }
     
     //Mark: setupCollectionViewCell
@@ -92,11 +94,14 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         let belongsNib = TeammemberCell.nib()
         belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
         let friendNib = TeammemberCell.nib()
-        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
+        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: "friendCEllId")
         let layout = UICollectionViewFlowLayout()
+        let layout2 = UICollectionViewFlowLayout()
+        layout2.scrollDirection = .horizontal
         layout.scrollDirection = .horizontal
-        friendCollectionView.collectionViewLayout = layout
+        friendCollectionView.collectionViewLayout = layout2
         belongCollectionView.collectionViewLayout = layout
+        setupDelegate()
         getNeededMethod()
     }
     
@@ -121,26 +126,16 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     
     //Mark:getNeededMethod
     private func getNeededMethod() {
+        self.userFriend = []
         guard let memberId = user?.uid else { return }
         guard let urlString = user?.profileImageUrl else { return }
         let url = URL(string: urlString)
         teamMemberImageView.sd_setImage(with: url, completed: nil)
         Firestore.getOwnTeam(uid: memberId) { teams in
             self.ownTeam = teams
+            self.belongCollectionView.reloadData()
             Firestore.getFriendData(uid: memberId) { friends in
-                self.userFriend = []
-                for i in 0..<friends.count {
-                    let uid = friends[i]
-                    Firestore.getUserData(uid: uid) { friend in
-                        guard let friend = friend else { return }
-                        self.userFriend.append(friend)
-                    }
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    self.belongCollectionView.reloadData()
-                    self.friendCollectionView.reloadData()
-                }
+                self.fetchData.friendData(idArray: friends)
             }
         }
     }
@@ -169,54 +164,67 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     @IBAction func gotoChat(_ sender: Any) {
-        performSegue(withIdentifier: Utility.Segue.gotoDM, sender: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        vc.me = me
+        vc.you = user
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func DM(_ sender: Any) {
-        performSegue(withIdentifier: Utility.Segue.gotoDM, sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoDM {
-            let vc = segue.destination as! ChatViewController
-            guard let you = user else { return }
-            guard let me = self.me else { return }
+
+    @IBAction func gotoDM(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
             vc.me = me
-            vc.you = you
-        }
+            vc.you = user
+            navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+  
 }
 
 //Mark: UserCollectionViewDelegate
 extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+  
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.belongCollectionView {
+        if collectionView == belongCollectionView && collectionView.tag == 0 {
             return ownTeam.count
-        } else if collectionView == self.friendCollectionView {
+        } else  {
             return userFriend.count
         }
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.belongCollectionView && collectionView.tag == 0 {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.MemberCellId, for: indexPath) as! TeammemberCell
-        if collectionView == self.belongCollectionView {
         let name = ownTeam[indexPath.row].teamName
         let urlString = ownTeam[indexPath.row].teamImageUrl
             cell.configure(name: name, urlString: urlString)
             cell.teamMemberImage.contentMode = .scaleAspectFill
-        } else if collectionView == self.friendCollectionView {
+            return cell
+        } else  {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCEllId", for: indexPath) as! TeammemberCell
             let name = userFriend[indexPath.row].name
             let urlString = userFriend[indexPath.row].profileImageUrl
             cell.configure(name: name, urlString: urlString)
+            return cell
         }
-        return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
 }
 
 
+extension UserDetailViewController:GetFriendDelegate {
+    
+    func getFriend(friendArray: [User]) {
+        self.userFriend = []
+        self.userFriend = friendArray
+        self.friendCollectionView.reloadData()
+    }
+    
+  
+}

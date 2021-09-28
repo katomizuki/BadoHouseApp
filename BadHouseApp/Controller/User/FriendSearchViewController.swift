@@ -59,8 +59,6 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
         let urlString = friendList[indexPath.row].profileImageUrl
         if let url = URL(string: urlString) {
             cell.iv.sd_setImage(with: url, completed: nil)
-            cell.iv.layer.cornerRadius = 25
-            cell.iv.layer.masksToBounds = true
         }
         return cell
     }

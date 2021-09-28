@@ -27,8 +27,14 @@ class ChatCell: UITableViewCell {
     @IBOutlet weak var mytextView: UITextView!
     @IBOutlet weak var messageConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+    private let formatter:DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        formatter.locale = Locale(identifier: "ja-JP")
+        return formatter
+    }()
     //Mark: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,15 +47,17 @@ class ChatCell: UITableViewCell {
         backgroundColor = .clear
         textView.autoresizingMask = [.flexibleHeight]
         mytextView.autoresizingMask = [.flexibleHeight]
-
-
+        self.mytextView.font = UIFont(name: "Kailasa", size: 14)
+        self.textView.font = UIFont(name: "Kailasa", size: 14)
+        
+        
     }
     
     //Mark: nibMethod
     static func nib()->UINib {
         return UINib(nibName: "ChatCell", bundle: nil)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -59,6 +67,83 @@ class ChatCell: UITableViewCell {
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)], context: nil)
     }
+    
+    func configure(chat:GroupChatModel,bool:Bool) {
+        timeLabel.text = ""
+        mytimeLabel.text = ""
+        mytextView.text = ""
+        textView.text = ""
+        message = ""
+        guard let date = chat.timeStamp?.dateValue() else { return }
+        let dateText = self.formatter.string(from: date)
+        let text = chat.text
+        let dateTextFirst = String(dateText.suffix(11))
+        if bool {
+            message = text
+            userImageView.isHidden = true
+            timeLabel.isHidden = true
+            textView.isHidden = true
+            nameLabel.isHidden = true
+            mytimeLabel.isHidden = false
+            mytextView.isHidden = false
+            mytimeLabel.text = dateTextFirst
+            mytextView.text = text
+            message = text
+        } else {
+            userImageView.isHidden = false
+            textView.isHidden = false
+            timeLabel.isHidden = false
+            nameLabel.isHidden = false
+            mytextView.isHidden = true
+            mytimeLabel.isHidden = true
+            textView.text = chat.text
+            let urlString = chat.senderUrl
+            let url = URL(string: urlString)
+            nameLabel.text = chat.senderName
+            userImageView.sd_setImage(with: url, completed: nil)
+            timeLabel.text = dateTextFirst
+            yourMessaege = text
+        }
+    }
+    
+    func dmchatCel(chat:Chat,bool:Bool,you:User) {
+        guard let date = chat.sendTime?.dateValue() else { return }
+        let dateText = self.formatter.string(from: date)
+        let dateTextFirst = String(dateText.suffix(11))
+        mytextView.text = ""
+        textView.text = ""
+        timeLabel.text = ""
+        mytimeLabel.text = ""
+        let text = chat.text
+        message = text
+        if bool {
+            userImageView.isHidden = true
+            timeLabel.isHidden = true
+            textView.isHidden = true
+            mytimeLabel.isHidden = false
+            mytextView.isHidden = false
+            nameLabel.isHidden = true
+            mytimeLabel.text = dateTextFirst
+            mytextView.text = text
+            message = text
+        } else {
+            userImageView.isHidden = false
+            let urlString = you.profileImageUrl
+            let url = URL(string: urlString)
+            userImageView.sd_setImage(with: url, completed: nil)
+            mytextView.isHidden = true
+            mytimeLabel.isHidden = true
+            textView.isHidden = false
+            timeLabel.isHidden = false
+            nameLabel.isHidden = false
+            nameLabel.text =  you.name
+            timeLabel.text = dateTextFirst
+            textView.text = text
+            yourMessaege = text
+        }
+    }
+    
+    
     
 }
 

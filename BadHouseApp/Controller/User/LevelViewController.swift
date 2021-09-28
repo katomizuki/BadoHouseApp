@@ -16,7 +16,7 @@ class LevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
-        levelLabel.text = selectedLevel
+        levelLabel.text = "レベル10"
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
         updateUI()

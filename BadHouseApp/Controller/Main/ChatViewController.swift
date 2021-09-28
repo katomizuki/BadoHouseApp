@@ -5,9 +5,7 @@ class ChatViewController: UIViewController {
     
     //Mark:Properties
     private let cellId = Utility.CellId.chatCellId
-    @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
-    @IBOutlet weak var sendButton: UIButton!
     private var messages = [Chat]()
     var me: User?
     var you: User?
@@ -21,8 +19,20 @@ class ChatViewController: UIViewController {
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter
     }()
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var subNav: UINavigationBar!
+
+    private lazy var customInputView:CustomInputAccessoryView = {
+        let iv = CustomInputAccessoryView(frame: CGRect(x:0,y:0,width:view.frame.width,height:50))
+        iv.delegate = self
+        return iv
+    }()
+    
+    override var inputAccessoryView: UIView? {
+        get{ return customInputView }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -34,13 +44,7 @@ class ChatViewController: UIViewController {
     
     //Mark:updateUI
     private func updateUI() {
-        sendButton.layer.cornerRadius = 15
-        sendButton.layer.masksToBounds = true
         navigationItem.title = you?.name
-        subNav.topItem?.title = you?.name
-        backButton.isHidden = flag
-        subNav.isHidden = flag
-        sendButton.isEnabled = false
     }
     
     //Mark:getData
@@ -65,29 +69,9 @@ class ChatViewController: UIViewController {
         chatTableView.dataSource = self
         let nib = ChatCell.nib()
         chatTableView.register(nib, forCellReuseIdentifier: cellId)
-        chatTextView.delegate = self
-        chatTextView.layer.masksToBounds = true
-        chatTextView.layer.cornerRadius = 15
-        chatTextView.autoresizingMask = .flexibleHeight
-        chatTextView.invalidateIntrinsicContentSize()
         fetchData.chatDelegate = self
     }
     
-    //Mark :IBAction
-    @IBAction func send(_ sender: Any) {
-        print(#function)
-        guard let text = chatTextView.text else { return }
-        guard let myId = me?.uid else { return }
-        guard let youId = you?.uid else { return }
-        chatTextView.text = ""
-        sendButton.isEnabled = false
-        Firestore.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
-        fetchData.getChat(chatId: chatId)
-    }
-    
-    @IBAction func back(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
 }
 //Mark:UITableViewDelegate,DataSource
 extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
@@ -98,44 +82,11 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatCell
-        guard let date = messages[indexPath.row].sendTime?.dateValue() else { return cell }
-        cell.mytextView.font = UIFont(name: "Kailasa", size: 14)
-        cell.textView.font = UIFont(name: "Kailasa", size: 14)
-        let dateText = self.formatter.string(from: date)
-        let dateTextFirst = String(dateText.suffix(11))
-        cell.mytextView.text = ""
-        cell.textView.text = ""
-        cell.timeLabel.text = ""
-        cell.mytimeLabel.text = ""
-      
-        let text = messages[indexPath.row].text
-        cell.message = text
-        let id = messages[indexPath.row].senderId
-        if id == Auth.getUserId() {
-            cell.userImageView.isHidden = true
-            cell.timeLabel.isHidden = true
-            cell.textView.isHidden = true
-            cell.mytimeLabel.isHidden = false
-            cell.mytextView.isHidden = false
-            cell.nameLabel.isHidden = true
-            cell.mytimeLabel.text = dateTextFirst
-            cell.mytextView.text = text
-            cell.message = text
-        } else {
-            cell.userImageView.isHidden = false
-            let urlString = you?.profileImageUrl ?? ""
-            let url = URL(string: urlString)
-            cell.userImageView.sd_setImage(with: url, completed: nil)
-            cell.mytextView.isHidden = true
-            cell.mytimeLabel.isHidden = true
-            cell.textView.isHidden = false
-            cell.timeLabel.isHidden = false
-            cell.nameLabel.isHidden = false
-            cell.nameLabel.text =  you?.name
-            cell.timeLabel.text = dateTextFirst
-            cell.textView.text = text
-            cell.yourMessaege = text
-        }
+        guard let you = you else { return cell }
+        guard let me = me else { return cell }
+        cell.dmchatCel(chat: messages[indexPath.row], bool: messages[indexPath.row].senderId == me.uid,you:you)
+        print(you)
+        print(me)
         return cell
     }
     
@@ -147,20 +98,6 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-}
-
-//Mark:UItextViewDelegate
-extension ChatViewController: UITextViewDelegate {
-    
-    func textViewDidChange(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            sendButton.isEnabled = false
-        } else {
-            sendButton.isEnabled = true
-        }
-
-    }
-
 }
 
 //Mark:GetChatDelegate
@@ -176,4 +113,23 @@ extension ChatViewController: GetChatDataDelgate {
     }
 }
 
+extension ChatViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print(#function)
+    }
+ 
+}
+
+extension ChatViewController:InputDelegate {
+    func inputView(inputView: CustomInputAccessoryView, message: String) {
+        print(#function)
+        guard let text = inputView.messageInputTextView.text else { return }
+        guard let myId = me?.uid else { return }
+        guard let youId = you?.uid else { return }
+        inputView.messageInputTextView.text = ""
+        Firestore.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
+        fetchData.getChat(chatId: chatId)
+    }
+}
 
