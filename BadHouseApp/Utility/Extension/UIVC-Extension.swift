@@ -72,6 +72,14 @@ extension UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
     }
+    
+    func formatterUtil(date:Date)->String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
+        formatter.calendar = Calendar(identifier: .gregorian)
+        let dateString = formatter.string(from: date)
+        return dateString
+    }
 }
 
 

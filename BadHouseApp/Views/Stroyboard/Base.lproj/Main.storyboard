@@ -198,11 +198,30 @@
                         <viewLayoutGuide key="safeArea" id="xhv-4E-MeO"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="video.fill" catalog="system" id="3Vn-ac-RR5"/>
+                    <navigationItem key="navigationItem" id="D26-Jo-Vr1"/>
+                    <connections>
+                        <segue destination="NMF-4C-YF6" kind="show" id="88Y-uj-2SO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzU-EL-ues" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="-618"/>
+            <point key="canvasLocation" x="2538" y="-618"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="X8G-qx-wRW">
+            <objects>
+                <viewController storyboardIdentifier="CameraVC" id="NMF-4C-YF6" customClass="CameraViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bIR-h2-bxt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PqR-K5-1AK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="WyK-Kz-Ae1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EMD-Wz-N3m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2537" y="-1358"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="0JN-Lh-eOl">
@@ -232,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JKd-aN-JIT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2562.3188405797105" y="-618.08035714285711"/>
+            <point key="canvasLocation" x="3500" y="-618.44077961019491"/>
         </scene>
         <!--Group View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1223,10 +1242,10 @@
                                 <state key="normal" image="person.badge.plus" catalog="system">
                                     <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <connections>
-                                    <segue destination="rar-tT-NFD" kind="presentation" identifier="gotoInvite" id="6TM-SP-7Ke"/>
-                                </connections>
                             </button>
+                            <connections>
+                                <segue destination="rar-tT-NFD" kind="presentation" identifier="gotoInvite" id="NJE-7f-e6w"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1340,7 +1359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="it4-Xs-XkA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="2278"/>
+            <point key="canvasLocation" x="3666" y="2289"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Xt1-Xx-BKm">
@@ -1706,7 +1725,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="9Bw-Zg-GtS">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fa8-s4-oao" customClass="TabBarController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fa8-s4-oao" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4kT-Dr-w2W">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1717,7 +1736,7 @@
                     <connections>
                         <segue destination="oEj-9m-egr" kind="relationship" relationship="viewControllers" id="SBb-z8-Uvd"/>
                         <segue destination="Cym-bj-dmW" kind="relationship" relationship="viewControllers" id="NSR-6W-Qyr"/>
-                        <segue destination="0yB-Z1-h0j" kind="relationship" relationship="viewControllers" id="ID9-Rd-qEG"/>
+                        <segue destination="Ogt-bx-SBG" kind="relationship" relationship="viewControllers" id="ID9-Rd-qEG"/>
                         <segue destination="DQ0-SU-0qk" kind="relationship" relationship="viewControllers" id="KDm-7J-eau"/>
                         <segue destination="AeY-oL-Fmn" kind="relationship" relationship="viewControllers" id="ygo-B2-DyN"/>
                     </connections>
@@ -1975,7 +1994,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqY-v8-Dwk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3317.5999999999999" y="-618.44077961019491"/>
+            <point key="canvasLocation" x="4256.8000000000002" y="-618.44077961019491"/>
         </scene>
         <!--Level View Controller-->
         <scene sceneID="1jT-UP-iSM">
@@ -2133,7 +2152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z15-VP-Xn0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3985" y="-618"/>
+            <point key="canvasLocation" x="4924" y="-618.44077961019491"/>
         </scene>
         <!--イベント作成-->
         <scene sceneID="XPt-gx-oPm">
@@ -2891,10 +2910,10 @@
             </objects>
             <point key="canvasLocation" x="5144.8000000000002" y="1616.9415292353824"/>
         </scene>
-        <!--招待-->
+        <!--ホーム-->
         <scene sceneID="3Mi-Hy-YhS">
             <objects>
-                <viewController storyboardIdentifier="FriendVC" id="Bv2-1l-phB" customClass="FriendsViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendVC" title="ホーム" id="Bv2-1l-phB" customClass="FriendsViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lF4-dn-8Xi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2940,9 +2959,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pgh-Cm-qjt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5964" y="1616.9415292353824"/>
+            <point key="canvasLocation" x="4418" y="2301"/>
         </scene>
-        <!--Time Line View Controller-->
+        <!--タイムライン-->
         <scene sceneID="y9E-9F-eh8">
             <objects>
                 <viewController id="Cym-bj-dmW" customClass="TimeLineViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -2952,7 +2971,7 @@
                         <viewLayoutGuide key="safeArea" id="u4F-fN-BuO"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="clock.fill" catalog="system" id="gPy-Td-Q4o"/>
+                    <tabBarItem key="tabBarItem" title="タイムライン" image="clock.fill" catalog="system" id="gPy-Td-Q4o"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqm-7n-Pdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2976,11 +2995,11 @@
             </objects>
             <point key="canvasLocation" x="386" y="130"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ユーザー-->
         <scene sceneID="2tj-tY-mT7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AeY-oL-Fmn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="vxV-7T-gUh"/>
+                    <tabBarItem key="tabBarItem" title="ユーザー" image="person.fill" catalog="system" id="vxV-7T-gUh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ygP-FU-2ck">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2996,11 +3015,11 @@
             </objects>
             <point key="canvasLocation" x="2260" y="902.69865067466276"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ホーム-->
         <scene sceneID="c2E-yg-x8R">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oEj-9m-egr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="r0x-zl-ZiU"/>
+                    <tabBarItem key="tabBarItem" title="ホーム" image="house.fill" catalog="system" id="r0x-zl-ZiU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s77-VW-33X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3151,11 +3170,11 @@
             </objects>
             <point key="canvasLocation" x="4356" y="1617"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--トーク-->
         <scene sceneID="pFG-J5-cLI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DQ0-SU-0qk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="text.bubble.fill.rtl" catalog="system" id="La9-8T-6bi"/>
+                    <tabBarItem key="tabBarItem" title="トーク" image="text.bubble.fill.rtl" catalog="system" id="La9-8T-6bi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K0p-jK-wc1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3170,12 +3189,31 @@
             </objects>
             <point key="canvasLocation" x="421.60000000000002" y="902.69865067466276"/>
         </scene>
+        <!--投稿-->
+        <scene sceneID="bJe-Q8-aCV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ogt-bx-SBG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="投稿" image="video.fill" catalog="system" id="3Vn-ac-RR5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nPb-UR-t7m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0yB-Z1-h0j" kind="relationship" relationship="rootViewController" id="IGX-Dw-Kdm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d1w-Ch-DXR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840.8" y="-618.44077961019491"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="3Ng-cG-BBs"/>
-        <segue reference="TJv-Zf-4Gw"/>
+        <segue reference="KCo-PJ-OZR"/>
         <segue reference="FQ5-8I-bax"/>
-        <segue reference="3rr-Jc-WrJ"/>
+        <segue reference="cdz-Ff-0Nv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>

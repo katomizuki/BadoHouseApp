@@ -45,6 +45,9 @@ protocol GetFriendDelegate {
 protocol GetChatListDelegate {
     func getChatList(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
 }
+protocol GetVideoDelegate {
+    func getVideo(videoArray:[VideoModel])
+}
 
 class FetchFirestoreData {
     
@@ -62,6 +65,7 @@ class FetchFirestoreData {
     var joinDelegate:GetJoinDataDelegate?
     var friendDelegate:GetFriendDelegate?
     var chatListDelegate:GetChatListDelegate?
+    var videoDelegate:GetVideoDelegate?
     
     func friendData(idArray:[String]) {
         var array = [User]()
@@ -98,7 +102,7 @@ class FetchFirestoreData {
                 lastCommentArray.append(lastComment)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
         }
         
@@ -494,6 +498,23 @@ class FetchFirestoreData {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.joinDelegate?.getJoin(joinArray: stringArray)
+        }
+    }
+    
+    func getVideoData() {
+        var videoArray = [VideoModel]()
+        Ref.VideoRef.getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { doc in
+                let data = doc.data()
+                let video = VideoModel(dic: data)
+                videoArray.append(video)
+            }
+            self.videoDelegate?.getVideo(videoArray:videoArray)
         }
     }
 }

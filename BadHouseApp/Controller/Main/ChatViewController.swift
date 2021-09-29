@@ -34,6 +34,10 @@ class ChatViewController: UIViewController {
         return true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        customInputView.messageInputTextView.resignFirstResponder()
+    }
+    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,8 +89,6 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
         guard let you = you else { return cell }
         guard let me = me else { return cell }
         cell.dmchatCel(chat: messages[indexPath.row], bool: messages[indexPath.row].senderId == me.uid,you:you)
-        print(you)
-        print(me)
         return cell
     }
     
@@ -130,6 +132,9 @@ extension ChatViewController:InputDelegate {
         inputView.messageInputTextView.text = ""
         Firestore.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
         fetchData.getChat(chatId: chatId)
+        inputView.messageInputTextView.resignFirstResponder()
     }
+    
+   
 }
 

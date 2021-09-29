@@ -27,7 +27,6 @@ class FriendsCell:UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.iv.layer.cornerRadius = 25
         self.iv.layer.masksToBounds = true
-        backgroundColor = Utility.AppColor.OriginalBlue
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)

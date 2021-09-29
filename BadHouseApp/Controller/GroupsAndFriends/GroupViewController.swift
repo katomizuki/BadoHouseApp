@@ -18,32 +18,30 @@ class GroupViewController: UIViewController{
     @IBOutlet weak var countLabel: UILabel!
     private let fetchData = FetchFirestoreData()
     
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         groupTableView.separatorColor = Utility.AppColor.OriginalBlue
         setupIndicator()
         IndicatorView.startAnimating()
-        fetchUserData()
         setupTableView()
         setupData()
         myImageView.layer.cornerRadius = 40
         myImageView.layer.masksToBounds = true
         fetchData.friendDelegate = self
-        let id = Auth.getUserId()
-        Firestore.getUserData(uid: id) { user in
-            guard let user = user else { return }
-            let urlString = user.profileImageUrl
-            let url = URL(string: urlString)
-            self.myImageView.sd_setImage(with: url, completed: nil)
-            self.myName.text = user.name
-        }
     }
     
     //Mark: setupData {
     private func setupData() {
         let uid = Auth.getUserId()
+        Firestore.getUserData(uid: uid) { user in
+            guard let user = user else { return }
+            self.user = user
+            let urlString = user.profileImageUrl
+            let url = URL(string: urlString)
+            self.myImageView.sd_setImage(with: url, completed: nil)
+            self.myName.text = user.name
+        }
         Firestore.getOwnTeam(uid: uid) { teams in
             self.teamArray = teams
             Firestore.getFriendData(uid: uid) { usersId in
@@ -73,22 +71,8 @@ class GroupViewController: UIViewController{
     
     //Mark:IBAction
     @IBAction func user(_ sender: Any) {
-            IndicatorView.startAnimating()
-            let uid = Auth.getUserId()
-            Firestore.getUserData(uid: uid) { user in
-                self.IndicatorView.stopAnimating()
-                guard let user = user else { return }
-                self.user = user
-                self.performSegue(withIdentifier:  "userProfile", sender: nil)
-            }
-    }
-    
-    //Mark: fetchUserData
-    private func fetchUserData() {
-        let uid = Auth.getUserId()
-        Firestore.getUserData(uid: uid) { user in
-            self.user = user
-        }
+        self.performSegue(withIdentifier:  Utility.Segue.userProfile, sender: nil)
+            
     }
     
     //Mark:prepare(画面遷移）
@@ -98,7 +82,7 @@ class GroupViewController: UIViewController{
             guard let user = self.user else { return }
                 vc.me = user
         }
-        if segue.identifier ==  "userProfile" {
+        if segue.identifier ==  Utility.Segue.userProfile {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
         }

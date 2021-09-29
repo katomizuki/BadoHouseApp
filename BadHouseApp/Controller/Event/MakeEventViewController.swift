@@ -122,11 +122,11 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     //Mark:MapDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoMap" {
+        if segue.identifier == Utility.Segue.gotoMap {
             let nextVC = segue.destination as! MapViewController
             nextVC.delegate = self
         }
-        }
+    }
     
     //Mark:SetupBinding
     private func setupBinding() {

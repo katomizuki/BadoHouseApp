@@ -53,7 +53,7 @@ class ChatListViewController:UIViewController{
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.title = "トーク"
         navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        navigationController?.navigationBar.isTranslucent = true
+//        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
     }

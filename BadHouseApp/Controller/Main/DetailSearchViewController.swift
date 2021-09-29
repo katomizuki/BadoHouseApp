@@ -28,16 +28,10 @@ class DetailSearchViewController: UIViewController{
     private let pickerMoneyView = UIPickerView()
     private let pickerLevelView = UIPickerView()
     private let placePickerView = UIPickerView()
-    private var data = ["学生サークル", "社会人サークル", "その他練習"]
-    private var place = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
-                         "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
-                         "新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県",
-                         "静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県",
-                         "奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県",
-                         "徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県",
-                         "熊本県","大分県","宮崎県","鹿児島県","沖縄県"]
-    private var money = ["500円~1000円","1000円~2000円","2000円~"]
-    private var level = ["レベル1","レベル2","レベル3","レベル4","レベル5","レベル6","レベル7","レベル8","レベル9","レベル10"]
+    private let data = Utility.Data.circle
+    private let place = Utility.Data.place
+    private let money = Utility.Data.money
+    private let level = Utility.Data.level
     private let fetchData = FetchFirestoreData()
     @IBOutlet weak var datePicker: UIDatePicker!
     private var dateString = String()
@@ -105,10 +99,7 @@ class DetailSearchViewController: UIViewController{
     }
     
     @objc func getDate(sender:UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
-        formatter.calendar = Calendar(identifier: .gregorian)
-        let dateString = formatter.string(from: sender.date)
+        let dateString = self.formatterUtil(date: sender.date)
         self.dateString = dateString
     }
     
@@ -132,29 +123,18 @@ class DetailSearchViewController: UIViewController{
     }
     
     private func setupBorder() {
-        titleTextField.layer.borderColor = UIColor.lightGray.cgColor
-        moneyTextField.layer.borderColor = UIColor.lightGray.cgColor
-        cityTextField.layer.borderColor = UIColor.lightGray.cgColor
-        levelTextField.layer.borderColor = UIColor.lightGray.cgColor
-        circleTextField.layer.borderColor = UIColor.lightGray.cgColor
-        
-        titleTextField.layer.borderWidth = 2
-        moneyTextField.layer.borderWidth = 2
-        cityTextField.layer.borderWidth = 2
-        levelTextField.layer.borderWidth = 2
-        circleTextField.layer.borderWidth = 2
-        
-        titleTextField.layer.cornerRadius = 15
-        moneyTextField.layer.cornerRadius = 15
-        levelTextField.layer.cornerRadius = 15
-        circleTextField.layer.cornerRadius = 15
-        cityTextField.layer.cornerRadius = 15
-        
-        titleTextField.layer.masksToBounds = true
-        moneyTextField.layer.masksToBounds = true
-        cityTextField.layer.masksToBounds = true
-        levelTextField.layer.masksToBounds = true
-        circleTextField.layer.masksToBounds = true
+        helperTextfield(textfield: titleTextField)
+        helperTextfield(textfield: moneyTextField)
+        helperTextfield(textfield: cityTextField)
+        helperTextfield(textfield: levelTextField)
+        helperTextfield(textfield: circleTextField)
+    }
+    
+    private func helperTextfield(textfield:UITextField) {
+        textfield.layer.borderColor = UIColor.lightGray.cgColor
+        textfield.layer.borderWidth = 2
+        textfield.layer.cornerRadius = 15
+        textfield.layer.masksToBounds = true
     }
 }
 

@@ -571,6 +571,38 @@ extension Storage {
             }
         }
     }
+    
+    static func sendVideoData(videoUrl:URL,senderId:String,thumnail:String,keyWord:String) {
+        let id = UUID().uuidString
+        let videoRef = Storage.storage().reference().child("Video").child(id)
+        let metadata = StorageMetadata()
+        metadata.contentType = "video/quickTime"
+        if let videoData = NSData(contentsOf: videoUrl) as Data? {
+            videoRef.putData(videoData, metadata: metadata) { data, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                videoRef.downloadURL { url, error in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    guard let urlString = url?.absoluteString else { return }
+                    print(urlString)
+                    print("動画保存成功!")
+                    let videoId = Ref.VideoRef.document().documentID
+                    let dic = ["id":videoId,"thumnailUrl":thumnail,"keyWord":keyWord,"senderId":senderId,"videoUrl":urlString] as [String:Any]
+                    Ref.VideoRef.document(videoId).setData(dic) { error in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 

@@ -1,81 +1,53 @@
 import UIKit
-//import Photos
-//import AVFoundation
+import Photos
+import AVFoundation
+import FirebaseStorage
+import Firebase
 
 class PostViewController: UIViewController {
     
- 
+    private let singleButton = RegisterButton(text: "シングルス")
+    private let doubleButton = RegisterButton(text: "ダブルス")
+    private let mixButton = RegisterButton(text: "ミックス")
+    
+        let captureSession = AVCaptureSession()
+        let fileOutput = AVCaptureMovieFileOutput()
+        var recordButton: UIButton!
+        var isRecording = false
 
       override func viewDidLoad() {
           super.viewDidLoad()
-          self.view.backgroundColor = .blue
           
+          let stackView = UIStackView(arrangedSubviews: [singleButton,doubleButton,mixButton])
+          stackView.axis = .vertical
+          stackView.spacing = 20
+          stackView.distribution = .fillEqually
+          
+          view.addSubview(stackView)
+          stackView.anchor(left:view.leftAnchor,right: view.rightAnchor,paddingRight:30, paddingLeft: 30,centerY:view.centerYAnchor ,height:200)
+          
+          singleButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
+          doubleButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
+          mixButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
+
       }
-
-      // デバイスの設定
-//      private func setUpCamera() {
-//
-//          // デバイスの初期化
-//          let videoDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.video)
-//          let audioDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.audio)
-//
-//          //ビデオの画質
-//          captureSession.sessionPreset = AVCaptureSession.Preset.high
-//
-//          // ビデオのインプット設定
-//          let videoInput: AVCaptureDeviceInput = try! AVCaptureDeviceInput(device: videoDevice!)
-//          captureSession.addInput(videoInput)
-//
-//          // 音声のインプット設定
-//          let audioInput = try! AVCaptureDeviceInput(device: audioDevice!)
-//          captureSession.addInput(audioInput)
-//          captureSession.addOutput(fileOutput)
-//          captureSession.startRunning()
-//
-//          // ビデオ表示
-//          let videoLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-//          videoLayer.frame = self.view.bounds
-//          videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-//          self.view.layer.addSublayer(videoLayer)
-//
-//          // 録画ボタン
-//          self.recordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-//          self.recordButton.backgroundColor = .white
-//          self.recordButton.layer.masksToBounds = true
-//          self.recordButton.layer.cornerRadius = 80 / 2
-//          self.recordButton.layer.position = CGPoint(x: self.view.bounds.width / 2, y:self.view.bounds.height - 120)
-//          self.recordButton.addTarget(self, action: #selector(self.tappedRecordButton(sender:)), for: .touchUpInside)
-//          self.view.addSubview(recordButton)
-//      }
-
-//      @objc func tappedRecordButton(sender: UIButton) {
-//
-//          if self.fileOutput.isRecording {
-//              // 録画終了
-//              fileOutput.stopRecording()
-//
-//              self.recordButton.backgroundColor = .white
-//          } else {
-//              // 録画開始
-//              let tempDirectory: URL = URL(fileURLWithPath: NSTemporaryDirectory())
-//              let fileURL: URL = tempDirectory.appendingPathComponent("sampletemp")
-//              fileOutput.startRecording(to: fileURL, recordingDelegate: self)
-//
-//              self.recordButton.backgroundColor = .red
-//          }
-//      }
-  }
-
-//  extension PostViewController: AVCaptureFileOutputRecordingDelegate {
-//
-//      func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-//
-//          //動画をシェア
-//          let activityItems = [outputFileURL as Any, "#SampleVideo"] as [Any]
-//          let activityController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-//
-//          activityController.popoverPresentationController?.sourceView = self.view
-//          activityController.popoverPresentationController?.sourceRect = self.view.frame
-//          self.present(activityController, animated: true, completion: nil)
-//      }
-//  }
+    
+    @objc private func handle(sender:UIButton) {
+        if sender == singleButton {
+            print("single")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+            vc.keyWord = "シングルス"
+            navigationController?.pushViewController(vc, animated: true)
+        } else if sender == doubleButton {
+            print("double")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+            vc.keyWord = "ダブルス"
+            navigationController?.pushViewController(vc, animated: true)
+        } else if sender == mixButton {
+            print("mix")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+            vc.keyWord = "ミックス"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}

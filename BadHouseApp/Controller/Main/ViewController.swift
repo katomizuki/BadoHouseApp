@@ -23,7 +23,6 @@ class ViewController: UIViewController, EmptyStateDelegate{
     private var eventArray = [Event]()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var timeButton: UIButton!
-    private let tabBar = TabBarController()
     
     //Mark LifeCycle
     override func viewDidLoad() {

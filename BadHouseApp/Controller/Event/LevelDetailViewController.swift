@@ -1,10 +1,3 @@
-//
-//  LevelDetailViewController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/09/25.
-//
-
 import UIKit
 
 class LevelDetailViewController: UIViewController {

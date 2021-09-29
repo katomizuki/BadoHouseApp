@@ -85,6 +85,8 @@ class CustomInputAccessoryView:UIView {
         placeholder.isHidden = !self.messageInputTextView.isHidden
     }
     
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
