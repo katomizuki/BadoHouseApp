@@ -33,6 +33,9 @@ class PostViewController: UIViewController {
       }
     
     @objc private func handle(sender:UIButton) {
+        #if targetEnvironment(simulator)
+            // do nothing
+        #else
         if sender == singleButton {
             print("single")
             let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
@@ -49,5 +52,6 @@ class PostViewController: UIViewController {
             vc.keyWord = "ミックス"
             navigationController?.pushViewController(vc, animated: true)
         }
+        #endif
     }
 }
