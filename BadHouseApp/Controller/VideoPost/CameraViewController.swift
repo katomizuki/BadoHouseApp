@@ -18,13 +18,12 @@ class CameraViewController: UIViewController {
     }
     // デバイスの設定
       private func setUpCamera() {
-
           // デバイスの初期化
           let videoDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.video)
           let audioDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.audio)
 
           //ビデオの画質
-          captureSession.sessionPreset = AVCaptureSession.Preset.high
+          captureSession.sessionPreset = AVCaptureSession.Preset.medium
 
           // ビデオのインプット設定
           let videoInput: AVCaptureDeviceInput = try! AVCaptureDeviceInput(device: videoDevice!)

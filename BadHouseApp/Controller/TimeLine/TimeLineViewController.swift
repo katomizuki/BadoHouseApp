@@ -20,7 +20,6 @@ class TimeLineViewController: UIViewController {
         setupCollectionView()
         fetchData.getVideoData()
         fetchData.videoDelegate = self
-        
     }
     
     private func setupCollectionView() {

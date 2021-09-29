@@ -45,6 +45,7 @@ class VideoCell:UICollectionViewCell {
         super.init(frame: frame)
         contentView.backgroundColor = .white
         contentView.clipsToBounds = true
+        player?.automaticallyWaitsToMinimizeStalling = false
     }
     
     override func layoutSubviews() {
