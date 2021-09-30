@@ -1320,7 +1320,7 @@
             </objects>
             <point key="canvasLocation" x="1894" y="2301"/>
         </scene>
-        <!-- -->
+        <!--  -->
         <scene sceneID="0Bs-Vl-gkg">
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="InviteViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1356,7 +1356,7 @@
                             <constraint firstItem="Qfu-Md-fdv" firstAttribute="trailing" secondItem="LBq-Xl-6xz" secondAttribute="trailing" id="xF9-n5-i5U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title=" " id="W04-FO-RsK"/>
+                    <navigationItem key="navigationItem" title="  " id="W04-FO-RsK"/>
                     <connections>
                         <outlet property="inviteButton" destination="r4S-ZI-Qtn" id="flU-Mi-PS3"/>
                         <outlet property="tableView" destination="LBq-Xl-6xz" id="l9A-fl-6dt"/>
@@ -2843,7 +2843,7 @@
             </objects>
             <point key="canvasLocation" x="4946" y="129"/>
         </scene>
-        <!--サークル作成-->
+        <!--Make Group View Controller-->
         <scene sceneID="0Y1-Ax-d7Z">
             <objects>
                 <viewController storyboardIdentifier="MakeGroupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WlO-Eg-LwZ" customClass="MakeGroupViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -2897,7 +2897,7 @@
                             <constraint firstAttribute="bottom" secondItem="iBX-pA-j8E" secondAttribute="bottom" id="Zyz-cp-jA5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="サークル作成" id="YWy-00-HTr">
+                    <navigationItem key="navigationItem" id="YWy-00-HTr">
                         <barButtonItem key="backBarButtonItem" title=" " id="3Mq-6W-P1S"/>
                     </navigationItem>
                     <connections>

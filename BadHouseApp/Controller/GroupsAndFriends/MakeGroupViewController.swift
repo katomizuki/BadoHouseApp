@@ -60,7 +60,9 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         let image = UIImage(named: "double")
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationItem.title = "サークル登録"
     }
     
     //Mark:setupLayout

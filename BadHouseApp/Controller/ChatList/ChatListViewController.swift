@@ -34,6 +34,7 @@ class ChatListViewController:UIViewController{
         setupOwnTeamData()
         setupNotification()
         setupNav()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     private func setupFetchDataDelegate () {
@@ -43,18 +44,9 @@ class ChatListViewController:UIViewController{
     }
     
     private func setupNav() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
-        appearance.backgroundColor = .white
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.title = "トーク"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
         navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-//        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
     }
 

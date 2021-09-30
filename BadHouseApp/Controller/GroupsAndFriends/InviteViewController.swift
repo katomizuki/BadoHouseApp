@@ -41,6 +41,10 @@ class InviteViewController: UIViewController {
         inviteButton.layer.cornerRadius = 15
         inviteButton.layer.masksToBounds = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+    }
 
 
 

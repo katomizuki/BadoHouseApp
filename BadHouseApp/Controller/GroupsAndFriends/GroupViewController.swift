@@ -29,6 +29,7 @@ class GroupViewController: UIViewController{
         myImageView.layer.cornerRadius = 40
         myImageView.layer.masksToBounds = true
         fetchData.friendDelegate = self
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     //Mark: setupData {
