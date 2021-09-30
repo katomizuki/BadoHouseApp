@@ -319,11 +319,7 @@ class EventDetailViewController: UIViewController {
                 let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
                     guard let chatId = self.chatId else { return }
                     guard let name = self.me?.name else { return }
-//                    var boolArray = [Bool]()
-//
-//                    boolArray = UserDefaults.standard.array(forKey: leaderId) as! [Bool]
-//                    boolArray.append(false)
-//                    UserDefaults.standard.set(boolArray, forKey: leaderId)
+
 
                     Firestore.sendChat(chatroomId: chatId, senderId: Auth.getUserId(), text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                     
@@ -333,7 +329,7 @@ class EventDetailViewController: UIViewController {
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
                 self.present(alert,animated: true,completion: nil)
-                LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
+                LocalNotificationManager.setNotification(2, of: .seconds, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
             } else  {
                 self.setupCDAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", action: "OK", alertType: CDAlertViewType.notification)
             }

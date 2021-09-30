@@ -33,7 +33,8 @@
 		D3A789D926F5DD8C0088E8BC /* UIVC-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */; };
 		D3A82BA527040C8100DDB4FC /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* CameraViewController.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
-		D3A82BA92705577300DDB4FC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A82BA82705577200DDB4FC /* logo.png */; };
+		D3A82BAD2705EF7000DDB4FC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A82BAC2705EF7000DDB4FC /* logo.png */; };
+		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E626EB82E300F40A51 /* MapViewController.swift */; };
 		D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* CalendarViewController.swift */; };
 		D3AC05EB26ED9C8800F40A51 /* DetailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */; };
@@ -43,7 +44,6 @@
 		D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52926E0525100C53780 /* SceneDelegate.swift */; };
 		D3BDB52C26E0525100C53780 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52B26E0525100C53780 /* ViewController.swift */; };
 		D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB52D26E0525100C53780 /* Main.storyboard */; };
-		D3BDB53126E0525200C53780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */; };
 		D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54026E0546000C53780 /* RegisterViewController.swift */; };
 		D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54326E0547300C53780 /* LoginViewController.swift */; };
@@ -123,7 +123,7 @@
 		D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC-Extension.swift"; sourceTree = "<group>"; };
 		D3A82BA427040C8100DDB4FC /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
-		D3A82BA82705577200DDB4FC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		D3A82BAC2705EF7000DDB4FC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D3AC05E826ED763000F40A51 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		D3BDB52626E0525100C53780 /* BadHouseApp */ = {
 			isa = PBXGroup;
 			children = (
-				D3A82BA82705577200DDB4FC /* logo.png */,
+				D3A82BAC2705EF7000DDB4FC /* logo.png */,
 				D30B793A2700A0DE0086456E /* Resource */,
 				D3BDB55A26E0964200C53780 /* Bindings */,
 				D3BDB53E26E0542900C53780 /* Views */,
@@ -571,14 +571,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A82BA92705577300DDB4FC /* logo.png in Resources */,
+				D3A82BAD2705EF7000DDB4FC /* logo.png in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
-				D3BDB53126E0525200C53780 /* Assets.xcassets in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
+				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

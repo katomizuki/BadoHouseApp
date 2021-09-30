@@ -54,6 +54,7 @@ struct LocalNotificationManager {
             
             if let url = Bundle.main.url(forResource: "logo", withExtension: "png"),
                let attchment = try? UNNotificationAttachment(identifier: "imageId", url: url, options: nil) {
+                content.launchImageName = "logo"
                 content.attachments = [attchment]
             }
             
