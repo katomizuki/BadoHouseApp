@@ -35,23 +35,23 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let buttonTag12 = UIButton(type: .system).createTagButton(title: "平日開催")
     @IBOutlet weak var scrollView: UIView!
     private var tagArray = [String]()
+    private let fetchData = FetchFirestoreData()
  
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupBinding()
+        setupData()
+        
+    }
+    
+    private func setupData() {
+        fetchData.friendDelegate = self
         guard let me = me else { return }
-        Firestore.getFriendData(uid: me.uid) { friendId in
-            print(friendId)
-            for i in 0..<friendId.count {
-                let id = friendId[i]
-                Firestore.getUserData(uid: id) { friend in
-                    guard let friend = friend else { return }
-                    print(friend.name)
-                    self.friends.append(friend)
-                }
-            }
+        let meId = me.uid
+        Firestore.getFriendData(uid: meId) { ids in
+            self.fetchData.friendData(idArray: ids)
         }
     }
     
@@ -300,4 +300,8 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
     }
 }
 
-
+extension MakeGroupViewController:GetFriendDelegate {
+    func getFriend(friendArray: [User]) {
+        self.friends = friendArray
+    }
+}

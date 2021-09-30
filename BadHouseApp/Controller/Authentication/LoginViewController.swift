@@ -19,7 +19,11 @@ class LoginViewController:UIViewController {
     private var IndicatorView:NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
     private let googlView = GIDSignInButton()
-    private let titleLabel = RegisterTitleLabel(text: "バドハウス")
+    private let iv:UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "logo")
+        return iv
+    }()
     private let emailTextField = RegisterTextField(placeholder: "メールアドレス")
     private let passwordTextField = RegisterTextField(placeholder: "パスワード")
     private let loginButton:UIButton = RegisterButton(text: "ログイン")
@@ -27,7 +31,6 @@ class LoginViewController:UIViewController {
     
     //Mark: LifeCycle
     override func viewDidLoad() {
-        setupGradient()
         setupLayout()
         setupBinding()
         googlView.style = .wide
@@ -48,7 +51,6 @@ class LoginViewController:UIViewController {
         //Mark:UpdateUI
         passwordTextField.isSecureTextEntry = true
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-       
         
         //Mark:StackView
         let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googlView,fbButton])
@@ -58,13 +60,13 @@ class LoginViewController:UIViewController {
         
         //Mark:addSubView
         view.addSubview(basicStackView)
-        view.addSubview(titleLabel)
+        view.addSubview(iv)
         view.addSubview(dontHaveButton)
         
         //Mark:Anchor
         emailTextField.anchor(height:45)
-        basicStackView.anchor(left:view.leftAnchor, right:view.rightAnchor, paddingRight: 20, paddingLeft: 20, centerY: view.centerYAnchor,height: 350)
-        titleLabel.anchor(bottom:basicStackView.topAnchor,paddingBottom: 20, centerX: view.centerXAnchor)
+        basicStackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight: 20, paddingLeft: 20,height: 330)
+        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
         dontHaveButton.anchor(top:basicStackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
         
         
@@ -82,23 +84,20 @@ class LoginViewController:UIViewController {
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
     }
-    
-    //Mark:Gradient
-    private func setupGradient() {
-        let layer = CAGradientLayer()
-        let startColor = Utility.AppColor.StandardColor.cgColor
-        let endColor = Utility.AppColor.OriginalBlue.cgColor
-        layer.colors = [startColor,endColor]
-        layer.locations = [0.0,1.0]
-        layer.frame = view.bounds
-        view.layer.addSublayer(layer)
-    }
+
     
     //Mark:Binding
     private func setupBinding() {
         emailTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
+                if text?.count != 0 {
+                    self?.emailTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.emailTextField.layer.borderWidth = 3
+                } else {
+                    self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
+                    self?.emailTextField.layer.borderWidth = 1
+                }
                 self?.loginBinding.emailTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
@@ -106,6 +105,13 @@ class LoginViewController:UIViewController {
         passwordTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
+                if text?.count != 0 {
+                    self?.passwordTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.passwordTextField.layer.borderWidth = 3
+                } else {
+                    self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
+                    self?.passwordTextField.layer.borderWidth = 1
+                }
                 self?.loginBinding.passwordTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)

@@ -14,14 +14,7 @@ import Firebase
 
 class RegisterViewController:UIViewController{
    
-   
-    private let disposeBag = DisposeBag()
-    private let registerBinding = RegisterBindings()
-    private var IndicatorView:NVActivityIndicatorView!
-    private let fbButton = FBLoginButton()
-    
     //Mark :Properties
-    private let titleLabel = RegisterTitleLabel(text: "バドハウス")
     private let nameTextField = RegisterTextField(placeholder: "名前")
     private let emailTextField = RegisterTextField(placeholder: "メールアドレス")
     private let passwordTextField = RegisterTextField(placeholder: "パスワード")
@@ -31,15 +24,22 @@ class RegisterViewController:UIViewController{
     private var displayName = String()
     private var pictureURL = String()
     private var pictureURLString = String()
+    private let iv:UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "logo")
+        return iv
+    }()
+    private let disposeBag = DisposeBag()
+    private let registerBinding = RegisterBindings()
+    private var IndicatorView:NVActivityIndicatorView!
+    private let fbButton = FBLoginButton()
+    
     
     
     //Mark :LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if Auth.auth().currentUser == nil {
-            performSegue(withIdentifier: Utility.Segue.goWalk, sender: nil)
-        }
-        setupGradient()
+        
         setupLayout()
         setupBinding()
         googlView.style = .wide
@@ -48,11 +48,14 @@ class RegisterViewController:UIViewController{
         fbButton.delegate = self
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
+        if Auth.auth().currentUser == nil {
+            performSegue(withIdentifier: Utility.Segue.goWalk, sender: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -63,6 +66,7 @@ class RegisterViewController:UIViewController{
         passwordTextField.isSecureTextEntry = true
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         
+        
         //Mark: StackView
         let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googlView,fbButton])
         stackView.axis = .vertical
@@ -71,18 +75,21 @@ class RegisterViewController:UIViewController{
         
         //Mark: addSubView
         view.addSubview(stackView)
-        view.addSubview(titleLabel)
         view.addSubview(alreadyButton)
+        view.addSubview(iv)
         
         //Mark: Anchor
         nameTextField.anchor(height:45)
         
-        stackView.anchor(left:view.leftAnchor,
+        stackView.anchor(top:iv.bottomAnchor,
+                         left:view.leftAnchor,
                          right:view.rightAnchor,
+                         paddingTop:20,
                          paddingRight: 20,
                          paddingLeft: 20,
-                         centerX: view.centerXAnchor, centerY: view.centerYAnchor,height: 400)
-        titleLabel.anchor(bottom:stackView.topAnchor,paddingBottom: 20, centerX: view.centerXAnchor)
+                         centerX: view.centerXAnchor,height: 400)
+
+        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
         alreadyButton.anchor(top:stackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
         
         //Mark:NVActivityIndicatorView
@@ -101,8 +108,8 @@ class RegisterViewController:UIViewController{
     //Mark:Gradient
     private func setupGradient() {
         let layer = CAGradientLayer()
-        let startColor = Utility.AppColor.StandardColor.cgColor
-        let endColor = Utility.AppColor.OriginalBlue.cgColor
+        let startColor = UIColor.white.cgColor
+        let endColor = UIColor.darkGray.cgColor
         layer.colors = [startColor,endColor]
         layer.locations = [0.0,1.0]
         layer.frame = view.bounds
@@ -115,6 +122,13 @@ class RegisterViewController:UIViewController{
         nameTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
+                if text?.count != 0 {
+                    self?.nameTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.nameTextField.layer.borderWidth = 3
+                } else {
+                    self?.nameTextField.layer.borderColor = UIColor.darkGray.cgColor
+                    self?.nameTextField.layer.borderWidth = 1
+                }
                 self?.registerBinding.nameTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
@@ -122,6 +136,13 @@ class RegisterViewController:UIViewController{
         emailTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
+                if text?.count != 0 {
+                    self?.emailTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.emailTextField.layer.borderWidth = 3
+                } else {
+                    self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
+                    self?.emailTextField.layer.borderWidth = 1
+                }
                 self?.registerBinding.emailTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
@@ -129,6 +150,13 @@ class RegisterViewController:UIViewController{
         passwordTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
+                if text?.count != 0 {
+                    self?.passwordTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.passwordTextField.layer.borderWidth = 3
+                } else {
+                    self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
+                    self?.passwordTextField.layer.borderWidth = 1
+                }
                 self?.registerBinding.passwordTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
@@ -212,12 +240,9 @@ extension RegisterViewController: GIDSignInDelegate {
         if let error = error {
                         print("\(error.localizedDescription)")
                     } else {
-                        // Perform any operations on signed in user here.
-                        let userId = user.userID                  // For client-side use only!
-//                        let idToken = user.authentication.idToken // Safe to send to the server
+
                         let fullName = user.profile.name
-//                        let givenName = user.profile.givenName
-//                        let familyName = user.profile.familyName
+
                         let email = user.profile.email
                         //ここで名前とemailとメールアドレスを取得できるのでfirestoreに送る。
                         guard let auth = user.authentication else { return }

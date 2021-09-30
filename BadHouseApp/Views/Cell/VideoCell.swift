@@ -5,7 +5,7 @@ import SDWebImage
 import SkeletonView
 
 protocol VideoCollectionCellDelegate:AnyObject {
-    func didTapSearchButton(video:VideoModel)
+    func didTapSearchButton(video:VideoModel,button:UIButton)
     func didTapNextButton(video:VideoModel)
 }
 class VideoCell:UICollectionViewCell {
@@ -25,15 +25,15 @@ class VideoCell:UICollectionViewCell {
     }
     private let nextButton:UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .purple
-        button.setImage(UIImage(systemName: "person.circle"), for: UIControl.State.normal)
+        button.setImage(UIImage(named: "reload"), for: .normal)
+        button.tintColor = Utility.AppColor.OriginalBlue
         return button
     }()
     
     private let searchButton:UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .cyan
-        button.setImage(UIImage(systemName: "person.circle"), for: UIControl.State.normal)
+        button.setImage(UIImage(named:"search"), for: .normal)
+        button.tintColor = Utility.AppColor.OriginalBlue
         return button
     }()
     
@@ -58,9 +58,9 @@ class VideoCell:UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.frame = contentView.bounds
-        let size = contentView.frame.size.width / 7
+        let size = contentView.frame.size.width / 6
         let width = contentView.frame.size.width
-        let height = contentView.frame.size.height - 150
+        let height = contentView.frame.size.height - 80
         searchButton.frame = CGRect(x:width - size,y:height - size ,width: size,height: size)
         nextButton.frame = CGRect(x: width - size, y: height - (size * 2) - 10, width: size, height: size)
     }
@@ -96,7 +96,7 @@ class VideoCell:UICollectionViewCell {
         guard let video = video else {
             return
         }
-        self.delegate?.didTapSearchButton(video: video)
+        self.delegate?.didTapSearchButton(video: video,button: searchButton)
     }
     
     func configure() {
@@ -110,10 +110,8 @@ class VideoCell:UICollectionViewCell {
         playerView.frame = contentView.bounds
         
         containerView.layer.addSublayer(playerView)
-        player?.volume = 0
         player?.play()
         containerView.stopSkeletonAnimation()
-        
     }
     
     required init?(coder: NSCoder) {

@@ -8,7 +8,7 @@ import Charts
 
 
 class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDelegate {
-
+    
     //Mark: Properties
     private let fetchData = FetchFirestoreData()
     var team:TeamModel?
@@ -33,6 +33,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private var IndicatorView:NVActivityIndicatorView!
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton!
+
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -46,17 +47,20 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setUpTeamStatus()
         setUpTeamPlayer()
         setGraph()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let image = UIImage(named: Utility.ImageName.double)
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        navigationItem.title = team?.teamName
     }
-    
+        
     //Mark: setupData
     private func setupData() {
         guard let teamId = team?.teamId else { return }
@@ -188,6 +192,14 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         self.setGraph()
     }
     
+        
+    
+    @IBAction func gotoInvite(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "inviteVC") as! InviteViewController
+        vc.friends = self.friends
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     //Mark: PieChar
     private func setPieChart() {
@@ -210,7 +222,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private func setGraph() {
       
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
-        print(rawData)
         BarChartView.scaleXEnabled = false
         BarChartView.scaleYEnabled = false
         let dataSet = BarChartDataSet(entries: entries)

@@ -514,7 +514,34 @@ class FetchFirestoreData {
                 let video = VideoModel(dic: data)
                 videoArray.append(video)
             }
-            self.videoDelegate?.getVideo(videoArray:videoArray)
+            videoArray.shuffle()
+            let array = Array(videoArray[0..<3])
+            self.videoDelegate?.getVideo(videoArray:array)
+        }
+    }
+    
+    func searchVideoData(text:String) {
+        var videoArray = [VideoModel]()
+        Ref.VideoRef.getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { doc in
+                let data = doc.data()
+                let video = VideoModel(dic: data)
+                videoArray.append(video)
+            }
+            var array = videoArray.filter { $0.keyWord == text }
+            array.shuffle()
+            if array.count >= 3 {
+                array = Array(array[0..<3])
+                self.videoDelegate?.getVideo(videoArray:array)
+            } else {
+                videoArray = Array(videoArray[0..<3])
+                self.videoDelegate?.getVideo(videoArray:videoArray)
+            }
         }
     }
 }

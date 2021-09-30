@@ -70,6 +70,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
     }
     
     //Mark setupUI

@@ -3,7 +3,7 @@ import Firebase
 import NVActivityIndicatorView
 
 class GroupViewController: UIViewController{
-   
+    
     //Mark:Properties
     var user:User?
     var teamArray = [TeamModel]()
@@ -67,21 +67,21 @@ class GroupViewController: UIViewController{
                              centerY: view.centerYAnchor,
                              width:100,
                              height: 100)
+        
     }
     
     //Mark:IBAction
     @IBAction func user(_ sender: Any) {
         self.performSegue(withIdentifier:  Utility.Segue.userProfile, sender: nil)
-            
     }
     
+    @IBAction func gotoMakeGroup(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MakeGroupVC") as! MakeGroupViewController
+        vc.me = user
+        navigationController?.pushViewController(vc, animated: true)
+    }
     //Mark:prepare(画面遷移）
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoMakeGroup {
-            let vc = segue.destination as! MakeGroupViewController
-            guard let user = self.user else { return }
-                vc.me = user
-        }
         if segue.identifier ==  Utility.Segue.userProfile {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
@@ -155,9 +155,9 @@ extension GroupViewController :GetFriendDelegate {
     func getFriend(friendArray: [User]) {
         self.friendArray = []
         self.friendArray = friendArray
-            self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
-            self.IndicatorView.stopAnimating()
-            self.groupTableView.reloadData()
+        self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
+        self.IndicatorView.stopAnimating()
+        self.groupTableView.reloadData()
     }
     
     

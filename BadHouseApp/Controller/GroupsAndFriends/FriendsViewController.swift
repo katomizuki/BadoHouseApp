@@ -3,9 +3,11 @@ import Firebase
 import NVActivityIndicatorView
 
 class FriendsViewController: UIViewController {
+   
     
     //Mark: Properties
     @IBOutlet weak var friendTableView: UITableView!
+//    private var cellId = "aaaa"
     private var cellId = Utility.CellId.FriendCellId
     var friends = [User]()
     var inviter = [User]()
@@ -19,6 +21,8 @@ class FriendsViewController: UIViewController {
     private var IndicatorView:NVActivityIndicatorView!
     var teamTagArray = [String]()
     var url:String?
+    private let fetchData = FetchFirestoreData()
+    
     
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
@@ -60,6 +64,8 @@ class FriendsViewController: UIViewController {
         friendTableView.dataSource = self
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
     }
+    
+    
     
     //Mark:updateUI()
     private func updateUI() {
@@ -106,7 +112,6 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
         let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
         cell.linkFriend = self
         cell.nameLabel.text = friends[indexPath.row].name
@@ -130,3 +135,5 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         return friendTableView.frame.height / 10
     }
 }
+
+

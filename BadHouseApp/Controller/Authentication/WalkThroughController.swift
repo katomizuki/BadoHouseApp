@@ -6,11 +6,11 @@ class WalkThroughController: UIViewController {
     private var viewControllers = [UIViewController]()
     lazy var pageControl = UIPageControl()
     private let nextButton = UIButton()
-    private let images = [UIImage(named: Utility.ImageName.logoImage)!,UIImage(named: "ウォークスルー1")!,UIImage(named: "ウォークスルー2")!]
+    private let images = [UIImage(named: "ウォ-ク")!,UIImage(named: "ウォ-ク")!]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let contentRect = CGRect(x: 40, y: 240, width: view.bounds.width - 80, height: 440)
+        let contentRect = CGRect(x: 40, y: 200, width: view.bounds.width - 80, height: view.bounds.width - 60)
         for index in 0..<images.count {
             view.backgroundColor = .white
             let vc = UIViewController()
@@ -20,7 +20,6 @@ class WalkThroughController: UIViewController {
             imageView.frame.size = contentRect.size
             imageView.image = images[index]
             imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
             imageView.backgroundColor = .white
             vc.view.addSubview(imageView)
   
@@ -34,8 +33,8 @@ class WalkThroughController: UIViewController {
         pageViewController.view.frame = contentRect
               view.addSubview(pageViewController.view!)
 
-              // Set PageControl
-              pageControl.frame = CGRect(x:0, y:view.bounds.height - 160, width:view.bounds.width, height:50)
+              //Mark PageControl
+              pageControl.frame = CGRect(x:0, y:view.bounds.height - 160, width:view.bounds.width, height:70)
               pageControl.pageIndicatorTintColor = .lightGray
               pageControl.currentPageIndicatorTintColor = .gray
               pageControl.numberOfPages = images.count
@@ -43,7 +42,7 @@ class WalkThroughController: UIViewController {
               pageControl.isUserInteractionEnabled = false
               view.addSubview(pageControl)
 
-              // Set NextButton
+              //Mark NextButton
               nextButton.frame = CGRect(x: 40, y: view.bounds.size.height - 100, width: view.bounds.size.width - 80, height: 40)
               nextButton.setTitle("次へ", for: .normal)
               nextButton.layer.cornerRadius = 20
@@ -51,7 +50,7 @@ class WalkThroughController: UIViewController {
               nextButton.backgroundColor = .gray
               nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
               view.addSubview(nextButton)
-        // Do any additional setup after loading the view.
+       
     }
     
     //Mark: selector lastPageTapped

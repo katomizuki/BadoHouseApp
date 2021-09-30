@@ -35,6 +35,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         updateBorder()
         setupCollection()
         setupData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +44,8 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        navigationItem.title = user?.name
     }
     
     //Mark:updateUI

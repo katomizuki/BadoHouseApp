@@ -253,7 +253,7 @@
             </objects>
             <point key="canvasLocation" x="3500" y="-618.44077961019491"/>
         </scene>
-        <!--Group View Controller-->
+        <!-- -->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="GroupViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -353,20 +353,30 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="KpN-VH-iiX">
-                        <barButtonItem key="backBarButtonItem" title=" " id="bd6-I9-7HW"/>
-                        <barButtonItem key="leftBarButtonItem" image="person.3.fill" catalog="system" id="Kin-dG-BM2">
-                            <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <segue destination="WlO-Eg-LwZ" kind="show" identifier="gotoMakeGroup" id="1WT-UQ-bTr"/>
-                            </connections>
+                    <navigationItem key="navigationItem" title=" " id="KpN-VH-iiX">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="6dC-b6-eHd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="3mY-4R-d4k">
+                                <rect key="frame" x="16" y="0.0" width="157.5" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="サークル登録" image="person.3.sequence.fill" catalog="system">
+                                    <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="gotoMakeGroup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="euT-7O-TI2"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="Iuc-oV-TUo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QBM-3w-HCi">
-                                <rect key="frame" x="277" y="3" width="82" height="38"/>
+                                <rect key="frame" x="245" y="3" width="114" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="person.crop.circle.badge.plus.fill" catalog="system"/>
+                                <state key="normal" title="友だち追加" image="person.crop.circle.badge.plus.fill" catalog="system">
+                                    <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <segue destination="Heq-qa-yRZ" kind="presentation" id="rnt-bf-ixT"/>
                                 </connections>
@@ -382,11 +392,12 @@
                         <segue destination="cza-8i-jCI" kind="show" identifier="gotoGroup" id="XjJ-C8-ncf"/>
                         <segue destination="oj7-Ug-OXr" kind="show" identifier="gotoUser" id="TJv-Zf-4Gw"/>
                         <segue destination="cnA-oH-FKQ" kind="presentation" identifier="userProfile" modalPresentationStyle="fullScreen" id="X9X-Jc-rLL"/>
+                        <segue destination="WlO-Eg-LwZ" kind="show" id="P8y-ZN-6ZQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3223.1999999999998" y="887.40629685157433"/>
+            <point key="canvasLocation" x="2181.5999999999999" y="902.69865067466276"/>
         </scene>
         <!--Daughter View Controller-->
         <scene sceneID="C3C-S7-0sL">
@@ -732,7 +743,7 @@
                                                 </subviews>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cam-kV-vfw">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
+                                                <rect key="frame" x="0.0" y="10" width="375" height="143"/>
                                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="k8V-3r-mN0">
@@ -875,10 +886,10 @@
                                             <constraint firstAttribute="trailing" secondItem="A2m-Hc-eps" secondAttribute="trailing" constant="30" id="Qbn-DO-nlj"/>
                                             <constraint firstItem="eQQ-H2-oLB" firstAttribute="top" secondItem="Oyv-t6-5Rr" secondAttribute="bottom" constant="20" id="SJO-hL-OBy"/>
                                             <constraint firstItem="vaC-IE-Svx" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="20" id="VMK-dI-srr"/>
-                                            <constraint firstItem="cam-kV-vfw" firstAttribute="top" secondItem="XvP-Jd-KR4" secondAttribute="top" id="W32-9q-dJa"/>
                                             <constraint firstAttribute="trailing" secondItem="kKr-6I-b5S" secondAttribute="trailing" constant="30" id="X3U-Id-4K0"/>
                                             <constraint firstItem="u7u-jE-S4C" firstAttribute="leading" secondItem="Tuq-Mk-INw" secondAttribute="trailing" constant="25" id="XAu-fu-TRe"/>
                                             <constraint firstItem="ocm-Ji-ji8" firstAttribute="leading" secondItem="05x-vv-pNz" secondAttribute="leading" id="XaU-i4-RKV"/>
+                                            <constraint firstItem="cam-kV-vfw" firstAttribute="top" secondItem="XvP-Jd-KR4" secondAttribute="top" constant="10" id="Xz5-4g-7f9"/>
                                             <constraint firstAttribute="height" constant="2000" id="a4u-OO-rGW"/>
                                             <constraint firstItem="05x-vv-pNz" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="242" id="aDM-pF-ToT"/>
                                             <constraint firstItem="ocm-Ji-ji8" firstAttribute="leading" secondItem="yRo-oL-G2R" secondAttribute="trailing" id="aIm-c3-yZS"/>
@@ -981,7 +992,7 @@
             </objects>
             <point key="canvasLocation" x="6156" y="855.9220389805098"/>
         </scene>
-        <!--サークル-->
+        <!-- -->
         <scene sceneID="0rZ-Fr-9a2">
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1233,19 +1244,20 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="サークル" id="oP3-Qa-A5c">
-                        <barButtonItem key="rightBarButtonItem" image="person.badge.plus" catalog="system" id="IgB-sZ-cqF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rOQ-ik-XO8">
-                                <rect key="frame" x="338" y="10.5" width="21" height="23"/>
+                    <navigationItem key="navigationItem" title=" " id="oP3-Qa-A5c">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="cMd-aM-Peq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RTu-CM-XZb">
+                                <rect key="frame" x="283" y="0.0" width="76" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="person.badge.plus" catalog="system">
+                                <state key="normal" title="招待" image="person.badge.plus" catalog="system">
                                     <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="gotoInvite:" destination="cza-8i-jCI" eventType="touchUpInside" id="pWB-Ss-0iX"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="rar-tT-NFD" kind="presentation" identifier="gotoInvite" id="NJE-7f-e6w"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1265,6 +1277,7 @@
                         <outlet property="withdrawButton" destination="5sf-aC-88J" id="wWt-lh-3e5"/>
                         <segue destination="oj7-Ug-OXr" kind="show" identifier="goto" id="KCo-PJ-OZR"/>
                         <segue destination="r26-CP-u6r" kind="show" id="cdz-Ff-0Nv"/>
+                        <segue destination="rar-tT-NFD" kind="show" id="HgF-52-Vqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfN-ks-TqJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1274,7 +1287,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2822" y="2301"/>
+            <point key="canvasLocation" x="2821.5999999999999" y="2300.5997001499254"/>
         </scene>
         <!--Group Chat View Controller-->
         <scene sceneID="tpC-YF-15O">
@@ -1305,22 +1318,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="2370"/>
+            <point key="canvasLocation" x="1894" y="2301"/>
         </scene>
-        <!--Invite View Controller-->
+        <!-- -->
         <scene sceneID="0Bs-Vl-gkg">
             <objects>
-                <viewController id="rar-tT-NFD" customClass="InviteViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="InviteViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="60" width="375" height="537"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="475"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="16" y="554" width="343" height="36"/>
+                                <rect key="frame" x="16" y="493" width="343" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -1330,28 +1343,20 @@
                                     <action selector="invite:" destination="rar-tT-NFD" eventType="touchUpInside" id="SS8-B7-FJa"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbE-AV-vrt">
-                                <rect key="frame" x="0.0" y="4" width="375" height="56"/>
-                                <items>
-                                    <navigationItem title="招待" id="x7F-Zg-CCt"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qfu-Md-fdv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LBq-Xl-6xz" firstAttribute="leading" secondItem="Qfu-Md-fdv" secondAttribute="leading" id="Aif-tO-WP1"/>
-                            <constraint firstItem="LBq-Xl-6xz" firstAttribute="top" secondItem="Qfu-Md-fdv" secondAttribute="top" constant="60" id="Rbx-B0-HO4"/>
-                            <constraint firstItem="LBq-Xl-6xz" firstAttribute="leading" secondItem="bbE-AV-vrt" secondAttribute="leading" id="SMp-dj-pjy"/>
+                            <constraint firstItem="LBq-Xl-6xz" firstAttribute="top" secondItem="Qfu-Md-fdv" secondAttribute="top" id="Rbx-B0-HO4"/>
                             <constraint firstItem="Qfu-Md-fdv" firstAttribute="bottom" secondItem="LBq-Xl-6xz" secondAttribute="bottom" constant="50" id="TgL-Ia-sz9"/>
                             <constraint firstItem="r4S-ZI-Qtn" firstAttribute="centerX" secondItem="LBq-Xl-6xz" secondAttribute="centerX" id="moB-OT-w29"/>
-                            <constraint firstItem="LBq-Xl-6xz" firstAttribute="top" secondItem="bbE-AV-vrt" secondAttribute="bottom" id="nJn-md-4Nz"/>
-                            <constraint firstItem="LBq-Xl-6xz" firstAttribute="trailing" secondItem="bbE-AV-vrt" secondAttribute="trailing" id="owT-OW-aoJ"/>
-                            <constraint firstItem="Qfu-Md-fdv" firstAttribute="bottom" secondItem="r4S-ZI-Qtn" secondAttribute="bottom" constant="57" id="qfZ-bh-w9i"/>
+                            <constraint firstItem="Qfu-Md-fdv" firstAttribute="bottom" secondItem="r4S-ZI-Qtn" secondAttribute="bottom" constant="40" id="qfZ-bh-w9i"/>
                             <constraint firstItem="r4S-ZI-Qtn" firstAttribute="leading" secondItem="2gc-W9-5uJ" secondAttribute="leadingMargin" id="wch-Ft-6N1"/>
                             <constraint firstItem="Qfu-Md-fdv" firstAttribute="trailing" secondItem="LBq-Xl-6xz" secondAttribute="trailing" id="xF9-n5-i5U"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title=" " id="W04-FO-RsK"/>
                     <connections>
                         <outlet property="inviteButton" destination="r4S-ZI-Qtn" id="flU-Mi-PS3"/>
                         <outlet property="tableView" destination="LBq-Xl-6xz" id="l9A-fl-6dt"/>
@@ -1392,7 +1397,7 @@
             </objects>
             <point key="canvasLocation" x="238" y="1648"/>
         </scene>
-        <!--お友だち-->
+        <!--User Detail View Controller-->
         <scene sceneID="Qse-Oj-r1X">
             <objects>
                 <viewController storyboardIdentifier="UserDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oj7-Ug-OXr" customClass="UserDetailViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1640,8 +1645,8 @@
                             <constraint firstItem="A6l-yA-b3k" firstAttribute="leading" secondItem="Pw3-bC-8qe" secondAttribute="leading" id="kff-eD-AkV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="お友だち" id="bX6-Q6-TdY">
-                        <barButtonItem key="backBarButtonItem" title=" " id="cKr-jb-en2"/>
+                    <navigationItem key="navigationItem" id="bX6-Q6-TdY">
+                        <barButtonItem key="backBarButtonItem" title="  " id="cKr-jb-en2"/>
                     </navigationItem>
                     <connections>
                         <outlet property="ageLabel" destination="wZS-aO-2H4" id="qAz-Ye-bEb"/>
@@ -1669,7 +1674,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="238" y="2370"/>
+            <point key="canvasLocation" x="-370" y="2445"/>
         </scene>
         <!--Walk Through Controller-->
         <scene sceneID="EGw-Lz-KMH">
@@ -1822,11 +1827,11 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fNE-l8-KnE"/>
                         <barButtonItem key="leftBarButtonItem" title="イベント" id="Dcw-Mc-Rc6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cz4-bX-KXc">
-                                <rect key="frame" x="16" y="10" width="18" height="24"/>
+                                <rect key="frame" x="16" y="10" width="100" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="plus" catalog="system">
+                                <state key="normal" title="練習作成" image="plus" catalog="system">
                                     <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="titleShadowColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -1836,13 +1841,13 @@
                             </button>
                             <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="tSz-g6-eRh">
+                        <barButtonItem key="rightBarButtonItem" title="検索" image="magnifyingglass" catalog="system" id="tSz-g6-eRh">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
-                                <rect key="frame" x="338.5" y="10" width="20.5" height="24"/>
+                                <rect key="frame" x="297.5" y="10" width="61.5" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="magnifyingglass" catalog="system">
+                                <state key="normal" title="検索" image="magnifyingglass" catalog="system">
                                     <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -2154,7 +2159,7 @@
             </objects>
             <point key="canvasLocation" x="4924" y="-618.44077961019491"/>
         </scene>
-        <!--イベント作成-->
+        <!--練習作成-->
         <scene sceneID="XPt-gx-oPm">
             <objects>
                 <viewController id="uvZ-IK-hUs" customClass="MakeEventViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -2645,7 +2650,7 @@
                             <constraint firstItem="BEE-5R-Wpj" firstAttribute="top" secondItem="4SG-aj-dnV" secondAttribute="top" id="aw0-nR-QI0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="イベント作成" id="Ir9-rA-b4b">
+                    <navigationItem key="navigationItem" title="練習作成" id="Ir9-rA-b4b">
                         <barButtonItem key="backBarButtonItem" title=" " id="Z7t-9m-5Np"/>
                     </navigationItem>
                     <connections>
@@ -2836,7 +2841,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hii-cE-Tu7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5072" y="130"/>
+            <point key="canvasLocation" x="4946" y="129"/>
         </scene>
         <!--サークル作成-->
         <scene sceneID="0Y1-Ax-d7Z">
@@ -2908,7 +2913,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5144.8000000000002" y="1616.9415292353824"/>
+            <point key="canvasLocation" x="3306" y="980"/>
         </scene>
         <!--ホーム-->
         <scene sceneID="3Mi-Hy-YhS">
@@ -2959,7 +2964,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pgh-Cm-qjt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4418" y="2301"/>
+            <point key="canvasLocation" x="4145" y="903"/>
         </scene>
         <!--タイムライン-->
         <scene sceneID="y9E-9F-eh8">
@@ -2995,11 +3000,11 @@
             </objects>
             <point key="canvasLocation" x="386" y="130"/>
         </scene>
-        <!--ユーザー-->
+        <!--マイページ-->
         <scene sceneID="2tj-tY-mT7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AeY-oL-Fmn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ユーザー" image="person.fill" catalog="system" id="vxV-7T-gUh"/>
+                    <tabBarItem key="tabBarItem" title="マイページ" image="person.fill" catalog="system" id="vxV-7T-gUh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ygP-FU-2ck">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3013,7 +3018,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aj-gC-HRV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260" y="902.69865067466276"/>
+            <point key="canvasLocation" x="1270" y="903"/>
         </scene>
         <!--ホーム-->
         <scene sceneID="c2E-yg-x8R">
@@ -3212,7 +3217,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="3Ng-cG-BBs"/>
         <segue reference="KCo-PJ-OZR"/>
-        <segue reference="FQ5-8I-bax"/>
+        <segue reference="fuc-E9-X1F"/>
         <segue reference="cdz-Ff-0Nv"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3221,7 +3226,7 @@
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="noImages" width="340" height="340"/>
-        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="person.3.sequence.fill" catalog="system" width="128" height="58"/>
         <image name="person.badge.plus" catalog="system" width="128" height="124"/>
         <image name="person.crop.circle.badge.plus.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>

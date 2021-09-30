@@ -50,7 +50,12 @@ struct LocalNotificationManager {
             content.body = notification.body
             content.sound = UNNotificationSound.default
             content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-            content.userInfo = userInfo
+//            content.userInfo = userInfo
+            
+            if let url = Bundle.main.url(forResource: "logo", withExtension: "png"),
+               let attchment = try? UNNotificationAttachment(identifier: "imageId", url: url, options: nil) {
+                content.attachments = [attchment]
+            }
             
             //度のタイミングでトリガーさせるかを判断する。
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(durationInSeconds), repeats: repeats)

@@ -14,7 +14,7 @@ class PostViewController: UIViewController {
     private let singleButton = RegisterButton(text: "シングルス")
     private let doubleButton = RegisterButton(text: "ダブルス")
     private let mixButton = RegisterButton(text: "ミックス")
-    private let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 24)
+    private let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
     
         let captureSession = AVCaptureSession()
         let fileOutput = AVCaptureMovieFileOutput()
@@ -52,17 +52,14 @@ class PostViewController: UIViewController {
             // do nothing
         #else
         if sender == singleButton {
-            print("single")
             let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
             vc.keyWord = "シングルス"
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == doubleButton {
-            print("double")
             let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
             vc.keyWord = "ダブルス"
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == mixButton {
-            print("mix")
             let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
             vc.keyWord = "ミックス"
             navigationController?.pushViewController(vc, animated: true)

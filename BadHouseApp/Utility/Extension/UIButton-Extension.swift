@@ -5,8 +5,8 @@ extension UIButton {
     
     func createAuthButton(text:String)->UIButton {
         self.setTitle(text, for: UIControl.State.normal)
-        self.tintColor = .white
-        self.titleLabel?.font = .systemFont(ofSize: 14)
+        self.tintColor = Utility.AppColor.OriginalBlue
+        self.titleLabel?.font = .boldSystemFont(ofSize: 14)
         return self
     }
     

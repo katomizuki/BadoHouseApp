@@ -26,25 +26,24 @@ class ViewController: UIViewController, EmptyStateDelegate{
     
     //Mark LifeCycle
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        setupIndicator()
-        IndicatorView.startAnimating()
-        setupUI()
-        setupLocationManager()
-        setupDelegate()
-        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
-        setupCollectionView()
-        setupEmptyState()
-        Firestore.deleteEvent()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         if Auth.auth().currentUser == nil {
-            performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
+            }
         }
+            setupIndicator()
+            IndicatorView.startAnimating()
+            setupUI()
+            setupLocationManager()
+            setupDelegate()
+            fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+            setupCollectionView()
+            setupEmptyState()
+            Firestore.deleteEvent()
+            UIApplication.shared.applicationIconBadgeNumber = 0
     }
-  
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
