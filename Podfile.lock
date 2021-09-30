@@ -535,6 +535,7 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - SkeletonView (1.25.1)
   - TaggerKit (0.6.1)
   - XLPagerTabStrip (9.0.0)
 
@@ -555,6 +556,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - PKHUD
   - SDWebImage
+  - SkeletonView
   - TaggerKit
   - XLPagerTabStrip (~> 9.0)
 
@@ -596,6 +598,7 @@ SPEC REPOS:
     - PKHUD
     - PromisesObjC
     - SDWebImage
+    - SkeletonView
     - TaggerKit
     - XLPagerTabStrip
 
@@ -636,9 +639,10 @@ SPEC CHECKSUMS:
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 6abda42ebd406ad5dd982a0e0e9d0ccd4b76b4dd
+PODFILE CHECKSUM: 00011d121a5138edd52659cd7e11dc7e4613a206
 
 COCOAPODS: 1.10.1

@@ -24,5 +24,5 @@ pod 'FacebookSDK'
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
-
+pod "SkeletonView"
 end

@@ -572,7 +572,7 @@ extension Storage {
         }
     }
     
-    static func sendVideoData(videoUrl:URL,senderId:String,thumnail:String,keyWord:String) {
+    static func sendVideoData(videoUrl:URL,senderId:String,keyWord:String) {
         let id = UUID().uuidString
         let videoRef = Storage.storage().reference().child("Video").child(id)
         let metadata = StorageMetadata()
@@ -592,7 +592,7 @@ extension Storage {
                     print(urlString)
                     print("動画保存成功!")
                     let videoId = Ref.VideoRef.document().documentID
-                    let dic = ["id":videoId,"thumnailUrl":thumnail,"keyWord":keyWord,"senderId":senderId,"videoUrl":urlString] as [String:Any]
+                    let dic = ["id":videoId,"keyWord":keyWord,"senderId":senderId,"videoUrl":urlString] as [String:Any]
                     Ref.VideoRef.document(videoId).setData(dic) { error in
                         if let error = error {
                             print(error)

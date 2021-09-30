@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import AVFoundation
 import SDWebImage
+import SkeletonView
+
 protocol VideoCollectionCellDelegate:AnyObject {
     func didTapSearchButton(video:VideoModel)
     func didTapNextButton(video:VideoModel)
@@ -37,15 +39,20 @@ class VideoCell:UICollectionViewCell {
     
     private let containerView:UIView = {
         let view = UIView()
-        
         return view
     }()
     
     override init(frame:CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .white
+
         contentView.clipsToBounds = true
-        player?.automaticallyWaitsToMinimizeStalling = false
+        player?.automaticallyWaitsToMinimizeStalling = true
+        self.contentView.isSkeletonable = true
+        self.containerView.isSkeletonable = true
+        self.nextButton.isSkeletonable = true
+        self.searchButton.isSkeletonable = true
+        isSkeletonable = true
+        containerView.showAnimatedSkeleton()
     }
     
     override func layoutSubviews() {
@@ -61,8 +68,8 @@ class VideoCell:UICollectionViewCell {
     weak var delegate:VideoCollectionCellDelegate?
     
     private func setupLayout() {
+       
         contentView.addSubview(containerView)
-        
         contentView.addSubview(nextButton)
         contentView.addSubview(searchButton)
         
@@ -71,6 +78,7 @@ class VideoCell:UICollectionViewCell {
         
         containerView.clipsToBounds = true
         contentView.sendSubviewToBack(containerView)
+
     }
     
     
@@ -88,20 +96,24 @@ class VideoCell:UICollectionViewCell {
         guard let video = video else {
             return
         }
-
         self.delegate?.didTapSearchButton(video: video)
     }
     
     func configure() {
         setupLayout()
+       
         guard let videoUrl = URL(string: video?.videoUrl ?? "") else { return }
         player = AVPlayer(url: videoUrl)
         let playerView = AVPlayerLayer()
         playerView.videoGravity = .resizeAspectFill
         playerView.player = player
         playerView.frame = contentView.bounds
+        
         containerView.layer.addSublayer(playerView)
+        player?.volume = 0
         player?.play()
+        containerView.stopSkeletonAnimation()
+        
     }
     
     required init?(coder: NSCoder) {

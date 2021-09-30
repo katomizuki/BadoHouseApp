@@ -5,6 +5,7 @@ import UserNotifications
 import GoogleSignIn
 import FBSDKCoreKit
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance()?.clientID = "517884035996-me558ijehkt7r7sjmgt57li9ddvjkq0e.apps.googleusercontent.com"
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         setupNotifications(on: application)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
 //        do {
 //            try Auth.auth().signOut()
