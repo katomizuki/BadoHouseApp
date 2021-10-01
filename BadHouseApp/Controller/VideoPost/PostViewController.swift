@@ -52,15 +52,15 @@ class PostViewController: UIViewController {
             // do nothing
         #else
         if sender == singleButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = "シングルス"
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == doubleButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = "ダブルス"
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == mixButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as! CameraViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = "ミックス"
             navigationController?.pushViewController(vc, animated: true)
         }

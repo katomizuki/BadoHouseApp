@@ -56,5 +56,37 @@ extension UIButton {
         return self
     }
     
+    func updateUI(title:String) {
+        backgroundColor = Utility.AppColor.OriginalBlue
+        setTitle(title, for: UIControl.State.normal)
+        setTitleColor(.white, for: UIControl.State.normal)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        layer.cornerRadius = 15
+        layer.masksToBounds = true
+    }
+    
+    func updateSaveButton() {
+        backgroundColor = Utility.AppColor.OriginalBlue
+        setTitleColor(.white, for: UIControl.State.normal)
+        layer.cornerRadius = 20
+        layer.masksToBounds = true
+    }
+    
+    func updateBackButton() {
+        layer.cornerRadius = 14
+        layer.masksToBounds = true
+        backgroundColor = Utility.AppColor.OriginalBlue
+        setTitleColor(.white, for: UIControl.State.normal)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    }
+    
+    func updateButton(radius:CGFloat,backColor:UIColor,titleColor:UIColor,fontSize:CGFloat) {
+        layer.cornerRadius = radius
+        layer.masksToBounds = true
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
+      
+    }
+  
+    
    
 }

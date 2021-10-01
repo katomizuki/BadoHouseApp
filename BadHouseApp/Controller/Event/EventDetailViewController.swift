@@ -282,7 +282,7 @@ class EventDetailViewController: UIViewController {
             self.you = user
             guard let urlString = user?.profileImageUrl else { return }
             if urlString == "" {
-                self.leaderImageView.image = UIImage(named: "noImages")
+                self.leaderImageView.image = UIImage(named: Utility.ImageName.noImages)
             } else {
                 let url = URL(string: urlString)
                 self.leaderImageView.sd_setImage(with: url, completed: nil)

@@ -1,6 +1,7 @@
 import UIKit
 import SDWebImage
 import Firebase
+import FacebookCore
 
 class FriendSSearchViewController: UIViewController {
 
@@ -59,7 +60,7 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
         cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         let urlString = friendList[indexPath.row].profileImageUrl
         if urlString == "" {
-            cell.iv.image = UIImage(named: "noImages")
+            cell.iv.image = UIImage(named: Utility.ImageName.noImages)
         } else {
             if let url = URL(string: urlString) {
                 cell.iv.sd_setImage(with: url, completed: nil)

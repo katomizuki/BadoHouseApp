@@ -60,7 +60,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         return collectionView
     }()
     private let userTableView = UITableView()
-    var cellTitleArray = ["居住地","性別","年代","バドミントン歴","レベル"]
+    var cellTitleArray = Utility.Data.userSection
     @IBOutlet weak var scrollView: UIView!
     
     
@@ -78,7 +78,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         userTableView.dataSource = self
         userTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         userTableView.separatorColor = Utility.AppColor.OriginalBlue
-        userTableView.backgroundColor = UIColor(named: "backGroundColor")
+        userTableView.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
     }
 
     //Mark: setupMethod

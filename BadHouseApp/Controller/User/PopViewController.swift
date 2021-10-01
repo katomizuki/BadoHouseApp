@@ -1,9 +1,10 @@
 import UIKit
+import FacebookCore
 
 class PopViewController: UIViewController{
     
-    private let CellId = "CellId"
-    var cellArray = ["男性","女性","その他"]
+    private let CellId = Utility.CellId.popCellId
+    var cellArray = Utility.Data.genderArray
     var keyword = String()
     let tableView = UITableView()
     var gender = String()
@@ -24,13 +25,13 @@ class PopViewController: UIViewController{
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
         if keyword == "性別" {
-            cellArray = ["男性","女性","その他"]
+            cellArray = Utility.Data.genderArray
         } else if keyword == "バドミントン歴" {
-            cellArray = ["1年未満","1年~3年","4年~6年","7年~10年","10年以上"]
+            cellArray = Utility.Data.yearArray
         } else if keyword == "居住地"  {
-            cellArray = ["東京都","神奈川県","千葉県","埼玉県"]
+            cellArray = Utility.Data.placeArray
         } else if keyword == "年代" {
-            cellArray = ["10代以下","10代","20代","30代","40代","50代","60代","70代以上"]
+            cellArray = Utility.Data.ageArray
         }
         tableView.reloadData()
     }

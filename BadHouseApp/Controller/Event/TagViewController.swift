@@ -19,23 +19,15 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     var eventImage:UIImage?
     private var tagCollection = TKCollectionView()
     
-    
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        finishButton.backgroundColor = Utility.AppColor.OriginalBlue
-        finishButton.setTitle("イベント作成", for: UIControl.State.normal)
-        finishButton.setTitleColor(.white, for: UIControl.State.normal)
-        finishButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        finishButton.layer.cornerRadius = 15
-        finishButton.layer.masksToBounds = true
-        
+        finishButton.updateUI(title: "イベント作成")
         productTags = TKCollectionView(tags: ["#バド好き歓迎"],
                                               action: .removeTag,
                                               receiver: nil)
                
-               allTags = TKCollectionView(tags: [
-                "#急募","#複数人OK","#ガチミントン","#シングルス","#ダブルス","#ミックス","#年齢不問","#ジュニア","#中高生歓迎","#大学生","#遅刻OK","#ゲーム中心","#練習もある","#ジュニア歓迎","#性別不問","#楽しくワイワイ","#コロナ対策有","#同年代多め","#レベル幅広く","#金額安め","#早退OK"],
+        allTags = TKCollectionView(tags: Utility.Data.tagArray,
                                           action: .addTag,
                                           receiver: productTags)
         

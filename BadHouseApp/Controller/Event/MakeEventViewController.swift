@@ -47,7 +47,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private var dic = [String:Any]()
     private var team:TeamModel?
     @IBOutlet weak var levelUISlider: RangeUISlider!
-    private let moneyArray = ["100","200","300","400","500","600","700","800","900","1000","1100","1200","1300","1400","1500","1600","1700","1800","1900","2000","2100","2200","2300","2400","2500","2600","2700","2800","2900","3000"]
+    private let moneyArray = Utility.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     
     //Mark:LifeCycle
@@ -60,7 +60,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let image = UIImage(named: "double")
+        let image = UIImage(named: Utility.ImageName.double)
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
@@ -235,7 +235,25 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         let userId = Auth.getUserId()
         let eventId = Ref.EventRef.document().documentID
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let dic = ["eventId":eventId,"time":self.teamTime,"place":self.teamPlace,"teamId":teamId,"teamName":teamName,"eventStartTime":self.eventStartTime,"eventLastTime":self.eventLastTime,"eventLavel":self.eventLavel,"eventMoney":self.eventMoney,"detailText":self.detailText,"kindCircle":self.kindCircle,"courtCount":self.courtCount,"gatherCount":self.gatherCount,"eventTitle":self.eventTitle,"latitude":self.placeLatitude,"longitude":self.placeLongitude,"teamImageUrl":teamImageUrl,"placeAddress":self.placeAddress,"userId":userId] as [String : Any]
+            let dic = ["eventId":eventId,
+                       "time":self.teamTime,
+                       "place":self.teamPlace,
+                       "teamId":teamId,
+                       "teamName":teamName,
+                       "eventStartTime":self.eventStartTime,
+                       "eventLastTime":self.eventLastTime,
+                       "eventLavel":self.eventLavel,
+                       "eventMoney":self.eventMoney,
+                       "detailText":self.detailText,
+                       "kindCircle":self.kindCircle,
+                       "courtCount":self.courtCount,
+                       "gatherCount":self.gatherCount,
+                       "eventTitle":self.eventTitle,
+                       "latitude":self.placeLatitude,
+                       "longitude":self.placeLongitude,
+                       "teamImageUrl":teamImageUrl,
+                       "placeAddress":self.placeAddress,
+                       "userId":userId] as [String : Any]
             guard let eventImage = self.noImageView.image else { return }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TagVC) as! TagViewController
             vc.dic = dic

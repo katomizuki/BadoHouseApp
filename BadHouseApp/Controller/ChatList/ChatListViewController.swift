@@ -113,7 +113,7 @@ class ChatListViewController:UIViewController{
         self.sortChatModelArray = []
     }
     @objc private func handleNotification() {
-        performSegue(withIdentifier: "gotoNotification", sender: nil)
+        performSegue(withIdentifier: Utility.Segue.gotoNotification, sender: nil)
     }
 }
 
@@ -164,7 +164,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0 {
             let team = teams[indexPath.row]
             self.selectedTeam = team
-            let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
             vc.team = self.selectedTeam
             navigationController?.pushViewController(vc, animated: true)
     
@@ -172,14 +172,14 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             if Auth.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 me = sortAnotherUserArray[indexPath.row]
                 you = sortUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)

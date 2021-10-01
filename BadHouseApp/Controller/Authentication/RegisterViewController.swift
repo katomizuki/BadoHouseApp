@@ -102,17 +102,7 @@ class RegisterViewController:UIViewController{
         IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
 
     }
-    
-    //Mark:Gradient
-    private func setupGradient() {
-        let layer = CAGradientLayer()
-        let startColor = UIColor.white.cgColor
-        let endColor = UIColor.darkGray.cgColor
-        layer.colors = [startColor,endColor]
-        layer.locations = [0.0,1.0]
-        layer.frame = view.bounds
-        view.layer.addSublayer(layer)
-    }
+
     
     //Mark: Binding
     func setupBinding() {
@@ -169,7 +159,7 @@ class RegisterViewController:UIViewController{
         registerBinding.validRegisterDriver
             .drive { validAll in
                 self.registerButton.isEnabled = validAll
-                self.registerButton.backgroundColor = validAll ? Utility.AppColor.StandardColor : .darkGray
+                self.registerButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
         
@@ -177,8 +167,7 @@ class RegisterViewController:UIViewController{
             .asDriver()
             .drive { [weak self] _ in
                 let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.LoginVC) as! LoginViewController
-                print(loginVC)
-                
+
                 self?.navigationController?.pushViewController(loginVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -209,27 +198,10 @@ class RegisterViewController:UIViewController{
     
     //Mark:signUPErrAlert
     func signUpErrAlert(_ error: NSError){
-        if let errCode = AuthErrorCode(rawValue: error.code) {
-            var message = ""
-            switch errCode {
-            case .invalidEmail:      message =  "有効なメールアドレスを入力してください"
-            case .emailAlreadyInUse: message = "既に登録されているメールアドレスです"
-            case .weakPassword:      message = "パスワードは６文字以上で入力してください"
-            default:                 message = "エラー: \(error.localizedDescription)"
-            }
-            self.showAlert(title: "登録できません", message: message)
-        }
+        let message = setupErrorMessage(error: error)
+            self.setupCDAlert(title: "登録できません", message: message, action: "OK", alertType: .error)
     }
-    
-    
-    
-    //Mark: AlertMethod
-    func showAlert(title: String, message: String?) {
-        print(#function)
-           let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-           alertVC.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
-           self.present(alertVC, animated: true, completion: nil)
-       }
+ 
 }
 
 extension RegisterViewController: GIDSignInDelegate {
@@ -250,7 +222,6 @@ extension RegisterViewController: GIDSignInDelegate {
                             if let error = error {
                                 print(error.localizedDescription)
                             } else {
-                                print("Google SignI🌅")
                                 guard let id = result?.user.uid else { return }
                                 guard let email = email else { return }
                                 guard let name = fullName else { return }

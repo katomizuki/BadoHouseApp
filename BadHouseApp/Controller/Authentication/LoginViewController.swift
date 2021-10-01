@@ -158,26 +158,9 @@ class LoginViewController:UIViewController {
     //Mark: LoginError
    private func signInErrAlert(_ error: NSError){
         print(#function)
-        if let errCode = AuthErrorCode(rawValue: error.code) {
-            var message = ""
-            switch errCode {
-            case .userNotFound:  message = "アカウントが見つかりませんでした"
-            case .wrongPassword: message = "パスワードを確認してください"
-            case .userDisabled:  message = "アカウントが無効になっています"
-            case .invalidEmail:  message = "Eメールが無効な形式です"
-            default:             message = "エラー: \(error.localizedDescription)"
-            }
-            self.showAlert(title: "ログインできませんでした", message: message)
-        }
+       let message = setupErrorMessage(error: error)
+            self.setupCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
     }
-    
-    //Mark: AlertMethod
-    private func showAlert(title: String, message: String?) {
-        print(#function)
-           let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-           alertVC.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
-           self.present(alertVC, animated: true, completion: nil)
-       }
 }
 
 extension LoginViewController:GIDSignInDelegate {

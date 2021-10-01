@@ -80,6 +80,23 @@ extension UIViewController {
         let dateString = formatter.string(from: date)
         return dateString
     }
+    
+    func setupErrorMessage(error:NSError)->String {
+        var message = ""
+        if let errCode = AuthErrorCode(rawValue: error.code) {
+            switch errCode {
+            case .invalidEmail:      message =  "有効なメールアドレスを入力してください"
+            case .emailAlreadyInUse: message = "既に登録されているメールアドレスです"
+            case .weakPassword:      message = "パスワードは６文字以上で入力してください"
+            case .userNotFound:  message = "アカウントが見つかりませんでした"
+            case .wrongPassword: message = "パスワードを確認してください"
+            case .userDisabled:  message = "アカウントが無効になっています"
+            default:                 message = "エラー: \(error.localizedDescription)"
+            }
+         
+        }
+        return message
+    }
 }
 
 

@@ -574,7 +574,7 @@ extension Storage {
     
     static func sendVideoData(videoUrl:URL,senderId:String,keyWord:String) {
         let id = UUID().uuidString
-        let videoRef = Storage.storage().reference().child("Video").child(id)
+        let videoRef = Ref.StorageVideoRef.child(id)
         let metadata = StorageMetadata()
         metadata.contentType = "video/quickTime"
         if let videoData = NSData(contentsOf: videoUrl) as Data? {

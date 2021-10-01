@@ -5,6 +5,7 @@ import SDWebImage
 import Firebase
 import NVActivityIndicatorView
 import Charts
+import FacebookCore
 
 
 class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDelegate {
@@ -47,7 +48,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setUpTeamStatus()
         setUpTeamPlayer()
         setGraph()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,9 +89,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         teamTagStackView.axis = .horizontal
         teamTagStackView.spacing = 5
         teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        withdrawButton.layer.cornerRadius = 15
-        withdrawButton.layer.masksToBounds = true
-        withdrawButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        withdrawButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
     }
     
     //Mark:setupDelegate
@@ -195,7 +193,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         
     
     @IBAction func gotoInvite(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "inviteVC") as! InviteViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
         vc.friends = self.friends
         navigationController?.pushViewController(vc, animated: true)
     }

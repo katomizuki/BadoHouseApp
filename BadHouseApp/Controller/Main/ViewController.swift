@@ -104,7 +104,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
-        let nib = UINib(nibName: "CollectionViewCell",
+        let nib = UINib(nibName: Utility.Cell.CollectionViewCell,
                         bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: Utility.CellId.eventId)
     }
@@ -300,7 +300,8 @@ extension ViewController{
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         view.emptyState.hide()
     }
-
 }
+
+
 
 
