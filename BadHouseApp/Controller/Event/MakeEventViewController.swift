@@ -24,12 +24,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private let disposeBag = DisposeBag()
     @IBOutlet weak var makeEventButton: UIButton!
     var pickerArray = [TeamModel]()
-    lazy var dateFormatter:DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
-        formatter.calendar = Calendar(identifier: .gregorian)
-        return formatter
-    }()
     @IBOutlet weak var detaiTextView: UITextView!
     @IBOutlet weak var circleSegment: UISegmentedControl!
     @IBOutlet weak var noImageView: UIImageView!
@@ -73,12 +67,19 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
     }
     
+    private func tfupdate(tf:UITextField) {
+        tf.layer.borderColor = UIColor.lightGray.cgColor
+        tf.layer.borderWidth = 2
+        tf.layer.cornerRadius = 15
+        tf.layer.masksToBounds = true
+    }
+    
     //Mark setupUI
     private func setupUI() {
         TeamPickerView.layer.cornerRadius = 15
         TeamPickerView.layer.masksToBounds = true
         detaiTextView.layer.cornerRadius = 15
-        detaiTextView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        detaiTextView.layer.borderColor = UIColor.lightGray.cgColor
         detaiTextView.layer.masksToBounds = true
         detaiTextView.layer.borderWidth = 2
         
@@ -89,18 +90,10 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         makeEventButton.setTitleColor(.white, for: UIControl.State.normal)
         makeEventButton.layer.cornerRadius = 15
         makeEventButton.layer.masksToBounds = true
-        titleTextField.layer.borderColor = UIColor.lightGray.cgColor
-        placeTextField.layer.borderColor = UIColor.lightGray.cgColor
-        moneyTextField.layer.borderColor = UIColor.lightGray.cgColor
-        titleTextField.layer.borderWidth = 2
-        placeTextField.layer.borderWidth = 2
-        moneyTextField.layer.borderWidth = 2
-        titleTextField.layer.cornerRadius = 15
-        moneyTextField.layer.cornerRadius = 15
-        placeTextField.layer.cornerRadius = 15
-        titleTextField.layer.masksToBounds = true
-        moneyTextField.layer.masksToBounds = true
-        placeTextField.layer.masksToBounds = true
+        
+        tfupdate(tf: titleTextField)
+        tfupdate(tf: placeTextField)
+        tfupdate(tf: moneyTextField)
         
         TeamPickerView.delegate = self
         TeamPickerView.dataSource = self
@@ -135,7 +128,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         datePicker.rx.value.changed
             .asObservable()
             .subscribe(onNext: { date in
-                let string = self.dateFormatter.string(from: date)
+                let string = self.formatterUtil(date: date)
                 self.eventBinding.dateTextInput.onNext(string)
                 self.teamTime = string
             })
@@ -144,7 +137,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         finishPicker.rx.value.changed
             .asObservable()
             .subscribe (onNext: { data in
-                let string = self.dateFormatter.string(from: data)
+                let string = self.formatterUtil(date: data)
                 self.eventLastTime = string
                 self.eventBinding.finishTextInput.onNext(string)
             })
@@ -153,7 +146,9 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         startPicker.rx.value.changed
             .asObservable()
             .subscribe (onNext:{ data in
-                let string = self.dateFormatter.string(from: data)
+
+                let string = self.formatterUtil(date: data)
+               
                 self.eventStartTime = string
                 self.eventBinding.startTextInput.onNext(string)
             })

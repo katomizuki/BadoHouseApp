@@ -78,6 +78,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         userTableView.dataSource = self
         userTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         userTableView.separatorColor = Utility.AppColor.OriginalBlue
+        userTableView.backgroundColor = UIColor(named: "backGroundColor")
     }
 
     //Mark: setupMethod
@@ -239,7 +240,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         cell.textLabel?.text = cellTitleArray[indexPath.row]
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         cell.selectionStyle = .none
-        cell.backgroundColor = .white
+        cell.backgroundColor = UIColor(named: "backGroundColor")
         cell.accessoryType = .disclosureIndicator
         let title = cellTitleArray[indexPath.row]
         cell.detailTextLabel?.text = ""

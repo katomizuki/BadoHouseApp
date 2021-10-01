@@ -13,14 +13,14 @@ class ProfileLabel:UILabel{
     init(title:String) {
         super.init(frame: .zero)
         self.text = title
-        self.textColor = .black
+        self.textColor = .systemGray
         self.font = .boldSystemFont(ofSize: 14)
     }
     
     init(title:String,num:CGFloat) {
         super.init(frame: .zero)
         self.text = title
-        self.textColor = .black
+        self.textColor = .systemGray
         self.textAlignment = .center
         self.font = .boldSystemFont(ofSize: num)
     }

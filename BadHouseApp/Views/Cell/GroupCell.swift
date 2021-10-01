@@ -39,6 +39,7 @@ class GroupCell:UITableViewCell {
         self.accessoryType = .disclosureIndicator
         self.label.font = UIFont.boldSystemFont(ofSize: 16)
         self.selectionStyle = .none
+        
     }
     
     //Mark: nibMethod

@@ -39,6 +39,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル部分一致" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="epP-um-tbf">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51.5"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -55,6 +56,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="サークル名部分一致" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ne2-1b-KDf">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51.5"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -71,6 +73,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="レベル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbw-QB-7bg">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51.5"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -87,6 +90,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="住所や施設名入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNE-aP-ydn">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -103,6 +107,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="〇〇円" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VGH-D1-EPy">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51.5"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -234,7 +239,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhV-aF-hvy" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="397"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Mx-nz-AZs"/>
@@ -486,7 +491,7 @@
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JSF-SR-OA7">
                                                 <rect key="frame" x="20" y="403" width="335" height="100"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="backGroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="1VO-bn-VDL"/>
                                                 </constraints>
@@ -1379,7 +1384,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
                                 <rect key="frame" x="0.0" y="74" width="375" height="465"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8hA-I4-t5F"/>
@@ -1976,6 +1981,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="backGroundColor"/>
                                 <constraints>
                                     <constraint firstItem="RtZ-jj-I8B" firstAttribute="trailing" secondItem="LVF-eL-BK7" secondAttribute="trailing" id="068-jU-7nP"/>
                                     <constraint firstItem="RtZ-jj-I8B" firstAttribute="top" secondItem="LVF-eL-BK7" secondAttribute="top" id="HgF-bm-Gge"/>
@@ -1988,7 +1994,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOg-KU-own"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
                         <constraints>
                             <constraint firstItem="Uup-HU-IyA" firstAttribute="top" secondItem="sOg-KU-own" secondAttribute="top" id="5Sa-sz-6iZ"/>
                             <constraint firstItem="Uup-HU-IyA" firstAttribute="bottom" secondItem="sOg-KU-own" secondAttribute="bottom" id="Xug-W6-Ryr"/>
@@ -2190,7 +2196,7 @@
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L5D-Gx-Efu">
                                                         <rect key="frame" x="0.0" y="24" width="335" height="124.5"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="TFColor"/>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2232,6 +2238,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="〇〇学校,△△スポーツセンター" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wBM-v6-A5p">
                                                                 <rect key="frame" x="108" y="0.0" width="227" height="34"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <gestureRecognizers/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -2294,6 +2301,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="金額を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ntg-5n-Eyk">
                                                                 <rect key="frame" x="149" y="0.0" width="186" height="34"/>
+                                                                <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -2547,7 +2555,7 @@
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-dg-jBr" customClass="RangeUISlider" customModule="RangeUISlider">
                                                 <rect key="frame" x="0.0" y="48" width="335" height="70"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="backGroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="XiH-hn-nmy"/>
                                                 </constraints>
@@ -2708,7 +2716,7 @@
                             </mapView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t4w-Nh-OfJ">
                                 <rect key="frame" x="16" y="77" width="343" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="TFColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="c1r-RZ-KP1"/>
                                 </constraints>
@@ -3222,7 +3230,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3Ng-cG-BBs"/>
+        <segue reference="VQy-IJ-T3o"/>
         <segue reference="t41-KJ-vjm"/>
         <segue reference="FQ5-8I-bax"/>
         <segue reference="3rr-Jc-WrJ"/>
@@ -3243,6 +3251,9 @@
         <image name="scroll" width="48" height="48"/>
         <image name="text.bubble.fill.rtl" catalog="system" width="128" height="110"/>
         <image name="video.fill" catalog="system" width="128" height="82"/>
+        <namedColor name="TFColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
