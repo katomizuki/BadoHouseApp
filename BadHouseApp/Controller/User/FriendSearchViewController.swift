@@ -54,12 +54,18 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! FriendSearchCell
         cell.link = self
+        cell.nameLabel.text = ""
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         let urlString = friendList[indexPath.row].profileImageUrl
-        if let url = URL(string: urlString) {
-            cell.iv.sd_setImage(with: url, completed: nil)
+        if urlString == "" {
+            cell.iv.image = UIImage(named: "noImages")
+        } else {
+            if let url = URL(string: urlString) {
+                cell.iv.sd_setImage(with: url, completed: nil)
+            }
         }
+        
         return cell
     }
     

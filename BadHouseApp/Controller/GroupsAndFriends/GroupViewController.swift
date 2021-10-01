@@ -39,8 +39,12 @@ class GroupViewController: UIViewController{
             guard let user = user else { return }
             self.user = user
             let urlString = user.profileImageUrl
-            let url = URL(string: urlString)
-            self.myImageView.sd_setImage(with: url, completed: nil)
+            if urlString == "" {
+                self.myImageView.image = UIImage(named: "noImages")
+            } else {
+                let url = URL(string: urlString)
+                self.myImageView.sd_setImage(with: url, completed: nil)
+            }
             self.myName.text = user.name
         }
         Firestore.getOwnTeam(uid: uid) { teams in

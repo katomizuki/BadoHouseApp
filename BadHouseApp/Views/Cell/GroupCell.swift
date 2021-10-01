@@ -60,7 +60,7 @@ class GroupCell:UITableViewCell {
         self.label.text = user.name
         let url = URL(string: user.profileImageUrl)
         if user.profileImageUrl == "" {
-            self.cellImagevView.image = UIImage(named: Utility.ImageName.logoImage)
+            self.cellImagevView.image = UIImage(named: "noImages")
         } else {
         self.cellImagevView.sd_setImage(with: url, completed: nil)
         }

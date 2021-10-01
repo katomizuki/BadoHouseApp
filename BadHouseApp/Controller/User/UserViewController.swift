@@ -87,6 +87,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 90
         profileImageView.layer.masksToBounds = true
+        profileImageView.tintColor = Utility.AppColor.OriginalBlue
         InfoCollectionView.isScrollEnabled = false
         nameLabel.textColor = Utility.AppColor.OriginalBlue
         

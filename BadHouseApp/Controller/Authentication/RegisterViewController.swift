@@ -48,9 +48,7 @@ class RegisterViewController:UIViewController{
         fbButton.delegate = self
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
-        if Auth.auth().currentUser == nil {
-            performSegue(withIdentifier: Utility.Segue.goWalk, sender: nil)
-        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

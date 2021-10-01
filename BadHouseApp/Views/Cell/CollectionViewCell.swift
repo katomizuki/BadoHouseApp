@@ -20,6 +20,8 @@ class CollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.chageCircle()
+        userImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        userImageView.layer.borderWidth = 2
     }
     
     func configure() {
@@ -49,5 +51,6 @@ class CollectionViewCell: UICollectionViewCell {
             self.userImageView.contentMode = .scaleAspectFill
         }
         self.teamImage.sd_setImage(with: url, completed: nil)
+        
     }
 }

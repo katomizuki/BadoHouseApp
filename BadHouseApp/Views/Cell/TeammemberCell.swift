@@ -29,8 +29,11 @@ class TeammemberCell:UICollectionViewCell {
         nameLabel.text = name
         nameLabel.font = UIFont.boldSystemFont(ofSize: 11)
         nameLabel.textColor = .darkGray
-        if urlString == "" { return }
-        let url = URL(string: urlString)
-        teamMemberImage.sd_setImage(with: url, completed: nil)
+        if urlString == "" {
+            teamMemberImage.image = UIImage(named: "noImages")
+        } else {
+            let url = URL(string: urlString)
+            teamMemberImage.sd_setImage(with: url, completed: nil)
+        }
     }
 }

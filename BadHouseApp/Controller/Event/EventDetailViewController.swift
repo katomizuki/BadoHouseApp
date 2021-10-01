@@ -5,6 +5,7 @@ import CoreLocation
 import Charts
 import Firebase
 import CDAlertView
+import FacebookCore
 
 class EventDetailViewController: UIViewController {
     
@@ -134,6 +135,9 @@ class EventDetailViewController: UIViewController {
         groupImageView.layer.cornerRadius = groupImageView.frame.width / 2
         groupImageView.layer.masksToBounds = true
         groupImageView.contentMode = .scaleAspectFill
+        groupImageView.layer.borderWidth = 2
+        groupImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+
         
         //Mark:textLabel
         titleLabel.text = "\(event?.eventTitle ?? "")"
@@ -163,8 +167,9 @@ class EventDetailViewController: UIViewController {
         
         //Mark:LeaderDataUpdate
         leaderImageView.chageCircle()
-        leaderImageView.backgroundColor = .blue
+        leaderImageView.backgroundColor = Utility.AppColor.OriginalBlue
         joinButton.backgroundColor = Utility.AppColor.OriginalBlue
+        
     }
     
     //Mark:HelperMethod
@@ -276,8 +281,12 @@ class EventDetailViewController: UIViewController {
         Firestore.getUserData(uid: userId) { user in
             self.you = user
             guard let urlString = user?.profileImageUrl else { return }
-            let url = URL(string: urlString)
-            self.leaderImageView.sd_setImage(with: url, completed: nil)
+            if urlString == "" {
+                self.leaderImageView.image = UIImage(named: "noImages")
+            } else {
+                let url = URL(string: urlString)
+                self.leaderImageView.sd_setImage(with: url, completed: nil)
+            }
             let name = user?.name
             self.leaderLabel.text = name
         }
@@ -325,11 +334,12 @@ class EventDetailViewController: UIViewController {
                     
                     Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId,leaderId: leaderId)
                     self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)
+                    LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
                 }
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
                 self.present(alert,animated: true,completion: nil)
-                LocalNotificationManager.setNotification(2, of: .seconds, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
+               
             } else  {
                 self.setupCDAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", action: "OK", alertType: CDAlertViewType.notification)
             }
