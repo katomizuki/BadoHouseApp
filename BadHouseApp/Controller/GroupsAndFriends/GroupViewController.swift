@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import NVActivityIndicatorView
+import FacebookCore
 
 class GroupViewController: UIViewController{
     
@@ -40,7 +41,7 @@ class GroupViewController: UIViewController{
             self.user = user
             let urlString = user.profileImageUrl
             if urlString == "" {
-                self.myImageView.image = UIImage(named: "noImages")
+                self.myImageView.image = UIImage(named: Utility.ImageName.noImages)
             } else {
                 let url = URL(string: urlString)
                 self.myImageView.sd_setImage(with: url, completed: nil)

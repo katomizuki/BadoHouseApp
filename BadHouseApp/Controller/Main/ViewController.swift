@@ -67,16 +67,13 @@ class ViewController: UIViewController, EmptyStateDelegate{
     
     //Mark: setupUI
     private func setupUI() {
-        timeButton.layer.cornerRadius = 15
-        timeButton.layer.masksToBounds = true
+        timeButton.toCorner(num: 15)
         navigationController?.isNavigationBarHidden = false
         let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
         imageView.anchor(width: 44, height: 44)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
     }
-    
-    
     
     //Mark: setupDelegate
     private func setupDelegate() {
@@ -148,9 +145,6 @@ class ViewController: UIViewController, EmptyStateDelegate{
         print(#function)
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
     }
-    
-    
-    
 }
 
 //Mark: UICollectionDelegate

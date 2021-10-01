@@ -67,11 +67,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     
     //Mark:FScalendarDelegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
-//        dateFormatter.calendar = Calendar(identifier: .gregorian)
-//        let dateString = dateFormatter.string(from: date)
-//        print(dateString,"🐶")
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString
     }

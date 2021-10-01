@@ -60,45 +60,40 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let image = UIImage(named: Utility.ImageName.double)
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        self.setupNavAccessory()
     }
     
-    private func tfupdate(tf:UITextField) {
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        tf.layer.borderWidth = 2
-        tf.layer.cornerRadius = 15
-        tf.layer.masksToBounds = true
+    private func tfupdate(view:UIView) {
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 2
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
     }
     
     //Mark setupUI
     private func setupUI() {
         TeamPickerView.layer.cornerRadius = 15
         TeamPickerView.layer.masksToBounds = true
-        detaiTextView.layer.cornerRadius = 15
-        detaiTextView.layer.borderColor = UIColor.lightGray.cgColor
-        detaiTextView.layer.masksToBounds = true
-        detaiTextView.layer.borderWidth = 2
+        makeEventButton.layer.cornerRadius = 15
+        makeEventButton.layer.masksToBounds = true
         
         levelUISlider.delegate = self
         levelUISlider.leftKnobColor = Utility.AppColor.OriginalBlue
         levelUISlider.rightKnobColor = Utility.AppColor.OriginalBlue
         levelUISlider.rangeSelectedColor = Utility.AppColor.OriginalBlue
         makeEventButton.setTitleColor(.white, for: UIControl.State.normal)
-        makeEventButton.layer.cornerRadius = 15
-        makeEventButton.layer.masksToBounds = true
         
-        tfupdate(tf: titleTextField)
-        tfupdate(tf: placeTextField)
-        tfupdate(tf: moneyTextField)
+        
+        tfupdate(view: titleTextField)
+        tfupdate(view: placeTextField)
+        tfupdate(view: moneyTextField)
+        tfupdate(view: detaiTextView)
         
         TeamPickerView.delegate = self
         TeamPickerView.dataSource = self
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
+        
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
@@ -184,7 +179,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         
         eventBinding.valideMakeDriver
             .drive { validAll in
-                print(validAll)
                 self.makeEventButton.isEnabled = validAll
                 self.makeEventButton.backgroundColor = validAll ?
                     Utility.AppColor.OriginalBlue:.darkGray
@@ -283,7 +277,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     @IBAction func gotoMap(_ sender: Any) {
         print(#function)
-        performSegue(withIdentifier: "gotoMap", sender: nil)
+        performSegue(withIdentifier: Utility.Segue.gotoMap, sender: nil)
     }
     
     //Mark: MapDelegateMethod

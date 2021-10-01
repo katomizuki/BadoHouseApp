@@ -47,7 +47,6 @@ class ContactCell:UITableViewCell {
             count += 1
         } else {
             button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
-            self.backgroundColor = .clear
             count += 1
         }
         linkFriend?.someMethodWantToCall(cell: self)

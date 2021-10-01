@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import FacebookCore
 
 class FriendsCell:UITableViewCell {
     
@@ -9,7 +10,7 @@ class FriendsCell:UITableViewCell {
     private var button:UIButton = {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        button.setImage(UIImage(named: "circle"), for: UIControl.State.normal)
+        button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
         return button
     }()
     
@@ -41,12 +42,11 @@ class FriendsCell:UITableViewCell {
     //Mark: selector
     @objc private func handleInvite() {
         if count % 2 == 0 {
-            button.setImage(UIImage(named: "check"), for: UIControl.State.normal)
+            button.setImage(UIImage(named: Utility.ImageName.check), for: UIControl.State.normal)
             self.backgroundColor = Utility.AppColor.OriginalBlue
             count += 1
         } else {
-            button.setImage(UIImage(named: "circle"), for: UIControl.State.normal)
-            self.backgroundColor = .clear
+            button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
             count += 1
         }
         linkInvite?.someMethodWantToCall(cell: self)

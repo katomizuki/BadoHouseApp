@@ -14,12 +14,7 @@ class LevelDetailViewController: UIViewController {
         levelLabel.text = selectedLevel
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
-       
-        backButton.layer.cornerRadius = 14
-        backButton.layer.masksToBounds = true
-        backButton.backgroundColor = Utility.AppColor.OriginalBlue
-        backButton.setTitleColor(.white, for: UIControl.State.normal)
-        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        backButton.updateBackbutton()
     }
    
     @IBAction func back(_ sender: Any) {

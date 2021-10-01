@@ -57,7 +57,6 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
         cell.link = self
         cell.nameLabel.text = ""
         cell.nameLabel.text = friendList[indexPath.row].name
-        cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         let urlString = friendList[indexPath.row].profileImageUrl
         if urlString == "" {
             cell.iv.image = UIImage(named: Utility.ImageName.noImages)

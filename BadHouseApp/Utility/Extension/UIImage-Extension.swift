@@ -9,6 +9,7 @@ extension UIImageView {
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 4
         self.clipsToBounds = true
+        self.contentMode = .scaleAspectFill
     }
 }
 

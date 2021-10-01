@@ -81,12 +81,44 @@ extension UIButton {
     }
     
     func updateButton(radius:CGFloat,backColor:UIColor,titleColor:UIColor,fontSize:CGFloat) {
-        layer.cornerRadius = radius
-        layer.masksToBounds = true
+        self.toCorner(num: radius)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
-      
+        layer.backgroundColor = backColor.cgColor
+        setTitleColor(titleColor, for: .normal)
+    }
+    
+    func tagButton() {
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
+        layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        layer.borderWidth = 2
+        setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+        backgroundColor = .white
+        titleLabel?.numberOfLines = 0
+    }
+    
+    func updateSavebutton() {
+       backgroundColor = Utility.AppColor.OriginalBlue
+        setTitleColor(.white, for: UIControl.State.normal)
+        layer.cornerRadius = 15
+        layer.masksToBounds = true
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    }
+    
+    func updateBackbutton() {
+        layer.cornerRadius = 14
+        layer.masksToBounds = true
+        backgroundColor = Utility.AppColor.OriginalBlue
+        setTitleColor(.white, for: UIControl.State.normal)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
   
     
    
+}
+
+extension UIView {
+    func toCorner(num:CGFloat) {
+        layer.cornerRadius = num
+        layer.masksToBounds = true
+    }
 }

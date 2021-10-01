@@ -57,11 +57,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let image = UIImage(named: "double")
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
-        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        self.setupNavAccessory()
         navigationItem.title = "サークル登録"
     }
     
@@ -70,8 +66,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         
         //Mark: updateUI
         groupImageView.isUserInteractionEnabled = true
-        groupImageView.layer.cornerRadius = 50
-        groupImageView.layer.masksToBounds = true
+        groupImageView.toCorner(num: 50)
         groupImageView.contentMode = .scaleAspectFill
         registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         

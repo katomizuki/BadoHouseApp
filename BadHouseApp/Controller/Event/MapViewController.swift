@@ -36,19 +36,13 @@ class MapViewController: UIViewController{
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.backgroundColor = Utility.AppColor.OriginalBlue
-        saveButton.setTitleColor(.white, for: UIControl.State.normal)
-        saveButton.layer.cornerRadius = 15
-        saveButton.layer.masksToBounds = true
-        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        saveButton.updateSaveButton()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
              mapView.addGestureRecognizer(gesture)
              mapView.setRegion(defaultRegion, animated: false)
         textField.delegate = self
-        searchButton.layer.masksToBounds = true
-        searchButton.layer.cornerRadius = 10
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 10
+        searchButton.toCorner(num: 10)
+        textField.toCorner(num: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {

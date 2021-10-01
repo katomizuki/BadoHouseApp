@@ -589,7 +589,6 @@ extension Storage {
                         return
                     }
                     guard let urlString = url?.absoluteString else { return }
-                    print(urlString)
                     print("動画保存成功!")
                     let videoId = Ref.VideoRef.document().documentID
                     let dic = ["id":videoId,"keyWord":keyWord,"senderId":senderId,"videoUrl":urlString] as [String:Any]

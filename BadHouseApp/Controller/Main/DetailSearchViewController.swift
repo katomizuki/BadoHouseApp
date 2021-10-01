@@ -133,8 +133,7 @@ class DetailSearchViewController: UIViewController{
     private func helperTextfield(textfield:UITextField) {
         textfield.layer.borderColor = UIColor.lightGray.cgColor
         textfield.layer.borderWidth = 2
-        textfield.layer.cornerRadius = 15
-        textfield.layer.masksToBounds = true
+        textfield.toCorner(num: 15)
     }
 }
 

@@ -32,7 +32,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var pieView: PieChartView!
     @IBOutlet weak var barView: BarChartView!
     private var genderArray = [Int]()
-    private var genderValue = ["男性","女性","その他"]
+    private var genderValue = Utility.Data.genderArray
     private var rawData:[Int] = []
     private var fetchData = FetchFirestoreData()
     private var teamArray = [User]()
@@ -88,9 +88,7 @@ class EventDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let image = UIImage(named: "double")
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.setupNavAccessory()
     }
     
     //Mark:SetupMethod
@@ -132,10 +130,8 @@ class EventDetailViewController: UIViewController {
         guard let groupUrlString = event?.teamImageUrl else { return }
         let groupUrl = URL(string: groupUrlString)
         groupImageView.sd_setImage(with: groupUrl, completed: nil)
-        groupImageView.layer.cornerRadius = groupImageView.frame.width / 2
-        groupImageView.layer.masksToBounds = true
-        groupImageView.contentMode = .scaleAspectFill
-        groupImageView.layer.borderWidth = 2
+        
+        groupImageView.chageCircle()
         groupImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
 
         
@@ -240,12 +236,7 @@ class EventDetailViewController: UIViewController {
             for i in 0..<tags.count {
                 let tag = tags[i].tag
                 let button = UIButton(type: .system).cretaTagButton(text: " \(tag) ")
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
-                button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-                button.layer.borderWidth = 2
-                button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-                button.backgroundColor = .white
-                button.titleLabel?.numberOfLines = 0
+                button.tagButton()
                 if i == 5 { return }
                 self.stackView.addArrangedSubview(button)
             }

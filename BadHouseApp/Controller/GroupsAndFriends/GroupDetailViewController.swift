@@ -30,7 +30,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     @IBOutlet weak var BarChartView: BarChartView!
     private let teamMemberCellId = Utility.CellId.MemberCellId
     private var genderArray = [Int]()
-    private var genderValue = ["男性","女性","その他"]
+    private var genderValue = Utility.Data.genderArray
     private var IndicatorView:NVActivityIndicatorView!
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton!
@@ -52,12 +52,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let image = UIImage(named: Utility.ImageName.double)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        self.setupNavAccessory()
         navigationItem.title = team?.teamName
     }
         
@@ -102,14 +97,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     
     //Mark: NVActivityIndicatorView
     private func setupIndicator() {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 100,
-                           height: 100)
-        IndicatorView = NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+        IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
     }

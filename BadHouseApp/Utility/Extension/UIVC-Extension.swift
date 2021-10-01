@@ -58,21 +58,6 @@ extension UIViewController {
         }
     }
     
-    func setupNav(title:String) {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
-        appearance.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationItem.title = title
-        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
-    }
-    
     func formatterUtil(date:Date)->String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
@@ -97,6 +82,16 @@ extension UIViewController {
         }
         return message
     }
+    
+    func setupNavAccessory() {
+        let image = UIImage(named: Utility.ImageName.double)
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+    }
+    
+    
 }
 
 
