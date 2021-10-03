@@ -48,6 +48,17 @@ class RegisterViewController:UIViewController{
         fbButton.delegate = self
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
+        emailTextField.returnKeyType = .next
+        emailTextField.keyboardType = .emailAddress
+        nameTextField.keyboardType = .default
+        nameTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .next
+        emailTextField.tag = 1
+        nameTextField.tag = 0
+        passwordTextField.tag = 2
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
 
     }
     
@@ -286,3 +297,16 @@ extension RegisterViewController:LoginButtonDelegate {
     }
 }
 
+extension RegisterViewController:UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let tag = textField.tag
+        if tag == 0 {
+            emailTextField.becomeFirstResponder()
+        } else if tag == 1 {
+            passwordTextField.becomeFirstResponder()
+        }
+        return true
+    }
+}

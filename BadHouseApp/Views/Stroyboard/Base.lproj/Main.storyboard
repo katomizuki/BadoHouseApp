@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fa8-s4-oao">
-    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -361,27 +361,35 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title=" " id="KpN-VH-iiX">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="6dC-b6-eHd">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="3mY-4R-d4k">
-                                <rect key="frame" x="16" y="0.0" width="157.5" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <leftBarButtonItems>
+                            <barButtonItem style="plain" id="FcX-xU-BdT">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="cZj-KP-oUe">
+                                    <rect key="frame" x="16" y="0.0" width="88" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="チーム登録">
+                                        <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoMakeGroup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Xq-VZ-kaG"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem title="チーム検索" id="wq4-4A-eHZ">
                                 <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="サークル登録" image="person.3.sequence.fill" catalog="system">
-                                    <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
                                 <connections>
-                                    <action selector="gotoMakeGroup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="euT-7O-TI2"/>
+                                    <segue destination="r0h-3b-jR1" kind="show" id="hde-xK-k67"/>
                                 </connections>
-                            </button>
-                        </barButtonItem>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="Iuc-oV-TUo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QBM-3w-HCi">
                                 <rect key="frame" x="245" y="3" width="114" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="友だち追加" image="person.crop.circle.badge.plus.fill" catalog="system">
+                                <state key="normal" title="友達追加" image="person.crop.circle.badge.plus.fill" catalog="system">
                                     <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -404,7 +412,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2181.5999999999999" y="902.69865067466276"/>
+            <point key="canvasLocation" x="1964" y="905"/>
+        </scene>
+        <!--Group Search View Controller-->
+        <scene sceneID="dUK-GN-mLr">
+            <objects>
+                <viewController id="r0h-3b-jR1" customClass="GroupSearchViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Gl-Q4-JYA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gBo-SM-WSm">
+                                <rect key="frame" x="30" y="54" width="315" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-JP-zQ4">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PTK-Fb-HQj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gBo-SM-WSm" firstAttribute="trailing" secondItem="PTK-Fb-HQj" secondAttribute="trailing" constant="-30" id="3rd-Q8-yqG"/>
+                            <constraint firstItem="gBo-SM-WSm" firstAttribute="leading" secondItem="PTK-Fb-HQj" secondAttribute="leading" constant="30" id="4S2-Dg-GSE"/>
+                            <constraint firstItem="QbO-JP-zQ4" firstAttribute="top" secondItem="gBo-SM-WSm" secondAttribute="bottom" constant="15" id="DbA-EP-dKS"/>
+                            <constraint firstItem="QbO-JP-zQ4" firstAttribute="trailing" secondItem="PTK-Fb-HQj" secondAttribute="trailing" id="Hgq-fY-Eb4"/>
+                            <constraint firstAttribute="bottom" secondItem="QbO-JP-zQ4" secondAttribute="bottom" id="OH9-Qz-KQW"/>
+                            <constraint firstItem="QbO-JP-zQ4" firstAttribute="leading" secondItem="PTK-Fb-HQj" secondAttribute="leading" id="gXb-4f-R4j"/>
+                            <constraint firstItem="gBo-SM-WSm" firstAttribute="top" secondItem="PTK-Fb-HQj" secondAttribute="top" constant="10" id="yQC-4q-ApG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="R3X-75-ZNj"/>
+                    <connections>
+                        <outlet property="searchBar" destination="gBo-SM-WSm" id="B0p-xI-QyK"/>
+                        <outlet property="tableView" destination="QbO-JP-zQ4" id="1DU-Z0-uq3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0h-dP-CSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="886"/>
         </scene>
         <!--Daughter View Controller-->
         <scene sceneID="C3C-S7-0sL">
@@ -1854,11 +1901,11 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="検索" image="magnifyingglass" catalog="system" id="tSz-g6-eRh">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
-                                <rect key="frame" x="297.5" y="10" width="61.5" height="24"/>
+                                <rect key="frame" x="256" y="10" width="103" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="検索" image="magnifyingglass" catalog="system">
+                                <state key="normal" title="練習検索" image="magnifyingglass" catalog="system">
                                     <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -2701,7 +2748,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3333.5999999999999" y="129.08545727136433"/>
+            <point key="canvasLocation" x="3866" y="122"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="GKo-rt-F4f">
@@ -2928,7 +2975,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3306" y="980"/>
+            <point key="canvasLocation" x="3486" y="904"/>
         </scene>
         <!--ホーム-->
         <scene sceneID="3Mi-Hy-YhS">
@@ -3231,8 +3278,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VQy-IJ-T3o"/>
-        <segue reference="t41-KJ-vjm"/>
-        <segue reference="FQ5-8I-bax"/>
+        <segue reference="TJv-Zf-4Gw"/>
+        <segue reference="fuc-E9-X1F"/>
         <segue reference="3rr-Jc-WrJ"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3241,7 +3288,6 @@
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="noImages" width="340" height="340"/>
-        <image name="person.3.sequence.fill" catalog="system" width="128" height="58"/>
         <image name="person.badge.plus" catalog="system" width="128" height="124"/>
         <image name="person.crop.circle.badge.plus.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>

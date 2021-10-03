@@ -48,6 +48,9 @@ protocol GetChatListDelegate {
 protocol GetVideoDelegate {
     func getVideo(videoArray:[VideoModel])
 }
+protocol GetGroupDelegate {
+    func getGroup(groupArray:[TeamModel])
+}
 
 class FetchFirestoreData {
     
@@ -66,6 +69,7 @@ class FetchFirestoreData {
     var friendDelegate:GetFriendDelegate?
     var chatListDelegate:GetChatListDelegate?
     var videoDelegate:GetVideoDelegate?
+    var groupSearchDelegate:GetGroupDelegate?
     
     func friendData(idArray:[String]) {
         var array = [User]()
@@ -542,6 +546,26 @@ class FetchFirestoreData {
                 videoArray = Array(videoArray[0..<3])
                 self.videoDelegate?.getVideo(videoArray:videoArray)
             }
+        }
+    }
+    func searchGroup(text:String) {
+        var groupArray = [TeamModel]()
+        Ref.TeamRef.getDocuments { Snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = Snapshot?.documents else { return }
+            data.forEach { document in
+                let safeData = document.data()
+                let teamName = safeData["teamName"] as? String ?? ""
+                let teamPlace = safeData["teamPlace"] as? String ?? ""
+                if teamName.contains(text) || teamPlace.contains(text) {
+                    let team = TeamModel(dic: safeData)
+                    groupArray.append(team)
+                }
+            }
+            self.groupSearchDelegate?.getGroup(groupArray: groupArray)
         }
     }
 }

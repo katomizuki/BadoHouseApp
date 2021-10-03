@@ -39,6 +39,10 @@ class LoginViewController:UIViewController {
         fbButton.delegate = self
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
+        emailTextField.tag = 0
+        passwordTextField.tag = 1
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -206,6 +210,15 @@ extension LoginViewController: LoginButtonDelegate {
             }
         }
     }
+}
+
+extension LoginViewController:UITextFieldDelegate {
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField.tag == 0 {
+            passwordTextField.becomeFirstResponder()
+        }
+        return true
+    }
 }

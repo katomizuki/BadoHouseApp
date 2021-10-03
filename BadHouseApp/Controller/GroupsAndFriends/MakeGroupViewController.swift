@@ -15,9 +15,9 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     var me:User?
     @IBOutlet weak var groupImageView: UIImageView!
     private let nameTextField = RegisterTextField(placeholder: "サークル名(必須)")
-    private let placeTextField = RegisterTextField(placeholder: "主な活動場所 〇〇スポーツセンター,不定等")
+    private let placeTextField = RegisterTextField(placeholder: "主な活動場所 〇〇県")
     private let timeTextField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等")
-    private let levelTextField = RegisterTextField(placeholder: "会費 〇〇円/月 シャトル代により変動等")
+    private let levelTextField = RegisterTextField(placeholder: "会費 〇〇円/月")
     private let plusTextField = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意)")
     private let tagLabel = ProfileLabel(title: "特徴タグ")
     private let registerButton:UIButton = RegisterButton(text: "新規登録")
@@ -36,6 +36,10 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     @IBOutlet weak var scrollView: UIView!
     private var tagArray = [String]()
     private let fetchData = FetchFirestoreData()
+    private let moneyPickerView = UIPickerView()
+    private let placePickerView = UIPickerView()
+    private let placeArray = Utility.Data.placeArray
+    private let moneyArray = Utility.Data.moneyArray
  
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -43,7 +47,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         setupLayout()
         setupBinding()
         setupData()
-        
+        setupPickerView()
     }
     
     private func setupData() {
@@ -61,8 +65,38 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         navigationItem.title = "サークル登録"
     }
     
+    private func setupPickerView() {
+        setPicker(pickerView: moneyPickerView, textField: levelTextField)
+        setPicker(pickerView: placePickerView, textField: placeTextField)
+    }
+    
+    private func setPicker(pickerView:UIPickerView,textField:UITextField) {
+        pickerView.delegate = self
+        textField.inputView = pickerView
+        let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
+        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
+        toolBar.setItems([doneButtonItem], animated: true)
+        textField.inputAccessoryView = toolBar
+    }
+    @objc func donePicker() {
+        placeTextField.endEditing(true)
+        levelTextField.endEditing(true)
+    }
+    
     //Mark:setupLayout
     private func setupLayout() {
+        nameTextField.tag = 0
+        placeTextField.tag = 1
+        timeTextField.tag = 2
+        levelTextField.tag = 3
+        plusTextField.tag = 4
+        nameTextField.delegate = self
+        placeTextField.delegate = self
+        timeTextField.delegate = self
+        levelTextField.delegate = self
+        plusTextField.delegate = self
+        
         
         //Mark: updateUI
         groupImageView.isUserInteractionEnabled = true
@@ -76,22 +110,10 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         let buttonStackView2 = UIStackView(arrangedSubviews: [buttonTag5,buttonTag6,buttonTag7,buttonTag8])
         let buttonStackView3 = UIStackView(arrangedSubviews: [buttonTag9,buttonTag10,buttonTag11,buttonTag11,buttonTag12])
         
-        //Mark: updateStackView
-        buttonStackView.axis = .horizontal
-        buttonStackView.spacing = 5
-        buttonStackView.distribution = .fillEqually
-        
-        buttonStackView2.axis = .horizontal
-        buttonStackView2.spacing = 5
-        buttonStackView2.distribution = .fillEqually
-        
-        buttonStackView3.axis = .horizontal
-        buttonStackView3.spacing = 5
-        buttonStackView3.distribution = .fillEqually
-        
-        basicStackView.axis = .vertical
-        basicStackView.distribution = .fillEqually
-        basicStackView.spacing = 20
+        helper(stackview: basicStackView,bool:true)
+        helper(stackview: buttonStackView,bool:false)
+        helper(stackview: buttonStackView2,bool:false)
+        helper(stackview: buttonStackView3,bool:false)
         
         //Mark:addSubview
         scrollView.addSubview(basicStackView)
@@ -132,6 +154,17 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonTag10.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag11.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag12.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        levelTextField.endEditing(true)
+        placeTextField.endEditing(true)
+    }
+    
+    private func helper(stackview:UIStackView,bool:Bool) {
+        stackview.axis = bool == true ? .vertical:.horizontal
+        stackview.distribution = .fillEqually
+        stackview.spacing = 20
     }
     
     //Mark:selector
@@ -286,7 +319,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
 
 
 //Mark UIPickerDelegate,UINavigationControllerDelegate
-extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDelegate{
+extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDelegate,UIPickerViewDataSource {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print(#function)
@@ -295,6 +328,35 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == self.placePickerView {
+            return placeArray.count
+        } else {
+            return moneyArray.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == self.placePickerView {
+            return placeArray[row]
+        } else {
+            return moneyArray[row]
+        }
+      
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == self.placePickerView {
+            placeTextField.text = placeArray[row]
+        } else {
+            levelTextField.text = moneyArray[row]
+        }
+    }
 }
 
 extension MakeGroupViewController:GetFriendDelegate {
@@ -302,3 +364,21 @@ extension MakeGroupViewController:GetFriendDelegate {
         self.friends = friendArray
     }
 }
+
+extension MakeGroupViewController:UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField.tag == 0 {
+            placeTextField.becomeFirstResponder()
+        } else if textField.tag == 1 {
+            timeTextField.becomeFirstResponder()
+        } else if textField.tag == 2 {
+            levelTextField.becomeFirstResponder()
+        } else if textField.tag == 3 {
+            plusTextField.becomeFirstResponder()
+        }
+        return true
+    }
+}
+
