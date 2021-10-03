@@ -95,10 +95,13 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId, for: indexPath) as! GroupCell
         cell.label.text = notificationArray[indexPath.section][indexPath.row].name
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl
-        let url = URL(string: urlString)
-        cell.cellImagevView.sd_setImage(with: url, completed: nil)
-        cell.cellImagevView.layer.cornerRadius = 30
-        cell.cellImagevView.layer.masksToBounds = true
+        if urlString == "" {
+            cell.cellImagevView.image = UIImage(named: Utility.ImageName.noImages)
+        } else {
+            let url = URL(string: urlString)
+            cell.cellImagevView.sd_setImage(with: url, completed: nil)
+            cell.cellImagevView.toCorner(num: 30)
+        }
         return cell
     }
     
