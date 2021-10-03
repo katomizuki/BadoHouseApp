@@ -1735,7 +1735,7 @@
             </objects>
             <point key="canvasLocation" x="1270" y="2333"/>
         </scene>
-        <!--Tornament Detail Controller-->
+        <!-- -->
         <scene sceneID="3en-Aq-l3V">
             <objects>
                 <viewController storyboardIdentifier="TornamentDetailVC" id="riB-ot-SJU" customClass="TornamentDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1745,7 +1745,7 @@
                         <viewLayoutGuide key="safeArea" id="VaA-x5-w7S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="grd-Aq-Ru8"/>
+                    <navigationItem key="navigationItem" title=" " id="grd-Aq-Ru8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yeg-4G-J4U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1890,7 +1890,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cz4-bX-KXc">
                                 <rect key="frame" x="16" y="10" width="100" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="練習作成" image="plus" catalog="system">
                                     <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1907,7 +1907,7 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
                                     <rect key="frame" x="256" y="10" width="103" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="練習検索" image="magnifyingglass" catalog="system">
                                         <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1920,11 +1920,11 @@
                             </barButtonItem>
                             <barButtonItem style="plain" id="ToY-wG-hcO">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="s2d-fK-9dh">
-                                    <rect key="frame" x="0.0" y="115" width="67" height="31"/>
+                                    <rect key="frame" x="129.5" y="5" width="118.5" height="34.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="大会検索"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system" title="大会検索"/>
                                     <connections>
                                         <segue destination="v0Z-aY-vn4" kind="presentation" modalPresentationStyle="fullScreen" id="Ekv-3i-M8N"/>
                                     </connections>
@@ -3292,7 +3292,7 @@
             </objects>
             <point key="canvasLocation" x="1840.8" y="-618.44077961019491"/>
         </scene>
-        <!--Tornament Controller-->
+        <!-- -->
         <scene sceneID="koT-5R-V9V">
             <objects>
                 <viewController id="2pZ-hL-4wl" customClass="TornamentController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -3327,21 +3327,8 @@
                             <constraint firstItem="rGl-SA-fqh" firstAttribute="trailing" secondItem="awu-3G-7sm" secondAttribute="trailing" id="tjg-Iy-5Dv"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" id="InE-EO-wRN">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="GlW-Hg-us6">
-                                <rect key="frame" x="16" y="10" width="343" height="34.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="もどる"/>
-                            </button>
-                            <connections>
-                                <action selector="back:" destination="2pZ-hL-4wl" id="8qP-yb-ERc"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="wf6-th-aPU">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title=" " id="wf6-th-aPU">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="v5r-XR-QEE">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="HmJ-OO-1l0">
                                 <rect key="frame" x="16" y="2" width="76" height="40"/>

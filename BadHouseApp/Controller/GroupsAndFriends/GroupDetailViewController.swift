@@ -169,6 +169,9 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         friendImageView.sd_setImage(with: url, completed: nil)
         friendImageView.contentMode = .scaleAspectFill
         friendImageView.chageCircle()
+        friendImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        friendImageView.layer.borderWidth = 2
+        friendImageView.layer.masksToBounds = true
         
         //Mark setLabel
         teamNameLabel.text = team?.teamName

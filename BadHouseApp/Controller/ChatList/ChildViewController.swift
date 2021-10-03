@@ -107,8 +107,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         cell.cellImagevView.sd_setImage(with: url, completed: nil)
-        cell.cellImagevView.layer.cornerRadius = 30
-        cell.cellImagevView.layer.masksToBounds = true
+        cell.cellImagevView.toCorner(num: 30)
         
         return cell
     }

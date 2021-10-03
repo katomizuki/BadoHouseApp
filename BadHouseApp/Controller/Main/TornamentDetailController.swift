@@ -10,7 +10,7 @@ class TornamentDetailController: UIViewController {
     private let startDayLabel = ProfileLabel(title: "応募開始日　20〇〇年〇月〇日",num: 14)
     private let deadLineLabel = ProfileLabel(title: "締め切り日　20〇〇年〇月〇日",num: 14)
     private let holdDayLabel = ProfileLabel(title: "開催日　20〇〇年〇月〇〇日", num: 14)
-    private let moneyLabel = ProfileLabel(title: "シングルス〇〇円,ダブルス〇〇円")
+    private let moneyLabel = ProfileLabel(title: "     シングルス〇〇円,ダブルス〇〇円")
     private let placeLabel = ProfileLabel(title: "開催場所　〇〇スポーツセンター", num: 14)
     private let addressLabel = ProfileLabel(title: "〇〇〇-〇〇〇〇 〇〇県〇〇市〇丁目〇番",num:14)
     private let inquiryLabel = ProfileLabel(title: "受付担当　加藤瑞樹,katobad.0405@gmail.com", num: 14)
@@ -20,16 +20,18 @@ class TornamentDetailController: UIViewController {
         return tv
     }()
     private let competitionMethodLabel = ProfileLabel(title: "予選トーナメント形式", num: 14)
-    private let urlLabel = ProfileLabel(title: "https://www.facebook.com/", num: 14)
+    private let urlLabel = ProfileLabel(title: "大会URL　https://www.facebook.com/", num: 14)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
+        
     }
     
     private func setupLayout() {

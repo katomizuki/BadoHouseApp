@@ -68,11 +68,6 @@ class ViewController: UIViewController, EmptyStateDelegate{
     //Mark: setupUI
     private func setupUI() {
         timeButton.toCorner(num: 15)
-        navigationController?.isNavigationBarHidden = false
-        let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
-        imageView.anchor(width: 44, height: 44)
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
     }
     
     //Mark: setupDelegate
