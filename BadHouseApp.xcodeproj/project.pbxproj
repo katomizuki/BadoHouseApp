@@ -25,9 +25,9 @@
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */; };
 		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
-		D38807D426FF216F00D3AB7F /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D326FF216E00D3AB7F /* WalkThroughController.swift */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D3977167270959A70025BE19 /* TornamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentController.swift */; };
+		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
 		D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* InviteViewController.swift */; };
 		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
 		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
@@ -117,9 +117,9 @@
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
-		D38807D326FF216E00D3AB7F /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D3977166270959A70025BE19 /* TornamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentController.swift; sourceTree = "<group>"; };
+		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -385,7 +385,6 @@
 			children = (
 				D3BDB54026E0546000C53780 /* RegisterViewController.swift */,
 				D3BDB54326E0547300C53780 /* LoginViewController.swift */,
-				D38807D326FF216E00D3AB7F /* WalkThroughController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -431,6 +430,7 @@
 				D3BDB52B26E0525100C53780 /* ViewController.swift */,
 				D3AC05E826ED763000F40A51 /* CalendarViewController.swift */,
 				D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */,
+				D3977168270961E40025BE19 /* TornamentDetailController.swift */,
 				D353D8D926F05B9600221B7D /* ChatViewController.swift */,
 				D3977166270959A70025BE19 /* TornamentController.swift */,
 			);
@@ -682,6 +682,7 @@
 				D34852B426FD3E160027592A /* Array-Extension.swift in Sources */,
 				D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
+				D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */,
 				D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
@@ -732,7 +733,6 @@
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */,
-				D38807D426FF216F00D3AB7F /* WalkThroughController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */,
 				D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */,

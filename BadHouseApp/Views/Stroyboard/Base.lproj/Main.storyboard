@@ -1045,7 +1045,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6156" y="855.9220389805098"/>
+            <point key="canvasLocation" x="5145" y="915"/>
         </scene>
         <!-- -->
         <scene sceneID="0rZ-Fr-9a2">
@@ -1376,7 +1376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1894" y="2301"/>
+            <point key="canvasLocation" x="2031" y="2333"/>
         </scene>
         <!--  -->
         <scene sceneID="0Bs-Vl-gkg">
@@ -1422,7 +1422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="it4-Xs-XkA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3666" y="2289"/>
+            <point key="canvasLocation" x="2737" y="2333"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Xt1-Xx-BKm">
@@ -1733,22 +1733,23 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-370" y="2445"/>
+            <point key="canvasLocation" x="1270" y="2333"/>
         </scene>
-        <!--Walk Through Controller-->
-        <scene sceneID="EGw-Lz-KMH">
+        <!--Tornament Detail Controller-->
+        <scene sceneID="3en-Aq-l3V">
             <objects>
-                <viewController id="vwU-rC-59I" customClass="WalkThroughController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Wc-QK-drm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                <viewController storyboardIdentifier="TornamentDetailVC" id="riB-ot-SJU" customClass="TornamentDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iih-Rh-DmB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="BiF-dp-Bmb"/>
+                        <viewLayoutGuide key="safeArea" id="VaA-x5-w7S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="grd-Aq-Ru8"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eLb-JB-c70" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yeg-4G-J4U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="-618"/>
+            <point key="canvasLocation" x="385" y="-618"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="oJ5-bP-vjO">
@@ -1763,7 +1764,6 @@
                     <navigationItem key="navigationItem" id="olh-bN-5Mo"/>
                     <connections>
                         <segue destination="D3i-BJ-AJd" kind="show" identifier="goto" id="cJJ-2i-I9h"/>
-                        <segue destination="vwU-rC-59I" kind="presentation" identifier="goWalk" modalPresentationStyle="automatic" id="xEv-mD-qkW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gjh-3h-dBb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1807,7 +1807,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFh-4E-prw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="174"/>
+            <point key="canvasLocation" x="1108" y="130"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Msd-gQ-eet">
@@ -1902,21 +1902,35 @@
                             </button>
                             <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="検索" image="magnifyingglass" catalog="system" id="tSz-g6-eRh">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
-                                <rect key="frame" x="256" y="10" width="103" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="検索" image="magnifyingglass" catalog="system" id="tSz-g6-eRh">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
+                                    <rect key="frame" x="256" y="10" width="103" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="練習検索" image="magnifyingglass" catalog="system">
+                                        <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="cbu-Zi-uCJ" kind="presentation" identifier="gotoDetail" id="K5j-pk-Qub"/>
+                                    </connections>
+                                </button>
                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="練習検索" image="magnifyingglass" catalog="system">
-                                    <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cbu-Zi-uCJ" kind="presentation" identifier="gotoDetail" id="K5j-pk-Qub"/>
-                                </connections>
-                            </button>
-                            <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </barButtonItem>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="ToY-wG-hcO">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="s2d-fK-9dh">
+                                    <rect key="frame" x="0.0" y="115" width="67" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="大会検索"/>
+                                    <connections>
+                                        <segue destination="v0Z-aY-vn4" kind="presentation" modalPresentationStyle="fullScreen" id="Ekv-3i-M8N"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Uu9-Yh-lgT" id="86H-wa-3hl"/>
@@ -2751,7 +2765,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3866" y="122"/>
+            <point key="canvasLocation" x="4527" y="129"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="GKo-rt-F4f">
@@ -2827,7 +2841,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDM-oR-grn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4205.6000000000004" y="129.98500749625188"/>
+            <point key="canvasLocation" x="5144.8000000000002" y="129.98500749625188"/>
         </scene>
         <!--Tag View Controller-->
         <scene sceneID="YMI-YK-I2k">
@@ -2906,7 +2920,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hii-cE-Tu7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4946" y="129"/>
+            <point key="canvasLocation" x="5884" y="128.18590704647679"/>
         </scene>
         <!--Make Group View Controller-->
         <scene sceneID="0Y1-Ax-d7Z">
@@ -3029,7 +3043,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pgh-Cm-qjt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4145" y="903"/>
+            <point key="canvasLocation" x="4526" y="914"/>
         </scene>
         <!--タイムライン-->
         <scene sceneID="y9E-9F-eh8">
@@ -3278,9 +3292,100 @@
             </objects>
             <point key="canvasLocation" x="1840.8" y="-618.44077961019491"/>
         </scene>
+        <!--Tornament Controller-->
+        <scene sceneID="koT-5R-V9V">
+            <objects>
+                <viewController id="2pZ-hL-4wl" customClass="TornamentController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ld9-cd-bnS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rGl-SA-fqh">
+                                <rect key="frame" x="0.0" y="164" width="375" height="454"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="現在,こちらの機能は準備中となっております。　　　大変申し訳ございませんが,もうしばらくお待ち下さい。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ubu-qA-hog">
+                                <rect key="frame" x="20" y="60" width="335" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="JRx-MI-WRa"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="awu-3G-7sm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ubu-qA-hog" firstAttribute="trailing" secondItem="awu-3G-7sm" secondAttribute="trailing" constant="-20" id="FyH-se-1es"/>
+                            <constraint firstItem="rGl-SA-fqh" firstAttribute="leading" secondItem="awu-3G-7sm" secondAttribute="leading" id="OKM-cr-uRI"/>
+                            <constraint firstItem="rGl-SA-fqh" firstAttribute="top" secondItem="awu-3G-7sm" secondAttribute="top" constant="120" id="Pdb-7t-pPd"/>
+                            <constraint firstItem="Ubu-qA-hog" firstAttribute="leading" secondItem="awu-3G-7sm" secondAttribute="leading" constant="20" id="bcI-OZ-81U"/>
+                            <constraint firstItem="Ubu-qA-hog" firstAttribute="top" secondItem="ld9-cd-bnS" secondAttribute="top" constant="60" id="dMD-0r-B0l"/>
+                            <constraint firstItem="rGl-SA-fqh" firstAttribute="bottom" secondItem="awu-3G-7sm" secondAttribute="bottom" id="krM-mh-jhv"/>
+                            <constraint firstItem="rGl-SA-fqh" firstAttribute="trailing" secondItem="awu-3G-7sm" secondAttribute="trailing" id="tjg-Iy-5Dv"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" id="InE-EO-wRN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="GlW-Hg-us6">
+                                <rect key="frame" x="16" y="10" width="343" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="もどる"/>
+                            </button>
+                            <connections>
+                                <action selector="back:" destination="2pZ-hL-4wl" id="8qP-yb-ERc"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="wf6-th-aPU">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="v5r-XR-QEE">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="HmJ-OO-1l0">
+                                <rect key="frame" x="16" y="2" width="76" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="もどる"/>
+                                <connections>
+                                    <action selector="back:" destination="2pZ-hL-4wl" eventType="touchUpInside" id="raY-gB-hpc"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="rGl-SA-fqh" id="cG7-Mu-5dH"/>
+                        <segue destination="riB-ot-SJU" kind="show" id="ayP-vC-B4S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NNA-SL-0uq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3885.5999999999999" y="127.28635682158921"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AZF-SN-Xl9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v0Z-aY-vn4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aRR-Nt-eXS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2pZ-hL-4wl" kind="relationship" relationship="rootViewController" id="8Xy-om-IbQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lOg-zg-0j9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3200.8000000000002" y="121.88905547226388"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3Ng-cG-BBs"/>
+        <segue reference="VQy-IJ-T3o"/>
         <segue reference="t41-KJ-vjm"/>
         <segue reference="9Ym-mF-wrv"/>
         <segue reference="cdz-Ff-0Nv"/>
