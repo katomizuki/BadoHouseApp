@@ -1,7 +1,7 @@
 
 import UIKit
 
-class GroupSearchResultController: UIViewController {
+class TornamentController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

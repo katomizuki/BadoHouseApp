@@ -91,6 +91,9 @@ class GroupViewController: UIViewController{
         if segue.identifier ==  Utility.Segue.userProfile {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
+        } else if segue.identifier == "gotoSearch" {
+            let vc = segue.destination as! GroupSearchViewController
+            vc.friends = self.friendArray
         }
     }
     

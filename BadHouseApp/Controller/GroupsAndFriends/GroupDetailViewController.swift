@@ -34,7 +34,11 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private var IndicatorView:NVActivityIndicatorView!
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton!
-
+    var flag = false
+    
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var inviteButton: UIBarButtonItem!
+    
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -48,6 +52,12 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setUpTeamStatus()
         setUpTeamPlayer()
         setGraph()
+        withdrawButton.isHidden = flag
+        chatButton.isHidden = flag
+        if flag == true {
+            navigationItem.setRightBarButton(nil, animated: true)
+        }
+        friendImageView.isUserInteractionEnabled = !flag
     }
     
     override func viewWillAppear(_ animated: Bool) {

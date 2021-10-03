@@ -380,7 +380,7 @@
                             <barButtonItem title="チーム検索" id="wq4-4A-eHZ">
                                 <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
-                                    <segue destination="r0h-3b-jR1" kind="show" id="hde-xK-k67"/>
+                                    <segue destination="r0h-3b-jR1" kind="show" identifier="gotoSearch" id="hde-xK-k67"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -447,11 +447,12 @@
                     <connections>
                         <outlet property="searchBar" destination="gBo-SM-WSm" id="B0p-xI-QyK"/>
                         <outlet property="tableView" destination="QbO-JP-zQ4" id="1DU-Z0-uq3"/>
+                        <segue destination="cza-8i-jCI" kind="show" id="Llp-6l-iti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0h-dP-CSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2658" y="886"/>
+            <point key="canvasLocation" x="2702" y="904"/>
         </scene>
         <!--Daughter View Controller-->
         <scene sceneID="C3C-S7-0sL">
@@ -1318,8 +1319,10 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="BarChartView" destination="CKw-26-OHR" id="CU0-I1-dCm"/>
+                        <outlet property="chatButton" destination="NNo-Yt-j9F" id="xqC-5q-zJt"/>
                         <outlet property="collectionView" destination="LBf-E6-p5h" id="Euz-H1-8ze"/>
                         <outlet property="friendImageView" destination="mai-dU-KYF" id="VeH-ch-XlL"/>
+                        <outlet property="inviteButton" destination="cMd-aM-Peq" id="EJZ-fN-XRD"/>
                         <outlet property="pieView" destination="cqq-Xm-Q8x" id="d7s-Cl-TJu"/>
                         <outlet property="placeLabel" destination="Ms5-wL-dMn" id="zzQ-i0-Uc8"/>
                         <outlet property="placeStackView" destination="Bsg-xV-7Pp" id="xKo-cD-FZB"/>
@@ -1342,7 +1345,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2821.5999999999999" y="2300.5997001499254"/>
+            <point key="canvasLocation" x="2738" y="1617"/>
         </scene>
         <!--Group Chat View Controller-->
         <scene sceneID="tpC-YF-15O">
@@ -1430,7 +1433,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="74" width="375" height="465"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="514"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -3042,7 +3045,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqm-7n-Pdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2821.5999999999999" y="1616.9415292353824"/>
+            <point key="canvasLocation" x="3486" y="1617"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="On4-UJ-FeE">
@@ -3277,10 +3280,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VQy-IJ-T3o"/>
-        <segue reference="TJv-Zf-4Gw"/>
-        <segue reference="fuc-E9-X1F"/>
-        <segue reference="3rr-Jc-WrJ"/>
+        <segue reference="3Ng-cG-BBs"/>
+        <segue reference="t41-KJ-vjm"/>
+        <segue reference="9Ym-mF-wrv"/>
+        <segue reference="cdz-Ff-0Nv"/>
+        <segue reference="Llp-6l-iti"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>

@@ -6,12 +6,17 @@ class GroupSearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
+    var friends = [User]()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         searchBar.delegate = self
         searchBar.placeholder = "場所名,サークル名等,フリワード検索"
         fetchData.groupSearchDelegate = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupNavAccessory()
     }
     
     private func setupTableView() {
@@ -38,11 +43,13 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(groupArray[indexPath.row])
-        
+        let team = groupArray[indexPath.row]
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
+        vc.team = team
+        vc.friends = friends
+        vc.flag = true
+        navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
 
 extension GroupSearchViewController:UISearchBarDelegate {
@@ -60,6 +67,4 @@ extension GroupSearchViewController:GetGroupDelegate{
         self.groupArray = groupArray
         tableView.reloadData()
     }
-    
-    
 }

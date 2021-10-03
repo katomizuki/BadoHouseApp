@@ -27,7 +27,7 @@
 		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
 		D38807D426FF216F00D3AB7F /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D326FF216E00D3AB7F /* WalkThroughController.swift */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
-		D3977165270940B10025BE19 /* GroupSearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977164270940B10025BE19 /* GroupSearchResultController.swift */; };
+		D3977167270959A70025BE19 /* TornamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentController.swift */; };
 		D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* InviteViewController.swift */; };
 		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
 		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
@@ -119,7 +119,7 @@
 		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
 		D38807D326FF216E00D3AB7F /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		D3977164270940B10025BE19 /* GroupSearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchResultController.swift; sourceTree = "<group>"; };
+		D3977166270959A70025BE19 /* TornamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -432,6 +432,7 @@
 				D3AC05E826ED763000F40A51 /* CalendarViewController.swift */,
 				D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */,
 				D353D8D926F05B9600221B7D /* ChatViewController.swift */,
+				D3977166270959A70025BE19 /* TornamentController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -472,7 +473,6 @@
 				D3FD194226E3A26700B6740E /* UserDetailViewController.swift */,
 				D3A789CF26F414310088E8BC /* InviteViewController.swift */,
 				D3A82BAF2707357800DDB4FC /* GroupSearchViewController.swift */,
-				D3977164270940B10025BE19 /* GroupSearchResultController.swift */,
 			);
 			path = GroupsAndFriends;
 			sourceTree = "<group>";
@@ -686,13 +686,13 @@
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
 				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
-				D3977165270940B10025BE19 /* GroupSearchResultController.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
+				D3977167270959A70025BE19 /* TornamentController.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */,
