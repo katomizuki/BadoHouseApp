@@ -1,6 +1,7 @@
 import Foundation
 import Firebase
 import CoreLocation
+import RxSwift
 
 protocol GetGenderCount {
     func getGenderCount(count:[Int])
@@ -51,6 +52,9 @@ protocol GetVideoDelegate {
 protocol GetGroupDelegate {
     func getGroup(groupArray:[TeamModel])
 }
+protocol GetMyEventDelegate {
+    func getEvent(eventArray:[Event])
+}
 
 class FetchFirestoreData {
     
@@ -70,6 +74,7 @@ class FetchFirestoreData {
     var chatListDelegate:GetChatListDelegate?
     var videoDelegate:GetVideoDelegate?
     var groupSearchDelegate:GetGroupDelegate?
+    var myEventDelegate:GetMyEventDelegate?
     
     func friendData(idArray:[String]) {
         var array = [User]()
@@ -83,6 +88,31 @@ class FetchFirestoreData {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.friendDelegate?.getFriend(friendArray: array)
         }
+    }
+    
+    func getMyEventData(uid:String) {
+        var eventArray = [Event]()
+        Ref.UsersRef.document(uid).collection("Join").getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { data in
+                let safeData = data.data()
+                let id = safeData["id"] as? String ?? ""
+                Ref.EventRef.document(id).getDocument { snap, error in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    guard let safeData = snap?.data() else { return }
+                    let event = Event(dic: safeData)
+                    eventArray.append(event)
+                }
+            }
+        }
+        self.myEventDelegate?.getEvent(eventArray: eventArray)
     }
     
     func getChatListData(chatModelArray:[ChatRoom]) {
