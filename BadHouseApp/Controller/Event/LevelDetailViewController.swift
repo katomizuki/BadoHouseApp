@@ -1,5 +1,4 @@
 import UIKit
-import FacebookCore
 
 class LevelDetailViewController: UIViewController {
 
@@ -7,7 +6,7 @@ class LevelDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var textView: UITextView!
-    private var selectedLevel = String()
+    private var selectedLevel = "レベル10"
     override func viewDidLoad() {
         super.viewDidLoad()
         slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)

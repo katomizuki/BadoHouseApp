@@ -28,6 +28,7 @@
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D3977167270959A70025BE19 /* TornamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentController.swift */; };
 		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
+		D39771722709D1D40025BE19 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* ScheduleViewController.swift */; };
 		D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* InviteViewController.swift */; };
 		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
 		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
@@ -120,6 +121,7 @@
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D3977166270959A70025BE19 /* TornamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentController.swift; sourceTree = "<group>"; };
 		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
+		D39771712709D1D40025BE19 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */,
 				D3A789D426F439A40088E8BC /* ChatListViewController.swift */,
 				D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */,
+				D39771712709D1D40025BE19 /* ScheduleViewController.swift */,
 			);
 			path = ChatList;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */,
 				D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */,
+				D39771722709D1D40025BE19 /* ScheduleViewController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
 				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,

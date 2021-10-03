@@ -48,6 +48,7 @@ class ChatListViewController:UIViewController{
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
         navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
     }
 
     //Mark:setupTableView
@@ -65,7 +66,6 @@ class ChatListViewController:UIViewController{
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
                 Firestore.changeTrue(uid: Auth.getUserId())
                 LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "練習に申し込んだ方と連絡はとれましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
-
             }
         }
     }
@@ -84,7 +84,6 @@ class ChatListViewController:UIViewController{
     private func setupData() {
         Firestore.getChatData(uid: Auth.getUserId()) { chatId in
             self.fetchData.getChatRoomModel(chatId:chatId)
-            
             for i in 0..<chatId.count {
                 self.fetchData.getChat(chatId: chatId[i])
             }
@@ -114,6 +113,14 @@ class ChatListViewController:UIViewController{
     }
     @objc private func handleNotification() {
         performSegue(withIdentifier: Utility.Segue.gotoNotification, sender: nil)
+    }
+    @objc private func handleSchedule() {
+        print(#function)
+        Firestore.getUserData(uid: Auth.getUserId()) { user in
+            guard let me = user else { return }
+            let vc = ScheduleViewController(user: me)
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }
 
