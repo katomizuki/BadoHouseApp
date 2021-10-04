@@ -309,6 +309,8 @@ class EventDetailViewController: UIViewController {
         }
   
         guard let eventId = event?.eventId else { return }
+       
+       
         Firestore.searchPreJoin(myId: Auth.getUserId(), eventId: eventId) { bool in
             if bool == false {
                 //alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
@@ -319,9 +321,11 @@ class EventDetailViewController: UIViewController {
                 let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
                     guard let chatId = self.chatId else { return }
                     guard let name = self.me?.name else { return }
+                    guard let meId = self.me?.uid else { return }
+                   
+                    Ref.UsersRef.document(meId).collection("Join").document(eventId).setData(["id":eventId])
 
-
-                    Firestore.sendChat(chatroomId: chatId, senderId: Auth.getUserId(), text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
+                    Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                     
                     Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId,leaderId: leaderId)
                     self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)

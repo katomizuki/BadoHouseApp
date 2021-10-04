@@ -13,6 +13,12 @@ class ScheduleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.object(forKey: "MyEvents") != nil {
+            //true　だったら取り出して追加する
+            print("🍏")
+//            fetchData.getmyEventData(idArray: array)
+        }
+        fetchData.myEventDelegate = self
         view.backgroundColor = .white
         view.addSubview(tableview)
         tableview.anchor(top:view.safeAreaLayoutGuide.topAnchor,bottom:view.safeAreaLayoutGuide.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 40,paddingBottom:0, paddingRight:0, paddingLeft: 0)
@@ -45,7 +51,13 @@ extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
         print("⚡")
         return cell
     }
+}
+
+extension ScheduleViewController:GetMyEventDelegate {
     
+    func getEvent(eventArray: [Event]) {
+        print(eventArray,"☔")
+    }
     
     
 }

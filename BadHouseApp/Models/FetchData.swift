@@ -56,6 +56,7 @@ protocol GetMyEventDelegate {
     func getEvent(eventArray:[Event])
 }
 
+
 class FetchFirestoreData {
     
     var delegate:GetGenderCount?
@@ -90,6 +91,23 @@ class FetchFirestoreData {
         }
     }
     
+    func getmyEventData(idArray:[String]) {
+        var eventArray = [Event]()
+        idArray.forEach { id in
+            Ref.EventRef.document(id).getDocument { Snapshot, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard let data = Snapshot?.data() else { return }
+                let event = Event(dic: data)
+                eventArray.append(event)
+            }
+        }
+        self.myEventDelegate?.getEvent(eventArray: eventArray)
+    }
+    
+    
     func getMyEventData(uid:String) {
         var eventArray = [Event]()
         Ref.UsersRef.document(uid).collection("Join").getDocuments { snapShot, error in
@@ -97,6 +115,7 @@ class FetchFirestoreData {
                 print(error)
                 return
             }
+            
             guard let document = snapShot?.documents else { return }
             document.forEach { data in
                 let safeData = data.data()
