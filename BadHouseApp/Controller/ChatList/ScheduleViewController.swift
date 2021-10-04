@@ -27,15 +27,20 @@ class ScheduleViewController: UIViewController{
             print(idArray)
             self.fetchData.getmyEventData(idArray: idArray)
         }
-        calendar.delegate = self
-        calendar.dataSource = self
+        setupCalendar()
+        setupTableView()
         fetchData.myEventDelegate = self
         view.backgroundColor = .white
-        
-        view.addSubview(tableview)
+    }
+    private func setupCalendar() {
+        calendar.delegate = self
+        calendar.dataSource = self
         view.addSubview(calendar)
-        
         calendar.anchor(top:view.safeAreaLayoutGuide.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20,paddingLeft: 20,height: 400)
+    }
+    
+    private func setupTableView() {
+        view.addSubview(tableview)
         tableview.anchor(top:calendar.bottomAnchor,bottom:view.safeAreaLayoutGuide.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 40,paddingBottom:20, paddingRight:0, paddingLeft: 0)
         
         tableview.delegate = self
@@ -124,6 +129,9 @@ extension ScheduleViewController:CalendarEventDelegate {
         let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
             self.eventArray.remove(at: tappedIndex)
             //firestoreでも消す
+            guard let meId = self.me?.uid else { return }
+            let eventId = self.eventArray[tappedIndex].eventId
+            Firestore.deleteSubCollectionData(collecionName: "Users", documentId: meId, subCollectionName: "Join", subId: eventId)
             self.tableview.reloadData()
             self.calendar.reloadData()
         }

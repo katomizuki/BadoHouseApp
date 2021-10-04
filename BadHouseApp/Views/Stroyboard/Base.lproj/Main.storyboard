@@ -1138,14 +1138,14 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="118.5" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主な活動場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQW-x0-SQy">
-                                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="60"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="58.5"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ms5-wL-dMn">
-                                                                <rect key="frame" x="0.0" y="60" width="118.5" height="60"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <rect key="frame" x="0.0" y="58.5" width="118.5" height="61.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -3376,7 +3376,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VQy-IJ-T3o"/>
-        <segue reference="t41-KJ-vjm"/>
+        <segue reference="KCo-PJ-OZR"/>
         <segue reference="9Ym-mF-wrv"/>
         <segue reference="cdz-Ff-0Nv"/>
         <segue reference="Llp-6l-iti"/>

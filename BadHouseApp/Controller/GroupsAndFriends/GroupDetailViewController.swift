@@ -177,7 +177,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         teamNameLabel.text = team?.teamName
         timeLabel.text = team?.teamTime
         placeLabel.text = team?.teamPlace
-        priceLabel.text = team?.teamLevel
+        priceLabel.text = "\(team?.teamLevel ?? "")円/月"
     }
     
     //Mark:Protocol
