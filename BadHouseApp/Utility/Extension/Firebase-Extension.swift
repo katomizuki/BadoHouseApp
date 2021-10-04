@@ -397,6 +397,7 @@ extension Firestore{
     static func sendePreJoin(myId:String, eventId:String,leaderId:String) {
         Ref.EventRef.document(eventId).collection("PreJoin").document(myId).setData(["id":myId])
         Ref.UsersRef.document(leaderId).collection("PreJoin").document(myId).setData(["id":myId,"alertOrNot":false])
+        Ref.UsersRef.document(myId).collection("Join").document(eventId).setData(["id":eventId])
     }
     
     static func searchPreJoin(myId:String,eventId:String,completion:@escaping(Bool)->Void) {
@@ -496,6 +497,23 @@ extension Firestore{
             }
             guard let lastComment = textArray.last else { return }
             completion(lastComment)
+        }
+    }
+
+    static func getmyEventIdArray(uid:String,completion:@escaping([String])->Void) {
+        var stringArray = [String]()
+        Ref.UsersRef.document(uid).collection("Join").getDocuments { Snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = Snapshot?.documents else { return }
+            data.forEach { doc in
+                let safedata = doc.data()
+                let id = safedata["id"] as? String ?? ""
+                stringArray.append(id)
+            }
+            completion(stringArray)
         }
     }
 }

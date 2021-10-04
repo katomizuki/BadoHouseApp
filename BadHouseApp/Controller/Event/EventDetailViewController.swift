@@ -323,11 +323,11 @@ class EventDetailViewController: UIViewController {
                     guard let name = self.me?.name else { return }
                     guard let meId = self.me?.uid else { return }
                    
-                    Ref.UsersRef.document(meId).collection("Join").document(eventId).setData(["id":eventId])
+                   
 
                     Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                     
-                    Firestore.sendePreJoin(myId: Auth.getUserId(), eventId: eventId,leaderId: leaderId)
+                    Firestore.sendePreJoin(myId: meId, eventId: eventId,leaderId: leaderId)
                     self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)
                     LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
                 }

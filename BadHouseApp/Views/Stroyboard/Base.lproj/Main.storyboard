@@ -3308,10 +3308,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="現在,こちらの機能は準備中となっております。　　　大変申し訳ございませんが,もうしばらくお待ち下さい。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ubu-qA-hog">
-                                <rect key="frame" x="20" y="60" width="335" height="100"/>
+                                <rect key="frame" x="20" y="100" width="335" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="JRx-MI-WRa"/>
+                                    <constraint firstAttribute="height" constant="60" id="JRx-MI-WRa"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -3325,7 +3325,7 @@
                             <constraint firstItem="rGl-SA-fqh" firstAttribute="leading" secondItem="awu-3G-7sm" secondAttribute="leading" id="OKM-cr-uRI"/>
                             <constraint firstItem="rGl-SA-fqh" firstAttribute="top" secondItem="awu-3G-7sm" secondAttribute="top" constant="120" id="Pdb-7t-pPd"/>
                             <constraint firstItem="Ubu-qA-hog" firstAttribute="leading" secondItem="awu-3G-7sm" secondAttribute="leading" constant="20" id="bcI-OZ-81U"/>
-                            <constraint firstItem="Ubu-qA-hog" firstAttribute="top" secondItem="ld9-cd-bnS" secondAttribute="top" constant="60" id="dMD-0r-B0l"/>
+                            <constraint firstItem="Ubu-qA-hog" firstAttribute="top" secondItem="ld9-cd-bnS" secondAttribute="top" constant="100" id="dMD-0r-B0l"/>
                             <constraint firstItem="rGl-SA-fqh" firstAttribute="bottom" secondItem="awu-3G-7sm" secondAttribute="bottom" id="krM-mh-jhv"/>
                             <constraint firstItem="rGl-SA-fqh" firstAttribute="trailing" secondItem="awu-3G-7sm" secondAttribute="trailing" id="tjg-Iy-5Dv"/>
                         </constraints>
