@@ -80,51 +80,63 @@ class FetchFirestoreData {
     weak var myTeamDelegate:GetMyTeamDelegate?
     
     func friendData(idArray:[String]) {
+        let group = DispatchGroup()
         var array = [User]()
         for i in 0..<idArray.count {
+            group.enter()
             let uid = idArray[i]
             Firestore.getUserData(uid: uid) { friend in
+                defer {
+                    group.leave()
+                }
                 guard let friend = friend else { return }
                 array.append(friend)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        group.notify(queue: .main) {
             self.friendDelegate?.getFriend(friendArray: array)
         }
+        
     }
     
     func getmyTeamData(idArray:[String]) {
         var teamArray = [TeamModel]()
+        let group = DispatchGroup()
         idArray.forEach { id in
+            group.enter()
             Ref.TeamRef.document(id).getDocument { Snapshot, error in
                 if let error = error {
                     print(error)
                     return
                 }
+                defer { group.leave() }
                 guard let data = Snapshot?.data() else { return }
                 let team = TeamModel(dic: data)
                 teamArray.append(team)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        group.notify(queue: .main) {
             self.myTeamDelegate?.getMyteam(teamArray: teamArray)
         }
     }
     
     func getmyEventData(idArray:[String]) {
         var eventArray = [Event]()
+        let group = DispatchGroup()
         idArray.forEach { id in
+            group.enter()
             Ref.EventRef.document(id).getDocument { Snapshot, error in
                 if let error = error {
                     print(error)
                     return
                 }
+                defer { group.leave() }
                 guard let data = Snapshot?.data() else { return }
                 let event = Event(dic: data)
                 eventArray.append(event)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        group.notify(queue: .main) {
             self.myEventDelegate?.getEvent(eventArray: eventArray)
         }
     }
@@ -137,7 +149,6 @@ class FetchFirestoreData {
                 print(error)
                 return
             }
-            
             guard let document = snapShot?.documents else { return }
             document.forEach { data in
                 let safeData = data.data()
@@ -160,27 +171,34 @@ class FetchFirestoreData {
         var userArray = [User]()
         var anotherArray = [User]()
         var lastCommentArray = [Chat]()
+        let group = DispatchGroup()
         for i in 0..<chatModelArray.count {
+            group.enter()
             let userId = chatModelArray[i].user
             let anotherId = chatModelArray[i].user2
             let chatId = chatModelArray[i].chatRoom
         
             Firestore.getUserData(uid: userId) { user in
+//                defer { group.leave() }
                 guard let user = user else { return }
                 userArray.append(user)
             }
             Firestore.getUserData(uid: anotherId) { another in
+//                defer { group.leave() }
                 guard let another = another else { return }
                 anotherArray.append(another)
             }
             Firestore.getChatLastData(chatId: chatId) { lastComment in
+                defer { group.leave() }
                 lastCommentArray.append(lastComment)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+//            self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
+//        }
+        group.notify(queue: .main) {
             self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
         }
-        
     }
     
     func getGenderCount(teamPlayers:[User]) {
