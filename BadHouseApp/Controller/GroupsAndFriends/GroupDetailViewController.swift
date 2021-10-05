@@ -1,12 +1,10 @@
-
-
 import UIKit
 import SDWebImage
 import Firebase
 import NVActivityIndicatorView
 import Charts
 import FacebookCore
-
+import SwiftUI
 
 class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDelegate {
     
@@ -35,10 +33,9 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton!
     var flag = false
-    
+    @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var inviteButton: UIBarButtonItem!
-    
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -54,6 +51,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setGraph()
         withdrawButton.isHidden = flag
         chatButton.isHidden = flag
+        
         if flag == true {
             navigationItem.setRightBarButton(nil, animated: true)
         }
@@ -95,6 +93,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         teamTagStackView.spacing = 5
         teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         withdrawButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
+        updateButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue
+                                  , titleColor: .white, fontSize: 14)
     }
     
     //Mark:setupDelegate
@@ -177,7 +177,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         teamNameLabel.text = team?.teamName
         timeLabel.text = team?.teamTime
         placeLabel.text = team?.teamPlace
-        priceLabel.text = "\(team?.teamLevel ?? "")円/月"
+        priceLabel.text = "\(team?.teamLevel ?? "")/月"
     }
     
     //Mark:Protocol
@@ -197,6 +197,14 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
         vc.friends = self.friends
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func updateTeamInfo(_ sender: Any) {
+        print(#function)
+        guard let team = self.team else { return }
+        let vc = UpdateViewController(team: team)
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
     }
     
     
@@ -269,7 +277,22 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         navigationController?.popViewController(animated: true
         )
     }
+}
+
+extension GroupDetailViewController:backDelegate {
     
+    func updateTeamData() {
+        guard let id = team?.teamId else { return }
+        Firestore.getTeamData(teamId: id) { team in
+            self.team = team
+            self.placeLabel.text = team.teamPlace
+            self.timeLabel.text = team.teamTime
+            self.priceLabel.text = team.teamLevel
+            let urlString = team.teamImageUrl
+            let url = URL(string: urlString)
+            self.friendImageView.sd_setImage(with: url)
+        }
+    }
 }
 
 
@@ -296,6 +319,114 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
         vc.user = teamPlayers[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+protocol backDelegate {
+    func updateTeamData()
+}
+class UpdateViewController:UIViewController {
+    var team:TeamModel?
+    private let placeTextField = ProfileTextField(placeholder: "")
+    private let timeTextField = ProfileTextField(placeholder: "")
+    private let moneyTextField = ProfileTextField(placeholder: "")
+    var delegate:backDelegate?
+    private let iv:UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: Utility.ImageName.noImages)
+        iv.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        iv.layer.borderWidth = 2
+        return iv
+    }()
+    
+    private let button:UIButton = {
+        let button = UIButton()
+        button.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
+        button.setTitle("保存", for: .normal)
+        return button
+    }()
+    
+    private let imagePicker = UIImagePickerController()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLayout()
+        teamInfo()
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(handleImagePicker))
+        iv.addGestureRecognizer(touchGesture)
+        iv.isUserInteractionEnabled = true
+        imagePicker.delegate = self
+    }
+    
+    private func setupLayout() {
+        view.backgroundColor = .white
+        
+        let stackView = UIStackView(arrangedSubviews: [placeTextField,timeTextField,moneyTextField])
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        
+        view.addSubview(stackView)
+        view.addSubview(iv)
+        view.addSubview(button)
+        
+        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 100,centerX: view.centerXAnchor,width:150, height:150)
+        stackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight:30,paddingLeft:30,height: 170)
+        button.anchor(top:stackView.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 20,paddingRight: 30,paddingLeft: 30,height: 50)
+        button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+        iv.layer.cornerRadius = 75
+        iv.layer.masksToBounds = true
+    }
+    
+    private func teamInfo() {
+        placeTextField.text = team?.teamPlace
+        timeTextField.text = team?.teamTime
+        moneyTextField.text = team?.teamLevel
+        guard let urlString = team?.teamImageUrl else { return }
+        let url = URL(string: urlString)
+        iv.sd_setImage(with: url, completed: nil)
+    }
+    
+    init(team:TeamModel) {
+    super.init(nibName: nil, bundle: nil)
+        self.team = team
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func handleSave() {
+        guard let place = placeTextField.text else { return }
+        guard let time = timeTextField.text else { return }
+        guard let money = moneyTextField.text else { return }
+        self.team?.teamPlace = place
+        self.team?.teamTime = time
+        self.team?.teamLevel = money
+
+        guard let image = iv.image else { return }
+        Storage.addTeamImage(image: image) { urlString in
+            self.team?.teamImageUrl = urlString
+            guard let team = self.team else { return }
+            Firestore.updateTeamInfo(team: team)
+            self.delegate?.updateTeamData()
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @objc private func handleImagePicker() {
+        print(#function)
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+}
+
+extension UpdateViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        print(#function)
+        iv.image = image
+        dismiss(animated: true, completion: nil)
     }
     
 }

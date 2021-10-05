@@ -22,8 +22,7 @@ class FriendsViewController: UIViewController {
     var teamTagArray = [String]()
     var url:String?
     private let fetchData = FetchFirestoreData()
-    
-    
+
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)
@@ -64,8 +63,6 @@ class FriendsViewController: UIViewController {
         friendTableView.dataSource = self
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
     }
-    
-    
     
     //Mark:updateUI()
     private func updateUI() {

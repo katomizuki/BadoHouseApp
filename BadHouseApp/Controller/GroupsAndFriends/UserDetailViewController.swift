@@ -134,9 +134,17 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             let url = URL(string: urlString)
             teamMemberImageView.sd_setImage(with: url, completed: nil)
         }
-        Firestore.getOwnTeam(uid: memberId) { teams in
-            self.ownTeam = teams
+        Firestore.getOwnTeam(uid: memberId) { teamIds in
+//            self.ownTeam = teams
+            teamIds.forEach { id in
+                Firestore.getTeamData(teamId: id) { team in
+                    self.ownTeam.append(team)
+                }
+            }
+            
             self.belongCollectionView.reloadData()
+            
+            
             Firestore.getFriendData(uid: memberId) { friends in
                 self.fetchData.friendData(idArray: friends)
             }

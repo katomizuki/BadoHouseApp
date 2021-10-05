@@ -1223,6 +1223,19 @@
                                                     <action selector="withdraw:" destination="cza-8i-jCI" eventType="touchUpInside" id="gDj-Gj-fih"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmJ-8F-SO6">
+                                                <rect key="frame" x="39" y="1090" width="53" height="30"/>
+                                                <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="9z9-Vp-edD"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="編集"/>
+                                                <connections>
+                                                    <action selector="updateTeamInfo:" destination="cza-8i-jCI" eventType="touchUpInside" id="gvW-R8-BtJ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="backGroundColor"/>
                                         <constraints>
@@ -1244,9 +1257,11 @@
                                             <constraint firstItem="n8p-c3-AeV" firstAttribute="top" secondItem="gWZ-aA-86L" secondAttribute="bottom" constant="10" id="Tou-AN-rvL"/>
                                             <constraint firstItem="LBf-E6-p5h" firstAttribute="leading" secondItem="pMS-LS-9Jv" secondAttribute="leading" constant="5" id="VOX-xP-MxE"/>
                                             <constraint firstItem="xFj-gX-Mhn" firstAttribute="top" secondItem="CKw-26-OHR" secondAttribute="bottom" constant="14" id="WO1-xG-GFZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="rmJ-8F-SO6" secondAttribute="bottom" constant="30" id="YBj-gX-5pn"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xFj-gX-Mhn" secondAttribute="trailing" constant="20" symbolic="YES" id="YLf-2g-vKi"/>
                                             <constraint firstItem="cqq-Xm-Q8x" firstAttribute="top" secondItem="n8p-c3-AeV" secondAttribute="bottom" constant="16" id="Zbs-zw-SSc"/>
                                             <constraint firstItem="gWZ-aA-86L" firstAttribute="centerX" secondItem="4tU-iL-Sn6" secondAttribute="centerX" id="b19-Kh-5mQ"/>
+                                            <constraint firstItem="rmJ-8F-SO6" firstAttribute="leading" secondItem="pMS-LS-9Jv" secondAttribute="leading" constant="39" id="b7g-KR-Nxf"/>
                                             <constraint firstItem="mai-dU-KYF" firstAttribute="centerX" secondItem="pMS-LS-9Jv" secondAttribute="centerX" id="bxB-Fc-txK"/>
                                             <constraint firstItem="cqq-Xm-Q8x" firstAttribute="centerX" secondItem="pMS-LS-9Jv" secondAttribute="centerX" id="cmx-tP-Dwy"/>
                                             <constraint firstAttribute="trailing" secondItem="gWZ-aA-86L" secondAttribute="trailing" constant="10" id="ddn-E2-K30"/>
@@ -1259,7 +1274,6 @@
                                             <constraint firstItem="wmC-Yb-Ons" firstAttribute="top" secondItem="CKw-26-OHR" secondAttribute="top" id="ld0-gO-abS"/>
                                             <constraint firstItem="xFj-gX-Mhn" firstAttribute="leading" secondItem="pMS-LS-9Jv" secondAttribute="leading" constant="80" id="mRm-Kf-M7w"/>
                                             <constraint firstItem="gWZ-aA-86L" firstAttribute="centerX" secondItem="pMS-LS-9Jv" secondAttribute="centerX" id="oID-iC-rs2"/>
-                                            <constraint firstItem="5sf-aC-88J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pMS-LS-9Jv" secondAttribute="leading" constant="20" symbolic="YES" id="obX-LX-vH5"/>
                                             <constraint firstItem="4tU-iL-Sn6" firstAttribute="top" secondItem="mai-dU-KYF" secondAttribute="bottom" constant="33" id="r4Y-Um-20u"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="teH-GC-N9C" secondAttribute="trailing" constant="20" symbolic="YES" id="tRf-F3-QCU"/>
                                             <constraint firstItem="mai-dU-KYF" firstAttribute="top" secondItem="pMS-LS-9Jv" secondAttribute="top" constant="10" id="yFD-Q9-urM"/>
@@ -1337,6 +1351,7 @@
                         <outlet property="teamTagStackView" destination="gWZ-aA-86L" id="KOp-Ne-fIm"/>
                         <outlet property="timeLabel" destination="Hfj-iy-lcK" id="OQb-zy-foF"/>
                         <outlet property="timeStackView" destination="b29-gA-CfK" id="7bf-hf-o9k"/>
+                        <outlet property="updateButton" destination="rmJ-8F-SO6" id="0AJ-0Y-ofG"/>
                         <outlet property="withdrawButton" destination="5sf-aC-88J" id="wWt-lh-3e5"/>
                         <segue destination="oj7-Ug-OXr" kind="show" identifier="goto" id="KCo-PJ-OZR"/>
                         <segue destination="r26-CP-u6r" kind="show" id="cdz-Ff-0Nv"/>

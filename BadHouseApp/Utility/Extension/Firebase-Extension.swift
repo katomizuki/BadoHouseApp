@@ -252,21 +252,20 @@ extension Firestore{
     }
     
     //Mark getOwnTeam
-    static func getOwnTeam(uid:String,completion:@escaping ([TeamModel])->Void) {
+    static func getOwnTeam(uid:String,completion:@escaping ([String])->Void) {
+        var teamIdArray = [String]()
         Ref.UsersRef.document(uid).collection("OwnTeam").addSnapshotListener { snapShot, error in
             if let error = error {
                 print("OwnTeam",error)
             }
-            var teamArray = [TeamModel]()
             guard let data = snapShot?.documents else { return }
-            teamArray = []
             data.forEach { doc in
                 let safeData = doc.data()
                 let dic = safeData as [String:Any]
-                let team = TeamModel(dic: dic)
-                teamArray.append(team)
+                let teamId = safeData["teamId"] as? String ?? ""
+                teamIdArray.append(teamId)
             }
-            completion(teamArray)
+            completion(teamIdArray)
         }
     }
     
@@ -515,6 +514,20 @@ extension Firestore{
             }
             completion(stringArray)
         }
+    }
+    static func updateTeamInfo(team:TeamModel) {
+        let id = team.teamId
+        let dic = ["teamId":id,
+                   "teamName":team.teamName,
+                   "teamPlace":team.teamPlace,
+                   "teamTime":team.teamTime,
+                   "teamLevel":team.teamLevel,
+                   "teamUrl":team.teamUrl,
+                   "teamImageUrl":team.teamImageUrl,
+                   "createdAt":team.createdAt,
+                   "updatedAt":team.updatedAt] as [String : Any]
+        Ref.TeamRef.document(id).setData(dic)
+        Ref.UsersRef.document(Auth.getUserId()).collection("OwnTeam").document(id).setData(dic)
     }
 }
 

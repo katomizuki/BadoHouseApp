@@ -55,8 +55,9 @@ protocol GetGroupDelegate {
 protocol GetMyEventDelegate {
     func getEvent(eventArray:[Event])
 }
-
-
+protocol GetMyTeamDelegate {
+    func getMyteam(teamArray:[TeamModel])
+}
 class FetchFirestoreData {
     
     var delegate:GetGenderCount?
@@ -76,6 +77,7 @@ class FetchFirestoreData {
     var videoDelegate:GetVideoDelegate?
     var groupSearchDelegate:GetGroupDelegate?
     var myEventDelegate:GetMyEventDelegate?
+    var myTeamDelegate:GetMyTeamDelegate?
     
     func friendData(idArray:[String]) {
         var array = [User]()
@@ -88,6 +90,24 @@ class FetchFirestoreData {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.friendDelegate?.getFriend(friendArray: array)
+        }
+    }
+    
+    func getmyTeamData(idArray:[String]) {
+        var teamArray = [TeamModel]()
+        idArray.forEach { id in
+            Ref.TeamRef.document(id).getDocument { Snapshot, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard let data = Snapshot?.data() else { return }
+                let team = TeamModel(dic: data)
+                teamArray.append(team)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.myTeamDelegate?.getMyteam(teamArray: teamArray)
         }
     }
     
