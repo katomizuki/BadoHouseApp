@@ -33,6 +33,16 @@ class GroupViewController: UIViewController{
         fetchData.myTeamDelegate = self
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if Auth.auth().currentUser == nil {
+            print(#function,"⚡")
+//            performSegue(withIdentifier: "logout", sender: nil)
+            let vc = tabBarController?.viewControllers?[0]
+//            print(vc)
+            tabBarController?.selectedViewController = vc
+        }
+    }
     
     //Mark: setupData {
     private func setupData() {

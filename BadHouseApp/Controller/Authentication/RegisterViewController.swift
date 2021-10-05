@@ -102,13 +102,8 @@ class RegisterViewController:UIViewController{
         alreadyButton.anchor(top:stackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
         
         //Mark:NVActivityIndicatorView
-        IndicatorView = NVActivityIndicatorView(frame: CGRect(x: view.frame.width / 2,
-                                                              y: view.frame.height / 2,
-                                                              width: 60,
-                                                              height: 60),
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+        
+        IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
 

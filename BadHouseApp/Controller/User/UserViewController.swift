@@ -16,6 +16,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private var hasChangedImage = false
     private var name = ""
     private var email = ""
+    private let logoutButton = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
     var level:String = "" {
         didSet {
         userTableView.reloadData()
@@ -43,8 +44,8 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     private var introduction = ""
-    private let saveButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
-    private let logoutButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
+    private let backButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
+    private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
     private let profileImageView = ProfileImageView()
     private let nameLabel = ProfileLabel()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
@@ -90,28 +91,31 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         profileImageView.tintColor = Utility.AppColor.OriginalBlue
         InfoCollectionView.isScrollEnabled = false
         nameLabel.textColor = Utility.AppColor.OriginalBlue
+        logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 14,weight: .bold)
         
         //Mark addSubView
+        scrollView.addSubview(backButton)
         scrollView.addSubview(saveButton)
-        scrollView.addSubview(logoutButton)
         scrollView.addSubview(profileImageView)
         scrollView.addSubview(nameLabel)
         scrollView.addSubview(profileEditButton)
         scrollView.addSubview(InfoCollectionView)
         scrollView.addSubview(userTableView)
+        scrollView.addSubview(logoutButton)
 
         //Mark: Anchor
-        saveButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
-        logoutButton.anchor(top: scrollView.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
+        backButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
+        saveButton.anchor(top: scrollView.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
         profileImageView.anchor(top: scrollView.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 10, centerX: view.centerXAnchor)
         profileEditButton.anchor(top: profileImageView.topAnchor, right: profileImageView.rightAnchor,  width: 70, height: 60)
         userTableView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
         InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
-       
+        logoutButton.anchor(top:saveButton.bottomAnchor,right: view.rightAnchor,paddingTop: 40,paddingRight: 15,width:80)
         
         //Mark: selector
-        saveButton.addTarget(self, action: #selector(logout), for: UIControl.Event.touchUpInside)
+        backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
+        logoutButton.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         
         //Mark: textFieldUPdate
         nameLabel.text = user?.name
@@ -126,13 +130,23 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     //Mark: Logout
-    @objc func logout() {
+    @objc private func back() {
         dismiss(animated: true, completion: nil)
+    }
+    @objc private func handleLogout() {
+        print(#function)
+        do {
+            try Auth.auth().signOut()
+            //同画面遷移させるか。
+            dismiss(animated: true, completion: nil)
+        }  catch {
+            print(error)
+        }
     }
     
     private func setupBinding() {
         print(#function)
-        logoutButton.rx.tap
+        saveButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
                 guard let self = self else { return }

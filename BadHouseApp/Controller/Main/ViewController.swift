@@ -28,11 +28,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        if Auth.auth().currentUser == nil {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
-            }
-        }
+       
             setupIndicator()
         
             IndicatorView.startAnimating()
@@ -49,7 +45,12 @@ class ViewController: UIViewController, EmptyStateDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
-        
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                print("☔")
+                self.performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
+            }
+        }
     }
    
     
