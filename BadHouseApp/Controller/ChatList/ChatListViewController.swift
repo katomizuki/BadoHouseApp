@@ -62,8 +62,9 @@ class ChatListViewController:UIViewController{
     
     //Mark:setupNotification
     private func setupNotification() {
-        self.notification(uid: Auth.getUserId()) { bool in
+        self.notification(uid: Auth.getUserId()) { [weak self]bool in
             if bool == true {
+                guard let self = self else { return }
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
                 Firestore.changeTrue(uid: Auth.getUserId())
                 LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "練習に申し込んだ方と連絡はとれましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])

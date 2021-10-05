@@ -1,6 +1,6 @@
 import UIKit
 
-protocol getDetailDelegate {
+protocol getDetailDelegate:AnyObject {
     func getDetailElement(title:String,
                           circle:String,
                           level:String,
@@ -36,7 +36,7 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet weak var datePicker: UIDatePicker!
     private var dateString = String()
     private var eventArray = [Event]()
-    var delegate:getDetailDelegate?
+    weak var delegate:getDetailDelegate?
     
     //Mark:LifeCycle
     override func viewDidLoad() {

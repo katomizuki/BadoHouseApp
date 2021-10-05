@@ -37,7 +37,8 @@ class GroupViewController: UIViewController{
     //Mark: setupData {
     private func setupData() {
         let uid = Auth.getUserId()
-        Firestore.getUserData(uid: uid) { user in
+        Firestore.getUserData(uid: uid) { [weak self] user in
+            guard let self = self else { return }
             guard let user = user else { return }
             self.user = user
             let urlString = user.profileImageUrl
@@ -49,10 +50,12 @@ class GroupViewController: UIViewController{
             }
             self.myName.text = user.name
         }
-        Firestore.getOwnTeam(uid: uid) { teamId in
+        Firestore.getOwnTeam(uid: uid) { [weak self] teamId in
+            guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamId)
         }
-        Firestore.getFriendData(uid: uid) { usersId in
+        Firestore.getFriendData(uid: uid) { [weak self]usersId in
+            guard let self = self else { return }
             self.friendArray = [User]()
             self.fetchData.friendData(idArray: usersId)
         }

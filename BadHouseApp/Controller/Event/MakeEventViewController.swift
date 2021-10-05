@@ -122,7 +122,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         
         datePicker.rx.value.changed
             .asObservable()
-            .subscribe(onNext: { date in
+            .subscribe(onNext: { [weak self] date in
+                guard let self = self else { return }
                 let string = self.formatterUtil(date: date)
                 self.eventBinding.dateTextInput.onNext(string)
                 self.teamTime = string
@@ -131,7 +132,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         
         finishPicker.rx.value.changed
             .asObservable()
-            .subscribe (onNext: { data in
+            .subscribe (onNext: { [weak self] data in
+                guard let self = self else { return }
                 let string = self.formatterUtil(date: data)
                 self.eventLastTime = string
                 self.eventBinding.finishTextInput.onNext(string)
@@ -140,8 +142,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         
         startPicker.rx.value.changed
             .asObservable()
-            .subscribe (onNext:{ data in
-
+            .subscribe (onNext:{ [weak self] data in
+                guard let self = self else { return }
                 let string = self.formatterUtil(date: data)
                
                 self.eventStartTime = string
@@ -150,7 +152,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             .disposed(by: disposeBag)
 
         moneyTextField.rx.text.asDriver()
-            .drive { text in
+            .drive { [weak self] text in
+                guard let self = self else { return }
                 let text = text ?? ""
                 self.eventMoney = text
                 self.eventBinding.moneyTextInput.onNext(text)
@@ -158,7 +161,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             .disposed(by: disposeBag)
         
         titleTextField.rx.text.asDriver()
-            .drive { text in
+            .drive { [weak self] text in
+                guard let self = self else { return }
                 let title = text ?? ""
                 self.eventTitle = title
                 self.eventBinding.titleTextInput.onNext(title)
@@ -166,7 +170,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             .disposed(by:disposeBag)
 
         TeamPickerView.rx.itemSelected.asObservable()
-            .subscribe { element in
+            .subscribe { [weak self] element in
+                guard let self = self else { return }
                 if let data = element.element {
                     let index = data.row
                     let teamName = self.pickerArray[index].teamName
@@ -178,7 +183,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         
         
         eventBinding.valideMakeDriver
-            .drive { validAll in
+            .drive { [weak self] validAll in
+                guard let self = self else { return }
                 self.makeEventButton.isEnabled = validAll
                 self.makeEventButton.backgroundColor = validAll ?
                     Utility.AppColor.OriginalBlue:.darkGray
@@ -213,7 +219,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         print(#function)
         var teamImageUrl = String()
         guard let teamId = selectedTeam?.teamId else { return }
-        Firestore.getTeamData(teamId: teamId) { teamData in
+        Firestore.getTeamData(teamId: teamId) { [weak self] teamData in
+            guard let self = self else { return }
             self.team = teamData
             teamImageUrl = self.team?.teamImageUrl ?? ""
         }

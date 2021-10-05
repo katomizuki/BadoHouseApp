@@ -57,7 +57,8 @@ class ChatViewController: UIViewController {
         guard let youId = you?.uid else { return }
         fetchData.getChatData(meId: myId, youId: youId) { chatId in
             if chatId.isEmpty {
-                Firestore.sendChatroom(myId: myId, youId: youId) { id in
+                Firestore.sendChatroom(myId: myId, youId: youId) {[weak self] id in
+                    guard let self = self else { return }
                     self.chatId = id
                 }
             } else {

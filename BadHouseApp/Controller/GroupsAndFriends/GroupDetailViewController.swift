@@ -67,7 +67,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     //Mark: setupData
     private func setupData() {
         guard let teamId = team?.teamId else { return }
-        Firestore.getTeamTagData(teamId: teamId) { tags in
+        Firestore.getTeamTagData(teamId: teamId) {[weak self] tags in
+            guard let self = self else { return }
             if tags.count <= 1 {
                 let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
                 let button2 = UIButton(type: .system).cretaTagButton(text: "仲良く")
