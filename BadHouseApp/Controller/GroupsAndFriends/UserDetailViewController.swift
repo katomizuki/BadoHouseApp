@@ -86,6 +86,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
         fetchData.friendDelegate = self
+        fetchData.myTeamDelegate = self
     }
     
     //Mark: setupCollectionViewCell
@@ -129,25 +130,16 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         guard let memberId = user?.uid else { return }
         guard let urlString = user?.profileImageUrl else { return }
         if urlString == "" {
-            teamMemberImageView.image = UIImage(named: "noImages")
+            teamMemberImageView.image = UIImage(named: Utility.ImageName.noImages)
         } else {
             let url = URL(string: urlString)
             teamMemberImageView.sd_setImage(with: url, completed: nil)
         }
         Firestore.getOwnTeam(uid: memberId) { teamIds in
-//            self.ownTeam = teams
-            teamIds.forEach { id in
-                Firestore.getTeamData(teamId: id) { team in
-                    self.ownTeam.append(team)
-                }
-            }
-            
-            self.belongCollectionView.reloadData()
-            
-            
-            Firestore.getFriendData(uid: memberId) { friends in
-                self.fetchData.friendData(idArray: friends)
-            }
+            self.fetchData.getmyTeamData(idArray: teamIds)
+        }
+        Firestore.getFriendData(uid: memberId) { friends in
+            self.fetchData.friendData(idArray: friends)
         }
     }
     
@@ -236,6 +228,12 @@ extension UserDetailViewController:GetFriendDelegate {
         self.userFriend = friendArray
         self.friendCollectionView.reloadData()
     }
+}
+extension UserDetailViewController:GetMyTeamDelegate {
+    func getMyteam(teamArray: [TeamModel]) {
+        self.ownTeam = teamArray
+        self.belongCollectionView.reloadData()
+    }
     
-  
+    
 }

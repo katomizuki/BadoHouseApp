@@ -88,7 +88,7 @@ class FetchFirestoreData {
                 array.append(friend)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.friendDelegate?.getFriend(friendArray: array)
         }
     }
@@ -106,7 +106,7 @@ class FetchFirestoreData {
                 teamArray.append(team)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.myTeamDelegate?.getMyteam(teamArray: teamArray)
         }
     }
@@ -124,7 +124,7 @@ class FetchFirestoreData {
                 eventArray.append(event)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.myEventDelegate?.getEvent(eventArray: eventArray)
         }
     }
@@ -278,8 +278,11 @@ class FetchFirestoreData {
             eventArray = []
             data.forEach { doc in
                 let safeData = doc.data() as [String:Any]
-                let event = Event(dic:safeData)
-                eventArray.append(event)
+                let leaderId = safeData["userId"] as? String ?? ""
+                if leaderId != Auth.getUserId() {
+                    let event = Event(dic:safeData)
+                    eventArray.append(event)
+                }
             }
             //Sort＆Search
             self.sortDate(data: eventArray,latitude:latitude,longitude:longitude)

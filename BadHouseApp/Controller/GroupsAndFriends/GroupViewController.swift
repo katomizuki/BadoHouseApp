@@ -30,6 +30,7 @@ class GroupViewController: UIViewController{
         myImageView.layer.cornerRadius = 40
         myImageView.layer.masksToBounds = true
         fetchData.friendDelegate = self
+        fetchData.myTeamDelegate = self
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -48,12 +49,12 @@ class GroupViewController: UIViewController{
             }
             self.myName.text = user.name
         }
-        Firestore.getOwnTeam(uid: uid) { teams in
-            self.teamArray = teams
-            Firestore.getFriendData(uid: uid) { usersId in
-                self.friendArray = [User]()
-                self.fetchData.friendData(idArray: usersId)
-            }
+        Firestore.getOwnTeam(uid: uid) { teamId in
+            self.fetchData.getmyTeamData(idArray: teamId)
+        }
+        Firestore.getFriendData(uid: uid) { usersId in
+            self.friendArray = [User]()
+            self.fetchData.friendData(idArray: usersId)
         }
     }
     
@@ -167,6 +168,13 @@ extension GroupViewController :GetFriendDelegate {
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         self.IndicatorView.stopAnimating()
         self.groupTableView.reloadData()
+    }
+}
+
+extension GroupViewController:GetMyTeamDelegate {
+    func getMyteam(teamArray: [TeamModel]) {
+        self.teamArray = teamArray
+        groupTableView.reloadData()
     }
     
     

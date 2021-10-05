@@ -49,6 +49,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     @IBOutlet weak var levelUISlider: RangeUISlider!
     private let moneyArray = Utility.Data.moneyArray
     private let moneyPickerView = UIPickerView()
+    private let fetchData = FetchFirestoreData()
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -189,9 +190,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     //Mark setupTeamData
     private func setupOwnTeamData() {
         let uid = Auth.getUserId()
-        Firestore.getOwnTeam(uid: uid) { teams in
-            self.pickerArray = teams
-            self.TeamPickerView.reloadAllComponents()
+        Firestore.getOwnTeam(uid: uid) { teamIds in
+            self.fetchData.getmyTeamData(idArray: teamIds)
         }
     }
     
@@ -390,5 +390,11 @@ extension MakeEventViewController:UINavigationControllerDelegate {
     }
 }
 
-
-
+extension MakeEventViewController :GetMyTeamDelegate {
+    func getMyteam(teamArray: [TeamModel]) {
+        pickerArray = teamArray
+        TeamPickerView.reloadAllComponents()
+    }
+    
+    
+}

@@ -41,6 +41,7 @@ class ChatListViewController:UIViewController{
         fetchData.chatDelegate = self
         fetchData.chatRoomDelegate = self
         fetchData.chatListDelegate = self
+        fetchData.myTeamDelegate = self
     }
     
     private func setupNav() {
@@ -91,12 +92,8 @@ class ChatListViewController:UIViewController{
     }
     //Mark :setupOwnTeam
     private func setupOwnTeamData() {
-        Firestore.getOwnTeam(uid: Auth.getUserId()) { teams in
-            self.teams = teams
-            for i in 0..<teams.count {
-                let teamId = teams[i].teamId
-                self.fetchData.getGroupChat(teamId: teamId)
-            }
+        Firestore.getOwnTeam(uid: Auth.getUserId()) { teamIds in
+            self.fetchData.getmyTeamData(idArray: teamIds)
         }
     }
     
@@ -256,8 +253,14 @@ extension ChatListViewController :GetChatListDelegate {
             self.sortChatModelArray.append(self.chatModelArray[index])
         }
     }
-    
-  
-    
-    
+}
+
+extension ChatListViewController:GetMyTeamDelegate {
+    func getMyteam(teamArray: [TeamModel]) {
+        self.teams = teamArray
+        for i in 0..<teams.count {
+            let teamId = teams[i].teamId
+            self.fetchData.getGroupChat(teamId: teamId)
+        }
+    }
 }

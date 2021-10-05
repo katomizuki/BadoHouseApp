@@ -119,7 +119,6 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertVc = UIAlertController(title: "承認待ちにもどしますか", message: "", preferredStyle: UIAlertController.Style.alert)
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { action in
-            print("alert")
             let eventId = self.eventArray[indexPath.section].eventId
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
             Firestore.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
