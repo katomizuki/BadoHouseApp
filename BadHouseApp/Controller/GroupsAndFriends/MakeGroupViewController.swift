@@ -54,7 +54,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         fetchData.friendDelegate = self
         guard let me = me else { return }
         let meId = me.uid
-        Firestore.getFriendData(uid: meId) { ids in
+        Firestore.getFriendData(uid: meId) {ids in
             self.fetchData.friendData(idArray: ids)
         }
     }

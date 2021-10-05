@@ -3,81 +3,81 @@ import Firebase
 import CoreLocation
 import RxSwift
 
-protocol GetGenderCount {
+protocol GetGenderCount:AnyObject  {
     func getGenderCount(count:[Int])
 }
-protocol GetBarChartDelegate {
+protocol GetBarChartDelegate :AnyObject {
     func getBarData(count:[Int])
 }
-protocol GetEventDelegate {
+protocol GetEventDelegate :AnyObject {
     func getEventData(eventArray:[Event])
 }
-protocol GetEventSearchDelegate {
+protocol GetEventSearchDelegate :AnyObject {
     func getEventSearchData(eventArray:[Event])
 }
-protocol GetEventTimeDelegate {
+protocol GetEventTimeDelegate:AnyObject  {
     func getEventTimeData(eventArray:[Event])
 }
-protocol GetDetailDataDelegate {
+protocol GetDetailDataDelegate:AnyObject  {
     func getDetailData(eventArray:[Event])
 }
-protocol GetChatDataDelgate {
+protocol GetChatDataDelgate:AnyObject  {
     func getChatData(chatArray:[Chat])
 }
-protocol GetChatRoomDataDelegate {
+protocol GetChatRoomDataDelegate:AnyObject  {
     func getChatRoomData(chatRoomArray:[ChatRoom])
 }
-protocol GetUserDataDelegate {
+protocol GetUserDataDelegate :AnyObject {
     func getUserData(userArray:[User])
 }
 
-protocol GetGroupChatDelegate {
+protocol GetGroupChatDelegate:AnyObject  {
     func getGroupChat(chatArray:[GroupChatModel])
 }
-protocol GetPrejoinDataDelegate {
+protocol GetPrejoinDataDelegate:AnyObject  {
     func getPrejoin(preJoin:[[String]])
 }
-protocol GetJoinDataDelegate {
+protocol GetJoinDataDelegate :AnyObject {
     func getJoin(joinArray:[[String]])
 }
-protocol GetFriendDelegate {
+protocol GetFriendDelegate :AnyObject {
     func getFriend(friendArray:[User])
 }
-protocol GetChatListDelegate {
+protocol GetChatListDelegate :AnyObject {
     func getChatList(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
 }
-protocol GetVideoDelegate {
+protocol GetVideoDelegate :AnyObject {
     func getVideo(videoArray:[VideoModel])
 }
-protocol GetGroupDelegate {
+protocol GetGroupDelegate:AnyObject  {
     func getGroup(groupArray:[TeamModel])
 }
-protocol GetMyEventDelegate {
+protocol GetMyEventDelegate:AnyObject  {
     func getEvent(eventArray:[Event])
 }
-protocol GetMyTeamDelegate {
+protocol GetMyTeamDelegate:AnyObject {
     func getMyteam(teamArray:[TeamModel])
 }
 class FetchFirestoreData {
     
-    var delegate:GetGenderCount?
-    var barDelegate:GetBarChartDelegate?
-    var eventDelegate:GetEventDelegate?
-    var eventSearchDelegate:GetEventSearchDelegate?
-    var eventTimeDelegate:GetEventTimeDelegate?
-    var detailDelegate:GetDetailDataDelegate?
-    var chatDelegate:GetChatDataDelgate?
-    var chatRoomDelegate:GetChatRoomDataDelegate?
-    var userDelegate:GetUserDataDelegate?
-    var groupChatDataDelegate:GetGroupChatDelegate?
-    var preDelegate:GetPrejoinDataDelegate?
-    var joinDelegate:GetJoinDataDelegate?
-    var friendDelegate:GetFriendDelegate?
-    var chatListDelegate:GetChatListDelegate?
-    var videoDelegate:GetVideoDelegate?
-    var groupSearchDelegate:GetGroupDelegate?
-    var myEventDelegate:GetMyEventDelegate?
-    var myTeamDelegate:GetMyTeamDelegate?
+    weak var delegate:GetGenderCount?
+    weak var barDelegate:GetBarChartDelegate?
+    weak var eventDelegate:GetEventDelegate?
+    weak var eventSearchDelegate:GetEventSearchDelegate?
+    weak var eventTimeDelegate:GetEventTimeDelegate?
+    weak var detailDelegate:GetDetailDataDelegate?
+    weak var chatDelegate:GetChatDataDelgate?
+    weak var chatRoomDelegate:GetChatRoomDataDelegate?
+    weak var userDelegate:GetUserDataDelegate?
+    weak var groupChatDataDelegate:GetGroupChatDelegate?
+    weak var preDelegate:GetPrejoinDataDelegate?
+    weak var joinDelegate:GetJoinDataDelegate?
+    weak var friendDelegate:GetFriendDelegate?
+    weak var chatListDelegate:GetChatListDelegate?
+    weak var videoDelegate:GetVideoDelegate?
+    weak var groupSearchDelegate:GetGroupDelegate?
+    weak var myEventDelegate:GetMyEventDelegate?
+    weak var myTeamDelegate:GetMyTeamDelegate?
     
     func friendData(idArray:[String]) {
         var array = [User]()

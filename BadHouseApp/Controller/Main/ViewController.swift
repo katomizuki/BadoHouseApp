@@ -34,6 +34,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
             }
         }
             setupIndicator()
+        
             IndicatorView.startAnimating()
             setupUI()
             setupLocationManager()

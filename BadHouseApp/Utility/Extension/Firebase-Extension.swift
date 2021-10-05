@@ -261,7 +261,6 @@ extension Firestore{
             guard let data = snapShot?.documents else { return }
             data.forEach { doc in
                 let safeData = doc.data()
-                let dic = safeData as [String:Any]
                 let teamId = safeData["teamId"] as? String ?? ""
                 teamIdArray.append(teamId)
             }
