@@ -23,7 +23,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private let eventBinding = MakeEventBindings()
     private let disposeBag = DisposeBag()
     @IBOutlet weak var makeEventButton: UIButton!
-    var pickerArray = [TeamModel]()
+    private var pickerArray = [TeamModel]()
     @IBOutlet weak var detaiTextView: UITextView!
     @IBOutlet weak var circleSegment: UISegmentedControl!
     @IBOutlet weak var noImageView: UIImageView!
@@ -73,10 +73,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     //Mark setupUI
     private func setupUI() {
-        TeamPickerView.layer.cornerRadius = 15
-        TeamPickerView.layer.masksToBounds = true
-        makeEventButton.layer.cornerRadius = 15
-        makeEventButton.layer.masksToBounds = true
+        TeamPickerView.toCorner(num: 15)
+        makeEventButton.toCorner(num: 15)
         
         levelUISlider.delegate = self
         levelUISlider.leftKnobColor = Utility.AppColor.OriginalBlue
@@ -94,6 +92,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         TeamPickerView.dataSource = self
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
+        fetchData.myTeamDelegate = self
         
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
