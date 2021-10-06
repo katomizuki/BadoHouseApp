@@ -7,6 +7,7 @@ import FacebookCore
 
 class ScheduleViewController: UIViewController{
     
+    //Mark properties
     var me:User?
     private let cellId = Utility.CellId.CellGroupId
     private let fetchData = FetchFirestoreData()
@@ -20,11 +21,12 @@ class ScheduleViewController: UIViewController{
         return view
     }()
 
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let meId = me?.uid else { return }
-        Firestore.getmyEventIdArray(uid: meId) { idArray in
-            print(idArray)
+        Firestore.getmyEventIdArray(uid: meId) { [weak self] idArray in
+            guard let self = self else { return }
             self.fetchData.getmyEventData(idArray: idArray)
         }
         setupCalendar()

@@ -14,34 +14,52 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     var friend:User?
     var teamPlayers = [User]()
     var friends = [User]()
-    @IBOutlet weak var friendImageView: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var teamNameLabel: UILabel!
-    @IBOutlet weak var placeLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var teamTagStackView: UIStackView!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var placeStackView: UIStackView!
-    @IBOutlet weak var timeStackView: UIStackView!
-    @IBOutlet weak var priceStackView: UIStackView!
-    @IBOutlet weak var pieView: PieChartView!
-    @IBOutlet weak var BarChartView: BarChartView!
+    @IBOutlet private weak var friendImageView: UIImageView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var teamNameLabel: UILabel! {
+        didSet {
+            teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        }
+    }
+    @IBOutlet private weak var placeLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var teamTagStackView: UIStackView! {
+        didSet {
+            teamTagStackView.distribution = .fillEqually
+            teamTagStackView.axis = .horizontal
+            teamTagStackView.spacing = 5
+        }
+    }
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var placeStackView: UIStackView!
+    @IBOutlet private weak var timeStackView: UIStackView!
+    @IBOutlet private weak var priceStackView: UIStackView!
+    @IBOutlet private weak var pieView: PieChartView!
+    @IBOutlet private weak var BarChartView: BarChartView!
     private let teamMemberCellId = Utility.CellId.MemberCellId
     private var genderArray = [Int]()
     private var genderValue = Utility.Data.genderArray
     private var IndicatorView:NVActivityIndicatorView!
     private var rawData: [Int] = []
-    @IBOutlet weak var withdrawButton: UIButton!
+    @IBOutlet weak var withdrawButton: UIButton! {
+        didSet {
+            withdrawButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
+        }
+    }
     var flag = false
-    @IBOutlet weak var updateButton: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
-    @IBOutlet weak var inviteButton: UIBarButtonItem!
+    @IBOutlet private weak var updateButton: UIButton! {
+        didSet {
+            updateButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue
+                                      , titleColor: .white, fontSize: 14)
+        }
+    }
+    @IBOutlet private weak var chatButton: UIButton!
+    @IBOutlet private weak var inviteButton: UIBarButtonItem!
     
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIndicator()
-        setupUI()
         updateBorder()
         setupDelegate()
         IndicatorView.startAnimating()
@@ -51,7 +69,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setGraph()
         withdrawButton.isHidden = flag
         chatButton.isHidden = flag
-        
         if flag == true {
             navigationItem.setRightBarButton(nil, animated: true)
         }
@@ -86,17 +103,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             }
         }
     }
-    
-    //Mark:setupUI
-    private func setupUI() {
-        teamTagStackView.distribution = .fillEqually
-        teamTagStackView.axis = .horizontal
-        teamTagStackView.spacing = 5
-        teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        withdrawButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
-        updateButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue
-                                  , titleColor: .white, fontSize: 14)
-    }
+ 
     
     //Mark:setupDelegate
     private func setupDelegate() {
@@ -194,13 +201,13 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     
         
     
-    @IBAction func gotoInvite(_ sender: Any) {
+    @IBAction private func gotoInvite(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
         vc.friends = self.friends
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func updateTeamInfo(_ sender: Any) {
+    @IBAction private func updateTeamInfo(_ sender: Any) {
         print(#function)
         guard let team = self.team else { return }
         let vc = UpdateViewController(team: team)
@@ -257,19 +264,19 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         }
       
     }
-    @IBAction func gotoGroup(_ sender: Any) {
+    @IBAction private func gotoGroup(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func go(_ sender: Any) {
+    @IBAction private func go(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func withdraw(_ sender: Any) {
+    @IBAction private func withdraw(_ sender: Any) {
         print(#function)
         guard let teamId = team?.teamId else { return }
         //OwnTeamからDelete,teamPlayerからdelete
@@ -336,6 +343,9 @@ class UpdateViewController:UIViewController {
         iv.image = UIImage(named: Utility.ImageName.noImages)
         iv.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
         iv.layer.borderWidth = 2
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(handleImagePicker))
+        iv.addGestureRecognizer(touchGesture)
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -352,9 +362,6 @@ class UpdateViewController:UIViewController {
         super.viewDidLoad()
         setupLayout()
         teamInfo()
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(handleImagePicker))
-        iv.addGestureRecognizer(touchGesture)
-        iv.isUserInteractionEnabled = true
         imagePicker.delegate = self
     }
     
@@ -405,7 +412,8 @@ class UpdateViewController:UIViewController {
         self.team?.teamLevel = money
 
         guard let image = iv.image else { return }
-        Storage.addTeamImage(image: image) { urlString in
+        Storage.addTeamImage(image: image) { [weak self] urlString in
+            guard let self = self else { return }
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }
             Firestore.updateTeamInfo(team: team)

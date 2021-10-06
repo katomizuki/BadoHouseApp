@@ -13,14 +13,44 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let teamBinding = TeamRegisterBindings()
     var friends = [User]()
     var me:User?
-    @IBOutlet weak var groupImageView: UIImageView!
-    private let nameTextField = RegisterTextField(placeholder: "サークル名(必須)")
-    private let placeTextField = RegisterTextField(placeholder: "主な活動場所 〇〇県")
-    private let timeTextField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等")
-    private let levelTextField = RegisterTextField(placeholder: "会費 〇〇円/月")
-    private let plusTextField = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意)")
+    @IBOutlet private weak var groupImageView: UIImageView! {
+        didSet {
+            groupImageView.isUserInteractionEnabled = true
+            groupImageView.toCorner(num: 50)
+            groupImageView.contentMode = .scaleAspectFill
+        }
+    }
+    private let nameTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "サークル名(必須)")
+        tf.tag = 0
+        return tf
+    }()
+    private let placeTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "主な活動場所 〇〇県")
+        tf.tag = 1
+        return tf
+    }()
+    private let timeTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等")
+        tf.tag = 2
+        return tf
+    }()
+    private let levelTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "会費 〇〇円/月")
+        tf.tag = 3
+        return tf
+    }()
+    private let plusTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意)")
+        tf.tag = 4
+        return tf
+    }()
     private let tagLabel = ProfileLabel(title: "特徴タグ")
-    private let registerButton:UIButton = RegisterButton(text: "新規登録")
+    private let registerButton:UIButton = {
+        let button =  RegisterButton(text: "新規登録")
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        return button
+    }()
     private let buttonTag1 = UIButton(type: .system).createTagButton(title: "シングル可")
     private let buttonTag2 = UIButton(type: .system).createTagButton(title: "バド好き")
     private let buttonTag3 = UIButton(type: .system).createTagButton(title: "ミックス可")
@@ -33,14 +63,14 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let buttonTag10 = UIButton(type: .system).createTagButton(title: "大会出ます!")
     private let buttonTag11 = UIButton(type: .system).createTagButton(title: "土日開催")
     private let buttonTag12 = UIButton(type: .system).createTagButton(title: "平日開催")
-    @IBOutlet weak var scrollView: UIView!
+    @IBOutlet private weak var scrollView: UIView!
     private var tagArray = [String]()
     private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
     private let placePickerView = UIPickerView()
     private let placeArray = Utility.Data.placeArray
     private let moneyArray = Utility.Data.moneyArray
- 
+    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +84,8 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         fetchData.friendDelegate = self
         guard let me = me else { return }
         let meId = me.uid
-        Firestore.getFriendData(uid: meId) {ids in
+        Firestore.getFriendData(uid: meId) { [weak self] ids in
+            guard let self = self else { return }
             self.fetchData.friendData(idArray: ids)
         }
     }
@@ -79,31 +110,20 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         toolBar.setItems([doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
-    @objc func donePicker() {
+    @objc private func donePicker() {
         placeTextField.endEditing(true)
         levelTextField.endEditing(true)
     }
-    
-    //Mark:setupLayout
-    private func setupLayout() {
-        nameTextField.tag = 0
-        placeTextField.tag = 1
-        timeTextField.tag = 2
-        levelTextField.tag = 3
-        plusTextField.tag = 4
+    private func setupDelegate() {
         nameTextField.delegate = self
         placeTextField.delegate = self
         timeTextField.delegate = self
         levelTextField.delegate = self
         plusTextField.delegate = self
-        
-        
-        //Mark: updateUI
-        groupImageView.isUserInteractionEnabled = true
-        groupImageView.toCorner(num: 50)
-        groupImageView.contentMode = .scaleAspectFill
-        registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        
+    }
+    
+    //Mark:setupLayout
+    private func setupLayout() {
         //Mark: readyStackView
         let basicStackView = UIStackView(arrangedSubviews: [nameTextField,placeTextField,timeTextField,levelTextField,plusTextField])
         let buttonStackView = UIStackView(arrangedSubviews: [buttonTag1,buttonTag2,buttonTag3,buttonTag4])
@@ -122,7 +142,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         scrollView.addSubview(buttonStackView2)
         scrollView.addSubview(buttonStackView3)
         scrollView.addSubview(registerButton)
-        
         //Mark:anchor
         buttonTag1.anchor(width: 45, height:45)
         buttonTag5.anchor(width:45, height: 45)
@@ -140,8 +159,11 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonStackView2.anchor(top:buttonStackView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         buttonStackView3.anchor(top: buttonStackView2.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         registerButton.anchor(top:buttonStackView3.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20, paddingLeft: 20,height: 45)
+        setupAddTarget()
         
-        //Mark:selector
+    }
+    
+    private func setupAddTarget() {
         buttonTag1.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag2.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag3.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
@@ -291,9 +313,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         guard let teamUrl = plusTextField.text else { return }
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendVC") as! FriendsViewController
-       
-            vc.friends = self.friends
-        
+        vc.friends = self.friends
         vc.teamName = teamName
         vc.teamTime = teamTime
         vc.teamPlace = teamPlace
@@ -347,7 +367,7 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
         } else {
             return moneyArray[row]
         }
-      
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

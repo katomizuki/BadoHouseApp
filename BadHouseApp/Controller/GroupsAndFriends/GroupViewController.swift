@@ -12,11 +12,15 @@ class GroupViewController: UIViewController{
     private let cellId = Utility.CellId.CellGroupId
     private var userIdArray = [String]()
     private let sectionArray = ["所属サークル","お友達"]
-    @IBOutlet weak var groupTableView: UITableView!
+    @IBOutlet private weak var groupTableView: UITableView!
     private var IndicatorView:NVActivityIndicatorView!
-    @IBOutlet weak var myImageView: UIImageView!
-    @IBOutlet weak var myName: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet private weak var myImageView: UIImageView! {
+        didSet {
+            myImageView.toCorner(num: 40)
+        }
+    }
+    @IBOutlet private weak var myName: UILabel!
+    @IBOutlet private weak var countLabel: UILabel!
     private let fetchData = FetchFirestoreData()
     
     //Mark:LifeCycle
@@ -27,8 +31,6 @@ class GroupViewController: UIViewController{
         IndicatorView.startAnimating()
         setupTableView()
         setupData()
-        myImageView.layer.cornerRadius = 40
-        myImageView.layer.masksToBounds = true
         fetchData.friendDelegate = self
         fetchData.myTeamDelegate = self
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -88,11 +90,11 @@ class GroupViewController: UIViewController{
     }
     
     //Mark:IBAction
-    @IBAction func user(_ sender: Any) {
+    @IBAction private func user(_ sender: Any) {
         self.performSegue(withIdentifier:  Utility.Segue.userProfile, sender: nil)
     }
     
-    @IBAction func gotoMakeGroup(_ sender: Any) {
+    @IBAction private func gotoMakeGroup(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.MakeGroupVC) as! MakeGroupViewController
         vc.me = user
         navigationController?.pushViewController(vc, animated: true)
@@ -108,7 +110,7 @@ class GroupViewController: UIViewController{
         }
     }
     
-    @IBAction func scroll(_ sender: Any) {
+    @IBAction private func scroll(_ sender: Any) {
         groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
     }
     

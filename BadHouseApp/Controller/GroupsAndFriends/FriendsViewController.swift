@@ -88,7 +88,8 @@ class FriendsViewController: UIViewController {
         guard let teamUrl = self.url else { return }
         guard let me = self.me else { return }
         inviter.append(me)
-                Storage.addTeamImage(image: teamImage) { urlString in
+                Storage.addTeamImage(image: teamImage) { [weak self] urlString in
+                    guard let self = self else { return }
                     Firestore.createTeam(teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: urlString,friends:self.inviter, teamUrl: teamUrl, tagArray: self.teamTagArray)
                     self.IndicatorView.stopAnimating()
                     self.navigationController?.popToRootViewController(animated: true)
@@ -110,7 +111,6 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
-            //urlがからであれば違う画像を出す なければロゴ画像を一旦出す。
             cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
         
         } else {

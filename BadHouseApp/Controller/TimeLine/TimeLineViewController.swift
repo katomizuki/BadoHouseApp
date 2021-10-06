@@ -4,17 +4,16 @@ import AVKit
 import NVActivityIndicatorView
 import SkeletonView
 
-
 class TimeLineViewController: UIViewController{
    
-    
-    
+    //Mark properties
     private var collectionView:UICollectionView?
     private var data = [VideoModel]()
     private let fetchData = FetchFirestoreData()
     private var player = AVPlayer()
     private var indicator:NVActivityIndicatorView!
     
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -28,8 +27,7 @@ class TimeLineViewController: UIViewController{
         view.isSkeletonable = true
     }
     
-    
-    
+    //Mark setupCollectionView
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -59,6 +57,7 @@ class TimeLineViewController: UIViewController{
                          height: 100)
     }
 }
+//Mark:collectionViewdelegate & skeletonViewdelegate
 extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSource,SkeletonCollectionViewDataSource{
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
@@ -138,9 +137,9 @@ extension TimeLineViewController: SearchVideoDelegate{
 protocol SearchVideoDelegate:AnyObject {
     func getVideoData(videoArray:[VideoModel])
 }
-
 class PopoverViewController: UIViewController {
     
+    //Mark properties
     private let tv:UITableView = {
         let tv = UITableView()
         return tv
@@ -152,7 +151,6 @@ class PopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 吹き出しの背景色を指定（view.backgroundColorを指定しても、吹き出しの三角形の部分が白いまま）
         tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         popoverPresentationController?.backgroundColor = UIColor.white
         view.addSubview(tv)
@@ -179,7 +177,7 @@ extension PopoverViewController:UITableViewDelegate,UITableViewDataSource {
         fetchData.searchVideoData(text: text)
     }
 }
-
+//Mark:VideoDelegate
 extension PopoverViewController:GetVideoDelegate {
     func getVideo(videoArray: [VideoModel]) {
         self.SearchDelegate?.getVideoData(videoArray: videoArray)

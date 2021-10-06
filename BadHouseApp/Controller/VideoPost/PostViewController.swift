@@ -6,6 +6,7 @@ import Firebase
 
 class PostViewController: UIViewController {
     
+    //Mark:Properties
     private let logoImage:UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.logoImage)
@@ -16,15 +17,16 @@ class PostViewController: UIViewController {
     private let mixButton = RegisterButton(text: "ミックス")
     private let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
     
-        let captureSession = AVCaptureSession()
-        let fileOutput = AVCaptureMovieFileOutput()
-        var recordButton: UIButton!
-        var isRecording = false
-
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          setupLayout()
-      }
+    let captureSession = AVCaptureSession()
+    let fileOutput = AVCaptureMovieFileOutput()
+    var recordButton: UIButton!
+    var isRecording = false
+    
+    //Mark lifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLayout()
+    }
     
     private func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [label,singleButton,doubleButton,mixButton])
@@ -48,9 +50,9 @@ class PostViewController: UIViewController {
     }
     
     @objc private func handle(sender:UIButton) {
-        #if targetEnvironment(simulator)
-            // do nothing
-        #else
+#if targetEnvironment(simulator)
+        // do nothing
+#else
         if sender == singleButton {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = "シングルス"
@@ -64,6 +66,6 @@ class PostViewController: UIViewController {
             vc.keyWord = "ミックス"
             navigationController?.pushViewController(vc, animated: true)
         }
-        #endif
+#endif
     }
 }
