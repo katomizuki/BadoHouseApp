@@ -17,6 +17,12 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet private weak var levelStackView: UIStackView!
     @IBOutlet private weak var cityStackView: UIStackView!
     @IBOutlet private weak var moneyStackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            scrollView.addGestureRecognizer(gesture)
+        }
+    }
     @IBOutlet private weak var timeStackView: UIStackView!
     @IBOutlet private weak var titleTextField: UITextField! {
         didSet {
@@ -33,11 +39,20 @@ class DetailSearchViewController: UIViewController{
     }
     @IBOutlet private weak var moneyTextField: UITextField!
     @IBOutlet private weak var levelTextField: UITextField!
-    @IBOutlet private weak var searchButton: UIButton!
+    @IBOutlet private weak var searchButton: UIButton! {
+        didSet {
+            searchButton.layer.cornerRadius = 15
+            searchButton.layer.masksToBounds = true
+        }
+    }
     private let (pickerView,pickerMoneyView,pickerLevelView,placePickerView ) = (UIPickerView(),UIPickerView(),UIPickerView(),UIPickerView())
     private let (data,place,money,level) = (Utility.Data.circle,Utility.Data.place,Utility.Data.money,Utility.Data.level)
     private let fetchData = FetchFirestoreData()
-    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var datePicker: UIDatePicker! {
+        didSet {
+            datePicker.addTarget(self, action: #selector(getDate(sender:)), for: UIControl.Event.valueChanged)
+        }
+    }
     private var dateString = String()
     private var eventArray = [Event]()
     weak var delegate:getDetailDelegate?
@@ -53,17 +68,9 @@ class DetailSearchViewController: UIViewController{
         setupUnderLayer(view: moneyStackView)
         setupUnderLayer(view: timeStackView)
         setupPickerView()
-        updateUI()
         setupBorder()
         titleTextField.delegate = self
         cityTextField.delegate = self
-    }
-    
-    //Mark updateUI
-    private func updateUI() {
-        datePicker.addTarget(self, action: #selector(getDate(sender:)), for: UIControl.Event.valueChanged)
-        searchButton.layer.cornerRadius = 15
-        searchButton.layer.masksToBounds = true
     }
     
     //Mark:getCGrect
@@ -98,22 +105,23 @@ class DetailSearchViewController: UIViewController{
     }
     
     //Mark:Selector
-    @objc func donePicker() {
+    @objc private func donePicker() {
         circleTextField.endEditing(true)
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
     }
     
-    @objc func getDate(sender:UIDatePicker) {
+    @objc private func getDate(sender:UIDatePicker) {
         let dateString = self.formatterUtil(date: sender.date)
         self.dateString = dateString
     }
-    
-    //Mark:TextFieldMethod
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        circleTextField.endEditing(true)
-        moneyTextField.endEditing(true)
-        levelTextField.endEditing(true)
+    @objc private func handleTap() {
+        print(#function)
+        titleTextField.resignFirstResponder()
+        circleTextField.resignFirstResponder()
+        levelTextField.resignFirstResponder()
+        cityTextField.resignFirstResponder()
+        moneyTextField.resignFirstResponder()
     }
     
     //Mark:IBAction

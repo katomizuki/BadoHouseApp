@@ -41,9 +41,12 @@ class GroupViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if Auth.auth().currentUser == nil {
             let vc = tabBarController?.viewControllers?[0]
             tabBarController?.selectedViewController = vc
+        } else {
+            setupData()
         }
     }
     

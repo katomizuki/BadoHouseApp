@@ -19,6 +19,11 @@ class FriendSSearchViewController: UIViewController {
         setupDelegate()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(#function)
+        searchBar.resignFirstResponder()
+    }
+    
     private func setupDelegate() {
         searchBar.delegate = self
         fetchData.userDelegate = self

@@ -49,6 +49,10 @@ class ViewController: UIViewController {
         }
     }
    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(#function)
+        searchBar.resignFirstResponder()
+    }
     
     //Mark:setupEmptyState
     private func setupEmptyState() {

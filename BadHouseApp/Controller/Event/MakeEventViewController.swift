@@ -58,6 +58,12 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         }
     }
     @IBOutlet private weak var noImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            scrollView.addGestureRecognizer(gesture)
+        }
+    }
     
     //Mark:sendEventdataProperties
     private var selectedTeam:TeamModel?
@@ -224,6 +230,11 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         default:
             break
         }
+    }
+    @objc private func handleTap() {
+        titleTextField.resignFirstResponder()
+        moneyTextField.resignFirstResponder()
+        detaiTextView.resignFirstResponder()
     }
     
     @objc private func createEvent() {

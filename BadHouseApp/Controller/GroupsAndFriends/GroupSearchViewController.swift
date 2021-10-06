@@ -18,6 +18,10 @@ class GroupSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(#function)
+        searchBar.resignFirstResponder()
+    }
     
     private func setupTableView() {
         let nib = GroupCell.nib()

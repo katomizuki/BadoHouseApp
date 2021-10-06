@@ -195,8 +195,8 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
 
     @objc private func handleTap() {
         print(#function)
-        levelTextField.endEditing(true)
-        placeTextField.endEditing(true)
+        levelTextField.resignFirstResponder()
+        placeTextField.resignFirstResponder()
         nameTextField.resignFirstResponder()
         placeTextField.resignFirstResponder()
         plusTextField.resignFirstResponder()
