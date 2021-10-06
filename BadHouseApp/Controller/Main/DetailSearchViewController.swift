@@ -55,6 +55,8 @@ class DetailSearchViewController: UIViewController{
         setupPickerView()
         updateUI()
         setupBorder()
+        titleTextField.delegate = self
+        cityTextField.delegate = self
     }
     
     //Mark updateUI
@@ -180,6 +182,12 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
     }
 }
 
-
+extension DetailSearchViewController:UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
 

@@ -117,13 +117,13 @@
                                                         <rect key="frame" x="0.0" y="457" width="315" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yab-ZE-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="108" height="51.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="84" height="51.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-tL-9go">
-                                                                <rect key="frame" x="108" y="0.0" width="207" height="51.5"/>
+                                                                <rect key="frame" x="84" y="0.0" width="231" height="51.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -3000,7 +3000,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="groupImageView" destination="OdU-RR-NZR" id="SXF-Xi-WWs"/>
-                        <outlet property="scrollView" destination="KcV-H6-CHF" id="8Ou-Yf-Yyy"/>
+                        <outlet property="scrollView" destination="KcV-H6-CHF" id="pRU-ex-Xvy"/>
                         <segue destination="Bv2-1l-phB" kind="show" identifier="goto" id="ig4-C0-wzo"/>
                     </connections>
                 </viewController>

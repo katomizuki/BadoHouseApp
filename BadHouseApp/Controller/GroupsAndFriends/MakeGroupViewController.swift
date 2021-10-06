@@ -73,7 +73,12 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let buttonTag10 = UIButton(type: .system).createTagButton(title: "大会出ます!")
     private let buttonTag11 = UIButton(type: .system).createTagButton(title: "土日開催")
     private let buttonTag12 = UIButton(type: .system).createTagButton(title: "平日開催")
-    @IBOutlet private weak var scrollView: UIView!
+    @IBOutlet private weak var scrollView: UIView! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            scrollView.addGestureRecognizer(gesture)
+        }
+    }
     private var tagArray = [String]()
     private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
@@ -187,11 +192,17 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonTag11.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag12.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+    @objc private func handleTap() {
+        print(#function)
         levelTextField.endEditing(true)
         placeTextField.endEditing(true)
+        nameTextField.resignFirstResponder()
+        placeTextField.resignFirstResponder()
+        plusTextField.resignFirstResponder()
+        timeTextField.resignFirstResponder()
     }
+    
     
     private func helper(stackview:UIStackView,bool:Bool) {
         stackview.axis = bool == true ? .vertical:.horizontal
@@ -411,4 +422,5 @@ extension MakeGroupViewController:UITextFieldDelegate {
         return true
     }
 }
+
 

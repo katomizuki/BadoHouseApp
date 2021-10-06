@@ -106,6 +106,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         fetchData.myTeamDelegate = self
+        titleTextField.delegate = self
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
@@ -414,6 +415,10 @@ extension MakeEventViewController :GetMyTeamDelegate {
         }
         TeamPickerView.reloadAllComponents()
     }
-    
-    
+}
+
+extension MakeEventViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
 }
