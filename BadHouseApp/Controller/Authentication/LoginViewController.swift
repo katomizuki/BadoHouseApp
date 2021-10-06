@@ -40,6 +40,10 @@ class LoginViewController:UIViewController {
         fbButton.permissions = ["public_profile, email"]
         emailTextField.tag = 0
         passwordTextField.tag = 1
+        emailTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .done
+        emailTextField.keyboardType = .emailAddress
+        passwordTextField.keyboardType = .default
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }

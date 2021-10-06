@@ -18,9 +18,19 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet private weak var cityStackView: UIStackView!
     @IBOutlet private weak var moneyStackView: UIStackView!
     @IBOutlet private weak var timeStackView: UIStackView!
-    @IBOutlet private weak var titleTextField: UITextField!
+    @IBOutlet private weak var titleTextField: UITextField! {
+        didSet {
+            titleTextField.keyboardType = .namePhonePad
+            titleTextField.returnKeyType = .next
+        }
+    }
     @IBOutlet private weak var circleTextField: UITextField!
-    @IBOutlet private weak var cityTextField: UITextField!
+    @IBOutlet private weak var cityTextField: UITextField! {
+        didSet {
+            cityTextField.keyboardType = .namePhonePad
+            cityTextField.returnKeyType = .next
+        }
+    }
     @IBOutlet private weak var moneyTextField: UITextField!
     @IBOutlet private weak var levelTextField: UITextField!
     @IBOutlet private weak var searchButton: UIButton!

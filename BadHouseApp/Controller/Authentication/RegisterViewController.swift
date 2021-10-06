@@ -26,7 +26,7 @@ class RegisterViewController:UIViewController{
     private var pictureURLString = String()
     private let iv:UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "logo")
+        iv.image = UIImage(named: Utility.ImageName.logoImage)
         return iv
     }()
     private let disposeBag = DisposeBag()
@@ -52,7 +52,7 @@ class RegisterViewController:UIViewController{
         emailTextField.keyboardType = .emailAddress
         nameTextField.keyboardType = .default
         nameTextField.returnKeyType = .next
-        passwordTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .done
         emailTextField.tag = 1
         nameTextField.tag = 0
         passwordTextField.tag = 2
@@ -74,8 +74,7 @@ class RegisterViewController:UIViewController{
         //Mark updateUI
         passwordTextField.isSecureTextEntry = true
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        
-        
+
         //Mark: StackView
         let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googlView,fbButton])
         stackView.axis = .vertical

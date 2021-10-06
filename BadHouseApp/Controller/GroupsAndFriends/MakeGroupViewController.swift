@@ -23,26 +23,36 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let nameTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "サークル名(必須)")
         tf.tag = 0
+        tf.returnKeyType = .next
+        tf.keyboardType = .namePhonePad
         return tf
     }()
     private let placeTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "主な活動場所 〇〇県")
         tf.tag = 1
+        tf.returnKeyType = .next
+        tf.keyboardType = .namePhonePad
         return tf
     }()
     private let timeTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等")
         tf.tag = 2
+        tf.returnKeyType = .next
+        tf.keyboardType = .namePhonePad
         return tf
     }()
     private let levelTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "会費 〇〇円/月")
         tf.tag = 3
+        tf.returnKeyType = .next
+        tf.keyboardType = .numberPad
         return tf
     }()
     private let plusTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "HPやTwitter,その他情報が乗ったURL(任意)")
         tf.tag = 4
+        tf.returnKeyType = .done
+        tf.keyboardType = .namePhonePad
         return tf
     }()
     private let tagLabel = ProfileLabel(title: "特徴タグ")

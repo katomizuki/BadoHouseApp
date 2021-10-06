@@ -21,6 +21,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     @IBOutlet private weak var titleTextField: UITextField! {
         didSet {
             tfupdate(view: titleTextField)
+            titleTextField.returnKeyType = .next
+            titleTextField.keyboardType = .namePhonePad
         }
     }
     @IBOutlet private weak var datePicker: UIDatePicker!
@@ -47,6 +49,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     @IBOutlet private weak var detaiTextView: UITextView! {
         didSet {
             tfupdate(view: detaiTextView)
+            detaiTextView.keyboardType = .namePhonePad
         }
     }
     @IBOutlet private weak var circleSegment: UISegmentedControl! {
@@ -406,6 +409,9 @@ extension MakeEventViewController:UINavigationControllerDelegate {
 extension MakeEventViewController :GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         pickerArray = teamArray
+        if pickerArray.count == 1 {
+            self.selectedTeam = pickerArray[0]
+        }
         TeamPickerView.reloadAllComponents()
     }
     
