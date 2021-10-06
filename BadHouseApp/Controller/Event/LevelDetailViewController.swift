@@ -2,24 +2,33 @@ import UIKit
 
 class LevelDetailViewController: UIViewController {
 
-    @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet private weak var levelLabel: UILabel! {
+        didSet {
+            levelLabel.text = "レベル10"
+        }
+    }
+    @IBOutlet private weak var backButton: UIButton! {
+        didSet {
+            backButton.updateBackbutton()
+        }
+    }
+    @IBOutlet private weak var slider: UISlider! {
+        didSet {
+            slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
+        }
+    }
+    @IBOutlet private weak var textView: UITextView!
     private var selectedLevel = "レベル10"
     override func viewDidLoad() {
         super.viewDidLoad()
-        slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
-        levelLabel.text = selectedLevel
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
-        backButton.updateBackbutton()
     }
    
-    @IBAction func back(_ sender: Any) {
+    @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @objc func changeLevel(sender:UISlider) {
+    @objc private func changeLevel(sender:UISlider) {
         let level = Double(sender.value)
         //分割して条件分岐する
         if case 0..<0.1 = level {

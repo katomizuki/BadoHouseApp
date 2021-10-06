@@ -2,15 +2,15 @@ import UIKit
 import FSCalendar
 import CDAlertView
 
-protocol CalendarDelegate {
+protocol CalendarDelegate:AnyObject {
     func searchCalendar(dateString:String,text:String)
 }
 
 class CalendarViewController: UIViewController, FSCalendarDelegate {
     
     //Mark:Properties
-    @IBOutlet weak var calendar: FSCalendar!
-    var delegate:CalendarDelegate?
+    @IBOutlet private weak var calendar: FSCalendar!
+    weak var delegate:CalendarDelegate?
     private var searchDateString = String()
     private let button:UIButton = RegisterButton(text: "検索")
     private let textField:UITextField = RegisterTextField(placeholder: "場所名入力")
@@ -41,7 +41,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         //mark:addTarget
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
         textField.addTarget(self, action: #selector(placeSearch), for: UIControl.Event.valueChanged)
-
     }
     
     

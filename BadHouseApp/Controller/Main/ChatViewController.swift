@@ -5,7 +5,7 @@ class ChatViewController: UIViewController {
     
     //Mark:Properties
     private let cellId = Utility.CellId.chatCellId
-    @IBOutlet weak var chatTableView: UITableView!
+    @IBOutlet private weak var chatTableView: UITableView!
     private var messages = [Chat]()
     var me: User?
     var you: User?
@@ -57,7 +57,7 @@ class ChatViewController: UIViewController {
         guard let youId = you?.uid else { return }
         fetchData.getChatData(meId: myId, youId: youId) { chatId in
             if chatId.isEmpty {
-                Firestore.sendChatroom(myId: myId, youId: youId) {[weak self] id in
+                Firestore.sendChatroom(myId: myId, youId: youId) { [weak self] id in
                     guard let self = self else { return }
                     self.chatId = id
                 }

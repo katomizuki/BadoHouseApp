@@ -21,7 +21,6 @@ class TimeLineViewController: UIViewController{
         setupIndicator()
         fetchData.getVideoData()
         fetchData.videoDelegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

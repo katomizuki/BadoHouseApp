@@ -16,7 +16,12 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private var hasChangedImage = false
     private var name = ""
     private var email = ""
-    private let logoutButton = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
+    private let logoutButton:UIButton = {
+        let button = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14,weight: .bold)
+        return button
+    }()
+    
     var level:String = "" {
         didSet {
         userTableView.reloadData()
@@ -46,8 +51,18 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private var introduction = ""
     private let backButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
     private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
-    private let profileImageView = ProfileImageView()
-    private let nameLabel = ProfileLabel()
+    private let profileImageView:UIImageView = {
+     let iv = ProfileImageView()
+     iv.contentMode = .scaleAspectFill
+     iv.toCorner(num: 90)
+     iv.tintColor = Utility.AppColor.OriginalBlue
+     return iv
+    }()
+    private let nameLabel:UILabel = {
+        let label = ProfileLabel()
+        label.textColor = Utility.AppColor.OriginalBlue
+        return label
+    }()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
     private let dismissButton = UIButton(type: .system).createAuthButton(text: "もどる")
     lazy var InfoCollectionView:UICollectionView = {
@@ -57,12 +72,13 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
+        collectionView.isScrollEnabled = false
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return collectionView
     }()
     private let userTableView = UITableView()
     var cellTitleArray = Utility.Data.userSection
-    @IBOutlet weak var scrollView: UIView!
+    @IBOutlet private weak var scrollView: UIView!
     
     
     //Mark: LifeCycle
@@ -84,39 +100,15 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
     //Mark: setupMethod
     private func setupLayout() {
-       
-        //Mark: UpdateUI
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.toCorner(num: 90)
-        profileImageView.tintColor = Utility.AppColor.OriginalBlue
-        InfoCollectionView.isScrollEnabled = false
-        nameLabel.textColor = Utility.AppColor.OriginalBlue
-        logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 14,weight: .bold)
-        
-        //Mark addSubView
-        scrollView.addSubview(backButton)
-        scrollView.addSubview(saveButton)
-        scrollView.addSubview(profileImageView)
-        scrollView.addSubview(nameLabel)
-        scrollView.addSubview(profileEditButton)
-        scrollView.addSubview(InfoCollectionView)
-        scrollView.addSubview(userTableView)
-        scrollView.addSubview(logoutButton)
-
-        //Mark: Anchor
-        backButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
-        saveButton.anchor(top: scrollView.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
-        profileImageView.anchor(top: scrollView.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
-        nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 10, centerX: view.centerXAnchor)
-        profileEditButton.anchor(top: profileImageView.topAnchor, right: profileImageView.rightAnchor,  width: 70, height: 60)
-        userTableView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
-        InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
-        logoutButton.anchor(top:saveButton.bottomAnchor,right: view.rightAnchor,paddingTop: 40,paddingRight: 15,width:80)
-        
+        setupAddSubView()
+        setupAnchor()
         //Mark: selector
         backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
         logoutButton.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
-        
+        updateUI()
+    }
+    
+    private func updateUI() {
         //Mark: textFieldUPdate
         nameLabel.text = user?.name
         if let url = URL(string: user?.profileImageUrl ?? "") {
@@ -127,6 +119,29 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         badmintonTime = user?.badmintonTime ?? "未設定"
         place = user?.place ?? "未設定"
         age = user?.age ?? "未設定"
+    }
+    
+    private func setupAddSubView() {
+        //Mark addSubView
+        scrollView.addSubview(backButton)
+        scrollView.addSubview(saveButton)
+        scrollView.addSubview(profileImageView)
+        scrollView.addSubview(nameLabel)
+        scrollView.addSubview(profileEditButton)
+        scrollView.addSubview(InfoCollectionView)
+        scrollView.addSubview(userTableView)
+        scrollView.addSubview(logoutButton)
+    }
+    private func setupAnchor() {
+        //Mark: Anchor
+        backButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
+        saveButton.anchor(top: scrollView.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
+        profileImageView.anchor(top: scrollView.topAnchor, paddingTop: 60, centerX: view.centerXAnchor, width: 180, height: 180)
+        nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 10, centerX: view.centerXAnchor)
+        profileEditButton.anchor(top: profileImageView.topAnchor, right: profileImageView.rightAnchor,  width: 70, height: 60)
+        userTableView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
+        InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
+        logoutButton.anchor(top:saveButton.bottomAnchor,right: view.rightAnchor,paddingTop: 40,paddingRight: 15,width:80)
     }
     
     //Mark: Logout
@@ -163,7 +178,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 ]
                 if self.hasChangedImage {
                     guard let image = self.profileImageView.image else { return }
-//                    //SaveAction
                     Storage.addProfileImageToStorage(image: image, dic: dic) {
                         print("Image Save Success")
                         self.hasChangedImage = false

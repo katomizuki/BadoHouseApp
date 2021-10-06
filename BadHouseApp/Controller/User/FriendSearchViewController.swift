@@ -6,8 +6,8 @@ import FacebookCore
 class FriendSSearchViewController: UIViewController {
 
     //Mark:Properties
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
     private let cellId = Utility.CellId.searchCell
@@ -96,7 +96,6 @@ extension FriendSSearchViewController:GetUserDataDelegate {
     
     func getUserData(userArray: [User]) {
         print(#function)
-        print(userArray)
         self.friendList = userArray
         DispatchQueue.main.async {
             self.tableView.reloadData()

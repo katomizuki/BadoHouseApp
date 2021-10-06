@@ -3,20 +3,20 @@ import FacebookCore
 
 class PopViewController: UIViewController{
     
+    //Mark Properties
     private let CellId = Utility.CellId.popCellId
     var cellArray = Utility.Data.genderArray
     var keyword = String()
     let tableView = UITableView()
-    var gender = String()
-    var badmintonTime = String()
-    var age = String()
-    var place = String()
-
+    var (age,place,badmintonTime,gender) = (String(),String(),String(),String())
+    
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
     }
     
+    //Mark setupTableView
     private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -24,19 +24,23 @@ class PopViewController: UIViewController{
         self.view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
-        if keyword == "性別" {
+        switch keyword {
+        case "性別":
             cellArray = Utility.Data.genderArray
-        } else if keyword == "バドミントン歴" {
+        case "バドミントン歴":
             cellArray = Utility.Data.yearArray
-        } else if keyword == "居住地"  {
+        case "居住地":
             cellArray = Utility.Data.placeArray
-        } else if keyword == "年代" {
+        case "年代":
             cellArray = Utility.Data.ageArray
+        default:
+            break
         }
         tableView.reloadData()
     }
 }
 
+//Mark tableViewdelegate
 extension PopViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,18 +55,21 @@ extension PopViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! UserViewController
-        if keyword == "性別" {
+        switch keyword {
+        case "性別":
             gender = cellArray[indexPath.row]
             vc.gender = self.gender
-        } else if keyword == "バドミントン歴" {
+        case "バドミントン歴":
             badmintonTime = cellArray[indexPath.row]
             vc.badmintonTime = self.badmintonTime
-        } else if keyword == "居住地"  {
+        case "居住地":
             place = cellArray[indexPath.row]
             vc.place = self.place
-        } else if keyword == "年代" {
+        case "年代":
             age = cellArray[indexPath.row]
             vc.age = self.age
+        default:
+            break
         }
         dismiss(animated: true, completion: nil)
     }

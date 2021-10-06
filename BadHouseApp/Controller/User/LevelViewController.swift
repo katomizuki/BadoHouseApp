@@ -3,37 +3,45 @@ import Foundation
 class LevelViewController: UIViewController {
    
     //Mark:Properties
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet private weak var backButton: UIButton! {
+        didSet {
+            backButton.updateBackButton()
+            backButton.addTarget(self, action: #selector(backtoUser), for: .touchUpInside)
+        }
+    }
+    @IBOutlet private weak var saveButton: UIButton! {
+        didSet{
+            saveButton.updateSaveButton()
+        }
+    }
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var slider: UISlider! {
+        didSet {
+            slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
+        }
+    }
+    @IBOutlet private weak var levelLabel: UILabel! {
+        didSet {
+            levelLabel.text = "レベル10"
+        }
+    }
     var selectedLevel = String()
     
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
-        levelLabel.text = "レベル10"
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
-        updateUI()
-    }
-    
-    //Mark updateUI
-    private func updateUI() {
-        saveButton.updateSaveButton()
-        backButton.updateBackButton()
-        backButton.addTarget(self, action: #selector(backtoUser), for: UIControl.Event.touchUpInside)
     }
     
     //Mark:selector
-    @objc func backtoUser() {
+    @objc private func backtoUser() {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func changeLevel(sender:UISlider) {
+    @objc private func changeLevel(sender:UISlider) {
         let level = Double(sender.value)
+        print(level)
         //分割して条件分岐する
         if case 0..<0.1 = level {
             levelLabel.text = "レベル1"

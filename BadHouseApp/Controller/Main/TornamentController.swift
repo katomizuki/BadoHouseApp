@@ -2,19 +2,23 @@ import UIKit
 
 class TornamentController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let cellId = Utility.CellId.CellGroupId
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+    }
+    
+    @IBAction private func back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: cellId)
-    }
-    
-    @IBAction func back(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -12,28 +12,22 @@ protocol getDetailDelegate:AnyObject {
 class DetailSearchViewController: UIViewController{
     
     //Mark:Properties
-    @IBOutlet weak var titleStackView: UIStackView!
-    @IBOutlet weak var circleStackView: UIStackView!
-    @IBOutlet weak var levelStackView: UIStackView!
-    @IBOutlet weak var cityStackView: UIStackView!
-    @IBOutlet weak var moneyStackView: UIStackView!
-    @IBOutlet weak var timeStackView: UIStackView!
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var circleTextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var moneyTextField: UITextField!
-    @IBOutlet weak var levelTextField: UITextField!
-    @IBOutlet weak var searchButton: UIButton!
-    private let pickerView = UIPickerView()
-    private let pickerMoneyView = UIPickerView()
-    private let pickerLevelView = UIPickerView()
-    private let placePickerView = UIPickerView()
-    private let data = Utility.Data.circle
-    private let place = Utility.Data.place
-    private let money = Utility.Data.money
-    private let level = Utility.Data.level
+    @IBOutlet private weak var titleStackView: UIStackView!
+    @IBOutlet private weak var circleStackView: UIStackView!
+    @IBOutlet private weak var levelStackView: UIStackView!
+    @IBOutlet private weak var cityStackView: UIStackView!
+    @IBOutlet private weak var moneyStackView: UIStackView!
+    @IBOutlet private weak var timeStackView: UIStackView!
+    @IBOutlet private weak var titleTextField: UITextField!
+    @IBOutlet private weak var circleTextField: UITextField!
+    @IBOutlet private weak var cityTextField: UITextField!
+    @IBOutlet private weak var moneyTextField: UITextField!
+    @IBOutlet private weak var levelTextField: UITextField!
+    @IBOutlet private weak var searchButton: UIButton!
+    private let (pickerView,pickerMoneyView,pickerLevelView,placePickerView ) = (UIPickerView(),UIPickerView(),UIPickerView(),UIPickerView())
+    private let (data,place,money,level) = (Utility.Data.circle,Utility.Data.place,Utility.Data.money,Utility.Data.level)
     private let fetchData = FetchFirestoreData()
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var datePicker: UIDatePicker!
     private var dateString = String()
     private var eventArray = [Event]()
     weak var delegate:getDetailDelegate?
@@ -111,7 +105,7 @@ class DetailSearchViewController: UIViewController{
     }
     
     //Mark:IBAction
-    @IBAction func search(_ sender: Any) {
+    @IBAction private func search(_ sender: Any) {
         let title = titleTextField.text ?? ""
         let circle = circleTextField.text ?? ""
         let level = levelTextField.text ?? ""

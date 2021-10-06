@@ -12,25 +12,25 @@ class EventDetailViewController: UIViewController {
     //Mark :Properties
     var event:Event?
     var team:TeamModel?
-    @IBOutlet weak var eventImageView: UIImageView!
-    @IBOutlet weak var groupImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var groupLabel: UILabel!
-    @IBOutlet weak var timeToLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
-    @IBOutlet weak var gatherCountLabel: UILabel!
-    @IBOutlet weak var courtLabel: UILabel!
-    @IBOutlet weak var circleLabel: UILabel!
-    @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var moneyLabel: UILabel!
-    @IBOutlet weak var placeLabel: UILabel!
-    @IBOutlet weak var leaderLabel: UILabel!
-    @IBOutlet weak var leaderImageView: UIImageView!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var joinButton: UIButton!
-    @IBOutlet weak var pieView: PieChartView!
-    @IBOutlet weak var barView: BarChartView!
+    @IBOutlet private weak var eventImageView: UIImageView!
+    @IBOutlet private weak var groupImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var groupLabel: UILabel!
+    @IBOutlet private weak var timeToLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var endTimeLabel: UILabel!
+    @IBOutlet private weak var gatherCountLabel: UILabel!
+    @IBOutlet private weak var courtLabel: UILabel!
+    @IBOutlet private weak var circleLabel: UILabel!
+    @IBOutlet private weak var levelLabel: UILabel!
+    @IBOutlet private weak var moneyLabel: UILabel!
+    @IBOutlet private weak var placeLabel: UILabel!
+    @IBOutlet private weak var leaderLabel: UILabel!
+    @IBOutlet private weak var leaderImageView: UIImageView!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var joinButton: UIButton!
+    @IBOutlet private weak var pieView: PieChartView!
+    @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
     private var genderValue = Utility.Data.genderArray
     private var rawData:[Int] = []
@@ -51,16 +51,16 @@ class EventDetailViewController: UIViewController {
     }
     private var me :User?
     private var you :User?
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var lastTimeStackView: UIStackView!
-    @IBOutlet weak var gatherStackView: UIStackView!
-    @IBOutlet weak var courtStackView: UIStackView!
-    @IBOutlet weak var kindStackView: UIStackView!
-    @IBOutlet weak var levelStackView: UIStackView!
-    @IBOutlet weak var moneyStackView: UIStackView!
-    @IBOutlet weak var placeStackView: UIStackView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var lastTimeStackView: UIStackView!
+    @IBOutlet private weak var gatherStackView: UIStackView!
+    @IBOutlet private weak var courtStackView: UIStackView!
+    @IBOutlet private weak var kindStackView: UIStackView!
+    @IBOutlet private weak var levelStackView: UIStackView!
+    @IBOutlet private weak var moneyStackView: UIStackView!
+    @IBOutlet private weak var placeStackView: UIStackView!
+    @IBOutlet private weak var scrollView: UIScrollView!
     private var chatId:String?
     
     //Mark:Lifecycle
@@ -69,21 +69,10 @@ class EventDetailViewController: UIViewController {
         setupUI()
         setData()
         setupCell()
-        fetchData.delegate = self
-        fetchData.barDelegate = self
         setupTag()
         setupUnderLine()
         setupUser()
-        self.navigationItem.backButtonDisplayMode = .minimal
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
-        imageView.anchor(width: 44, height: 44)
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        Firestore.getUserData(uid: Auth.getUserId()) { user in
-            self.me = user
-        }
+        setupNav()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,13 +80,30 @@ class EventDetailViewController: UIViewController {
         self.setupNavAccessory()
     }
     
+    private func setupNav() {
+        self.navigationItem.backButtonDisplayMode = .minimal
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
+        imageView.anchor(width: 44, height: 44)
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+    }
+    
     //Mark:SetupMethod
     private func setData() {
+        Firestore.getUserData(uid: Auth.getUserId()) { [weak self] user in
+            guard let self = self else { return }
+            self.me = user
+        }
+        fetchData.delegate = self
+        fetchData.barDelegate = self
         guard let teamId = team?.teamId else { return }
         Firestore.getTeamPlayer(teamId: teamId) { teamPlayers in
             for i in 0..<teamPlayers.count {
                 let id = teamPlayers[i]
-                Firestore.getUserData(uid: id) { teamPlayer in
+                Firestore.getUserData(uid: id) { [weak self] teamPlayer in
+                    guard let self = self else { return }
                     guard let member = teamPlayer else { return }
                     self.teamArray.append(member)
                 }

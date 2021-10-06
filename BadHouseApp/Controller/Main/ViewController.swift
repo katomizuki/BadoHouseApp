@@ -10,16 +10,15 @@ import UserNotifications
 import CDAlertView
 import FacebookCore
 
-class ViewController: UIViewController, EmptyStateDelegate{
+class ViewController: UIViewController {
    
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     private var locationManager:CLLocationManager!
     private var fetchData = FetchFirestoreData()
-    var myLatitude = Double()
-    var myLongitude = Double()
+    var (myLatitude,myLongitude) = (Double(),Double())
     private var eventArray = [Event]()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var timeButton: UIButton!
@@ -28,9 +27,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
     override func viewDidLoad() {
 
         super.viewDidLoad()
-       
             setupIndicator()
-        
             IndicatorView.startAnimating()
             setupUI()
             setupLocationManager()
@@ -47,7 +44,6 @@ class ViewController: UIViewController, EmptyStateDelegate{
         navigationController?.isNavigationBarHidden = false
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                print("☔")
                 self.performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
             }
         }
@@ -138,7 +134,7 @@ class ViewController: UIViewController, EmptyStateDelegate{
         self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
     
-    @IBAction func scroll(_ sender: Any) {
+    @IBAction private func scroll(_ sender: Any) {
         print(#function)
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
     }
@@ -285,7 +281,7 @@ extension ViewController: CalendarDelegate {
     }
 }
 
-extension ViewController{
+extension ViewController:EmptyStateDelegate{
     
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)

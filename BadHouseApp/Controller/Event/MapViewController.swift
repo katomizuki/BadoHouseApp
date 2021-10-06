@@ -3,22 +3,28 @@ import MapKit
 import CoreLocation
 import CDAlertView
 
-protocol SearchLocationProtocol {
+protocol SearchLocationProtocol:AnyObject {
     func sendLocationData(location:[Double],placeName:String,placeAddress:String)
 }
 
-class MapViewController: UIViewController{
+class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRecognizerDelegate{
 
     //Mark:Properties
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     var locManager:CLLocationManager!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var textField: UITextField!
-    private var placeName = String()
-    private var placeAddress = String()
-    private var placeLatitude = Double()
-    private var placeLongitude = Double()
-    var delegate:SearchLocationProtocol?
+    @IBOutlet private weak var saveButton: UIButton! {
+        didSet {
+            saveButton.updateSaveButton()
+        }
+    }
+    @IBOutlet private weak var textField: UITextField! {
+        didSet {
+            textField.toCorner(num: 10)
+        }
+    }
+    private var (placeName,placeAddress) = (String(),String())
+    private var (placeLatitude,placeLongitude) = (Double(),Double())
+    weak var delegate:SearchLocationProtocol?
     private var defaultRegion: MKCoordinateRegion {
             let coordinate = CLLocationCoordinate2D( 
                 latitude: 35.680,
@@ -31,18 +37,19 @@ class MapViewController: UIViewController{
             return MKCoordinateRegion(center: coordinate, span: span)
         }
     
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet private weak var searchButton: UIButton! {
+        didSet {
+            searchButton.toCorner(num: 10)
+        }
+    }
     
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.updateSaveButton()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
              mapView.addGestureRecognizer(gesture)
              mapView.setRegion(defaultRegion, animated: false)
-        textField.delegate = self
-        searchButton.toCorner(num: 10)
-        textField.toCorner(num: 10)
+            textField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,11 +84,11 @@ class MapViewController: UIViewController{
     
     
     //Mark:IBAction
-    @IBAction func saveButton(_ sender: Any) {
+    @IBAction private func saveButton(_ sender: Any) {
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func search(_ sender: Any) {
+    @IBAction private func search(_ sender: Any) {
         if let search = textField.text {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(search) { placemark, error in
@@ -118,11 +125,7 @@ class MapViewController: UIViewController{
     }
     
 }
-
-extension MapViewController:CLLocationManagerDelegate,UIGestureRecognizerDelegate {
-    
-}
-
+//Mark textFieldDelegate
 extension MapViewController:UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
