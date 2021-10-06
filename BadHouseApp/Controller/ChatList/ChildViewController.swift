@@ -41,7 +41,8 @@ class ChildViewController: UIViewController {
     
     private func setupData() {
         fetchData.preDelegate = self
-        Firestore.getmyEventId { event in
+        Firestore.getmyEventId { [weak self] event in
+            guard let self = self else { return }
             self.eventArray = event
             self.fetchData.getEventPreJoinData(eventArray: event)
         }
@@ -60,17 +61,19 @@ extension ChildViewController:IndicatorInfoProvider {
 extension ChildViewController:GetPrejoinDataDelegate {
     func getPrejoin(preJoin: [[String]]) {
         self.notificationArray = [[User]]()
+        let group = DispatchGroup()
         for i in 0..<preJoin.count {
             var tempArray = [User]()
             for j in 0..<preJoin[i].count {
+                group.enter()
                 let id = preJoin[i][j]
                 Firestore.getUserData(uid: id) { user in
+                    defer { group.leave() }
                     guard let user = user else { return }
                     tempArray.append(user)
-                    print(tempArray)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            group.notify(queue: .main) {
                 self.notificationArray.append(tempArray)
             }
         }

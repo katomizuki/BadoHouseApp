@@ -111,6 +111,39 @@ extension UIButton {
         setTitleColor(.white, for: UIControl.State.normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
+    
+    func updateFriendButton() {
+        layer.cornerRadius = 15
+        layer.masksToBounds = true
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    }
+    
+    func plusFriendButton() {
+        backgroundColor = Utility.AppColor.OriginalBlue
+        setTitle(" 友達解除 ", for: UIControl.State.normal)
+        setTitleColor(.white, for: UIControl.State.normal)
+    }
+    
+    func removeFriendButton() {
+        backgroundColor = .white
+        setTitle(" 友達申請 ", for: UIControl.State.normal)
+        setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+        layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        layer.borderWidth = 4
+    }
+    func tapRemoveFriend() {
+        backgroundColor = Utility.AppColor.OriginalBlue
+        setTitle(" 友達解除 ", for: .normal)
+        setTitleColor(.white, for: .normal)
+    }
+    func tapPlusFriend() {
+        backgroundColor = .white
+        setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+        layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        layer.borderWidth = 4
+        layer.cornerRadius = 15
+        layer.masksToBounds = true
+    }
   
     
    

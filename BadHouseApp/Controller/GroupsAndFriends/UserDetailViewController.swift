@@ -47,9 +47,8 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     //Mark:updateUI
     private func updateUI() {
         //Mark:UpdateUI
-        friendButton.layer.cornerRadius = 15
-        friendButton.layer.masksToBounds = true
-        friendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        friendButton.updateFriendButton()
+        
         teamMemberImageView.contentMode = .scaleToFill
          teamMemberImageView.chageCircle()
         teamMemberImageView.layer.borderWidth = 4
@@ -94,7 +93,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         let belongsNib = TeammemberCell.nib()
         belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
         let friendNib = TeammemberCell.nib()
-        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: "friendCEllId")
+        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: Utility.CellId.friendCellId)
         let layout = UICollectionViewFlowLayout()
         let layout2 = UICollectionViewFlowLayout()
         layout2.scrollDirection = .horizontal
@@ -109,17 +108,12 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     private func setupData() {
         let myId = Auth.getUserId()
         guard let user = user else { return }
-        Firestore.searchFriend(friend: user, myId: myId) { result in
+        Firestore.searchFriend(friend: user, myId: myId) { [weak self] result in
+            guard let self = self else { return }
             if result {
-                self.friendButton.backgroundColor = Utility.AppColor.OriginalBlue
-                self.friendButton.setTitle("友達解除", for: UIControl.State.normal)
-                self.friendButton.setTitleColor(.white, for: UIControl.State.normal)
+                self.friendButton.plusFriendButton()
             } else {
-                self.friendButton.backgroundColor = .white
-                self.friendButton.setTitle("友達申請", for: UIControl.State.normal)
-                self.friendButton.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-                self.friendButton.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-                self.friendButton.layer.borderWidth = 4
+                self.friendButton.removeFriendButton()
             }
         }
     }
@@ -135,10 +129,12 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             let url = URL(string: urlString)
             teamMemberImageView.sd_setImage(with: url, completed: nil)
         }
-        Firestore.getOwnTeam(uid: memberId) { teamIds in
+        Firestore.getOwnTeam(uid: memberId) { [weak self] teamIds in
+            guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
-        Firestore.getFriendData(uid: memberId) { friends in
+        Firestore.getFriendData(uid: memberId) {[weak self] friends in
+            guard let self = self else { return }
             self.fetchData.friendData(idArray: friends)
         }
     }
@@ -150,24 +146,17 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         let myId = Auth.getUserId()
         guard let user = user else { return }
         if friendButton.backgroundColor == .white {
-            friendButton.backgroundColor = Utility.AppColor.OriginalBlue
-            self.friendButton.setTitle("友達解除", for: UIControl.State.normal)
-            self.friendButton.setTitleColor(.white, for: UIControl.State.normal)
+            friendButton.tapRemoveFriend()
             Firestore.friendAction(myId: myId, friend: user, bool: true)
         } else {
-            friendButton.backgroundColor = .white
-            friendButton.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-            friendButton.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-            friendButton.layer.borderWidth = 4
-            friendButton.layer.cornerRadius = 15
-            friendButton.layer.masksToBounds = true
-            self.friendButton.setTitle("友達申請", for: UIControl.State.normal)
+            friendButton.tapPlusFriend()
+            self.friendButton.setTitle(" 友達申請 ", for: UIControl.State.normal)
             Firestore.friendAction(myId: myId, friend: user, bool: false)
         }
     }
     
     @IBAction func gotoChat(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
         vc.me = me
         vc.you = user
         navigationController?.pushViewController(vc, animated: true)
@@ -175,7 +164,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     
 
     @IBAction func gotoDM(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
             vc.me = me
             vc.you = user
             navigationController?.pushViewController(vc, animated: true)
@@ -207,7 +196,7 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
             cell.teamMemberImage.contentMode = .scaleAspectFill
             return cell
         } else  {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCEllId", for: indexPath) as! TeammemberCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.friendCellId, for: indexPath) as! TeammemberCell
             let name = userFriend[indexPath.row].name
             let urlString = userFriend[indexPath.row].profileImageUrl
             cell.configure(name: name, urlString: urlString)
@@ -226,13 +215,19 @@ extension UserDetailViewController:GetFriendDelegate {
     func getFriend(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray
-        self.friendCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.friendCollectionView.reloadData()
+        }
+        
     }
 }
 extension UserDetailViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         self.ownTeam = teamArray
-        self.belongCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.belongCollectionView.reloadData()
+        }
+        
     }
     
     

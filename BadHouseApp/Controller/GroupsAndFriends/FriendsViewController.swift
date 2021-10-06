@@ -4,7 +4,6 @@ import NVActivityIndicatorView
 
 class FriendsViewController: UIViewController {
    
-    
     //Mark: Properties
     @IBOutlet weak var friendTableView: UITableView!
 //    private var cellId = "aaaa"

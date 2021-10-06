@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import FacebookCore
 
 class InfoCollectionViewCell:UICollectionViewCell {
     
@@ -46,7 +47,7 @@ class InfoCollectionViewCell:UICollectionViewCell {
         //Mark:anchor
         nameTextField.anchor(width: UIScreen.main.bounds.width - 40, height: 80)
         baseStackView.anchor(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 10, paddingBottom: 20, paddingRight: 20)
-        backgroundColor = UIColor(named: "backGroundColor")
+        backgroundColor = UIColor(named: Utility.AppColor.darkColor)
         
     }
     

@@ -116,6 +116,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
+            print(teamArray)
             self.myTeamDelegate?.getMyteam(teamArray: teamArray)
         }
     }
@@ -171,32 +172,24 @@ class FetchFirestoreData {
         var userArray = [User]()
         var anotherArray = [User]()
         var lastCommentArray = [Chat]()
-        let group = DispatchGroup()
         for i in 0..<chatModelArray.count {
-            group.enter()
             let userId = chatModelArray[i].user
             let anotherId = chatModelArray[i].user2
             let chatId = chatModelArray[i].chatRoom
         
             Firestore.getUserData(uid: userId) { user in
-//                defer { group.leave() }
                 guard let user = user else { return }
                 userArray.append(user)
             }
             Firestore.getUserData(uid: anotherId) { another in
-//                defer { group.leave() }
                 guard let another = another else { return }
                 anotherArray.append(another)
             }
             Firestore.getChatLastData(chatId: chatId) { lastComment in
-                defer { group.leave() }
                 lastCommentArray.append(lastComment)
             }
         }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-//            self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
-//        }
-        group.notify(queue: .main) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
         }
     }

@@ -10,7 +10,6 @@ import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
 
-
 class LoginViewController:UIViewController {
 
     //Mark :Properties
@@ -130,7 +129,7 @@ class LoginViewController:UIViewController {
         loginBinding.validRegisterDriver
             .drive { validAll in
                 self.loginButton.isEnabled = validAll
-                self.loginButton.backgroundColor = validAll ? Utility.AppColor.StandardColor : .darkGray
+                self.loginButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
     }

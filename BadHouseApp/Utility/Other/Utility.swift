@@ -22,6 +22,7 @@ struct Utility {
         static let ChatVC = "ChatViewController"
         static let CameraVC = "CameraVC"
         static let inviteVC = "inviteVC"
+        static let MakeGroupVC = "MakeGroupVC"
     }
     struct Segue {
         static let gotoRegister = "gotoRegister"
@@ -36,6 +37,7 @@ struct Utility {
         static let gotoMap = "gotoMap"
         static let userProfile = "userProfile"
         static let gotoNotification = "gotoNotification"
+        static let gotoSearch = "gotoSearch"
     }
     struct Cell {
         static let TeammemberCell = "TeammemberCell"
@@ -53,6 +55,7 @@ struct Utility {
         static let searchCell = "searchCell"
         static let chatCellId = "chatCellId"
         static let popCellId = "popCellId"
+        static let friendCellId = "friendCellId"
     }
     
     struct ImageName {

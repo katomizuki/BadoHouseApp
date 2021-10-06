@@ -4,7 +4,7 @@ import SDWebImage
 import Firebase
 import FacebookCore
 import RxSwift
-protocol CalendarEventDelegate {
+protocol CalendarEventDelegate :AnyObject{
     func removeEvent(eventModel:Event,cell:UITableViewCell)
 }
 class GroupCell:UITableViewCell {
@@ -14,7 +14,7 @@ class GroupCell:UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    var trashDelegate:CalendarEventDelegate?
+    weak var trashDelegate:CalendarEventDelegate?
     var team:TeamModel? {
         didSet {
             configure()

@@ -33,13 +33,11 @@ class GroupViewController: UIViewController{
         fetchData.myTeamDelegate = self
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Auth.auth().currentUser == nil {
-            print(#function,"⚡")
-//            performSegue(withIdentifier: "logout", sender: nil)
             let vc = tabBarController?.viewControllers?[0]
-//            print(vc)
             tabBarController?.selectedViewController = vc
         }
     }
@@ -64,9 +62,8 @@ class GroupViewController: UIViewController{
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamId)
         }
-        Firestore.getFriendData(uid: uid) { [weak self]usersId in
+        Firestore.getFriendData(uid: uid) { [weak self] usersId in
             guard let self = self else { return }
-            self.friendArray = [User]()
             self.fetchData.friendData(idArray: usersId)
         }
     }
@@ -96,7 +93,7 @@ class GroupViewController: UIViewController{
     }
     
     @IBAction func gotoMakeGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MakeGroupVC") as! MakeGroupViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.MakeGroupVC) as! MakeGroupViewController
         vc.me = user
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -105,7 +102,7 @@ class GroupViewController: UIViewController{
         if segue.identifier ==  Utility.Segue.userProfile {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
-        } else if segue.identifier == "gotoSearch" {
+        } else if segue.identifier == Utility.Segue.gotoSearch {
             let vc = segue.destination as! GroupSearchViewController
             vc.friends = self.friendArray
         }
@@ -172,21 +169,21 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 
-
-extension GroupViewController :GetFriendDelegate {
+extension GroupViewController:GetFriendDelegate {
     
     func getFriend(friendArray: [User]) {
         self.friendArray = []
         self.friendArray = friendArray
-        self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
-        self.IndicatorView.stopAnimating()
         self.groupTableView.reloadData()
     }
 }
 
 extension GroupViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
+        self.teamArray = []
         self.teamArray = teamArray
+        self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
+        self.IndicatorView.stopAnimating()
         groupTableView.reloadData()
     }
     

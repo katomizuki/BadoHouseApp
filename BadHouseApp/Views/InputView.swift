@@ -7,7 +7,7 @@ protocol InputDelegate :AnyObject{
 
 class CustomInputAccessoryView:UIView {
 
-    var delegate:InputDelegate?
+    weak var delegate:InputDelegate?
     
     let messageInputTextView:UITextView = {
         let tv = UITextView()
@@ -34,8 +34,6 @@ class CustomInputAccessoryView:UIView {
         label.text = "Aa"
         return label
     }()
-    
-    
     
     override init(frame:CGRect) {
         super.init(frame:frame)
@@ -73,8 +71,6 @@ class CustomInputAccessoryView:UIView {
     override var intrinsicContentSize: CGSize {
         return .zero
     }
-    
-    
     @objc func sendMessage() {
         print(#function)
         guard let text = messageInputTextView.text else { return }
