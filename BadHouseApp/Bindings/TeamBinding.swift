@@ -1,15 +1,15 @@
-
 import Foundation
 import RxSwift
 import RxCocoa
 
+//Mark InputProtocol
 protocol TeamRegisterInput {
     var nameTextInput: AnyObserver<String> { get }
     var placeTextInput: AnyObserver<String> { get }
     var timeTextInput: AnyObserver<String> { get }
     var levelTextInput: AnyObserver<String> { get }
 }
-
+//Mark OutputProtocol
 protocol TeamRegisterOutput {
     var nameTextOutPut: PublishSubject<String> { get }
     var placeTextOutput: PublishSubject<String> { get }
@@ -17,12 +17,8 @@ protocol TeamRegisterOutput {
     var levelTextOutput: PublishSubject<String> { get }
 }
 
-
 class TeamRegisterBindings:TeamRegisterInput,TeamRegisterOutput {
-    
-    
-    
-    
+ 
     private let disposeBag = DisposeBag()
     
      //Mark: Observable

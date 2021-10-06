@@ -6,12 +6,14 @@ import NVActivityIndicatorView
 
 class ChildViewController: UIViewController {
     
+    //Mark properties
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
     private var IndicatorView:NVActivityIndicatorView!
  
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -47,10 +49,8 @@ class ChildViewController: UIViewController {
             self.fetchData.getEventPreJoinData(eventArray: event)
         }
     }
-    
-   
-    
 }
+
 extension ChildViewController:IndicatorInfoProvider {
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -139,7 +139,6 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
         alertVC.addAction(alertAction)
         alertVC.addAction(cancleAction)
         present(alertVC, animated: true, completion: nil)
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

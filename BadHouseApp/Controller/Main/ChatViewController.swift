@@ -12,14 +12,6 @@ class ChatViewController: UIViewController {
     var flag = false
     private let fetchData = FetchFirestoreData()
     private var chatId = String()
-    private let formatter:DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        formatter.locale = Locale(identifier: "ja_JP")
-        return formatter
-    }()
-
     private lazy var customInputView:CustomInputAccessoryView = {
         let iv = CustomInputAccessoryView(frame: CGRect(x:0,y:0,width:view.frame.width,height:50))
         iv.delegate = self

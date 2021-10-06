@@ -5,7 +5,7 @@ import Firebase
 class DaughterViewController: UIViewController {
 
     //Mark:Properties
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
     private var notificationArray = [[User]]()    
@@ -14,8 +14,8 @@ class DaughterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         setupData()
     }
@@ -31,7 +31,8 @@ class DaughterViewController: UIViewController {
     //Mark setupData
     private func setupData() {
         fetchData.joinDelegate = self
-        Firestore.getmyEventId { event in
+        Firestore.getmyEventId { [weak self] event in
+            guard let self = self else { return }
             self.eventArray = event
             self.fetchData.fetchJoinData(eventArray: event)
         }

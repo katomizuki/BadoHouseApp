@@ -7,22 +7,14 @@ class GroupChatViewController: UIViewController {
     //Mark:Properties
     var team:TeamModel?
     private var chatArray = [GroupChatModel]()
-
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let cellId = Utility.CellId.chatCellId
     private let fetchData = FetchFirestoreData()
     private var me:User?
-    private let formatter:DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        formatter.locale = Locale(identifier: "ja-JP")
-        return formatter
-    }()
     private lazy var customInputView:CustomInputAccessoryView = {
-        let iv = CustomInputAccessoryView(frame: CGRect(x:0,y:0,width:view.frame.width,height:50))
-        iv.delegate = self
-        return iv
+        let ci = CustomInputAccessoryView(frame: CGRect(x:0,y:0,width:view.frame.width,height:50))
+        ci.delegate = self
+        return ci
     }()
     
     override var inputAccessoryView: UIView? {
@@ -38,7 +30,8 @@ class GroupChatViewController: UIViewController {
         setupTableView()
         setupData()
         view.backgroundColor = .white
-        Firestore.getUserData(uid: Auth.getUserId()) { me in
+        Firestore.getUserData(uid: Auth.getUserId()) { [weak self] me in
+            guard let self = self else { return }
             self.me = me
         }
     }

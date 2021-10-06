@@ -9,17 +9,14 @@ class InfoCollectionViewCell:UICollectionViewCell {
         didSet {
             nameTextField.text = user?.name
             emailTextField.text = user?.email
-            levelTextField.text = user?.level
             introductionTextField.text = user?.introduction
         }
     }
-    let nameLabel = ProfileLabel(title: "名前")
-    let emailLabel = ProfileLabel(title: "メールアドレス")
-    let levelLabel = ProfileLabel(title: "習熟度")
-    let introductionLabel = ProfileLabel(title: "自己紹介")
+    private let nameLabel = ProfileLabel(title: "名前")
+    private let emailLabel = ProfileLabel(title: "メールアドレス")
+    private let introductionLabel = ProfileLabel(title: "自己紹介")
     let nameTextField = ProfileTextField(placeholder: "名前")
     let emailTextField = ProfileTextField(placeholder: "メールアドレス")
-    let levelTextField = ProfileTextField(placeholder: "習熟度")
     let introductionTextField = ProfileTextField(placeholder: "自己紹介")
     
     //Mark:Initialize

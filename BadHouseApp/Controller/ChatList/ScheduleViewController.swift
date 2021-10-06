@@ -34,6 +34,8 @@ class ScheduleViewController: UIViewController{
         fetchData.myEventDelegate = self
         view.backgroundColor = .white
     }
+    
+    //Mark helperMethod
     private func setupCalendar() {
         calendar.delegate = self
         calendar.dataSource = self
@@ -44,12 +46,12 @@ class ScheduleViewController: UIViewController{
     private func setupTableView() {
         view.addSubview(tableview)
         tableview.anchor(top:calendar.bottomAnchor,bottom:view.safeAreaLayoutGuide.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 40,paddingBottom:20, paddingRight:0, paddingLeft: 0)
-        
         tableview.delegate = self
         tableview.dataSource = self
         let nib = GroupCell.nib()
         tableview.register(nib, forCellReuseIdentifier: cellId)
     }
+    //Mark initialize
     init(user:User) {
         super.init(nibName: nil, bundle: nil)
         self.me = user
@@ -59,7 +61,7 @@ class ScheduleViewController: UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
 }
-
+//Mark: tableviewdelegate
 extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +77,7 @@ extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+//Mark:eventDelegate
 extension ScheduleViewController:GetMyEventDelegate {
 
     func getEvent(eventArray: [Event]) {
@@ -91,7 +94,7 @@ extension ScheduleViewController:GetMyEventDelegate {
     }
 }
 
-
+//Mark FSCalendarDelegate
 extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCalendarDelegateAppearance{
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -121,6 +124,7 @@ extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCal
    }
 }
 
+//Mark:CalendarEventDelegate
 extension ScheduleViewController:CalendarEventDelegate {
     
     func removeEvent(eventModel: Event,cell:UITableViewCell) {

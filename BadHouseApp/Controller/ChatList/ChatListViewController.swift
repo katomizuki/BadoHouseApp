@@ -6,7 +6,7 @@ import CDAlertView
 class ChatListViewController:UIViewController{
     
     //Mark:Properties
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
     private var chatArray = [[Chat]]()
     private var chatModelArray = [ChatRoom]()
@@ -18,7 +18,6 @@ class ChatListViewController:UIViewController{
     private var teams = [TeamModel]()
     private let section = ["グループチャット","ダイレクトメッセージ"]
     private var selectedTeam:TeamModel?
-    @IBOutlet weak var notificationButton: UIBarButtonItem!
     private var sortLastCommentArray = [Chat]()
     private var sortUserArray = [User]()
     private var sortAnotherUserArray = [User]()
@@ -73,7 +72,7 @@ class ChatListViewController:UIViewController{
     
     //Mark:setupNotification
     private func setupNotification() {
-        self.notification(uid: Auth.getUserId()) { [weak self]bool in
+        self.notification(uid: Auth.getUserId()) { [weak self] bool in
             if bool == true {
                 guard let self = self else { return }
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
@@ -186,7 +185,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             vc.team = self.selectedTeam
             navigationController?.pushViewController(vc, animated: true)
     
-        } else if indexPath.section == 1{
+        } else if indexPath.section == 1 {
             if Auth.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
@@ -238,6 +237,8 @@ extension ChatListViewController: GetChatRoomDataDelegate {
 }
 
 extension ChatListViewController :GetChatListDelegate {
+    typealias sortChatArray = [EnumeratedSequence<[Chat]>.Element]
+    
     func getChatList(userArray: [User], anotherArray: [User], lastChatArray: [Chat],chatModelArray:[ChatRoom]) {
         cleanArray()
         self.userArray = userArray
@@ -249,7 +250,7 @@ extension ChatListViewController :GetChatListDelegate {
         self.tableView.reloadData()
     }
     
-    private func sortArray()->[EnumeratedSequence<[Chat]>.Element] {
+    private func sortArray()->sortChatArray {
         let sortArray = self.lastCommentArray.enumerated().sorted { a, b in
             guard let time = a.element.sendTime?.dateValue() else { return false }
             guard let time2 = b.element.sendTime?.dateValue() else { return false }
@@ -258,7 +259,7 @@ extension ChatListViewController :GetChatListDelegate {
         return sortArray
     }
     
-    private func makeSortArray(sortArray:[EnumeratedSequence<[Chat]>.Element]) {
+    private func makeSortArray(sortArray:sortChatArray) {
         for i in 0..<sortArray.count {
             let index = sortArray[i].offset
             self.sortUserArray.append(self.userArray[index])

@@ -1,9 +1,8 @@
-
-
 import Foundation
 import RxCocoa
 import RxSwift
 
+//Mark InputProtocol
 protocol MakeEventInputProtocol {
     var dateTextInput:AnyObserver<String> { get }
     var groupTextInput:AnyObserver<String> { get }
@@ -12,7 +11,7 @@ protocol MakeEventInputProtocol {
     var titleTextInput:AnyObserver<String> { get }
     var moneyTextInput:AnyObserver<String> { get }
 }
-
+//Mark:OutputProtocol
 protocol MakeEventOutputProtocol {
     var dateTextOutput:PublishSubject<String> { get }
     var groupTextOutput:PublishSubject<String> { get }

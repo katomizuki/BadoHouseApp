@@ -1,15 +1,14 @@
-
-
 import Foundation
 import RxSwift
 import RxCocoa
 
+//Mark Input Protocol
 protocol RegisterBindingInputs {
     var nameTextInput:AnyObserver<String> { get }
     var emailTextInput:AnyObserver<String> { get }
     var passwordTextInput:AnyObserver<String> { get }
 }
-
+//Mark OutputProtocol
 protocol RegisterBindingsOutputs {
     var nameTextOutput: PublishSubject<String> { get }
     var emailTextOutput: PublishSubject<String> { get }
@@ -18,7 +17,6 @@ protocol RegisterBindingsOutputs {
 
 class RegisterBindings:RegisterBindingInputs,RegisterBindingsOutputs {
     private let disposeBag = DisposeBag()
-    
     //Mark Observable(状態を保持している監視対象）
     var nameTextOutput = PublishSubject<String>()
     var emailTextOutput = PublishSubject<String>()
@@ -75,12 +73,12 @@ class RegisterBindings:RegisterBindingInputs,RegisterBindingsOutputs {
     }
 }
 
-
+//Mark InputProtocol
 protocol LoginBindingInputs {
     var emailTextInput:AnyObserver<String> { get }
     var passwordTextInput:AnyObserver<String> { get }
 }
-
+//Mark OutputProtocol
 protocol LoginBindingsOutputs {
     var emailTextOutput: PublishSubject<String> { get }
     var passwordTextOutput: PublishSubject<String> { get }
@@ -88,7 +86,6 @@ protocol LoginBindingsOutputs {
 
 class LoginBindings:LoginBindingInputs,LoginBindingsOutputs {
     private let disposeBag = DisposeBag()
-    
     //Mark Observable(状態を保持している監視対象）
     var emailTextOutput = PublishSubject<String>()
     var passwordTextOutput = PublishSubject<String>()
