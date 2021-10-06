@@ -12,7 +12,11 @@ class GroupViewController: UIViewController{
     private let cellId = Utility.CellId.CellGroupId
     private var userIdArray = [String]()
     private let sectionArray = ["所属サークル","お友達"]
-    @IBOutlet private weak var groupTableView: UITableView!
+    @IBOutlet private weak var groupTableView: UITableView! {
+        didSet {
+            groupTableView.separatorColor = Utility.AppColor.OriginalBlue
+        }
+    }
     private var IndicatorView:NVActivityIndicatorView!
     @IBOutlet private weak var myImageView: UIImageView! {
         didSet {
@@ -26,7 +30,6 @@ class GroupViewController: UIViewController{
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupTableView.separatorColor = Utility.AppColor.OriginalBlue
         setupIndicator()
         IndicatorView.startAnimating()
         setupTableView()

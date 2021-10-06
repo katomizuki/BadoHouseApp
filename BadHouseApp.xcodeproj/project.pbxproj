@@ -16,7 +16,6 @@
 		D34852B426FD3E160027592A /* Array-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B326FD3E160027592A /* Array-Extension.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* ChatViewController.swift */; };
-		D353D8DD26F05DD000221B7D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D353D8DC26F05DD000221B7D /* MessageKit */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
@@ -201,7 +200,6 @@
 				D3BDB54D26E0598C00C53780 /* RxSwift in Frameworks */,
 				D37FA52426E9E47000B8559F /* RangeUISlider in Frameworks */,
 				D3BDB54B26E0598C00C53780 /* RxCocoa in Frameworks */,
-				D353D8DD26F05DD000221B7D /* MessageKit in Frameworks */,
 				2F43C7F339CC617506877AF3 /* Pods_BadHouseApp.framework in Frameworks */,
 				D3C02CF226E8B24A00995517 /* Charts in Frameworks */,
 			);
@@ -531,7 +529,6 @@
 				D3BDB54C26E0598C00C53780 /* RxSwift */,
 				D3C02CF126E8B24A00995517 /* Charts */,
 				D37FA52326E9E47000B8559F /* RangeUISlider */,
-				D353D8DC26F05DD000221B7D /* MessageKit */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -564,7 +561,6 @@
 				D3BDB54926E0598C00C53780 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D3C02CF026E8B24A00995517 /* XCRemoteSwiftPackageReference "Charts" */,
 				D37FA52226E9E47000B8559F /* XCRemoteSwiftPackageReference "RangeUISlider" */,
-				D353D8DB26F05DD000221B7D /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -957,14 +953,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D353D8DB26F05DD000221B7D /* XCRemoteSwiftPackageReference "MessageKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MessageKit/MessageKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.7.0;
-			};
-		};
 		D37FA52226E9E47000B8559F /* XCRemoteSwiftPackageReference "RangeUISlider" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/chicio/RangeUISlider.git";
@@ -992,11 +980,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D353D8DC26F05DD000221B7D /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D353D8DB26F05DD000221B7D /* XCRemoteSwiftPackageReference "MessageKit" */;
-			productName = MessageKit;
-		};
 		D37FA52326E9E47000B8559F /* RangeUISlider */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D37FA52226E9E47000B8559F /* XCRemoteSwiftPackageReference "RangeUISlider" */;
