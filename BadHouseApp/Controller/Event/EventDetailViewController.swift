@@ -269,7 +269,8 @@ class EventDetailViewController: UIViewController {
     //Mark:setupUser
     private func setupUser() {
         guard let userId = event?.userId else { return }
-        Firestore.getUserData(uid: userId) { user in
+        Firestore.getUserData(uid: userId) { [weak self] user in
+            guard let self = self else { return }
             self.you = user
             guard let urlString = user?.profileImageUrl else { return }
             if urlString == "" {
@@ -298,7 +299,8 @@ class EventDetailViewController: UIViewController {
     @IBAction func join(_ sender: Any) {
         print(#function)
         guard let leaderId = event?.userId else { return }
-        fetchData.getChatData(meId: Auth.getUserId(), youId: leaderId) { chatId in
+        fetchData.getChatData(meId: Auth.getUserId(), youId: leaderId) { [weak self] chatId in
+            guard let self = self else { return }
             if chatId.isEmpty {
                 Firestore.sendChatroom(myId: Auth.getUserId(), youId: leaderId) { id in
                     self.chatId = id

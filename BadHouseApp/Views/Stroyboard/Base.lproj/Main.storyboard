@@ -113,17 +113,17 @@
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="90" translatesAutoresizingMaskIntoConstraints="NO" id="zj2-f3-8vz">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="zj2-f3-8vz">
                                                         <rect key="frame" x="0.0" y="457" width="315" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yab-ZE-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="61.5" height="51.5"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="108" height="51.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-tL-9go">
-                                                                <rect key="frame" x="151.5" y="0.0" width="163.5" height="51.5"/>
+                                                                <rect key="frame" x="108" y="0.0" width="207" height="51.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -711,17 +711,17 @@
                                                             <constraint firstItem="dzH-Mp-MhN" firstAttribute="baseline" secondItem="7x1-II-qWt" secondAttribute="firstBaseline" id="M3B-C4-7JZ"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-F6-323">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-F6-323">
                                                         <rect key="frame" x="0.0" y="336" width="315" height="21"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="場所" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7L-4Z-w1x">
-                                                                <rect key="frame" x="0.0" y="0.0" width="141.5" height="21"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="157.5" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="青葉スポーツセンター" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6G-8g-pYo">
-                                                                <rect key="frame" x="141.5" y="0.0" width="173.5" height="21"/>
+                                                                <rect key="frame" x="157.5" y="0.0" width="157.5" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -857,7 +857,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.bubble.fill.rtl" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="05x-vv-pNz">
-                                                <rect key="frame" x="242" y="1795.5" width="35" height="34.5"/>
+                                                <rect key="frame" x="227.5" y="1795.5" width="35" height="34.5"/>
                                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="RnR-dh-cVe"/>
@@ -937,6 +937,7 @@
                                             <constraint firstItem="wtE-qH-41c" firstAttribute="top" secondItem="u7u-jE-S4C" secondAttribute="bottom" constant="20" id="CIa-kc-0dF"/>
                                             <constraint firstItem="k8V-3r-mN0" firstAttribute="top" secondItem="cam-kV-vfw" secondAttribute="bottom" constant="10" id="CkZ-lL-oYG"/>
                                             <constraint firstItem="Oyv-t6-5Rr" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" id="DdX-fj-dUT"/>
+                                            <constraint firstItem="05x-vv-pNz" firstAttribute="leading" secondItem="eQQ-H2-oLB" secondAttribute="trailing" id="G3v-ku-mL8"/>
                                             <constraint firstItem="JSF-SR-OA7" firstAttribute="top" secondItem="Tuq-Mk-INw" secondAttribute="bottom" constant="60" id="GCd-9v-CFm"/>
                                             <constraint firstItem="ocm-Ji-ji8" firstAttribute="leading" secondItem="yRo-oL-G2R" secondAttribute="trailing" id="Jgy-jl-n1B"/>
                                             <constraint firstItem="Oyv-t6-5Rr" firstAttribute="top" secondItem="YMe-dn-NEu" secondAttribute="bottom" constant="15" id="LNT-S9-yHd"/>
@@ -953,7 +954,6 @@
                                             <constraint firstItem="u7u-jE-S4C" firstAttribute="leading" secondItem="Tuq-Mk-INw" secondAttribute="trailing" constant="25" id="XAu-fu-TRe"/>
                                             <constraint firstItem="cam-kV-vfw" firstAttribute="top" secondItem="XvP-Jd-KR4" secondAttribute="top" constant="10" id="Xz5-4g-7f9"/>
                                             <constraint firstAttribute="height" constant="2000" id="a4u-OO-rGW"/>
-                                            <constraint firstItem="05x-vv-pNz" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="242" id="aDM-pF-ToT"/>
                                             <constraint firstAttribute="trailing" secondItem="JSF-SR-OA7" secondAttribute="trailing" constant="20" id="ahv-r6-uMJ"/>
                                             <constraint firstItem="JSF-SR-OA7" firstAttribute="top" secondItem="wtE-qH-41c" secondAttribute="bottom" constant="8" symbolic="YES" id="awf-Bs-7OA"/>
                                             <constraint firstItem="ocm-Ji-ji8" firstAttribute="trailing" secondItem="64F-ga-0J2" secondAttribute="trailing" id="bLn-Bd-8zU"/>
@@ -2009,7 +2009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOk-w6-NBH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-370" y="903"/>
+            <point key="canvasLocation" x="-854" y="471"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="Kob-48-JwL">
@@ -3391,9 +3391,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VQy-IJ-T3o"/>
+        <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
-        <segue reference="TJv-Zf-4Gw"/>
+        <segue reference="t41-KJ-vjm"/>
         <segue reference="9Ym-mF-wrv"/>
         <segue reference="cdz-Ff-0Nv"/>
         <segue reference="XjJ-C8-ncf"/>

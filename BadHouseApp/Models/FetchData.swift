@@ -189,9 +189,10 @@ class FetchFirestoreData {
                 lastCommentArray.append(lastComment)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
         }
+        
     }
     
     func getGenderCount(teamPlayers:[User]) {

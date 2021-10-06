@@ -77,7 +77,7 @@ extension ChildViewController:GetPrejoinDataDelegate {
                 self.notificationArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.IndicatorView.stopAnimating()
             self.tableView.reloadData()
         }

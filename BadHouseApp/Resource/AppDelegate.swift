@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        do {
 //            try Auth.auth().signOut()
 //        } catch {
-
+//
 //        }
         
         return true

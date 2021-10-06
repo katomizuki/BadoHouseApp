@@ -52,16 +52,19 @@ extension DaughterViewController:GetJoinDataDelegate {
     
     func getJoin(joinArray: [[String]]) {
         notificationArray = [[User]]()
+        let group = DispatchGroup()
         for i in 0..<joinArray.count {
             var tempArray = [User]()
             for j in 0..<joinArray[i].count {
+                group.enter()
                 let id = joinArray[i][j]
                 Firestore.getUserData(uid: id) { user in
+                    defer { group.leave() }
                     guard let user = user else { return }
                     tempArray.append(user)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            group.notify(queue: .main) {
                 self.notificationArray.append(tempArray)
             }
         }

@@ -31,7 +31,6 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
                                           action: .addTag,
                                           receiver: productTags)
         
-        
         productTags.delegate = self
         allTags.delegate = self
         

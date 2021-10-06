@@ -25,6 +25,7 @@ class ChatListViewController:UIViewController{
     private var groupChatArray = [GroupChatModel]()
     private var sortGroupArray = [TeamModel]()
     private var sortChatModelArray = [ChatRoom]()
+    private let refreshView = UIRefreshControl()
     
     //Mark:lifeCycle
     override func viewDidLoad() {
@@ -35,6 +36,16 @@ class ChatListViewController:UIViewController{
         setupNotification()
         setupNav()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        tableView.addSubview(refreshView)
+        refreshView.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+    
+    @objc private func handleRefresh() {
+        setupData()
+        setupOwnTeamData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.refreshView.endRefreshing()
+        }
     }
     
     private func setupFetchDataDelegate () {
@@ -84,7 +95,8 @@ class ChatListViewController:UIViewController{
     
     //Mark: setupData
     private func setupData() {
-        Firestore.getChatData(uid: Auth.getUserId()) { chatId in
+        Firestore.getChatData(uid: Auth.getUserId()) { [weak self] chatId in
+            guard let self = self else { return }
             self.fetchData.getChatRoomModel(chatId:chatId)
             for i in 0..<chatId.count {
                 self.fetchData.getChat(chatId: chatId[i])
@@ -93,7 +105,8 @@ class ChatListViewController:UIViewController{
     }
     //Mark :setupOwnTeam
     private func setupOwnTeamData() {
-        Firestore.getOwnTeam(uid: Auth.getUserId()) { teamIds in
+        Firestore.getOwnTeam(uid: Auth.getUserId()) {[weak self] teamIds in
+            guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
     }
