@@ -5,18 +5,25 @@ import NVActivityIndicatorView
 class FriendsViewController: UIViewController {
    
     //Mark: Properties
-    @IBOutlet weak var friendTableView: UITableView!
-//    private var cellId = "aaaa"
+    @IBOutlet private weak var friendTableView: UITableView! {
+        didSet {
+            friendTableView.separatorStyle = .none
+        }
+    }
     private var cellId = Utility.CellId.FriendCellId
     var friends = [User]()
     var inviter = [User]()
-    var teamName:String?
-    var teamTime:String?
-    var teamPlace:String?
-    var teamLevel:String?
+    var (teamName,teamTime,teamPlace,teamLevel) = (String(),String(),String(),String())
     var teamImage:UIImage?
     var me:User?
-    @IBOutlet weak var inviteButton: UIButton!
+    @IBOutlet private weak var inviteButton: UIButton! {
+        didSet {
+            inviteButton.backgroundColor = Utility.AppColor.OriginalBlue
+            inviteButton.setTitleColor(.white, for: .normal)
+            inviteButton.layer.cornerRadius = 15
+            inviteButton.layer.masksToBounds = true
+        }
+    }
     private var IndicatorView:NVActivityIndicatorView!
     var teamTagArray = [String]()
     var url:String?
@@ -49,11 +56,7 @@ class FriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        updateUI()
         setupIndicator()
-        inviteButton.layer.cornerRadius = 15
-        inviteButton.layer.masksToBounds = true
-        friendTableView.separatorStyle = .none
     }
     
     //Mark:setupFriendTableView
@@ -62,14 +65,7 @@ class FriendsViewController: UIViewController {
         friendTableView.dataSource = self
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
     }
-    
-    //Mark:updateUI()
-    private func updateUI() {
-        inviteButton.backgroundColor = Utility.AppColor.OriginalLightBlue
-        inviteButton.backgroundColor = Utility.AppColor.OriginalBlue
-        inviteButton.setTitleColor(.white, for: UIControl.State.normal)
-    }
-    
+
     
     //Mark:NVActivityIndicatorView
     private func setupIndicator() {
@@ -85,10 +81,10 @@ class FriendsViewController: UIViewController {
     @IBAction func sendTeamData(_ sender: Any) {
         IndicatorView.startAnimating()
         guard let teamImage = self.teamImage else { return }
-        guard let teamName = self.teamName else { return }
-        guard let teamPlace = self.teamPlace else { return }
-        guard let teamTime = self.teamTime else { return }
-        guard let teamLevel = self.teamLevel else { return }
+        let teamName = self.teamName
+        let teamPlace = self.teamPlace
+        let teamTime = self.teamTime
+        let teamLevel = self.teamLevel
         guard let teamUrl = self.url else { return }
         guard let me = self.me else { return }
         inviter.append(me)

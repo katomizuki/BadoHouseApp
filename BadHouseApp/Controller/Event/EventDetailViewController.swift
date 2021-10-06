@@ -12,8 +12,17 @@ class EventDetailViewController: UIViewController {
     //Mark :Properties
     var event:Event?
     var team:TeamModel?
-    @IBOutlet private weak var eventImageView: UIImageView!
-    @IBOutlet private weak var groupImageView: UIImageView!
+    @IBOutlet private weak var eventImageView: UIImageView! {
+        didSet {
+            eventImageView.contentMode = .scaleAspectFill
+        }
+    }
+    @IBOutlet private weak var groupImageView: UIImageView! {
+        didSet {
+            groupImageView.chageCircle()
+            groupImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        }
+    }
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var groupLabel: UILabel!
     @IBOutlet private weak var timeToLabel: UILabel!
@@ -26,9 +35,19 @@ class EventDetailViewController: UIViewController {
     @IBOutlet private weak var moneyLabel: UILabel!
     @IBOutlet private weak var placeLabel: UILabel!
     @IBOutlet private weak var leaderLabel: UILabel!
-    @IBOutlet private weak var leaderImageView: UIImageView!
+    @IBOutlet private weak var leaderImageView: UIImageView! {
+        didSet {
+            leaderImageView.chageCircle()
+            leaderImageView.backgroundColor = Utility.AppColor.OriginalBlue
+        }
+    }
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet private weak var joinButton: UIButton!
+    @IBOutlet private weak var joinButton: UIButton! {
+        didSet {
+            joinButton.toCorner(num: 15)
+            joinButton.backgroundColor = Utility.AppColor.OriginalBlue
+        }
+    }
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
@@ -123,8 +142,6 @@ class EventDetailViewController: UIViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
         collectionView.delegate = self
         collectionView.dataSource = self
-        joinButton.layer.cornerRadius = 15
-        joinButton.layer.masksToBounds = true
     }
     
     private func setupUI() {
@@ -132,14 +149,9 @@ class EventDetailViewController: UIViewController {
         guard let urlString = event?.eventUrl else { return }
         let url = URL(string: urlString)
         eventImageView.sd_setImage(with: url, completed: nil)
-        eventImageView.contentMode = .scaleAspectFill
         guard let groupUrlString = event?.teamImageUrl else { return }
         let groupUrl = URL(string: groupUrlString)
         groupImageView.sd_setImage(with: groupUrl, completed: nil)
-        
-        groupImageView.chageCircle()
-        groupImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-
         
         //Mark:textLabel
         titleLabel.text = "\(event?.eventTitle ?? "")"
@@ -166,12 +178,6 @@ class EventDetailViewController: UIViewController {
         let y = event?.longitude ?? 0.0
         pin.coordinate = CLLocationCoordinate2D(latitude: x, longitude: y)
         mapView.addAnnotation(pin)
-        
-        //Mark:LeaderDataUpdate
-        leaderImageView.chageCircle()
-        leaderImageView.backgroundColor = Utility.AppColor.OriginalBlue
-        joinButton.backgroundColor = Utility.AppColor.OriginalBlue
-        
     }
     
     //Mark:HelperMethod
@@ -232,7 +238,8 @@ class EventDetailViewController: UIViewController {
     //setupTag
     private func setupTag() {
         guard let eventId = event?.eventId else { return }
-        Firestore.getEventTagData(eventId: eventId) { tags in
+        Firestore.getEventTagData(eventId: eventId) { [weak self] tags in
+            guard let self = self else { return }
             if tags.count <= 1 {
                 let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
                 let button2 = UIButton(type: .system).cretaTagButton(text: "仲良く")

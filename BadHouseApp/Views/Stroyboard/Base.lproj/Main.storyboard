@@ -1737,13 +1737,13 @@
                         <outlet property="friendButton" destination="bRa-j1-DrH" id="xcH-Zb-4MM"/>
                         <outlet property="friendCollectionView" destination="9Ik-gM-Yf2" id="H1a-Bi-dOJ"/>
                         <outlet property="friendLabel" destination="Ud6-1f-ycp" id="3uB-6h-cNn"/>
+                        <outlet property="friendsImageView" destination="lNg-ud-oYY" id="IBR-mM-upT"/>
                         <outlet property="genderLabel" destination="25r-Rz-L6G" id="pwe-Pn-1KN"/>
                         <outlet property="genderStackView" destination="LgQ-0Q-ay4" id="vyV-kP-k4E"/>
                         <outlet property="levelLabel" destination="Fv7-UB-qsl" id="WrF-bk-o47"/>
                         <outlet property="levelStackView" destination="QlL-4O-hGe" id="o3o-Ez-e69"/>
                         <outlet property="nameLabel" destination="igu-dh-wdf" id="Hqw-rC-PhY"/>
                         <outlet property="teamLabel" destination="xfR-4w-34R" id="tPe-v2-t4q"/>
-                        <outlet property="teamMemberImageView" destination="lNg-ud-oYY" id="IBR-mM-upT"/>
                         <segue destination="9tS-ME-tid" kind="show" id="fuc-E9-X1F"/>
                     </connections>
                 </viewController>

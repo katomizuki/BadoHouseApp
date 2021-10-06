@@ -1,5 +1,3 @@
-
-
 import UIKit
 import TaggerKit
 import Firebase
@@ -7,15 +5,14 @@ import Firebase
 class TagViewController: UIViewController, TKCollectionViewDelegate {
     
     //Mark:Properties
-    @IBOutlet weak var searchContainerView: UIView!
-    @IBOutlet weak var testContainerView: UIView!
-    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet private weak var searchContainerView: UIView!
+    @IBOutlet private weak var testContainerView: UIView!
+    @IBOutlet private weak var finishButton: UIButton!
     var plusTagArray = [String]()
     var productTags:TKCollectionView!
     var allTags:TKCollectionView!
     var dic = [String:Any]()
-    var teamId = String()
-    var eventId = String()
+    var (teamId,eventId) = (String(),String())
     var eventImage:UIImage?
     private var tagCollection = TKCollectionView()
     

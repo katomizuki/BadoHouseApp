@@ -2,8 +2,8 @@ import UIKit
 
 class GroupSearchViewController: UIViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()

@@ -3,8 +3,8 @@ import Firebase
 
 class InviteViewController: UIViewController {
 
-    @IBOutlet weak var inviteButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var inviteButton: UIButton!
+    @IBOutlet private weak var tableView: UITableView!
     var friends = [User]()
     var inviter = [User]()
     var team: TeamModel?

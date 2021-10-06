@@ -3,50 +3,74 @@ import RxSwift
 import RxCocoa
 import Firebase
 import RangeUISlider
-//import FacebookCore
-
 
 class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
     
     //Mark:properties
-    @IBOutlet weak var gatherCountLabel: UILabel!
-    @IBOutlet weak var courtCountLabel: UILabel!
-    @IBOutlet weak var moneyTextField: UITextField!
-    @IBOutlet weak var startPicker: UIDatePicker!
-    @IBOutlet weak var finishPicker: UIDatePicker!
-    @IBOutlet weak var maxLevelLabel: UILabel!
-    @IBOutlet weak var minLevelLabel: UILabel!
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var TeamPickerView: UIPickerView!
-    @IBOutlet weak var placeTextField: UITextField!
+    @IBOutlet private weak var gatherCountLabel: UILabel!
+    @IBOutlet private weak var courtCountLabel: UILabel!
+    @IBOutlet private weak var moneyTextField: UITextField! {
+        didSet {
+            tfupdate(view: moneyTextField)
+        }
+    }
+    @IBOutlet private weak var startPicker: UIDatePicker!
+    @IBOutlet private weak var finishPicker: UIDatePicker!
+    @IBOutlet private weak var maxLevelLabel: UILabel!
+    @IBOutlet private weak var minLevelLabel: UILabel!
+    @IBOutlet private weak var titleTextField: UITextField! {
+        didSet {
+            tfupdate(view: titleTextField)
+        }
+    }
+    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var TeamPickerView: UIPickerView! {
+        didSet {
+            TeamPickerView.toCorner(num: 15)
+        }
+    }
+    @IBOutlet private weak var placeTextField: UITextField! {
+        didSet {
+            tfupdate(view: placeTextField)
+        }
+    }
     private let eventBinding = MakeEventBindings()
     private let disposeBag = DisposeBag()
-    @IBOutlet weak var makeEventButton: UIButton!
+    @IBOutlet private weak var makeEventButton: UIButton! {
+        didSet {
+            makeEventButton.toCorner(num: 15)
+            makeEventButton.setTitleColor(.white, for: .normal)
+            makeEventButton.addTarget(self, action: #selector(createEvent), for: .touchUpInside)
+        }
+    }
     private var pickerArray = [TeamModel]()
-    @IBOutlet weak var detaiTextView: UITextView!
-    @IBOutlet weak var circleSegment: UISegmentedControl!
-    @IBOutlet weak var noImageView: UIImageView!
+    @IBOutlet private weak var detaiTextView: UITextView! {
+        didSet {
+            tfupdate(view: detaiTextView)
+        }
+    }
+    @IBOutlet private weak var circleSegment: UISegmentedControl! {
+        didSet {
+            circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
+        }
+    }
+    @IBOutlet private weak var noImageView: UIImageView!
     
     //Mark:sendEventdataProperties
     private var selectedTeam:TeamModel?
-    private var teamPlace = String()
-    private var teamTime = String()
-    private var eventTitle = String()
-    private var eventStartTime = String()
-    private var eventLastTime = String()
+    private var (teamPlace,teamTime) = (String(),String())
+    private var (eventTitle,eventStartTime,eventLastTime,eventLevel,eventMoney,courtCount,gatherCount,detailText,placeAddress) = (String(),String(),String(),String(),String(),String(),String(),String(),String())
     private var kindCircle = "学生サークル"
-    private var eventLavel = String()
-    private var eventMoney = String()
-    private var courtCount = String()
-    private var gatherCount = String()
-    private var detailText = String()
-    private var placeAddress = String()
-    private var placeLatitude = Double()
-    private var placeLongitude = Double()
+    private var (placeLatitude,placeLongitude) = (Double(),Double())
     private var dic = [String:Any]()
     private var team:TeamModel?
-    @IBOutlet weak var levelUISlider: RangeUISlider!
+    @IBOutlet weak var levelUISlider: RangeUISlider! {
+        didSet {
+            levelUISlider.leftKnobColor = Utility.AppColor.OriginalBlue
+            levelUISlider.rightKnobColor = Utility.AppColor.OriginalBlue
+            levelUISlider.rangeSelectedColor = Utility.AppColor.OriginalBlue
+        }
+    }
     private let moneyArray = Utility.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     private let fetchData = FetchFirestoreData()
@@ -54,7 +78,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupDelegate()
         setupBinding()
         setupOwnTeamData()
     }
@@ -72,40 +96,22 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     }
     
     //Mark setupUI
-    private func setupUI() {
-        TeamPickerView.toCorner(num: 15)
-        makeEventButton.toCorner(num: 15)
-        
+    private func setupDelegate() {
         levelUISlider.delegate = self
-        levelUISlider.leftKnobColor = Utility.AppColor.OriginalBlue
-        levelUISlider.rightKnobColor = Utility.AppColor.OriginalBlue
-        levelUISlider.rangeSelectedColor = Utility.AppColor.OriginalBlue
-        makeEventButton.setTitleColor(.white, for: UIControl.State.normal)
-        
-        
-        tfupdate(view: titleTextField)
-        tfupdate(view: placeTextField)
-        tfupdate(view: moneyTextField)
-        tfupdate(view: detaiTextView)
-        
         TeamPickerView.delegate = self
         TeamPickerView.dataSource = self
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         fetchData.myTeamDelegate = self
-        
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
         toolBar.setItems([doneButtonItem], animated: true)
         moneyTextField.inputAccessoryView = toolBar
-        
-        makeEventButton.addTarget(self, action: #selector(createEvent), for: UIControl.Event.touchUpInside)
-        circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
     }
     //Mark selector
-    @objc func donePicker() {
+    @objc private func donePicker() {
         moneyTextField.endEditing(true)
     }
     
@@ -228,7 +234,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         guard let teamName = selectedTeam?.teamName else { return }
         let max = maxLevelLabel.text ?? "レベル6"
         let min = minLevelLabel.text ?? "レベル2"
-        eventLavel = min + "~" + max
+        eventLevel = min + "~" + max
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
         detailText = detaiTextView.text ?? ""
@@ -243,7 +249,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                        "teamName":teamName,
                        "eventStartTime":self.eventStartTime,
                        "eventLastTime":self.eventLastTime,
-                       "eventLavel":self.eventLavel,
+                       "eventLavel":self.eventLevel,
                        "eventMoney":self.eventMoney,
                        "detailText":self.detailText,
                        "kindCircle":self.kindCircle,
@@ -267,22 +273,22 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     
     //Mark:IBAction
-    @IBAction func plusCourt(_ sender: UIStepper) {
+    @IBAction private func plusCourt(_ sender: UIStepper) {
         let num = String(Int(sender.value) + 1)
         courtCountLabel.text = num
     }
-    @IBAction func plusGather(_ sender: UIStepper) {
+    @IBAction private func plusGather(_ sender: UIStepper) {
         let num = String(Int(sender.value))
         gatherCountLabel.text = num
     }
-    @IBAction func plusImage(_ sender: Any) {
+    @IBAction private func plusImage(_ sender: Any) {
         print(#function)
         let pickerView = UIImagePickerController()
         pickerView.delegate = self
         self.present(pickerView, animated: true, completion: nil)
     }
     
-    @IBAction func gotoMap(_ sender: Any) {
+    @IBAction private func gotoMap(_ sender: Any) {
         print(#function)
         performSegue(withIdentifier: Utility.Segue.gotoMap, sender: nil)
     }

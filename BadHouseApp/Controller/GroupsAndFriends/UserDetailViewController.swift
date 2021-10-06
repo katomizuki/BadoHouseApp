@@ -10,21 +10,41 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     var me:User?
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
-    @IBOutlet weak var teamLabel: UILabel!
-    @IBOutlet weak var teamMemberImageView: UIImageView!
-    @IBOutlet weak var friendCollectionView: UICollectionView!
-    @IBOutlet weak var belongCollectionView: UICollectionView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var friendButton: UIButton!
-    @IBOutlet weak var friendLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var badmintoTimeLabel: UILabel!
-    @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var ageStackView: UIStackView!
-    @IBOutlet weak var genderStackView: UIStackView!
-    @IBOutlet weak var badmintonTimeStackView: UIStackView!
-    @IBOutlet weak var levelStackView: UIStackView!
+    @IBOutlet private weak var teamLabel: UILabel! {
+        didSet {
+            teamLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        }
+    }
+    @IBOutlet private weak var friendsImageView: UIImageView! {
+        didSet {
+            friendsImageView.contentMode = .scaleToFill
+            friendsImageView.chageCircle()
+            friendsImageView.layer.borderWidth = 4
+            friendsImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        }
+    }
+    @IBOutlet private weak var friendCollectionView: UICollectionView!
+    @IBOutlet private weak var belongCollectionView: UICollectionView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var friendButton: UIButton! {
+        didSet {
+            friendButton.updateFriendButton()
+        }
+    }
+    @IBOutlet private weak var friendLabel: UILabel! {
+        didSet {
+            friendLabel.font = UIFont.boldSystemFont(ofSize:
+                20)
+        }
+    }
+    @IBOutlet private weak var ageLabel: UILabel!
+    @IBOutlet private weak var genderLabel: UILabel!
+    @IBOutlet private weak var badmintoTimeLabel: UILabel!
+    @IBOutlet private weak var levelLabel: UILabel!
+    @IBOutlet private weak var ageStackView: UIStackView!
+    @IBOutlet private weak var genderStackView: UIStackView!
+    @IBOutlet private weak var badmintonTimeStackView: UIStackView!
+    @IBOutlet private weak var levelStackView: UIStackView!
     private let fetchData = FetchFirestoreData()
    
     
@@ -35,7 +55,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         updateBorder()
         setupCollection()
         setupData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,16 +65,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     
     //Mark:updateUI
     private func updateUI() {
-        //Mark:UpdateUI
-        friendButton.updateFriendButton()
-        
-        teamMemberImageView.contentMode = .scaleToFill
-         teamMemberImageView.chageCircle()
-        teamMemberImageView.layer.borderWidth = 4
-        teamMemberImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-        teamLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        friendLabel.font = UIFont.boldSystemFont(ofSize:
-            20)
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
@@ -124,10 +133,10 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         guard let memberId = user?.uid else { return }
         guard let urlString = user?.profileImageUrl else { return }
         if urlString == "" {
-            teamMemberImageView.image = UIImage(named: Utility.ImageName.noImages)
+            friendsImageView.image = UIImage(named: Utility.ImageName.noImages)
         } else {
             let url = URL(string: urlString)
-            teamMemberImageView.sd_setImage(with: url, completed: nil)
+            friendsImageView.sd_setImage(with: url, completed: nil)
         }
         Firestore.getOwnTeam(uid: memberId) { [weak self] teamIds in
             guard let self = self else { return }
