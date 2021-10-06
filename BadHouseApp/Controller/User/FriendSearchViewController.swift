@@ -7,7 +7,13 @@ class FriendSSearchViewController: UIViewController {
 
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.showsCancelButton = true
+            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+        }
+    }
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
     private let cellId = Utility.CellId.searchCell
@@ -86,6 +92,7 @@ extension FriendSSearchViewController:UISearchBarDelegate {
         print(#function)
         guard let text = searchBar.text else { return }
         fetchData.searchFriends(text: text)
+        searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -93,6 +100,18 @@ extension FriendSSearchViewController:UISearchBarDelegate {
         guard let text = searchBar.text else { return }
         fetchData.searchFriends(text: text)
     }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        print("⚡")
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+        searchBar.resignFirstResponder()
+    }
+    
+  
     
 }
 
