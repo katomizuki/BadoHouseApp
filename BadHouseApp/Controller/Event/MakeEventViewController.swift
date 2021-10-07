@@ -23,6 +23,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             tfupdate(view: titleTextField)
             titleTextField.returnKeyType = .next
             titleTextField.keyboardType = .namePhonePad
+            titleTextField.toCorner(num: 15)
+            titleTextField.placeholder = "タイトル名記入"
         }
     }
     @IBOutlet private weak var datePicker: UIDatePicker!
@@ -90,6 +92,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         setupDelegate()
         setupBinding()
         setupOwnTeamData()
+        setupToolBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +116,9 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         moneyPickerView.dataSource = self
         fetchData.myTeamDelegate = self
         titleTextField.delegate = self
+    }
+    
+    private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
@@ -120,6 +126,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         toolBar.setItems([doneButtonItem], animated: true)
         moneyTextField.inputAccessoryView = toolBar
     }
+    
     //Mark selector
     @objc private func donePicker() {
         moneyTextField.endEditing(true)
@@ -170,6 +177,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         moneyTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
+                self.moneyTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+                self.moneyTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let text = text ?? ""
                 self.eventMoney = text
                 self.eventBinding.moneyTextInput.onNext(text)
@@ -179,6 +188,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         titleTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
+                self.titleTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+                self.titleTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let title = text ?? ""
                 self.eventTitle = title
                 self.eventBinding.titleTextInput.onNext(title)
