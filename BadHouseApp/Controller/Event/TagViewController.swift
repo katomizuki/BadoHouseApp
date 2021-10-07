@@ -7,10 +7,24 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     //Mark:Properties
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var testContainerView: UIView!
-    @IBOutlet private weak var finishButton: UIButton!
-    var plusTagArray = [String]()
-    var productTags:TKCollectionView!
-    var allTags:TKCollectionView!
+    @IBOutlet private weak var finishButton: UIButton! {
+        didSet {
+            finishButton.updateUI(title: "イベント作成")
+        }
+    }
+    private var plusTagArray = [String]()
+    private var productTags:TKCollectionView! {
+        didSet {
+            productTags.customBackgroundColor = Utility.AppColor.OriginalLightBlue
+        }
+    }
+    private var allTags:TKCollectionView! {
+        didSet {
+            allTags.customBackgroundColor = .white
+            allTags.customTagBorderColor = .lightGray
+            allTags.customTagBorderWidth = 4
+        }
+    }
     var dic = [String:Any]()
     var (teamId,eventId) = (String(),String())
     var eventImage:UIImage?
@@ -19,25 +33,21 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        finishButton.updateUI(title: "イベント作成")
+        setupTag()
+    }
+    
+    private func setupTag() {
         productTags = TKCollectionView(tags: ["#バド好き歓迎"],
                                               action: .removeTag,
                                               receiver: nil)
-               
         allTags = TKCollectionView(tags: Utility.Data.tagArray,
                                           action: .addTag,
                                           receiver: productTags)
-        
         productTags.delegate = self
         allTags.delegate = self
         
         add(allTags,toView:  testContainerView)
         add(productTags,toView:searchContainerView)
-        
-        allTags.customBackgroundColor = .white
-        productTags.customBackgroundColor = Utility.AppColor.OriginalLightBlue
-        allTags.customTagBorderColor = .lightGray
-        allTags.customTagBorderWidth = 4
     }
     
     //Mark:IBAction

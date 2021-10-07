@@ -80,7 +80,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var cellTitleArray = Utility.Data.userSection
     @IBOutlet private weak var scrollView: UIView!
     
-    
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,11 +147,11 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @objc private func back() {
         dismiss(animated: true, completion: nil)
     }
+    
     @objc private func handleLogout() {
         print(#function)
         do {
             try Auth.auth().signOut()
-            //同画面遷移させるか。
             dismiss(animated: true, completion: nil)
         }  catch {
             print(error)
@@ -225,7 +224,6 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.introductionTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
-                
                 self?.introduction = text ?? ""
             }
             .disposed(by: diposeBag)
@@ -267,27 +265,30 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         cell.textLabel?.text = cellTitleArray[indexPath.row]
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         cell.selectionStyle = .none
-        cell.backgroundColor = UIColor(named: "backGroundColor")
+        cell.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
         cell.accessoryType = .disclosureIndicator
         let title = cellTitleArray[indexPath.row]
         cell.detailTextLabel?.text = ""
-        if title == "レベル" {
+        
+        switch title {
+        case "レベル":
             cell.detailTextLabel?.text = level
-        } else if title == "性別" {
+        case "性別":
             cell.detailTextLabel?.text = gender
-        } else if title == "バドミントン歴" {
+        case "バドミントン歴":
             cell.detailTextLabel?.text = badmintonTime
-        } else if title == "居住地" {
+        case "居住地":
             cell.detailTextLabel?.text = place
-        } else if title == "年代" {
+        case "年代":
             cell.detailTextLabel?.text = age
+        default:
+            break
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == "レベル" {
-            //present
             performSegue(withIdentifier: Utility.Segue.gotoLevel, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {

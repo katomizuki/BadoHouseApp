@@ -62,16 +62,23 @@ class DetailSearchViewController: UIViewController{
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Mark:StackView UnderLine
+        setupLayer()
+        setupPickerView()
+        setupBorder()
+        setupAddtarget()
+        setupDelegate()
+    }
+    
+    private func setupLayer() {
         setupUnderLayer(view: titleStackView)
         setupUnderLayer(view: circleStackView)
         setupUnderLayer(view: levelStackView)
         setupUnderLayer(view: cityStackView)
         setupUnderLayer(view: moneyStackView)
         setupUnderLayer(view: timeStackView)
-        setupPickerView()
-        setupBorder()
-        setupAddtarget()
+    }
+    
+    private func setupDelegate() {
         titleTextField.delegate = self
         cityTextField.delegate = self
     }
@@ -83,6 +90,7 @@ class DetailSearchViewController: UIViewController{
         cityTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
         moneyTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
     }
+    
     @objc private func handleChange(sender:UITextField) {
         switch sender {
         case titleTextField:
@@ -148,6 +156,7 @@ class DetailSearchViewController: UIViewController{
         let dateString = self.formatterUtil(date: sender.date)
         self.dateString = dateString
     }
+    
     @objc private func handleTap() {
         print(#function)
         titleTextField.resignFirstResponder()

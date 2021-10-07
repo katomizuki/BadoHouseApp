@@ -10,7 +10,13 @@ protocol SearchLocationProtocol:AnyObject {
 class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRecognizerDelegate{
 
     //Mark:Properties
-    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
+            mapView.addGestureRecognizer(gesture)
+            mapView.isUserInteractionEnabled = true
+        }
+    }
     var locManager:CLLocationManager!
     @IBOutlet private weak var saveButton: UIButton! {
         didSet {
@@ -46,8 +52,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
-             mapView.addGestureRecognizer(gesture)
              mapView.setRegion(defaultRegion, animated: false)
             textField.delegate = self
     }

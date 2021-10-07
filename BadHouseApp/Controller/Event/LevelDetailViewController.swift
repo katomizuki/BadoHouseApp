@@ -2,6 +2,7 @@ import UIKit
 
 class LevelDetailViewController: UIViewController {
 
+    //Mark properties
     @IBOutlet private weak var levelLabel: UILabel! {
         didSet {
             levelLabel.text = "レベル10"
@@ -19,6 +20,8 @@ class LevelDetailViewController: UIViewController {
     }
     @IBOutlet private weak var textView: UITextView!
     private var selectedLevel = "レベル10"
+    
+    //Mark:lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let end = String(selectedLevel.suffix(1))

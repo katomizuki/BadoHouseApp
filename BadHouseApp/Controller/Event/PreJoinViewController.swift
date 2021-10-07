@@ -5,6 +5,7 @@ import XLPagerTabStrip
 
 class PreJoinViewController: ButtonBarPagerTabStripViewController{
     
+    //Mark properties
     lazy var collectionView:ButtonBarView = {
         let cv = buttonBarView
         return cv!
@@ -15,6 +16,7 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         return sv!
     }()
     
+    //Mark lifecycle
     override func viewDidLoad() {
         setupXLTab()
         super.viewDidLoad()
