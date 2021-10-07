@@ -53,6 +53,7 @@ class DetailSearchViewController: UIViewController{
     @IBOutlet private weak var datePicker: UIDatePicker! {
         didSet {
             datePicker.addTarget(self, action: #selector(getDate(sender:)), for: .valueChanged)
+            datePicker.locale = Locale(identifier: "ja-JP")
         }
     }
     private var dateString = String()
@@ -116,7 +117,7 @@ class DetailSearchViewController: UIViewController{
     
     //Mark:getCGrect
     private func getCGrect(view:UIView)->CGRect {
-        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0) 
+        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
     }
     
     //Mark:setupMethod
@@ -218,7 +219,7 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
         } else {
             return self.level[row]
         }
-      
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

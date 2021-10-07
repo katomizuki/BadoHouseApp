@@ -14,8 +14,16 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             tfupdate(view: moneyTextField)
         }
     }
-    @IBOutlet private weak var startPicker: UIDatePicker!
-    @IBOutlet private weak var finishPicker: UIDatePicker!
+    @IBOutlet private weak var startPicker: UIDatePicker! {
+        didSet {
+            startPicker.locale = Locale(identifier: "ja-JP")
+        }
+    }
+    @IBOutlet private weak var finishPicker: UIDatePicker! {
+        didSet {
+            finishPicker.locale = Locale(identifier: "ja-JP")
+        }
+    }
     @IBOutlet private weak var maxLevelLabel: UILabel!
     @IBOutlet private weak var minLevelLabel: UILabel!
     @IBOutlet private weak var titleTextField: UITextField! {
@@ -27,7 +35,11 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             titleTextField.placeholder = "タイトル名記入"
         }
     }
-    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var datePicker: UIDatePicker! {
+        didSet {
+            datePicker.locale = Locale(identifier: "ja-JP")
+        }
+    }
     @IBOutlet private weak var TeamPickerView: UIPickerView! {
         didSet {
             TeamPickerView.toCorner(num: 15)
@@ -132,7 +144,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         moneyTextField.endEditing(true)
     }
     
-    //Mark:MapDelegate
+    //Mark:Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Utility.Segue.gotoMap {
             let nextVC = segue.destination as! MapViewController
@@ -420,6 +432,7 @@ extension MakeEventViewController:RangeUISliderDelegate{
     }
 }
 
+//Mark:uinavigationDelegate
 extension MakeEventViewController:UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
