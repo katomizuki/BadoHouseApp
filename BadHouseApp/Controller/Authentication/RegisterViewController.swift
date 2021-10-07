@@ -15,12 +15,38 @@ import Firebase
 class RegisterViewController:UIViewController{
    
     //Mark :Properties
-    private let nameTextField = RegisterTextField(placeholder: "名前")
-    private let emailTextField = RegisterTextField(placeholder: "メールアドレス")
-    private let passwordTextField = RegisterTextField(placeholder: "パスワード")
-    private let registerButton:UIButton = RegisterButton(text: "新規登録")
+    private let nameTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "名前")
+        tf.keyboardType = .default
+        tf.returnKeyType = .next
+        tf.tag = 0
+        return tf
+    }()
+    
+    private let emailTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "メールアドレス")
+        tf.returnKeyType = .next
+        tf.keyboardType = .emailAddress
+        tf.tag = 1
+        return tf
+    }()
+    
+    private let passwordTextField:UITextField = {
+        let tf = RegisterTextField(placeholder: "パスワード")
+        tf.returnKeyType = .done
+        tf.tag = 2
+        tf.isSecureTextEntry = true
+        return tf
+    }()
+    
+    private let registerButton:UIButton = {
+        let button = RegisterButton(text: "新規登録")
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        return button
+    }()
+    
     private let alreadyButton:UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
-    private let googlView = GIDSignInButton()
+    private let googleView = GIDSignInButton()
     private var displayName = String()
     private var pictureURL = String()
     private var pictureURLString = String()
@@ -39,27 +65,17 @@ class RegisterViewController:UIViewController{
     //Mark :LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayout()
         setupBinding()
-        googlView.style = .wide
+        googleView.style = .wide
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         fbButton.delegate = self
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
-        emailTextField.returnKeyType = .next
-        emailTextField.keyboardType = .emailAddress
-        nameTextField.keyboardType = .default
-        nameTextField.returnKeyType = .next
-        passwordTextField.returnKeyType = .done
-        emailTextField.tag = 1
-        nameTextField.tag = 0
-        passwordTextField.tag = 2
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,12 +87,10 @@ class RegisterViewController:UIViewController{
 
     //Mark: setup Method
     private func setupLayout() {
-        //Mark updateUI
-        passwordTextField.isSecureTextEntry = true
-        registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+
 
         //Mark: StackView
-        let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googlView,fbButton])
+        let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googleView,fbButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20

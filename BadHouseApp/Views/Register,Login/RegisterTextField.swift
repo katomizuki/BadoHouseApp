@@ -13,6 +13,7 @@ class RegisterTextField:UITextField {
         self.placeholder = placeholder
         self.borderStyle = .roundedRect
         self.font = .systemFont(ofSize: 14)
+        self.autocapitalizationType = .none
         let attributes: [NSAttributedString.Key : Any] = [
           .font : UIFont.systemFont(ofSize: 16.0),
           .foregroundColor : UIColor.darkGray

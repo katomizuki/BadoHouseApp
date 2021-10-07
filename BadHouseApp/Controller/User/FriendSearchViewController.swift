@@ -6,12 +6,18 @@ import FacebookCore
 class FriendSSearchViewController: UIViewController {
 
     //Mark:Properties
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            tableView.addGestureRecognizer(gesture)
+        }
+    }
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Utility.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
             searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.autocapitalizationType = .none
         }
     }
     private let fetchData = FetchFirestoreData()
@@ -54,6 +60,9 @@ class FriendSSearchViewController: UIViewController {
                 Firestore.friendAction(myId: Auth.getUserId(), friend: friend, bool: true)
             }
         }
+    }
+    @objc private func handleTap() {
+        searchBar.resignFirstResponder()
     }
 }
 

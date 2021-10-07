@@ -2,8 +2,20 @@ import UIKit
 
 class GroupSearchViewController: UIViewController {
 
-    @IBOutlet private weak var searchBar: UISearchBar!
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!{
+        didSet {
+            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.showsCancelButton = true
+            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.autocapitalizationType = .none
+        }
+    }
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            tableView.addGestureRecognizer(gesture)
+        }
+    }
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
@@ -11,7 +23,7 @@ class GroupSearchViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         searchBar.delegate = self
-        searchBar.placeholder = "場所名,サークル名等,フリワード検索"
+        searchBar.placeholder = "場所名,サークル名等,検索"
         fetchData.groupSearchDelegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +40,10 @@ class GroupSearchViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    @objc private func handleTap() {
+        searchBar.resignFirstResponder()
     }
   
 
@@ -61,6 +77,13 @@ extension GroupSearchViewController:UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
         fetchData.searchGroup(text: text)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.resignFirstResponder()
     }
   
 }

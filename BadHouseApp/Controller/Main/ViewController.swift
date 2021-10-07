@@ -20,7 +20,14 @@ class ViewController: UIViewController {
     private var fetchData = FetchFirestoreData()
     var (myLatitude,myLongitude) = (Double(),Double())
     private var eventArray = [Event]()
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!{
+        didSet {
+            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.showsCancelButton = true
+            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.autocapitalizationType = .none
+        }
+    }
     @IBOutlet weak var timeButton: UIButton!
     
     //Mark LifeCycle
@@ -215,6 +222,10 @@ extension ViewController: UISearchBarDelegate {
             return
         }
         fetchData.searchText(text: searchText)
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     

@@ -17,33 +17,47 @@ class LoginViewController:UIViewController {
     private let loginBinding = LoginBindings()
     private var IndicatorView:NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
-    private let googlView = GIDSignInButton()
+    private let googleView = GIDSignInButton()
     private let iv:UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "logo")
+        iv.image = UIImage(named: Utility.ImageName.logoImage)
         return iv
     }()
-    private let emailTextField = RegisterTextField(placeholder: "メールアドレス")
-    private let passwordTextField = RegisterTextField(placeholder: "パスワード")
-    private let loginButton:UIButton = RegisterButton(text: "ログイン")
+    
+    private let emailTextField:UITextField = {
+     let tf = RegisterTextField(placeholder: "メールアドレス")
+    tf.tag = 0
+    tf.returnKeyType = .next
+    tf.keyboardType = .emailAddress
+    return tf
+    }()
+    
+    private let passwordTextField:UITextField = {
+    let tf = RegisterTextField(placeholder: "パスワード")
+    tf.tag = 1
+    tf.returnKeyType = .done
+    tf.keyboardType = .default
+    tf.isSecureTextEntry = true
+    return tf
+   }()
+    
+    private let loginButton:UIButton = {
+    let button = RegisterButton(text: "ログイン")
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+    return button
+    }()
     private let dontHaveButton = UIButton(type: .system).createAuthButton(text: "新規登録の方はこちらへ")
     
     //Mark: LifeCycle
     override func viewDidLoad() {
         setupLayout()
         setupBinding()
-        googlView.style = .wide
+        googleView.style = .wide
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         fbButton.delegate = self
         //許可するもの
         fbButton.permissions = ["public_profile, email"]
-        emailTextField.tag = 0
-        passwordTextField.tag = 1
-        emailTextField.returnKeyType = .next
-        passwordTextField.returnKeyType = .done
-        emailTextField.keyboardType = .emailAddress
-        passwordTextField.keyboardType = .default
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -55,12 +69,8 @@ class LoginViewController:UIViewController {
     
     //Mark: Setup
     private func setupLayout(){
-        //Mark:UpdateUI
-        passwordTextField.isSecureTextEntry = true
-        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        
         //Mark:StackView
-        let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googlView,fbButton])
+        let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googleView,fbButton])
         basicStackView.axis = .vertical
         basicStackView.distribution = .fillEqually
         basicStackView.spacing = 20
