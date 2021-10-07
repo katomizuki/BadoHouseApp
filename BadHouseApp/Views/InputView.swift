@@ -7,12 +7,11 @@ protocol InputDelegate :AnyObject{
 
 class CustomInputAccessoryView:UIView {
 
+    //Mark:Properties
     weak var delegate:InputDelegate?
-    
     let messageInputTextView:UITextView = {
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 14)
-        //スクロールを回避する。
         tv.isScrollEnabled = false
         tv.layer.cornerRadius = 15
         tv.layer.masksToBounds = true
@@ -35,6 +34,7 @@ class CustomInputAccessoryView:UIView {
         return label
     }()
     
+    //Mark:initialize
     override init(frame:CGRect) {
         super.init(frame:frame)
         
@@ -71,6 +71,7 @@ class CustomInputAccessoryView:UIView {
     override var intrinsicContentSize: CGSize {
         return .zero
     }
+    //Mark:selector
     @objc func sendMessage() {
         print(#function)
         guard let text = messageInputTextView.text else { return }
@@ -80,9 +81,6 @@ class CustomInputAccessoryView:UIView {
     @objc func textDidChange() {
         placeholder.isHidden = !self.messageInputTextView.isHidden
     }
-    
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

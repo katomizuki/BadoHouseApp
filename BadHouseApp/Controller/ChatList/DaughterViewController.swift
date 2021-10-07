@@ -73,7 +73,7 @@ extension DaughterViewController:GetJoinDataDelegate {
     }
 }
 
-
+//Mark tableViewDelegate
 extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,7 +128,6 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
             Firestore.sendPreJoin(eventId: eventId, userId: userId)
             tableView.reloadData()
         }
-        
         let cancleAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default) { action in
             print("cancle")
         }

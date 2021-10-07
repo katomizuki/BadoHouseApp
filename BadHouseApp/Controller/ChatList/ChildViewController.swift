@@ -51,14 +51,16 @@ class ChildViewController: UIViewController {
     }
 }
 
+//Mark:IndicatorInfo
 extension ChildViewController:IndicatorInfoProvider {
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "承認待ち")
     }
 }
-
+//Mark:getPrejoinDelegate
 extension ChildViewController:GetPrejoinDataDelegate {
+    
     func getPrejoin(preJoin: [[String]]) {
         self.notificationArray = [[User]]()
         let group = DispatchGroup()
@@ -83,7 +85,7 @@ extension ChildViewController:GetPrejoinDataDelegate {
         }
     }
 }
-
+//Mark tableviewdelegate
 extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

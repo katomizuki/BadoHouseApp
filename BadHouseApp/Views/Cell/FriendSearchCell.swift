@@ -3,9 +3,9 @@ import UIKit
 
 class FriendSearchCell: UITableViewCell {
     
+    //Mark:properties
     var link:FriendSSearchViewController!
     var count = 0
-    
     private var button:UIButton = {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 120, height: 50)
@@ -29,6 +29,7 @@ class FriendSearchCell: UITableViewCell {
         return label
     }()
     
+    //Mark:initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.iv.layer.cornerRadius = 25
@@ -45,6 +46,7 @@ class FriendSearchCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Mark selector
     @objc func plusFriend() {
         print(#function)
         

@@ -1,13 +1,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
-    var event:Event? {
-        didSet {
-            configure()
-        }
-    }
-    
+
     //Mark:Properties
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
@@ -15,6 +9,11 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var teamImage: UIImageView!
     @IBOutlet weak var userImageView: UIImageView!
+    var event:Event? {
+        didSet {
+            configure()
+        }
+    }
     
     //Mark:LifeCycle
     override func awakeFromNib() {
@@ -24,6 +23,7 @@ class CollectionViewCell: UICollectionViewCell {
         userImageView.layer.borderWidth = 2
     }
     
+    //Mark helperMethod
     func configure() {
         guard let event = event else { return }
         self.placeLabel.text = "at " + event.eventPlace

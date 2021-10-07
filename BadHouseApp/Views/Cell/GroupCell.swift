@@ -65,6 +65,7 @@ class GroupCell:UITableViewCell {
     static func nib() ->UINib {
         return UINib(nibName: Utility.Cell.GroupCell, bundle: nil)
     }
+    //Mark selector
     @objc private func handleTrash() {
         print(#function)
         guard let event = event else {
@@ -74,6 +75,7 @@ class GroupCell:UITableViewCell {
         self.trashDelegate?.removeEvent(eventModel:event,cell:self)
     }
     
+    //Mark helperMethod
     private func eventConfigure() {
         label.text = event?.eventTitle
         if let dateString = event?.eventStartTime.prefix(16) {
