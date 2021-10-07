@@ -2,12 +2,14 @@ import UIKit
 
 class GroupSearchViewController: UIViewController {
 
+    //Mark:properties
     @IBOutlet private weak var searchBar: UISearchBar!{
         didSet {
             searchBar.tintColor = Utility.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
             searchBar.backgroundColor = Utility.AppColor.OriginalBlue
             searchBar.autocapitalizationType = .none
+            searchBar.placeholder = "場所名,サークル名等,検索"
         }
     }
     @IBOutlet private weak var tableView: UITableView! {
@@ -19,11 +21,12 @@ class GroupSearchViewController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
+    
+    //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         searchBar.delegate = self
-        searchBar.placeholder = "場所名,サークル名等,検索"
         fetchData.groupSearchDelegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +38,7 @@ class GroupSearchViewController: UIViewController {
         searchBar.resignFirstResponder()
     }
     
+    //Mark helperMethod
     private func setupTableView() {
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
@@ -42,6 +46,7 @@ class GroupSearchViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    //Mark selector
     @objc private func handleTap() {
         searchBar.resignFirstResponder()
     }
@@ -50,7 +55,7 @@ class GroupSearchViewController: UIViewController {
   
 
 }
-
+//Mark tableViewDelegate
 extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
@@ -73,7 +78,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
+//Mark searchBarDelegate
 extension GroupSearchViewController:UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

@@ -25,17 +25,15 @@ class GroupChatViewController: UIViewController {
         return true
     }
     
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupData()
         view.backgroundColor = .white
-        Firestore.getUserData(uid: Auth.getUserId()) { [weak self] me in
-            guard let self = self else { return }
-            self.me = me
-        }
     }
     
+    //Mark helperMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,14 +43,17 @@ class GroupChatViewController: UIViewController {
     }
     
     private func setupData() {
+        Firestore.getUserData(uid: Auth.getUserId()) { [weak self] me in
+            guard let self = self else { return }
+            self.me = me
+        }
         guard let teamId = team?.teamId else { return }
         fetchData.getGroupChat(teamId: teamId)
         fetchData.groupChatDataDelegate = self
     }
-    
-
 }
 
+//Mark :tableViewdelegate
 extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,7 +74,7 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
         return false
     }
 }
-
+//Mark:chatDelegate
 extension GroupChatViewController:GetGroupChatDelegate {
     func getGroupChat(chatArray: [GroupChatModel]) {
         self.chatArray = []
@@ -84,7 +85,7 @@ extension GroupChatViewController:GetGroupChatDelegate {
         }
     }
 }
-
+//Mark InputDelegate
 extension GroupChatViewController:InputDelegate {
     
     func inputView(inputView: CustomInputAccessoryView, message: String) {

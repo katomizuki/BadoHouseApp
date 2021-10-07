@@ -218,7 +218,7 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     }
 }
 
-
+//Mark GetFriendDelegate
 extension UserDetailViewController:GetFriendDelegate {
     
     func getFriend(friendArray: [User]) {
@@ -230,6 +230,7 @@ extension UserDetailViewController:GetFriendDelegate {
         
     }
 }
+//Mark MyTeamDelegate
 extension UserDetailViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         self.ownTeam = teamArray

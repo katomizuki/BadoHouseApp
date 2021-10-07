@@ -66,7 +66,6 @@ class FriendsViewController: UIViewController {
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
     }
 
-    
     //Mark:NVActivityIndicatorView
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()

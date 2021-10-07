@@ -34,8 +34,6 @@ class GroupViewController: UIViewController{
         IndicatorView.startAnimating()
         setupTableView()
         setupData()
-        fetchData.friendDelegate = self
-        fetchData.myTeamDelegate = self
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -52,6 +50,8 @@ class GroupViewController: UIViewController{
     
     //Mark: setupData {
     private func setupData() {
+        fetchData.friendDelegate = self
+        fetchData.myTeamDelegate = self
         let uid = Auth.getUserId()
         Firestore.getUserData(uid: uid) { [weak self] user in
             guard let self = self else { return }
@@ -177,6 +177,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+//Mark freindDelegate
 extension GroupViewController:GetFriendDelegate {
     
     func getFriend(friendArray: [User]) {
@@ -185,7 +186,7 @@ extension GroupViewController:GetFriendDelegate {
         self.groupTableView.reloadData()
     }
 }
-
+//Mark myTeamDelegate
 extension GroupViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         self.teamArray = []

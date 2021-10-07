@@ -67,18 +67,22 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setUpTeamStatus()
         setUpTeamPlayer()
         setGraph()
-        withdrawButton.isHidden = flag
-        chatButton.isHidden = flag
-        if flag == true {
-            navigationItem.setRightBarButton(nil, animated: true)
-        }
-        friendImageView.isUserInteractionEnabled = !flag
+        changeUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
         navigationItem.title = team?.teamName
+    }
+    
+    private func changeUI() {
+        withdrawButton.isHidden = flag
+        chatButton.isHidden = flag
+        if flag == true {
+            navigationItem.setRightBarButton(nil, animated: true)
+        }
+        friendImageView.isUserInteractionEnabled = !flag
     }
         
     //Mark: setupData
@@ -329,15 +333,17 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-protocol backDelegate {
+
+protocol backDelegate:AnyObject {
     func updateTeamData()
 }
 class UpdateViewController:UIViewController {
+    //Mark properties
     var team:TeamModel?
     private let placeTextField = ProfileTextField(placeholder: "")
     private let timeTextField = ProfileTextField(placeholder: "")
     private let moneyTextField = ProfileTextField(placeholder: "")
-    var delegate:backDelegate?
+    weak var delegate:backDelegate?
     private let iv:UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.noImages)
@@ -346,16 +352,16 @@ class UpdateViewController:UIViewController {
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(handleImagePicker))
         iv.addGestureRecognizer(touchGesture)
         iv.isUserInteractionEnabled = true
+        iv.layer.cornerRadius = 75
+        iv.layer.masksToBounds = true
         return iv
     }()
-    
     private let button:UIButton = {
         let button = UIButton()
         button.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
         button.setTitle("保存", for: .normal)
         return button
     }()
-    
     private let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -367,7 +373,6 @@ class UpdateViewController:UIViewController {
     
     private func setupLayout() {
         view.backgroundColor = .white
-        
         let stackView = UIStackView(arrangedSubviews: [placeTextField,timeTextField,moneyTextField])
         stackView.axis = .vertical
         stackView.spacing = 20
@@ -381,8 +386,6 @@ class UpdateViewController:UIViewController {
         stackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight:30,paddingLeft:30,height: 170)
         button.anchor(top:stackView.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 20,paddingRight: 30,paddingLeft: 30,height: 50)
         button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
-        iv.layer.cornerRadius = 75
-        iv.layer.masksToBounds = true
     }
     
     private func teamInfo() {
@@ -429,6 +432,7 @@ class UpdateViewController:UIViewController {
     
 }
 
+//Mark: UIImagePickerDelegate
 extension UpdateViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

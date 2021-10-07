@@ -3,7 +3,13 @@ import Firebase
 
 class InviteViewController: UIViewController {
 
-    @IBOutlet private weak var inviteButton: UIButton!
+    //Mark: properties
+    @IBOutlet private weak var inviteButton: UIButton! {
+        didSet {
+            inviteButton.layer.cornerRadius = 15
+            inviteButton.layer.masksToBounds = true
+        }
+    }
     @IBOutlet private weak var tableView: UITableView!
     var friends = [User]()
     var inviter = [User]()
@@ -38,8 +44,6 @@ class InviteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        inviteButton.layer.cornerRadius = 15
-        inviteButton.layer.masksToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

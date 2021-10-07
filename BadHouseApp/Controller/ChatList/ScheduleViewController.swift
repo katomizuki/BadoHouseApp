@@ -24,15 +24,19 @@ class ScheduleViewController: UIViewController{
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupData()
+        setupCalendar()
+        setupTableView()
+        view.backgroundColor = .white
+    }
+    
+    private func setupData() {
+        fetchData.myEventDelegate = self
         guard let meId = me?.uid else { return }
         Firestore.getmyEventIdArray(uid: meId) { [weak self] idArray in
             guard let self = self else { return }
             self.fetchData.getmyEventData(idArray: idArray)
         }
-        setupCalendar()
-        setupTableView()
-        fetchData.myEventDelegate = self
-        view.backgroundColor = .white
     }
     
     //Mark helperMethod

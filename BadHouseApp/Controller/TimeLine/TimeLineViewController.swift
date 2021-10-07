@@ -83,6 +83,7 @@ extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
 }
 
+//Mark:getVideoDelegate
 extension TimeLineViewController:GetVideoDelegate {
     func getVideo(videoArray: [VideoModel]) {
         self.data = videoArray
@@ -90,7 +91,7 @@ extension TimeLineViewController:GetVideoDelegate {
         
     }
 }
-
+//Mark collectionCellDelegate
 extension TimeLineViewController:VideoCollectionCellDelegate ,UIPopoverPresentationControllerDelegate{
     
     func didTapSearchButton(video: VideoModel,button:UIButton) {
@@ -151,13 +152,17 @@ class PopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        fetchData.videoDelegate = self
+    }
+    
+    private func setupTableView() {
         tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         popoverPresentationController?.backgroundColor = UIColor.white
         view.addSubview(tv)
         tv.anchor(top:view.topAnchor,bottom:view.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 0,paddingBottom:0, paddingRight:0, paddingLeft: 0)
         tv.delegate = self
         tv.dataSource = self
-        fetchData.videoDelegate = self
     }
 }
 

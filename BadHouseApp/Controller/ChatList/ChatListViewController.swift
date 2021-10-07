@@ -24,8 +24,11 @@ class ChatListViewController:UIViewController{
     private var groupChatArray = [GroupChatModel]()
     private var sortGroupArray = [TeamModel]()
     private var sortChatModelArray = [ChatRoom]()
-    private let refreshView = UIRefreshControl()
-    
+    private let refreshView:UIRefreshControl = {
+    let view = UIRefreshControl()
+        view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        return view
+    }()
     //Mark:lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +37,6 @@ class ChatListViewController:UIViewController{
         setupOwnTeamData()
         setupNotification()
         setupNav()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        tableView.addSubview(refreshView)
-        refreshView.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     @objc private func handleRefresh() {
@@ -60,6 +60,7 @@ class ChatListViewController:UIViewController{
         navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
     //Mark:setupTableView
@@ -68,6 +69,7 @@ class ChatListViewController:UIViewController{
         tableView.dataSource = self
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
+        tableView.addSubview(refreshView)
     }
     
     //Mark:setupNotification
@@ -121,9 +123,11 @@ class ChatListViewController:UIViewController{
         self.sortLastCommentArray = []
         self.sortChatModelArray = []
     }
+    //Mark selector
     @objc private func handleNotification() {
         performSegue(withIdentifier: Utility.Segue.gotoNotification, sender: nil)
     }
+    
     @objc private func handleSchedule() {
         print(#function)
         Firestore.getUserData(uid: Auth.getUserId()) { user in
@@ -220,6 +224,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+//Mark getchatDelegate
 extension ChatListViewController: GetChatDataDelgate {
     
     func getChatData(chatArray: [Chat]) {
@@ -227,6 +232,7 @@ extension ChatListViewController: GetChatDataDelgate {
     }
 }
 
+//Mark getChatRoomDelegate
 extension ChatListViewController: GetChatRoomDataDelegate {
     
     func getChatRoomData(chatRoomArray: [ChatRoom]) {
@@ -236,7 +242,9 @@ extension ChatListViewController: GetChatRoomDataDelegate {
     }
 }
 
+//Mark getChatListDelegate
 extension ChatListViewController :GetChatListDelegate {
+    
     typealias sortChatArray = [EnumeratedSequence<[Chat]>.Element]
     
     func getChatList(userArray: [User], anotherArray: [User], lastChatArray: [Chat],chatModelArray:[ChatRoom]) {
@@ -270,6 +278,7 @@ extension ChatListViewController :GetChatListDelegate {
     }
 }
 
+//Mark GetmyTeamDelegate
 extension ChatListViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         self.teams = teamArray

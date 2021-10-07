@@ -95,6 +95,12 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         setupPickerView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupNavAccessory()
+        navigationItem.title = "サークル登録"
+    }
+    //Mark helperMethod
     private func setupData() {
         fetchData.friendDelegate = self
         guard let me = me else { return }
@@ -103,12 +109,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             guard let self = self else { return }
             self.fetchData.friendData(idArray: ids)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.setupNavAccessory()
-        navigationItem.title = "サークル登録"
     }
     
     private func setupPickerView() {
@@ -125,10 +125,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         toolBar.setItems([doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
-    @objc private func donePicker() {
-        placeTextField.endEditing(true)
-        levelTextField.endEditing(true)
-    }
     private func setupDelegate() {
         nameTextField.delegate = self
         placeTextField.delegate = self
@@ -136,6 +132,13 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         levelTextField.delegate = self
         plusTextField.delegate = self
     }
+    
+    //Mark selector
+    @objc private func donePicker() {
+        placeTextField.endEditing(true)
+        levelTextField.endEditing(true)
+    }
+    
     
     //Mark:setupLayout
     private func setupLayout() {
@@ -175,7 +178,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonStackView3.anchor(top: buttonStackView2.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         registerButton.anchor(top:buttonStackView3.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20, paddingLeft: 20,height: 45)
         setupAddTarget()
-        
     }
     
     private func setupAddTarget() {
@@ -405,7 +407,7 @@ extension MakeGroupViewController:GetFriendDelegate {
         self.friends = friendArray
     }
 }
-
+//Mark: uitextFieldDelegate
 extension MakeGroupViewController:UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -16,7 +16,6 @@ class PostViewController: UIViewController {
     private let doubleButton = RegisterButton(text: "ダブルス")
     private let mixButton = RegisterButton(text: "ミックス")
     private let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
-    
     let captureSession = AVCaptureSession()
     let fileOutput = AVCaptureMovieFileOutput()
     var recordButton: UIButton!

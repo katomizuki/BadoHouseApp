@@ -37,8 +37,6 @@ class DaughterViewController: UIViewController {
             self.fetchData.fetchJoinData(eventArray: event)
         }
     }
-   
-    
 }
 
 //Mark:xlPager
