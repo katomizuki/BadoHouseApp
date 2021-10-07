@@ -1,4 +1,6 @@
 import UIKit
+import grpc
+import FacebookCore
 
 protocol getDetailDelegate:AnyObject {
     func getDetailElement(title:String,
@@ -50,7 +52,7 @@ class DetailSearchViewController: UIViewController{
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var datePicker: UIDatePicker! {
         didSet {
-            datePicker.addTarget(self, action: #selector(getDate(sender:)), for: UIControl.Event.valueChanged)
+            datePicker.addTarget(self, action: #selector(getDate(sender:)), for: .valueChanged)
         }
     }
     private var dateString = String()
@@ -69,8 +71,39 @@ class DetailSearchViewController: UIViewController{
         setupUnderLayer(view: timeStackView)
         setupPickerView()
         setupBorder()
+        setupAddtarget()
         titleTextField.delegate = self
         cityTextField.delegate = self
+    }
+    
+    private func setupAddtarget() {
+        titleTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
+        circleTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
+        levelTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
+        cityTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
+        moneyTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
+    }
+    @objc private func handleChange(sender:UITextField) {
+        switch sender {
+        case titleTextField:
+            titleTextField.layer.borderColor = titleTextField.text?.count == 0 ? UIColor.lightGray.cgColor :
+            Utility.AppColor.OriginalBlue.cgColor
+            titleTextField.layer.borderWidth = titleTextField.text?.count == 0 ? 2 : 3
+        case circleTextField:
+            circleTextField.layer.borderColor = circleTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            circleTextField.layer.borderWidth = circleTextField.text?.count == 0 ? 2 : 3
+        case levelTextField:
+            levelTextField.layer.borderColor = levelTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            levelTextField.layer.borderWidth = levelTextField.text?.count == 0 ? 2 : 3
+        case cityTextField:
+            cityTextField.layer.borderColor = cityTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            cityTextField.layer.borderWidth = cityTextField.text?.count == 0 ? 2 : 3
+        case moneyTextField:
+            moneyTextField.layer.borderColor = moneyTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            moneyTextField.layer.borderWidth = moneyTextField.text?.count == 0 ? 2 :3
+        default:
+            break
+        }
     }
     
     //Mark:getCGrect

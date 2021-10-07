@@ -45,6 +45,8 @@ class GroupSearchViewController: UIViewController {
     @objc private func handleTap() {
         searchBar.resignFirstResponder()
     }
+    
+   
   
 
 }
