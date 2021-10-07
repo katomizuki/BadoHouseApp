@@ -99,6 +99,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         super.viewWillAppear(animated)
         self.setupNavAccessory()
         navigationItem.title = "サークル登録"
+        nameTextField.becomeFirstResponder()
     }
     //Mark helperMethod
     private func setupData() {

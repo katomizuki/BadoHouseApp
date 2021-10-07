@@ -21,11 +21,16 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     @IBOutlet private weak var saveButton: UIButton! {
         didSet {
             saveButton.updateSaveButton()
+            saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         }
     }
-    @IBOutlet private weak var textField: UITextField! {
+    
+    @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
-            textField.toCorner(num: 10)
+            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.showsCancelButton = true
+            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.autocapitalizationType = .none
         }
     }
     private var (placeName,placeAddress) = (String(),String())
@@ -43,21 +48,17 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             return MKCoordinateRegion(center: coordinate, span: span)
         }
     
-    @IBOutlet private weak var searchButton: UIButton! {
-        didSet {
-            searchButton.toCorner(num: 10)
-        }
-    }
+    
     
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
              mapView.setRegion(defaultRegion, animated: false)
-            textField.delegate = self
+        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        textField.becomeFirstResponder()
+        searchBar.becomeFirstResponder()
     }
     
     //Mark:selector
@@ -83,58 +84,24 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             self.placeLongitude = longitude
         }
     }
-    
-    
-    
-    
+
     //Mark:IBAction
     @IBAction private func saveButton(_ sender: Any) {
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)
         dismiss(animated: true, completion: nil)
     }
-    @IBAction private func search(_ sender: Any) {
-        if let search = textField.text {
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(search) { placemark, error in
-                if let error = error {
-                    print("Location",error)
-                    self.setupCDAlert(title: "検索エラー", message: "開催場所の正式名称を入力してください", action: "OK", alertType: CDAlertViewType.error)
-                    return
-                }
-                if let safePlacemark = placemark {
-                    if let firstPlacemark = safePlacemark.first {
-                        guard let preference = firstPlacemark.administrativeArea else { return }
-                        guard let locality = firstPlacemark.locality else { return }
-                        let thorough = firstPlacemark.thoroughfare ?? ""
-                        let subThorough = firstPlacemark.subThoroughfare ?? ""
-                        self.placeAddress = preference + locality + thorough + subThorough
-                        
-                        if let location = firstPlacemark.location {
-                            let targetCoordinate = location.coordinate
-                            let targetLatitude = targetCoordinate.latitude
-                            let targetLongitude = targetCoordinate.longitude
-                            self.placeLatitude = targetLatitude
-                            self.placeLongitude = targetLongitude
-                            self.placeName = search
-                            let pin = MKPointAnnotation()
-                            pin.coordinate = targetCoordinate
-                            pin.title = search
-                            self.mapView.addAnnotation(pin)
-                            self.mapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
-                        }
-                    }
-                }
-            }
-        }
+}
+
+
+extension MapViewController:UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
-}
-//Mark textFieldDelegate
-extension MapViewController:UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        if let search = textField.text {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let search = searchBar.text {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(search) { placemark, error in
                 if let error = error {
@@ -168,8 +135,5 @@ extension MapViewController:UITextFieldDelegate {
                 }
             }
         }
-        return true
     }
-    
 }
-
