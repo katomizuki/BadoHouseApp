@@ -26,7 +26,6 @@ class ContactCell:UITableViewCell {
     //Mark: initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-       
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)

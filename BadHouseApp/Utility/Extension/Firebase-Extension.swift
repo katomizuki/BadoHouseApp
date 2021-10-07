@@ -114,7 +114,7 @@ extension Firestore{
         Ref.TeamRef.document(teamId).collection("GroupChat").document(id).setData(dic)
     }
     
-   
+    
     
     
     //Mark:getTeamData
@@ -193,12 +193,12 @@ extension Firestore{
     }
     
     static func sendChatroom(myId:String,youId:String,completion:@escaping(String)->Void) {
-                let chatRoomId = Ref.ChatroomRef.document().documentID
-                let chatRoomDic = ["chatRoomId":chatRoomId,"user":myId,"user2":youId]
-                Ref.ChatroomRef.document(chatRoomId).setData(chatRoomDic)
-                Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
-                Ref.UsersRef.document(youId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
-                completion(chatRoomId)
+        let chatRoomId = Ref.ChatroomRef.document().documentID
+        let chatRoomDic = ["chatRoomId":chatRoomId,"user":myId,"user2":youId]
+        Ref.ChatroomRef.document(chatRoomId).setData(chatRoomDic)
+        Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
+        Ref.UsersRef.document(youId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
+        completion(chatRoomId)
     }
     
     static func sendChat(chatroomId:String,senderId:String,text:String,reciverId:String) {
@@ -356,7 +356,7 @@ extension Firestore{
     
     //Mark: sendInvite
     static func sendInvite(team:TeamModel,inviter:
-    [User]) {
+                           [User]) {
         let teamId = team.teamId
         let dic = ["teamId":teamId,
                    "teamName":team.teamName,
@@ -448,7 +448,7 @@ extension Firestore{
     
     static func deleteEvent() {
         guard let now = DateUtils.getNow() else { return }
-    
+        
         Ref.EventRef.addSnapshotListener { snapShot, error in
             if let error = error {
                 print(error)
@@ -463,7 +463,7 @@ extension Firestore{
                 if date < now {
                     //今よりすぎていたら自動で消す,(イベントコレクション),
                     Firestore.deleteData(collectionName: "Event", documentId: eventId)
-
+                    
                 }
             }
         }
@@ -487,17 +487,17 @@ extension Firestore{
                 let chat = Chat(dic: dic)
                 textArray.append(chat)
             } else {
-            document.forEach { element in
-                let data = element.data()
-                let chat = Chat(dic:data)
-                textArray.append(chat)
+                document.forEach { element in
+                    let data = element.data()
+                    let chat = Chat(dic:data)
+                    textArray.append(chat)
                 }
             }
             guard let lastComment = textArray.last else { return }
             completion(lastComment)
         }
     }
-
+    
     static func getmyEventIdArray(uid:String,completion:@escaping([String])->Void) {
         var stringArray = [String]()
         Ref.UsersRef.document(uid).collection("Join").getDocuments { Snapshot, error in
@@ -562,7 +562,7 @@ extension Storage {
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
                 Firestore.updateUserInfo(dic: dicWithImage)
-                   
+                
             }
         }
     }

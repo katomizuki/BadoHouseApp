@@ -10,8 +10,8 @@ struct Utility {
         static let OriginalLightBlue:UIColor = .rgb(red: 150, green: 186, blue: 255)
         static let darkColor = "backGroundColor"
     }
-
- 
+    
+    
     struct Storyboard {
         static let LoginVC = "LoginVC"
         static let GroupDetailVC = "GroupDetailVC"
@@ -57,6 +57,7 @@ struct Utility {
         static let chatCellId = "chatCellId"
         static let popCellId = "popCellId"
         static let friendCellId = "friendCellId"
+        static let videoCell = "videoCell"
     }
     
     struct ImageName {
@@ -65,6 +66,8 @@ struct Utility {
         static let circle = "circle"
         static let check = "check"
         static let noImages = "noImages"
+        static let reload = "reload"
+        static let search = "search"
     }
     
     struct Data {

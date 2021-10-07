@@ -24,9 +24,9 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     var level:String = "" {
         didSet {
-        userTableView.reloadData()
+            userTableView.reloadData()
+        }
     }
-  }
     var gender = "" {
         didSet {
             userTableView.reloadData()
@@ -52,11 +52,11 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private let backButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
     private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
     private let profileImageView:UIImageView = {
-     let iv = ProfileImageView()
-     iv.contentMode = .scaleAspectFill
-     iv.toCorner(num: 90)
-     iv.tintColor = Utility.AppColor.OriginalBlue
-     return iv
+        let iv = ProfileImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.toCorner(num: 90)
+        iv.tintColor = Utility.AppColor.OriginalBlue
+        return iv
     }()
     private let nameLabel:UILabel = {
         let label = ProfileLabel()
@@ -97,7 +97,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         userTableView.separatorColor = Utility.AppColor.OriginalBlue
         userTableView.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
     }
-
+    
     private func setupLayout() {
         setupAddSubView()
         setupAnchor()
@@ -257,7 +257,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTitleArray.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cellId")
         cell.textLabel?.text = cellTitleArray[indexPath.row]
@@ -284,35 +284,35 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
             performSegue(withIdentifier: Utility.Segue.gotoLevel, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
-                    return
-                }
+            return
+        }
         let viewController = PopViewController() //popoverで表示するViewController
-               viewController.modalPresentationStyle = .popover
-               viewController.preferredContentSize = CGSize(width: 200, height: 150)
-
-               let presentationController = viewController.popoverPresentationController
-               presentationController?.delegate = self
-               presentationController?.permittedArrowDirections = .up
-               presentationController?.sourceView = cell
-               presentationController?.sourceRect = cell.bounds
-               viewController.keyword = cellTitleArray[indexPath.row]
-               viewController.presentationController?.delegate = self
-               present(viewController, animated: true, completion: nil)
+        viewController.modalPresentationStyle = .popover
+        viewController.preferredContentSize = CGSize(width: 200, height: 150)
+        
+        let presentationController = viewController.popoverPresentationController
+        presentationController?.delegate = self
+        presentationController?.permittedArrowDirections = .up
+        presentationController?.sourceView = cell
+        presentationController?.sourceRect = cell.bounds
+        viewController.keyword = cellTitleArray[indexPath.row]
+        viewController.presentationController?.delegate = self
+        present(viewController, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController,
-                                       traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-            return .none
-        }
+                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-
+        
         userTableView.reloadData()
     }
     //Mark segueMethod

@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 class InviteViewController: UIViewController {
-
+    
     //Mark: properties
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
@@ -15,7 +15,7 @@ class InviteViewController: UIViewController {
     var inviter = [User]()
     var team: TeamModel?
     private var cellId = Utility.CellId.inviteCellId
-
+    
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         print(#function)
@@ -29,7 +29,7 @@ class InviteViewController: UIViewController {
             inviter.append(friend)
         }
     }
-
+    
     //Mark: HelperMethod
     func judgeInvite(userId:String)->Int? {
         if inviter.isEmpty { return nil }
@@ -39,7 +39,7 @@ class InviteViewController: UIViewController {
         }
         return nil
     }
-
+    
     //Mark: lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ class InviteViewController: UIViewController {
         tableView.register(FriendsCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
-
+    
     //Mark:IBAction
     @IBAction func invite(_ sender: Any) {
         print(#function)
@@ -68,11 +68,11 @@ class InviteViewController: UIViewController {
 
 //Mark:tableViewdelegate,datsource
 extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! FriendsCell
         cell.linkInvite = self

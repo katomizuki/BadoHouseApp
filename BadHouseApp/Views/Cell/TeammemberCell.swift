@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import SDWebImage
+import FacebookCore
 
 class TeammemberCell:UICollectionViewCell {
     
@@ -24,13 +25,13 @@ class TeammemberCell:UICollectionViewCell {
         teamMemberImage.contentMode = .scaleAspectFill
     }
     
-    //Mark:ConfigureMethod
+    //Mark:HelperMethod
     func configure(name:String,urlString:String) {
         nameLabel.text = name
         nameLabel.font = UIFont.boldSystemFont(ofSize: 11)
         nameLabel.textColor = .darkGray
         if urlString == "" {
-            teamMemberImage.image = UIImage(named: "noImages")
+            teamMemberImage.image = UIImage(named: Utility.ImageName.noImages)
         } else {
             let url = URL(string: urlString)
             teamMemberImage.sd_setImage(with: url, completed: nil)

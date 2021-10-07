@@ -103,7 +103,7 @@ extension ChatViewController: GetChatDataDelgate {
         self.messages = chatArray
         self.chatTableView.reloadData()
         if messages.count != 0 {
-        chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
+            chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }
     }
 }
@@ -114,7 +114,7 @@ extension ChatViewController:UIImagePickerControllerDelegate & UINavigationContr
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print(#function)
     }
- 
+    
 }
 
 //Mark InputDelegate
@@ -129,7 +129,5 @@ extension ChatViewController:InputDelegate {
         fetchData.getChat(chatId: chatId)
         inputView.messageInputTextView.resignFirstResponder()
     }
-    
-   
 }
 

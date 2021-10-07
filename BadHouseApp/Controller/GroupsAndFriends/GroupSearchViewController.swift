@@ -1,7 +1,7 @@
 import UIKit
 
 class GroupSearchViewController: UIViewController {
-
+    
     //Mark:properties
     @IBOutlet private weak var searchBar: UISearchBar!{
         didSet {
@@ -61,7 +61,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId, for: indexPath) as! GroupCell
         let team = groupArray[indexPath.row]
         cell.team = team
-       
+        
         return cell
     }
     
@@ -76,7 +76,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
 }
 //Mark searchBarDelegate
 extension GroupSearchViewController:UISearchBarDelegate {
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
         fetchData.searchGroup(text: text)

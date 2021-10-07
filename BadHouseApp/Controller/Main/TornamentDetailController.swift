@@ -1,7 +1,7 @@
 import UIKit
 
 class TornamentDetailController: UIViewController {
-
+    
     //Mark properties
     private let tornamentLabel = ProfileLabel(title: "〇〇大会", num: 20)
     private let detailTextView:UITextView = {
@@ -22,7 +22,7 @@ class TornamentDetailController: UIViewController {
     }()
     private let competitionMethodLabel = ProfileLabel(title: "予選トーナメント形式", num: 14)
     private let urlLabel = ProfileLabel(title: "大会URL　https://www.facebook.com/", num: 14)
-
+    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

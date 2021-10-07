@@ -10,8 +10,9 @@ protocol VideoCollectionCellDelegate:AnyObject {
 }
 class VideoCell:UICollectionViewCell {
     
+    //Mark properties
     var player: AVPlayer?
-    static let identifier = "videoCell"
+    static let identifier = Utility.CellId.videoCell
     var iv:UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .cyan
@@ -25,14 +26,14 @@ class VideoCell:UICollectionViewCell {
     }
     private let nextButton:UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "reload"), for: .normal)
+        button.setImage(UIImage(named: Utility.ImageName.reload), for: .normal)
         button.tintColor = Utility.AppColor.OriginalBlue
         return button
     }()
     
     private let searchButton:UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named:"search"), for: .normal)
+        button.setImage(UIImage(named:Utility.ImageName.search), for: .normal)
         button.tintColor = Utility.AppColor.OriginalBlue
         return button
     }()
@@ -41,10 +42,11 @@ class VideoCell:UICollectionViewCell {
         let view = UIView()
         return view
     }()
+    weak var delegate:VideoCollectionCellDelegate?
     
+    //Mark initialize
     override init(frame:CGRect) {
         super.init(frame: frame)
-
         contentView.clipsToBounds = true
         player?.automaticallyWaitsToMinimizeStalling = true
         self.contentView.isSkeletonable = true
@@ -64,11 +66,8 @@ class VideoCell:UICollectionViewCell {
         searchButton.frame = CGRect(x:width - size,y:height - size ,width: size,height: size)
         nextButton.frame = CGRect(x: width - size, y: height - (size * 2) - 10, width: size, height: size)
     }
-    
-    weak var delegate:VideoCollectionCellDelegate?
-    
+    //Mark setupMethod
     private func setupLayout() {
-       
         contentView.addSubview(containerView)
         contentView.addSubview(nextButton)
         contentView.addSubview(searchButton)
@@ -78,16 +77,13 @@ class VideoCell:UICollectionViewCell {
         
         containerView.clipsToBounds = true
         contentView.sendSubviewToBack(containerView)
-
     }
-    
-    
+    //Mark selector
     @objc private func handleNext() {
         print(#function)
         guard let video = video else {
             return
         }
-
         self.delegate?.didTapNextButton(video: video)
     }
     
@@ -98,17 +94,15 @@ class VideoCell:UICollectionViewCell {
         }
         self.delegate?.didTapSearchButton(video: video,button: searchButton)
     }
-    
+    //Mark helperMethod
     func configure() {
         setupLayout()
-       
         guard let videoUrl = URL(string: video?.videoUrl ?? "") else { return }
         player = AVPlayer(url: videoUrl)
         let playerView = AVPlayerLayer()
         playerView.videoGravity = .resizeAspectFill
         playerView.player = player
         playerView.frame = contentView.bounds
-        
         containerView.layer.addSublayer(playerView)
         player?.play()
         containerView.stopSkeletonAnimation()

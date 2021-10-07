@@ -39,11 +39,11 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     //Mark setupMethod
     private func setupTag() {
         productTags = TKCollectionView(tags: ["#バド好き歓迎"],
-                                              action: .removeTag,
-                                              receiver: nil)
+                                       action: .removeTag,
+                                       receiver: nil)
         allTags = TKCollectionView(tags: Utility.Data.tagArray,
-                                          action: .addTag,
-                                          receiver: productTags)
+                                   action: .addTag,
+                                   receiver: productTags)
         productTags.delegate = self
         allTags.delegate = self
         

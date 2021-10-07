@@ -4,7 +4,7 @@ import SDWebImage
 import FacebookCore
 
 class UserDetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-   
+    
     //Mark: Properties
     var user:User?
     var me:User?
@@ -34,7 +34,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
             friendLabel.font = UIFont.boldSystemFont(ofSize:
-                20)
+                                                        20)
         }
     }
     @IBOutlet private weak var ageLabel: UILabel!
@@ -46,7 +46,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     @IBOutlet private weak var badmintonTimeStackView: UIStackView!
     @IBOutlet private weak var levelStackView: UIStackView!
     private let fetchData = FetchFirestoreData()
-   
+    
     
     //Mark: LifeCycle
     override func viewDidLoad() {
@@ -84,7 +84,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         border.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(border)
     }
-
+    
     private func setupDelegate() {
         belongCollectionView.delegate = self
         belongCollectionView.dataSource = self
@@ -142,7 +142,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         }
     }
     
-//Mark:IBAction
+    //Mark:IBAction
     @IBAction func plusFriend(_ sender: Any) {
         print(#function)
         friendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -167,15 +167,15 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     
     @IBAction func gotoDM(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
-            vc.me = me
-            vc.you = user
-            navigationController?.pushViewController(vc, animated: true)
+        vc.me = me
+        vc.you = user
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 //Mark: UserCollectionViewDelegate
 extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-  
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
@@ -187,9 +187,9 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.belongCollectionView && collectionView.tag == 0 {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.MemberCellId, for: indexPath) as! TeammemberCell
-        let name = ownTeam[indexPath.row].teamName
-        let urlString = ownTeam[indexPath.row].teamImageUrl
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.MemberCellId, for: indexPath) as! TeammemberCell
+            let name = ownTeam[indexPath.row].teamName
+            let urlString = ownTeam[indexPath.row].teamImageUrl
             cell.configure(name: name, urlString: urlString)
             cell.teamMemberImage.contentMode = .scaleAspectFill
             return cell
@@ -201,7 +201,7 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
             return cell
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }

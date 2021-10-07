@@ -4,7 +4,7 @@ import Firebase
 import FacebookCore
 
 class FriendSSearchViewController: UIViewController {
-
+    
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -41,7 +41,7 @@ class FriendSSearchViewController: UIViewController {
         fetchData.userDelegate = self
     }
     
-   //Mark:setupTableView
+    //Mark:setupTableView
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -118,9 +118,6 @@ extension FriendSSearchViewController:UISearchBarDelegate {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    
-  
-    
 }
 
 //Mark:GetUserDelegate

@@ -8,7 +8,7 @@ protocol CalendarEventDelegate :AnyObject{
     func removeEvent(eventModel:Event,cell:UITableViewCell)
 }
 class GroupCell:UITableViewCell {
- 
+    
     //Mark:Properties
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!
@@ -71,7 +71,6 @@ class GroupCell:UITableViewCell {
         guard let event = event else {
             return
         }
-
         self.trashDelegate?.removeEvent(eventModel:event,cell:self)
     }
     
@@ -97,7 +96,7 @@ class GroupCell:UITableViewCell {
         self.cellImagevView.sd_setImage(with: url, completed: nil)
         self.cellImagevView.contentMode = .scaleAspectFill
         self.cellImagevView.chageCircle()
-       
+        
     }
     
     private func userconfigure() {
@@ -107,7 +106,7 @@ class GroupCell:UITableViewCell {
         if user.profileImageUrl == "" {
             self.cellImagevView.image = UIImage(named: Utility.ImageName.noImages)
         } else {
-        self.cellImagevView.sd_setImage(with: url, completed: nil)
+            self.cellImagevView.sd_setImage(with: url, completed: nil)
         }
         self.cellImagevView.chageCircle()
     }
@@ -126,6 +125,6 @@ class GroupCell:UITableViewCell {
         }
     }
     
-   
+    
     
 }

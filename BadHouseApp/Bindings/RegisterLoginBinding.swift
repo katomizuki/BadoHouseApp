@@ -66,10 +66,10 @@ class RegisterBindings:RegisterBindingInputs,RegisterBindingsOutputs {
         
         //Mark combine
         Observable.combineLatest(nameValid, emailValid, passwordValid){ $0 && $1 && $2 }
-            .subscribe { validAll in
-                self.valideRegisterSubject.onNext(validAll)
-            }
-            .disposed(by: disposeBag)
+        .subscribe { validAll in
+            self.valideRegisterSubject.onNext(validAll)
+        }
+        .disposed(by: disposeBag)
     }
 }
 
@@ -123,9 +123,9 @@ class LoginBindings:LoginBindingInputs,LoginBindingsOutputs {
         
         //Mark combine
         Observable.combineLatest(emailValid, passwordValid){ $0 && $1 }
-            .subscribe { validAll in
-                self.valideRegisterSubject.onNext(validAll)
-            }
-            .disposed(by: disposeBag)
+        .subscribe { validAll in
+            self.valideRegisterSubject.onNext(validAll)
+        }
+        .disposed(by: disposeBag)
     }
 }

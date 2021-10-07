@@ -156,12 +156,12 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             .subscribe (onNext:{ [weak self] data in
                 guard let self = self else { return }
                 let string = self.formatterUtil(date: data)
-               
+                
                 self.eventStartTime = string
                 self.eventBinding.startTextInput.onNext(string)
             })
             .disposed(by: disposeBag)
-
+        
         moneyTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
@@ -183,7 +183,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                 self.eventBinding.titleTextInput.onNext(title)
             }
             .disposed(by:disposeBag)
-
+        
         TeamPickerView.rx.itemSelected.asObservable()
             .subscribe { [weak self] element in
                 guard let self = self else { return }
@@ -202,7 +202,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                 guard let self = self else { return }
                 self.makeEventButton.isEnabled = validAll
                 self.makeEventButton.backgroundColor = validAll ?
-                    Utility.AppColor.OriginalBlue:.darkGray
+                Utility.AppColor.OriginalBlue:.darkGray
             }
             .disposed(by: disposeBag)
     }
@@ -254,7 +254,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
         detailText = detaiTextView.text ?? ""
-      
+        
         let userId = Auth.getUserId()
         let eventId = Ref.EventRef.document().documentID
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -347,7 +347,7 @@ extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             return moneyArray.count
         }
-      
+        
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.TeamPickerView {
@@ -395,7 +395,7 @@ extension MakeEventViewController:RangeUISliderDelegate{
         default:
             break
         }
-       
+        
         switch maxValueSelected {
         case 0..<1:
             maxLevelLabel.text = "レベル1"

@@ -75,7 +75,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         self.setupNavAccessory()
         navigationItem.title = team?.teamName
     }
-        
+    
     //Mark: setupMethod
     private func setupData() {
         guard let teamId = team?.teamId else { return }
@@ -98,7 +98,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             }
         }
     }
-
+    
     private func setUpTeamPlayer() {
         print(#function)
         guard let teamId = team?.teamId else { return }
@@ -119,14 +119,14 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             }
         }
     }
-
+    
     private func setupDelegate() {
         fetchData.delegate = self
         fetchData.barDelegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
+    
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
@@ -213,18 +213,18 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         }
         friendImageView.isUserInteractionEnabled = !flag
     }
-
+    
     //Mark:Protocol
     func getGenderCount(count: [Int]) {
-            self.genderArray = count
-            self.setupPieChart()
+        self.genderArray = count
+        self.setupPieChart()
     }
     
     func getBarData(count: [Int]) {
         self.rawData = count
         self.setupGraph()
     }
-  
+    
     //Mark IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
@@ -239,8 +239,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
- 
- 
+    
+    
     
     
     @IBAction private func gotoGroup(_ sender: Any) {
@@ -384,7 +384,7 @@ class UpdateViewController:UIViewController {
     
     //Mark initalize
     init(team:TeamModel) {
-    super.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil, bundle: nil)
         self.team = team
     }
     
@@ -400,7 +400,7 @@ class UpdateViewController:UIViewController {
         self.team?.teamPlace = place
         self.team?.teamTime = time
         self.team?.teamLevel = money
-
+        
         guard let image = iv.image else { return }
         Storage.addTeamImage(image: image) { [weak self] urlString in
             guard let self = self else { return }
@@ -427,5 +427,4 @@ extension UpdateViewController:UIImagePickerControllerDelegate, UINavigationCont
         iv.image = image
         dismiss(animated: true, completion: nil)
     }
-    
 }

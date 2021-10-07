@@ -20,7 +20,7 @@ class ScheduleViewController: UIViewController{
         let view = FSCalendar()
         return view
     }()
-
+    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class ScheduleViewController: UIViewController{
             self.fetchData.getmyEventData(idArray: idArray)
         }
     }
-
+    
     private func setupCalendar() {
         calendar.delegate = self
         calendar.dataSource = self
@@ -66,11 +66,11 @@ class ScheduleViewController: UIViewController{
 }
 //Mark: tableviewdelegate
 extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventArray.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
         let event = eventArray[indexPath.row]
@@ -82,7 +82,7 @@ extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
 
 //Mark:eventDelegate
 extension ScheduleViewController:GetMyEventDelegate {
-
+    
     func getEvent(eventArray: [Event]) {
         var array = eventArray
         array = eventArray.sorted { element, nextElement in
@@ -91,7 +91,7 @@ extension ScheduleViewController:GetMyEventDelegate {
             return time < nextTime
         }
         self.eventArray = array
-    
+        
         tableview.reloadData()
         calendar.reloadData()
     }
@@ -116,15 +116,15 @@ extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCal
         let dateString = date.prefix(10)
         if eventArray.isEmpty == false {
             for i in 0..<eventArray.count {
-               if eventArray[i].eventStartTime.prefix(10) == dateString {
+                if eventArray[i].eventStartTime.prefix(10) == dateString {
                     return Utility.AppColor.OriginalBlue
-               }
+                }
             }
         } else {
             return nil
         }
         return nil
-   }
+    }
 }
 
 //Mark:CalendarEventDelegate

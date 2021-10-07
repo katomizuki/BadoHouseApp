@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-
 //Mark:Array-Extension
 extension Array where Element: Equatable {
     mutating func remove(value: Element) {

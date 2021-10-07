@@ -18,9 +18,9 @@ class PostViewController: UIViewController {
         return button
     }()
     private let doubleButton:UIButton = {
-    let button = RegisterButton(text: "ダブルス")
-    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-    return button
+        let button = RegisterButton(text: "ダブルス")
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        return button
     }()
     private let mixButton:UIButton = {
         let button = RegisterButton(text: "ミックス")
@@ -28,9 +28,9 @@ class PostViewController: UIViewController {
         return button
     }()
     private let label:UILabel = {
-    let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
-    label.textColor = Utility.AppColor.OriginalBlue
-    return label
+        let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
+        label.textColor = Utility.AppColor.OriginalBlue
+        return label
     }()
     let captureSession = AVCaptureSession()
     let fileOutput = AVCaptureMovieFileOutput()
@@ -49,7 +49,7 @@ class PostViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillEqually
- 
+        
         view.addSubview(stackView)
         view.addSubview(logoImage)
         stackView.anchor(top:logoImage.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight:30, paddingLeft: 30,height:300)

@@ -11,16 +11,16 @@ import FacebookCore
 import FacebookLogin
 
 class LoginViewController:UIViewController {
-
+    
     //Mark :Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()
     private var IndicatorView:NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
     private let googleView:GIDSignInButton = {
-    let button = GIDSignInButton()
+        let button = GIDSignInButton()
         button.style = .wide
-    return button
+        return button
     }()
     private let iv:UIImageView = {
         let iv = UIImageView()
@@ -29,26 +29,26 @@ class LoginViewController:UIViewController {
     }()
     
     private let emailTextField:UITextField = {
-     let tf = RegisterTextField(placeholder: "メールアドレス")
-    tf.tag = 0
-    tf.returnKeyType = .next
-    tf.keyboardType = .emailAddress
-    return tf
+        let tf = RegisterTextField(placeholder: "メールアドレス")
+        tf.tag = 0
+        tf.returnKeyType = .next
+        tf.keyboardType = .emailAddress
+        return tf
     }()
     
     private let passwordTextField:UITextField = {
-    let tf = RegisterTextField(placeholder: "パスワード")
-    tf.tag = 1
-    tf.returnKeyType = .done
-    tf.keyboardType = .default
-    tf.isSecureTextEntry = true
-    return tf
-   }()
+        let tf = RegisterTextField(placeholder: "パスワード")
+        tf.tag = 1
+        tf.returnKeyType = .done
+        tf.keyboardType = .default
+        tf.isSecureTextEntry = true
+        return tf
+    }()
     
     private let loginButton:UIButton = {
-    let button = RegisterButton(text: "ログイン")
-    button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-    return button
+        let button = RegisterButton(text: "ログイン")
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        return button
     }()
     private let dontHaveButton = UIButton(type: .system).createAuthButton(text: "新規登録の方はこちらへ")
     
@@ -57,6 +57,34 @@ class LoginViewController:UIViewController {
         setupLayout()
         setupBinding()
         setupDelegate()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    //Mark: SetupMetho
+    private func setupLayout(){
+        let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googleView,fbButton])
+        basicStackView.axis = .vertical
+        basicStackView.distribution = .fillEqually
+        basicStackView.spacing = 20
+        
+        view.addSubview(basicStackView)
+        view.addSubview(iv)
+        view.addSubview(dontHaveButton)
+        
+        emailTextField.anchor(height:45)
+        basicStackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight: 20, paddingLeft: 20,height: 330)
+        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
+        dontHaveButton.anchor(top:basicStackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
+       
+        dontHaveButton.addTarget(self, action: #selector(moveAlready), for: UIControl.Event.touchUpInside)
+        
+        IndicatorView = self.setupIndicatorView()
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
     }
     
     private func setupDelegate() {
@@ -68,46 +96,6 @@ class LoginViewController:UIViewController {
         fbButton.permissions = ["public_profile, email"]
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    //Mark: Setup
-    private func setupLayout(){
-        //Mark:StackView
-        let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googleView,fbButton])
-        basicStackView.axis = .vertical
-        basicStackView.distribution = .fillEqually
-        basicStackView.spacing = 20
-        
-        //Mark:addSubView
-        view.addSubview(basicStackView)
-        view.addSubview(iv)
-        view.addSubview(dontHaveButton)
-        
-        //Mark:Anchor
-        emailTextField.anchor(height:45)
-        basicStackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight: 20, paddingLeft: 20,height: 330)
-        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
-        dontHaveButton.anchor(top:basicStackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
-        
-        
-        //Mark:addTarget
-        dontHaveButton.addTarget(self, action: #selector(moveAlready), for: UIControl.Event.touchUpInside)
-        
-        //Mark:NVActivityIndicatorView
-        IndicatorView = NVActivityIndicatorView(frame: CGRect(x: view.frame.width / 2,
-                                                              y: view.frame.height / 2,
-                                                              width: 60,
-                                                              height: 60),
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
-    }
-
     
     //Mark:Binding
     private func setupBinding() {
@@ -179,10 +167,10 @@ class LoginViewController:UIViewController {
     }
     
     //Mark: LoginError
-   private func signInErrAlert(_ error: NSError){
+    private func signInErrAlert(_ error: NSError){
         print(#function)
-       let message = setupErrorMessage(error: error)
-            self.setupCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
+        let message = setupErrorMessage(error: error)
+        self.setupCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
     }
 }
 
@@ -190,21 +178,21 @@ class LoginViewController:UIViewController {
 extension LoginViewController:GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-                        print("\(error.localizedDescription)")
-                    } else {
-                        guard let auth = user.authentication else { return }
-                        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
-                        Auth.auth().signIn(with: credential) { result, error in
-                            if let error = error {
-                                print(error.localizedDescription)
-                                return
-                            } else {
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                        }
-                    }
-              }
-      }
+            print("\(error.localizedDescription)")
+        } else {
+            guard let auth = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+            Auth.auth().signIn(with: credential) { result, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+}
 
 //Mark facebookDelegate
 extension LoginViewController: LoginButtonDelegate {
@@ -212,14 +200,14 @@ extension LoginViewController: LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("logout fb")
     }
-
+    
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if error == nil{
             if result?.isCancelled == true{
                 return
             }
         }
-
+        
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {

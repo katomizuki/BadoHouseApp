@@ -13,15 +13,14 @@ class FriendsCell:UITableViewCell {
         button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
         return button
     }()
-    
     var iv:UIImageView = {
-       let iv = UIImageView()
-       return iv
-   }()
-   var nameLabel:UILabel = {
-       let label = UILabel()
-       return label
-   }()
+        let iv = UIImageView()
+        return iv
+    }()
+    var nameLabel:UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
     //Mark: initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

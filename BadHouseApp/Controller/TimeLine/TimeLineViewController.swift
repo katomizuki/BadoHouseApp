@@ -5,7 +5,7 @@ import NVActivityIndicatorView
 import SkeletonView
 
 class TimeLineViewController: UIViewController{
-   
+    
     //Mark properties
     private var collectionView:UICollectionView?
     private var data = [VideoModel]()
@@ -46,7 +46,7 @@ class TimeLineViewController: UIViewController{
         view.addSubview(collectionView!)
         collectionView?.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 0,paddingBottom: 0,paddingRight: 0,paddingLeft: 0)
     }
-
+    
     private func setupIndicator() {
         self.indicator = self.setupIndicatorView()
         view.addSubview(indicator)

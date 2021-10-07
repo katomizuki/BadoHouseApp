@@ -1,7 +1,7 @@
 import UIKit
 
 class LevelDetailViewController: UIViewController {
-
+    
     //Mark properties
     @IBOutlet private weak var levelLabel: UILabel! {
         didSet {
@@ -27,7 +27,7 @@ class LevelDetailViewController: UIViewController {
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
     }
-   //Mark IBAction
+    //Mark IBAction
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -89,7 +89,7 @@ class LevelDetailViewController: UIViewController {
         case "3":
             slider.value = 0.3
             textView.text = Utility.Data.levelSentence[2]
-
+            
         case "4":
             slider.value = 0.4
             textView.text = Utility.Data.levelSentence[3]
@@ -113,6 +113,4 @@ class LevelDetailViewController: UIViewController {
             textView.text = Utility.Data.levelSentence[9]
         }
     }
-
-
 }

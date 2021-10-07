@@ -26,14 +26,14 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionAndScroll()
-       
+        
     }
     
     //Mark helperMethod
     private func collectionAndScroll() {
         let width = view.frame.size.width
         let height = view.frame.size.height
-
+        
         collectionView.frame = CGRect(x: 0, y: 50, width: width, height: 64)
         scrollView.frame = CGRect(x: 0, y: 50 + 64, width: width, height: height - 64)
         
@@ -58,9 +58,9 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         settings.style.buttonBarRightContentInset = 10.0
         changeCurrentIndexProgressive = { oldCell, newCell, progressPercentage, changeCurrentIndex, animated in
             guard changeCurrentIndex, let oldCell = oldCell, let newCell = newCell else { return }
-                oldCell.label.textColor = .lightGray
-                newCell.label.textColor = .darkGray
-            }
+            oldCell.label.textColor = .lightGray
+            newCell.label.textColor = .darkGray
+        }
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

@@ -62,7 +62,7 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatCell
-       cell.configure(chat: chatArray[indexPath.row],bool:self.chatArray[indexPath.row].senderId == Auth.getUserId())
+        cell.configure(chat: chatArray[indexPath.row],bool:self.chatArray[indexPath.row].senderId == Auth.getUserId())
         return cell
     }
     
@@ -81,7 +81,7 @@ extension GroupChatViewController:GetGroupChatDelegate {
         self.chatArray = chatArray
         tableView.reloadData()
         if chatArray.count != 0 {
-        tableView.scrollToRow(at: IndexPath(row: chatArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
+            tableView.scrollToRow(at: IndexPath(row: chatArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }
     }
 }

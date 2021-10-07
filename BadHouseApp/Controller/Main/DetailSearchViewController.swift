@@ -106,7 +106,7 @@ class DetailSearchViewController: UIViewController{
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
     }
     
-
+    
     private func setPicker(pickerView:UIPickerView,textField:UITextField) {
         pickerView.delegate = self
         textField.inputView = pickerView
@@ -116,7 +116,7 @@ class DetailSearchViewController: UIViewController{
         toolBar.setItems([doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
-
+    
     private func setupBorder() {
         helperTextfield(textfield: titleTextField)
         helperTextfield(textfield: moneyTextField)

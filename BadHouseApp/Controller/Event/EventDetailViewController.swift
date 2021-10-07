@@ -252,7 +252,7 @@ class EventDetailViewController: UIViewController {
             }
         }
     }
-
+    
     private func setupUnderLine() {
         setupUnderLayer(view: lastTimeStackView)
         setupUnderLayer(view: gatherStackView)

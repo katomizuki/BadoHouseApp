@@ -23,7 +23,6 @@ class InfoCollectionViewCell:UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        //Mark:StackView
         let views = [[nameLabel, nameTextField], [emailLabel, emailTextField],[introductionLabel, introductionTextField]]
         let stackViews = views.map { (views) -> UIStackView in
             guard let label = views.first as? UILabel,
@@ -45,7 +44,6 @@ class InfoCollectionViewCell:UICollectionViewCell {
         nameTextField.anchor(width: UIScreen.main.bounds.width - 40, height: 80)
         baseStackView.anchor(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 10, paddingBottom: 20, paddingRight: 20)
         backgroundColor = UIColor(named: Utility.AppColor.darkColor)
-        
     }
     
     required init?(coder: NSCoder) {

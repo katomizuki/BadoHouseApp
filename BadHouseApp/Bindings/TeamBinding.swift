@@ -1,7 +1,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-
 //Mark InputProtocol
 protocol TeamRegisterInput {
     var nameTextInput: AnyObserver<String> { get }
@@ -16,12 +15,10 @@ protocol TeamRegisterOutput {
     var timeTextOutput: PublishSubject<String> { get }
     var levelTextOutput: PublishSubject<String> { get }
 }
-
 class TeamRegisterBindings:TeamRegisterInput,TeamRegisterOutput {
- 
-    private let disposeBag = DisposeBag()
     
-     //Mark: Observable
+    private let disposeBag = DisposeBag()
+    //Mark: Observable
     var nameTextOutPut = PublishSubject<String>()
     var placeTextOutput = PublishSubject<String>()
     var timeTextOutput = PublishSubject<String>()
@@ -51,37 +48,30 @@ class TeamRegisterBindings:TeamRegisterInput,TeamRegisterOutput {
         
         validRegisterDriver = validRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
-        
         let nameValid = nameTextOutPut
             .asObservable()
             .map { text -> Bool in
                 return text.count >= 2
             }
-        
         let placeValid = placeTextOutput
             .asObservable()
             .map { text -> Bool in
                 return text.count >= 2
             }
-        
         let timeValid = timeTextOutput
             .asObservable()
             .map { text -> Bool in
                 return text.count >= 2
             }
-        
         let levelValid = levelTextOutput
             .asObservable()
             .map { text -> Bool in
                 return text.count >= 1
             }
-        
         Observable.combineLatest(nameValid, placeValid, timeValid, levelValid) { $0 && $1 && $2 && $3 }
-            .subscribe { validAll in
-                self.validRegisterSubject.onNext(validAll)
-            }
-            .disposed(by: disposeBag)
+        .subscribe { validAll in
+            self.validRegisterSubject.onNext(validAll)
+        }
+        .disposed(by: disposeBag)
     }
-    
-    
 }

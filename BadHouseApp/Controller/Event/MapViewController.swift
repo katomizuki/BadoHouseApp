@@ -8,7 +8,7 @@ protocol SearchLocationProtocol:AnyObject {
 }
 
 class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRecognizerDelegate{
-
+    
     //Mark:Properties
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
@@ -37,16 +37,16 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     private var (placeLatitude,placeLongitude) = (Double(),Double())
     weak var delegate:SearchLocationProtocol?
     private var defaultRegion: MKCoordinateRegion {
-            let coordinate = CLLocationCoordinate2D( 
-                latitude: 35.680,
-                longitude: 139.767
-            )
-            let span = MKCoordinateSpan (
-                latitudeDelta: 0.001,
-                longitudeDelta: 0.001
-            )
-            return MKCoordinateRegion(center: coordinate, span: span)
-        }
+        let coordinate = CLLocationCoordinate2D(
+            latitude: 35.680,
+            longitude: 139.767
+        )
+        let span = MKCoordinateSpan (
+            latitudeDelta: 0.001,
+            longitudeDelta: 0.001
+        )
+        return MKCoordinateRegion(center: coordinate, span: span)
+    }
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -64,16 +64,16 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-                 guard
-                     let placemark = placemarks?.first, error == nil,
-                     let administrativeArea = placemark.administrativeArea, // 都道府県
-                     let locality = placemark.locality, // 市区町村
-                     let thoroughfare = placemark.thoroughfare, // 地名(丁目)
-                     let subThoroughfare = placemark.subThoroughfare, // 番地
-                     let location = placemark.location // 緯度経度情報
-                     else {
-                         return
-                 }
+            guard
+                let placemark = placemarks?.first, error == nil,
+                let administrativeArea = placemark.administrativeArea, // 都道府県
+                let locality = placemark.locality, // 市区町村
+                let thoroughfare = placemark.thoroughfare, // 地名(丁目)
+                let subThoroughfare = placemark.subThoroughfare, // 番地
+                let location = placemark.location // 緯度経度情報
+            else {
+                return
+            }
             self.placeAddress = administrativeArea + locality + thoroughfare + subThoroughfare
             let targetLocation = location.coordinate
             let latitude = targetLocation.latitude
@@ -82,7 +82,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             self.placeLongitude = longitude
         }
     }
-
+    
     //Mark:IBAction
     @IBAction private func saveButton(_ sender: Any) {
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)

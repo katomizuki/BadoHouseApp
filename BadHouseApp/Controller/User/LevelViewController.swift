@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 class LevelViewController: UIViewController {
-   
+    
     //Mark:Properties
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
@@ -85,7 +85,7 @@ class LevelViewController: UIViewController {
             textView.text = Utility.Data.levelSentence[9]
         }
     }
-   
+    
     //Mark IBAction
     @IBAction func back(_ sender: Any) {
         selectedLevel = levelLabel.text ?? "1"

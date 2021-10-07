@@ -1,7 +1,6 @@
 import Foundation
 import RxCocoa
 import RxSwift
-
 //Mark InputProtocol
 protocol MakeEventInputProtocol {
     var dateTextInput:AnyObserver<String> { get }
@@ -20,12 +19,9 @@ protocol MakeEventOutputProtocol {
     var titleTextOutput:PublishSubject<String> { get }
     var moneyTextOutput:PublishSubject<String> { get }
 }
-
-
 class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
     
     private let disposeBag = DisposeBag()
-    
     //Mark: Observable
     var dateTextOutput = PublishSubject<String>()
     var groupTextOutput = PublishSubject<String>()
@@ -39,7 +35,7 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
     var dateTextInput:AnyObserver<String> {
         dateTextOutput.asObserver()
     }
-
+    
     var groupTextInput:AnyObserver<String> {
         groupTextOutput.asObserver()
     }
@@ -61,14 +57,11 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
     //Mark:initialize
     init() {
         valideMakeDriver = validMakeSubject.asDriver(onErrorDriveWith: Driver.empty())
-        
         let dateValid = dateTextOutput
             .asObservable()
             .map { text -> Bool in
                 return text.count >= 1
             }
-        
-        
         let groupValid = groupTextOutput
             .asObservable()
             .map { text in
@@ -96,15 +89,10 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
             .map { text ->Bool in
                 return text.count >= 1
             }
-        
-        
-        
         Observable.combineLatest(dateValid, groupValid,startValid,finishValid,moneyValid,titleValid) { $0 && $1 && $2 && $3 && $4 && $5 }
-            .subscribe {validAll in
-                self.validMakeSubject.onNext(validAll)
-            }
-            .disposed(by: disposeBag)
-        
+        .subscribe {validAll in
+            self.validMakeSubject.onNext(validAll)
+        }
+        .disposed(by: disposeBag)
     }
-    
 }

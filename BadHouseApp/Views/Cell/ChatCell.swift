@@ -49,8 +49,6 @@ class ChatCell: UITableViewCell {
         mytextView.autoresizingMask = [.flexibleHeight]
         self.mytextView.font = UIFont(name: "Kailasa", size: 14)
         self.textView.font = UIFont(name: "Kailasa", size: 14)
-        
-        
     }
     
     //Mark: nibMethod
@@ -61,7 +59,7 @@ class ChatCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+    //Mark helperMethod
     private func estimateFrameSize(text:String)->CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)

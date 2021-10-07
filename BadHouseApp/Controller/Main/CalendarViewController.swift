@@ -13,10 +13,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     weak var delegate:CalendarDelegate?
     private var searchDateString = String()
     private let button:UIButton = {
-    let button = RegisterButton(text: "検索")
-    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-    return button
-   }()
+        let button = RegisterButton(text: "検索")
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        return button
+    }()
     private let textField:UITextField = RegisterTextField(placeholder: "場所名入力")
     
     //Mark:LifeCycle

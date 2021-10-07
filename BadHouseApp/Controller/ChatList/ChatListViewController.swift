@@ -271,7 +271,6 @@ extension ChatListViewController :GetChatListDelegate {
         }
     }
 }
-
 //Mark GetmyTeamDelegate
 extension ChatListViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {

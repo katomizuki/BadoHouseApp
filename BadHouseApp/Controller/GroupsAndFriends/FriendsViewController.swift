@@ -3,7 +3,7 @@ import Firebase
 import NVActivityIndicatorView
 
 class FriendsViewController: UIViewController {
-   
+    
     //Mark: Properties
     @IBOutlet private weak var friendTableView: UITableView! {
         didSet {
@@ -28,7 +28,7 @@ class FriendsViewController: UIViewController {
     var teamTagArray = [String]()
     var url:String?
     private let fetchData = FetchFirestoreData()
-
+    
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)
@@ -51,7 +51,7 @@ class FriendsViewController: UIViewController {
         }
         return nil
     }
-
+    
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,7 @@ class FriendsViewController: UIViewController {
         friendTableView.dataSource = self
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
     }
-
+    
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
@@ -86,22 +86,22 @@ class FriendsViewController: UIViewController {
         guard let teamUrl = self.url else { return }
         guard let me = self.me else { return }
         inviter.append(me)
-                Storage.addTeamImage(image: teamImage) { [weak self] urlString in
-                    guard let self = self else { return }
-                    Firestore.createTeam(teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: urlString,friends:self.inviter, teamUrl: teamUrl, tagArray: self.teamTagArray)
-                    self.IndicatorView.stopAnimating()
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+        Storage.addTeamImage(image: teamImage) { [weak self] urlString in
+            guard let self = self else { return }
+            Firestore.createTeam(teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: urlString,friends:self.inviter, teamUrl: teamUrl, tagArray: self.teamTagArray)
+            self.IndicatorView.stopAnimating()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 
 //Mark TableviewExtension
 extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
         cell.linkFriend = self
@@ -110,7 +110,7 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         let url = URL(string: urlString)
         if urlString == "" {
             cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
-        
+            
         } else {
             cell.iv.sd_setImage(with: url, completed: nil)
         }

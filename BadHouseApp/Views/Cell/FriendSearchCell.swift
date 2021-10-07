@@ -19,9 +19,10 @@ class FriendSearchCell: UITableViewCell {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         return button
     }()
-    
-     var iv:UIImageView = {
+    var iv:UIImageView = {
         let iv = UIImageView()
+        iv.layer.cornerRadius = 25
+        iv.layer.masksToBounds = true
         return iv
     }()
     var nameLabel:UILabel = {
@@ -32,8 +33,6 @@ class FriendSearchCell: UITableViewCell {
     //Mark:initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.iv.layer.cornerRadius = 25
-        self.iv.layer.masksToBounds = true
         accessoryView = button
         button.addTarget(self, action: #selector(plusFriend), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)
@@ -45,11 +44,9 @@ class FriendSearchCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     //Mark selector
     @objc func plusFriend() {
         print(#function)
-        
         if count % 2 == 0 {
             button.backgroundColor = Utility.AppColor.OriginalBlue
             button.setTitleColor(.white, for: UIControl.State.normal)

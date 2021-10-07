@@ -102,7 +102,7 @@ class GroupViewController: UIViewController{
         vc.me = user
         navigationController?.pushViewController(vc, animated: true)
     }
-   
+    
     @IBAction private func scroll(_ sender: Any) {
         groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
     }

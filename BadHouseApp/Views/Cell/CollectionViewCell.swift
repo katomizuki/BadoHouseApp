@@ -8,7 +8,13 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var teamImage: UIImageView!
-    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView! {
+        didSet {
+            userImageView.chageCircle()
+            userImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+            userImageView.layer.borderWidth = 2
+        }
+    }
     var event:Event? {
         didSet {
             configure()
@@ -18,9 +24,6 @@ class CollectionViewCell: UICollectionViewCell {
     //Mark:LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        userImageView.chageCircle()
-        userImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
-        userImageView.layer.borderWidth = 2
     }
     
     //Mark helperMethod
@@ -51,6 +54,5 @@ class CollectionViewCell: UICollectionViewCell {
             self.userImageView.contentMode = .scaleAspectFill
         }
         self.teamImage.sd_setImage(with: url, completed: nil)
-        
     }
 }

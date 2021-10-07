@@ -11,7 +11,7 @@ import CDAlertView
 import FacebookCore
 
 class ViewController: UIViewController {
-   
+    
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
@@ -37,15 +37,15 @@ class ViewController: UIViewController {
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-            setupIndicator()
-            IndicatorView.startAnimating()
-            setupLocationManager()
-            setupDelegate()
-            fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
-            setupCollectionView()
-            setupEmptyState()
-            Firestore.deleteEvent()
-            UIApplication.shared.applicationIconBadgeNumber = 0
+        setupIndicator()
+        IndicatorView.startAnimating()
+        setupLocationManager()
+        setupDelegate()
+        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        setupCollectionView()
+        setupEmptyState()
+        Firestore.deleteEvent()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             }
         }
     }
-   
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
         searchBar.resignFirstResponder()
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         format.imageSize = CGSize(width: 200, height: 200)
         view.emptyState.format = format
     }
-
+    
     private func setupDelegate() {
         fetchData.eventDelegate = self
         fetchData.eventSearchDelegate = self
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
             vc.delegate = self
         }
     }
-
+    
     //Mark:showAlert
     func showAlert() {
         self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
@@ -177,8 +177,6 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    
 }
 
 //Mark: CLLocationMangerDelegate

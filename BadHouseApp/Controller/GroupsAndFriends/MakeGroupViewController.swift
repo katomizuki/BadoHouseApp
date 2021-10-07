@@ -151,7 +151,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         scrollView.addSubview(buttonStackView2)
         scrollView.addSubview(buttonStackView3)
         scrollView.addSubview(registerButton)
-
+        
         buttonTag1.anchor(width: 45, height:45)
         buttonTag5.anchor(width:45, height: 45)
         buttonTag9.anchor(width:45,height: 45)
@@ -185,7 +185,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonTag11.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
         buttonTag12.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
     }
-
+    
     private func setupBinding() {
         nameTextField.rx.text
             .asDriver()
@@ -282,7 +282,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         placeTextField.endEditing(true)
         levelTextField.endEditing(true)
     }
-
+    
     @objc private func handleTap() {
         print(#function)
         levelTextField.resignFirstResponder()
