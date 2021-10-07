@@ -33,7 +33,7 @@ class GroupChatViewController: UIViewController {
         view.backgroundColor = .white
     }
     
-    //Mark helperMethod
+    //Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self

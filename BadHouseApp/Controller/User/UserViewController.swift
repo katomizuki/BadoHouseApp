@@ -89,6 +89,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         setupUserTableView()
     }
     
+    //Mark: setupMethod
     private func setupUserTableView() {
         userTableView.delegate = self
         userTableView.dataSource = self
@@ -97,11 +98,9 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         userTableView.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
     }
 
-    //Mark: setupMethod
     private func setupLayout() {
         setupAddSubView()
         setupAnchor()
-        //Mark: selector
         backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
         logoutButton.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         updateUI()
@@ -142,22 +141,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
         logoutButton.anchor(top:saveButton.bottomAnchor,right: view.rightAnchor,paddingTop: 40,paddingRight: 15,width:80)
     }
-    
-    //Mark: Logout
-    @objc private func back() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func handleLogout() {
-        print(#function)
-        do {
-            try Auth.auth().signOut()
-            dismiss(animated: true, completion: nil)
-        }  catch {
-            print(error)
-        }
-    }
-    
     private func setupBinding() {
         print(#function)
         saveButton.rx.tap
@@ -186,7 +169,21 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 }
                 self.setupCDAlert(title: "ユーザー情報を保存しました", message: "", action: "OK", alertType: .success)
             }.disposed(by:diposeBag)
-        
+    }
+    
+    //Mark: Selector
+    @objc private func back() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func handleLogout() {
+        print(#function)
+        do {
+            try Auth.auth().signOut()
+            dismiss(animated: true, completion: nil)
+        }  catch {
+            print(error)
+        }
     }
 }
 
@@ -254,6 +251,7 @@ extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate
     
 }
 
+//Mark tableViewDelegate,popoverDelegate
 extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate ,UIAdaptivePresentationControllerDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -317,7 +315,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
 
         userTableView.reloadData()
     }
-    
+    //Mark segueMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Utility.Segue.gotoLevel {
             let vc = segue.destination as! LevelViewController
@@ -327,7 +325,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
 }
 
 
-
+//Mark Enum UserInfo
 enum UserInfo:String {
     case level = "レベル"
     case gender = "性別"

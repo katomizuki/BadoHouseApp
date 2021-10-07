@@ -50,10 +50,6 @@ class GroupSearchViewController: UIViewController {
     @objc private func handleTap() {
         searchBar.resignFirstResponder()
     }
-    
-   
-  
-
 }
 //Mark tableViewDelegate
 extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
@@ -92,9 +88,8 @@ extension GroupSearchViewController:UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
     }
-  
 }
-
+//Mark getGroupDelegate
 extension GroupSearchViewController:GetGroupDelegate{
     
     func getGroup(groupArray: [TeamModel]) {

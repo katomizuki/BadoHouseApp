@@ -36,6 +36,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         setupTag()
     }
     
+    //Mark setupMethod
     private func setupTag() {
         productTags = TKCollectionView(tags: ["#バド好き歓迎"],
                                               action: .removeTag,
@@ -62,7 +63,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     }
     
     
-    //Mark:TagMethod
+    //Mark:HelperMethod
     func tagIsBeingAdded(name: String?) {
         guard let text = name else { return }
         if searchTag(text: text) == nil {
@@ -86,5 +87,4 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         }
         return nil
     }
-    
 }

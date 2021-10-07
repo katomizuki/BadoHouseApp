@@ -16,7 +16,7 @@ class PopViewController: UIViewController{
         setUpTableView()
     }
     
-    //Mark setupTableView
+    //Mark setupMethod
     private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -25,13 +25,13 @@ class PopViewController: UIViewController{
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
         switch keyword {
-        case "性別":
+        case UserInfo.gender.rawValue:
             cellArray = Utility.Data.genderArray
-        case "バドミントン歴":
+        case UserInfo.badmintonTime.rawValue:
             cellArray = Utility.Data.yearArray
-        case "居住地":
+        case UserInfo.place.rawValue:
             cellArray = Utility.Data.placeArray
-        case "年代":
+        case UserInfo.age.rawValue:
             cellArray = Utility.Data.ageArray
         default:
             break
@@ -56,16 +56,16 @@ extension PopViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! UserViewController
         switch keyword {
-        case "性別":
+        case UserInfo.gender.rawValue:
             gender = cellArray[indexPath.row]
             vc.gender = self.gender
-        case "バドミントン歴":
+        case UserInfo.badmintonTime.rawValue:
             badmintonTime = cellArray[indexPath.row]
             vc.badmintonTime = self.badmintonTime
-        case "居住地":
+        case UserInfo.place.rawValue:
             place = cellArray[indexPath.row]
             vc.place = self.place
-        case "年代":
+        case UserInfo.age.rawValue:
             age = cellArray[indexPath.row]
             vc.age = self.age
         default:

@@ -28,15 +28,17 @@ class ViewController: UIViewController {
             searchBar.autocapitalizationType = .none
         }
     }
-    @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet weak var timeButton: UIButton! {
+        didSet {
+            timeButton.toCorner(num: 15)
+        }
+    }
     
     //Mark LifeCycle
     override func viewDidLoad() {
-
         super.viewDidLoad()
             setupIndicator()
             IndicatorView.startAnimating()
-            setupUI()
             setupLocationManager()
             setupDelegate()
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
@@ -61,7 +63,7 @@ class ViewController: UIViewController {
         searchBar.resignFirstResponder()
     }
     
-    //Mark:setupEmptyState
+    //Mark:setupMethod
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
@@ -73,13 +75,7 @@ class ViewController: UIViewController {
         format.imageSize = CGSize(width: 200, height: 200)
         view.emptyState.format = format
     }
-    
-    //Mark: setupUI
-    private func setupUI() {
-        timeButton.toCorner(num: 15)
-    }
-    
-    //Mark: setupDelegate
+
     private func setupDelegate() {
         fetchData.eventDelegate = self
         fetchData.eventSearchDelegate = self
@@ -90,7 +86,6 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-    //Mark: setupIndicator
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
@@ -100,7 +95,6 @@ class ViewController: UIViewController {
                              height: 100)
     }
     
-    //Mark:setupCollectionView
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -108,6 +102,19 @@ class ViewController: UIViewController {
         let nib = UINib(nibName: Utility.Cell.CollectionViewCell,
                         bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: Utility.CellId.eventId)
+    }
+    
+    private func setupLocationManager() {
+        locationManager = CLLocationManager()
+        guard let locationManager = locationManager else { return }
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        let status = CLLocationManager.authorizationStatus()
+        if status == .authorizedWhenInUse {
+            locationManager.distanceFilter = 10
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+        }
     }
     
     //Mark:Segue
@@ -126,25 +133,12 @@ class ViewController: UIViewController {
         }
     }
 
-    //Mark:currentLocationgetMethod
-    private func setupLocationManager() {
-        locationManager = CLLocationManager()
-        guard let locationManager = locationManager else { return }
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        let status = CLLocationManager.authorizationStatus()
-        if status == .authorizedWhenInUse {
-            locationManager.distanceFilter = 10
-            locationManager.delegate = self
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
     //Mark:showAlert
     func showAlert() {
         self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
     
+    //Mark IBAction
     @IBAction private func scroll(_ sender: Any) {
         print(#function)
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
@@ -258,7 +252,6 @@ extension ViewController: GetEventTimeDelegate{
 
 //Mark GetEventDelegate
 extension ViewController:GetEventDelegate {
-    //Mark:DelegateMethod
     func getEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
@@ -296,6 +289,7 @@ extension ViewController: CalendarDelegate {
     }
 }
 
+//Mark EmptyStateDelegate
 extension ViewController:EmptyStateDelegate{
     
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {

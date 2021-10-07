@@ -101,7 +101,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         navigationItem.title = "サークル登録"
         nameTextField.becomeFirstResponder()
     }
-    //Mark helperMethod
+    //Mark setupMethod
     private func setupData() {
         fetchData.friendDelegate = self
         guard let me = me else { return }
@@ -134,16 +134,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         plusTextField.delegate = self
     }
     
-    //Mark selector
-    @objc private func donePicker() {
-        placeTextField.endEditing(true)
-        levelTextField.endEditing(true)
-    }
-    
-    
-    //Mark:setupLayout
     private func setupLayout() {
-        //Mark: readyStackView
         let basicStackView = UIStackView(arrangedSubviews: [nameTextField,placeTextField,timeTextField,levelTextField,plusTextField])
         let buttonStackView = UIStackView(arrangedSubviews: [buttonTag1,buttonTag2,buttonTag3,buttonTag4])
         let buttonStackView2 = UIStackView(arrangedSubviews: [buttonTag5,buttonTag6,buttonTag7,buttonTag8])
@@ -154,14 +145,13 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         helper(stackview: buttonStackView2,bool:false)
         helper(stackview: buttonStackView3,bool:false)
         
-        //Mark:addSubview
         scrollView.addSubview(basicStackView)
         scrollView.addSubview(tagLabel)
         scrollView.addSubview(buttonStackView)
         scrollView.addSubview(buttonStackView2)
         scrollView.addSubview(buttonStackView3)
         scrollView.addSubview(registerButton)
-        //Mark:anchor
+
         buttonTag1.anchor(width: 45, height:45)
         buttonTag5.anchor(width:45, height: 45)
         buttonTag9.anchor(width:45,height: 45)
@@ -196,43 +186,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonTag12.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
     }
 
-    @objc private func handleTap() {
-        print(#function)
-        levelTextField.resignFirstResponder()
-        placeTextField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
-        placeTextField.resignFirstResponder()
-        plusTextField.resignFirstResponder()
-        timeTextField.resignFirstResponder()
-    }
-    
-    
-    private func helper(stackview:UIStackView,bool:Bool) {
-        stackview.axis = bool == true ? .vertical:.horizontal
-        stackview.distribution = .fillEqually
-        stackview.spacing = 20
-    }
-    
-    //Mark:selector
-    @objc func tap(sender:UIButton) {
-        if sender.backgroundColor != Utility.AppColor.OriginalBlue {
-            sender.backgroundColor = Utility.AppColor.OriginalBlue
-            sender.setTitleColor(.white, for: UIControl.State.normal)
-        } else {
-            sender.backgroundColor = .white
-            sender.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-        }
-        guard let title = sender.titleLabel?.text else { return }
-        if tagArray.contains(title) == false {
-            tagArray.append(title)
-        } else {
-            tagArray.remove(value: title)
-        }
-    }
-    
-    //Mark:setupBiding
     private func setupBinding() {
-        
         nameTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -307,14 +261,12 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             }
             .disposed(by: disposeBag)
         
-        
         teamBinding.validRegisterDriver
             .drive { validAll in
                 self.registerButton.isEnabled = validAll
                 self.registerButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
-        
         
         registerButton.rx.tap
             .asDriver()
@@ -325,7 +277,45 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             .disposed(by: disposeBag)
     }
     
-    //Mark:CreateTeam
+    //Mark selector
+    @objc private func donePicker() {
+        placeTextField.endEditing(true)
+        levelTextField.endEditing(true)
+    }
+
+    @objc private func handleTap() {
+        print(#function)
+        levelTextField.resignFirstResponder()
+        placeTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+        placeTextField.resignFirstResponder()
+        plusTextField.resignFirstResponder()
+        timeTextField.resignFirstResponder()
+    }
+    
+    //Mark:selector
+    @objc func tap(sender:UIButton) {
+        if sender.backgroundColor != Utility.AppColor.OriginalBlue {
+            sender.backgroundColor = Utility.AppColor.OriginalBlue
+            sender.setTitleColor(.white, for: UIControl.State.normal)
+        } else {
+            sender.backgroundColor = .white
+            sender.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+        }
+        guard let title = sender.titleLabel?.text else { return }
+        if tagArray.contains(title) == false {
+            tagArray.append(title)
+        } else {
+            tagArray.remove(value: title)
+        }
+    }
+    //Mark helperMethod
+    private func helper(stackview:UIStackView,bool:Bool) {
+        stackview.axis = bool == true ? .vertical:.horizontal
+        stackview.distribution = .fillEqually
+        stackview.spacing = 20
+    }
+    
     private func createTeam() {
         print(#function)
         
@@ -402,7 +392,7 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
         }
     }
 }
-
+//Mark getFriendDelegate
 extension MakeGroupViewController:GetFriendDelegate {
     func getFriend(friendArray: [User]) {
         self.friends = friendArray

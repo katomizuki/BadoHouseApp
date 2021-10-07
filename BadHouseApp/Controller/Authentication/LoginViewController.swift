@@ -186,6 +186,7 @@ class LoginViewController:UIViewController {
     }
 }
 
+//Mark GoogleSigninDelegate
 extension LoginViewController:GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -205,8 +206,8 @@ extension LoginViewController:GIDSignInDelegate {
               }
       }
 
+//Mark facebookDelegate
 extension LoginViewController: LoginButtonDelegate {
-    
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("logout fb")
@@ -231,6 +232,7 @@ extension LoginViewController: LoginButtonDelegate {
     }
 }
 
+//Mark textFieldDelegate
 extension LoginViewController:UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

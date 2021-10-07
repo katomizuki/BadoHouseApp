@@ -12,10 +12,26 @@ class PostViewController: UIViewController {
         iv.image = UIImage(named: Utility.ImageName.logoImage)
         return iv
     }()
-    private let singleButton = RegisterButton(text: "シングルス")
-    private let doubleButton = RegisterButton(text: "ダブルス")
-    private let mixButton = RegisterButton(text: "ミックス")
-    private let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
+    private let singleButton:UIButton = {
+        let button = RegisterButton(text: "シングルス")
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        return button
+    }()
+    private let doubleButton:UIButton = {
+    let button = RegisterButton(text: "ダブルス")
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    return button
+    }()
+    private let mixButton:UIButton = {
+        let button = RegisterButton(text: "ミックス")
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        return button
+    }()
+    private let label:UILabel = {
+    let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
+    label.textColor = Utility.AppColor.OriginalBlue
+    return label
+    }()
     let captureSession = AVCaptureSession()
     let fileOutput = AVCaptureMovieFileOutput()
     var recordButton: UIButton!
@@ -27,17 +43,13 @@ class PostViewController: UIViewController {
         setupLayout()
     }
     
+    //Mark setupMethod
     private func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [label,singleButton,doubleButton,mixButton])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillEqually
-        singleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        doubleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        mixButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = Utility.AppColor.OriginalBlue
-        
-        
+ 
         view.addSubview(stackView)
         view.addSubview(logoImage)
         stackView.anchor(top:logoImage.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight:30, paddingLeft: 30,height:300)
@@ -47,7 +59,7 @@ class PostViewController: UIViewController {
         doubleButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
         mixButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
     }
-    
+    //Mark selector
     @objc private func handle(sender:UIButton) {
 #if targetEnvironment(simulator)
         // do nothing

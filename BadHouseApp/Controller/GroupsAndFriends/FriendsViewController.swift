@@ -59,14 +59,13 @@ class FriendsViewController: UIViewController {
         setupIndicator()
     }
     
-    //Mark:setupFriendTableView
+    //Mark:setupMethod
     private func setupTableView() {
         friendTableView.delegate = self
         friendTableView.dataSource = self
         friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
     }
 
-    //Mark:NVActivityIndicatorView
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)

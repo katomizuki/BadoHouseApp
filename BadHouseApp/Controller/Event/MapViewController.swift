@@ -48,12 +48,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             return MKCoordinateRegion(center: coordinate, span: span)
         }
     
-    
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-             mapView.setRegion(defaultRegion, animated: false)
+        mapView.setRegion(defaultRegion, animated: false)
         searchBar.delegate = self
     }
     
@@ -92,7 +90,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     }
 }
 
-
+//Mark searchBarDelegate
 extension MapViewController:UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

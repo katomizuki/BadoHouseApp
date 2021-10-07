@@ -39,7 +39,6 @@ class GroupViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         if Auth.auth().currentUser == nil {
             let vc = tabBarController?.viewControllers?[0]
             tabBarController?.selectedViewController = vc
@@ -48,7 +47,7 @@ class GroupViewController: UIViewController{
         }
     }
     
-    //Mark: setupData {
+    //Mark: setupMethod
     private func setupData() {
         fetchData.friendDelegate = self
         fetchData.myTeamDelegate = self
@@ -76,7 +75,6 @@ class GroupViewController: UIViewController{
         }
     }
     
-    //Mark: setupDelegate
     private func setupTableView() {
         groupTableView.delegate = self
         groupTableView.dataSource = self
@@ -84,7 +82,6 @@ class GroupViewController: UIViewController{
         groupTableView.register(nib, forCellReuseIdentifier: cellId)
     }
     
-    //Mark:NVActivityIndicatorView
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
@@ -105,7 +102,11 @@ class GroupViewController: UIViewController{
         vc.me = user
         navigationController?.pushViewController(vc, animated: true)
     }
-    //Mark:prepare(画面遷移）
+   
+    @IBAction private func scroll(_ sender: Any) {
+        groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+    }
+    //Mark:prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Utility.Segue.userProfile {
             let vc = segue.destination as! UserViewController
@@ -114,10 +115,6 @@ class GroupViewController: UIViewController{
             let vc = segue.destination as! GroupSearchViewController
             vc.friends = self.friendArray
         }
-    }
-    
-    @IBAction private func scroll(_ sender: Any) {
-        groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
     }
     
 }
@@ -194,7 +191,5 @@ extension GroupViewController:GetMyTeamDelegate {
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         self.IndicatorView.stopAnimating()
         groupTableView.reloadData()
-    }
-    
-    
+    }  
 }

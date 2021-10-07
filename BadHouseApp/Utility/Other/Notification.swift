@@ -2,31 +2,26 @@ import Foundation
 import UserNotifications
 import UIKit
 
-//ローカル通知の構造体を作成
 struct LocalNotification {
     var id: String
     var title: String
     var body: String
 }
 
-//列挙型でローカル通知が起きるタイミングを設定。
 enum LocalNotificationDurationType {
     case days
     case hours
     case minutes
     case seconds
 }
-//ローカル通知を管理する構造体。
+
 struct LocalNotificationManager {
-    //ローカル通知の構造体が入る配列を作成
     static private var notifications = [LocalNotification]()
-    //許可のリクエストを送る。
     static private func requestPermission() -> Void {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .alert]) { granted, error in
                 if granted == true && error == nil {
-                    //許可されたらここを通る。
                 }
         }
     }
@@ -94,11 +89,8 @@ struct LocalNotificationManager {
     }
     
     static func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String) {
-        //許可をリクエストして
         requestPermission()
-        //追加して
         addNotification(title: title, body: body)
-        //スケジュールを設定する。
         scheduleNotifications(duration, of: type, repeats: repeats)
     }
 

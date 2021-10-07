@@ -3,12 +3,12 @@ import XLPagerTabStrip
 import Firebase
 
 class DaughterViewController: UIViewController {
-
+    
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView!
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
-    private var notificationArray = [[User]]()    
+    private var notificationArray = [[User]]()
     
     //Mark:LifeCycle
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class DaughterViewController: UIViewController {
         setupData()
     }
     
-    //Mark:setupTableView
+    //Mark:setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -28,7 +28,6 @@ class DaughterViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
     }
     
-    //Mark setupData
     private func setupData() {
         fetchData.joinDelegate = self
         Firestore.getmyEventId { [weak self] event in
@@ -39,7 +38,7 @@ class DaughterViewController: UIViewController {
     }
 }
 
-//Mark:xlPager
+//Mark:xlPagerExtension
 extension DaughterViewController:IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "参加確定者")

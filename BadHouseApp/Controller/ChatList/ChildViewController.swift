@@ -12,7 +12,7 @@ class ChildViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
     private var IndicatorView:NVActivityIndicatorView!
- 
+    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class ChildViewController: UIViewController {
         setupData()
     }
     
+    //Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,7 +32,6 @@ class ChildViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
     }
     
-    //Mark:NVActivityIndicatorView
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
@@ -51,7 +51,7 @@ class ChildViewController: UIViewController {
     }
 }
 
-//Mark:IndicatorInfo
+//Mark:IndicatorInfo-Extension
 extension ChildViewController:IndicatorInfoProvider {
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -117,7 +117,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             cell.cellImagevView.sd_setImage(with: url, completed: nil)
             cell.cellImagevView.toCorner(num: 30)
         }
-
+        
         return cell
     }
     
@@ -126,7 +126,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
+        
         let alertVC = UIAlertController(title: "参加申請を許可しますか？", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { _ in
             let eventId = self.eventArray[indexPath.section].eventId
@@ -135,7 +135,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             Firestore.sendJoin(eventId: eventId, uid: userId)
             tableView.reloadData()
-          }
+        }
         let cancleAction = UIAlertAction(title: "いいえ", style: .default) { _ in
         }
         alertVC.addAction(alertAction)

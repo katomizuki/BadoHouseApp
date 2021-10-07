@@ -12,19 +12,22 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     @IBOutlet private weak var calendar: FSCalendar!
     weak var delegate:CalendarDelegate?
     private var searchDateString = String()
-    private let button:UIButton = RegisterButton(text: "検索")
+    private let button:UIButton = {
+    let button = RegisterButton(text: "検索")
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    return button
+   }()
     private let textField:UITextField = RegisterTextField(placeholder: "場所名入力")
     
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        calendar.delegate = self
     }
     
+    //Mark setupMethod
     private func updateUI() {
-        calendar.delegate = self
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        
         //Mark:addsubView
         view.addSubview(button)
         view.addSubview(textField)
@@ -69,6 +72,5 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString
     }
-
 }
 

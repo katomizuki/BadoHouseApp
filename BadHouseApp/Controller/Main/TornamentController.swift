@@ -2,18 +2,21 @@ import UIKit
 
 class TornamentController: UIViewController {
 
+    //Mark properties
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = Utility.CellId.CellGroupId
     
+    //Mark properties
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
-    
+    //Mark IBAction
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    //Mark helperMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -22,7 +25,7 @@ class TornamentController: UIViewController {
     }
     
 }
-
+//Mark TableViewDelegate
 extension TornamentController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,7 +45,7 @@ extension TornamentController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "TornamentDetailVC") as! TornamentDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TornamentDetailVC) as! TornamentDetailController
         navigationController?.pushViewController(vc, animated: true)
     }
     

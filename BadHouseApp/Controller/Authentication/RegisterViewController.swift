@@ -95,7 +95,6 @@ class RegisterViewController:UIViewController{
     //Mark: setup Method
     private func setupLayout() {
 
-
         //Mark: StackView
         let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googleView,fbButton])
         stackView.axis = .vertical
@@ -236,11 +235,8 @@ extension RegisterViewController: GIDSignInDelegate {
         if let error = error {
                         print("\(error.localizedDescription)")
                     } else {
-
                         let fullName = user.profile.name
-
                         let email = user.profile.email
-                        //ここで名前とemailとメールアドレスを取得できるのでfirestoreに送る。
                         guard let auth = user.authentication else { return }
                         
                         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
@@ -263,27 +259,24 @@ extension RegisterViewController: GIDSignInDelegate {
                     }
     }
     
-    //追記部分(デリゲートメソッド)エラー来た時
+  
        func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
                  withError error: Error!) {
            print(error.localizedDescription)
        }
 }
 
+//Mark FaceBookDelegate
 extension RegisterViewController:LoginButtonDelegate {
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        //loginする
             if error == nil{
-                if result?.isCancelled == true{
-                    //キャンセルされた場合は何もしないで返す
+                if result?.isCancelled == true {
                     return
                 }
             }
 
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-
-            //ここからfirebase
             Auth.auth().signIn(with: credential) { (result, error) in
                 if let error = error {
                     print(error)
@@ -312,6 +305,7 @@ extension RegisterViewController:LoginButtonDelegate {
     }
 }
 
+//Mark uitextFieldDelegate
 extension RegisterViewController:UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

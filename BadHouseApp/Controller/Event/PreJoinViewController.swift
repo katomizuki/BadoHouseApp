@@ -10,7 +10,6 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         let cv = buttonBarView
         return cv!
     }()
-    
     lazy var scrollView:UIScrollView = {
         let sv = containerView
         return sv!
@@ -30,6 +29,7 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
        
     }
     
+    //Mark helperMethod
     private func collectionAndScroll() {
         let width = view.frame.size.width
         let height = view.frame.size.height
@@ -46,7 +46,7 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
-    
+    //Mark setupMethod
     private func setupXLTab() {
         settings.style.buttonBarItemBackgroundColor = UIColor(named: Utility.AppColor.darkColor)
         settings.style.buttonBarItemTitleColor = .darkGray

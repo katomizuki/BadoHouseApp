@@ -78,8 +78,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             scrollView.addGestureRecognizer(gesture)
         }
     }
-    
-    //Mark:sendEventdataProperties
     private var selectedTeam:TeamModel?
     private var (teamPlace,teamTime) = (String(),String())
     private var (eventTitle,eventStartTime,eventLastTime,eventLevel,eventMoney,courtCount,gatherCount,detailText,placeAddress) = (String(),String(),String(),String(),String(),String(),String(),String(),String())
@@ -112,14 +110,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         self.setupNavAccessory()
     }
     
-    private func tfupdate(view:UIView) {
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.borderWidth = 2
-        view.layer.cornerRadius = 15
-        view.layer.masksToBounds = true
-    }
-    
-    //Mark setupUI
+    //Mark setupMethod
     private func setupDelegate() {
         levelUISlider.delegate = self
         TeamPickerView.delegate = self
@@ -139,22 +130,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         moneyTextField.inputAccessoryView = toolBar
     }
     
-    //Mark selector
-    @objc private func donePicker() {
-        moneyTextField.endEditing(true)
-    }
-    
-    //Mark:Prepare
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoMap {
-            let nextVC = segue.destination as! MapViewController
-            nextVC.delegate = self
-        }
-    }
-    
-    //Mark:SetupBinding
     private func setupBinding() {
-        
         datePicker.rx.value.changed
             .asObservable()
             .subscribe(onNext: { [weak self] date in
@@ -231,7 +207,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             .disposed(by: disposeBag)
     }
     
-    //Mark setupTeamData
     private func setupOwnTeamData() {
         let uid = Auth.getUserId()
         Firestore.getOwnTeam(uid: uid) { [weak self] teamIds in
@@ -258,6 +233,9 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         titleTextField.resignFirstResponder()
         moneyTextField.resignFirstResponder()
         detaiTextView.resignFirstResponder()
+    }
+    @objc private func donePicker() {
+        moneyTextField.endEditing(true)
     }
     
     @objc private func createEvent() {
@@ -331,6 +309,14 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         performSegue(withIdentifier: Utility.Segue.gotoMap, sender: nil)
     }
     
+    //Mark helperMethod
+    private func tfupdate(view:UIView) {
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 2
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
+    }
+    
     //Mark: MapDelegateMethod
     func sendLocationData(location: [Double], placeName: String,placeAddress:String) {
         self.teamPlace = placeName
@@ -339,8 +325,13 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         self.placeTextField.text = placeName
         self.placeAddress = placeAddress
     }
-    
-   
+    //Mark:Prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Utility.Segue.gotoMap {
+            let nextVC = segue.destination as! MapViewController
+            nextVC.delegate = self
+        }
+    }
 }
 
 //Mark: UIPickerViewDelegate
@@ -441,7 +432,7 @@ extension MakeEventViewController:UINavigationControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 }
-
+//Mark getmyTeamDelegate
 extension MakeEventViewController :GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         pickerArray = teamArray
@@ -451,7 +442,7 @@ extension MakeEventViewController :GetMyTeamDelegate {
         TeamPickerView.reloadAllComponents()
     }
 }
-
+//Mark textFieldDelegate
 extension MakeEventViewController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

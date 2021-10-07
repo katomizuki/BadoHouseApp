@@ -27,10 +27,11 @@ class LevelDetailViewController: UIViewController {
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
     }
-   
+   //Mark IBAction
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    //Mark selector
     @objc private func changeLevel(sender:UISlider) {
         let level = Double(sender.value)
         //分割して条件分岐する
@@ -76,9 +77,8 @@ class LevelDetailViewController: UIViewController {
         }
     }
     
-
+    //Mark:setupMethod
     private func setupSlider(level:String) {
-        print(level)
         switch level {
         case "1":
             slider.value = 0.1

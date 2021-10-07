@@ -51,8 +51,8 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
-        updateBorder()
+        setupUI()
+        setupLayer()
         setupCollection()
         setupData()
     }
@@ -63,8 +63,8 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         navigationItem.title = user?.name
     }
     
-    //Mark:updateUI
-    private func updateUI() {
+    //Mark:setupMethod
+    private func setupUI() {
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
@@ -72,22 +72,19 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
     }
     
-    //Mark:updateBorder
-    private func updateBorder() {
+    private func setupLayer() {
         setupBorder(view: ageStackView)
         setupBorder(view: genderStackView)
         setupBorder(view: badmintonTimeStackView)
     }
     
-    //Mark:setupBorder
     private func setupBorder(view:UIView) {
         let border = CALayer()
         border.frame = CGRect(x: view.frame.width - 1, y: 15, width: 5.0, height: view.frame.height)
         border.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(border)
     }
-    
-    //Mark:Delegate,DataSource
+
     private func setupDelegate() {
         belongCollectionView.delegate = self
         belongCollectionView.dataSource = self
@@ -97,7 +94,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         fetchData.myTeamDelegate = self
     }
     
-    //Mark: setupCollectionViewCell
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
         belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
@@ -110,10 +106,9 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         friendCollectionView.collectionViewLayout = layout2
         belongCollectionView.collectionViewLayout = layout
         setupDelegate()
-        getNeededMethod()
+        setupNeededMethod()
     }
     
-    //Mark:setupData
     private func setupData() {
         let myId = Auth.getUserId()
         guard let user = user else { return }
@@ -127,8 +122,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         }
     }
     
-    //Mark:getNeededMethod
-    private func getNeededMethod() {
+    private func setupNeededMethod() {
         self.userFriend = []
         guard let memberId = user?.uid else { return }
         guard let urlString = user?.profileImageUrl else { return }
@@ -171,17 +165,12 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         navigationController?.pushViewController(vc, animated: true)
     }
     
-
     @IBAction func gotoDM(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
             vc.me = me
             vc.you = user
             navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    
-  
 }
 
 //Mark: UserCollectionViewDelegate
@@ -227,7 +216,6 @@ extension UserDetailViewController:GetFriendDelegate {
         DispatchQueue.main.async {
             self.friendCollectionView.reloadData()
         }
-        
     }
 }
 //Mark MyTeamDelegate
@@ -237,8 +225,5 @@ extension UserDetailViewController:GetMyTeamDelegate {
         DispatchQueue.main.async {
             self.belongCollectionView.reloadData()
         }
-        
     }
-    
-    
 }

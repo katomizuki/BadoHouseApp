@@ -108,6 +108,7 @@ extension ChatViewController: GetChatDataDelgate {
     }
 }
 
+//Mark imagePickerDelegate
 extension ChatViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -116,6 +117,7 @@ extension ChatViewController:UIImagePickerControllerDelegate & UINavigationContr
  
 }
 
+//Mark InputDelegate
 extension ChatViewController:InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         print(#function)

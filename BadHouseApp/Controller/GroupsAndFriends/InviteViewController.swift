@@ -49,7 +49,7 @@ class InviteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
     }
-    //Mark setupTableView
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -94,6 +94,4 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.height / 10
     }
-    
-
 }

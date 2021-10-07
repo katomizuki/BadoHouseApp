@@ -99,6 +99,7 @@ class EventDetailViewController: UIViewController {
         self.setupNavAccessory()
     }
     
+    //Mark:SetupMethod
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
@@ -109,7 +110,6 @@ class EventDetailViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
     }
     
-    //Mark:SetupMethod
     private func setData() {
         Firestore.getUserData(uid: Auth.getUserId()) { [weak self] user in
             guard let self = self else { return }
@@ -170,8 +170,6 @@ class EventDetailViewController: UIViewController {
         levelLabel.text = event?.eventLevel
         let time = event?.eventTime ?? ""
         endTimeLabel.text = "\(changeString(string: time))分"
-        
-        //Mark:UpdateMap
         mapView.setRegion(defaultRegion, animated: false)
         let pin = MKPointAnnotation()
         let x =  event?.latitude ?? 0.0
@@ -235,7 +233,6 @@ class EventDetailViewController: UIViewController {
         dataSet.colors = [.lightGray]
     }
     
-    //setupTag
     private func setupTag() {
         guard let eventId = event?.eventId else { return }
         Firestore.getEventTagData(eventId: eventId) { [weak self] tags in
@@ -255,8 +252,7 @@ class EventDetailViewController: UIViewController {
             }
         }
     }
-    
-    //Mark setupUnderLine
+
     private func setupUnderLine() {
         setupUnderLayer(view: lastTimeStackView)
         setupUnderLayer(view: gatherStackView)
@@ -267,7 +263,6 @@ class EventDetailViewController: UIViewController {
         setupUnderLayer(view: placeStackView)
     }
     
-    //Mark: setupLayer
     private func setupUnderLayer(view:UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
@@ -275,11 +270,6 @@ class EventDetailViewController: UIViewController {
         view.layer.addSublayer(bottomBorder)
     }
     
-    private func getCGrect(view:UIView)->CGRect {
-        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
-    }
-    
-    //Mark:setupUser
     private func setupUser() {
         guard let userId = event?.userId else { return }
         Firestore.getUserData(uid: userId) { [weak self] user in
@@ -297,7 +287,7 @@ class EventDetailViewController: UIViewController {
         }
     }
     
-    //Mark: prepare
+    //Mark: prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Utility.Segue.gotoChat {
             let vc = segue.destination as! ChatViewController
@@ -308,7 +298,7 @@ class EventDetailViewController: UIViewController {
             vc.flag = true
         }
     }
-    
+    //Mark IBAction
     @IBAction func join(_ sender: Any) {
         print(#function)
         guard let leaderId = event?.userId else { return }
@@ -322,10 +312,7 @@ class EventDetailViewController: UIViewController {
                 self.chatId = chatId
             }
         }
-  
         guard let eventId = event?.eventId else { return }
-       
-       
         Firestore.searchPreJoin(myId: Auth.getUserId(), eventId: eventId) { bool in
             if bool == false {
                 //alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
@@ -337,11 +324,7 @@ class EventDetailViewController: UIViewController {
                     guard let chatId = self.chatId else { return }
                     guard let name = self.me?.name else { return }
                     guard let meId = self.me?.uid else { return }
-                   
-                   
-
                     Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
-                    
                     Firestore.sendePreJoin(myId: meId, eventId: eventId,leaderId: leaderId)
                     self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)
                     LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
@@ -349,11 +332,15 @@ class EventDetailViewController: UIViewController {
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
                 self.present(alert,animated: true,completion: nil)
-               
             } else  {
                 self.setupCDAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", action: "OK", alertType: CDAlertViewType.notification)
             }
         }
+    }
+    
+    //Mark helperMethod
+    private func getCGrect(view:UIView)->CGRect {
+        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
     }
 }
 
@@ -400,6 +387,4 @@ extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         vc.user = teamArray[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-  
 }

@@ -23,6 +23,7 @@ struct Utility {
         static let CameraVC = "CameraVC"
         static let inviteVC = "inviteVC"
         static let MakeGroupVC = "MakeGroupVC"
+        static let TornamentDetailVC = "TornamentDetailVC"
     }
     struct Segue {
         static let gotoRegister = "gotoRegister"

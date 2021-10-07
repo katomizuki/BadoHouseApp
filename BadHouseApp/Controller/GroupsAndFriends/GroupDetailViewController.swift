@@ -66,7 +66,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         setupData()
         setUpTeamStatus()
         setUpTeamPlayer()
-        setGraph()
+        setupGraph()
         changeUI()
     }
     
@@ -75,17 +75,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         self.setupNavAccessory()
         navigationItem.title = team?.teamName
     }
-    
-    private func changeUI() {
-        withdrawButton.isHidden = flag
-        chatButton.isHidden = flag
-        if flag == true {
-            navigationItem.setRightBarButton(nil, animated: true)
-        }
-        friendImageView.isUserInteractionEnabled = !flag
-    }
         
-    //Mark: setupData
+    //Mark: setupMethod
     private func setupData() {
         guard let teamId = team?.teamId else { return }
         Firestore.getTeamTagData(teamId: teamId) {[weak self] tags in
@@ -107,45 +98,9 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             }
         }
     }
- 
-    
-    //Mark:setupDelegate
-    private func setupDelegate() {
-        fetchData.delegate = self
-        fetchData.barDelegate = self
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    
-    //Mark: NVActivityIndicatorView
-    private func setupIndicator() {
-        IndicatorView = self.setupIndicatorView()
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
-    }
-    
-    //Mark: updateBorder
-    private func updateBorder() {
-        setupBorder(view: placeStackView)
-        setupBorder(view: timeStackView)
-    }
-    
-    //Mark: setupBorder
-    private func setupBorder(view:UIView) {
-        let border = CALayer()
-        border.frame = CGRect(x: view.frame.width - 1,
-                              y: 15,
-                              width: 5.0,
-                              height: view.frame.height - 25)
-        border.backgroundColor = UIColor.lightGray.cgColor
-        view.layer.addSublayer(border)
-    }
-    
-    
-    //Mark:setupMethod()
+
     private func setUpTeamPlayer() {
         print(#function)
-        
         guard let teamId = team?.teamId else { return }
         Firestore.getTeamPlayer(teamId: teamId) { membersId in
             self.teamPlayers = []
@@ -164,18 +119,37 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             }
         }
     }
-    
-    //Mark:setupMethod(Team)
+
+    private func setupDelegate() {
+        fetchData.delegate = self
+        fetchData.barDelegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+
+    private func setupIndicator() {
+        IndicatorView = self.setupIndicatorView()
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
+    }
+    //Mark: setupBorder
+    private func setupBorder(view:UIView) {
+        let border = CALayer()
+        border.frame = CGRect(x: view.frame.width - 1,
+                              y: 15,
+                              width: 5.0,
+                              height: view.frame.height - 25)
+        border.backgroundColor = UIColor.lightGray.cgColor
+        view.layer.addSublayer(border)
+    }
     private func setUpTeamStatus() {
         print(#function)
-        //Mark: CollectionSetup
         let nib = TeammemberCell.nib()
         collectionView.register(nib, forCellWithReuseIdentifier: teamMemberCellId)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
         
-        //Mark:SetImage
         guard let urlString = team?.teamImageUrl else { return }
         let url = URL(string: urlString)
         friendImageView.sd_setImage(with: url, completed: nil)
@@ -185,43 +159,12 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         friendImageView.layer.borderWidth = 2
         friendImageView.layer.masksToBounds = true
         
-        //Mark setLabel
         teamNameLabel.text = team?.teamName
         timeLabel.text = team?.teamTime
         placeLabel.text = team?.teamPlace
         priceLabel.text = "\(team?.teamLevel ?? "")/月"
     }
-    
-    //Mark:Protocol
-    func getGenderCount(count: [Int]) {
-            self.genderArray = count
-            self.setPieChart()
-    }
-    
-    func getBarData(count: [Int]) {
-        self.rawData = count
-        self.setGraph()
-    }
-    
-        
-    
-    @IBAction private func gotoInvite(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
-        vc.friends = self.friends
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction private func updateTeamInfo(_ sender: Any) {
-        print(#function)
-        guard let team = self.team else { return }
-        let vc = UpdateViewController(team: team)
-        vc.delegate = self
-        present(vc, animated: true, completion: nil)
-    }
-    
-    
-    //Mark: PieChar
-    private func setPieChart() {
+    private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
             entry.append(PieChartDataEntry(value: Double(genderArray[i]),label:genderValue[i], data: genderArray[i]))
@@ -234,12 +177,9 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         pieView.data = PieChartData(dataSet:pieChartDataSet)
         let colors = [UIColor.blue,.red,Utility.AppColor.OriginalBlue]
         pieChartDataSet.colors = colors
-        
     }
     
-    //Mark BarChart
-    private func setGraph() {
-      
+    private func setupGraph() {
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
         BarChartView.scaleXEnabled = false
         BarChartView.scaleYEnabled = false
@@ -260,14 +200,49 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         dataSet.colors = [.lightGray]
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoInvite {
-            let vc = segue.destination as! InviteViewController
-            vc.friends = self.friends
-            vc.team = self.team
-        }
-      
+    //Mark: helplerMethod
+    private func updateBorder() {
+        setupBorder(view: placeStackView)
+        setupBorder(view: timeStackView)
     }
+    private func changeUI() {
+        withdrawButton.isHidden = flag
+        chatButton.isHidden = flag
+        if flag == true {
+            navigationItem.setRightBarButton(nil, animated: true)
+        }
+        friendImageView.isUserInteractionEnabled = !flag
+    }
+
+    //Mark:Protocol
+    func getGenderCount(count: [Int]) {
+            self.genderArray = count
+            self.setupPieChart()
+    }
+    
+    func getBarData(count: [Int]) {
+        self.rawData = count
+        self.setupGraph()
+    }
+  
+    //Mark IBAction
+    @IBAction private func gotoInvite(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
+        vc.friends = self.friends
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction private func updateTeamInfo(_ sender: Any) {
+        print(#function)
+        guard let team = self.team else { return }
+        let vc = UpdateViewController(team: team)
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
+    }
+ 
+ 
+    
+    
     @IBAction private func gotoGroup(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
         vc.team = self.team
@@ -289,8 +264,17 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         navigationController?.popViewController(animated: true
         )
     }
+    //Mark prepareMethod
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Utility.Segue.gotoInvite {
+            let vc = segue.destination as! InviteViewController
+            vc.friends = self.friends
+            vc.team = self.team
+        }
+    }
 }
 
+//Mark detailSearchDelegate
 extension GroupDetailViewController:backDelegate {
     
     func updateTeamData() {
@@ -306,7 +290,6 @@ extension GroupDetailViewController:backDelegate {
         }
     }
 }
-
 
 //Mark: CollectionViewDelegate,DataSource
 extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
@@ -364,13 +347,15 @@ class UpdateViewController:UIViewController {
     }()
     private let imagePicker = UIImagePickerController()
     
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        teamInfo()
+        setupteamInfo()
         imagePicker.delegate = self
     }
     
+    //Mark setupMethod
     private func setupLayout() {
         view.backgroundColor = .white
         let stackView = UIStackView(arrangedSubviews: [placeTextField,timeTextField,moneyTextField])
@@ -388,7 +373,7 @@ class UpdateViewController:UIViewController {
         button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
     }
     
-    private func teamInfo() {
+    private func setupteamInfo() {
         placeTextField.text = team?.teamPlace
         timeTextField.text = team?.teamTime
         moneyTextField.text = team?.teamLevel
@@ -397,6 +382,7 @@ class UpdateViewController:UIViewController {
         iv.sd_setImage(with: url, completed: nil)
     }
     
+    //Mark initalize
     init(team:TeamModel) {
     super.init(nibName: nil, bundle: nil)
         self.team = team
@@ -406,6 +392,7 @@ class UpdateViewController:UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Mark selector
     @objc private func handleSave() {
         guard let place = placeTextField.text else { return }
         guard let time = timeTextField.text else { return }
@@ -429,7 +416,6 @@ class UpdateViewController:UIViewController {
         print(#function)
         present(imagePicker, animated: true, completion: nil)
     }
-    
 }
 
 //Mark: UIImagePickerDelegate

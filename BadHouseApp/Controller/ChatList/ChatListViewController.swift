@@ -25,7 +25,7 @@ class ChatListViewController:UIViewController{
     private var sortGroupArray = [TeamModel]()
     private var sortChatModelArray = [ChatRoom]()
     private let refreshView:UIRefreshControl = {
-    let view = UIRefreshControl()
+        let view = UIRefreshControl()
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return view
     }()
@@ -38,15 +38,17 @@ class ChatListViewController:UIViewController{
         setupNotification()
         setupNav()
     }
-    
-    @objc private func handleRefresh() {
+    override func viewWillAppear(_ animated: Bool) {
         setupData()
         setupOwnTeamData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.refreshView.endRefreshing()
-        }
+        let image = UIImage(named: Utility.ImageName.double)
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
+    //Mark setupMethod
     private func setupFetchDataDelegate () {
         fetchData.chatDelegate = self
         fetchData.chatRoomDelegate = self
@@ -62,8 +64,7 @@ class ChatListViewController:UIViewController{
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-
-    //Mark:setupTableView
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,7 +73,6 @@ class ChatListViewController:UIViewController{
         tableView.addSubview(refreshView)
     }
     
-    //Mark:setupNotification
     private func setupNotification() {
         self.notification(uid: Auth.getUserId()) { [weak self] bool in
             if bool == true {
@@ -84,17 +84,6 @@ class ChatListViewController:UIViewController{
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        setupData()
-        setupOwnTeamData()
-        let image = UIImage(named: Utility.ImageName.double)
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        UIApplication.shared.applicationIconBadgeNumber = 0
-    }
-    
-    //Mark: setupData
     private func setupData() {
         Firestore.getChatData(uid: Auth.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
@@ -104,7 +93,6 @@ class ChatListViewController:UIViewController{
             }
         }
     }
-    //Mark :setupOwnTeam
     private func setupOwnTeamData() {
         Firestore.getOwnTeam(uid: Auth.getUserId()) {[weak self] teamIds in
             guard let self = self else { return }
@@ -112,7 +100,7 @@ class ChatListViewController:UIViewController{
         }
     }
     
-    
+    //Mark helperMethod
     private func cleanArray() {
         self.anotherUserArray = []
         self.userArray = []
@@ -127,13 +115,19 @@ class ChatListViewController:UIViewController{
     @objc private func handleNotification() {
         performSegue(withIdentifier: Utility.Segue.gotoNotification, sender: nil)
     }
-    
     @objc private func handleSchedule() {
         print(#function)
         Firestore.getUserData(uid: Auth.getUserId()) { user in
             guard let me = user else { return }
             let vc = ScheduleViewController(user: me)
             self.present(vc, animated: true, completion: nil)
+        }
+    }
+    @objc private func handleRefresh() {
+        setupData()
+        setupOwnTeamData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.refreshView.endRefreshing()
         }
     }
 }
@@ -188,7 +182,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
             vc.team = self.selectedTeam
             navigationController?.pushViewController(vc, animated: true)
-    
+            
         } else if indexPath.section == 1 {
             if Auth.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
@@ -205,9 +199,8 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
             }
-    }
         }
-    
+    }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0 {
@@ -216,6 +209,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             return true
         }
     }
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Utility.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView

@@ -70,6 +70,7 @@ class DetailSearchViewController: UIViewController{
         setupDelegate()
     }
     
+    //Mark:setupMethod
     private func setupLayer() {
         setupUnderLayer(view: titleStackView)
         setupUnderLayer(view: circleStackView)
@@ -90,6 +91,68 @@ class DetailSearchViewController: UIViewController{
         levelTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
         cityTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
         moneyTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
+    }
+    
+    private func setupUnderLayer(view:UIView) {
+        let bottomBorder = CALayer()
+        bottomBorder.frame = self.getCGrect(view: view)
+        bottomBorder.backgroundColor = Utility.AppColor.OriginalBlue.cgColor
+        view.layer.addSublayer(bottomBorder)
+    }
+    
+    private func setupPickerView() {
+        setPicker(pickerView: pickerView, textField: circleTextField)
+        setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
+        setPicker(pickerView: pickerLevelView, textField: levelTextField)
+    }
+    
+
+    private func setPicker(pickerView:UIPickerView,textField:UITextField) {
+        pickerView.delegate = self
+        textField.inputView = pickerView
+        let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
+        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
+        toolBar.setItems([doneButtonItem], animated: true)
+        textField.inputAccessoryView = toolBar
+    }
+
+    private func setupBorder() {
+        helperTextfield(textfield: titleTextField)
+        helperTextfield(textfield: moneyTextField)
+        helperTextfield(textfield: cityTextField)
+        helperTextfield(textfield: levelTextField)
+        helperTextfield(textfield: circleTextField)
+    }
+    //Mark HelperMethod
+    private func helperTextfield(textfield:UITextField) {
+        textfield.layer.borderColor = UIColor.lightGray.cgColor
+        textfield.layer.borderWidth = 2
+        textfield.toCorner(num: 15)
+    }
+    private func getCGrect(view:UIView)->CGRect {
+        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
+    }
+    
+    //Mark:SelectorMethod
+    @objc private func donePicker() {
+        circleTextField.endEditing(true)
+        moneyTextField.endEditing(true)
+        levelTextField.endEditing(true)
+    }
+    
+    @objc private func getDate(sender:UIDatePicker) {
+        let dateString = self.formatterUtil(date: sender.date)
+        self.dateString = dateString
+    }
+    
+    @objc private func handleTap() {
+        print(#function)
+        titleTextField.resignFirstResponder()
+        circleTextField.resignFirstResponder()
+        levelTextField.resignFirstResponder()
+        cityTextField.resignFirstResponder()
+        moneyTextField.resignFirstResponder()
     }
     
     @objc private func handleChange(sender:UITextField) {
@@ -115,58 +178,6 @@ class DetailSearchViewController: UIViewController{
         }
     }
     
-    //Mark:getCGrect
-    private func getCGrect(view:UIView)->CGRect {
-        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
-    }
-    
-    //Mark:setupMethod
-    private func setupUnderLayer(view:UIView) {
-        let bottomBorder = CALayer()
-        bottomBorder.frame = self.getCGrect(view: view)
-        bottomBorder.backgroundColor = Utility.AppColor.OriginalBlue.cgColor
-        view.layer.addSublayer(bottomBorder)
-    }
-    
-    //Mark:setupPickerView
-    private func setupPickerView() {
-        setPicker(pickerView: pickerView, textField: circleTextField)
-        setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
-        setPicker(pickerView: pickerLevelView, textField: levelTextField)
-    }
-    
-    //Mark:setPicker
-    private func setPicker(pickerView:UIPickerView,textField:UITextField) {
-        pickerView.delegate = self
-        textField.inputView = pickerView
-        let toolBar = UIToolbar()
-        toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
-        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
-        toolBar.setItems([doneButtonItem], animated: true)
-        textField.inputAccessoryView = toolBar
-    }
-    
-    //Mark:Selector
-    @objc private func donePicker() {
-        circleTextField.endEditing(true)
-        moneyTextField.endEditing(true)
-        levelTextField.endEditing(true)
-    }
-    
-    @objc private func getDate(sender:UIDatePicker) {
-        let dateString = self.formatterUtil(date: sender.date)
-        self.dateString = dateString
-    }
-    
-    @objc private func handleTap() {
-        print(#function)
-        titleTextField.resignFirstResponder()
-        circleTextField.resignFirstResponder()
-        levelTextField.resignFirstResponder()
-        cityTextField.resignFirstResponder()
-        moneyTextField.resignFirstResponder()
-    }
-    
     //Mark:IBAction
     @IBAction private func search(_ sender: Any) {
         let title = titleTextField.text ?? ""
@@ -179,19 +190,9 @@ class DetailSearchViewController: UIViewController{
         dismiss(animated: true, completion: nil)
     }
     
-    private func setupBorder() {
-        helperTextfield(textfield: titleTextField)
-        helperTextfield(textfield: moneyTextField)
-        helperTextfield(textfield: cityTextField)
-        helperTextfield(textfield: levelTextField)
-        helperTextfield(textfield: circleTextField)
-    }
     
-    private func helperTextfield(textfield:UITextField) {
-        textfield.layer.borderColor = UIColor.lightGray.cgColor
-        textfield.layer.borderWidth = 2
-        textfield.toCorner(num: 15)
-    }
+    
+    
 }
 
 //Mark:PickerViewDelegate
@@ -232,7 +233,7 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
         }
     }
 }
-
+//Mark textFieldDelegate
 extension DetailSearchViewController:UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

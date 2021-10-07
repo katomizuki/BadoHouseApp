@@ -86,14 +86,14 @@ class LevelViewController: UIViewController {
         }
     }
    
-    
+    //Mark IBAction
     @IBAction func back(_ sender: Any) {
         selectedLevel = levelLabel.text ?? "1"
         let vc = self.presentingViewController as! UserViewController
         vc.level = selectedLevel
         dismiss(animated: true, completion: nil)
     }
-    
+    //Mark setupMethod
     private func setupSlider(level:String) {
         switch level {
         case "1":

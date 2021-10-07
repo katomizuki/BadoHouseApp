@@ -29,7 +29,7 @@ class ScheduleViewController: UIViewController{
         setupTableView()
         view.backgroundColor = .white
     }
-    
+    //Mark setupMethod
     private func setupData() {
         fetchData.myEventDelegate = self
         guard let meId = me?.uid else { return }
@@ -38,8 +38,7 @@ class ScheduleViewController: UIViewController{
             self.fetchData.getmyEventData(idArray: idArray)
         }
     }
-    
-    //Mark helperMethod
+
     private func setupCalendar() {
         calendar.delegate = self
         calendar.dataSource = self

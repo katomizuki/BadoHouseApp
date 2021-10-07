@@ -26,8 +26,12 @@ class TimeLineViewController: UIViewController{
         collectionView?.isSkeletonable = true
         view.isSkeletonable = true
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView?.frame = view.bounds
+    }
     
-    //Mark setupCollectionView
+    //Mark setupMethod
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -42,12 +46,7 @@ class TimeLineViewController: UIViewController{
         view.addSubview(collectionView!)
         collectionView?.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 0,paddingBottom: 0,paddingRight: 0,paddingLeft: 0)
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView?.frame = view.bounds
-    }
-    
+
     private func setupIndicator() {
         self.indicator = self.setupIndicatorView()
         view.addSubview(indicator)
@@ -96,17 +95,12 @@ extension TimeLineViewController:VideoCollectionCellDelegate ,UIPopoverPresentat
     
     func didTapSearchButton(video: VideoModel,button:UIButton) {
         print(#function)
-        let vc = PopoverViewController() //popoverで表示するViewController
+        let vc = PopoverViewController()
         vc.modalPresentationStyle = .popover
-        // 内容のサイズを指定
         vc.preferredContentSize = CGSize(width: 200, height: 200)
-        // アンカービューを指定
         vc.popoverPresentationController?.sourceView = button
-        // アンカー領域を指定
         vc.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint.zero, size: button.bounds.size)
-        // 矢印の方向を指定
         vc.popoverPresentationController?.permittedArrowDirections = .down
-        // デリゲートを設定
         vc.popoverPresentationController?.delegate = self
         vc.SearchDelegate = self
         present(vc, animated: true, completion: nil)
@@ -125,7 +119,7 @@ extension TimeLineViewController:VideoCollectionCellDelegate ,UIPopoverPresentat
         return false
     }
 }
-
+//Mark SearchVideoDelegate
 extension TimeLineViewController: SearchVideoDelegate{
     
     func getVideoData(videoArray: [VideoModel]) {
@@ -150,12 +144,14 @@ class PopoverViewController: UIViewController {
     private let fetchData = FetchFirestoreData()
     weak var SearchDelegate:SearchVideoDelegate?
     
+    //Mark properties
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         fetchData.videoDelegate = self
     }
     
+    //Mark setupMethod
     private func setupTableView() {
         tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         popoverPresentationController?.backgroundColor = UIColor.white
@@ -165,7 +161,7 @@ class PopoverViewController: UIViewController {
         tv.dataSource = self
     }
 }
-
+//Mark tableviewdelegate
 extension PopoverViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return kindArray.count

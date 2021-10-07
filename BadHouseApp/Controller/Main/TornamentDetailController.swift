@@ -2,6 +2,7 @@ import UIKit
 
 class TornamentDetailController: UIViewController {
 
+    //Mark properties
     private let tornamentLabel = ProfileLabel(title: "〇〇大会", num: 20)
     private let detailTextView:UITextView = {
         let tv = UITextView()
@@ -22,6 +23,7 @@ class TornamentDetailController: UIViewController {
     private let competitionMethodLabel = ProfileLabel(title: "予選トーナメント形式", num: 14)
     private let urlLabel = ProfileLabel(title: "大会URL　https://www.facebook.com/", num: 14)
 
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -33,6 +35,7 @@ class TornamentDetailController: UIViewController {
         self.setupNavAccessory()
     }
     
+    //Mark setupMethod
     private func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [tornamentLabel, holdDayLabel,startDayLabel,deadLineLabel,placeLabel,addressLabel,moneyLabel,inquiryLabel,shuttleLabel,competitionMethodLabel,urlLabel])
         stackView.axis = .vertical
@@ -43,9 +46,4 @@ class TornamentDetailController: UIViewController {
         stackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,paddingTop: 20,centerX: view.centerXAnchor,height: 400)
         detailTextView.anchor(top:stackView.bottomAnchor,bottom:view.safeAreaLayoutGuide.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop:20, paddingBottom:20, paddingRight:20, paddingLeft: 20)
     }
-    
-    
-    
-
-
 }

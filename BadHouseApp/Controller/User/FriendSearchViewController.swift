@@ -111,7 +111,6 @@ extension FriendSSearchViewController:UISearchBarDelegate {
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        print("⚡")
         return true
     }
     
