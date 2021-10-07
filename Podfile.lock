@@ -532,6 +532,7 @@ PODS:
   - NVActivityIndicatorView/Base (5.1.1)
   - PKHUD (5.3.0)
   - PromisesObjC (2.0.0)
+  - RangeUISlider (3.0.1)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
@@ -555,6 +556,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - NVActivityIndicatorView
   - PKHUD
+  - RangeUISlider (~> 3.0)
   - SDWebImage
   - SkeletonView
   - TaggerKit
@@ -597,6 +599,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PKHUD
     - PromisesObjC
+    - RangeUISlider
     - SDWebImage
     - SkeletonView
     - TaggerKit
@@ -638,11 +641,12 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RangeUISlider: 06bd968e640c1bfd390bb7abb32d54466295ff09
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 00011d121a5138edd52659cd7e11dc7e4613a206
+PODFILE CHECKSUM: 4314026e58660d8e47b3da2b1b86606962553410
 
 COCOAPODS: 1.10.1

@@ -25,4 +25,5 @@ pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
 pod "SkeletonView"
+pod 'RangeUISlider', '~> 3.0'
 end
