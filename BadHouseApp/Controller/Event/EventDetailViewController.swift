@@ -344,7 +344,7 @@ class EventDetailViewController: UIViewController {
                     
                     Firestore.sendePreJoin(myId: meId, eventId: eventId,leaderId: leaderId)
                     self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)
-                    LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!", userInfo: ["aps" : ["hello" : "world"]])
+                    LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
                 }
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)

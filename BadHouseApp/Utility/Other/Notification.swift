@@ -38,7 +38,7 @@ struct LocalNotificationManager {
     }
     
     //スケジュールノーティフィケーションズ
-    static private func scheduleNotifications(_ durationInSeconds: Int, repeats: Bool, userInfo: [AnyHashable : Any]) {
+    static private func scheduleNotifications(_ durationInSeconds: Int, repeats: Bool) {
         //アイコンバッジを0にして、
         UIApplication.shared.applicationIconBadgeNumber = 0
         //構造体が入った配列をループさせる。
@@ -50,7 +50,6 @@ struct LocalNotificationManager {
             content.body = notification.body
             content.sound = UNNotificationSound.default
             content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-//            content.userInfo = userInfo
             
             if let url = Bundle.main.url(forResource: "logo", withExtension: "png"),
                let attchment = try? UNNotificationAttachment(identifier: "imageId", url: url, options: nil) {
@@ -73,7 +72,7 @@ struct LocalNotificationManager {
         notifications.removeAll()
     }
     
-    static private func scheduleNotifications(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, userInfo: [AnyHashable : Any]) {
+    static private func scheduleNotifications(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool) {
         var seconds = 0
         //typeによって,時間を変更させる。
         switch type {
@@ -87,20 +86,20 @@ struct LocalNotificationManager {
             seconds = duration * 60 * 60 * 24
         }
         //時間を設定したらいよいよ登録。
-        scheduleNotifications(seconds, repeats: repeats, userInfo: userInfo)
+        scheduleNotifications(seconds, repeats: repeats)
     }
     
     static func cancel() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
-    static func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String, userInfo: [AnyHashable : Any]) {
+    static func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String) {
         //許可をリクエストして
         requestPermission()
         //追加して
         addNotification(title: title, body: body)
         //スケジュールを設定する。
-        scheduleNotifications(duration, of: type, repeats: repeats, userInfo: userInfo)
+        scheduleNotifications(duration, of: type, repeats: repeats)
     }
 
 }

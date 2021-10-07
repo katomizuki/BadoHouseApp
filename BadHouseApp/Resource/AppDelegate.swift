@@ -81,24 +81,24 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    //ここでデバイストークンを受信したあとの処理が走る。
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //通知をうけて,diviceToken（data型）入ってくる。これをサーバーへ送るためには文字列に変換しなければならないのでmap関数を仕様して文字列へと変更してみる。
-        let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data)
-        }
-        //その配列を一つの文字列にしたいので配列をjoined関数で結合します。
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
-        //バンドルidを取得して見る。
-        let bundleID = Bundle.main.bundleIdentifier
-        print("Bundle ID: \(token) \(String(describing: bundleID))")
-    }
-    
-    //デバイストークンの受信に失敗した場合はここの関数が入る。(リモート通知はシミュレーターだと必ず失敗する）
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register for remote notifications: \(error.localizedDescription)")
-    }
+//    //ここでデバイストークンを受信したあとの処理が走る。
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        //通知をうけて,diviceToken（data型）入ってくる。これをサーバーへ送るためには文字列に変換しなければならないのでmap関数を仕様して文字列へと変更してみる。
+//        let tokenParts = deviceToken.map { data -> String in
+//            return String(format: "%02.2hhx", data)
+//        }
+//        //その配列を一つの文字列にしたいので配列をjoined関数で結合します。
+//        let token = tokenParts.joined()
+//        print("Device Token: \(token)")
+//        //バンドルidを取得して見る。
+//        let bundleID = Bundle.main.bundleIdentifier
+//        print("Bundle ID: \(token) \(String(describing: bundleID))")
+//    }
+//    
+//    //デバイストークンの受信に失敗した場合はここの関数が入る。(リモート通知はシミュレーターだと必ず失敗する）
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//        print("Failed to register for remote notifications: \(error.localizedDescription)")
+//    }
 }
 
 //Mark:UserNotificationDelegate
@@ -114,10 +114,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         defer { completionHandler() }
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
         let content = response.notification.request.content
-        if let userInfo = content.userInfo as? [String: Any],
-            let aps = userInfo["aps"] as? [String: Any] {
-            print("aps: \(aps)")
-        }
     }
 }
 

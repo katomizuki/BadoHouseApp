@@ -81,7 +81,7 @@ class CameraViewController: UIViewController {
 
       func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
                       Storage.sendVideoData(videoUrl: outputFileURL, senderId: Auth.getUserId(), keyWord:self.keyWord)
-          LocalNotificationManager.setNotification(3, of: .seconds, repeats: false, title: "プレ-を投稿しました", body: "", userInfo: ["aps" : ["hello" : "world"]])
+          LocalNotificationManager.setNotification(3, of: .seconds, repeats: false, title: "プレ-を投稿しました", body: "")
              
                   }
   }
