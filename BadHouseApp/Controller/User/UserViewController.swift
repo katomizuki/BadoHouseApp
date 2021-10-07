@@ -271,15 +271,15 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         cell.detailTextLabel?.text = ""
         
         switch title {
-        case "レベル":
+        case UserInfo.level.rawValue:
             cell.detailTextLabel?.text = level
-        case "性別":
+        case UserInfo.gender.rawValue:
             cell.detailTextLabel?.text = gender
-        case "バドミントン歴":
+        case UserInfo.badmintonTime.rawValue:
             cell.detailTextLabel?.text = badmintonTime
-        case "居住地":
+        case UserInfo.place.rawValue:
             cell.detailTextLabel?.text = place
-        case "年代":
+        case UserInfo.age.rawValue:
             cell.detailTextLabel?.text = age
         default:
             break
@@ -288,7 +288,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if cellTitleArray[indexPath.row] == "レベル" {
+        if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
             performSegue(withIdentifier: Utility.Segue.gotoLevel, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
@@ -328,3 +328,10 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
 
 
 
+enum UserInfo:String {
+    case level = "レベル"
+    case gender = "性別"
+    case badmintonTime = "バドミントン歴"
+    case place = "居住地"
+    case age = "年代"
+}

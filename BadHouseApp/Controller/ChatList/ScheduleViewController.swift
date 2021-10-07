@@ -149,10 +149,5 @@ extension ScheduleViewController:CalendarEventDelegate {
         vc.addAction(alertAction)
         vc.addAction(cancleAction)
         present(vc, animated: true, completion: nil)
-        
     }
-    
-   
-    
-    
 }

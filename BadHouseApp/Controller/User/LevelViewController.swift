@@ -128,5 +128,6 @@ class LevelViewController: UIViewController {
             textView.text = Utility.Data.levelSentence[9]
         }
     }
-    
 }
+
+
