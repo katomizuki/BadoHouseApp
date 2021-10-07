@@ -46,7 +46,12 @@ class RegisterViewController:UIViewController{
     }()
     
     private let alreadyButton:UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
-    private let googleView = GIDSignInButton()
+    private let googleView:GIDSignInButton = {
+        let button = GIDSignInButton()
+        button.style = .wide
+        return button
+    }()
+  
     private var displayName = String()
     private var pictureURL = String()
     private var pictureURLString = String()
@@ -67,11 +72,13 @@ class RegisterViewController:UIViewController{
         super.viewDidLoad()
         setupLayout()
         setupBinding()
-        googleView.style = .wide
+        setupDelegate()
+    }
+    
+    private func setupDelegate() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         fbButton.delegate = self
-        //許可するもの
         fbButton.permissions = ["public_profile, email"]
         nameTextField.delegate = self
         emailTextField.delegate = self

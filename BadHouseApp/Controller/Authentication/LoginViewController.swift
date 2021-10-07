@@ -17,7 +17,11 @@ class LoginViewController:UIViewController {
     private let loginBinding = LoginBindings()
     private var IndicatorView:NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
-    private let googleView = GIDSignInButton()
+    private let googleView:GIDSignInButton = {
+    let button = GIDSignInButton()
+        button.style = .wide
+    return button
+    }()
     private let iv:UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.logoImage)
@@ -52,14 +56,16 @@ class LoginViewController:UIViewController {
     override func viewDidLoad() {
         setupLayout()
         setupBinding()
-        googleView.style = .wide
+        setupDelegate()
+    }
+    
+    private func setupDelegate() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         fbButton.delegate = self
-        //許可するもの
         fbButton.permissions = ["public_profile, email"]
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
