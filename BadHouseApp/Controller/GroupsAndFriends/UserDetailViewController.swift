@@ -60,6 +60,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         super.viewWillAppear(animated)
         self.setupNavAccessory()
         navigationItem.title = user?.name
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     //Mark:setupMethod
     private func setupUI() {

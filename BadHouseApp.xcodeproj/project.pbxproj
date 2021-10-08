@@ -24,6 +24,7 @@
 		D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */; };
 		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
 		D388F0F027105AFA00ACA6B8 /* SubUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0EF27105AF900ACA6B8 /* SubUserViewController.swift */; };
+		D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D3977167270959A70025BE19 /* TornamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentController.swift */; };
 		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
@@ -118,6 +119,7 @@
 		D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
 		D388F0EF27105AF900ACA6B8 /* SubUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserViewController.swift; sourceTree = "<group>"; };
+		D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D3977166270959A70025BE19 /* TornamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentController.swift; sourceTree = "<group>"; };
 		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			children = (
 				D3BDB54026E0546000C53780 /* RegisterViewController.swift */,
 				D3BDB54326E0547300C53780 /* LoginViewController.swift */,
+				D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
+				D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */,
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,
 				D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */,
 				D3976EF1270337F40016CEB2 /* InputView.swift in Sources */,

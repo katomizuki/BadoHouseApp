@@ -71,6 +71,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     //Mark: setupMethod
     private func setupData() {
@@ -155,7 +156,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         friendImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
         friendImageView.layer.borderWidth = 2
         friendImageView.layer.masksToBounds = true
-        
         teamNameLabel.text = team?.teamName
         timeLabel.text = team?.teamTime
         placeLabel.text = team?.teamPlace

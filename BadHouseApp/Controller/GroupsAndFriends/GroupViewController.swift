@@ -37,6 +37,7 @@ class GroupViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         if Auth.auth().currentUser == nil {
             let vc = tabBarController?.viewControllers?[0]
             tabBarController?.selectedViewController = vc
@@ -183,7 +184,11 @@ extension GroupViewController:GetFriendDelegate {
 extension GroupViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         self.teamArray = []
-        self.teamArray = teamArray
+        var array = teamArray
+        array = array.sorted { element, nextElement in
+            return element.updatedAt.dateValue() > nextElement.updatedAt.dateValue()
+        }
+        self.teamArray = array
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         self.IndicatorView.stopAnimating()
         groupTableView.reloadData()

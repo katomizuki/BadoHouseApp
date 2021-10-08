@@ -68,6 +68,7 @@ class RegisterViewController:UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        //UserDefaultで条件分岐をする
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
     }
@@ -181,7 +182,6 @@ class RegisterViewController:UIViewController{
         let name = nameTextField.text ?? ""
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        
         Auth.register(name: name, email: email, password: password) { result,error in
             if result {
                 self.IndicatorView.stopAnimating()
