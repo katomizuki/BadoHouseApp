@@ -11,7 +11,6 @@ import FacebookCore
 import FacebookLogin
 
 class LoginViewController:UIViewController {
-    
     //Mark :Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()
@@ -27,7 +26,6 @@ class LoginViewController:UIViewController {
         iv.image = UIImage(named: Utility.ImageName.logoImage)
         return iv
     }()
-    
     private let emailTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "メールアドレス")
         tf.tag = 0
@@ -35,7 +33,6 @@ class LoginViewController:UIViewController {
         tf.keyboardType = .emailAddress
         return tf
     }()
-    
     private let passwordTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "パスワード")
         tf.tag = 1
@@ -44,14 +41,12 @@ class LoginViewController:UIViewController {
         tf.isSecureTextEntry = true
         return tf
     }()
-    
     private let loginButton:UIButton = {
         let button = RegisterButton(text: "ログイン")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return button
     }()
     private let dontHaveButton = UIButton(type: .system).createAuthButton(text: "新規登録の方はこちらへ")
-    
     //Mark: LifeCycle
     override func viewDidLoad() {
         setupLayout()
@@ -63,8 +58,7 @@ class LoginViewController:UIViewController {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
     }
-    
-    //Mark: SetupMetho
+    //Mark: SetupMethod
     private func setupLayout(){
         let basicStackView = UIStackView(arrangedSubviews: [emailTextField,passwordTextField,loginButton,googleView,fbButton])
         basicStackView.axis = .vertical
@@ -95,9 +89,7 @@ class LoginViewController:UIViewController {
         fbButton.delegate = self
         fbButton.permissions = ["public_profile, email"]
     }
-    
-    
-    //Mark:Binding
+
     private func setupBinding() {
         emailTextField.rx.text
             .asDriver()
@@ -141,13 +133,11 @@ class LoginViewController:UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
     //Mark :selector
     @objc func moveAlready() {
         print(#function)
         navigationController?.popViewController(animated: true)
     }
-    
     //Mark: Login
     private func login() {
         print(#function)
@@ -165,7 +155,6 @@ class LoginViewController:UIViewController {
             }
         }
     }
-    
     //Mark: LoginError
     private func signInErrAlert(_ error: NSError){
         print(#function)
@@ -173,7 +162,6 @@ class LoginViewController:UIViewController {
         self.setupCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
     }
 }
-
 //Mark GoogleSigninDelegate
 extension LoginViewController:GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -193,7 +181,6 @@ extension LoginViewController:GIDSignInDelegate {
         }
     }
 }
-
 //Mark facebookDelegate
 extension LoginViewController: LoginButtonDelegate {
     
@@ -219,7 +206,6 @@ extension LoginViewController: LoginButtonDelegate {
         }
     }
 }
-
 //Mark textFieldDelegate
 extension LoginViewController:UITextFieldDelegate {
     

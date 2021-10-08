@@ -3,7 +3,6 @@ import Firebase
 import SDWebImage
 
 class GroupChatViewController: UIViewController {
-    
     //Mark:Properties
     var team:TeamModel?
     private var chatArray = [GroupChatModel]()
@@ -24,7 +23,6 @@ class GroupChatViewController: UIViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +30,6 @@ class GroupChatViewController: UIViewController {
         setupData()
         view.backgroundColor = .white
     }
-    
     //Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
@@ -52,7 +49,6 @@ class GroupChatViewController: UIViewController {
         fetchData.groupChatDataDelegate = self
     }
 }
-
 //Mark :tableViewdelegate
 extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
     
@@ -95,6 +91,4 @@ extension GroupChatViewController:InputDelegate {
         Firestore.sendGroupChat(teamId: teamId, me: me, text: text)
         inputView.messageInputTextView.text = ""
     }
-    
-    
 }

@@ -2,20 +2,17 @@ import UIKit
 import FacebookCore
 
 class PopViewController: UIViewController{
-    
     //Mark Properties
     private let CellId = Utility.CellId.popCellId
     var cellArray = Utility.Data.genderArray
     var keyword = String()
     let tableView = UITableView()
     var (age,place,badmintonTime,gender) = (String(),String(),String(),String())
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
     }
-    
     //Mark setupMethod
     private func setUpTableView() {
         tableView.delegate = self
@@ -39,7 +36,6 @@ class PopViewController: UIViewController{
         tableView.reloadData()
     }
 }
-
 //Mark tableViewdelegate
 extension PopViewController:UITableViewDelegate,UITableViewDataSource {
     

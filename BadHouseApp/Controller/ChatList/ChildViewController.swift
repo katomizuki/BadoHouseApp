@@ -5,14 +5,12 @@ import SDWebImage
 import NVActivityIndicatorView
 
 class ChildViewController: UIViewController {
-    
     //Mark properties
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
     private var IndicatorView:NVActivityIndicatorView!
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +21,6 @@ class ChildViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupData()
     }
-    
     //Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
@@ -50,7 +47,6 @@ class ChildViewController: UIViewController {
         }
     }
 }
-
 //Mark:IndicatorInfo-Extension
 extension ChildViewController:IndicatorInfoProvider {
     
@@ -60,7 +56,6 @@ extension ChildViewController:IndicatorInfoProvider {
 }
 //Mark:getPrejoinDelegate
 extension ChildViewController:GetPrejoinDataDelegate {
-    
     func getPrejoin(preJoin: [[String]]) {
         self.notificationArray = [[User]]()
         let group = DispatchGroup()
@@ -117,7 +112,6 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             cell.cellImagevView.sd_setImage(with: url, completed: nil)
             cell.cellImagevView.toCorner(num: 30)
         }
-        
         return cell
     }
     

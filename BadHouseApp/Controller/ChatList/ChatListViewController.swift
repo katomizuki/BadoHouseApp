@@ -3,8 +3,7 @@ import Firebase
 import SDWebImage
 import CDAlertView
 
-class ChatListViewController:UIViewController{
-    
+class ChatListViewController:UIViewController {
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
@@ -38,6 +37,7 @@ class ChatListViewController:UIViewController{
         setupNotification()
         setupNav()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         setupData()
         setupOwnTeamData()
@@ -47,7 +47,6 @@ class ChatListViewController:UIViewController{
         self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    
     //Mark setupMethod
     private func setupFetchDataDelegate () {
         fetchData.chatDelegate = self
@@ -93,13 +92,13 @@ class ChatListViewController:UIViewController{
             }
         }
     }
+    
     private func setupOwnTeamData() {
         Firestore.getOwnTeam(uid: Auth.getUserId()) {[weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
     }
-    
     //Mark helperMethod
     private func cleanArray() {
         self.anotherUserArray = []
@@ -115,6 +114,7 @@ class ChatListViewController:UIViewController{
     @objc private func handleNotification() {
         performSegue(withIdentifier: Utility.Segue.gotoNotification, sender: nil)
     }
+    
     @objc private func handleSchedule() {
         print(#function)
         Firestore.getUserData(uid: Auth.getUserId()) { user in
@@ -123,6 +123,7 @@ class ChatListViewController:UIViewController{
             self.present(vc, animated: true, completion: nil)
         }
     }
+    
     @objc private func handleRefresh() {
         setupData()
         setupOwnTeamData()
@@ -131,7 +132,6 @@ class ChatListViewController:UIViewController{
         }
     }
 }
-
 //Mark:tableViewdelegate,datasource
 extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     
@@ -172,7 +172,6 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
@@ -217,7 +216,6 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
 }
-
 //Mark getchatDelegate
 extension ChatListViewController: GetChatDataDelgate {
     
@@ -225,7 +223,6 @@ extension ChatListViewController: GetChatDataDelgate {
         self.chatArray.append(chatArray)
     }
 }
-
 //Mark getChatRoomDelegate
 extension ChatListViewController: GetChatRoomDataDelegate {
     
@@ -235,7 +232,6 @@ extension ChatListViewController: GetChatRoomDataDelegate {
         self.chatModelArray = chatRoomArray
     }
 }
-
 //Mark getChatListDelegate
 extension ChatListViewController :GetChatListDelegate {
     

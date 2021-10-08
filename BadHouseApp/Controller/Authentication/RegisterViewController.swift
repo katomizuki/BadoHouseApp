@@ -13,7 +13,6 @@ import FacebookLogin
 import Firebase
 
 class RegisterViewController:UIViewController{
-    
     //Mark :Properties
     private let nameTextField:UITextField = {
         let tf = RegisterTextField(placeholder: "名前")
@@ -47,7 +46,6 @@ class RegisterViewController:UIViewController{
         button.style = .wide
         return button
     }()
-    
     private var displayName = String()
     private var pictureURL = String()
     private var pictureURLString = String()
@@ -60,7 +58,6 @@ class RegisterViewController:UIViewController{
     private let registerBinding = RegisterBindings()
     private var IndicatorView:NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
-    
     //Mark :LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +66,12 @@ class RegisterViewController:UIViewController{
         setupDelegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        view.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
+    }
+    //Mark: setup Method
     private func setupDelegate() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
@@ -79,13 +82,6 @@ class RegisterViewController:UIViewController{
         passwordTextField.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        view.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    //Mark: setup Method
     private func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googleView,fbButton])
         stackView.axis = .vertical
@@ -178,7 +174,6 @@ class RegisterViewController:UIViewController{
             }
             .disposed(by: disposeBag)
     }
-    
     //Mark:Helper Method
     private func createUser() {
         IndicatorView.startAnimating()
@@ -200,15 +195,13 @@ class RegisterViewController:UIViewController{
             }
         }
     }
-    
     //Mark:signUPErrAlert
     func signUpErrAlert(_ error: NSError){
         let message = setupErrorMessage(error: error)
         self.setupCDAlert(title: "登録できません", message: message, action: "OK", alertType: .error)
     }
-    
 }
-
+//Mark GoogleSigninDelegate
 extension RegisterViewController: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -244,7 +237,6 @@ extension RegisterViewController: GIDSignInDelegate {
         print(error.localizedDescription)
     }
 }
-
 //Mark FaceBookDelegate
 extension RegisterViewController:LoginButtonDelegate {
     
@@ -283,10 +275,8 @@ extension RegisterViewController:LoginButtonDelegate {
         print("logout fb")
     }
 }
-
 //Mark uitextFieldDelegate
 extension RegisterViewController:UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let tag = textField.tag

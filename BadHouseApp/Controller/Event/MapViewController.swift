@@ -8,7 +8,6 @@ protocol SearchLocationProtocol:AnyObject {
 }
 
 class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRecognizerDelegate{
-    
     //Mark:Properties
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
@@ -24,7 +23,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         }
     }
-    
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Utility.AppColor.OriginalBlue
@@ -47,7 +45,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +55,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     override func viewWillAppear(_ animated: Bool) {
         searchBar.becomeFirstResponder()
     }
-    
     //Mark:selector
     @objc private func mapTap(_ gesture:UITapGestureRecognizer) {
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
@@ -82,14 +78,12 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             self.placeLongitude = longitude
         }
     }
-    
     //Mark:IBAction
     @IBAction private func saveButton(_ sender: Any) {
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress)
         dismiss(animated: true, completion: nil)
     }
 }
-
 //Mark searchBarDelegate
 extension MapViewController:UISearchBarDelegate {
     

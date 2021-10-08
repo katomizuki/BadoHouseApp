@@ -3,7 +3,6 @@ import TaggerKit
 import Firebase
 
 class TagViewController: UIViewController, TKCollectionViewDelegate {
-    
     //Mark:Properties
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var testContainerView: UIView!
@@ -29,28 +28,20 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     var (teamId,eventId) = (String(),String())
     var eventImage:UIImage?
     private var tagCollection = TKCollectionView()
-    
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTag()
     }
-    
     //Mark setupMethod
     private func setupTag() {
-        productTags = TKCollectionView(tags: ["#バド好き歓迎"],
-                                       action: .removeTag,
-                                       receiver: nil)
-        allTags = TKCollectionView(tags: Utility.Data.tagArray,
-                                   action: .addTag,
-                                   receiver: productTags)
+        productTags = TKCollectionView(tags: ["#バド好き歓迎"],action: .removeTag,receiver: nil)
+        allTags = TKCollectionView(tags: Utility.Data.tagArray,action: .addTag,receiver: productTags)
         productTags.delegate = self
         allTags.delegate = self
-        
         add(allTags,toView:  testContainerView)
         add(productTags,toView:searchContainerView)
     }
-    
     //Mark:IBAction
     @IBAction func finishAction(_ sender: Any) {
         guard let image = eventImage else { return }
@@ -61,8 +52,6 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         }
         navigationController?.popToRootViewController(animated: true)
     }
-    
-    
     //Mark:HelperMethod
     func tagIsBeingAdded(name: String?) {
         guard let text = name else { return }

@@ -6,7 +6,6 @@ import FSCalendar
 import FacebookCore
 
 class ScheduleViewController: UIViewController{
-    
     //Mark properties
     var me:User?
     private let cellId = Utility.CellId.CellGroupId
@@ -20,7 +19,6 @@ class ScheduleViewController: UIViewController{
         let view = FSCalendar()
         return view
     }()
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +77,6 @@ extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
         return cell
     }
 }
-
 //Mark:eventDelegate
 extension ScheduleViewController:GetMyEventDelegate {
     
@@ -96,7 +93,6 @@ extension ScheduleViewController:GetMyEventDelegate {
         calendar.reloadData()
     }
 }
-
 //Mark FSCalendarDelegate
 extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCalendarDelegateAppearance{
     
@@ -126,7 +122,6 @@ extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCal
         return nil
     }
 }
-
 //Mark:CalendarEventDelegate
 extension ScheduleViewController:CalendarEventDelegate {
     

@@ -13,17 +13,17 @@ class PostViewController: UIViewController {
         return iv
     }()
     private let singleButton:UIButton = {
-        let button = RegisterButton(text: "シングルス")
+        let button = RegisterButton(text: Badominton.single.rawValue)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
     private let doubleButton:UIButton = {
-        let button = RegisterButton(text: "ダブルス")
+        let button = RegisterButton(text: Badominton.double.rawValue)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
     private let mixButton:UIButton = {
-        let button = RegisterButton(text: "ミックス")
+        let button = RegisterButton(text: Badominton.mix.rawValue)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
@@ -36,13 +36,11 @@ class PostViewController: UIViewController {
     let fileOutput = AVCaptureMovieFileOutput()
     var recordButton: UIButton!
     var isRecording = false
-    
     //Mark lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
     }
-    
     //Mark setupMethod
     private func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [label,singleButton,doubleButton,mixButton])
@@ -66,15 +64,15 @@ class PostViewController: UIViewController {
 #else
         if sender == singleButton {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
-            vc.keyWord = "シングルス"
+            vc.keyWord = Badominton.single.rawValue
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == doubleButton {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
-            vc.keyWord = "ダブルス"
+            vc.keyWord = Badominton.double.rawValue
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == mixButton {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
-            vc.keyWord = "ミックス"
+            vc.keyWord = Badominton.mix.rawValue
             navigationController?.pushViewController(vc, animated: true)
         }
 #endif

@@ -24,6 +24,7 @@ struct Utility {
         static let inviteVC = "inviteVC"
         static let MakeGroupVC = "MakeGroupVC"
         static let TornamentDetailVC = "TornamentDetailVC"
+        static let FriendVC = "FriendVC"
     }
     struct Segue {
         static let gotoRegister = "gotoRegister"
@@ -92,8 +93,42 @@ struct Utility {
         static let yearArray = ["1年未満","1年~3年","4年~6年","7年~10年","10年以上"]
         static let placeArray = ["東京都","神奈川県","千葉県","埼玉県"]
         static let ageArray = ["10代以下","10代","20代","30代","40代","50代","60代","70代以上"]
+        static let badomintonArray = ["シングルス","ダブルス","ミックス"]
     }
 }
 
+//Mark Enum UserInfo
+enum UserInfo:String {
+    case level = "レベル"
+    case gender = "性別"
+    case badmintonTime = "バドミントン歴"
+    case place = "居住地"
+    case age = "年代"
+}
 
+//Mark Badominton
+enum Badominton:String {
+    case single = "シングルス"
+    case double = "ダブルス"
+    case mix = "ミックス"
+}
+
+enum BadmintonCircle:String {
+    case student = "学生サークル"
+    case society = "社会人サークル"
+    case other = "その他練習"
+}
+
+enum BadmintonLevel:String {
+    case one = "レベル1"
+    case two = "レベル2"
+    case three = "レベル3"
+    case four = "レベル4"
+    case five = "レベル5"
+    case six = "レベル6"
+    case seven = "レベル7"
+    case eight = "レベル8"
+    case nine = "レベル9"
+    case ten = "レベル10"
+}
 

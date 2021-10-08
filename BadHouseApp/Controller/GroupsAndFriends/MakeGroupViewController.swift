@@ -7,7 +7,6 @@ import SDWebImage
 import FirebaseAuth
 
 class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate {
-    
     //Mark :Properties
     private let disposeBag = DisposeBag()
     private let teamBinding = TeamRegisterBindings()
@@ -85,7 +84,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let placePickerView = UIPickerView()
     private let placeArray = Utility.Data.placeArray
     private let moneyArray = Utility.Data.moneyArray
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +124,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         toolBar.setItems([doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
+    
     private func setupDelegate() {
         nameTextField.delegate = self
         placeTextField.delegate = self
@@ -276,7 +275,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             }
             .disposed(by: disposeBag)
     }
-    
     //Mark selector
     @objc private func donePicker() {
         placeTextField.endEditing(true)
@@ -292,8 +290,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         plusTextField.resignFirstResponder()
         timeTextField.resignFirstResponder()
     }
-    
-    //Mark:selector
+
     @objc func tap(sender:UIButton) {
         if sender.backgroundColor != Utility.AppColor.OriginalBlue {
             sender.backgroundColor = Utility.AppColor.OriginalBlue
@@ -318,7 +315,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     
     private func createTeam() {
         print(#function)
-        
         guard let teamName = nameTextField.text else { return }
         guard let teamTime = timeTextField.text else { return }
         guard let teamPlace = placeTextField.text else { return }
@@ -326,7 +322,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         guard let teamImage = groupImageView.image else { return }
         guard let teamUrl = plusTextField.text else { return }
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendVC") as! FriendsViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.FriendVC) as! FriendsViewController
         vc.friends = self.friends
         vc.teamName = teamName
         vc.teamTime = teamTime
@@ -338,7 +334,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         vc.teamTagArray = self.tagArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     //Mark: IBAction
     @IBAction func cameraTap(_ sender: Any) {
         print(#function)
@@ -349,9 +344,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         }
     }
 }
-
-
-
 //Mark UIPickerDelegate,UINavigationControllerDelegate
 extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDelegate,UIPickerViewDataSource {
     
@@ -381,7 +373,6 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
         } else {
             return moneyArray[row]
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

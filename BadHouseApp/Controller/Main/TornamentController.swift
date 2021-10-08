@@ -1,12 +1,10 @@
 import UIKit
 
 class TornamentController: UIViewController {
-    
     //Mark properties
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = Utility.CellId.CellGroupId
-    
-    //Mark properties
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -15,7 +13,6 @@ class TornamentController: UIViewController {
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
     //Mark helperMethod
     private func setupTableView() {
         tableView.delegate = self
@@ -23,7 +20,6 @@ class TornamentController: UIViewController {
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
-    
 }
 //Mark TableViewDelegate
 extension TornamentController:UITableViewDelegate,UITableViewDataSource {

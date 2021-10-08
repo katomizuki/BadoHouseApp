@@ -7,7 +7,6 @@ import FacebookCore
 import SwiftUI
 
 class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDelegate {
-    
     //Mark: Properties
     private let fetchData = FetchFirestoreData()
     var team:TeamModel?
@@ -55,7 +54,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var inviteButton: UIBarButtonItem!
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +73,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         self.setupNavAccessory()
         navigationItem.title = team?.teamName
     }
-    
     //Mark: setupMethod
     private func setupData() {
         guard let teamId = team?.teamId else { return }
@@ -142,6 +139,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         border.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(border)
     }
+    
     private func setUpTeamStatus() {
         print(#function)
         let nib = TeammemberCell.nib()
@@ -164,6 +162,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         placeLabel.text = team?.teamPlace
         priceLabel.text = "\(team?.teamLevel ?? "")/月"
     }
+    
     private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
@@ -199,12 +198,12 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         BarChartView.legend.enabled = false
         dataSet.colors = [.lightGray]
     }
-    
     //Mark: helplerMethod
     private func updateBorder() {
         setupBorder(view: placeStackView)
         setupBorder(view: timeStackView)
     }
+    
     private func changeUI() {
         withdrawButton.isHidden = flag
         chatButton.isHidden = flag
@@ -213,7 +212,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         }
         friendImageView.isUserInteractionEnabled = !flag
     }
-    
     //Mark:Protocol
     func getGenderCount(count: [Int]) {
         self.genderArray = count
@@ -224,7 +222,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         self.rawData = count
         self.setupGraph()
     }
-    
     //Mark IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
@@ -240,17 +237,14 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         present(vc, animated: true, completion: nil)
     }
     
-    
-    
-    
     @IBAction private func gotoGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction private func go(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "GroupChatViewController") as! GroupChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -273,7 +267,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         }
     }
 }
-
 //Mark detailSearchDelegate
 extension GroupDetailViewController:backDelegate {
     
@@ -290,7 +283,6 @@ extension GroupDetailViewController:backDelegate {
         }
     }
 }
-
 //Mark: CollectionViewDelegate,DataSource
 extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     
@@ -339,6 +331,7 @@ class UpdateViewController:UIViewController {
         iv.layer.masksToBounds = true
         return iv
     }()
+    
     private let button:UIButton = {
         let button = UIButton()
         button.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
@@ -346,7 +339,6 @@ class UpdateViewController:UIViewController {
         return button
     }()
     private let imagePicker = UIImagePickerController()
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -354,7 +346,6 @@ class UpdateViewController:UIViewController {
         setupteamInfo()
         imagePicker.delegate = self
     }
-    
     //Mark setupMethod
     private func setupLayout() {
         view.backgroundColor = .white
@@ -381,7 +372,6 @@ class UpdateViewController:UIViewController {
         let url = URL(string: urlString)
         iv.sd_setImage(with: url, completed: nil)
     }
-    
     //Mark initalize
     init(team:TeamModel) {
         super.init(nibName: nil, bundle: nil)
@@ -391,7 +381,6 @@ class UpdateViewController:UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     //Mark selector
     @objc private func handleSave() {
         guard let place = placeTextField.text else { return }
@@ -400,7 +389,6 @@ class UpdateViewController:UIViewController {
         self.team?.teamPlace = place
         self.team?.teamTime = time
         self.team?.teamLevel = money
-        
         guard let image = iv.image else { return }
         Storage.addTeamImage(image: image) { [weak self] urlString in
             guard let self = self else { return }
@@ -417,7 +405,6 @@ class UpdateViewController:UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
 }
-
 //Mark: UIImagePickerDelegate
 extension UpdateViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

@@ -5,7 +5,6 @@ import Firebase
 import RangeUISlider
 
 class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
-    
     //Mark:properties
     @IBOutlet private weak var gatherCountLabel: UILabel!
     @IBOutlet private weak var courtCountLabel: UILabel!
@@ -81,7 +80,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private var selectedTeam:TeamModel?
     private var (teamPlace,teamTime) = (String(),String())
     private var (eventTitle,eventStartTime,eventLastTime,eventLevel,eventMoney,courtCount,gatherCount,detailText,placeAddress) = (String(),String(),String(),String(),String(),String(),String(),String(),String())
-    private var kindCircle = "学生サークル"
+    private var kindCircle = BadmintonCircle.student.rawValue
     private var (placeLatitude,placeLongitude) = (Double(),Double())
     private var dic = [String:Any]()
     private var team:TeamModel?
@@ -95,7 +94,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private let moneyArray = Utility.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     private let fetchData = FetchFirestoreData()
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +107,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
-    
     //Mark setupMethod
     private func setupDelegate() {
         levelUISlider.delegate = self
@@ -214,17 +211,16 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
     }
-    
     //Mark:Selector
     @objc private func segmentTap(sender:UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         switch index {
         case 0:
-            kindCircle = "学生サークル"
+            kindCircle = BadmintonCircle.student.rawValue
         case 1:
-            kindCircle = "社会人サークル"
+            kindCircle = BadmintonCircle.society.rawValue
         case 2:
-            kindCircle = "その他練習"
+            kindCircle = BadmintonCircle.other.rawValue
         default:
             break
         }
@@ -248,8 +244,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             teamImageUrl = self.team?.teamImageUrl ?? ""
         }
         guard let teamName = selectedTeam?.teamName else { return }
-        let max = maxLevelLabel.text ?? "レベル6"
-        let min = minLevelLabel.text ?? "レベル2"
+        let max = maxLevelLabel.text ?? BadmintonLevel.six.rawValue
+        let min = minLevelLabel.text ?? BadmintonLevel.two.rawValue
         eventLevel = min + "~" + max
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
@@ -286,8 +282,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    
     //Mark:IBAction
     @IBAction private func plusCourt(_ sender: UIStepper) {
         let num = String(Int(sender.value) + 1)
@@ -308,7 +302,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         print(#function)
         performSegue(withIdentifier: Utility.Segue.gotoMap, sender: nil)
     }
-    
     //Mark helperMethod
     private func tfupdate(view:UIView) {
         view.layer.borderColor = UIColor.lightGray.cgColor
@@ -316,7 +309,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
     }
-    
     //Mark: MapDelegateMethod
     func sendLocationData(location: [Double], placeName: String,placeAddress:String) {
         self.teamPlace = placeName
@@ -333,7 +325,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         }
     }
 }
-
 //Mark: UIPickerViewDelegate
 extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -363,7 +354,6 @@ extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
-
 //Mark: RangeUISliderDelegate
 extension MakeEventViewController:RangeUISliderDelegate{
     //Mark RangeDelegate
@@ -373,56 +363,55 @@ extension MakeEventViewController:RangeUISliderDelegate{
     func rangeIsChanging(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
         switch minValueSelected {
         case 0..<1:
-            minLevelLabel.text = "レベル1"
+            minLevelLabel.text = BadmintonLevel.one.rawValue
         case 1..<2:
-            minLevelLabel.text = "レベル2"
+            minLevelLabel.text = BadmintonLevel.two.rawValue
         case 2..<3:
-            minLevelLabel.text = "レベル3"
+            minLevelLabel.text = BadmintonLevel.three.rawValue
         case 3..<4:
-            minLevelLabel.text = "レベル4"
+            minLevelLabel.text = BadmintonLevel.four.rawValue
         case 4..<5:
-            minLevelLabel.text = "レベル5"
+            minLevelLabel.text = BadmintonLevel.five.rawValue
         case 5..<6:
-            minLevelLabel.text = "レベル6"
+            minLevelLabel.text = BadmintonLevel.six.rawValue
         case 6..<7:
-            minLevelLabel.text = "レベル7"
+            minLevelLabel.text = BadmintonLevel.seven.rawValue
         case 7..<8:
-            minLevelLabel.text = "レベル8"
+            minLevelLabel.text = BadmintonLevel.eight.rawValue
         case 8..<9:
-            minLevelLabel.text = "レベル9"
+            minLevelLabel.text = BadmintonLevel.nine.rawValue
         case 9..<10:
-            minLevelLabel.text = "レベル10"
+            minLevelLabel.text = BadmintonLevel.ten.rawValue
         default:
             break
         }
         
         switch maxValueSelected {
         case 0..<1:
-            maxLevelLabel.text = "レベル1"
+            maxLevelLabel.text = BadmintonLevel.one.rawValue
         case 1..<2:
-            maxLevelLabel.text = "レベル2"
+            maxLevelLabel.text = BadmintonLevel.two.rawValue
         case 2..<3:
-            maxLevelLabel.text = "レベル3"
+            maxLevelLabel.text = BadmintonLevel.three.rawValue
         case 3..<4:
-            maxLevelLabel.text = "レベル4"
+            maxLevelLabel.text = BadmintonLevel.four.rawValue
         case 4..<5:
-            maxLevelLabel.text = "レベル5"
+            maxLevelLabel.text = BadmintonLevel.five.rawValue
         case 5..<6:
-            maxLevelLabel.text = "レベル6"
+            maxLevelLabel.text = BadmintonLevel.six.rawValue
         case 6..<7:
-            maxLevelLabel.text = "レベル7"
+            maxLevelLabel.text = BadmintonLevel.seven.rawValue
         case 7..<8:
-            maxLevelLabel.text = "レベル8"
+            maxLevelLabel.text = BadmintonLevel.eight.rawValue
         case 8..<9:
-            maxLevelLabel.text = "レベル9"
+            maxLevelLabel.text = BadmintonLevel.nine.rawValue
         case 9..<10:
-            maxLevelLabel.text = "レベル10"
+            maxLevelLabel.text = BadmintonLevel.ten.rawValue
         default:
             break
         }
     }
 }
-
 //Mark:uinavigationDelegate
 extension MakeEventViewController:UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

@@ -12,7 +12,6 @@ protocol getDetailDelegate:AnyObject {
 }
 
 class DetailSearchViewController: UIViewController{
-    
     //Mark:Properties
     @IBOutlet private weak var titleStackView: UIStackView!
     @IBOutlet private weak var circleStackView: UIStackView!
@@ -59,7 +58,6 @@ class DetailSearchViewController: UIViewController{
     private var dateString = String()
     private var eventArray = [Event]()
     weak var delegate:getDetailDelegate?
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +67,6 @@ class DetailSearchViewController: UIViewController{
         setupAddtarget()
         setupDelegate()
     }
-    
     //Mark:setupMethod
     private func setupLayer() {
         setupUnderLayer(view: titleStackView)
@@ -106,7 +103,6 @@ class DetailSearchViewController: UIViewController{
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
     }
     
-    
     private func setPicker(pickerView:UIPickerView,textField:UITextField) {
         pickerView.delegate = self
         textField.inputView = pickerView
@@ -130,10 +126,10 @@ class DetailSearchViewController: UIViewController{
         textfield.layer.borderWidth = 2
         textfield.toCorner(num: 15)
     }
+    
     private func getCGrect(view:UIView)->CGRect {
         return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
     }
-    
     //Mark:SelectorMethod
     @objc private func donePicker() {
         circleTextField.endEditing(true)
@@ -177,7 +173,6 @@ class DetailSearchViewController: UIViewController{
             break
         }
     }
-    
     //Mark:IBAction
     @IBAction private func search(_ sender: Any) {
         let title = titleTextField.text ?? ""
@@ -189,12 +184,7 @@ class DetailSearchViewController: UIViewController{
         self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
-    
 }
-
 //Mark:PickerViewDelegate
 extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource {
     
@@ -220,7 +210,6 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
         } else {
             return self.level[row]
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

@@ -8,7 +8,6 @@ import FirebaseAuth
 import CDAlertView
 
 class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
-    
     //Mark: properties
     var user:User?
     private let cellId = Utility.CellId.userCellId
@@ -21,7 +20,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14,weight: .bold)
         return button
     }()
-    
     var level:String = "" {
         didSet {
             userTableView.reloadData()
@@ -47,7 +45,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
             userTableView.reloadData()
         }
     }
-    
     private var introduction = ""
     private let backButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
     private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
@@ -79,7 +76,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private let userTableView = UITableView()
     var cellTitleArray = Utility.Data.userSection
     @IBOutlet private weak var scrollView: UIView!
-    
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +84,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         setupBinding()
         setupUserTableView()
     }
-    
     //Mark: setupMethod
     private func setupUserTableView() {
         userTableView.delegate = self
@@ -106,21 +101,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         updateUI()
     }
     
-    private func updateUI() {
-        //Mark: textFieldUPdate
-        nameLabel.text = user?.name
-        if let url = URL(string: user?.profileImageUrl ?? "") {
-            profileImageView.sd_setImage(with: url, completed: nil)
-        }
-        level = user?.level ?? "レベル1"
-        gender = user?.gender ?? "未設定"
-        badmintonTime = user?.badmintonTime ?? "未設定"
-        place = user?.place ?? "未設定"
-        age = user?.age ?? "未設定"
-    }
-    
     private func setupAddSubView() {
-        //Mark addSubView
         scrollView.addSubview(backButton)
         scrollView.addSubview(saveButton)
         scrollView.addSubview(profileImageView)
@@ -130,6 +111,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         scrollView.addSubview(userTableView)
         scrollView.addSubview(logoutButton)
     }
+    
     private func setupAnchor() {
         //Mark: Anchor
         backButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
@@ -141,6 +123,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
         logoutButton.anchor(top:saveButton.bottomAnchor,right: view.rightAnchor,paddingTop: 40,paddingRight: 15,width:80)
     }
+    
     private func setupBinding() {
         print(#function)
         saveButton.rx.tap
@@ -170,7 +153,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 self.setupCDAlert(title: "ユーザー情報を保存しました", message: "", action: "OK", alertType: .success)
             }.disposed(by:diposeBag)
     }
-    
     //Mark: Selector
     @objc private func back() {
         dismiss(animated: true, completion: nil)
@@ -185,8 +167,19 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
             print(error)
         }
     }
+    //Mark helperMethod
+    private func updateUI() {
+        nameLabel.text = user?.name
+        if let url = URL(string: user?.profileImageUrl ?? "") {
+            profileImageView.sd_setImage(with: url, completed: nil)
+        }
+        level = user?.level ?? BadmintonLevel.one.rawValue
+        gender = user?.gender ?? "未設定"
+        badmintonTime = user?.badmintonTime ?? "未設定"
+        place = user?.place ?? "未設定"
+        age = user?.age ?? "未設定"
+    }
 }
-
 //Mark: CollectionDelegate, Datasource
 extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -201,7 +194,6 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
         return cell
     }
     
-    //Mark Binding
     private func bindingsCell(cell:InfoCollectionViewCell) {
         cell.nameTextField.rx.text
             .asDriver()
@@ -209,7 +201,6 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
                 self?.name = text ?? ""
             }
             .disposed(by: diposeBag)
-        
         
         cell.emailTextField.rx.text
             .asDriver()
@@ -235,8 +226,6 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
             .disposed(by: diposeBag)
     }
 }
-
-
 //Mark UIPickerDelegate,UINavigationControllerDelegate
 extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
@@ -248,9 +237,7 @@ extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate
         hasChangedImage = true
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
-
 //Mark tableViewDelegate,popoverDelegate
 extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate ,UIAdaptivePresentationControllerDelegate {
     
@@ -325,11 +312,4 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
 }
 
 
-//Mark Enum UserInfo
-enum UserInfo:String {
-    case level = "レベル"
-    case gender = "性別"
-    case badmintonTime = "バドミントン歴"
-    case place = "居住地"
-    case age = "年代"
-}
+

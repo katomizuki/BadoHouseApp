@@ -8,7 +8,6 @@ import CDAlertView
 import FacebookCore
 
 class EventDetailViewController: UIViewController {
-    
     //Mark :Properties
     var event:Event?
     var team:TeamModel?
@@ -81,7 +80,6 @@ class EventDetailViewController: UIViewController {
     @IBOutlet private weak var placeStackView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
     private var chatId:String?
-    
     //Mark:Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +96,6 @@ class EventDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
-    
     //Mark:SetupMethod
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
@@ -177,7 +174,6 @@ class EventDetailViewController: UIViewController {
         pin.coordinate = CLLocationCoordinate2D(latitude: x, longitude: y)
         mapView.addAnnotation(pin)
     }
-    
     //Mark:HelperMethod
     private func changeString(string:String)->String {
         var text = string
@@ -195,8 +191,7 @@ class EventDetailViewController: UIViewController {
         return text
     }
     
-    //Mark setupPieChart
-    private func setPieChart() {
+    private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
             entry.append(PieChartDataEntry(value: Double(genderArray[i]),label:genderValue[i], data: genderArray[i]))
@@ -211,8 +206,7 @@ class EventDetailViewController: UIViewController {
         pieChartDataSet.colors = colors
     }
     
-    //Mark: setupBar
-    private func setBarChart() {
+    private func setupBarChart() {
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
         barView.scaleXEnabled = false
         barView.scaleYEnabled = false
@@ -349,7 +343,7 @@ extension EventDetailViewController:GetGenderCount {
     
     func getGenderCount(count: [Int]) {
         self.genderArray = count
-        self.setPieChart()
+        self.setupPieChart()
     }
 }
 
@@ -358,10 +352,9 @@ extension EventDetailViewController: GetBarChartDelegate {
     
     func getBarData(count: [Int]) {
         self.rawData = count
-        self.setBarChart()
+        self.setupBarChart()
     }
 }
-
 //Mark:collectionViewdelegate
 extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     

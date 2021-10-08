@@ -2,9 +2,13 @@ import UIKit
 import Firebase
 import SDWebImage
 import XLPagerTabStrip
+enum XLPager:String {
+    case main = "Main"
+    case first = "First"
+    case second = "Second"
+}
 
 class PreJoinViewController: ButtonBarPagerTabStripViewController{
-    
     //Mark properties
     lazy var collectionView:ButtonBarView = {
         let cv = buttonBarView
@@ -14,7 +18,6 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         let sv = containerView
         return sv!
     }()
-    
     //Mark lifecycle
     override func viewDidLoad() {
         setupXLTab()
@@ -22,13 +25,10 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         view.addSubview(collectionView)
         view.addSubview(scrollView)
     }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionAndScroll()
-        
     }
-    
     //Mark helperMethod
     private func collectionAndScroll() {
         let width = view.frame.size.width
@@ -45,7 +45,6 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-    
     //Mark setupMethod
     private func setupXLTab() {
         settings.style.buttonBarItemBackgroundColor = UIColor(named: Utility.AppColor.darkColor)
@@ -64,12 +63,10 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "First") as! ChildViewController
-        let secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Second") as! DaughterViewController
+        let firstVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! ChildViewController
+        let secondVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! DaughterViewController
         return [firstVC,secondVC]
     }
-    
-    
 }
 
 

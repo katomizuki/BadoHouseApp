@@ -11,7 +11,6 @@ import CDAlertView
 import FacebookCore
 
 class ViewController: UIViewController {
-    
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
@@ -33,7 +32,6 @@ class ViewController: UIViewController {
             timeButton.toCorner(num: 15)
         }
     }
-    
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +60,6 @@ class ViewController: UIViewController {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    
     //Mark:setupMethod
     private func setupEmptyState() {
         view.emptyState.delegate = self
@@ -116,7 +113,6 @@ class ViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
-    
     //Mark:Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Utility.Segue.gotoUser {
@@ -132,19 +128,16 @@ class ViewController: UIViewController {
             vc.delegate = self
         }
     }
-    
     //Mark:showAlert
     func showAlert() {
         self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
-    
     //Mark IBAction
     @IBAction private func scroll(_ sender: Any) {
         print(#function)
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
     }
 }
-
 //Mark: UICollectionDelegate
 extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
@@ -178,7 +171,6 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         }
     }
 }
-
 //Mark: CLLocationMangerDelegate
 extension ViewController: CLLocationManagerDelegate {
     
@@ -191,7 +183,6 @@ extension ViewController: CLLocationManagerDelegate {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
     }
 }
-
 //Mark: GetEventSearchDelegate
 extension ViewController:GetEventSearchDelegate {
     
@@ -203,7 +194,6 @@ extension ViewController:GetEventSearchDelegate {
         }
     }
 }
-
 //Mark: UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
     
@@ -232,7 +222,6 @@ extension ViewController: UISearchBarDelegate {
         }
     }
 }
-
 //Mark GetEventTimeDelegate
 extension ViewController: GetEventTimeDelegate{
     
@@ -247,7 +236,6 @@ extension ViewController: GetEventTimeDelegate{
         }
     }
 }
-
 //Mark GetEventDelegate
 extension ViewController:GetEventDelegate {
     func getEventData(eventArray: [Event]) {
@@ -259,7 +247,6 @@ extension ViewController:GetEventDelegate {
         }
     }
 }
-
 //Mark: GetDetailDataDelegate
 extension ViewController:GetDetailDataDelegate {
     func getDetailData(eventArray: [Event]) {
@@ -270,7 +257,6 @@ extension ViewController:GetDetailDataDelegate {
         }
     }
 }
-
 //Mark: GetDatailDelegate
 extension ViewController: getDetailDelegate {
     
@@ -278,7 +264,6 @@ extension ViewController: getDetailDelegate {
         fetchData.detailSearchEventData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
     }
 }
-
 //Mark: CalendarDelegate
 extension ViewController: CalendarDelegate {
     
@@ -286,7 +271,6 @@ extension ViewController: CalendarDelegate {
         fetchData.searchDateEvent(dateString:dateString,text: text)
     }
 }
-
 //Mark EmptyStateDelegate
 extension ViewController:EmptyStateDelegate{
     

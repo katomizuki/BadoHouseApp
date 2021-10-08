@@ -5,14 +5,12 @@ import NVActivityIndicatorView
 import SkeletonView
 
 class TimeLineViewController: UIViewController{
-    
     //Mark properties
     private var collectionView:UICollectionView?
     private var data = [VideoModel]()
     private let fetchData = FetchFirestoreData()
     private var player = AVPlayer()
     private var indicator:NVActivityIndicatorView!
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +24,11 @@ class TimeLineViewController: UIViewController{
         collectionView?.isSkeletonable = true
         view.isSkeletonable = true
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView?.frame = view.bounds
     }
-    
     //Mark setupMethod
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -63,7 +61,6 @@ extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSo
         return VideoCell.identifier
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
@@ -78,16 +75,13 @@ extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        
     }
 }
-
 //Mark:getVideoDelegate
 extension TimeLineViewController:GetVideoDelegate {
     func getVideo(videoArray: [VideoModel]) {
         self.data = videoArray
         collectionView?.reloadData()
-        
     }
 }
 //Mark collectionCellDelegate
@@ -133,24 +127,21 @@ protocol SearchVideoDelegate:AnyObject {
     func getVideoData(videoArray:[VideoModel])
 }
 class PopoverViewController: UIViewController {
-    
     //Mark properties
     private let tv:UITableView = {
         let tv = UITableView()
         return tv
     }()
     private let cellId = "cellId"
-    private let kindArray = ["シングルス","ダブルス","ミックス"]
+    private let kindArray = Utility.Data.badomintonArray
     private let fetchData = FetchFirestoreData()
     weak var SearchDelegate:SearchVideoDelegate?
-    
     //Mark properties
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         fetchData.videoDelegate = self
     }
-    
     //Mark setupMethod
     private func setupTableView() {
         tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)

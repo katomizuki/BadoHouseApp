@@ -5,14 +5,12 @@ import FirebaseStorage
 import Firebase
 
 class CameraViewController: UIViewController {
-    
     //Mark properties
     var keyWord = String()
     let captureSession = AVCaptureSession()
     let fileOutput = AVCaptureMovieFileOutput()
     var recordButton: UIButton!
     var isRecording = false
-    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +71,6 @@ class CameraViewController: UIViewController {
         }
     }
 }
-
 //Mark AVfileoutputDelegate
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     

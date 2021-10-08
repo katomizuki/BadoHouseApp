@@ -7,7 +7,6 @@ protocol CalendarDelegate:AnyObject {
 }
 
 class CalendarViewController: UIViewController, FSCalendarDelegate {
-    
     //Mark:Properties
     @IBOutlet private weak var calendar: FSCalendar!
     weak var delegate:CalendarDelegate?
@@ -18,21 +17,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         return button
     }()
     private let textField:UITextField = RegisterTextField(placeholder: "場所名入力")
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
         calendar.delegate = self
     }
-    
     //Mark setupMethod
     private func updateUI() {
-        //Mark:addsubView
+
         view.addSubview(button)
         view.addSubview(textField)
-        
-        //Mark:anchor
+
         button.anchor(top:textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
@@ -41,13 +37,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
                       paddingLeft: 30,height: 45)
         textField.anchor(top:calendar.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight: 30,paddingLeft: 30,height: 45)
         
-        //mark:addTarget
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
         textField.addTarget(self, action: #selector(placeSearch), for: UIControl.Event.valueChanged)
     }
-    
-    
-    
     //Mark:Selector
     @objc func search() {
         if searchDateString.isEmpty {
@@ -62,11 +54,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         self.delegate?.searchCalendar(dateString: searchDateString,text: text)
         dismiss(animated: true, completion: nil)
     }
-    
-    //Mark:textfield
+
     @objc func placeSearch() {
     }
-    
     //Mark:FScalendarDelegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = self.formatterUtil(date: date)

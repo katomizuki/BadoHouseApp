@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 
 class ChatViewController: UIViewController {
-    
     //Mark:Properties
     private let cellId = Utility.CellId.chatCellId
     @IBOutlet private weak var chatTableView: UITableView!
@@ -29,22 +28,15 @@ class ChatViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         customInputView.messageInputTextView.resignFirstResponder()
     }
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTextView()
-        getData()
-        updateUI()
-    }
-    
-    //Mark:updateUI
-    private func updateUI() {
+        setupTextView()
+        setupData()
         navigationItem.title = you?.name
     }
-    
-    //Mark:getData
-    private func getData() {
+    //Mark:setupMethod
+    private func setupData() {
         guard let myId = me?.uid else { return }
         guard let youId = you?.uid else { return }
         fetchData.getChatData(meId: myId, youId: youId) { chatId in
@@ -59,16 +51,14 @@ class ChatViewController: UIViewController {
             }
         }
     }
-    
     //Mark:updatechatTextView
-    private func updateTextView() {
+    private func setupTextView() {
         chatTableView.delegate = self
         chatTableView.dataSource = self
         let nib = ChatCell.nib()
         chatTableView.register(nib, forCellReuseIdentifier: cellId)
         fetchData.chatDelegate = self
     }
-    
 }
 //Mark:UITableViewDelegate,DataSource
 extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
@@ -94,7 +84,6 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
         return false
     }
 }
-
 //Mark:GetChatDelegate
 extension ChatViewController: GetChatDataDelgate {
     
@@ -107,7 +96,6 @@ extension ChatViewController: GetChatDataDelgate {
         }
     }
 }
-
 //Mark imagePickerDelegate
 extension ChatViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -116,7 +104,6 @@ extension ChatViewController:UIImagePickerControllerDelegate & UINavigationContr
     }
     
 }
-
 //Mark InputDelegate
 extension ChatViewController:InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {

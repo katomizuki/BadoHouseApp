@@ -61,7 +61,6 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId, for: indexPath) as! GroupCell
         let team = groupArray[indexPath.row]
         cell.team = team
-        
         return cell
     }
     

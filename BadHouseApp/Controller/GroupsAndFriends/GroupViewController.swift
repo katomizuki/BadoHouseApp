@@ -4,7 +4,6 @@ import NVActivityIndicatorView
 import FacebookCore
 
 class GroupViewController: UIViewController{
-    
     //Mark:Properties
     var user:User?
     var teamArray = [TeamModel]()
@@ -26,7 +25,6 @@ class GroupViewController: UIViewController{
     @IBOutlet private weak var myName: UILabel!
     @IBOutlet private weak var countLabel: UILabel!
     private let fetchData = FetchFirestoreData()
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +44,6 @@ class GroupViewController: UIViewController{
             setupData()
         }
     }
-    
     //Mark: setupMethod
     private func setupData() {
         fetchData.friendDelegate = self
@@ -91,7 +88,6 @@ class GroupViewController: UIViewController{
                              height: 100)
         
     }
-    
     //Mark:IBAction
     @IBAction private func user(_ sender: Any) {
         self.performSegue(withIdentifier:  Utility.Segue.userProfile, sender: nil)
@@ -116,9 +112,7 @@ class GroupViewController: UIViewController{
             vc.friends = self.friendArray
         }
     }
-    
 }
-
 //Mark:UItableViewDelegate,DataSource
 extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     
@@ -173,7 +167,6 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
 }
-
 //Mark freindDelegate
 extension GroupViewController:GetFriendDelegate {
     

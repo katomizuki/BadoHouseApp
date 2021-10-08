@@ -4,7 +4,6 @@ import SDWebImage
 import FacebookCore
 
 class UserDetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-    
     //Mark: Properties
     var user:User?
     var me:User?
@@ -33,8 +32,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
-            friendLabel.font = UIFont.boldSystemFont(ofSize:
-                                                        20)
+            friendLabel.font = UIFont.boldSystemFont(ofSize:20)
         }
     }
     @IBOutlet private weak var ageLabel: UILabel!
@@ -46,8 +44,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     @IBOutlet private weak var badmintonTimeStackView: UIStackView!
     @IBOutlet private weak var levelStackView: UIStackView!
     private let fetchData = FetchFirestoreData()
-    
-    
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +58,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         self.setupNavAccessory()
         navigationItem.title = user?.name
     }
-    
     //Mark:setupMethod
     private func setupUI() {
         nameLabel.text = user?.name
@@ -141,7 +136,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             self.fetchData.friendData(idArray: friends)
         }
     }
-    
     //Mark:IBAction
     @IBAction func plusFriend(_ sender: Any) {
         print(#function)
@@ -172,10 +166,8 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
 //Mark: UserCollectionViewDelegate
 extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
@@ -206,10 +198,8 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
         return CGSize(width: 100, height: 100)
     }
 }
-
 //Mark GetFriendDelegate
 extension UserDetailViewController:GetFriendDelegate {
-    
     func getFriend(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray

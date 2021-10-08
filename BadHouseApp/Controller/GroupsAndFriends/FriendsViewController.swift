@@ -3,7 +3,6 @@ import Firebase
 import NVActivityIndicatorView
 
 class FriendsViewController: UIViewController {
-    
     //Mark: Properties
     @IBOutlet private weak var friendTableView: UITableView! {
         didSet {
@@ -28,7 +27,6 @@ class FriendsViewController: UIViewController {
     var teamTagArray = [String]()
     var url:String?
     private let fetchData = FetchFirestoreData()
-    
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)
@@ -41,7 +39,6 @@ class FriendsViewController: UIViewController {
             inviter.append(friend)
         }
     }
-    
     //Mark: HelperMethod
     func judgeInvite(userId:String)->Int? {
         if inviter.isEmpty { return nil }
@@ -51,14 +48,12 @@ class FriendsViewController: UIViewController {
         }
         return nil
     }
-    
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupIndicator()
     }
-    
     //Mark:setupMethod
     private func setupTableView() {
         friendTableView.delegate = self
@@ -74,7 +69,6 @@ class FriendsViewController: UIViewController {
                              width:100,
                              height: 100)
     }
-    
     //Mark:IBAction
     @IBAction func sendTeamData(_ sender: Any) {
         IndicatorView.startAnimating()
@@ -94,7 +88,6 @@ class FriendsViewController: UIViewController {
         }
     }
 }
-
 //Mark TableviewExtension
 extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
     

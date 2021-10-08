@@ -93,5 +93,4 @@ struct LocalNotificationManager {
         addNotification(title: title, body: body)
         scheduleNotifications(duration, of: type, repeats: repeats)
     }
-
 }

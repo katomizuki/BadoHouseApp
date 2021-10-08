@@ -144,9 +144,6 @@ extension UIButton {
         layer.cornerRadius = 15
         layer.masksToBounds = true
     }
-  
-    
-   
 }
 
 extension UIView {

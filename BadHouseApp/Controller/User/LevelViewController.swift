@@ -1,7 +1,6 @@
 import UIKit
 import Foundation
 class LevelViewController: UIViewController {
-    
     //Mark:Properties
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
@@ -22,7 +21,7 @@ class LevelViewController: UIViewController {
     }
     @IBOutlet private weak var levelLabel: UILabel! {
         didSet {
-            levelLabel.text = "レベル10"
+            levelLabel.text = BadmintonLevel.ten.rawValue
         }
     }
     var selectedLevel = String()
@@ -33,7 +32,6 @@ class LevelViewController: UIViewController {
         let end = String(selectedLevel.suffix(1))
         setupSlider(level:end)
     }
-    
     //Mark:selector
     @objc private func backtoUser() {
         dismiss(animated: true, completion: nil)
@@ -44,48 +42,47 @@ class LevelViewController: UIViewController {
         print(level)
         //分割して条件分岐する
         if case 0..<0.1 = level {
-            levelLabel.text = "レベル1"
+            levelLabel.text = BadmintonLevel.one.rawValue
             textView.text = Utility.Data.levelSentence[0]
         }
         if case 0.1..<0.2 = level {
-            levelLabel.text = "レベル2"
+            levelLabel.text = BadmintonLevel.two.rawValue
             textView.text = Utility.Data.levelSentence[1]
         }
         if case 0.2..<0.3 = level {
-            levelLabel.text = "レベル3"
+            levelLabel.text = BadmintonLevel.three.rawValue
             textView.text = Utility.Data.levelSentence[2]
         }
         if case 0.3..<0.4 = level {
-            levelLabel.text = "レベル4"
+            levelLabel.text = BadmintonLevel.four.rawValue
             textView.text = Utility.Data.levelSentence[3]
         }
         if case 0.4..<0.5 = level {
-            levelLabel.text = "レベル5"
+            levelLabel.text = BadmintonLevel.five.rawValue
             textView.text = Utility.Data.levelSentence[4]
             
         }
         if case 0.5..<0.6 = level {
-            levelLabel.text = "レベル6"
+            levelLabel.text = BadmintonLevel.six.rawValue
             textView.text = Utility.Data.levelSentence[5]
         }
         if case 0.6..<0.7 = level {
-            levelLabel.text = "レベル7"
+            levelLabel.text = BadmintonLevel.seven.rawValue
             textView.text = Utility.Data.levelSentence[6]
         }
         if case 0.7..<0.8 = level {
-            levelLabel.text = "レベル8"
+            levelLabel.text = BadmintonLevel.eight.rawValue
             textView.text = Utility.Data.levelSentence[7]
         }
         if case 0.8..<0.9 = level {
-            levelLabel.text = "レベル9"
+            levelLabel.text = BadmintonLevel.nine.rawValue
             textView.text =  Utility.Data.levelSentence[8]
         }
         if case 0.9..<1.0 = level {
-            levelLabel.text = "レベル10"
+            levelLabel.text = BadmintonLevel.ten.rawValue
             textView.text = Utility.Data.levelSentence[9]
         }
     }
-    
     //Mark IBAction
     @IBAction func back(_ sender: Any) {
         selectedLevel = levelLabel.text ?? "1"

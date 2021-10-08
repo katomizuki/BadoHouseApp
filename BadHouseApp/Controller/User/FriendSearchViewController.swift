@@ -4,7 +4,6 @@ import Firebase
 import FacebookCore
 
 class FriendSSearchViewController: UIViewController {
-    
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -23,7 +22,6 @@ class FriendSSearchViewController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
     private let cellId = Utility.CellId.searchCell
-    
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +38,6 @@ class FriendSSearchViewController: UIViewController {
         searchBar.delegate = self
         fetchData.userDelegate = self
     }
-    
     //Mark:setupTableView
     private func setupTableView() {
         tableView.delegate = self
@@ -65,7 +62,6 @@ class FriendSSearchViewController: UIViewController {
         searchBar.resignFirstResponder()
     }
 }
-
 //Mark:UITableViewDelegate,DataSource
 extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,7 +81,6 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
                 cell.iv.sd_setImage(with: url, completed: nil)
             }
         }
-        
         return cell
     }
     
@@ -93,7 +88,6 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
         return tableView.frame.height / 10
     }
 }
-
 //Mark:UISearchDelegate
 extension FriendSSearchViewController:UISearchBarDelegate {
     
@@ -119,7 +113,6 @@ extension FriendSSearchViewController:UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-
 //Mark:GetUserDelegate
 extension FriendSSearchViewController:GetUserDataDelegate {
     
