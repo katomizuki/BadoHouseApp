@@ -35,6 +35,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             friendLabel.font = UIFont.boldSystemFont(ofSize:20)
         }
     }
+    @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var ageLabel: UILabel!
     @IBOutlet private weak var genderLabel: UILabel!
     @IBOutlet private weak var badmintoTimeLabel: UILabel!
@@ -44,6 +45,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     @IBOutlet private weak var badmintonTimeStackView: UIStackView!
     @IBOutlet private weak var levelStackView: UIStackView!
     private let fetchData = FetchFirestoreData()
+    var flag = false
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         setupLayer()
         setupCollection()
         setupData()
+        helperUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +71,9 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     private func setupLayer() {
-        setupBorder(view: ageStackView)
-        setupBorder(view: genderStackView)
-        setupBorder(view: badmintonTimeStackView)
+//        setupBorder(view: ageStackView)
+//        setupBorder(view: genderStackView)
+//        setupBorder(view: badmintonTimeStackView)
     }
     
     private func setupBorder(view:UIView) {
@@ -135,6 +138,14 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             guard let self = self else { return }
             self.fetchData.friendData(idArray: friends)
         }
+    }
+    
+    //Mark HelperMethod
+    private func helperUI() {
+        friendButton.isHidden = flag
+        friendsImageView.isUserInteractionEnabled = !flag
+        chatButton.isHidden = flag
+        
     }
     //Mark:IBAction
     @IBAction func plusFriend(_ sender: Any) {
@@ -207,6 +218,8 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
         navigationController?.pushViewController(vc, animated: true)
         } else {
         let vc = storyboard?.instantiateViewController(withIdentifier: "SubUserVC") as! SubUserViewController
+            vc.user = userFriend[indexPath.row]
+            vc.me = self.user
         navigationController?.pushViewController(vc, animated: true)
         }
     }

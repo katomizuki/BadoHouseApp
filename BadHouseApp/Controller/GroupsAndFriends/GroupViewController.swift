@@ -158,6 +158,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
             let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
             vc.user = friendArray[indexPath.row]
             vc.me = self.user
+            vc.flag = false
             navigationController?.pushViewController(vc, animated: true)
         }
     }
