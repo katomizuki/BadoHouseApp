@@ -23,6 +23,7 @@
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */; };
 		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
+		D388F0F027105AFA00ACA6B8 /* SubUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0EF27105AF900ACA6B8 /* SubUserViewController.swift */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D3977167270959A70025BE19 /* TornamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentController.swift */; };
 		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
@@ -116,6 +117,7 @@
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
+		D388F0EF27105AF900ACA6B8 /* SubUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserViewController.swift; sourceTree = "<group>"; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D3977166270959A70025BE19 /* TornamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentController.swift; sourceTree = "<group>"; };
 		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				D3FD194226E3A26700B6740E /* UserDetailViewController.swift */,
 				D3A789CF26F414310088E8BC /* InviteViewController.swift */,
 				D3A82BAF2707357800DDB4FC /* GroupSearchViewController.swift */,
+				D388F0EF27105AF900ACA6B8 /* SubUserViewController.swift */,
 			);
 			path = GroupsAndFriends;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
+				D388F0F027105AFA00ACA6B8 /* SubUserViewController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
 				D3977167270959A70025BE19 /* TornamentController.swift in Sources */,

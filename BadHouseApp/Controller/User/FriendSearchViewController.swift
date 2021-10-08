@@ -26,7 +26,6 @@ class FriendSearchViewController: UIViewController {
         setupDelegate()
         setupEmptyState()
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
         searchBar.resignFirstResponder()
@@ -61,7 +60,6 @@ class FriendSearchViewController: UIViewController {
         let indexPathTapped = tableView.indexPath(for: cell)
         guard let index = indexPathTapped?[1] else { return }
         let friend = friendList[index]
-        //自分の友だちにいるかチェックする
         Firestore.searchFriend(friend: friend, myId: Auth.getUserId()) { bool in
             if bool == false {
                 Firestore.friendAction(myId: Auth.getUserId(), friend: friend, bool: true)

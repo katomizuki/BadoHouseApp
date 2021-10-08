@@ -42,13 +42,12 @@ class ScheduleViewController: UIViewController{
         calendar.dataSource = self
         view.addSubview(calendar)
         calendar.anchor(top:view.safeAreaLayoutGuide.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20,paddingLeft: 20,height: 400)
-        
         calendar.appearance.weekdayTextColor = Utility.AppColor.OriginalBlue
         calendar.appearance.headerTitleColor = Utility.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
         calendar.appearance.headerDateFormat = "yyyy年MM月"
         calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
-        calendar.appearance.todayColor = .systemBlue
+        calendar.appearance.todayColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
         calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
         calendar.calendarWeekdayView.weekdayLabels[2].text = "火"

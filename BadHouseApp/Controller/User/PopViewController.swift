@@ -6,7 +6,14 @@ class PopViewController: UIViewController{
     private let CellId = Utility.CellId.popCellId
     var cellArray = Utility.Data.genderArray
     var keyword = String()
-    let tableView = UITableView()
+    lazy var tableView:UITableView = {
+        let tb = UITableView()
+        tb.delegate = self
+        tb.dataSource = self
+        tb.separatorStyle = .none
+        tb.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
+        return tb
+    }()
     var (age,place,badmintonTime,gender) = (String(),String(),String(),String())
     //Mark lifecycle
     override func viewDidLoad() {
@@ -15,11 +22,7 @@ class PopViewController: UIViewController{
     }
     //Mark setupMethod
     private func setUpTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
         self.view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
         switch keyword {
         case UserInfo.gender.rawValue:

@@ -123,7 +123,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
-        toolBar.setItems([doneButtonItem], animated: true)
+        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([flexibleButton,doneButtonItem], animated: true)
         moneyTextField.inputAccessoryView = toolBar
     }
     
@@ -250,7 +251,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
         detailText = detaiTextView.text ?? ""
-        
         let userId = Auth.getUserId()
         let eventId = Ref.EventRef.document().documentID
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

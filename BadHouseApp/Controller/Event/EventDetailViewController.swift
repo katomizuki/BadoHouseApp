@@ -142,7 +142,6 @@ class EventDetailViewController: UIViewController {
     }
     
     private func setupUI() {
-        //Mark: updateImage
         guard let urlString = event?.eventUrl else { return }
         let url = URL(string: urlString)
         eventImageView.sd_setImage(with: url, completed: nil)

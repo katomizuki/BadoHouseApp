@@ -410,7 +410,7 @@
                         <outlet property="myImageView" destination="DP9-TM-NSa" id="hOK-IA-Iwd"/>
                         <outlet property="myName" destination="eL5-pV-Qaq" id="3Sz-Un-AA7"/>
                         <segue destination="cza-8i-jCI" kind="show" identifier="gotoGroup" id="XjJ-C8-ncf"/>
-                        <segue destination="oj7-Ug-OXr" kind="show" identifier="gotoUser" id="TJv-Zf-4Gw"/>
+                        <segue destination="1Uh-qc-e7F" kind="show" identifier="gotoUser" id="TJv-Zf-4Gw"/>
                         <segue destination="cnA-oH-FKQ" kind="presentation" identifier="userProfile" modalPresentationStyle="fullScreen" id="X9X-Jc-rLL"/>
                         <segue destination="WlO-Eg-LwZ" kind="show" id="P8y-ZN-6ZQ"/>
                         <segue destination="ehb-mI-zK2" kind="presentation" identifier="logout" modalPresentationStyle="fullScreen" id="2ie-jt-rR4"/>
@@ -1046,7 +1046,7 @@
                         <outlet property="timeLabel" destination="yRo-oL-G2R" id="gTJ-N3-kV0"/>
                         <outlet property="timeToLabel" destination="ocm-Ji-ji8" id="mjf-TO-3Rj"/>
                         <outlet property="titleLabel" destination="fTQ-0S-pls" id="79r-D2-lAx"/>
-                        <segue destination="oj7-Ug-OXr" kind="show" identifier="gotoFrie" id="t41-KJ-vjm"/>
+                        <segue destination="1Uh-qc-e7F" kind="show" identifier="gotoFrie" id="t41-KJ-vjm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKp-yd-OBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1063,11 +1063,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1150"/>
@@ -1359,7 +1359,7 @@
                         <outlet property="timeStackView" destination="b29-gA-CfK" id="7bf-hf-o9k"/>
                         <outlet property="updateButton" destination="rmJ-8F-SO6" id="0AJ-0Y-ofG"/>
                         <outlet property="withdrawButton" destination="5sf-aC-88J" id="wWt-lh-3e5"/>
-                        <segue destination="oj7-Ug-OXr" kind="show" identifier="goto" id="KCo-PJ-OZR"/>
+                        <segue destination="1Uh-qc-e7F" kind="show" identifier="goto" id="KCo-PJ-OZR"/>
                         <segue destination="r26-CP-u6r" kind="show" id="cdz-Ff-0Nv"/>
                         <segue destination="rar-tT-NFD" kind="show" id="HgF-52-Vqg"/>
                     </connections>
@@ -1371,7 +1371,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2738" y="1617"/>
+            <point key="canvasLocation" x="2718" y="1617"/>
         </scene>
         <!--Group Chat View Controller-->
         <scene sceneID="tpC-YF-15O">
@@ -1402,22 +1402,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2031" y="2333"/>
+            <point key="canvasLocation" x="2968.8000000000002" y="2332.9835082458771"/>
         </scene>
         <!--  -->
         <scene sceneID="0Bs-Vl-gkg">
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="InviteViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="44" width="375" height="475"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="16" y="493" width="343" height="36"/>
+                                <rect key="frame" x="16" y="522" width="343" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -1448,18 +1448,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="it4-Xs-XkA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2737" y="2333"/>
+            <point key="canvasLocation" x="3676" y="2332.9835082458771"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Xt1-Xx-BKm">
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="ChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="94" width="375" height="494"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="567"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1486,11 +1486,11 @@
             <objects>
                 <viewController storyboardIdentifier="UserDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oj7-Ug-OXr" customClass="UserDetailViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hnC-YX-yBO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6l-yA-b3k">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-Sm-peI">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
@@ -1750,6 +1750,8 @@
                         <outlet property="nameLabel" destination="igu-dh-wdf" id="Hqw-rC-PhY"/>
                         <outlet property="teamLabel" destination="xfR-4w-34R" id="tPe-v2-t4q"/>
                         <segue destination="9tS-ME-tid" kind="show" id="fuc-E9-X1F"/>
+                        <segue destination="DB0-Bm-FLG" kind="show" id="Sd0-fI-WQD"/>
+                        <segue destination="cza-8i-jCI" kind="show" id="PHY-qr-DAt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mtG-yJ-QM7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1759,7 +1761,17 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1270" y="2333"/>
+            <point key="canvasLocation" x="2063" y="2333"/>
+        </scene>
+        <!--Sub User View Controller-->
+        <scene sceneID="kMI-vI-TEm">
+            <objects>
+                <viewController storyboardIdentifier="SubUserVC" id="DB0-Bm-FLG" customClass="SubUserViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ViH-Dz-5lj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mKM-DV-VnT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2062" y="3077"/>
         </scene>
         <!-- -->
         <scene sceneID="3en-Aq-l3V">
@@ -3376,14 +3388,33 @@
             </objects>
             <point key="canvasLocation" x="3200.8000000000002" y="121.88905547226388"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GvA-EF-gtH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Uh-qc-e7F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="MN5-1V-PZA"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Cy-Pi-0zT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oj7-Ug-OXr" kind="relationship" relationship="rootViewController" id="SI4-MQ-GYb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sza-Z0-1IK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1233" y="2333"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="KCo-PJ-OZR"/>
         <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
-        <segue reference="t41-KJ-vjm"/>
-        <segue reference="9Ym-mF-wrv"/>
-        <segue reference="cdz-Ff-0Nv"/>
-        <segue reference="XjJ-C8-ncf"/>
+        <segue reference="fuc-E9-X1F"/>
+        <segue reference="3rr-Jc-WrJ"/>
+        <segue reference="PHY-qr-DAt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>

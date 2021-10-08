@@ -197,6 +197,19 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == belongCollectionView {
+        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
+        vc.team = ownTeam[indexPath.row]
+        vc.friends = userFriend
+        vc.flag = true
+        navigationController?.pushViewController(vc, animated: true)
+        } else {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SubUserVC") as! SubUserViewController
+        navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 //Mark GetFriendDelegate
 extension UserDetailViewController:GetFriendDelegate {

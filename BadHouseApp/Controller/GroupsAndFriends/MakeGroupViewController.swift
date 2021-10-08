@@ -120,11 +120,11 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         textField.inputView = pickerView
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
+        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
-        toolBar.setItems([doneButtonItem], animated: true)
+        toolBar.setItems([flexibleButton,doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
-    
     private func setupDelegate() {
         nameTextField.delegate = self
         placeTextField.delegate = self
@@ -391,7 +391,6 @@ extension MakeGroupViewController:GetFriendDelegate {
 }
 //Mark: uitextFieldDelegate
 extension MakeGroupViewController:UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if textField.tag == 0 {

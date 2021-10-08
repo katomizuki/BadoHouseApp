@@ -18,6 +18,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private let logoutButton:UIButton = {
         let button = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14,weight: .bold)
+        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
     }()
     var level:String = "" {
@@ -46,7 +47,11 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     private var introduction = ""
-    private let backButton = UIButton(type: .system).createProfileTopButton(title: "もどる")
+    private let backButton:UIButton = {
+    let button = UIButton(type: .system).createProfileTopButton(title: "もどる")
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
     private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
     private let profileImageView:UIImageView = {
         let iv = ProfileImageView()
@@ -66,41 +71,34 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero,collectionViewLayout: layout)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return collectionView
     }()
-    private let userTableView = UITableView()
+    lazy var userTableView:UITableView = {
+    let tb = UITableView()
+        tb.delegate = self
+        tb.dataSource = self
+        tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tb.separatorColor = Utility.AppColor.OriginalBlue
+        tb.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        return tb
+    }()
     var cellTitleArray = Utility.Data.userSection
     @IBOutlet private weak var scrollView: UIView!
     //Mark: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        setupLayout()
-        setupBinding()
-        setupUserTableView()
-    }
-    //Mark: setupMethod
-    private func setupUserTableView() {
-        userTableView.delegate = self
-        userTableView.dataSource = self
-        userTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        userTableView.separatorColor = Utility.AppColor.OriginalBlue
-        userTableView.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
-    }
-    
-    private func setupLayout() {
         setupAddSubView()
         setupAnchor()
-        backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
-        logoutButton.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         updateUI()
+        setupBinding()
     }
-    
+    //Mark: setupMethod
     private func setupAddSubView() {
         scrollView.addSubview(backButton)
         scrollView.addSubview(saveButton)
