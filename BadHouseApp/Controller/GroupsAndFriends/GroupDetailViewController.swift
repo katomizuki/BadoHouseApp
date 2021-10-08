@@ -71,7 +71,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
-        navigationItem.title = team?.teamName
     }
     //Mark: setupMethod
     private func setupData() {

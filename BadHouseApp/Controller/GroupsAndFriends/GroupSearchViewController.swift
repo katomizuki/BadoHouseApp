@@ -1,4 +1,6 @@
 import UIKit
+import EmptyStateKit
+import CDAlertView
 
 class GroupSearchViewController: UIViewController {
     
@@ -45,7 +47,18 @@ class GroupSearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+    //Mark:setupMethod
+    private func setupEmptyState() {
+        view.emptyState.delegate = self
+        var format = EmptyStateFormat()
+        format.buttonColor = Utility.AppColor.OriginalBlue
+        format.buttonWidth = 200
+        format.titleAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
+        format.animation = EmptyStateAnimation.scale(0.3, 2.0)
+        format.imageSize = CGSize(width: 200, height: 200)
+        view.emptyState.format = format
+    }
     //Mark selector
     @objc private func handleTap() {
         searchBar.resignFirstResponder()
@@ -81,11 +94,26 @@ extension GroupSearchViewController:UISearchBarDelegate {
         fetchData.searchGroup(text: text)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         searchBar.resignFirstResponder()
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        print(#function)
+        searchBar.text = ""
         searchBar.resignFirstResponder()
+        return true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+        guard let text = searchBar.text else { return }
+        if text.isEmpty {
+        self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+        return
+        }
+        searchBar.text = ""
+        fetchData.searchGroup(text: text)
     }
 }
 //Mark getGroupDelegate
@@ -94,5 +122,14 @@ extension GroupSearchViewController:GetGroupDelegate{
     func getGroup(groupArray: [TeamModel]) {
         self.groupArray = groupArray
         tableView.reloadData()
+    }
+}
+
+//Mark EmptyStateDelegate
+extension GroupSearchViewController:EmptyStateDelegate{
+    
+    func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
+        
+        view.emptyState.hide()
     }
 }

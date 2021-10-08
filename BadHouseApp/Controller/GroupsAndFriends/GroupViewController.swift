@@ -100,7 +100,9 @@ class GroupViewController: UIViewController{
     }
     
     @IBAction private func scroll(_ sender: Any) {
-        groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+        if teamArray.count != 0 && friendArray.count != 0 {
+            groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+        }
     }
     //Mark:prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

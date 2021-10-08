@@ -135,7 +135,9 @@ class ViewController: UIViewController {
     //Mark IBAction
     @IBAction private func scroll(_ sender: Any) {
         print(#function)
-        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
+        if eventArray.count != 0 {
+            collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
+        }
     }
 }
 //Mark: UICollectionDelegate
@@ -189,6 +191,9 @@ extension ViewController:GetEventSearchDelegate {
     func getEventSearchData(eventArray: [Event]) {
         self.eventArray = eventArray
         print(#function)
+        if eventArray.isEmpty {
+            view.emptyState.show(State.noSearch)
+        }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -207,7 +212,15 @@ extension ViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        return true
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        searchBar.text = ""
         searchBar.resignFirstResponder()
     }
     

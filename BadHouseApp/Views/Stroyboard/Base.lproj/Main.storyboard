@@ -31,13 +31,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QC7-0A-ZOC">
                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="51.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfM-Av-5Qg">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="フリーワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfM-Av-5Qg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="51.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル部分一致" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="epP-um-tbf">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="フリーワード" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="epP-um-tbf">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51.5"/>
                                                                 <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -54,7 +54,7 @@
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="サークル名部分一致" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ne2-1b-KDf">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="サークル名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ne2-1b-KDf">
                                                                 <rect key="frame" x="157.5" y="0.0" width="157.5" height="51.5"/>
                                                                 <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -635,7 +635,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xfa-zW-Qog">
                                                         <rect key="frame" x="0.0" y="112" width="315" height="21"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="コートカウント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFS-lA-duA">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="コート数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFS-lA-duA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1225,19 +1225,6 @@
                                                     <action selector="withdraw:" destination="cza-8i-jCI" eventType="touchUpInside" id="gDj-Gj-fih"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmJ-8F-SO6">
-                                                <rect key="frame" x="39" y="1090" width="53" height="30"/>
-                                                <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="9z9-Vp-edD"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="編集"/>
-                                                <connections>
-                                                    <action selector="updateTeamInfo:" destination="cza-8i-jCI" eventType="touchUpInside" id="gvW-R8-BtJ"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="backGroundColor"/>
                                         <constraints>
@@ -1259,11 +1246,9 @@
                                             <constraint firstItem="n8p-c3-AeV" firstAttribute="top" secondItem="gWZ-aA-86L" secondAttribute="bottom" constant="10" id="Tou-AN-rvL"/>
                                             <constraint firstItem="LBf-E6-p5h" firstAttribute="leading" secondItem="pMS-LS-9Jv" secondAttribute="leading" constant="5" id="VOX-xP-MxE"/>
                                             <constraint firstItem="xFj-gX-Mhn" firstAttribute="top" secondItem="CKw-26-OHR" secondAttribute="bottom" constant="14" id="WO1-xG-GFZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="rmJ-8F-SO6" secondAttribute="bottom" constant="30" id="YBj-gX-5pn"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xFj-gX-Mhn" secondAttribute="trailing" constant="20" symbolic="YES" id="YLf-2g-vKi"/>
                                             <constraint firstItem="cqq-Xm-Q8x" firstAttribute="top" secondItem="n8p-c3-AeV" secondAttribute="bottom" constant="16" id="Zbs-zw-SSc"/>
                                             <constraint firstItem="gWZ-aA-86L" firstAttribute="centerX" secondItem="4tU-iL-Sn6" secondAttribute="centerX" id="b19-Kh-5mQ"/>
-                                            <constraint firstItem="rmJ-8F-SO6" firstAttribute="leading" secondItem="pMS-LS-9Jv" secondAttribute="leading" constant="39" id="b7g-KR-Nxf"/>
                                             <constraint firstItem="mai-dU-KYF" firstAttribute="centerX" secondItem="pMS-LS-9Jv" secondAttribute="centerX" id="bxB-Fc-txK"/>
                                             <constraint firstItem="cqq-Xm-Q8x" firstAttribute="centerX" secondItem="pMS-LS-9Jv" secondAttribute="centerX" id="cmx-tP-Dwy"/>
                                             <constraint firstAttribute="trailing" secondItem="gWZ-aA-86L" secondAttribute="trailing" constant="10" id="ddn-E2-K30"/>
@@ -1322,20 +1307,35 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title=" " id="oP3-Qa-A5c">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="cMd-aM-Peq">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RTu-CM-XZb">
-                                <rect key="frame" x="283" y="0.0" width="76" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="招待" image="person.badge.plus" catalog="system">
-                                    <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="gotoInvite:" destination="cza-8i-jCI" eventType="touchUpInside" id="pWB-Ss-0iX"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="cMd-aM-Peq">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RTu-CM-XZb">
+                                    <rect key="frame" x="283" y="0.0" width="76" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="招待" image="person.badge.plus" catalog="system">
+                                        <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoInvite:" destination="cza-8i-jCI" eventType="touchUpInside" id="pWB-Ss-0iX"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="Mqc-Z5-aeD">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="rmJ-8F-SO6">
+                                    <rect key="frame" x="216" y="5" width="59" height="34.5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" name="backGroundColor"/>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="編集"/>
+                                    <connections>
+                                        <action selector="updateTeamInfo:" destination="cza-8i-jCI" eventType="touchUpInside" id="gvW-R8-BtJ"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1455,7 +1455,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="74" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="494"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1464,7 +1464,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="W7u-be-lQM" secondAttribute="trailing" id="LUm-zr-WbW"/>
                             <constraint firstItem="W7u-be-lQM" firstAttribute="leading" secondItem="FKS-e1-8wm" secondAttribute="leading" id="V2R-kW-xjR"/>
-                            <constraint firstItem="W7u-be-lQM" firstAttribute="top" secondItem="8hA-I4-t5F" secondAttribute="top" constant="30" id="pLF-q9-Mdh"/>
+                            <constraint firstItem="W7u-be-lQM" firstAttribute="top" secondItem="8hA-I4-t5F" secondAttribute="top" constant="50" id="pLF-q9-Mdh"/>
                             <constraint firstItem="8hA-I4-t5F" firstAttribute="bottom" secondItem="W7u-be-lQM" secondAttribute="bottom" constant="30" id="uf1-Oc-Tpg"/>
                         </constraints>
                     </view>
@@ -3374,7 +3374,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VQy-IJ-T3o"/>
+        <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="t41-KJ-vjm"/>
         <segue reference="9Ym-mF-wrv"/>
