@@ -28,7 +28,7 @@ protocol GetChatRoomDataDelegate:AnyObject  {
     func getChatRoomData(chatRoomArray:[ChatRoom])
 }
 protocol GetUserDataDelegate :AnyObject {
-    func getUserData(userArray:[User])
+    func getUserData(userArray:[User],bool:Bool)
 }
 protocol GetGroupChatDelegate:AnyObject  {
     func getGroupChat(chatArray:[GroupChatModel])
@@ -213,7 +213,7 @@ class FetchFirestoreData {
         }
     }
     
-    func searchFriends(text:String) {
+    func searchFriends(text:String,bool:Bool) {
         var userArray = [User]()
         Ref.UsersRef.getDocuments { snapShot, error in
             if let error = error {
@@ -230,7 +230,7 @@ class FetchFirestoreData {
                     userArray.append(user)
                 }
             }
-            self.userDelegate?.getUserData(userArray: userArray)
+            self.userDelegate?.getUserData(userArray: userArray,bool:bool)
         }
     }
     

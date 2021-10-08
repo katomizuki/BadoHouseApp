@@ -30,6 +30,7 @@ class GroupSearchViewController: UIViewController {
         setupTableView()
         searchBar.delegate = self
         fetchData.groupSearchDelegate = self
+        setupEmptyState()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -120,8 +121,12 @@ extension GroupSearchViewController:UISearchBarDelegate {
 extension GroupSearchViewController:GetGroupDelegate{
     
     func getGroup(groupArray: [TeamModel]) {
+        if groupArray.isEmpty {
+            view.emptyState.show(State.noSearch)
+        } else {
         self.groupArray = groupArray
         tableView.reloadData()
+        }
     }
 }
 
@@ -129,7 +134,6 @@ extension GroupSearchViewController:GetGroupDelegate{
 extension GroupSearchViewController:EmptyStateDelegate{
     
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
-        
         view.emptyState.hide()
     }
 }

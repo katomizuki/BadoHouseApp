@@ -2,8 +2,10 @@ import UIKit
 import SDWebImage
 import Firebase
 import FacebookCore
+import EmptyStateKit
+import CDAlertView
 
-class FriendSSearchViewController: UIViewController {
+class FriendSearchViewController: UIViewController {
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -27,18 +29,19 @@ class FriendSSearchViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupDelegate()
+        setupEmptyState()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    
+    //Mark:setupMethod
     private func setupDelegate() {
         searchBar.delegate = self
         fetchData.userDelegate = self
     }
-    //Mark:setupTableView
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,6 +49,18 @@ class FriendSSearchViewController: UIViewController {
         tableView.separatorStyle = .none
     }
     
+    private func setupEmptyState() {
+        view.emptyState.delegate = self
+        var format = EmptyStateFormat()
+        format.buttonColor = Utility.AppColor.OriginalBlue
+        format.buttonWidth = 200
+        format.titleAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
+        format.animation = EmptyStateAnimation.scale(0.3, 2.0)
+        format.imageSize = CGSize(width: 200, height: 200)
+        view.emptyState.format = format
+    }
+    //Mark helperMethod
     func method(cell:UITableViewCell) {
         print(#function)
         let indexPathTapped = tableView.indexPath(for: cell)
@@ -58,12 +73,13 @@ class FriendSSearchViewController: UIViewController {
             }
         }
     }
+    //Mark selector
     @objc private func handleTap() {
         searchBar.resignFirstResponder()
     }
 }
 //Mark:UITableViewDelegate,DataSource
-extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource {
+extension FriendSearchViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendList.count
     }
@@ -89,38 +105,64 @@ extension FriendSSearchViewController: UITableViewDelegate,UITableViewDataSource
     }
 }
 //Mark:UISearchDelegate
-extension FriendSSearchViewController:UISearchBarDelegate {
+extension FriendSearchViewController:UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
         guard let text = searchBar.text else { return }
-        fetchData.searchFriends(text: text)
+        if text.isEmpty {
+            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+            return
+        }
+        fetchData.searchFriends(text: text,bool: true)
         searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(#function)
         guard let text = searchBar.text else { return }
-        fetchData.searchFriends(text: text)
+        fetchData.searchFriends(text: text,bool: false)
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        print(#function)
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
         return true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
+        searchBar.text = ""
         searchBar.resignFirstResponder()
     }
 }
 //Mark:GetUserDelegate
-extension FriendSSearchViewController:GetUserDataDelegate {
+extension FriendSearchViewController:GetUserDataDelegate {
     
-    func getUserData(userArray: [User]) {
+    func getUserData(userArray: [User],bool:Bool) {
         print(#function)
-        self.friendList = userArray
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        if bool == false {
+            self.friendList = userArray
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } else if bool == true {
+        if userArray.isEmpty {
+            self.view.emptyState.show(State.noSearch)
+        } else {
+            self.friendList = userArray
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
+    }
+  }
+}
+//Mark EmptyStateDelegate
+extension FriendSearchViewController:EmptyStateDelegate{
+    
+    func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
+        view.emptyState.hide()
     }
 }

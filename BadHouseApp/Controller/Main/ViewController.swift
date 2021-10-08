@@ -242,11 +242,12 @@ extension ViewController: GetEventTimeDelegate{
         print(#function)
         if eventArray.isEmpty {
             view.emptyState.show(State.noSearch)
-        }
+        } else {
         self.eventArray = eventArray
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+      }
     }
 }
 //Mark GetEventDelegate

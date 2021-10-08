@@ -487,10 +487,10 @@
             </objects>
             <point key="canvasLocation" x="-498" y="1630"/>
         </scene>
-        <!--FriendS Search View Controller-->
+        <!--Friend Search View Controller-->
         <scene sceneID="DaT-1c-T7V">
             <objects>
-                <viewController id="Heq-qa-yRZ" customClass="FriendSSearchViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Heq-qa-yRZ" customClass="FriendSearchViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pdG-Cx-oOc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

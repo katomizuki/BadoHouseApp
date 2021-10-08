@@ -4,7 +4,7 @@ import UIKit
 class FriendSearchCell: UITableViewCell {
     
     //Mark:properties
-    var link:FriendSSearchViewController!
+    var link:FriendSearchViewController!
     var count = 0
     private var button:UIButton = {
         let button = UIButton(type: .system)
