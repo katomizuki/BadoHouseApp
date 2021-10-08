@@ -9,7 +9,7 @@ class ContactCell:UITableViewCell {
     var button:UIButton = {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
+        button.setImage(UIImage(named: Utility.ImageName.circle)?.withRenderingMode(.alwaysTemplate), for: UIControl.State.normal)
         return button
     }()
     var iv:UIImageView = {
@@ -40,6 +40,7 @@ class ContactCell:UITableViewCell {
     
     //Mark: selector
     @objc private func handleInvite() {
+        button.tintColor = Utility.AppColor.OriginalBlue
         if count % 2 == 0 {
             button.setImage(UIImage(named: Utility.ImageName.check), for: UIControl.State.normal)
             count += 1

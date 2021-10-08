@@ -241,6 +241,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhV-aF-hvy" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="397"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="yyyy年MM月"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Mx-nz-AZs"/>

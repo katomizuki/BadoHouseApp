@@ -42,6 +42,28 @@ class ScheduleViewController: UIViewController{
         calendar.dataSource = self
         view.addSubview(calendar)
         calendar.anchor(top:view.safeAreaLayoutGuide.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20,paddingLeft: 20,height: 400)
+        
+        calendar.appearance.weekdayTextColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.headerTitleColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
+        calendar.appearance.headerDateFormat = "yyyy年MM月"
+        calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.todayColor = .systemBlue
+        calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
+        calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
+        calendar.calendarWeekdayView.weekdayLabels[2].text = "火"
+        calendar.calendarWeekdayView.weekdayLabels[3].text = "水"
+        calendar.calendarWeekdayView.weekdayLabels[4].text = "木"
+        calendar.calendarWeekdayView.weekdayLabels[5].text = "金"
+        calendar.calendarWeekdayView.weekdayLabels[6].text = "土"
+        calendar.calendarWeekdayView.weekdayLabels[1].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[2].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[3].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[4].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[5].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[6].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed
+        calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue
     }
     
     private func setupTableView() {

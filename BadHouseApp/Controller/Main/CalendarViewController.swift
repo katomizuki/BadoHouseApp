@@ -6,7 +6,7 @@ protocol CalendarDelegate:AnyObject {
     func searchCalendar(dateString:String,text:String)
 }
 
-class CalendarViewController: UIViewController, FSCalendarDelegate {
+class CalendarViewController: UIViewController {
     //Mark:Properties
     @IBOutlet private weak var calendar: FSCalendar!
     weak var delegate:CalendarDelegate?
@@ -20,11 +20,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        setupUI()
         calendar.delegate = self
+        setupCalendar()
     }
     //Mark setupMethod
-    private func updateUI() {
+    private func setupUI() {
         view.addSubview(button)
         view.addSubview(textField)
         
@@ -37,6 +38,31 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         textField.anchor(top:calendar.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight: 30,paddingLeft: 30,height: 45)
         
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
+    }
+    
+    private func setupCalendar() {
+        calendar.appearance.weekdayTextColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.headerTitleColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
+        calendar.appearance.headerDateFormat = "yyyy年MM月"
+        calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.todayColor = .systemBlue
+        calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
+        calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
+        calendar.calendarWeekdayView.weekdayLabels[2].text = "火"
+        calendar.calendarWeekdayView.weekdayLabels[3].text = "水"
+        calendar.calendarWeekdayView.weekdayLabels[4].text = "木"
+        calendar.calendarWeekdayView.weekdayLabels[5].text = "金"
+        calendar.calendarWeekdayView.weekdayLabels[6].text = "土"
+        calendar.calendarWeekdayView.weekdayLabels[0].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[1].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[2].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[3].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[4].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[5].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[6].font = UIFont.boldSystemFont(ofSize: 16)
+        calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed
+        calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue
     }
     //Mark:Selector
     @objc func search() {
@@ -52,10 +78,13 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         self.delegate?.searchCalendar(dateString: searchDateString,text: text)
         dismiss(animated: true, completion: nil)
     }
-    //Mark:FScalendarDelegate
+}
+//Mark FSCalendarDelegate
+extension CalendarViewController:FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString
     }
+    
 }
 

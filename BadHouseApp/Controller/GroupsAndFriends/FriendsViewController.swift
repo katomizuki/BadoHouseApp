@@ -104,7 +104,6 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         let url = URL(string: urlString)
         if urlString == "" {
             cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
-            
         } else {
             cell.iv.sd_setImage(with: url, completed: nil)
         }
