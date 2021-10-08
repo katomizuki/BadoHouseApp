@@ -39,9 +39,9 @@ extension UIViewController {
                            width: 100,
                            height: 100)
         return  NVActivityIndicatorView(frame: frame,
-                                                type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                                color: Utility.AppColor.OriginalBlue,
-                                                padding: 0)
+                                        type: NVActivityIndicatorType.ballSpinFadeLoader,
+                                        color: Utility.AppColor.OriginalBlue,
+                                        padding: 0)
     }
     
     func setupCDAlert(title:String,message:String,action:String,alertType:CDAlertViewType) {
@@ -78,7 +78,7 @@ extension UIViewController {
             case .userDisabled:  message = "アカウントが無効になっています"
             default:                 message = "エラー: \(error.localizedDescription)"
             }
-         
+            
         }
         return message
     }

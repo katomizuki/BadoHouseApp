@@ -290,7 +290,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         plusTextField.resignFirstResponder()
         timeTextField.resignFirstResponder()
     }
-
+    
     @objc func tap(sender:UIButton) {
         if sender.backgroundColor != Utility.AppColor.OriginalBlue {
             sender.backgroundColor = Utility.AppColor.OriginalBlue

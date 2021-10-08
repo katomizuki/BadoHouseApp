@@ -10,7 +10,6 @@ extension Auth {
         guard let email = email else { return }
         guard let name = name else { return }
         guard let password = password else { return }
-        
         Auth.auth().createUser(withEmail: email,password: password) { result, error in
             if let error = error {
                 print("createUser Error",error)
@@ -114,9 +113,6 @@ extension Firestore{
         Ref.TeamRef.document(teamId).collection("GroupChat").document(id).setData(dic)
     }
     
-    
-    
-    
     //Mark:getTeamData
     static func getTeamData(teamId:String,completion:@escaping (TeamModel)->Void) {
         
@@ -142,11 +138,9 @@ extension Firestore{
         Firestore.firestore().collection(collecionName).document(documentId).collection(subCollectionName).document(subId).delete()
     }
     
-    
     //Mark:createTeam
     static func createTeam(teamName:String,teamPlace:String,teamTime:String,teamLevel:String,teamImageUrl:String,friends:[User],teamUrl:String,tagArray:[String]) {
         let teamId = Ref.TeamRef.document().documentID
-        //dictionary
         let dic = ["teamId":teamId,
                    "teamName":teamName,
                    "teamPlace":teamPlace,
@@ -207,7 +201,6 @@ extension Firestore{
         Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic)
     }
     
-    
     //Mark: sendTeamPlayerData
     static func sendTeamPlayerData(teamDic:[String:Any],teamplayer:[User]) {
         print(#function)
@@ -248,7 +241,6 @@ extension Firestore{
             }
             completion(friendId)
         }
-        
     }
     
     //Mark getOwnTeam
@@ -298,7 +290,6 @@ extension Firestore{
             completion(teamPlayers)
         }
     }
-    
     
     static func friendAction(myId:String,friend:User,bool:Bool) {
         let id = friend.uid
@@ -355,8 +346,7 @@ extension Firestore{
     }
     
     //Mark: sendInvite
-    static func sendInvite(team:TeamModel,inviter:
-                           [User]) {
+    static func sendInvite(team:TeamModel,inviter: [User]) {
         let teamId = team.teamId
         let dic = ["teamId":teamId,
                    "teamName":team.teamName,
@@ -442,6 +432,7 @@ extension Firestore{
     static func sendJoin(eventId:String,uid:String) {
         Ref.EventRef.document(eventId).collection("Join").document(uid).setData(["id":uid])
     }
+    
     static func sendPreJoin(eventId:String,userId:String) {
         Ref.EventRef.document(eventId).collection("PreJoin").document(userId).setData(["id":userId])
     }
@@ -461,17 +452,11 @@ extension Firestore{
                 let eventId = safeData["eventId"] as? String ?? ""
                 let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
                 if date < now {
-                    //今よりすぎていたら自動で消す,(イベントコレクション),
                     Firestore.deleteData(collectionName: "Event", documentId: eventId)
-                    
                 }
             }
         }
     }
-    
-    
-    
-    
     //Mark:LastGetChatData
     static func getChatLastData(chatId:String,completion:@escaping(Chat)-> Void){
         var textArray = [Chat]()
@@ -514,6 +499,7 @@ extension Firestore{
             completion(stringArray)
         }
     }
+    
     static func updateTeamInfo(team:TeamModel) {
         let id = team.teamId
         let dic = ["teamId":id,
@@ -534,7 +520,6 @@ extension Firestore{
 extension Storage {
     //Mark DownURL
     static func downloadStorage(userIconRef:StorageReference, completion:@escaping (URL)->Void){
-        
         userIconRef.downloadURL { url, error in
             if let error = error {
                 print(error)
@@ -556,13 +541,11 @@ extension Storage {
                 return
             }
             print("Image Save Success")
-            
             Storage.downloadStorage(userIconRef: storageRef) { url in
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
                 Firestore.updateUserInfo(dic: dicWithImage)
-                
             }
         }
     }

@@ -1,7 +1,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-
+    
     //Mark:Properties
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!

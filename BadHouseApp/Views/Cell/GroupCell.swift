@@ -124,7 +124,4 @@ class GroupCell:UITableViewCell {
             }
         }
     }
-    
-    
-    
 }

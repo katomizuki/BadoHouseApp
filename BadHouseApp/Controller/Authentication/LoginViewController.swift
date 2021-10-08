@@ -53,7 +53,7 @@ class LoginViewController:UIViewController {
         setupBinding()
         setupDelegate()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
@@ -73,7 +73,7 @@ class LoginViewController:UIViewController {
         basicStackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight: 20, paddingLeft: 20,height: 330)
         iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
         dontHaveButton.anchor(top:basicStackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
-       
+        
         dontHaveButton.addTarget(self, action: #selector(moveAlready), for: UIControl.Event.touchUpInside)
         
         IndicatorView = self.setupIndicatorView()
@@ -89,7 +89,7 @@ class LoginViewController:UIViewController {
         fbButton.delegate = self
         fbButton.permissions = ["public_profile, email"]
     }
-
+    
     private func setupBinding() {
         emailTextField.rx.text
             .asDriver()

@@ -184,5 +184,5 @@ extension GroupViewController:GetMyTeamDelegate {
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         self.IndicatorView.stopAnimating()
         groupTableView.reloadData()
-    }  
+    }
 }

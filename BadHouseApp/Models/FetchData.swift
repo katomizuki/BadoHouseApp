@@ -30,7 +30,6 @@ protocol GetChatRoomDataDelegate:AnyObject  {
 protocol GetUserDataDelegate :AnyObject {
     func getUserData(userArray:[User])
 }
-
 protocol GetGroupChatDelegate:AnyObject  {
     func getGroupChat(chatArray:[GroupChatModel])
 }
@@ -96,7 +95,6 @@ class FetchFirestoreData {
         group.notify(queue: .main) {
             self.friendDelegate?.getFriend(friendArray: array)
         }
-        
     }
     
     func getmyTeamData(idArray:[String]) {
@@ -142,7 +140,6 @@ class FetchFirestoreData {
         }
     }
     
-    
     func getMyEventData(uid:String) {
         var eventArray = [Event]()
         Ref.UsersRef.document(uid).collection("Join").getDocuments { snapShot, error in
@@ -176,7 +173,7 @@ class FetchFirestoreData {
             let userId = chatModelArray[i].user
             let anotherId = chatModelArray[i].user2
             let chatId = chatModelArray[i].chatRoom
-        
+            
             Firestore.getUserData(uid: userId) { user in
                 guard let user = user else { return }
                 userArray.append(user)
@@ -192,7 +189,6 @@ class FetchFirestoreData {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.chatListDelegate?.getChatList(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
         }
-        
     }
     
     func getGenderCount(teamPlayers:[User]) {
@@ -230,7 +226,7 @@ class FetchFirestoreData {
                 let name = safeData["name"] as? String ?? ""
                 let id = safeData["uid"] as? String ?? ""
                 if name.contains(text) && id != Auth.getUserId() {
-                     let user = User(dic: safeData)
+                    let user = User(dic: safeData)
                     userArray.append(user)
                 }
             }
@@ -239,7 +235,6 @@ class FetchFirestoreData {
     }
     
     func teamPlayerLevelCount(teamPlayers:[User]) {
-        print(teamPlayers)
         var level1 = 0
         var level2 = 0
         var level3 = 0
@@ -253,25 +248,25 @@ class FetchFirestoreData {
         for i in 0..<teamPlayers.count {
             let level = teamPlayers[i].level
             switch level {
-            case "レベル1":
+            case BadmintonLevel.one.rawValue:
                 level1 += 1
-            case "レベル2":
+            case BadmintonLevel.two.rawValue:
                 level2 += 1
-            case "レベル3":
+            case BadmintonLevel.three.rawValue:
                 level3 += 1
-            case "レベル4":
+            case BadmintonLevel.four.rawValue:
                 level4 += 1
-            case "レベル5":
+            case BadmintonLevel.five.rawValue:
                 level5 += 1
-            case "レベル6":
+            case BadmintonLevel.six.rawValue:
                 level6 += 1
-            case "レベル7":
+            case BadmintonLevel.seven.rawValue:
                 level7 += 1
-            case "レベル8":
+            case BadmintonLevel.eight.rawValue:
                 level8 += 1
-            case "レベル9":
+            case BadmintonLevel.nine.rawValue:
                 level9 += 1
-            case "レベル10":
+            case BadmintonLevel.ten.rawValue:
                 level10 += 1
             default:
                 break
@@ -306,9 +301,7 @@ class FetchFirestoreData {
         data = data.sorted(by: {
             $0.eventStartTime.compare($1.eventStartTime) == .orderedAscending
         })
-        
         guard let now = DateUtils.getNow() else { return }
-        //開始日と募集日をsortして条件分岐する。
         data = data.filter { event in
             let dateString = event.eventStartTime
             let dateData = DateUtils.dateFromString(string: dateString, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
@@ -316,8 +309,6 @@ class FetchFirestoreData {
             let eventTime = DateUtils.dateFromString(string: time, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
             return dateData >= now && eventTime >= now
         }
-        //dataを近い順に回す。
-        
         for i in 0..<data.count {
             let eventLatitude = data[i].latitude
             let eventLongitude = data[i].longitude
@@ -326,7 +317,6 @@ class FetchFirestoreData {
             let distance = currentPosition.distance(from: eventPosition)
             data[i].distance = distance
         }
-        
         data = data.sorted(by: {
             $0.distance < $1.distance
         })
@@ -393,11 +383,9 @@ class FetchFirestoreData {
                 let event = Event(dic: safeData)
                 eventArray.append(event)
             }
-     
             if title != "" {
                 eventArray = eventArray.filter { $0.eventTitle.contains(title) }
             }
-            
             if circle != "" {
                 eventArray = eventArray.filter{ $0.kindCircle == circle }
             }
@@ -409,7 +397,7 @@ class FetchFirestoreData {
             }
             if level != "" {
                 eventArray = self.searchLevel(searchLevel: level, event: eventArray)
-          }
+            }
             if time != "" {
                 eventArray = self.searchTime(time: time, event: eventArray)
             }
@@ -438,10 +426,8 @@ class FetchFirestoreData {
         return eventArray
     }
     
-    
     func searchLevel(searchLevel:String,event:[Event])->[Event] {
         var eventArray = [Event]()
-
         for i in 0..<event.count {
             let level = event[i].eventLevel
             let startIndex = level.index(level.startIndex, offsetBy: 3)
@@ -481,7 +467,7 @@ class FetchFirestoreData {
                 let userId2 = data["user2"] as? String ?? ""
                 let chatRoomId = data["chatRoomId"] as? String ?? ""
                 if (userId == meId && youId == userId2) || (userId == youId && meId == userId2) {
-                 string = chatRoomId
+                    string = chatRoomId
                 }
             }
             completion(string)
@@ -504,8 +490,9 @@ class FetchFirestoreData {
             self.chatDelegate?.getChatData(chatArray: chatArray)
         }
     }
+    
     func getChatRoomModel(chatId:[String]){
-            var chatRoomModelArray = [ChatRoom]()
+        var chatRoomModelArray = [ChatRoom]()
         for i in 0..<chatId.count {
             Ref.ChatroomRef.document(chatId[i]).getDocument { snapShot, error in
                 if let error = error {
@@ -542,7 +529,7 @@ class FetchFirestoreData {
         }
     }
     
-     func getEventPreJoinData(eventArray:[Event]) {
+    func getEventPreJoinData(eventArray:[Event]) {
         var stringArray = [[String]]()
         for i in 0..<eventArray.count {
             let eventId = eventArray[i].eventId

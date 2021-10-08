@@ -102,12 +102,12 @@ class RegisterViewController:UIViewController{
                          centerX: view.centerXAnchor,height: 400)
         iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
         alreadyButton.anchor(top:stackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
- 
+        
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
     }
-
+    
     func setupBinding() {
         nameTextField.rx.text
             .asDriver()

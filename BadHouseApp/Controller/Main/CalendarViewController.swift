@@ -25,10 +25,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     }
     //Mark setupMethod
     private func updateUI() {
-
         view.addSubview(button)
         view.addSubview(textField)
-
+        
         button.anchor(top:textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
@@ -38,7 +37,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         textField.anchor(top:calendar.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight: 30,paddingLeft: 30,height: 45)
         
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
-        textField.addTarget(self, action: #selector(placeSearch), for: UIControl.Event.valueChanged)
     }
     //Mark:Selector
     @objc func search() {
@@ -53,9 +51,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
         }
         self.delegate?.searchCalendar(dateString: searchDateString,text: text)
         dismiss(animated: true, completion: nil)
-    }
-
-    @objc func placeSearch() {
     }
     //Mark:FScalendarDelegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {

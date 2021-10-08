@@ -13,15 +13,15 @@ class ContactCell:UITableViewCell {
         return button
     }()
     var iv:UIImageView = {
-       let iv = UIImageView()
+        let iv = UIImageView()
         iv.layer.cornerRadius = 25
         iv.layer.masksToBounds = true
-       return iv
-   }()
-   var nameLabel:UILabel = {
-       let label = UILabel()
-       return label
-   }()
+        return iv
+    }()
+    var nameLabel:UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
     //Mark: initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

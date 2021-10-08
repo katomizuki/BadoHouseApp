@@ -77,13 +77,11 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
             .map { text ->Bool in
                 return text.count >= 1
             }
-        
         let moneyValid = moneyTextOutput
             .asObservable()
             .map { text ->Bool in
                 return text.count >= 1
             }
-        
         let titleValid = titleTextOutput
             .asObservable()
             .map { text ->Bool in

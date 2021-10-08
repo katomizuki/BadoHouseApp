@@ -23,7 +23,7 @@ struct LocalNotificationManager {
             .requestAuthorization(options: [.alert, .badge, .alert]) { granted, error in
                 if granted == true && error == nil {
                 }
-        }
+            }
     }
     
     static private func addNotification(title: String, body: String) -> Void {

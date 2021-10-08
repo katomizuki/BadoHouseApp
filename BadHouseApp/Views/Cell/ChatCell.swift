@@ -140,8 +140,5 @@ class ChatCell: UITableViewCell {
             yourMessaege = text
         }
     }
-    
-    
-    
 }
 
