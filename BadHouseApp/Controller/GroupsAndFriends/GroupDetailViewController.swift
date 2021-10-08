@@ -48,8 +48,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     var flag = false
     @IBOutlet private weak var updateButton: UIButton! {
         didSet {
-            updateButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue
-                                      , titleColor: .white, fontSize: 14)
+            updateButton.updateButton(radius: 15, backColor: .white
+                                      , titleColor: Utility.AppColor.OriginalBlue, fontSize: 14)
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
@@ -206,6 +206,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private func changeUI() {
         withdrawButton.isHidden = flag
         chatButton.isHidden = flag
+        updateButton.isHidden = flag
         if flag == true {
             navigationItem.setRightBarButton(nil, animated: true)
         }
@@ -251,7 +252,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     @IBAction private func withdraw(_ sender: Any) {
         print(#function)
         guard let teamId = team?.teamId else { return }
-        //OwnTeamからDelete,teamPlayerからdelete
         Firestore.deleteSubCollectionData(collecionName: "Users", documentId: Auth.getUserId(), subCollectionName: "OwnTeam", subId: teamId)
         Firestore.deleteSubCollectionData(collecionName: "Teams", documentId: teamId, subCollectionName: "TeamPlayer", subId: Auth.getUserId())
         navigationController?.popViewController(animated: true

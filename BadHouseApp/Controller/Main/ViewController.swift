@@ -188,14 +188,20 @@ extension ViewController: CLLocationManagerDelegate {
 //Mark: GetEventSearchDelegate
 extension ViewController:GetEventSearchDelegate {
     
-    func getEventSearchData(eventArray: [Event]) {
-        self.eventArray = eventArray
+    func getEventSearchData(eventArray: [Event],bool:Bool) {
         print(#function)
-        if eventArray.isEmpty {
-            view.emptyState.show(State.noSearch)
-        }
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        self.eventArray = eventArray
+        if bool == false {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        } else if bool == true {
+            if eventArray.isEmpty {
+                view.emptyState.show(State.noSearch)
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
 }
@@ -208,7 +214,7 @@ extension ViewController: UISearchBarDelegate {
             self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
-        fetchData.searchText(text: searchText)
+        fetchData.searchText(text: searchText,bool:true)
         searchBar.resignFirstResponder()
     }
     
@@ -231,7 +237,7 @@ extension ViewController: UISearchBarDelegate {
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
             searchBar.resignFirstResponder()
         } else {
-            fetchData.searchText(text: text)
+            fetchData.searchText(text: text,bool:false)
         }
     }
 }
@@ -243,11 +249,11 @@ extension ViewController: GetEventTimeDelegate{
         if eventArray.isEmpty {
             view.emptyState.show(State.noSearch)
         } else {
-        self.eventArray = eventArray
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.eventArray = eventArray
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
-      }
     }
 }
 //Mark GetEventDelegate

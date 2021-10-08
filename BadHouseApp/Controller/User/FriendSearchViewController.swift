@@ -7,12 +7,7 @@ import CDAlertView
 
 class FriendSearchViewController: UIViewController {
     //Mark:Properties
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-            tableView.addGestureRecognizer(gesture)
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Utility.AppColor.OriginalBlue
@@ -72,10 +67,6 @@ class FriendSearchViewController: UIViewController {
                 Firestore.friendAction(myId: Auth.getUserId(), friend: friend, bool: true)
             }
         }
-    }
-    //Mark selector
-    @objc private func handleTap() {
-        searchBar.resignFirstResponder()
     }
 }
 //Mark:UITableViewDelegate,DataSource

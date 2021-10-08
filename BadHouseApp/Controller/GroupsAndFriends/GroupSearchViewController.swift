@@ -14,12 +14,7 @@ class GroupSearchViewController: UIViewController {
             searchBar.placeholder = "場所名,サークル名等,検索"
         }
     }
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-            tableView.addGestureRecognizer(gesture)
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
@@ -60,10 +55,6 @@ class GroupSearchViewController: UIViewController {
         format.imageSize = CGSize(width: 200, height: 200)
         view.emptyState.format = format
     }
-    //Mark selector
-    @objc private func handleTap() {
-        searchBar.resignFirstResponder()
-    }
 }
 //Mark tableViewDelegate
 extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
@@ -79,6 +70,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
         let team = groupArray[indexPath.row]
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
         vc.team = team
@@ -92,7 +84,7 @@ extension GroupSearchViewController:UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
-        fetchData.searchGroup(text: text)
+        fetchData.searchGroup(text: text,bool:false)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
@@ -114,20 +106,30 @@ extension GroupSearchViewController:UISearchBarDelegate {
         return
         }
         searchBar.text = ""
-        fetchData.searchGroup(text: text)
+        fetchData.searchGroup(text: text,bool:true)
     }
 }
 //Mark getGroupDelegate
 extension GroupSearchViewController:GetGroupDelegate{
     
-    func getGroup(groupArray: [TeamModel]) {
+    func getGroup(groupArray: [TeamModel],bool:Bool) {
+        
+        if bool == false {
+            self.groupArray = groupArray
+            DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+        } else if bool == true {
         if groupArray.isEmpty {
             view.emptyState.show(State.noSearch)
         } else {
         self.groupArray = groupArray
-        tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
+  }
 }
 
 //Mark EmptyStateDelegate

@@ -69,6 +69,7 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! FriendsCell
         cell.linkInvite = self
         cell.nameLabel.text = friends[indexPath.row].name
+        cell.tintColor = Utility.AppColor.OriginalBlue
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {

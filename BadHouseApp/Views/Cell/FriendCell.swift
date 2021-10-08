@@ -7,14 +7,18 @@ class FriendsCell:UITableViewCell {
     //Mark:Properties
     var linkInvite:InviteViewController!
     var count = 0
-    private var button:UIButton = {
+    var button:UIButton = {
         let button = UIButton(type: .system)
+        button.tintColor = Utility.AppColor.OriginalBlue
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
+        let image = UIImage(named: Utility.ImageName.circle)?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
         return button
     }()
     var iv:UIImageView = {
         let iv = UIImageView()
+        iv.layer.cornerRadius = 25
+        iv.layer.masksToBounds = true
         return iv
     }()
     var nameLabel:UILabel = {
@@ -25,8 +29,6 @@ class FriendsCell:UITableViewCell {
     //Mark: initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.iv.layer.cornerRadius = 25
-        self.iv.layer.masksToBounds = true
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)
@@ -40,9 +42,9 @@ class FriendsCell:UITableViewCell {
     
     //Mark: selector
     @objc private func handleInvite() {
+        button.tintColor = Utility.AppColor.OriginalBlue
         if count % 2 == 0 {
             button.setImage(UIImage(named: Utility.ImageName.check), for: UIControl.State.normal)
-            self.backgroundColor = Utility.AppColor.OriginalBlue
             count += 1
         } else {
             button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)

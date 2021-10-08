@@ -99,6 +99,7 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
         cell.linkFriend = self
         cell.nameLabel.text = friends[indexPath.row].name
+        cell.button.tintColor = Utility.AppColor.OriginalBlue
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {

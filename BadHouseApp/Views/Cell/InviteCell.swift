@@ -6,7 +6,7 @@ class ContactCell:UITableViewCell {
     //Mark:Properties
     var linkFriend:FriendsViewController!
     var count = 0
-    private var button:UIButton = {
+    var button:UIButton = {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)

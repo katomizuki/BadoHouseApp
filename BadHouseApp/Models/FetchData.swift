@@ -13,7 +13,7 @@ protocol GetEventDelegate :AnyObject {
     func getEventData(eventArray:[Event])
 }
 protocol GetEventSearchDelegate :AnyObject {
-    func getEventSearchData(eventArray:[Event])
+    func getEventSearchData(eventArray:[Event],bool:Bool)
 }
 protocol GetEventTimeDelegate:AnyObject  {
     func getEventTimeData(eventArray:[Event])
@@ -49,7 +49,7 @@ protocol GetVideoDelegate :AnyObject {
     func getVideo(videoArray:[VideoModel])
 }
 protocol GetGroupDelegate:AnyObject  {
-    func getGroup(groupArray:[TeamModel])
+    func getGroup(groupArray:[TeamModel],bool:Bool)
 }
 protocol GetMyEventDelegate:AnyObject  {
     func getEvent(eventArray:[Event])
@@ -323,7 +323,7 @@ class FetchFirestoreData {
         self.eventDelegate?.getEventData(eventArray: data)
     }
     
-    func searchText(text:String) {
+    func searchText(text:String,bool:Bool) {
         var eventArray = [Event]()
         Ref.EventRef.getDocuments { Snapshot, error in
             if let error = error {
@@ -343,7 +343,7 @@ class FetchFirestoreData {
                     eventArray.append(event)
                 }
             }
-            self.eventSearchDelegate?.getEventSearchData(eventArray: eventArray)
+            self.eventSearchDelegate?.getEventSearchData(eventArray: eventArray,bool:bool)
         }
     }
     
@@ -621,7 +621,7 @@ class FetchFirestoreData {
             }
         }
     }
-    func searchGroup(text:String) {
+    func searchGroup(text:String,bool:Bool) {
         var groupArray = [TeamModel]()
         Ref.TeamRef.getDocuments { Snapshot, error in
             if let error = error {
@@ -638,7 +638,7 @@ class FetchFirestoreData {
                     groupArray.append(team)
                 }
             }
-            self.groupSearchDelegate?.getGroup(groupArray: groupArray)
+            self.groupSearchDelegate?.getGroup(groupArray: groupArray,bool:bool)
         }
     }
 }
