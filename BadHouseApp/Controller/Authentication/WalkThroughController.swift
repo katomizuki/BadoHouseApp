@@ -1,7 +1,9 @@
 import UIKit
+import FacebookCore
 
-class WalkThroughController:UIPageViewController, UIPageViewControllerDataSource  {
+class WalkThroughController:UIPageViewController {
     
+    //Mark:properties
     private let firstVC:UIViewController = {
         let vc = UIViewController()
         vc.view.backgroundColor = .white
@@ -19,12 +21,17 @@ class WalkThroughController:UIPageViewController, UIPageViewControllerDataSource
         explainLabel.textColor = .darkGray
         explainLabel.isEditable = false
         explainLabel.isSelectable = false
+        let explainImage = UIImageView()
+        explainImage.image = UIImage(named: "ウォーク3")
+        explainImage.contentMode = .scaleAspectFill
         vc.view.addSubview(iv)
         vc.view.addSubview(label)
         vc.view.addSubview(explainLabel)
+        vc.view.addSubview(explainImage)
         iv.anchor(top:vc.view.topAnchor,paddingTop: 50, centerX: vc.view.centerXAnchor,width: 100,height: 100)
         label.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:300,height:50)
         explainLabel.anchor(top:label.bottomAnchor,paddingTop: 10,centerX: vc.view.centerXAnchor,width:300,height: 50)
+        explainImage.anchor(top:explainLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 20,paddingRight: 20,paddingLeft: 20,height:40)
         return vc
     }()
     
@@ -64,7 +71,17 @@ class WalkThroughController:UIPageViewController, UIPageViewControllerDataSource
         return views
     }()
     private var pageControl:UIPageControl!
-    
+    private let dismissButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("はじめてみる", for: .normal)
+        button.backgroundColor = Utility.AppColor.OriginalBlue
+        button.toCorner(num: 15)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        return button
+    }()
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
@@ -75,9 +92,17 @@ class WalkThroughController:UIPageViewController, UIPageViewControllerDataSource
         pageControl.numberOfPages = 2
         pageControl.currentPage = 0
         pageControl.isUserInteractionEnabled = false
+        self.view.addSubview(dismissButton)
         self.view.addSubview(pageControl)
+        dismissButton.anchor(bottom:pageControl.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingBottom: 20,paddingRight:40, paddingLeft: 40,height:40)
     }
-    
+    //Mark selector
+    @objc private func handleDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+//Mark pageViewControllorDatasource
+extension WalkThroughController:UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex - 1 >= 0 {
             pageControl.currentPage = 0
