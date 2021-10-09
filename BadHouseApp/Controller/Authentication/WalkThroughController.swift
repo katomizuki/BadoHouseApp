@@ -7,11 +7,24 @@ class WalkThroughController:UIPageViewController, UIPageViewControllerDataSource
         vc.view.backgroundColor = .white
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.logoImage)
-        let label = ProfileLabel(title: "ダウンロードありがとうございます", num: 20)
+        let label = UITextView()
+        label.text = "ダウンロードしていただきありがとうございます"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .darkGray
+        label.isEditable = false
+        label.isSelectable = false
+        let explainLabel = UITextView()
+        explainLabel.text = "ログインした後にユーザー情報を更新してみてね！"
+        explainLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        explainLabel.textColor = .darkGray
+        explainLabel.isEditable = false
+        explainLabel.isSelectable = false
         vc.view.addSubview(iv)
         vc.view.addSubview(label)
+        vc.view.addSubview(explainLabel)
         iv.anchor(top:vc.view.topAnchor,paddingTop: 50, centerX: vc.view.centerXAnchor,width: 100,height: 100)
-        label.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:300,height:40)
+        label.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:300,height:50)
+        explainLabel.anchor(top:label.bottomAnchor,paddingTop: 10,centerX: vc.view.centerXAnchor,width:300,height: 50)
         return vc
     }()
     
@@ -20,11 +33,29 @@ class WalkThroughController:UIPageViewController, UIPageViewControllerDataSource
         vc.view.backgroundColor = .white
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.logoImage)
-        let label = ProfileLabel(title: "よろしくお願いします", num: 20)
+        let label = ProfileLabel(title: "早速初めてみよう！", num: 20)
+        label.isHighlighted = false
+        label.textColor = .darkGray
+        let explainLabel = UITextView()
+        explainLabel.text = "メインページでバドミントンをしたい条件や\nキーワードで開催予定の練習を探してみよう"
+        explainLabel.textColor = .darkGray
+        explainLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        explainLabel.isEditable = false
+        explainLabel.isSelectable = false
+        let plusLabel = UITextView()
+        plusLabel.text = "参加したい練習の主催者の方にチャットを送るだけ！！"
+        plusLabel.isEditable = false
+        plusLabel.isSelectable = false
+        plusLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        plusLabel.textColor = .darkGray
         vc.view.addSubview(iv)
         vc.view.addSubview(label)
+        vc.view.addSubview(explainLabel)
+        vc.view.addSubview(plusLabel)
         iv.anchor(top:vc.view.topAnchor,paddingTop: 50, centerX: vc.view.centerXAnchor,width: 100,height: 100)
-        label.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:200,height:40)
+        explainLabel.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:320,height:50)
+        plusLabel.anchor(top:explainLabel.bottomAnchor,paddingTop: 0,centerX: vc.view.centerXAnchor,width:350,height:40)
+        label.anchor(top:plusLabel.bottomAnchor,paddingTop: 5,centerX: vc.view.centerXAnchor,width: 300,height: 40)
         return vc
     }()
     
