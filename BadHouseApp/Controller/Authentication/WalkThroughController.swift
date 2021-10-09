@@ -104,7 +104,8 @@ class WalkThroughController:UIPageViewController {
     private let dismissButton:UIButton = {
         let button = UIButton()
         button.setTitle("はじめてみる", for: .normal)
-        button.backgroundColor = Utility.AppColor.OriginalBlue
+        button.backgroundColor = .darkGray
+        button.isEnabled = false
         button.toCorner(num: 15)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
@@ -136,6 +137,8 @@ extension WalkThroughController:UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex - 1 >= 0 {
             pageControl.currentPage = 0
+            dismissButton.isEnabled = false
+            dismissButton.backgroundColor = .darkGray
             return pages[pageIndex - 1]
         }
         return nil
@@ -144,6 +147,8 @@ extension WalkThroughController:UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex + 1 < pages.count {
             pageControl.currentPage = 1
+            dismissButton.isEnabled = true
+            dismissButton.backgroundColor = Utility.AppColor.OriginalBlue
             return pages[pageIndex + 1]
         }
         return nil

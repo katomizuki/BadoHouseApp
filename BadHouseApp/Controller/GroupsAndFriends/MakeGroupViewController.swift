@@ -296,7 +296,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             sender.backgroundColor = Utility.AppColor.OriginalBlue
             sender.setTitleColor(.white, for: UIControl.State.normal)
         } else {
-            sender.backgroundColor = .white
+            sender.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
             sender.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
         }
         guard let title = sender.titleLabel?.text else { return }

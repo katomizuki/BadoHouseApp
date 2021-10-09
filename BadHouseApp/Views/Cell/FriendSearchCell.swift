@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import FacebookCore
 
 class FriendSearchCell: UITableViewCell {
     
@@ -52,7 +53,7 @@ class FriendSearchCell: UITableViewCell {
             button.setTitleColor(.white, for: UIControl.State.normal)
             button.setTitle("　友だち追加済　", for: UIControl.State.normal)
         } else  {
-            button.backgroundColor = .white
+            button.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
             button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
             button.layer.borderWidth = 3
             button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor

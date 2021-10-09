@@ -90,9 +90,7 @@ extension ChatViewController: GetChatDataDelgate {
     func getChatData(chatArray: [Chat]) {
         self.messages = []
         self.messages = chatArray
-        DispatchQueue.main.async {
-            self.chatTableView.reloadData()
-        }
+        self.chatTableView.reloadData()
         if messages.count != 0 {
             chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }
@@ -113,6 +111,7 @@ extension ChatViewController:InputDelegate {
         guard let text = inputView.messageInputTextView.text else { return }
         guard let myId = me?.uid else { return }
         guard let youId = you?.uid else { return }
+        if text == "" { return }
         inputView.messageInputTextView.text = ""
         Firestore.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
         fetchData.getChat(chatId: chatId)

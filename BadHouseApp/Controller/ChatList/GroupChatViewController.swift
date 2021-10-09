@@ -75,9 +75,7 @@ extension GroupChatViewController:GetGroupChatDelegate {
     func getGroupChat(chatArray: [GroupChatModel]) {
         self.chatArray = []
         self.chatArray = chatArray
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
         if chatArray.count != 0 {
             tableView.scrollToRow(at: IndexPath(row: chatArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }
@@ -90,6 +88,7 @@ extension GroupChatViewController:InputDelegate {
         guard let teamId = self.team?.teamId else { return }
         guard let me = self.me else { return }
         guard let text = inputView.messageInputTextView.text else { return }
+        if text == "" { return }
         Firestore.sendGroupChat(teamId: teamId, me: me, text: text)
         inputView.messageInputTextView.text = ""
     }

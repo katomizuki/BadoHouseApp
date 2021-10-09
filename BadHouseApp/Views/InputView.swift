@@ -20,9 +20,13 @@ class CustomInputAccessoryView:UIView {
     
     private let sendButton:UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("送信", for: .normal)
-        button.setTitleColor(Utility.AppColor.OriginalBlue, for: .normal)
+        button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        button.tintColor = .white
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 3
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
         return button
     }()
     
@@ -50,16 +54,16 @@ class CustomInputAccessoryView:UIView {
         addSubview(sendButton)
         addSubview(placeholder)
         
-        sendButton.anchor(right: rightAnchor,
-                          paddingRight: 24,
-                          centerY:messageInputTextView.centerYAnchor)
+        sendButton.anchor(left: messageInputTextView.rightAnchor,
+                          paddingLeft:5,
+                          centerY:messageInputTextView.centerYAnchor,width:40, height:40)
         messageInputTextView.anchor(top:topAnchor,
                                     bottom:safeAreaLayoutGuide.bottomAnchor,
                                     left: leftAnchor,
                                     right:rightAnchor,
                                     paddingTop: 12,
                                     paddingBottom: 12,
-                                    paddingRight: 20,
+                                    paddingRight: 60,
                                     paddingLeft: 20)
         
         placeholder.anchor(left:messageInputTextView.leftAnchor,

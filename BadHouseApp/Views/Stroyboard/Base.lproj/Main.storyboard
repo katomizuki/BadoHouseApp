@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fa8-s4-oao">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -1382,7 +1382,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-ua-dg9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="548"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1392,7 +1392,7 @@
                             <constraint firstItem="y1L-ua-dg9" firstAttribute="leading" secondItem="IZg-uR-SFp" secondAttribute="leading" id="5Ck-Kh-xnc"/>
                             <constraint firstItem="IZg-uR-SFp" firstAttribute="bottom" secondItem="y1L-ua-dg9" secondAttribute="bottom" id="VLT-od-K7N"/>
                             <constraint firstItem="y1L-ua-dg9" firstAttribute="trailing" secondItem="IZg-uR-SFp" secondAttribute="trailing" id="rdQ-oC-nGP"/>
-                            <constraint firstItem="y1L-ua-dg9" firstAttribute="top" secondItem="IZg-uR-SFp" secondAttribute="top" id="wLc-Mz-B7U"/>
+                            <constraint firstItem="y1L-ua-dg9" firstAttribute="top" secondItem="IZg-uR-SFp" secondAttribute="top" constant="50" id="wLc-Mz-B7U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JkK-Cg-ohM"/>
@@ -1455,11 +1455,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="ChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="50" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="494"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -2485,6 +2485,7 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-0V-WvQ">
                                                         <rect key="frame" x="167.5" y="0.0" width="167.5" height="45"/>
+                                                        <color key="backgroundColor" name="TFColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="N7A-8m-jJv"/>
                                                         </constraints>
@@ -3386,7 +3387,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="MN5-1V-PZA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Cy-Pi-0zT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3401,7 +3402,6 @@
         <!--Sub User View Controller-->
         <scene sceneID="9PU-lW-nrh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UOU-bk-RQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SubUserVC" id="N5Z-oj-ym1" customClass="SubUserViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3LP-Us-KKw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
@@ -3669,17 +3669,17 @@
                         <segue destination="oj7-Ug-OXr" kind="show" id="BI6-59-EIl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UOU-bk-RQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2062" y="3021"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uMH-yM-k5X"/>
-        <segue reference="KCo-PJ-OZR"/>
-        <segue reference="3Ng-cG-BBs"/>
+        <segue reference="t41-KJ-vjm"/>
+        <segue reference="VQy-IJ-T3o"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
-        <segue reference="fuc-E9-X1F"/>
+        <segue reference="9Ym-mF-wrv"/>
         <segue reference="cdz-Ff-0Nv"/>
         <segue reference="PHY-qr-DAt"/>
     </inferredMetricsTieBreakers>
