@@ -171,6 +171,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
         pieChartDataSet.drawValuesEnabled = false
         pieView.centerText = "男女比"
+        pieView.legend.textColor = .label
+        pieChartDataSet.valueTextColor = .label
         pieView.legend.enabled = false
         pieView.data = PieChartData(dataSet:pieChartDataSet)
         let colors = [UIColor.blue,.red,Utility.AppColor.OriginalBlue]
@@ -199,8 +201,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     //Mark: helplerMethod
     private func updateBorder() {
-        setupBorder(view: placeStackView)
-        setupBorder(view: timeStackView)
+//        setupBorder(view: placeStackView)
+//        setupBorder(view: timeStackView)
     }
     
     private func changeUI() {

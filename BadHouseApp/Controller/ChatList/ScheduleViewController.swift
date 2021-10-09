@@ -13,6 +13,7 @@ class ScheduleViewController: UIViewController{
     private var eventArray = [Event]()
     private let tableview:UITableView = {
         let tv = UITableView()
+        tv.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
         return tv
     }()
     private let calendar:FSCalendar = {
@@ -25,7 +26,7 @@ class ScheduleViewController: UIViewController{
         setupData()
         setupCalendar()
         setupTableView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
     }
     //Mark setupMethod
     private func setupData() {
@@ -45,6 +46,7 @@ class ScheduleViewController: UIViewController{
         calendar.appearance.weekdayTextColor = Utility.AppColor.OriginalBlue
         calendar.appearance.headerTitleColor = Utility.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
+        calendar.appearance.titleDefaultColor = .systemGray
         calendar.appearance.headerDateFormat = "yyyy年MM月"
         calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
         calendar.appearance.todayColor = .systemRed

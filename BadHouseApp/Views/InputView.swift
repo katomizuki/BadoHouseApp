@@ -15,6 +15,7 @@ class CustomInputAccessoryView:UIView {
         tv.isScrollEnabled = false
         tv.layer.cornerRadius = 15
         tv.layer.masksToBounds = true
+        tv.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
         return tv
     }()
     

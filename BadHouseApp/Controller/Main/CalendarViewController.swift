@@ -46,6 +46,7 @@ class CalendarViewController: UIViewController {
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
         calendar.appearance.headerDateFormat = "yyyy年MM月"
         calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.titleDefaultColor = .systemGray
         calendar.today = nil
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
         calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
