@@ -81,7 +81,9 @@ extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSo
 extension TimeLineViewController:GetVideoDelegate {
     func getVideo(videoArray: [VideoModel]) {
         self.data = videoArray
-        collectionView?.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
     }
 }
 //Mark collectionCellDelegate

@@ -109,9 +109,10 @@ extension ScheduleViewController:GetMyEventDelegate {
             return time < nextTime
         }
         self.eventArray = array
-        
-        tableview.reloadData()
-        calendar.reloadData()
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+            self.calendar.reloadData()
+        }
     }
 }
 //Mark FSCalendarDelegate
@@ -157,8 +158,10 @@ extension ScheduleViewController:CalendarEventDelegate {
             guard let meId = self.me?.uid else { return }
             let eventId = self.eventArray[tappedIndex].eventId
             Firestore.deleteSubCollectionData(collecionName: "Users", documentId: meId, subCollectionName: "Join", subId: eventId)
-            self.tableview.reloadData()
-            self.calendar.reloadData()
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+                self.calendar.reloadData()
+            }
         }
         let cancleAction = UIAlertAction(title: "いいえ", style: .cancel)
         vc.addAction(alertAction)

@@ -48,7 +48,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     private var introduction = ""
     private let backButton:UIButton = {
-    let button = UIButton(type: .system).createProfileTopButton(title: "もどる")
+        let button = UIButton(type: .system).createProfileTopButton(title: "もどる")
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
@@ -79,7 +79,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         return collectionView
     }()
     lazy var userTableView:UITableView = {
-    let tb = UITableView()
+        let tb = UITableView()
         tb.delegate = self
         tb.dataSource = self
         tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)

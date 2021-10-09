@@ -72,9 +72,9 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     private func setupLayer() {
-//        setupBorder(view: ageStackView)
-//        setupBorder(view: genderStackView)
-//        setupBorder(view: badmintonTimeStackView)
+        //        setupBorder(view: ageStackView)
+        //        setupBorder(view: genderStackView)
+        //        setupBorder(view: badmintonTimeStackView)
     }
     
     private func setupBorder(view:UIView) {
@@ -212,16 +212,16 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
-        vc.team = ownTeam[indexPath.row]
-        vc.friends = userFriend
-        vc.flag = true
-        navigationController?.pushViewController(vc, animated: true)
+            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
+            vc.team = ownTeam[indexPath.row]
+            vc.friends = userFriend
+            vc.flag = true
+            navigationController?.pushViewController(vc, animated: true)
         } else {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SubUserVC") as! SubUserViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SubUserVC") as! SubUserViewController
             vc.user = userFriend[indexPath.row]
             vc.me = self.user
-        navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

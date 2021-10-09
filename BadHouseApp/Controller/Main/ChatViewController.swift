@@ -90,7 +90,9 @@ extension ChatViewController: GetChatDataDelgate {
     func getChatData(chatArray: [Chat]) {
         self.messages = []
         self.messages = chatArray
-        self.chatTableView.reloadData()
+        DispatchQueue.main.async {
+            self.chatTableView.reloadData()
+        }
         if messages.count != 0 {
             chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }

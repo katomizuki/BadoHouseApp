@@ -75,7 +75,9 @@ extension GroupChatViewController:GetGroupChatDelegate {
     func getGroupChat(chatArray: [GroupChatModel]) {
         self.chatArray = []
         self.chatArray = chatArray
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         if chatArray.count != 0 {
             tableView.scrollToRow(at: IndexPath(row: chatArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }

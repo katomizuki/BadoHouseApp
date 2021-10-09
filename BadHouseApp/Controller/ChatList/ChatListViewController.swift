@@ -2,6 +2,7 @@ import UIKit
 import Firebase
 import SDWebImage
 import CDAlertView
+import NVActivityIndicatorView
 
 class ChatListViewController:UIViewController {
     //Mark:Properties
@@ -28,6 +29,7 @@ class ChatListViewController:UIViewController {
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return view
     }()
+    private var IndicatorView:NVActivityIndicatorView!
     //Mark:lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,8 @@ class ChatListViewController:UIViewController {
         setupOwnTeamData()
         setupNotification()
         setupNav()
+        setupIndicator()
+        IndicatorView.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +66,14 @@ class ChatListViewController:UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    private func setupIndicator() {
+        IndicatorView = self.setupIndicatorView()
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor,
+                             centerY: view.centerYAnchor,
+                             width:100,
+                             height: 100)
     }
     
     private func setupTableView() {
@@ -245,7 +257,10 @@ extension ChatListViewController :GetChatListDelegate {
         self.chatModelArray = chatModelArray
         let sortArray = self.sortArray()
         makeSortArray(sortArray: sortArray)
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.IndicatorView.stopAnimating()
+            self.tableView.reloadData()
+        }
     }
     
     private func sortArray()->sortChatArray {

@@ -85,6 +85,5 @@ extension CalendarViewController:FSCalendarDelegate {
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString
     }
-    
 }
 

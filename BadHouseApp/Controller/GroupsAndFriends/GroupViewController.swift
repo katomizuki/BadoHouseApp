@@ -177,7 +177,9 @@ extension GroupViewController:GetFriendDelegate {
     func getFriend(friendArray: [User]) {
         self.friendArray = []
         self.friendArray = friendArray
-        self.groupTableView.reloadData()
+        DispatchQueue.main.async {
+            self.groupTableView.reloadData()
+        }
     }
 }
 //Mark myTeamDelegate
@@ -190,7 +192,9 @@ extension GroupViewController:GetMyTeamDelegate {
         }
         self.teamArray = array
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
-        self.IndicatorView.stopAnimating()
-        groupTableView.reloadData()
+        DispatchQueue.main.async {
+            self.IndicatorView.stopAnimating()
+            self.groupTableView.reloadData()
+        }
     }
 }
