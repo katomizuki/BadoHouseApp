@@ -75,9 +75,9 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
         badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
     }
     private func setupLayer() {
-//        setupBorder(view: ageStackView)
-//        setupBorder(view: genderStackView)
-//        setupBorder(view: badmintonTimeStackView)
+        //        setupBorder(view: ageStackView)
+        //        setupBorder(view: genderStackView)
+        //        setupBorder(view: badmintonTimeStackView)
     }
     
     private func setupBorder(view:UIView) {

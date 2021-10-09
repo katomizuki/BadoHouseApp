@@ -103,8 +103,8 @@ extension GroupSearchViewController:UISearchBarDelegate {
         print(#function)
         guard let text = searchBar.text else { return }
         if text.isEmpty {
-        self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
-        return
+            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+            return
         }
         searchBar.text = ""
         fetchData.searchGroup(text: text,bool:true)
@@ -118,19 +118,19 @@ extension GroupSearchViewController:GetGroupDelegate{
         if bool == false {
             self.groupArray = groupArray
             DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } else if bool == true {
+            if groupArray.isEmpty {
+                view.emptyState.show(State.noSearch)
+            } else {
+                self.groupArray = groupArray
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-        } else if bool == true {
-        if groupArray.isEmpty {
-            view.emptyState.show(State.noSearch)
-        } else {
-        self.groupArray = groupArray
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
             }
         }
     }
-  }
 }
 
 //Mark EmptyStateDelegate

@@ -138,16 +138,16 @@ extension FriendSearchViewController:GetUserDataDelegate {
                 self.tableView.reloadData()
             }
         } else if bool == true {
-        if userArray.isEmpty {
-            self.view.emptyState.show(State.noSearch)
-        } else {
-            self.friendList = userArray
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            if userArray.isEmpty {
+                self.view.emptyState.show(State.noSearch)
+            } else {
+                self.friendList = userArray
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
-  }
 }
 //Mark EmptyStateDelegate
 extension FriendSearchViewController:EmptyStateDelegate{

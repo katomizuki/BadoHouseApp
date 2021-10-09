@@ -201,8 +201,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     //Mark: helplerMethod
     private func updateBorder() {
-//        setupBorder(view: placeStackView)
-//        setupBorder(view: timeStackView)
+        //        setupBorder(view: placeStackView)
+        //        setupBorder(view: timeStackView)
     }
     
     private func changeUI() {
