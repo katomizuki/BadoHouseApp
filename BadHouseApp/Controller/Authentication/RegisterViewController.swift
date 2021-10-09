@@ -69,6 +69,10 @@ class RegisterViewController:UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //UserDefaultで条件分岐をする
+        if UserDefaults.standard.object(forKey: "MyId") == nil && Auth.auth().currentUser == nil {
+            let vc = WalkThroughController()
+            present(vc, animated: true, completion: nil)
+        }
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
     }
@@ -170,7 +174,6 @@ class RegisterViewController:UIViewController{
             .asDriver()
             .drive { [weak self] _ in
                 let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.LoginVC) as! LoginViewController
-                
                 self?.navigationController?.pushViewController(loginVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -185,6 +188,8 @@ class RegisterViewController:UIViewController{
         Auth.register(name: name, email: email, password: password) { result,error in
             if result {
                 self.IndicatorView.stopAnimating()
+                let bool = false
+                UserDefaults.standard.set(bool, forKey: "MyId")
                 print("Create User Success")
                 self.dismiss(animated: true, completion: nil)
             } else {
@@ -222,8 +227,8 @@ extension RegisterViewController: GIDSignInDelegate {
                     guard let name = fullName else { return }
                     Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
                         if result == true {
-                            let boolArray = [Bool]()
-                            UserDefaults.standard.set(boolArray, forKey: id)
+                            let bool = false
+                            UserDefaults.standard.set(bool, forKey: "MyId")
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
@@ -246,7 +251,6 @@ extension RegisterViewController:LoginButtonDelegate {
                 return
             }
         }
-        
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
@@ -263,8 +267,8 @@ extension RegisterViewController:LoginButtonDelegate {
             guard let id = result?.user.uid else { return }
             Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
                 if result == true {
-                    let boolArray = [Bool]()
-                    UserDefaults.standard.set(boolArray, forKey: id)
+                    let bool = false
+                    UserDefaults.standard.set(bool, forKey: "MyId")
                     self.dismiss(animated: true, completion: nil)
                 }
             }

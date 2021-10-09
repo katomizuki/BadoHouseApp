@@ -20,8 +20,6 @@ extension Auth {
             guard let uid = result?.user.uid else { return }
             Firestore.setUserData(uid: uid, password: password, email: email, name: name) { result in
                 completion(result, error)
-                let boolArray = [Bool]()
-                UserDefaults.standard.set(boolArray, forKey: uid)
             }
         }
     }
