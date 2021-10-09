@@ -49,10 +49,12 @@ class GroupCell:UITableViewCell {
     //Mark: LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = UIColor(named: Utility.AppColor.darkColor)
         self.cellImagevView.layer.cornerRadius = 30
         self.cellImagevView.layer.masksToBounds = true
         self.cellImagevView.contentMode = .scaleAspectFill
         self.accessoryType = .disclosureIndicator
+        self.accessoryView?.tintColor = UIColor(named: Utility.AppColor.darkColor)
         self.label.font = UIFont.boldSystemFont(ofSize: 16)
         self.selectionStyle = .none
         addSubview(trashButton)

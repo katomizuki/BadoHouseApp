@@ -53,6 +53,7 @@ class GroupSearchViewController: UIViewController {
         format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
         format.animation = EmptyStateAnimation.scale(0.3, 2.0)
         format.imageSize = CGSize(width: 200, height: 200)
+        format.backgroundColor = UIColor(named:Utility.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
 }

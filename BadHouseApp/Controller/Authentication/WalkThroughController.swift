@@ -6,7 +6,7 @@ class WalkThroughController:UIPageViewController {
     //Mark:properties
     private let firstVC:UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = .white
+        vc.view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.logoImage)
         let label = UITextView()
@@ -58,7 +58,7 @@ class WalkThroughController:UIPageViewController {
     
     private let secondVC:UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = .white
+        vc.view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
         let iv = UIImageView()
         iv.image = UIImage(named: Utility.ImageName.logoImage)
         let label = ProfileLabel(title: "早速初めてみよう！", num: 20)
@@ -116,6 +116,7 @@ class WalkThroughController:UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
+        view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
         self.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
         let width = self.view.frame.maxX
         pageControl = UIPageControl(frame: CGRect(x:0, y:self.view.frame.maxY - 100, width:width, height:50))

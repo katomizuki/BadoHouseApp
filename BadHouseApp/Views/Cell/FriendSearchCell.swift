@@ -12,7 +12,7 @@ class FriendSearchCell: UITableViewCell {
         button.frame = CGRect(x: 0, y: 0, width: 120, height: 50)
         button.setTitle( "　ともだちになる　", for: UIControl.State.normal)
         button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-        button.backgroundColor = .white
+        button.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor

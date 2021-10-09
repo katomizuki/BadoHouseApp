@@ -430,15 +430,16 @@
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gBo-SM-WSm">
                                 <rect key="frame" x="30" y="54" width="315" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-JP-zQ4">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PTK-Fb-HQj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
                         <constraints>
                             <constraint firstItem="gBo-SM-WSm" firstAttribute="trailing" secondItem="PTK-Fb-HQj" secondAttribute="trailing" constant="-30" id="3rd-Q8-yqG"/>
                             <constraint firstItem="gBo-SM-WSm" firstAttribute="leading" secondItem="PTK-Fb-HQj" secondAttribute="leading" constant="30" id="4S2-Dg-GSE"/>
@@ -501,6 +502,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="ともだち名検索" translatesAutoresizingMaskIntoConstraints="NO" id="cO3-C4-xEi">
                                 <rect key="frame" x="30" y="40" width="315" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4V-vz-nbf">
@@ -509,7 +511,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="o4b-x1-L90"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="O4V-vz-nbf" secondAttribute="bottom" id="1PE-mw-LxE"/>
                             <constraint firstItem="cO3-C4-xEi" firstAttribute="top" secondItem="o4b-x1-L90" secondAttribute="top" constant="40" id="D8T-WT-aXA"/>
@@ -1455,11 +1457,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="ChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="94" width="375" height="494"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="547"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1469,7 +1471,7 @@
                             <constraint firstAttribute="trailing" secondItem="W7u-be-lQM" secondAttribute="trailing" id="LUm-zr-WbW"/>
                             <constraint firstItem="W7u-be-lQM" firstAttribute="leading" secondItem="FKS-e1-8wm" secondAttribute="leading" id="V2R-kW-xjR"/>
                             <constraint firstItem="W7u-be-lQM" firstAttribute="top" secondItem="8hA-I4-t5F" secondAttribute="top" constant="50" id="pLF-q9-Mdh"/>
-                            <constraint firstItem="8hA-I4-t5F" firstAttribute="bottom" secondItem="W7u-be-lQM" secondAttribute="bottom" constant="30" id="uf1-Oc-Tpg"/>
+                            <constraint firstItem="8hA-I4-t5F" firstAttribute="bottom" secondItem="W7u-be-lQM" secondAttribute="bottom" constant="50" id="uf1-Oc-Tpg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UwF-CL-gvP"/>
@@ -1595,7 +1597,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="LgQ-0Q-ay4">
                                                         <rect key="frame" x="84" y="0.0" width="83.5" height="60"/>
@@ -1613,22 +1615,24 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="CWF-WY-TKy">
                                                         <rect key="frame" x="167.5" y="0.0" width="84" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="バド歴" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2R-xY-t0R">
                                                                 <rect key="frame" x="0.0" y="0.0" width="84" height="31"/>
+                                                                <color key="backgroundColor" name="backGroundColor"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XT-fC-oub">
                                                                 <rect key="frame" x="0.0" y="31" width="84" height="29"/>
+                                                                <color key="backgroundColor" name="backGroundColor"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" name="backGroundColor"/>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1649,9 +1653,10 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                 </subviews>
+                                                <color key="backgroundColor" name="backGroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="IY9-nN-yuD"/>
                                                 </constraints>
@@ -1772,7 +1777,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="VaA-x5-w7S"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title=" " id="grd-Aq-Ru8"/>
                 </viewController>
@@ -2827,6 +2832,7 @@
                             </button>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dXL-oW-Ylp">
                                 <rect key="frame" x="20" y="50" width="335" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -3312,11 +3318,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rGl-SA-fqh">
                                 <rect key="frame" x="0.0" y="164" width="375" height="454"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="現在,こちらの機能は準備中となっております。　　　大変申し訳ございませんが,もうしばらくお待ち下さい。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ubu-qA-hog">
                                 <rect key="frame" x="20" y="100" width="335" height="60"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="JRx-MI-WRa"/>
                                 </constraints>
@@ -3326,7 +3332,7 @@
                             </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="awu-3G-7sm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
                         <constraints>
                             <constraint firstItem="Ubu-qA-hog" firstAttribute="trailing" secondItem="awu-3G-7sm" secondAttribute="trailing" constant="-20" id="FyH-se-1es"/>
                             <constraint firstItem="rGl-SA-fqh" firstAttribute="leading" secondItem="awu-3G-7sm" secondAttribute="leading" id="OKM-cr-uRI"/>
@@ -3510,7 +3516,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Kku-n2-ASP">
                                                         <rect key="frame" x="85.5" y="0.0" width="79" height="60"/>
@@ -3528,7 +3534,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Ltp-49-FUO">
                                                         <rect key="frame" x="170.5" y="0.0" width="79.5" height="60"/>
@@ -3546,7 +3552,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Quk-hJ-6Sd">
                                                         <rect key="frame" x="256" y="0.0" width="79" height="60"/>
@@ -3564,7 +3570,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="backGroundColor"/>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
@@ -3679,9 +3685,9 @@
         <segue reference="VQy-IJ-T3o"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
-        <segue reference="9Ym-mF-wrv"/>
+        <segue reference="fuc-E9-X1F"/>
         <segue reference="cdz-Ff-0Nv"/>
-        <segue reference="PHY-qr-DAt"/>
+        <segue reference="xsh-lb-gGf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>
