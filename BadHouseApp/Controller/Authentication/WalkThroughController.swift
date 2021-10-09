@@ -22,16 +22,37 @@ class WalkThroughController:UIPageViewController {
         explainLabel.isEditable = false
         explainLabel.isSelectable = false
         let explainImage = UIImageView()
+        let imagePlusLabel = ProfileLabel(title: "マイページから↓", num: 14)
+        imagePlusLabel.textColor = .darkGray
         explainImage.image = UIImage(named: "ウォーク3")
-        explainImage.contentMode = .scaleAspectFill
+        explainImage.contentMode = .scaleAspectFit
+        explainImage.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        explainImage.layer.borderWidth = 2
+        explainImage.layer.cornerRadius = 5
+        explainImage.layer.masksToBounds = true
+        let explainImage2 = UIImageView()
+        explainImage2.image = UIImage(named: "ウォーク4")
+        explainImage2.contentMode = .scaleAspectFit
+        let imagePlusLabel2 = ProfileLabel(title: "ユーザー設定をしてみてね↓", num: 14)
+        imagePlusLabel2.textColor = .darkGray
+        explainImage2.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        explainImage2.layer.borderWidth = 2
+        explainImage2.layer.cornerRadius = 5
+        explainImage2.layer.masksToBounds = true
         vc.view.addSubview(iv)
         vc.view.addSubview(label)
         vc.view.addSubview(explainLabel)
         vc.view.addSubview(explainImage)
-        iv.anchor(top:vc.view.topAnchor,paddingTop: 50, centerX: vc.view.centerXAnchor,width: 100,height: 100)
+        vc.view.addSubview(imagePlusLabel)
+        vc.view.addSubview(explainImage2)
+        vc.view.addSubview(imagePlusLabel2)
+        iv.anchor(top:vc.view.topAnchor,paddingTop: 20, centerX: vc.view.centerXAnchor,width: 100,height: 100)
         label.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:300,height:50)
         explainLabel.anchor(top:label.bottomAnchor,paddingTop: 10,centerX: vc.view.centerXAnchor,width:300,height: 50)
-        explainImage.anchor(top:explainLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 20,paddingRight: 20,paddingLeft: 20,height:40)
+        imagePlusLabel.anchor(top:explainLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 20,paddingRight: 20,paddingLeft: 20,height:20)
+        explainImage.anchor(top:imagePlusLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:60)
+        imagePlusLabel2.anchor(top:explainImage.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 20,paddingRight: 20,paddingLeft: 20,height:20)
+        explainImage2.anchor(top:imagePlusLabel2.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:60)
         return vc
     }()
     
@@ -44,7 +65,7 @@ class WalkThroughController:UIPageViewController {
         label.isHighlighted = false
         label.textColor = .darkGray
         let explainLabel = UITextView()
-        explainLabel.text = "メインページでバドミントンをしたい条件や\nキーワードで開催予定の練習を探してみよう"
+        explainLabel.text = "ホームでバドミントンをしたい条件や\nキーワードで開催予定の練習を探してみよう"
         explainLabel.textColor = .darkGray
         explainLabel.font = UIFont.boldSystemFont(ofSize: 16)
         explainLabel.isEditable = false
@@ -55,14 +76,23 @@ class WalkThroughController:UIPageViewController {
         plusLabel.isSelectable = false
         plusLabel.font = UIFont.boldSystemFont(ofSize: 16)
         plusLabel.textColor = .darkGray
+        let explainImage = UIImageView()
+        let imagePlusLabel = ProfileLabel(title: "ホームから検索してみよう↓", num: 14)
+        imagePlusLabel.textColor = .darkGray
+        explainImage.image = UIImage(named: "ウォーク")
+        explainImage.contentMode = .scaleAspectFit
         vc.view.addSubview(iv)
         vc.view.addSubview(label)
         vc.view.addSubview(explainLabel)
         vc.view.addSubview(plusLabel)
-        iv.anchor(top:vc.view.topAnchor,paddingTop: 50, centerX: vc.view.centerXAnchor,width: 100,height: 100)
-        explainLabel.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:320,height:50)
+        vc.view.addSubview(imagePlusLabel)
+        vc.view.addSubview(explainImage)
+        iv.anchor(top:vc.view.topAnchor,paddingTop: 10, centerX: vc.view.centerXAnchor,width: 100,height: 100)
+        explainLabel.anchor(top:iv.bottomAnchor,paddingTop: 5,centerX: vc.view.centerXAnchor,width:320,height:50)
         plusLabel.anchor(top:explainLabel.bottomAnchor,paddingTop: 0,centerX: vc.view.centerXAnchor,width:350,height:40)
         label.anchor(top:plusLabel.bottomAnchor,paddingTop: 5,centerX: vc.view.centerXAnchor,width: 300,height: 40)
+        imagePlusLabel.anchor(top:label.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:20)
+        explainImage.anchor(top:imagePlusLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:230)
         return vc
     }()
     
@@ -94,7 +124,7 @@ class WalkThroughController:UIPageViewController {
         pageControl.isUserInteractionEnabled = false
         self.view.addSubview(dismissButton)
         self.view.addSubview(pageControl)
-        dismissButton.anchor(bottom:pageControl.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingBottom: 20,paddingRight:40, paddingLeft: 40,height:40)
+        dismissButton.anchor(bottom:pageControl.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingBottom: 10,paddingRight:40, paddingLeft: 40,height:40)
     }
     //Mark selector
     @objc private func handleDismiss() {
