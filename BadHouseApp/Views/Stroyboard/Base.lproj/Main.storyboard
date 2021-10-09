@@ -790,7 +790,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="u7u-jE-S4C">
-                                                <rect key="frame" x="135" y="260" width="93.5" height="80"/>
+                                                <rect key="frame" x="115" y="260" width="93.5" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTQ-0S-pls">
                                                         <rect key="frame" x="0.0" y="0.0" width="93.5" height="27.5"/>
@@ -800,7 +800,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グループ名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wm8-g4-yKy">
                                                         <rect key="frame" x="0.0" y="52.5" width="93.5" height="27.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
                                                         <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -959,7 +959,7 @@
                                             <constraint firstItem="eQQ-H2-oLB" firstAttribute="top" secondItem="Oyv-t6-5Rr" secondAttribute="bottom" constant="20" id="SJO-hL-OBy"/>
                                             <constraint firstItem="vaC-IE-Svx" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="20" id="VMK-dI-srr"/>
                                             <constraint firstAttribute="trailing" secondItem="kKr-6I-b5S" secondAttribute="trailing" constant="30" id="X3U-Id-4K0"/>
-                                            <constraint firstItem="u7u-jE-S4C" firstAttribute="leading" secondItem="Tuq-Mk-INw" secondAttribute="trailing" constant="25" id="XAu-fu-TRe"/>
+                                            <constraint firstItem="u7u-jE-S4C" firstAttribute="leading" secondItem="Tuq-Mk-INw" secondAttribute="trailing" constant="5" id="XAu-fu-TRe"/>
                                             <constraint firstItem="cam-kV-vfw" firstAttribute="top" secondItem="XvP-Jd-KR4" secondAttribute="top" constant="10" id="Xz5-4g-7f9"/>
                                             <constraint firstAttribute="height" constant="2000" id="a4u-OO-rGW"/>
                                             <constraint firstAttribute="trailing" secondItem="JSF-SR-OA7" secondAttribute="trailing" constant="20" id="ahv-r6-uMJ"/>
@@ -1459,11 +1459,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="ChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="50" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="474"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -3398,7 +3398,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="MN5-1V-PZA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Cy-Pi-0zT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3686,11 +3686,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KCo-PJ-OZR"/>
-        <segue reference="VQy-IJ-T3o"/>
+        <segue reference="t41-KJ-vjm"/>
+        <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
-        <segue reference="fuc-E9-X1F"/>
+        <segue reference="9Ym-mF-wrv"/>
         <segue reference="cdz-Ff-0Nv"/>
         <segue reference="xsh-lb-gGf"/>
     </inferredMetricsTieBreakers>

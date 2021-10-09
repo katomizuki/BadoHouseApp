@@ -70,7 +70,11 @@ class EventDetailViewController: UIViewController {
     private var me :User?
     private var you :User?
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var stackView: UIStackView! {
+        didSet {
+            stackView.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        }
+    }
     @IBOutlet private weak var lastTimeStackView: UIStackView!
     @IBOutlet private weak var gatherStackView: UIStackView!
     @IBOutlet private weak var courtStackView: UIStackView!
@@ -151,7 +155,7 @@ class EventDetailViewController: UIViewController {
         
         //Mark:textLabel
         titleLabel.text = "\(event?.eventTitle ?? "")"
-        groupLabel.text = "主催者 \(event?.teamName ?? "")"
+        groupLabel.text = "主催チーム \(event?.teamName ?? "")"
         var start = event?.eventStartTime ?? ""
         var last = event?.eventFinishTime ?? ""
         start = changeString(string: start)
