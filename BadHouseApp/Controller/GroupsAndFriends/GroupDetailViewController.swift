@@ -228,6 +228,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     @IBAction private func gotoInvite(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
         vc.friends = self.friends
+        vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -265,6 +266,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             let vc = segue.destination as! InviteViewController
             vc.friends = self.friends
             vc.team = self.team
+            print("アイウエオ")
         }
     }
 }

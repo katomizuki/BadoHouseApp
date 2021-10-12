@@ -55,9 +55,10 @@ class InviteViewController: UIViewController {
     //Mark:IBAction
     @IBAction func invite(_ sender: Any) {
         print(#function)
-        guard let team = self.team else { return }
+        guard let team = self.team else {
+            return }
         Firestore.sendInvite(team: team, inviter: self.inviter)
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 //Mark:tableViewdelegate,datsource
