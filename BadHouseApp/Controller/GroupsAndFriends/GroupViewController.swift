@@ -47,6 +47,7 @@ class GroupViewController: UIViewController{
     }
     //Mark: setupMethod
     private func setupData() {
+        self.teamArray = []
         fetchData.friendDelegate = self
         fetchData.myTeamDelegate = self
         let uid = Auth.getUserId()

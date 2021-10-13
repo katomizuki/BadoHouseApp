@@ -266,7 +266,6 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             let vc = segue.destination as! InviteViewController
             vc.friends = self.friends
             vc.team = self.team
-            print("アイウエオ")
         }
     }
 }
