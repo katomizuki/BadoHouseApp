@@ -35,7 +35,6 @@
 		D3A789D926F5DD8C0088E8BC /* UIVC-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */; };
 		D3A82BA527040C8100DDB4FC /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* CameraViewController.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
-		D3A82BAD2705EF7000DDB4FC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A82BAC2705EF7000DDB4FC /* logo.png */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3A82BB02707357900DDB4FC /* GroupSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BAF2707357800DDB4FC /* GroupSearchViewController.swift */; };
 		D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E626EB82E300F40A51 /* MapViewController.swift */; };
@@ -130,7 +129,6 @@
 		D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC-Extension.swift"; sourceTree = "<group>"; };
 		D3A82BA427040C8100DDB4FC /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
-		D3A82BAC2705EF7000DDB4FC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchViewController.swift; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D3AC05E826ED763000F40A51 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -218,15 +216,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D30B793A2700A0DE0086456E /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
-				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		D353D8E426F16C2F00221B7D /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +245,6 @@
 				D3FD194E26E482C200B6740E /* MakeEventViewController.swift */,
 				D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */,
 				D3AC05E626EB82E300F40A51 /* MapViewController.swift */,
-				D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */,
 				D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */,
 			);
 			path = Event;
@@ -267,7 +255,6 @@
 			children = (
 				D3BDB52D26E0525100C53780 /* Main.storyboard */,
 				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
-				D3BDB53026E0525200C53780 /* Assets.xcassets */,
 			);
 			path = Stroyboard;
 			sourceTree = "<group>";
@@ -278,7 +265,9 @@
 				D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */,
 				D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */,
 				D3A789D426F439A40088E8BC /* ChatListViewController.swift */,
+				D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */,
 				D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */,
+				D353D8D926F05B9600221B7D /* ChatViewController.swift */,
 				D39771712709D1D40025BE19 /* ScheduleViewController.swift */,
 			);
 			path = ChatList;
@@ -316,13 +305,13 @@
 		D3BDB52626E0525100C53780 /* BadHouseApp */ = {
 			isa = PBXGroup;
 			children = (
-				D3A82BAC2705EF7000DDB4FC /* logo.png */,
-				D30B793A2700A0DE0086456E /* Resource */,
-				D3BDB55A26E0964200C53780 /* Bindings */,
+				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
+				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
 				D3BDB53E26E0542900C53780 /* Views */,
 				D3BDB53D26E0541E00C53780 /* Controller */,
 				D3BDB53C26E0541100C53780 /* Utility */,
 				D3BDB53B26E0540C00C53780 /* Models */,
+				D3BDB53026E0525200C53780 /* Assets.xcassets */,
 				D3BDB53526E0525200C53780 /* Info.plist */,
 				D3BDB54726E0590800C53780 /* GoogleService-Info.plist */,
 			);
@@ -373,6 +362,7 @@
 		D3BDB53E26E0542900C53780 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3BDB55A26E0964200C53780 /* Bindings */,
 				D3976EEF270337580016CEB2 /* Stroyboard */,
 				D353D8E426F16C2F00221B7D /* Xib */,
 				D3C4E93A26E0F56900C21E46 /* Cell */,
@@ -435,7 +425,6 @@
 				D3AC05E826ED763000F40A51 /* CalendarViewController.swift */,
 				D3AC05EA26ED9C8800F40A51 /* DetailSearchViewController.swift */,
 				D3977168270961E40025BE19 /* TornamentDetailController.swift */,
-				D353D8D926F05B9600221B7D /* ChatViewController.swift */,
 				D3977166270959A70025BE19 /* TornamentController.swift */,
 			);
 			path = Main;
@@ -578,7 +567,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A82BAD2705EF7000DDB4FC /* logo.png in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
