@@ -3,7 +3,7 @@ import UIKit
 class TornamentController: UIViewController {
     //Mark properties
     @IBOutlet private weak var tableView: UITableView!
-    private let cellId = Utility.CellId.CellGroupId
+    private let cellId = Constants.CellId.CellGroupId
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ extension TornamentController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TornamentDetailVC) as! TornamentDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TornamentDetailVC) as! TornamentDetailController
         navigationController?.pushViewController(vc, animated: true)
     } 
 }

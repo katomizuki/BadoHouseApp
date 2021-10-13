@@ -42,19 +42,19 @@ class GroupCell:UITableViewCell {
     let trashButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash"), for: UIControl.State.normal)
-        button.tintColor = Utility.AppColor.OriginalBlue
+        button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
     
     //Mark: LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         self.cellImagevView.layer.cornerRadius = 30
         self.cellImagevView.layer.masksToBounds = true
         self.cellImagevView.contentMode = .scaleAspectFill
         self.accessoryType = .disclosureIndicator
-        self.accessoryView?.tintColor = UIColor(named: Utility.AppColor.darkColor)
+        self.accessoryView?.tintColor = UIColor(named: Constants.AppColor.darkColor)
         self.label.font = UIFont.boldSystemFont(ofSize: 16)
         self.selectionStyle = .none
         addSubview(trashButton)
@@ -65,7 +65,7 @@ class GroupCell:UITableViewCell {
     
     //Mark: nibMethod
     static func nib() ->UINib {
-        return UINib(nibName: Utility.Cell.GroupCell, bundle: nil)
+        return UINib(nibName: Constants.Cell.GroupCell, bundle: nil)
     }
     //Mark selector
     @objc private func handleTrash() {
@@ -106,7 +106,7 @@ class GroupCell:UITableViewCell {
         self.label.text = user.name
         let url = URL(string: user.profileImageUrl)
         if user.profileImageUrl == "" {
-            self.cellImagevView.image = UIImage(named: Utility.ImageName.noImages)
+            self.cellImagevView.image = UIImage(named: Constants.ImageName.noImages)
         } else {
             self.cellImagevView.sd_setImage(with: url, completed: nil)
         }

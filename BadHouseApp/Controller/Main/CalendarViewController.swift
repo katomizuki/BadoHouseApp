@@ -41,11 +41,11 @@ class CalendarViewController: UIViewController {
     }
     
     private func setupCalendar() {
-        calendar.appearance.weekdayTextColor = Utility.AppColor.OriginalBlue
-        calendar.appearance.headerTitleColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
+        calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
         calendar.appearance.headerDateFormat = "yyyy年MM月"
-        calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.selectionColor = Constants.AppColor.OriginalBlue
         calendar.appearance.titleDefaultColor = .systemGray
         calendar.today = nil
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"

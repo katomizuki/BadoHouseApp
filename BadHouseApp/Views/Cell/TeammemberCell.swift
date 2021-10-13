@@ -12,7 +12,7 @@ class TeammemberCell:UICollectionViewCell {
     
     //Mark:nibMethod
     static func nib()->UINib {
-        return UINib(nibName:Utility.Cell.TeammemberCell, bundle: nil)
+        return UINib(nibName:Constants.Cell.TeammemberCell, bundle: nil)
     }
     
     //Mark:LifeCycle
@@ -20,7 +20,7 @@ class TeammemberCell:UICollectionViewCell {
         super.awakeFromNib()
         teamMemberImage.layer.cornerRadius = 30
         teamMemberImage.layer.masksToBounds = true
-        teamMemberImage.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        teamMemberImage.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         teamMemberImage.layer.borderWidth = 2
         teamMemberImage.contentMode = .scaleAspectFill
     }
@@ -31,7 +31,7 @@ class TeammemberCell:UICollectionViewCell {
         nameLabel.font = UIFont.boldSystemFont(ofSize: 11)
         nameLabel.textColor = .darkGray
         if urlString == "" {
-            teamMemberImage.image = UIImage(named: Utility.ImageName.noImages)
+            teamMemberImage.image = UIImage(named: Constants.ImageName.noImages)
         } else {
             let url = URL(string: urlString)
             teamMemberImage.sd_setImage(with: url, completed: nil)

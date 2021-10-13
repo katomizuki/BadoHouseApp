@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct Utility {
+struct Constants {
     static let appName = "バドハウス"
     
     struct AppColor {
@@ -120,15 +120,15 @@ enum BadmintonCircle:String {
 }
 
 enum BadmintonLevel:String {
-case one = "レベル1"
-case two = "レベル2"
-case three = "レベル3"
-case four = "レベル4"
-case five = "レベル5"
-case six = "レベル6"
-case seven = "レベル7"
-case eight = "レベル8"
-case nine = "レベル9"
-case ten = "レベル10"
+    case one = "レベル1"
+    case two = "レベル2"
+    case three = "レベル3"
+    case four = "レベル4"
+    case five = "レベル5"
+    case six = "レベル6"
+    case seven = "レベル7"
+    case eight = "レベル8"
+    case nine = "レベル9"
+    case ten = "レベル10"
 }
 

@@ -47,10 +47,10 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
     }
     //Mark setupMethod
     private func setupXLTab() {
-        settings.style.buttonBarItemBackgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        settings.style.buttonBarItemBackgroundColor = UIColor(named: Constants.AppColor.darkColor)
         settings.style.buttonBarItemTitleColor = .darkGray
-        settings.style.buttonBarBackgroundColor = UIColor(named: Utility.AppColor.darkColor)
-        settings.style.selectedBarBackgroundColor = Utility.AppColor.OriginalBlue
+        settings.style.buttonBarBackgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        settings.style.selectedBarBackgroundColor = Constants.AppColor.OriginalBlue
         settings.style.selectedBarHeight = 3.0
         settings.style.buttonBarMinimumLineSpacing = 8.0
         settings.style.buttonBarLeftContentInset = 10.0

@@ -50,7 +50,7 @@
 		D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */; };
 		D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54026E0546000C53780 /* RegisterViewController.swift */; };
 		D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54326E0547300C53780 /* LoginViewController.swift */; };
-		D3BDB54626E055C900C53780 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Utility.swift */; };
+		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
 		D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB54726E0590800C53780 /* GoogleService-Info.plist */; };
 		D3BDB54B26E0598C00C53780 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D3BDB54A26E0598C00C53780 /* RxCocoa */; };
 		D3BDB54D26E0598C00C53780 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3BDB54C26E0598C00C53780 /* RxSwift */; };
@@ -147,7 +147,7 @@
 		D3BDB53526E0525200C53780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3BDB54026E0546000C53780 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D3BDB54326E0547300C53780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D3BDB54526E055C900C53780 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		D3BDB54526E055C900C53780 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3BDB54726E0590800C53780 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTitleLabel.swift; sourceTree = "<group>"; };
 		D3BDB55226E05E7A00C53780 /* Anchor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anchor-Extension.swift"; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 		D3AC05EE26EE279D00F40A51 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D3BDB54526E055C900C53780 /* Utility.swift */,
+				D3BDB54526E055C900C53780 /* Constants.swift */,
 				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
 				D3AC05EC26EE274100F40A51 /* DateUtil.swift */,
 				D30B793B2700A5940086456E /* Notification.swift */,
@@ -726,7 +726,7 @@
 				D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */,
 				D3BDB55726E0644E00C53780 /* UIButton-Extension.swift in Sources */,
 				D330032626E61A2E00208525 /* PopViewController.swift in Sources */,
-				D3BDB54626E055C900C53780 /* Utility.swift in Sources */,
+				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
 				D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */,
 				D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
@@ -900,7 +900,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LSUSGUW6L4;
+				DEVELOPMENT_TEAM = AYVYQABB6U;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -921,7 +921,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LSUSGUW6L4;
+				DEVELOPMENT_TEAM = AYVYQABB6U;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

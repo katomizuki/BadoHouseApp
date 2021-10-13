@@ -22,7 +22,7 @@ class DaughterViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
     }
     
     private func setupData() {
@@ -86,11 +86,11 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
         cell.label.text = notificationArray[indexPath.section][indexPath.row].name
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl
         if urlString == "" {
-            cell.cellImagevView.image = UIImage(named: Utility.ImageName.noImages)
+            cell.cellImagevView.image = UIImage(named: Constants.ImageName.noImages)
         } else {
             let url = URL(string: urlString)
             cell.cellImagevView.sd_setImage(with: url, completed: nil)
@@ -100,7 +100,7 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Utility.AppColor.OriginalBlue
+        view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)

@@ -51,7 +51,7 @@ class RegisterViewController:UIViewController{
     private var pictureURLString = String()
     private let iv:UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: Utility.ImageName.logoImage)
+        iv.image = UIImage(named: Constants.ImageName.logoImage)
         return iv
     }()
     private let disposeBag = DisposeBag()
@@ -118,7 +118,7 @@ class RegisterViewController:UIViewController{
             .asDriver()
             .drive { [weak self] text in
                 if text?.count != 0 {
-                    self?.nameTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.nameTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.nameTextField.layer.borderWidth = 3
                 } else {
                     self?.nameTextField.layer.borderColor = UIColor.darkGray.cgColor
@@ -132,7 +132,7 @@ class RegisterViewController:UIViewController{
             .asDriver()
             .drive { [weak self] text in
                 if text?.count != 0 {
-                    self?.emailTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.emailTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.emailTextField.layer.borderWidth = 3
                 } else {
                     self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
@@ -146,7 +146,7 @@ class RegisterViewController:UIViewController{
             .asDriver()
             .drive { [weak self] text in
                 if text?.count != 0 {
-                    self?.passwordTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.passwordTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.passwordTextField.layer.borderWidth = 3
                 } else {
                     self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
@@ -166,14 +166,14 @@ class RegisterViewController:UIViewController{
         registerBinding.validRegisterDriver
             .drive { validAll in
                 self.registerButton.isEnabled = validAll
-                self.registerButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
+                self.registerButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
         
         alreadyButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.LoginVC) as! LoginViewController
+                let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.LoginVC) as! LoginViewController
                 self?.navigationController?.pushViewController(loginVC, animated: true)
             }
             .disposed(by: disposeBag)

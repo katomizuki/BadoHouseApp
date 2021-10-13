@@ -7,9 +7,9 @@ class GroupSearchViewController: UIViewController {
     //Mark:properties
     @IBOutlet private weak var searchBar: UISearchBar!{
         didSet {
-            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
             searchBar.autocapitalizationType = .none
             searchBar.placeholder = "場所名,サークル名等,検索"
         }
@@ -39,7 +39,7 @@ class GroupSearchViewController: UIViewController {
     //Mark helperMethod
     private func setupTableView() {
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -47,13 +47,13 @@ class GroupSearchViewController: UIViewController {
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
-        format.buttonColor = Utility.AppColor.OriginalBlue
+        format.buttonColor = Constants.AppColor.OriginalBlue
         format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        format.titleAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
         format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
         format.animation = EmptyStateAnimation.scale(0.3, 2.0)
         format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named:Utility.AppColor.darkColor) ?? UIColor.systemGray
+        format.backgroundColor = UIColor(named:Constants.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
 }
@@ -64,7 +64,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
         let team = groupArray[indexPath.row]
         cell.team = team
         return cell
@@ -73,7 +73,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let team = groupArray[indexPath.row]
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailViewController
         vc.team = team
         vc.friends = friends
         vc.flag = true

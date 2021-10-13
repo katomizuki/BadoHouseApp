@@ -6,9 +6,9 @@ class WalkThroughController:UIPageViewController {
     //Mark:properties
     private let firstVC:UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
+        vc.view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         let iv = UIImageView()
-        iv.image = UIImage(named: Utility.ImageName.logoImage)
+        iv.image = UIImage(named: Constants.ImageName.logoImage)
         let label = UITextView()
         label.text = "ダウンロードしていただきありがとうございます"
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -26,7 +26,7 @@ class WalkThroughController:UIPageViewController {
         imagePlusLabel.textColor = .darkGray
         explainImage.image = UIImage(named: "ウォーク3")
         explainImage.contentMode = .scaleAspectFit
-        explainImage.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        explainImage.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         explainImage.layer.borderWidth = 2
         explainImage.layer.cornerRadius = 5
         explainImage.layer.masksToBounds = true
@@ -35,7 +35,7 @@ class WalkThroughController:UIPageViewController {
         explainImage2.contentMode = .scaleAspectFit
         let imagePlusLabel2 = ProfileLabel(title: "ユーザー設定をしてみてね↓", num: 14)
         imagePlusLabel2.textColor = .darkGray
-        explainImage2.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        explainImage2.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         explainImage2.layer.borderWidth = 2
         explainImage2.layer.cornerRadius = 5
         explainImage2.layer.masksToBounds = true
@@ -58,9 +58,9 @@ class WalkThroughController:UIPageViewController {
     
     private let secondVC:UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
+        vc.view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         let iv = UIImageView()
-        iv.image = UIImage(named: Utility.ImageName.logoImage)
+        iv.image = UIImage(named: Constants.ImageName.logoImage)
         let label = ProfileLabel(title: "早速初めてみよう！", num: 20)
         label.isHighlighted = false
         label.textColor = .darkGray
@@ -116,11 +116,11 @@ class WalkThroughController:UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
-        view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
+        view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         self.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
         let width = self.view.frame.maxX
         pageControl = UIPageControl(frame: CGRect(x:0, y:self.view.frame.maxY - 100, width:width, height:50))
-        pageControl.backgroundColor = Utility.AppColor.OriginalBlue
+        pageControl.backgroundColor = Constants.AppColor.OriginalBlue
         pageControl.numberOfPages = 2
         pageControl.currentPage = 0
         pageControl.isUserInteractionEnabled = false
@@ -149,7 +149,7 @@ extension WalkThroughController:UIPageViewControllerDataSource {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex + 1 < pages.count {
             pageControl.currentPage = 1
             dismissButton.isEnabled = true
-            dismissButton.backgroundColor = Utility.AppColor.OriginalBlue
+            dismissButton.backgroundColor = Constants.AppColor.OriginalBlue
             return pages[pageIndex + 1]
         }
         return nil

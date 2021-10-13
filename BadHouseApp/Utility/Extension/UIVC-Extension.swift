@@ -40,7 +40,7 @@ extension UIViewController {
                            height: 100)
         return  NVActivityIndicatorView(frame: frame,
                                         type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                        color: Utility.AppColor.OriginalBlue,
+                                        color: Constants.AppColor.OriginalBlue,
                                         padding: 0)
     }
     
@@ -84,11 +84,11 @@ extension UIViewController {
     }
     
     func setupNavAccessory() {
-        let image = UIImage(named: Utility.ImageName.double)
+        let image = UIImage(named: Constants.ImageName.double)
         navigationController?.navigationBar.backIndicatorImage = image
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
     }
     
     

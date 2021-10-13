@@ -9,7 +9,7 @@ class FriendsViewController: UIViewController {
             friendTableView.separatorStyle = .none
         }
     }
-    private var cellId = Utility.CellId.FriendCellId
+    private var cellId = Constants.CellId.FriendCellId
     var friends = [User]()
     var inviter = [User]()
     var (teamName,teamTime,teamPlace,teamLevel) = (String(),String(),String(),String())
@@ -17,7 +17,7 @@ class FriendsViewController: UIViewController {
     var me:User?
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
-            inviteButton.backgroundColor = Utility.AppColor.OriginalBlue
+            inviteButton.backgroundColor = Constants.AppColor.OriginalBlue
             inviteButton.setTitleColor(.white, for: .normal)
             inviteButton.layer.cornerRadius = 15
             inviteButton.layer.masksToBounds = true
@@ -99,11 +99,11 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
         cell.linkFriend = self
         cell.nameLabel.text = friends[indexPath.row].name
-        cell.button.tintColor = Utility.AppColor.OriginalBlue
+        cell.button.tintColor = Constants.AppColor.OriginalBlue
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
-            cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
+            cell.iv.image = UIImage(named: Constants.ImageName.logoImage)
         } else {
             cell.iv.sd_setImage(with: url, completed: nil)
         }

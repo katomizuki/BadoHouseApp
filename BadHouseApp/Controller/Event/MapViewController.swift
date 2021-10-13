@@ -25,9 +25,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     }
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
-            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
             searchBar.autocapitalizationType = .none
         }
     }

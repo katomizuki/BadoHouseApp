@@ -35,21 +35,21 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     @IBOutlet private weak var priceStackView: UIStackView!
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var BarChartView: BarChartView!
-    private let teamMemberCellId = Utility.CellId.MemberCellId
+    private let teamMemberCellId = Constants.CellId.MemberCellId
     private var genderArray = [Int]()
-    private var genderValue = Utility.Data.genderArray
+    private var genderValue = Constants.Data.genderArray
     private var IndicatorView:NVActivityIndicatorView!
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton! {
         didSet {
-            withdrawButton.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
+            withdrawButton.updateButton(radius: 15, backColor: Constants.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
         }
     }
     var flag = false
     @IBOutlet private weak var updateButton: UIButton! {
         didSet {
             updateButton.updateButton(radius: 15, backColor: .white
-                                      , titleColor: Utility.AppColor.OriginalBlue, fontSize: 14)
+                                      , titleColor: Constants.AppColor.OriginalBlue, fontSize: 14)
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
@@ -153,7 +153,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         friendImageView.sd_setImage(with: url, completed: nil)
         friendImageView.contentMode = .scaleAspectFill
         friendImageView.chageCircle()
-        friendImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        friendImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         friendImageView.layer.borderWidth = 2
         friendImageView.layer.masksToBounds = true
         teamNameLabel.text = team?.teamName
@@ -175,7 +175,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         pieChartDataSet.valueTextColor = .label
         pieView.legend.enabled = false
         pieView.data = PieChartData(dataSet:pieChartDataSet)
-        let colors = [UIColor.blue,.red,Utility.AppColor.OriginalBlue]
+        let colors = [UIColor.blue,.red,Constants.AppColor.OriginalBlue]
         pieChartDataSet.colors = colors
     }
     
@@ -226,7 +226,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     //Mark IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.inviteVC) as! InviteViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.inviteVC) as! InviteViewController
         vc.friends = self.friends
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
@@ -241,13 +241,13 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     
     @IBAction private func gotoGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatViewController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction private func go(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatViewController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -262,7 +262,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     //Mark prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoInvite {
+        if segue.identifier == Constants.Segue.gotoInvite {
             let vc = segue.destination as! InviteViewController
             vc.friends = self.friends
             vc.team = self.team
@@ -306,7 +306,7 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController
         vc.user = teamPlayers[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -324,8 +324,8 @@ class UpdateViewController:UIViewController {
     weak var delegate:backDelegate?
     private let iv:UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: Utility.ImageName.noImages)
-        iv.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        iv.image = UIImage(named: Constants.ImageName.noImages)
+        iv.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         iv.layer.borderWidth = 2
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(handleImagePicker))
         iv.addGestureRecognizer(touchGesture)
@@ -337,7 +337,7 @@ class UpdateViewController:UIViewController {
     
     private let button:UIButton = {
         let button = UIButton()
-        button.updateButton(radius: 15, backColor: Utility.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
+        button.updateButton(radius: 15, backColor: Constants.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
         button.setTitle("保存", for: .normal)
         return button
     }()

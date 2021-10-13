@@ -23,7 +23,7 @@ class LoginViewController:UIViewController {
     }()
     private let iv:UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: Utility.ImageName.logoImage)
+        iv.image = UIImage(named: Constants.ImageName.logoImage)
         return iv
     }()
     private let emailTextField:UITextField = {
@@ -95,7 +95,7 @@ class LoginViewController:UIViewController {
             .asDriver()
             .drive { [weak self] text in
                 if text?.count != 0 {
-                    self?.emailTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.emailTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.emailTextField.layer.borderWidth = 3
                 } else {
                     self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
@@ -109,7 +109,7 @@ class LoginViewController:UIViewController {
             .asDriver()
             .drive { [weak self] text in
                 if text?.count != 0 {
-                    self?.passwordTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.passwordTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.passwordTextField.layer.borderWidth = 3
                 } else {
                     self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
@@ -129,7 +129,7 @@ class LoginViewController:UIViewController {
         loginBinding.validRegisterDriver
             .drive { validAll in
                 self.loginButton.isEnabled = validAll
-                self.loginButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
+                self.loginButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
     }

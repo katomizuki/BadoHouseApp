@@ -9,9 +9,9 @@ class FriendsCell:UITableViewCell {
     var count = 0
     var button:UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = Utility.AppColor.OriginalBlue
+        button.tintColor = Constants.AppColor.OriginalBlue
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let image = UIImage(named: Utility.ImageName.circle)?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(named: Constants.ImageName.circle)?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
         return button
     }()
@@ -42,12 +42,12 @@ class FriendsCell:UITableViewCell {
     
     //Mark: selector
     @objc private func handleInvite() {
-        button.tintColor = Utility.AppColor.OriginalBlue
+        button.tintColor = Constants.AppColor.OriginalBlue
         if count % 2 == 0 {
-            button.setImage(UIImage(named: Utility.ImageName.check), for: UIControl.State.normal)
+            button.setImage(UIImage(named: Constants.ImageName.check), for: UIControl.State.normal)
             count += 1
         } else {
-            button.setImage(UIImage(named: Utility.ImageName.circle), for: UIControl.State.normal)
+            button.setImage(UIImage(named: Constants.ImageName.circle), for: UIControl.State.normal)
             count += 1
         }
         linkInvite?.someMethodWantToCall(cell: self)

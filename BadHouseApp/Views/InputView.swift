@@ -15,7 +15,7 @@ class CustomInputAccessoryView:UIView {
         tv.isScrollEnabled = false
         tv.layer.cornerRadius = 15
         tv.layer.masksToBounds = true
-        tv.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        tv.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return tv
     }()
     
@@ -48,7 +48,7 @@ class CustomInputAccessoryView:UIView {
         layer.shadowRadius = 10
         layer.shadowColor = UIColor.lightGray.cgColor
         
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         autoresizingMask = .flexibleHeight
         
         addSubview(messageInputTextView)

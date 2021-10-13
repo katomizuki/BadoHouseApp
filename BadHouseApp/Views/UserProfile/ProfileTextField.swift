@@ -9,7 +9,7 @@ class ProfileTextField:UITextField {
         self.borderStyle = .bezel
         self.placeholder = placeholder
         self.backgroundColor = UIColor(named: "TFColor")
-        self.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        self.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         self.layer.borderWidth = 3
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true

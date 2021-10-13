@@ -3,8 +3,8 @@ import FacebookCore
 
 class PopViewController: UIViewController{
     //Mark Properties
-    private let CellId = Utility.CellId.popCellId
-    var cellArray = Utility.Data.genderArray
+    private let CellId = Constants.CellId.popCellId
+    var cellArray = Constants.Data.genderArray
     var keyword = String()
     lazy var tableView:UITableView = {
         let tb = UITableView()
@@ -26,13 +26,13 @@ class PopViewController: UIViewController{
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
         switch keyword {
         case UserInfo.gender.rawValue:
-            cellArray = Utility.Data.genderArray
+            cellArray = Constants.Data.genderArray
         case UserInfo.badmintonTime.rawValue:
-            cellArray = Utility.Data.yearArray
+            cellArray = Constants.Data.yearArray
         case UserInfo.place.rawValue:
-            cellArray = Utility.Data.placeArray
+            cellArray = Constants.Data.placeArray
         case UserInfo.age.rawValue:
-            cellArray = Utility.Data.ageArray
+            cellArray = Constants.Data.ageArray
         default:
             break
         }

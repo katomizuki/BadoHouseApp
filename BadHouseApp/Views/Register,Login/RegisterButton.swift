@@ -7,7 +7,7 @@ class RegisterButton:UIButton {
     init(text:String) {
         super.init(frame: .zero)
         setTitle(text, for: UIControl.State.normal)
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitleColor(.white, for: UIControl.State.normal)
         layer.cornerRadius = 10
         layer.masksToBounds = true

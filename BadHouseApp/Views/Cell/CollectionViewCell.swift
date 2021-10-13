@@ -11,7 +11,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userImageView: UIImageView! {
         didSet {
             userImageView.chageCircle()
-            userImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+            userImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
             userImageView.layer.borderWidth = 2
         }
     }

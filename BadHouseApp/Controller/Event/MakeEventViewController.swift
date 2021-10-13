@@ -86,12 +86,12 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     private var team:TeamModel?
     @IBOutlet weak var levelUISlider: RangeUISlider! {
         didSet {
-            levelUISlider.leftKnobColor = Utility.AppColor.OriginalBlue
-            levelUISlider.rightKnobColor = Utility.AppColor.OriginalBlue
-            levelUISlider.rangeSelectedColor = Utility.AppColor.OriginalBlue
+            levelUISlider.leftKnobColor = Constants.AppColor.OriginalBlue
+            levelUISlider.rightKnobColor = Constants.AppColor.OriginalBlue
+            levelUISlider.rangeSelectedColor = Constants.AppColor.OriginalBlue
         }
     }
-    private let moneyArray = Utility.Data.moneyArray
+    private let moneyArray = Constants.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     private let fetchData = FetchFirestoreData()
     //Mark:LifeCycle
@@ -163,7 +163,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         moneyTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
-                self.moneyTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+                self.moneyTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
                 self.moneyTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let text = text ?? ""
                 self.eventMoney = text
@@ -174,7 +174,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         titleTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
-                self.titleTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+                self.titleTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
                 self.titleTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let title = text ?? ""
                 self.eventTitle = title
@@ -200,7 +200,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                 guard let self = self else { return }
                 self.makeEventButton.isEnabled = validAll
                 self.makeEventButton.backgroundColor = validAll ?
-                Utility.AppColor.OriginalBlue:.darkGray
+                Constants.AppColor.OriginalBlue:.darkGray
             }
             .disposed(by: disposeBag)
     }
@@ -274,7 +274,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                        "placeAddress":self.placeAddress,
                        "userId":userId] as [String : Any]
             guard let eventImage = self.noImageView.image else { return }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.TagVC) as! TagViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TagVC) as! TagViewController
             vc.dic = dic
             vc.teamId = teamId
             vc.eventId = eventId
@@ -300,7 +300,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     @IBAction private func gotoMap(_ sender: Any) {
         print(#function)
-        performSegue(withIdentifier: Utility.Segue.gotoMap, sender: nil)
+        performSegue(withIdentifier: Constants.Segue.gotoMap, sender: nil)
     }
     //Mark helperMethod
     private func tfupdate(view:UIView) {
@@ -319,7 +319,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     }
     //Mark:Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoMap {
+        if segue.identifier == Constants.Segue.gotoMap {
             let nextVC = segue.destination as! MapViewController
             nextVC.delegate = self
         }

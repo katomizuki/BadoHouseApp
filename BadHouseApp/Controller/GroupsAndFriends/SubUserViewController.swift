@@ -48,7 +48,7 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
             friendsImageView.contentMode = .scaleToFill
             friendsImageView.chageCircle()
             friendsImageView.layer.borderWidth = 4
-            friendsImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+            friendsImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         }
     }
     
@@ -98,9 +98,9 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
     
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
-        belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
+        belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Constants.CellId.MemberCellId)
         let friendNib = TeammemberCell.nib()
-        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: Utility.CellId.friendCellId)
+        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: Constants.CellId.friendCellId)
         let layout = UICollectionViewFlowLayout()
         let layout2 = UICollectionViewFlowLayout()
         layout2.scrollDirection = .horizontal
@@ -128,7 +128,7 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
         guard let memberId = user?.uid else { return }
         guard let urlString = user?.profileImageUrl else { return }
         if urlString == "" {
-            friendsImageView.image = UIImage(named: Utility.ImageName.noImages)
+            friendsImageView.image = UIImage(named: Constants.ImageName.noImages)
         } else {
             let url = URL(string: urlString)
             friendsImageView.sd_setImage(with: url, completed: nil)
@@ -156,14 +156,14 @@ extension SubUserViewController:UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.belongCollectionView && collectionView.tag == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.MemberCellId, for: indexPath) as! TeammemberCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
             let name = ownTeam[indexPath.row].teamName
             let urlString = ownTeam[indexPath.row].teamImageUrl
             cell.configure(name: name, urlString: urlString)
             cell.teamMemberImage.contentMode = .scaleAspectFill
             return cell
         } else  {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.friendCellId, for: indexPath) as! TeammemberCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.friendCellId, for: indexPath) as! TeammemberCell
             let name = userFriend[indexPath.row].name
             let urlString = userFriend[indexPath.row].profileImageUrl
             cell.configure(name: name, urlString: urlString)
@@ -177,13 +177,13 @@ extension SubUserViewController:UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailViewController
             vc.team = ownTeam[indexPath.row]
             vc.friends = userFriend
             vc.flag = true
             navigationController?.pushViewController(vc, animated: true)
         } else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController
             vc.user = userFriend[indexPath.row]
             vc.me = self.user
             vc.flag = true

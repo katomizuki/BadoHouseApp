@@ -11,11 +11,11 @@ class FriendSearchCell: UITableViewCell {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 120, height: 50)
         button.setTitle( "　ともだちになる　", for: UIControl.State.normal)
-        button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-        button.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
+        button.setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        button.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
-        button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         button.layer.borderWidth = 3
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         return button
@@ -49,14 +49,14 @@ class FriendSearchCell: UITableViewCell {
     @objc func plusFriend() {
         print(#function)
         if count % 2 == 0 {
-            button.backgroundColor = Utility.AppColor.OriginalBlue
+            button.backgroundColor = Constants.AppColor.OriginalBlue
             button.setTitleColor(.white, for: UIControl.State.normal)
             button.setTitle("　友だち追加済　", for: UIControl.State.normal)
         } else  {
-            button.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
-            button.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+            button.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
+            button.setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
             button.layer.borderWidth = 3
-            button.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+            button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
             button.setTitle("　友だちになる　", for: UIControl.State.normal)
         }
         count += 1

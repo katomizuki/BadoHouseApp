@@ -8,12 +8,12 @@ import FacebookCore
 class ScheduleViewController: UIViewController{
     //Mark properties
     var me:User?
-    private let cellId = Utility.CellId.CellGroupId
+    private let cellId = Constants.CellId.CellGroupId
     private let fetchData = FetchFirestoreData()
     private var eventArray = [Event]()
     private let tableview:UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
+        tv.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         return tv
     }()
     private let calendar:FSCalendar = {
@@ -26,7 +26,7 @@ class ScheduleViewController: UIViewController{
         setupData()
         setupCalendar()
         setupTableView()
-        view.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
     }
     //Mark setupMethod
     private func setupData() {
@@ -43,12 +43,12 @@ class ScheduleViewController: UIViewController{
         calendar.dataSource = self
         view.addSubview(calendar)
         calendar.anchor(top:view.safeAreaLayoutGuide.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20,paddingLeft: 20,height: 400)
-        calendar.appearance.weekdayTextColor = Utility.AppColor.OriginalBlue
-        calendar.appearance.headerTitleColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
+        calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
         calendar.appearance.titleDefaultColor = .systemGray
         calendar.appearance.headerDateFormat = "yyyy年MM月"
-        calendar.appearance.selectionColor = Utility.AppColor.OriginalBlue
+        calendar.appearance.selectionColor = Constants.AppColor.OriginalBlue
         calendar.appearance.todayColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
         calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
@@ -137,7 +137,7 @@ extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCal
         if eventArray.isEmpty == false {
             for i in 0..<eventArray.count {
                 if eventArray[i].eventStartTime.prefix(10) == dateString {
-                    return Utility.AppColor.OriginalBlue
+                    return Constants.AppColor.OriginalBlue
                 }
             }
         } else {
