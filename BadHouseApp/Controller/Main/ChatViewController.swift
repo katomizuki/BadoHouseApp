@@ -3,7 +3,7 @@ import Firebase
 
 class ChatViewController: UIViewController {
     //Mark:Properties
-    private let cellId = Utility.CellId.chatCellId
+    private let cellId = Constants.CellId.chatCellId
     @IBOutlet private weak var chatTableView: UITableView!
     private var messages = [Chat]()
     var me: User?

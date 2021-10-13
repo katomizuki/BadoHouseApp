@@ -13,7 +13,7 @@ class InviteViewController: UIViewController {
     var friends = [User]()
     var inviter = [User]()
     var team: TeamModel?
-    private var cellId = Utility.CellId.inviteCellId
+    private var cellId = Constants.CellId.inviteCellId
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         print(#function)
@@ -43,7 +43,7 @@ class InviteViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
     }
     
     private func setupTableView() {
@@ -70,11 +70,11 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! FriendsCell
         cell.linkInvite = self
         cell.nameLabel.text = friends[indexPath.row].name
-        cell.tintColor = Utility.AppColor.OriginalBlue
+        cell.tintColor = Constants.AppColor.OriginalBlue
         let urlString = friends[indexPath.row].profileImageUrl
         let url = URL(string: urlString)
         if urlString == "" {
-            cell.iv.image = UIImage(named: Utility.ImageName.logoImage)
+            cell.iv.image = UIImage(named: Constants.ImageName.logoImage)
         } else {
             cell.iv.sd_setImage(with: url, completed: nil)
         }

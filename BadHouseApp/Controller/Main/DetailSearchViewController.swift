@@ -47,7 +47,7 @@ class DetailSearchViewController: UIViewController{
         }
     }
     private let (pickerView,pickerMoneyView,pickerLevelView,placePickerView ) = (UIPickerView(),UIPickerView(),UIPickerView(),UIPickerView())
-    private let (data,place,money,level) = (Utility.Data.circle,Utility.Data.place,Utility.Data.money,Utility.Data.level)
+    private let (data,place,money,level) = (Constants.Data.circle,Constants.Data.place,Constants.Data.money,Constants.Data.level)
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var datePicker: UIDatePicker! {
         didSet {
@@ -93,7 +93,7 @@ class DetailSearchViewController: UIViewController{
     private func setupUnderLayer(view:UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
-        bottomBorder.backgroundColor = Utility.AppColor.OriginalBlue.cgColor
+        bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
         view.layer.addSublayer(bottomBorder)
     }
     
@@ -156,19 +156,19 @@ class DetailSearchViewController: UIViewController{
         switch sender {
         case titleTextField:
             titleTextField.layer.borderColor = titleTextField.text?.count == 0 ? UIColor.lightGray.cgColor :
-            Utility.AppColor.OriginalBlue.cgColor
+            Constants.AppColor.OriginalBlue.cgColor
             titleTextField.layer.borderWidth = titleTextField.text?.count == 0 ? 2 : 3
         case circleTextField:
-            circleTextField.layer.borderColor = circleTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            circleTextField.layer.borderColor = circleTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
             circleTextField.layer.borderWidth = circleTextField.text?.count == 0 ? 2 : 3
         case levelTextField:
-            levelTextField.layer.borderColor = levelTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            levelTextField.layer.borderColor = levelTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
             levelTextField.layer.borderWidth = levelTextField.text?.count == 0 ? 2 : 3
         case cityTextField:
-            cityTextField.layer.borderColor = cityTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            cityTextField.layer.borderColor = cityTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
             cityTextField.layer.borderWidth = cityTextField.text?.count == 0 ? 2 : 3
         case moneyTextField:
-            moneyTextField.layer.borderColor = moneyTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Utility.AppColor.OriginalBlue.cgColor
+            moneyTextField.layer.borderColor = moneyTextField.text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
             moneyTextField.layer.borderWidth = moneyTextField.text?.count == 0 ? 2 :3
         default:
             break

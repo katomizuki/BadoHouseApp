@@ -10,7 +10,7 @@ import CDAlertView
 class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     //Mark: properties
     var user:User?
-    private let cellId = Utility.CellId.userCellId
+    private let cellId = Constants.CellId.userCellId
     private let diposeBag = DisposeBag()
     private var hasChangedImage = false
     private var name = ""
@@ -57,12 +57,12 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let iv = ProfileImageView()
         iv.contentMode = .scaleAspectFill
         iv.toCorner(num: 90)
-        iv.tintColor = Utility.AppColor.OriginalBlue
+        iv.tintColor = Constants.AppColor.OriginalBlue
         return iv
     }()
     private let nameLabel:UILabel = {
         let label = ProfileLabel()
-        label.textColor = Utility.AppColor.OriginalBlue
+        label.textColor = Constants.AppColor.OriginalBlue
         return label
     }()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
@@ -83,11 +83,11 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         tb.delegate = self
         tb.dataSource = self
         tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        tb.separatorColor = Utility.AppColor.OriginalBlue
-        tb.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        tb.separatorColor = Constants.AppColor.OriginalBlue
+        tb.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return tb
     }()
-    var cellTitleArray = Utility.Data.userSection
+    var cellTitleArray = Constants.Data.userSection
     @IBOutlet private weak var scrollView: UIView!
     //Mark: LifeCycle
     override func viewDidLoad() {
@@ -248,7 +248,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         cell.textLabel?.text = cellTitleArray[indexPath.row]
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         cell.selectionStyle = .none
-        cell.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        cell.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         cell.accessoryType = .disclosureIndicator
         let title = cellTitleArray[indexPath.row]
         cell.detailTextLabel?.text = ""
@@ -272,7 +272,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
-            performSegue(withIdentifier: Utility.Segue.gotoLevel, sender: nil)
+            performSegue(withIdentifier: Constants.Segue.gotoLevel, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return
@@ -302,7 +302,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
     }
     //Mark segueMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoLevel {
+        if segue.identifier == Constants.Segue.gotoLevel {
             let vc = segue.destination as! LevelViewController
             vc.selectedLevel = self.level
         }

@@ -5,7 +5,7 @@ extension UIButton {
     
     func createAuthButton(text:String)->UIButton {
         self.setTitle(text, for: UIControl.State.normal)
-        self.tintColor = Utility.AppColor.OriginalBlue
+        self.tintColor = Constants.AppColor.OriginalBlue
         self.titleLabel?.font = .boldSystemFont(ofSize: 14)
         return self
     }
@@ -15,7 +15,7 @@ extension UIButton {
         self.setTitle(title, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         self.setTitleColor(.white, for: UIControl.State.normal)
-        self.backgroundColor = Utility.AppColor.OriginalBlue
+        self.backgroundColor = Constants.AppColor.OriginalBlue
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
         self.clipsToBounds = true
@@ -38,26 +38,26 @@ extension UIButton {
         self.layer.cornerRadius = 15
         self.tintColor = .darkGray
         self.layer.borderWidth = 4
-        self.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        self.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         self.layer.masksToBounds = true
         self.setTitle(title, for: UIControl.State.normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        self.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+        self.setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
         return self
     }
     
     func cretaTagButton(text:String)->UIButton {
         self.setTitle(text, for: .normal)
-        self.backgroundColor = Utility.AppColor.OriginalBlue
+        self.backgroundColor = Constants.AppColor.OriginalBlue
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
-        self.setTitleColor(UIColor(named: Utility.AppColor.darkColor), for: .normal)
+        self.setTitleColor(UIColor(named: Constants.AppColor.darkColor), for: .normal)
         self.isEnabled = false
         return self
     }
     
     func updateUI(title:String) {
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitle(title, for: UIControl.State.normal)
         setTitleColor(.white, for: UIControl.State.normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
@@ -66,7 +66,7 @@ extension UIButton {
     }
     
     func updateSaveButton() {
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitleColor(.white, for: UIControl.State.normal)
         layer.cornerRadius = 20
         layer.masksToBounds = true
@@ -75,7 +75,7 @@ extension UIButton {
     func updateBackButton() {
         layer.cornerRadius = 14
         layer.masksToBounds = true
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitleColor(.white, for: UIControl.State.normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
@@ -89,15 +89,15 @@ extension UIButton {
     
     func tagButton() {
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
-        layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         layer.borderWidth = 2
-        setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-        backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+        setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         titleLabel?.numberOfLines = 0
     }
     
     func updateSavebutton() {
-       backgroundColor = Utility.AppColor.OriginalBlue
+       backgroundColor = Constants.AppColor.OriginalBlue
         setTitleColor(.white, for: UIControl.State.normal)
         layer.cornerRadius = 15
         layer.masksToBounds = true
@@ -107,7 +107,7 @@ extension UIButton {
     func updateBackbutton() {
         layer.cornerRadius = 14
         layer.masksToBounds = true
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitleColor(.white, for: UIControl.State.normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
@@ -119,7 +119,7 @@ extension UIButton {
     }
     
     func plusFriendButton() {
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitle(" 友達解除 ", for: UIControl.State.normal)
         setTitleColor(.white, for: UIControl.State.normal)
     }
@@ -127,19 +127,19 @@ extension UIButton {
     func removeFriendButton() {
         backgroundColor = .white
         setTitle(" 友達申請 ", for: UIControl.State.normal)
-        setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-        layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         layer.borderWidth = 4
     }
     func tapRemoveFriend() {
-        backgroundColor = Utility.AppColor.OriginalBlue
+        backgroundColor = Constants.AppColor.OriginalBlue
         setTitle(" 友達解除 ", for: .normal)
         setTitleColor(.white, for: .normal)
     }
     func tapPlusFriend() {
         backgroundColor = .white
-        setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
-        layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+        setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         layer.borderWidth = 4
         layer.cornerRadius = 15
         layer.masksToBounds = true

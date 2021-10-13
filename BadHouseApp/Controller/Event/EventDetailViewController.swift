@@ -19,7 +19,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet private weak var groupImageView: UIImageView! {
         didSet {
             groupImageView.chageCircle()
-            groupImageView.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+            groupImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         }
     }
     @IBOutlet private weak var titleLabel: UILabel!
@@ -37,20 +37,20 @@ class EventDetailViewController: UIViewController {
     @IBOutlet private weak var leaderImageView: UIImageView! {
         didSet {
             leaderImageView.chageCircle()
-            leaderImageView.backgroundColor = Utility.AppColor.OriginalBlue
+            leaderImageView.backgroundColor = Constants.AppColor.OriginalBlue
         }
     }
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var joinButton: UIButton! {
         didSet {
             joinButton.toCorner(num: 15)
-            joinButton.backgroundColor = Utility.AppColor.OriginalBlue
+            joinButton.backgroundColor = Constants.AppColor.OriginalBlue
         }
     }
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
-    private var genderValue = Utility.Data.genderArray
+    private var genderValue = Constants.Data.genderArray
     private var rawData:[Int] = []
     private var fetchData = FetchFirestoreData()
     private var teamArray = [User]()
@@ -72,7 +72,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var stackView: UIStackView! {
         didSet {
-            stackView.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
+            stackView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         }
     }
     @IBOutlet private weak var lastTimeStackView: UIStackView!
@@ -103,8 +103,8 @@ class EventDetailViewController: UIViewController {
     //Mark:SetupMethod
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
-        let imageView = UIImageView(image: UIImage(named: Utility.ImageName.logoImage))
+        self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
+        let imageView = UIImageView(image: UIImage(named: Constants.ImageName.logoImage))
         imageView.anchor(width: 44, height: 44)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
@@ -140,7 +140,7 @@ class EventDetailViewController: UIViewController {
         let nib = TeammemberCell.nib()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        collectionView.register(nib, forCellWithReuseIdentifier: Utility.CellId.MemberCellId)
+        collectionView.register(nib, forCellWithReuseIdentifier: Constants.CellId.MemberCellId)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -205,7 +205,7 @@ class EventDetailViewController: UIViewController {
         pieView.centerText = "男女比"
         pieView.legend.enabled = false
         pieView.data = PieChartData(dataSet:pieChartDataSet)
-        let colors = [UIColor.blue,.red,Utility.AppColor.OriginalBlue]
+        let colors = [UIColor.blue,.red,Constants.AppColor.OriginalBlue]
         pieChartDataSet.colors = colors
     }
     
@@ -263,7 +263,7 @@ class EventDetailViewController: UIViewController {
     private func setupUnderLayer(view:UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
-        bottomBorder.backgroundColor = Utility.AppColor.OriginalBlue.cgColor
+        bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
         view.layer.addSublayer(bottomBorder)
     }
     
@@ -274,7 +274,7 @@ class EventDetailViewController: UIViewController {
             self.you = user
             guard let urlString = user?.profileImageUrl else { return }
             if urlString == "" {
-                self.leaderImageView.image = UIImage(named: Utility.ImageName.noImages)
+                self.leaderImageView.image = UIImage(named: Constants.ImageName.noImages)
             } else {
                 let url = URL(string: urlString)
                 self.leaderImageView.sd_setImage(with: url, completed: nil)
@@ -286,7 +286,7 @@ class EventDetailViewController: UIViewController {
     
     //Mark: prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Utility.Segue.gotoChat {
+        if segue.identifier == Constants.Segue.gotoChat {
             let vc = segue.destination as! ChatViewController
             guard let me = me else { return }
             guard let you = you else { return }
@@ -323,7 +323,7 @@ class EventDetailViewController: UIViewController {
                     guard let meId = self.me?.uid else { return }
                     Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                     Firestore.sendePreJoin(myId: meId, eventId: eventId,leaderId: leaderId)
-                    self.performSegue(withIdentifier: Utility.Segue.gotoChat, sender: nil)
+                    self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
                     LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
                 }
                 alert.addAction(alertAction)
@@ -366,7 +366,7 @@ extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.MemberCellId, for: indexPath) as! TeammemberCell
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
         let memberName = teamArray[indexPath.row].name
         let urlString = teamArray[indexPath.row].profileImageUrl
         cell.configure(name: memberName, urlString: urlString)
@@ -379,7 +379,7 @@ extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController
         vc.user = teamArray[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }

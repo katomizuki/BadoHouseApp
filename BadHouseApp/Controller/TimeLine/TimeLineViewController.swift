@@ -135,7 +135,7 @@ class PopoverViewController: UIViewController {
         return tv
     }()
     private let cellId = "cellId"
-    private let kindArray = Utility.Data.badomintonArray
+    private let kindArray = Constants.Data.badomintonArray
     private let fetchData = FetchFirestoreData()
     weak var SearchDelegate:SearchVideoDelegate?
     //Mark properties

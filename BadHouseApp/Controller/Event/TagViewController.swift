@@ -14,7 +14,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     private var plusTagArray = [String]()
     private var productTags:TKCollectionView! {
         didSet {
-            productTags.customBackgroundColor = Utility.AppColor.OriginalLightBlue
+            productTags.customBackgroundColor = Constants.AppColor.OriginalLightBlue
         }
     }
     private var allTags:TKCollectionView! {
@@ -36,7 +36,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     //Mark setupMethod
     private func setupTag() {
         productTags = TKCollectionView(tags: ["#バド好き歓迎"],action: .removeTag,receiver: nil)
-        allTags = TKCollectionView(tags: Utility.Data.tagArray,action: .addTag,receiver: productTags)
+        allTags = TKCollectionView(tags: Constants.Data.tagArray,action: .addTag,receiver: productTags)
         productTags.delegate = self
         allTags.delegate = self
         add(allTags,toView:  testContainerView)

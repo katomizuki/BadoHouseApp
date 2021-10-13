@@ -8,12 +8,12 @@ class GroupViewController: UIViewController{
     var user:User?
     var teamArray = [TeamModel]()
     var friendArray = [User]()
-    private let cellId = Utility.CellId.CellGroupId
+    private let cellId = Constants.CellId.CellGroupId
     private var userIdArray = [String]()
     private let sectionArray = ["所属サークル","お友達"]
     @IBOutlet private weak var groupTableView: UITableView! {
         didSet {
-            groupTableView.separatorColor = Utility.AppColor.OriginalBlue
+            groupTableView.separatorColor = Constants.AppColor.OriginalBlue
         }
     }
     private var IndicatorView:NVActivityIndicatorView!
@@ -57,7 +57,7 @@ class GroupViewController: UIViewController{
             self.user = user
             let urlString = user.profileImageUrl
             if urlString == "" {
-                self.myImageView.image = UIImage(named: Utility.ImageName.noImages)
+                self.myImageView.image = UIImage(named: Constants.ImageName.noImages)
             } else {
                 let url = URL(string: urlString)
                 self.myImageView.sd_setImage(with: url, completed: nil)
@@ -92,11 +92,11 @@ class GroupViewController: UIViewController{
     }
     //Mark:IBAction
     @IBAction private func user(_ sender: Any) {
-        self.performSegue(withIdentifier:  Utility.Segue.userProfile, sender: nil)
+        self.performSegue(withIdentifier:  Constants.Segue.userProfile, sender: nil)
     }
     
     @IBAction private func gotoMakeGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.MakeGroupVC) as! MakeGroupViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.MakeGroupVC) as! MakeGroupViewController
         vc.me = user
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -108,10 +108,10 @@ class GroupViewController: UIViewController{
     }
     //Mark:prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier ==  Utility.Segue.userProfile {
+        if segue.identifier ==  Constants.Segue.userProfile {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
-        } else if segue.identifier == Utility.Segue.gotoSearch {
+        } else if segue.identifier == Constants.Segue.gotoSearch {
             let vc = segue.destination as! GroupSearchViewController
             vc.friends = self.friendArray
         }
@@ -152,12 +152,12 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupDetailVC) as! GroupDetailViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailViewController
             vc.team = teamArray[indexPath.row]
             vc.friends = friendArray
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.UserDetailVC) as! UserDetailViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController
             vc.user = friendArray[indexPath.row]
             vc.me = self.user
             vc.flag = false
@@ -166,7 +166,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Utility.AppColor.OriginalBlue
+        view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)

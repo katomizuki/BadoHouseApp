@@ -9,7 +9,7 @@ class PostViewController: UIViewController {
     //Mark:Properties
     private let logoImage:UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: Utility.ImageName.logoImage)
+        iv.image = UIImage(named: Constants.ImageName.logoImage)
         return iv
     }()
     private let singleButton:UIButton = {
@@ -29,7 +29,7 @@ class PostViewController: UIViewController {
     }()
     private let label:UILabel = {
         let label = ProfileLabel(title: "今日の1ラリーを投稿してみよう", num: 20)
-        label.textColor = Utility.AppColor.OriginalBlue
+        label.textColor = Constants.AppColor.OriginalBlue
         return label
     }()
     let captureSession = AVCaptureSession()
@@ -63,15 +63,15 @@ class PostViewController: UIViewController {
         // do nothing
 #else
         if sender == singleButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = Badominton.single.rawValue
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == doubleButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = Badominton.double.rawValue
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == mixButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.CameraVC) as! CameraViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.CameraVC) as! CameraViewController
             vc.keyWord = Badominton.mix.rawValue
             navigationController?.pushViewController(vc, animated: true)
         }

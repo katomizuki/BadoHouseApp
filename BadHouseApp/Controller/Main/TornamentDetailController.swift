@@ -25,7 +25,7 @@ class TornamentDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        view.backgroundColor = UIColor(named:Utility.AppColor.darkColor)
+        view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     

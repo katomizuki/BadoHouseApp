@@ -10,15 +10,15 @@ class FriendSearchViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
-            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
             searchBar.autocapitalizationType = .none
         }
     }
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
-    private let cellId = Utility.CellId.searchCell
+    private let cellId = Constants.CellId.searchCell
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +46,13 @@ class FriendSearchViewController: UIViewController {
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
-        format.buttonColor = Utility.AppColor.OriginalBlue
+        format.buttonColor = Constants.AppColor.OriginalBlue
         format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        format.titleAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
         format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
         format.animation = EmptyStateAnimation.scale(0.3, 2.0)
         format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named:Utility.AppColor.darkColor) ?? UIColor.systemGray
+        format.backgroundColor = UIColor(named:Constants.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
     //Mark helperMethod
@@ -81,7 +81,7 @@ extension FriendSearchViewController: UITableViewDelegate,UITableViewDataSource 
         cell.nameLabel.text = friendList[indexPath.row].name
         let urlString = friendList[indexPath.row].profileImageUrl
         if urlString == "" {
-            cell.iv.image = UIImage(named: Utility.ImageName.noImages)
+            cell.iv.image = UIImage(named: Constants.ImageName.noImages)
         } else {
             if let url = URL(string: urlString) {
                 cell.iv.sd_setImage(with: url, completed: nil)

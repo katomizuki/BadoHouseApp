@@ -82,8 +82,8 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
     private let placePickerView = UIPickerView()
-    private let placeArray = Utility.Data.placeArray
-    private let moneyArray = Utility.Data.moneyArray
+    private let placeArray = Constants.Data.placeArray
+    private let moneyArray = Constants.Data.moneyArray
     //Mark:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,7 +190,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             .asDriver()
             .drive { [weak self] text in
                 if text != "" {
-                    self?.nameTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.nameTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.nameTextField.layer.borderWidth = 4
                     self?.nameTextField.layer.cornerRadius = 15
                 } else {
@@ -205,7 +205,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             .asDriver()
             .drive { [weak self] text in
                 if text != "" {
-                    self?.placeTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.placeTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.placeTextField.layer.borderWidth = 4
                     self?.placeTextField.layer.cornerRadius = 15
                 } else {
@@ -220,7 +220,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             .asDriver()
             .drive { [weak self] text in
                 if text != "" {
-                    self?.timeTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.timeTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.timeTextField.layer.borderWidth = 4
                     self?.timeTextField.layer.cornerRadius = 15
                 } else {
@@ -235,7 +235,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             .asDriver()
             .drive { [weak self] text in
                 if text != "" {
-                    self?.levelTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.levelTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.levelTextField.layer.borderWidth = 4
                     self?.levelTextField.layer.cornerRadius = 15
                 } else {
@@ -250,7 +250,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
             .asDriver()
             .drive { [weak self] text in
                 if text != "" {
-                    self?.plusTextField.layer.borderColor = Utility.AppColor.OriginalBlue.cgColor
+                    self?.plusTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
                     self?.plusTextField.layer.borderWidth = 4
                     self?.plusTextField.layer.cornerRadius = 15
                 } else {
@@ -263,7 +263,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         teamBinding.validRegisterDriver
             .drive { validAll in
                 self.registerButton.isEnabled = validAll
-                self.registerButton.backgroundColor = validAll ? Utility.AppColor.OriginalBlue : .darkGray
+                self.registerButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
         
@@ -292,12 +292,12 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     }
     
     @objc func tap(sender:UIButton) {
-        if sender.backgroundColor != Utility.AppColor.OriginalBlue {
-            sender.backgroundColor = Utility.AppColor.OriginalBlue
+        if sender.backgroundColor != Constants.AppColor.OriginalBlue {
+            sender.backgroundColor = Constants.AppColor.OriginalBlue
             sender.setTitleColor(.white, for: UIControl.State.normal)
         } else {
-            sender.backgroundColor = UIColor(named: Utility.AppColor.darkColor)
-            sender.setTitleColor(Utility.AppColor.OriginalBlue, for: UIControl.State.normal)
+            sender.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+            sender.setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
         }
         guard let title = sender.titleLabel?.text else { return }
         if tagArray.contains(title) == false {
@@ -322,7 +322,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         guard let teamImage = groupImageView.image else { return }
         guard let teamUrl = plusTextField.text else { return }
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.FriendVC) as! FriendsViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.FriendVC) as! FriendsViewController
         vc.friends = self.friends
         vc.teamName = teamName
         vc.teamTime = teamTime

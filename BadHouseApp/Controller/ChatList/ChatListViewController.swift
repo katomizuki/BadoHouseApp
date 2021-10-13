@@ -45,10 +45,10 @@ class ChatListViewController:UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupData()
         setupOwnTeamData()
-        let image = UIImage(named: Utility.ImageName.double)
+        let image = UIImage(named: Constants.ImageName.double)
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     //Mark setupMethod
@@ -61,8 +61,8 @@ class ChatListViewController:UIViewController {
     
     private func setupNav() {
         navigationItem.title = "トーク"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
-        navigationController?.navigationBar.tintColor = Utility.AppColor.OriginalBlue
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
+        navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -80,7 +80,7 @@ class ChatListViewController:UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Utility.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
         tableView.addSubview(refreshView)
     }
     
@@ -124,7 +124,7 @@ class ChatListViewController:UIViewController {
     }
     //Mark selector
     @objc private func handleNotification() {
-        performSegue(withIdentifier: Utility.Segue.gotoNotification, sender: nil)
+        performSegue(withIdentifier: Constants.Segue.gotoNotification, sender: nil)
     }
     
     @objc private func handleSchedule() {
@@ -165,7 +165,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Utility.CellId.CellGroupId,for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId,for: indexPath) as! GroupCell
         //Mark GroupChatCell
         if indexPath.section == 0 {
             cell.commentLabel.isHidden = true
@@ -190,7 +190,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0 {
             let team = teams[indexPath.row]
             self.selectedTeam = team
-            let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.GroupChatVC) as! GroupChatViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatViewController
             vc.team = self.selectedTeam
             navigationController?.pushViewController(vc, animated: true)
             
@@ -198,14 +198,14 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             if Auth.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 me = sortAnotherUserArray[indexPath.row]
                 you = sortUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.ChatVC) as! ChatViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
@@ -222,7 +222,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Utility.AppColor.OriginalBlue
+        view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)

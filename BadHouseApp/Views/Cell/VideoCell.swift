@@ -12,7 +12,7 @@ class VideoCell:UICollectionViewCell {
     
     //Mark properties
     var player: AVPlayer?
-    static let identifier = Utility.CellId.videoCell
+    static let identifier = Constants.CellId.videoCell
     var iv:UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .cyan
@@ -26,15 +26,15 @@ class VideoCell:UICollectionViewCell {
     }
     private let nextButton:UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: Utility.ImageName.reload), for: .normal)
-        button.tintColor = Utility.AppColor.OriginalBlue
+        button.setImage(UIImage(named: Constants.ImageName.reload), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
     
     private let searchButton:UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named:Utility.ImageName.search), for: .normal)
-        button.tintColor = Utility.AppColor.OriginalBlue
+        button.setImage(UIImage(named:Constants.ImageName.search), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
     

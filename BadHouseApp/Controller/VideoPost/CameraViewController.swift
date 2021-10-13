@@ -67,7 +67,7 @@ class CameraViewController: UIViewController {
             let fileURL:NSURL = NSURL(fileURLWithPath: filePath)
             fileOutput.startRecording(to: fileURL as URL, recordingDelegate: self)
             self.isRecording = true
-            sender.backgroundColor = Utility.AppColor.OriginalBlue
+            sender.backgroundColor = Constants.AppColor.OriginalBlue
         }
     }
 }

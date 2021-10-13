@@ -21,9 +21,9 @@ class ViewController: UIViewController {
     private var eventArray = [Event]()
     @IBOutlet weak var searchBar: UISearchBar!{
         didSet {
-            searchBar.tintColor = Utility.AppColor.OriginalBlue
+            searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Utility.AppColor.OriginalBlue
+            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
             searchBar.autocapitalizationType = .none
         }
     }
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: Utility.Segue.gotoRegister, sender: nil)
+                self.performSegue(withIdentifier: Constants.Segue.gotoRegister, sender: nil)
             }
         }
     }
@@ -64,13 +64,13 @@ class ViewController: UIViewController {
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
-        format.buttonColor = Utility.AppColor.OriginalBlue
+        format.buttonColor = Constants.AppColor.OriginalBlue
         format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor:Utility.AppColor.OriginalBlue]
+        format.titleAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
         format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
         format.animation = EmptyStateAnimation.scale(0.3, 2.0)
         format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named: Utility.AppColor.darkColor) ?? UIColor.systemGray
+        format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
     
@@ -97,9 +97,9 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
-        let nib = UINib(nibName: Utility.Cell.CollectionViewCell,
+        let nib = UINib(nibName: Constants.Cell.CollectionViewCell,
                         bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: Utility.CellId.eventId)
+        collectionView.register(nib, forCellWithReuseIdentifier: Constants.CellId.eventId)
     }
     
     private func setupLocationManager() {
@@ -116,15 +116,15 @@ class ViewController: UIViewController {
     }
     //Mark:Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier ==  Utility.Segue.gotoUser {
+        if segue.identifier ==  Constants.Segue.gotoUser {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
         }
-        if segue.identifier == Utility.Segue.gotoCalendar {
+        if segue.identifier == Constants.Segue.gotoCalendar {
             let vc = segue.destination as! CalendarViewController
             vc.delegate = self
         }
-        if segue.identifier == Utility.Segue.gotoDetail {
+        if segue.identifier == Constants.Segue.gotoDetail {
             let vc = segue.destination as! DetailSearchViewController
             vc.delegate = self
         }
@@ -149,7 +149,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Utility.CellId.eventId, for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.eventId, for: indexPath) as! CollectionViewCell
         if eventArray.isEmpty {
             return cell
         } else {
@@ -165,7 +165,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Utility.Storyboard.EventDetailVC) as! EventDetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailViewController
         vc.event = eventArray[indexPath.row]
         let teamId = eventArray[indexPath.row].teamId
         Firestore.getTeamData(teamId: teamId) { team in
