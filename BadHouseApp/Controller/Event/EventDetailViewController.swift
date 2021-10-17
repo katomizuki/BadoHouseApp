@@ -299,16 +299,7 @@ class EventDetailViewController: UIViewController {
     @IBAction func join(_ sender: Any) {
         print(#function)
         guard let leaderId = event?.userId else { return }
-        //        fetchData.getChatData(meId: Auth.getUserId(), youId: leaderId) { [weak self] chatId in
-        //            guard let self = self else { return }
-        //            if chatId.isEmpty {
-        //                Firestore.sendChatroom(myId: Auth.getUserId(), youId: leaderId) { id in
-        //                    self.chatId = id
-        //                }
-        //            } else {
-        //                self.chatId = chatId
-        //            }
-        //        }
+   
         guard let eventId = event?.eventId else { return }
         Firestore.searchPreJoin(myId: Auth.getUserId(), eventId: eventId) { bool in
             if bool == false {
@@ -327,7 +318,6 @@ class EventDetailViewController: UIViewController {
                         guard let self = self else { return }
                         print(chatId)
                         if chatId.isEmpty {
-                            print("✊")
                             //チャットルームを作った後に申請を出す。
                             Firestore.sendChatroom(myId: Auth.getUserId(), youId: leaderId) { id in
                                 self.chatId = id
@@ -344,11 +334,7 @@ class EventDetailViewController: UIViewController {
                         self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
                         LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
                     }
-//                    Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
-                    //トークの関係なく承認申請を送る
-//                    Firestore.sendePreJoin(myId: meId, eventId: eventId,leaderId: leaderId)
-//                    self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
-//                    LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
+
                 }
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
