@@ -132,3 +132,4 @@ enum BadmintonLevel:String {
     case ten = "レベル10"
 }
 
+

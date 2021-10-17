@@ -321,7 +321,7 @@ class UpdateViewController:UIViewController {
     private let timeTextField = ProfileTextField(placeholder: "")
     private let moneyTextField = ProfileTextField(placeholder: "")
     weak var delegate:backDelegate?
-    private let iv:UIImageView = {
+    private lazy var iv:UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Constants.ImageName.noImages)
         iv.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor

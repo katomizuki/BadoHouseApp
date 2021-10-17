@@ -31,6 +31,7 @@ class GroupViewController: UIViewController{
         setupIndicator()
         IndicatorView.startAnimating()
         setupTableView()
+        self.teamArray = []
         setupData()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -42,12 +43,13 @@ class GroupViewController: UIViewController{
             let vc = tabBarController?.viewControllers?[0]
             tabBarController?.selectedViewController = vc
         } else {
+            print("ああ")
+            self.teamArray = []
             setupData()
         }
     }
     //Mark: setupMethod
     private func setupData() {
-        self.teamArray = []
         fetchData.friendDelegate = self
         fetchData.myTeamDelegate = self
         let uid = Auth.getUserId()
@@ -66,6 +68,8 @@ class GroupViewController: UIViewController{
         }
         Firestore.getOwnTeam(uid: uid) { [weak self] teamId in
             guard let self = self else { return }
+            print("⚡️")
+            self.teamArray = []
             self.fetchData.getmyTeamData(idArray: teamId)
         }
         Firestore.getFriendData(uid: uid) { [weak self] usersId in
@@ -187,10 +191,12 @@ extension GroupViewController:GetFriendDelegate {
 extension GroupViewController:GetMyTeamDelegate {
     func getMyteam(teamArray: [TeamModel]) {
         self.teamArray = []
+        print("✊")
         var array = teamArray
         array = array.sorted { element, nextElement in
             return element.updatedAt.dateValue() > nextElement.updatedAt.dateValue()
         }
+        print(array)
         self.teamArray = array
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         DispatchQueue.main.async {

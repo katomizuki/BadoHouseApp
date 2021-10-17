@@ -455,7 +455,7 @@ class FetchFirestoreData {
     func getChatData(meId:String,youId:String,completion:@escaping(String)->Void){
         print(#function)
         var string = ""
-        Ref.ChatroomRef.addSnapshotListener { snapShot, error in
+        Ref.ChatroomRef.getDocuments { snapShot, error in
             if let error = error {
                 print(error)
                 return

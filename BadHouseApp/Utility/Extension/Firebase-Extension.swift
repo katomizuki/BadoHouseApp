@@ -249,6 +249,7 @@ extension Firestore{
                 print("OwnTeam",error)
             }
             guard let data = snapShot?.documents else { return }
+            teamIdArray = []
             data.forEach { doc in
                 let safeData = doc.data()
                 let teamId = safeData["teamId"] as? String ?? ""
