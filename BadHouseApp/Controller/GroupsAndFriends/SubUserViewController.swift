@@ -73,6 +73,9 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
         levelLabel.text = user?.level == "" || user?.level == nil || user?.level == "未設定" ? "未設定":user?.level
         badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
+        if user?.uid == me?.uid {
+            friendButton.isHidden = true
+        }
     }
     private func setupLayer() {
         //        setupBorder(view: ageStackView)

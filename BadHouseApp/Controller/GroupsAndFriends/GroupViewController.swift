@@ -68,8 +68,6 @@ class GroupViewController: UIViewController{
         }
         Firestore.getOwnTeam(uid: uid) { [weak self] teamId in
             guard let self = self else { return }
-            print("⚡️")
-            self.teamArray = []
             self.fetchData.getmyTeamData(idArray: teamId)
         }
         Firestore.getFriendData(uid: uid) { [weak self] usersId in
@@ -159,6 +157,7 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
             let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailViewController
             vc.team = teamArray[indexPath.row]
             vc.friends = friendArray
+            vc.me = self.user
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
             let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController

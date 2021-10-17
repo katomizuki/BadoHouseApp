@@ -13,6 +13,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     var friend:User?
     var teamPlayers = [User]()
     var friends = [User]()
+    var me:User?
     @IBOutlet private weak var friendImageView: UIImageView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var teamNameLabel: UILabel! {
@@ -307,6 +308,7 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController
         vc.user = teamPlayers[indexPath.row]
+        vc.me = self.me
         navigationController?.pushViewController(vc, animated: true)
     }
 }

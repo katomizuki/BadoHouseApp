@@ -69,6 +69,9 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
         levelLabel.text = user?.level == "" || user?.level == nil || user?.level == "未設定" ? "未設定":user?.level
         badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
+        if user?.uid == me?.uid {
+            friendButton.isHidden = true
+        }
     }
     
     private func setupLayer() {
@@ -143,7 +146,12 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     
     //Mark HelperMethod
     private func helperUI() {
+        print(#function)
         friendButton.isHidden = flag
+        if user?.uid == me?.uid {
+            print("✊")
+            friendButton.isHidden = true
+        }
         friendsImageView.isUserInteractionEnabled = !flag
         chatButton.isHidden = flag
         
