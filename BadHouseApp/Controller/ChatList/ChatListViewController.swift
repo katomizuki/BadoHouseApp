@@ -89,14 +89,14 @@ class ChatListViewController:UIViewController {
             if bool == true {
                 guard let self = self else { return }
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
-                Firestore.changeTrue(uid: AuthService.getUserId())
+                JoinService.changeTrue(uid: AuthService.getUserId())
                 LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "練習に申し込んだ方と連絡はとれましたか？", body: "ぜひ確認しましょう!")
             }
         }
     }
     
     private func setupData() {
-        Firestore.getChatData(uid: AuthService.getUserId()) { [weak self] chatId in
+        ChatRoomService.getChatData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
             self.fetchData.getChatRoomModel(chatId:chatId)
             for i in 0..<chatId.count {

@@ -141,7 +141,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 ]
                 if self.hasChangedImage {
                     guard let image = self.profileImageView.image else { return }
-                    Storage.addProfileImageToStorage(image: image, dic: dic) {
+                    StorageService.addProfileImageToStorage(image: image, dic: dic) {
                         print("Image Save Success")
                         self.hasChangedImage = false
                     }

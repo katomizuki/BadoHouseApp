@@ -394,7 +394,7 @@ class UpdateViewController:UIViewController {
         self.team?.teamTime = time
         self.team?.teamLevel = money
         guard let image = iv.image else { return }
-        Storage.addTeamImage(image: image) { [weak self] urlString in
+        StorageService.addTeamImage(image: image) { [weak self] urlString in
             guard let self = self else { return }
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }

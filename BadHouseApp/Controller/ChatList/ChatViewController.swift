@@ -41,7 +41,7 @@ class ChatViewController: UIViewController {
         guard let youId = you?.uid else { return }
         fetchData.getChatData(meId: myId, youId: youId) { chatId in
             if chatId.isEmpty {
-                Firestore.sendChatroom(myId: myId, youId: youId) { [weak self] id in
+                ChatRoomService.sendChatroom(myId: myId, youId: youId) { [weak self] id in
                     guard let self = self else { return }
                     self.chatId = id
                 }
@@ -113,7 +113,7 @@ extension ChatViewController:InputDelegate {
         guard let youId = you?.uid else { return }
         if text == "" { return }
         inputView.messageInputTextView.text = ""
-        Firestore.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
+        ChatRoomService.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
         fetchData.getChat(chatId: chatId)
         inputView.messageInputTextView.resignFirstResponder()
     }

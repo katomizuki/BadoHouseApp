@@ -182,7 +182,7 @@ class FetchFirestoreData {
                 guard let another = another else { return }
                 anotherArray.append(another)
             }
-            Firestore.getChatLastData(chatId: chatId) { lastComment in
+            ChatRoomService.getChatLastData(chatId: chatId) { lastComment in
                 lastCommentArray.append(lastComment)
             }
         }

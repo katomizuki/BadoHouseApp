@@ -38,7 +38,75 @@ struct TeamService {
         TeamService.sendTeamPlayerData(teamDic: dic, teamplayer: friends)
         TeamService.sendTeamTagData(teamId: teamId, tagArray: tagArray)
     }
+
+    static func updateTeamInfo(team:TeamModel) {
+        let id = team.teamId
+        let dic = ["teamId":id,
+                   "teamName":team.teamName,
+                   "teamPlace":team.teamPlace,
+                   "teamTime":team.teamTime,
+                   "teamLevel":team.teamLevel,
+                   "teamUrl":team.teamUrl,
+                   "teamImageUrl":team.teamImageUrl,
+                   "createdAt":team.createdAt,
+                   "updatedAt":team.updatedAt] as [String : Any]
+        Ref.TeamRef.document(id).setData(dic)
+        Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic)
+    }
+}
+
+//Mark: TeamPlayer-Extension
+extension TeamService {
+    static func getTeamPlayer(teamId:String,completion:@escaping ([String])->Void) {
+        Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
+            var teamPlayers = [String]()
+            guard let documents = snapShot?.documents else { return }
+            teamPlayers = []
+            documents.forEach { data in
+                let safeData = data.data()
+                let teamPlayerId = safeData["uid"] as? String ?? ""
+                teamPlayers.append(teamPlayerId)
+            }
+            completion(teamPlayers)
+        }
+    }
     
+    static func sendTeamPlayerData(teamDic:[String:Any],teamplayer:[User]) {
+        print(#function)
+        for i in 0..<teamplayer.count {
+            let teamPlayerId = teamplayer[i].uid
+            let dic = ["uid":teamPlayerId] as [String : Any]
+            let teamId = teamDic["teamId"] as! String
+            // TeamPlayer++
+            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) {
+                error in
+                if let error = error {
+                    print(error)
+                }
+            }
+            UserService.plusOwnTeam(id: teamPlayerId, dic: teamDic)
+        }
+    }
+    static func sendInvite(team:TeamModel,inviter: [User]) {
+        let teamId = team.teamId
+        let dic = ["teamId":teamId,
+                   "teamName":team.teamName,
+                   "teamPlace":team.teamPlace,
+                   "teamTime":team.teamTime,
+                   "teamImageUrl":team.teamImageUrl,
+                   "teamLevel":team.teamLevel,
+                   "teamURL":team.teamUrl,
+                   "createdAt":team.createdAt,
+                   "updatedAt":team.updatedAt] as [String : Any]
+        inviter.forEach { element in
+            let id = element.uid
+            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(id).setData(["uid":id])
+            Ref.UsersRef.document(id).collection("OwnTeam").document(teamId).setData(dic)
+        }
+    }
+}
+//Mark TeamTagExtension
+extension TeamService {
     static func sendTeamTagData(teamId:String,tagArray:[String]) {
         let tagId =  Ref.TeamRef.document(teamId).collection("TeamTag").document().documentID
         for i in 0..<tagArray.count {
@@ -60,51 +128,5 @@ struct TeamService {
             }
             completion(teamTag)
         }
-    }
-    
-    //Mark: sendTeamPlayerData
-    static func sendTeamPlayerData(teamDic:[String:Any],teamplayer:[User]) {
-        print(#function)
-        for i in 0..<teamplayer.count {
-            let teamPlayerId = teamplayer[i].uid
-            let dic = ["uid":teamPlayerId] as [String : Any]
-            let teamId = teamDic["teamId"] as! String
-            // TeamPlayer++
-            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) {
-                error in
-                if let error = error {
-                    print(error)
-                }
-            }
-            UserService.plusOwnTeam(id: teamPlayerId, dic: teamDic)
-        }
-    }
-    
-    static func getTeamPlayer(teamId:String,completion:@escaping ([String])->Void) {
-        Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
-            var teamPlayers = [String]()
-            guard let documents = snapShot?.documents else { return }
-            teamPlayers = []
-            documents.forEach { data in
-                let safeData = data.data()
-                let teamPlayerId = safeData["uid"] as? String ?? ""
-                teamPlayers.append(teamPlayerId)
-            }
-            completion(teamPlayers)
-        }
-    }
-    static func updateTeamInfo(team:TeamModel) {
-        let id = team.teamId
-        let dic = ["teamId":id,
-                   "teamName":team.teamName,
-                   "teamPlace":team.teamPlace,
-                   "teamTime":team.teamTime,
-                   "teamLevel":team.teamLevel,
-                   "teamUrl":team.teamUrl,
-                   "teamImageUrl":team.teamImageUrl,
-                   "createdAt":team.createdAt,
-                   "updatedAt":team.updatedAt] as [String : Any]
-        Ref.TeamRef.document(id).setData(dic)
-        Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic)
     }
 }

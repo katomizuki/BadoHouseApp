@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F43C7F339CC617506877AF3 /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
 		D30B7939270090EA0086456E /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B7938270090EA0086456E /* ChatRoom.swift */; };
-		D30B793C2700A5940086456E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* Notification.swift */; };
+		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D330032626E61A2E00208525 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* PopViewController.swift */; };
 		D330032826E7013900208525 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* LevelViewController.swift */; };
 		D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B126FD3DEE0027592A /* UIColor-Extension.swift */; };
@@ -59,7 +59,6 @@
 		D3BDB55726E0644E00C53780 /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55626E0644E00C53780 /* UIButton-Extension.swift */; };
 		D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55826E066CF00C53780 /* RegisterButton.swift */; };
 		D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterLoginBinding.swift */; };
-		D3BDB55E26E0A97500C53780 /* Firebase-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55D26E0A97500C53780 /* Firebase-Extension.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* UserModel.swift */; };
 		D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C02CEE26E8A5C800995517 /* Tag.swift */; };
@@ -102,13 +101,16 @@
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
 		D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32B271EC01600DE54ED /* Team-Service.swift */; };
 		D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */; };
+		D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */; };
+		D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */; };
+		D3FFD334271EDCC300DE54ED /* JoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* JoinService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30B7938270090EA0086456E /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
-		D30B793B2700A5940086456E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		D34852B126FD3DEE0027592A /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
@@ -158,7 +160,6 @@
 		D3BDB55626E0644E00C53780 /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 		D3BDB55826E066CF00C53780 /* RegisterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButton.swift; sourceTree = "<group>"; };
 		D3BDB55B26E0965200C53780 /* RegisterLoginBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLoginBinding.swift; sourceTree = "<group>"; };
-		D3BDB55D26E0A97500C53780 /* Firebase-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase-Extension.swift"; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		D3BDB56326E0B05D00C53780 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D3C02CEE26E8A5C800995517 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -200,6 +201,9 @@
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32B271EC01600DE54ED /* Team-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Team-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event-Service.swift"; sourceTree = "<group>"; };
+		D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRoom-Service.swift"; sourceTree = "<group>"; };
+		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
+		D3FFD333271EDCC300DE54ED /* JoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinService.swift; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -289,7 +293,7 @@
 				D3BDB54526E055C900C53780 /* Constants.swift */,
 				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
 				D3AC05EC26EE274100F40A51 /* DateUtil.swift */,
-				D30B793B2700A5940086456E /* Notification.swift */,
+				D30B793B2700A5940086456E /* NotificationUtil.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -399,7 +403,6 @@
 			children = (
 				D3BDB55226E05E7A00C53780 /* Anchor-Extension.swift */,
 				D3BDB55626E0644E00C53780 /* UIButton-Extension.swift */,
-				D3BDB55D26E0A97500C53780 /* Firebase-Extension.swift */,
 				D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */,
 				D3DA98B926F6D8C200DFF8B1 /* State.swift */,
 				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
@@ -507,6 +510,9 @@
 				D3FFD329271EBECD00DE54ED /* Delete-Service.swift */,
 				D3FFD32B271EC01600DE54ED /* Team-Service.swift */,
 				D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */,
+				D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */,
+				D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */,
+				D3FFD333271EDCC300DE54ED /* JoinService.swift */,
 			);
 			path = "API-Service";
 			sourceTree = "<group>";
@@ -685,7 +691,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3BDB55E26E0A97500C53780 /* Firebase-Extension.swift in Sources */,
 				D3C4E93226E0F0BD00C21E46 /* UserViewController.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
@@ -693,6 +698,7 @@
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
 				D34852B426FD3E160027592A /* Array-Extension.swift in Sources */,
 				D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */,
+				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */,
 				D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */,
@@ -710,12 +716,13 @@
 				D3977167270959A70025BE19 /* TornamentController.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
+				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */,
 				D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */,
 				D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */,
 				D3A82BA527040C8100DDB4FC /* CameraViewController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
-				D30B793C2700A5940086456E /* Notification.swift in Sources */,
+				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */,
 				D330032826E7013900208525 /* LevelViewController.swift in Sources */,
@@ -744,6 +751,7 @@
 				D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
+				D3FFD334271EDCC300DE54ED /* JoinService.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
 				D3CF6D1326F8AE6C007C4DF3 /* DaughterViewController.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,

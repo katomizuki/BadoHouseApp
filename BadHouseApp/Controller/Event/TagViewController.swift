@@ -45,7 +45,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     //Mark:IBAction
     @IBAction func finishAction(_ sender: Any) {
         guard let image = eventImage else { return }
-        Storage.addEventImage(image: image) { urlString in
+        StorageService.addEventImage(image: image) { urlString in
             self.dic["urlEventString"] = urlString
             EventServie.sendEventData(teamId:self.teamId, event: self.dic, eventId: self.eventId)
             EventServie.sendTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)

@@ -80,7 +80,7 @@ class FriendsViewController: UIViewController {
         guard let teamUrl = self.url else { return }
         guard let me = self.me else { return }
         inviter.append(me)
-        Storage.addTeamImage(image: teamImage) { [weak self] urlString in
+        StorageService.addTeamImage(image: teamImage) { [weak self] urlString in
             guard let self = self else { return }
             TeamService.createTeam(teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: urlString,friends:self.inviter, teamUrl: teamUrl, tagArray: self.teamTagArray)
             self.IndicatorView.stopAnimating()

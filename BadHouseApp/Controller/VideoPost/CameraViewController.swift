@@ -75,7 +75,7 @@ class CameraViewController: UIViewController {
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        Storage.sendVideoData(videoUrl: outputFileURL, senderId: AuthService.getUserId(), keyWord:self.keyWord)
+        StorageService.sendVideoData(videoUrl: outputFileURL, senderId: AuthService.getUserId(), keyWord:self.keyWord)
         LocalNotificationManager.setNotification(3, of: .seconds, repeats: false, title: "プレ-を投稿しました", body: "")
     }
 }

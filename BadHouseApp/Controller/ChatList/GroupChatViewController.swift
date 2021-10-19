@@ -89,7 +89,7 @@ extension GroupChatViewController:InputDelegate {
         guard let me = self.me else { return }
         guard let text = inputView.messageInputTextView.text else { return }
         if text == "" { return }
-        Firestore.sendGroupChat(teamId: teamId, me: me, text: text)
+        ChatRoomService.sendGroupChat(teamId: teamId, me: me, text: text)
         inputView.messageInputTextView.text = ""
     }
 }
