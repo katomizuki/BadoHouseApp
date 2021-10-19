@@ -17,7 +17,7 @@ struct AuthService {
             }
             print("Register Success ")
             guard let uid = result?.user.uid else { return }
-            Firestore.setUserData(uid: uid, password: password, email: email, name: name) { result in
+            UserService.setUserData(uid: uid, password: password, email: email, name: name) { result in
                 completion(result, error)
             }
         }

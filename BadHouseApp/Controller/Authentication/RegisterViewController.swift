@@ -225,7 +225,7 @@ extension RegisterViewController: GIDSignInDelegate {
                     guard let id = result?.user.uid else { return }
                     guard let email = email else { return }
                     guard let name = fullName else { return }
-                    Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
+                    UserService.setUserData(uid: id, password: "", email: email, name: name) { result in
                         if result == true {
                             let bool = false
                             UserDefaults.standard.set(bool, forKey: "MyId")
@@ -265,7 +265,7 @@ extension RegisterViewController:LoginButtonDelegate {
             guard let name = result?.user.displayName else { return }
             guard let email = result?.user.email else { return }
             guard let id = result?.user.uid else { return }
-            Firestore.setUserData(uid: id, password: "", email: email, name: name) { result in
+            UserService.setUserData(uid: id, password: "", email: email, name: name) { result in
                 if result == true {
                     let bool = false
                     UserDefaults.standard.set(bool, forKey: "MyId")

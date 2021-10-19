@@ -104,7 +104,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             self.teamPlayers = []
             for i in 0..<membersId.count {
                 let teamPlayerId = membersId[i]
-                Firestore.getUserData(uid: teamPlayerId) { teamPlayer in
+                UserService.getUserData(uid: teamPlayerId) { teamPlayer in
                     guard let teamPlayer = teamPlayer else { return }
                     self.teamPlayers.append(teamPlayer)
                 }

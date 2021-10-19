@@ -129,7 +129,7 @@ class ChatListViewController:UIViewController {
     
     @objc private func handleSchedule() {
         print(#function)
-        Firestore.getUserData(uid: AuthService.getUserId()) { user in
+        UserService.getUserData(uid: AuthService.getUserId()) { user in
             guard let me = user else { return }
             let vc = ScheduleViewController(user: me)
             self.present(vc, animated: true, completion: nil)

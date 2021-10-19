@@ -146,7 +146,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                         self.hasChangedImage = false
                     }
                 } else {
-                    Firestore.updateUserInfo(dic: dic)
+                    UserService.updateUserInfo(dic: dic)
                 }
                 self.setupCDAlert(title: "ユーザー情報を保存しました", message: "", action: "OK", alertType: .success)
             }.disposed(by:diposeBag)

@@ -40,7 +40,7 @@ class GroupChatViewController: UIViewController {
     }
     
     private func setupData() {
-        Firestore.getUserData(uid: AuthService.getUserId()) { [weak self] me in
+        UserService.getUserData(uid: AuthService.getUserId()) { [weak self] me in
             guard let self = self else { return }
             self.me = me
         }

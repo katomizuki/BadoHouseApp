@@ -64,7 +64,7 @@ extension ChildViewController:GetPrejoinDataDelegate {
             for j in 0..<preJoin[i].count {
                 group.enter()
                 let id = preJoin[i][j]
-                Firestore.getUserData(uid: id) { user in
+                UserService.getUserData(uid: id) { user in
                     defer { group.leave() }
                     guard let user = user else { return }
                     tempArray.append(user)

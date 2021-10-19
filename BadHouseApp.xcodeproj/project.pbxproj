@@ -98,6 +98,7 @@
 		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
 		D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195426E4CAC900B6740E /* TagViewController.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
+		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +193,7 @@
 		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		D3FD195426E4CAC900B6740E /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
+		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -340,6 +342,7 @@
 		D3BDB53C26E0541100C53780 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D3FFD326271EBBD100DE54ED /* API-Service */,
 				D3AC05EE26EE279D00F40A51 /* Other */,
 				D3BDB54E26E05D9500C53780 /* Extension */,
 			);
@@ -396,7 +399,6 @@
 				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
 				D34852B126FD3DEE0027592A /* UIColor-Extension.swift */,
 				D34852B326FD3E160027592A /* Array-Extension.swift */,
-				D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -489,6 +491,15 @@
 				D3A82BA427040C8100DDB4FC /* CameraViewController.swift */,
 			);
 			path = VideoPost;
+			sourceTree = "<group>";
+		};
+		D3FFD326271EBBD100DE54ED /* API-Service */ = {
+			isa = PBXGroup;
+			children = (
+				D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */,
+				D3FFD327271EBC9200DE54ED /* User-Service.swift */,
+			);
+			path = "API-Service";
 			sourceTree = "<group>";
 		};
 		EAB088E43E3400410089E7E8 /* Pods */ = {
@@ -739,6 +750,7 @@
 				D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
 				D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */,
+				D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */,
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,
 				D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */,
 				D3976EF1270337F40016CEB2 /* InputView.swift in Sources */,

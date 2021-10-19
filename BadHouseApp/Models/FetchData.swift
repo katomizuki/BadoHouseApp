@@ -84,7 +84,7 @@ class FetchFirestoreData {
         for i in 0..<idArray.count {
             group.enter()
             let uid = idArray[i]
-            Firestore.getUserData(uid: uid) { friend in
+            UserService.getUserData(uid: uid) { friend in
                 defer {
                     group.leave()
                 }
@@ -174,11 +174,11 @@ class FetchFirestoreData {
             let anotherId = chatModelArray[i].user2
             let chatId = chatModelArray[i].chatRoom
             
-            Firestore.getUserData(uid: userId) { user in
+            UserService.getUserData(uid: userId) { user in
                 guard let user = user else { return }
                 userArray.append(user)
             }
-            Firestore.getUserData(uid: anotherId) { another in
+            UserService.getUserData(uid: anotherId) { another in
                 guard let another = another else { return }
                 anotherArray.append(another)
             }
@@ -197,7 +197,7 @@ class FetchFirestoreData {
         var otherCount = 0
         for i in 0..<teamPlayers.count {
             let playerId = teamPlayers[i].uid
-            Firestore.getUserData(uid: playerId) { user in
+            UserService.getUserData(uid: playerId) { user in
                 guard let gender = user?.gender else { return }
                 if gender == "男性" {
                     manCount += 1

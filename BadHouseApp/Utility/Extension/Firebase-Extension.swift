@@ -3,89 +3,50 @@ import Firebase
 import UIKit
 import CoreLocation
 
-//extension Auth {
-//
-//    //Mark Register
-//    static func register(name:String?,email:String?,password:String?,completion:@escaping (Bool,Error?) -> Void) {
-//        guard let email = email else { return }
-//        guard let name = name else { return }
-//        guard let password = password else { return }
-//        Auth.auth().createUser(withEmail: email,password: password) { result, error in
-//            if let error = error {
-//                print("createUser Error",error)
-//                completion(false,error)
-//                return
-//            }
-//            print("Register Success ")
-//            guard let uid = result?.user.uid else { return }
-//            Firestore.setUserData(uid: uid, password: password, email: email, name: name) { result in
-//                completion(result, error)
-//            }
-//        }
-//    }
-//
-//    //Mark: Login
-//    static func loginFirebaseAuth(email:String,password:String,completion:@escaping (Bool,Error?) -> Void) {
-//        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-//            if let error = error {
-//                print("Login Error",error)
-//                completion(false,error)
-//                return
-//            }
-//            print("Login Success")
-//            completion(true,error)
-//        }
-//    }
-//
-//    //Mark:GetUserId
-//    static func getUserId()->String {
-//        guard let uid = Auth.auth().currentUser?.uid else { return ""}
-//        return uid
-//    }
-//}
+
 //Mark:FireStore
 extension Firestore{
     
-    //Mark: setUserData
-    static func setUserData(uid:String,password:String,email:String,name:String,completion:@escaping (Bool) ->()) {
-        let dic = ["uid":uid,
-                   "name":name,
-                   "email":email,
-                   "createdAt":Timestamp(),
-                   "updatedAt":Timestamp()] as [String : Any]
-        Ref.UsersRef.document(uid).setData(dic) { error in
-            if let error = error {
-                print("SetUserData",error)
-            }
-            completion(true)
-            print("setUserData")
-        }
-    }
-    
-    //Mark UserDataUpdate
-    static func updateUserInfo(dic:[String:Any]) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
-            if let error = error {
-                print("更新エラー",error)
-                return
-            }
-            print("更新成功")
-        }
-    }
-    
-    //Mark: UserDataGet
-    static func getUserData(uid:String,compeltion:@escaping (User?)->Void) {
-        Ref.UsersRef.document(uid).addSnapshotListener { snapShot, error in
-            if let error = error {
-                print("UserInfo Get Error",error)
-                return
-            }
-            guard let dic = snapShot?.data() else { return }
-            let user = User(dic: dic)
-            compeltion(user)
-        }
-    }
+//    //Mark: setUserData
+//    static func setUserData(uid:String,password:String,email:String,name:String,completion:@escaping (Bool) ->()) {
+//        let dic = ["uid":uid,
+//                   "name":name,
+//                   "email":email,
+//                   "createdAt":Timestamp(),
+//                   "updatedAt":Timestamp()] as [String : Any]
+//        Ref.UsersRef.document(uid).setData(dic) { error in
+//            if let error = error {
+//                print("SetUserData",error)
+//            }
+//            completion(true)
+//            print("setUserData")
+//        }
+//    }
+//
+//    //Mark UserDataUpdate
+//    static func updateUserInfo(dic:[String:Any]) {
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
+//            if let error = error {
+//                print("更新エラー",error)
+//                return
+//            }
+//            print("更新成功")
+//        }
+//    }
+//
+//    //Mark: UserDataGet
+//    static func getUserData(uid:String,compeltion:@escaping (User?)->Void) {
+//        Ref.UsersRef.document(uid).addSnapshotListener { snapShot, error in
+//            if let error = error {
+//                print("UserInfo Get Error",error)
+//                return
+//            }
+//            guard let dic = snapShot?.data() else { return }
+//            let user = User(dic: dic)
+//            compeltion(user)
+//        }
+//    }
     
     static func changeTrue(uid:String) {
         Ref.UsersRef.document(uid).collection("PreJoin").getDocuments { snapShot, error in
@@ -544,7 +505,7 @@ extension Storage {
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
-                Firestore.updateUserInfo(dic: dicWithImage)
+                UserService.updateUserInfo(dic: dicWithImage)
             }
         }
     }

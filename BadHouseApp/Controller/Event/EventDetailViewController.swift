@@ -112,7 +112,7 @@ class EventDetailViewController: UIViewController {
     }
     
     private func setData() {
-        Firestore.getUserData(uid: AuthService.getUserId()) { [weak self] user in
+        UserService.getUserData(uid: AuthService.getUserId()) { [weak self] user in
             guard let self = self else { return }
             self.me = user
         }
@@ -122,7 +122,7 @@ class EventDetailViewController: UIViewController {
         Firestore.getTeamPlayer(teamId: teamId) { teamPlayers in
             for i in 0..<teamPlayers.count {
                 let id = teamPlayers[i]
-                Firestore.getUserData(uid: id) { [weak self] teamPlayer in
+                UserService.getUserData(uid: id) { [weak self] teamPlayer in
                     guard let self = self else { return }
                     guard let member = teamPlayer else { return }
                     self.teamArray.append(member)
@@ -269,7 +269,7 @@ class EventDetailViewController: UIViewController {
     
     private func setupUser() {
         guard let userId = event?.userId else { return }
-        Firestore.getUserData(uid: userId) { [weak self] user in
+        UserService.getUserData(uid: userId) { [weak self] user in
             guard let self = self else { return }
             self.you = user
             guard let urlString = user?.profileImageUrl else { return }
