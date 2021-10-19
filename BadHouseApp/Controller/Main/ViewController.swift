@@ -271,15 +271,16 @@ extension ViewController:FetchEventDataDelegate {
 //Mark: GetDatailDelegate
 extension ViewController: getDetailDelegate {
     
-    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String) {
+    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String,vc:DetailSearchViewController) {
         fetchData.searchEventDetailData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
+        vc.dismiss(animated: true, completion: nil)
     }
 }
 //Mark: CalendarDelegate
 extension ViewController: CalendarDelegate {
-    
-    func searchCalendar(dateString: String,text:String) {
+    func searchCalendar(dateString: String,text:String,vc:CalendarViewController) {
         fetchData.searchEventDateData(dateString:dateString,text: text)
+        vc.dismiss(animated: true, completion: nil)
     }
 }
 //Mark EmptyStateDelegate

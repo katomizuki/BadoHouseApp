@@ -3,7 +3,7 @@ import FSCalendar
 import CDAlertView
 
 protocol CalendarDelegate:AnyObject {
-    func searchCalendar(dateString:String,text:String)
+    func searchCalendar(dateString:String,text:String,vc:CalendarViewController)
 }
 
 class CalendarViewController: UIViewController {
@@ -76,8 +76,7 @@ class CalendarViewController: UIViewController {
             self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
-        self.delegate?.searchCalendar(dateString: searchDateString,text: text)
-        dismiss(animated: true, completion: nil)
+        self.delegate?.searchCalendar(dateString: searchDateString,text: text,vc:self)
     }
 }
 //Mark FSCalendarDelegate

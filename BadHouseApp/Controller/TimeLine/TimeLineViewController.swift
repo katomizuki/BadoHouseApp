@@ -118,15 +118,16 @@ extension TimeLineViewController:VideoCollectionCellDelegate ,UIPopoverPresentat
 //Mark SearchVideoDelegate
 extension TimeLineViewController: SearchVideoDelegate{
     
-    func getVideoData(videoArray: [VideoModel]) {
+    func getVideoData(videoArray: [VideoModel],vc:PopoverViewController) {
         print(#function)
+        vc.dismiss(animated: true, completion: nil)
         self.data = videoArray
         collectionView?.reloadData()
     }
 }
 
 protocol SearchVideoDelegate:AnyObject {
-    func getVideoData(videoArray:[VideoModel])
+    func getVideoData(videoArray:[VideoModel],vc:PopoverViewController)
 }
 class PopoverViewController: UIViewController {
     //Mark properties
@@ -174,7 +175,6 @@ extension PopoverViewController:UITableViewDelegate,UITableViewDataSource {
 //Mark:VideoDelegate
 extension PopoverViewController:FetchVideoDataDelegate {
     func fetchVideoData(videoArray: [VideoModel]) {
-        self.SearchDelegate?.getVideoData(videoArray: videoArray)
-        dismiss(animated: true, completion: nil)
+        self.SearchDelegate?.getVideoData(videoArray: videoArray,vc:self)
     }
 }

@@ -81,7 +81,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
     //Mark:IBAction
     @IBAction private func saveButton(_ sender: Any) {
         self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress,vc:self)
-//        dismiss(animated: true, completion: nil)
     }
 }
 //Mark searchBarDelegate

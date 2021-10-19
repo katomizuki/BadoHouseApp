@@ -19,7 +19,7 @@ protocol FetchMyChatDataDelgate:AnyObject  {
     func fetchMyChatListData(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
 }
 protocol FetchSearchUserDataDelegate :AnyObject {
-    func getUserData(userArray:[User],bool:Bool)
+    func fetchSearchUser(userArray:[User],bool:Bool)
 }
 protocol FetchMyGroupChatDataDelegate:AnyObject  {
     func fetchMyGroupChatData(groupChatModelArray:[GroupChatModel])
@@ -34,7 +34,7 @@ protocol FetchVideoDataDelegate :AnyObject {
     func fetchVideoData(videoArray:[VideoModel])
 }
 protocol FetchSearchGroupDelegate:AnyObject  {
-    func getGroup(groupArray:[TeamModel],bool:Bool)
+    func fetchSearchGroup(groupArray:[TeamModel],bool:Bool)
 }
 protocol FetchMyEventDataDelegate:AnyObject  {
     func fetchMyEventData(eventArray:[Event])
@@ -502,6 +502,7 @@ class FetchFirestoreData {
             }
         }
     }
+    
     func searchGroupData(text:String,bool:Bool) {
         var groupArray = [TeamModel]()
         Ref.TeamRef.getDocuments { Snapshot, error in
@@ -519,9 +520,10 @@ class FetchFirestoreData {
                     groupArray.append(team)
                 }
             }
-            self.groupSearchDelegate?.getGroup(groupArray: groupArray,bool:bool)
+            self.groupSearchDelegate?.fetchSearchGroup(groupArray: groupArray,bool:bool)
         }
     }
+    
     func searchFriends(text:String,bool:Bool) {
         var userArray = [User]()
         Ref.UsersRef.getDocuments { snapShot, error in
@@ -539,7 +541,7 @@ class FetchFirestoreData {
                     userArray.append(user)
                 }
             }
-            self.userSearchDelegate?.getUserData(userArray: userArray,bool:bool)
+            self.userSearchDelegate?.fetchSearchUser(userArray: userArray,bool:bool)
         }
     }
     

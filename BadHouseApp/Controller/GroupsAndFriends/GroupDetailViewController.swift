@@ -272,7 +272,8 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
 //Mark detailSearchDelegate
 extension GroupDetailViewController:backDelegate {
     
-    func updateTeamData() {
+    func updateTeamData(vc:UpdateViewController) {
+        vc.dismiss(animated: true, completion: nil)
         guard let id = team?.teamId else { return }
         TeamService.getTeamData(teamId: id) { team in
             self.team = team
@@ -313,7 +314,7 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
 }
 
 protocol backDelegate:AnyObject {
-    func updateTeamData()
+    func updateTeamData(vc:UpdateViewController)
 }
 class UpdateViewController:UIViewController {
     //Mark properties
@@ -398,8 +399,7 @@ class UpdateViewController:UIViewController {
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }
             TeamService.updateTeamData(team: team)
-            self.delegate?.updateTeamData()
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.updateTeamData(vc:self)
         }
     }
     

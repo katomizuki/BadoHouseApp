@@ -130,7 +130,7 @@ extension FriendSearchViewController:UISearchBarDelegate {
 //Mark:GetUserDelegate
 extension FriendSearchViewController:FetchSearchUserDataDelegate {
     
-    func getUserData(userArray: [User],bool:Bool) {
+    func fetchSearchUser(userArray: [User],bool:Bool) {
         print(#function)
         if bool == false {
             self.friendList = userArray

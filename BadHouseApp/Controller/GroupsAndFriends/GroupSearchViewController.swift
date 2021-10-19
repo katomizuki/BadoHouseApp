@@ -113,7 +113,7 @@ extension GroupSearchViewController:UISearchBarDelegate {
 //Mark getGroupDelegate
 extension GroupSearchViewController:FetchSearchGroupDelegate{
     
-    func getGroup(groupArray: [TeamModel],bool:Bool) {
+    func fetchSearchGroup(groupArray: [TeamModel],bool:Bool) {
         
         if bool == false {
             self.groupArray = groupArray

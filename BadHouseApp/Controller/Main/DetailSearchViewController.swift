@@ -8,7 +8,8 @@ protocol getDetailDelegate:AnyObject {
                           level:String,
                           placeAddressString:String,
                           money:String,
-                          time:String)
+                          time:String,
+                          vc:DetailSearchViewController)
 }
 
 class DetailSearchViewController: UIViewController{
@@ -182,8 +183,8 @@ class DetailSearchViewController: UIViewController{
         let money = moneyTextField.text ?? ""
         let time = self.dateString
         let placeAddressString = cityTextField.text ?? ""
-        self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
-        dismiss(animated: true, completion: nil)
+        self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time,vc:self)
+        
     }
 }
 //Mark:PickerViewDelegate
@@ -225,7 +226,6 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
 }
 //Mark textFieldDelegate
 extension DetailSearchViewController:UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
