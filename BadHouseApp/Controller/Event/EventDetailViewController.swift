@@ -119,7 +119,7 @@ class EventDetailViewController: UIViewController {
         fetchData.delegate = self
         fetchData.barDelegate = self
         guard let teamId = team?.teamId else { return }
-        TeamService.getTeamPlayer(teamId: teamId) { teamPlayers in
+        TeamService.getTeamPlayerData(teamId: teamId) { teamPlayers in
             for i in 0..<teamPlayers.count {
                 let id = teamPlayers[i]
                 UserService.getUserData(uid: id) { [weak self] teamPlayer in
@@ -301,7 +301,7 @@ class EventDetailViewController: UIViewController {
         guard let leaderId = event?.userId else { return }
    
         guard let eventId = event?.eventId else { return }
-        JoinService.searchPreJoin(myId: AuthService.getUserId(), eventId: eventId) { bool in
+        JoinService.searchPreJoinData(myId: AuthService.getUserId(), eventId: eventId) { bool in
             if bool == false {
                 //alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
                 let alert = UIAlertController(title: "参加申請をしますか？", message: "チャットで主催者に自動で連絡がいきます。", preferredStyle: .alert)
@@ -322,15 +322,15 @@ class EventDetailViewController: UIViewController {
                             ChatRoomService.sendChatroom(myId: AuthService.getUserId(), youId: leaderId) { id in
                                 self.chatId = id
                                 guard let chatId = self.chatId else { return }
-                                ChatRoomService.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
+                                ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                             }
                         } else {
                             //既に存在していればそのまま出す。
                             self.chatId = chatId
                             guard let chatId = self.chatId else { return }
-                            ChatRoomService.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
+                            ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
                         }
-                        JoinService.sendePreJoin(myId: meId, eventId: eventId,leaderId: leaderId)
+                        JoinService.sendPreJoinDataToEventAndUser(myId: meId, eventId: eventId,leaderId: leaderId)
                         self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
                         LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
                     }

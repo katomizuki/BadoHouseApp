@@ -48,7 +48,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         StorageService.addEventImage(image: image) { urlString in
             self.dic["urlEventString"] = urlString
             EventServie.sendEventData(teamId:self.teamId, event: self.dic, eventId: self.eventId)
-            EventServie.sendTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
+            EventServie.sendEventTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
         }
         navigationController?.popToRootViewController(animated: true)
     }

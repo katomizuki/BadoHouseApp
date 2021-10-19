@@ -3,7 +3,7 @@ import Firebase
 
 struct DeleteService {
     //Mark: DeleteData
-    static func deleteData(collectionName:String,documentId:String) {
+    static func deleteCollectionData(collectionName:String,documentId:String) {
         Firestore.firestore().collection(collectionName).document(documentId).delete()
     }
     

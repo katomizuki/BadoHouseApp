@@ -16,7 +16,7 @@ struct TeamService {
         }
     }
     //Mark:createTeam
-    static func createTeam(teamName:String,teamPlace:String,teamTime:String,teamLevel:String,teamImageUrl:String,friends:[User],teamUrl:String,tagArray:[String]) {
+    static func createTeamData(teamName:String,teamPlace:String,teamTime:String,teamLevel:String,teamImageUrl:String,friends:[User],teamUrl:String,tagArray:[String]) {
         let teamId = Ref.TeamRef.document().documentID
         let dic = ["teamId":teamId,
                    "teamName":teamName,
@@ -39,7 +39,7 @@ struct TeamService {
         TeamService.sendTeamTagData(teamId: teamId, tagArray: tagArray)
     }
 
-    static func updateTeamInfo(team:TeamModel) {
+    static func updateTeamData(team:TeamModel) {
         let id = team.teamId
         let dic = ["teamId":id,
                    "teamName":team.teamName,
@@ -57,7 +57,7 @@ struct TeamService {
 
 //Mark: TeamPlayer-Extension
 extension TeamService {
-    static func getTeamPlayer(teamId:String,completion:@escaping ([String])->Void) {
+    static func getTeamPlayerData(teamId:String,completion:@escaping ([String])->Void) {
         Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
             var teamPlayers = [String]()
             guard let documents = snapShot?.documents else { return }
@@ -87,7 +87,7 @@ extension TeamService {
             UserService.plusOwnTeam(id: teamPlayerId, dic: teamDic)
         }
     }
-    static func sendInvite(team:TeamModel,inviter: [User]) {
+    static func sendInviteToTeamData(team:TeamModel,inviter: [User]) {
         let teamId = team.teamId
         let dic = ["teamId":teamId,
                    "teamName":team.teamName,

@@ -85,18 +85,18 @@ class ChatListViewController:UIViewController {
     }
     
     private func setupNotification() {
-        JoinService.notification(uid: AuthService.getUserId()) { [weak self] bool in
+        JoinService.sendNotificationtoPrejoin(uid: AuthService.getUserId()) { [weak self] bool in
             if bool == true {
                 guard let self = self else { return }
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
-                JoinService.changeTrue(uid: AuthService.getUserId())
+                JoinService.changePrejoinTrue(uid: AuthService.getUserId())
                 LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "練習に申し込んだ方と連絡はとれましたか？", body: "ぜひ確認しましょう!")
             }
         }
     }
     
     private func setupData() {
-        ChatRoomService.getChatData(uid: AuthService.getUserId()) { [weak self] chatId in
+        ChatRoomService.getChatRoomData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
             self.fetchData.getChatRoomModel(chatId:chatId)
             for i in 0..<chatId.count {

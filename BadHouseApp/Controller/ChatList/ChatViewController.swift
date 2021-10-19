@@ -113,7 +113,7 @@ extension ChatViewController:InputDelegate {
         guard let youId = you?.uid else { return }
         if text == "" { return }
         inputView.messageInputTextView.text = ""
-        ChatRoomService.sendChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
+        ChatRoomService.sendDMChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
         fetchData.getChat(chatId: chatId)
         inputView.messageInputTextView.resignFirstResponder()
     }

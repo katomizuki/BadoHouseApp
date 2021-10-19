@@ -57,7 +57,7 @@ class InviteViewController: UIViewController {
         print(#function)
         guard let team = self.team else {
             return }
-        TeamService.sendInvite(team: team, inviter: self.inviter)
+        TeamService.sendInviteToTeamData(team: team, inviter: self.inviter)
         navigationController?.popToRootViewController(animated: true)
     }
 }

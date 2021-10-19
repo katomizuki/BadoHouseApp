@@ -100,7 +100,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private func setUpTeamPlayer() {
         print(#function)
         guard let teamId = team?.teamId else { return }
-        TeamService.getTeamPlayer(teamId: teamId) { membersId in
+        TeamService.getTeamPlayerData(teamId: teamId) { membersId in
             self.teamPlayers = []
             for i in 0..<membersId.count {
                 let teamPlayerId = membersId[i]
@@ -398,7 +398,7 @@ class UpdateViewController:UIViewController {
             guard let self = self else { return }
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }
-            TeamService.updateTeamInfo(team: team)
+            TeamService.updateTeamData(team: team)
             self.delegate?.updateTeamData()
             self.dismiss(animated: true, completion: nil)
         }

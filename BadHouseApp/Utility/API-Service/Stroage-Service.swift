@@ -30,7 +30,7 @@ struct StorageService {
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
-                UserService.updateUserInfo(dic: dicWithImage)
+                UserService.updateUserData(dic: dicWithImage)
             }
         }
     }

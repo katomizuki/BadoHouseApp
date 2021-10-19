@@ -42,7 +42,7 @@ struct EventServie {
                 let eventId = safeData["eventId"] as? String ?? ""
                 let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
                 if date < now {
-                    DeleteService.deleteData(collectionName: "Event", documentId: eventId)
+                    DeleteService.deleteCollectionData(collectionName: "Event", documentId: eventId)
                 }
             }
         }
@@ -83,7 +83,7 @@ extension EventServie {
         }
     }
     //Mark: TagData
-    static func sendTagData(eventId:String,tags:[String],teamId:String) {
+    static func sendEventTagData(eventId:String,tags:[String],teamId:String) {
         for i in 0..<tags.count {
             let tag = tags[i]
             print(tag)

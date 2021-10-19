@@ -10,7 +10,7 @@ struct ChatRoomService {
         completion(chatRoomId)
     }
     
-    static func sendChat(chatroomId:String,senderId:String,text:String,reciverId:String) {
+    static func sendDMChat(chatroomId:String,senderId:String,text:String,reciverId:String) {
         let dic = ["chatRoomId":chatroomId,"sender":senderId,"text":text,"reciver":reciverId,"sendTime":Timestamp()] as [String : Any]
         let chatId = Ref.ChatroomRef.document(chatroomId).collection("Content").document().documentID
         Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic)
@@ -24,7 +24,7 @@ struct ChatRoomService {
         Ref.TeamRef.document(teamId).collection("GroupChat").document(id).setData(dic)
     }
     //Mark: getChatData
-    static func getChatData(uid:String,completion:@escaping ([String])->Void) {
+    static func getChatRoomData(uid:String,completion:@escaping ([String])->Void) {
         var chatArray = [String]()
         Ref.UsersRef.document(uid).collection("ChatRoom").addSnapshotListener { snapShot, error in
             if let error = error {

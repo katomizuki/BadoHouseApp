@@ -82,7 +82,7 @@ class FriendsViewController: UIViewController {
         inviter.append(me)
         StorageService.addTeamImage(image: teamImage) { [weak self] urlString in
             guard let self = self else { return }
-            TeamService.createTeam(teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: urlString,friends:self.inviter, teamUrl: teamUrl, tagArray: self.teamTagArray)
+            TeamService.createTeamData(teamName: teamName, teamPlace: teamPlace, teamTime: teamTime, teamLevel: teamLevel, teamImageUrl: urlString,friends:self.inviter, teamUrl: teamUrl, tagArray: self.teamTagArray)
             self.IndicatorView.stopAnimating()
             self.navigationController?.popToRootViewController(animated: true)
         }

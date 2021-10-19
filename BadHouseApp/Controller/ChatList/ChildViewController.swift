@@ -128,9 +128,9 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "PreJoin", subId: userId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             let meId = AuthService.getUserId()
-            JoinService.sendJoin(eventId: eventId, uid: userId)
+            JoinService.sendJoinData(eventId: eventId, uid: userId)
             self.fetchData.getChatData(meId: meId, youId: userId) { chatId in
-                ChatRoomService.sendChat(chatroomId: chatId, senderId: meId, text: "承認者からの参加が確定しました。", reciverId: userId)
+                ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "承認者からの参加が確定しました。", reciverId: userId)
             }
             tableView.reloadData()
         }

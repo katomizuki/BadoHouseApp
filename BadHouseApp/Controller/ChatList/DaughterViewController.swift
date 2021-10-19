@@ -117,7 +117,7 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
             DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
-            JoinService.sendPreJoin(eventId: eventId, userId: userId)
+            JoinService.sendPreJoinData(eventId: eventId, userId: userId)
             tableView.reloadData()
         }
         let cancleAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default) { action in
