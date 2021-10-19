@@ -111,7 +111,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.fetchData.getGenderCount(teamPlayers: self.teamPlayers)
-                self.fetchData.teamPlayerLevelCount(teamPlayers: self.teamPlayers)
+                self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamPlayers)
                 self.IndicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }

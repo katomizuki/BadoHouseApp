@@ -106,7 +106,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         let meId = me.uid
         UserService.getFriendData(uid: meId) { [weak self] ids in
             guard let self = self else { return }
-            self.fetchData.friendData(idArray: ids)
+            self.fetchData.getFriendData(idArray: ids)
         }
     }
     

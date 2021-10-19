@@ -39,7 +39,7 @@ class ChatViewController: UIViewController {
     private func setupData() {
         guard let myId = me?.uid else { return }
         guard let youId = you?.uid else { return }
-        fetchData.getChatData(meId: myId, youId: youId) { chatId in
+        ChatRoomService.getChatData(meId: myId, youId: youId) { chatId in
             if chatId.isEmpty {
                 ChatRoomService.sendChatroom(myId: myId, youId: youId) { [weak self] id in
                     guard let self = self else { return }

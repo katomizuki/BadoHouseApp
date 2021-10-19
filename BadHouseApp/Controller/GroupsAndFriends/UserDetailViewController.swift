@@ -140,7 +140,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         }
         UserService.getFriendData(uid: memberId) {[weak self] friends in
             guard let self = self else { return }
-            self.fetchData.friendData(idArray: friends)
+            self.fetchData.getFriendData(idArray: friends)
         }
     }
     

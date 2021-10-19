@@ -130,7 +130,7 @@ class EventDetailViewController: UIViewController {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.fetchData.getGenderCount(teamPlayers: self.teamArray)
-                self.fetchData.teamPlayerLevelCount(teamPlayers: self.teamArray)
+                self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamArray)
                 self.collectionView.reloadData()
             }
         }
@@ -314,7 +314,7 @@ class EventDetailViewController: UIViewController {
                     guard let meId = self.me?.uid else { return }
                     
                     
-                    self.fetchData.getChatData(meId: AuthService.getUserId(), youId: leaderId) { [weak self] chatId in
+                    ChatRoomService.getChatData(meId: AuthService.getUserId(), youId: leaderId) { [weak self] chatId in
                         guard let self = self else { return }
                         print(chatId)
                         if chatId.isEmpty {

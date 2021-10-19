@@ -78,7 +78,7 @@ class FetchFirestoreData {
     weak var myEventDelegate:GetMyEventDelegate?
     weak var myTeamDelegate:GetMyTeamDelegate?
     
-    func friendData(idArray:[String]) {
+    func getFriendData(idArray:[String]) {
         let group = DispatchGroup()
         var array = [User]()
         for i in 0..<idArray.count {
@@ -234,7 +234,7 @@ class FetchFirestoreData {
         }
     }
     
-    func teamPlayerLevelCount(teamPlayers:[User]) {
+    func searchTeamPlayerLevelCount(teamPlayers:[User]) {
         var level1 = 0
         var level2 = 0
         var level3 = 0
@@ -291,7 +291,6 @@ class FetchFirestoreData {
                     eventArray.append(event)
                 }
             }
-            //Sort＆Search
             self.sortDate(data: eventArray,latitude:latitude,longitude:longitude)
         }
     }
@@ -323,7 +322,7 @@ class FetchFirestoreData {
         self.eventDelegate?.getEventData(eventArray: data)
     }
     
-    func searchText(text:String,bool:Bool) {
+    func searchEventText(text:String,bool:Bool) {
         var eventArray = [Event]()
         Ref.EventRef.getDocuments { Snapshot, error in
             if let error = error {
@@ -347,7 +346,7 @@ class FetchFirestoreData {
         }
     }
     
-    func searchDateEvent(dateString:String,text:String) {
+    func searchEventDate(dateString:String,text:String) {
         var eventArray = [Event]()
         let startIndex = dateString.index(dateString.startIndex, offsetBy: 0)
         let endIndex = dateString.index(dateString.startIndex, offsetBy: 10)
@@ -370,7 +369,7 @@ class FetchFirestoreData {
         }
     }
     
-    func detailSearchEventData(title:String,circle:String,level:String,placeAddressString:String,money:String,time:String) {
+    func searchEventDetailData(title:String,circle:String,level:String,placeAddressString:String,money:String,time:String) {
         var eventArray = [Event]()
         Ref.EventRef.getDocuments { snapShot, error in
             if let error = error {
@@ -452,27 +451,27 @@ class FetchFirestoreData {
         return eventArray
     }
     
-    func getChatData(meId:String,youId:String,completion:@escaping(String)->Void){
-        print(#function)
-        var string = ""
-        Ref.ChatroomRef.getDocuments { snapShot, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let document = snapShot?.documents else { return }
-            document.forEach { doc in
-                let data = doc.data()
-                let userId = data["user"] as? String ?? ""
-                let userId2 = data["user2"] as? String ?? ""
-                let chatRoomId = data["chatRoomId"] as? String ?? ""
-                if (userId == meId && youId == userId2) || (userId == youId && meId == userId2) {
-                    string = chatRoomId
-                }
-            }
-            completion(string)
-        }
-    }
+//    func getChatData(meId:String,youId:String,completion:@escaping(String)->Void){
+//        print(#function)
+//        var string = ""
+//        Ref.ChatroomRef.getDocuments { snapShot, error in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let document = snapShot?.documents else { return }
+//            document.forEach { doc in
+//                let data = doc.data()
+//                let userId = data["user"] as? String ?? ""
+//                let userId2 = data["user2"] as? String ?? ""
+//                let chatRoomId = data["chatRoomId"] as? String ?? ""
+//                if (userId == meId && youId == userId2) || (userId == youId && meId == userId2) {
+//                    string = chatRoomId
+//                }
+//            }
+//            completion(string)
+//        }
+//    }
     
     func getChat(chatId:String) {
         Ref.ChatroomRef.document(chatId).collection("Content").order(by: "sendTime").addSnapshotListener { snapShot, error in

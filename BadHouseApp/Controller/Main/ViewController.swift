@@ -215,7 +215,7 @@ extension ViewController: UISearchBarDelegate {
             self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
-        fetchData.searchText(text: searchText,bool:true)
+        fetchData.searchEventText(text: searchText,bool:true)
         searchBar.resignFirstResponder()
     }
     
@@ -238,7 +238,7 @@ extension ViewController: UISearchBarDelegate {
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
             searchBar.resignFirstResponder()
         } else {
-            fetchData.searchText(text: text,bool:false)
+            fetchData.searchEventText(text: text,bool:false)
         }
     }
 }
@@ -282,14 +282,14 @@ extension ViewController:GetDetailDataDelegate {
 extension ViewController: getDetailDelegate {
     
     func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String) {
-        fetchData.detailSearchEventData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
+        fetchData.searchEventDetailData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
     }
 }
 //Mark: CalendarDelegate
 extension ViewController: CalendarDelegate {
     
     func searchCalendar(dateString: String,text:String) {
-        fetchData.searchDateEvent(dateString:dateString,text: text)
+        fetchData.searchEventDate(dateString:dateString,text: text)
     }
 }
 //Mark EmptyStateDelegate

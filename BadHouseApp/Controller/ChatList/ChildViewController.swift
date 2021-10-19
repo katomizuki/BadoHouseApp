@@ -129,7 +129,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             let meId = AuthService.getUserId()
             JoinService.sendJoinData(eventId: eventId, uid: userId)
-            self.fetchData.getChatData(meId: meId, youId: userId) { chatId in
+            ChatRoomService.getChatData(meId: meId, youId: userId) { chatId in
                 ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "承認者からの参加が確定しました。", reciverId: userId)
             }
             tableView.reloadData()

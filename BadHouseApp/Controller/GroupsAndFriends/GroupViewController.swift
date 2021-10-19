@@ -72,7 +72,7 @@ class GroupViewController: UIViewController{
         }
         UserService.getFriendData(uid: uid) { [weak self] usersId in
             guard let self = self else { return }
-            self.fetchData.friendData(idArray: usersId)
+            self.fetchData.getFriendData(idArray: usersId)
         }
     }
     
