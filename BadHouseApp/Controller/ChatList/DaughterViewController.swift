@@ -27,7 +27,7 @@ class DaughterViewController: UIViewController {
     
     private func setupData() {
         fetchData.joinDelegate = self
-        Firestore.getmyEventId { [weak self] event in
+        EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
             self.fetchData.fetchJoinData(eventArray: event)

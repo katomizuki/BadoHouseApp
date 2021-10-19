@@ -232,7 +232,7 @@ class EventDetailViewController: UIViewController {
     
     private func setupTag() {
         guard let eventId = event?.eventId else { return }
-        Firestore.getEventTagData(eventId: eventId) { [weak self] tags in
+        EventServie.getEventTagData(eventId: eventId) { [weak self] tags in
             guard let self = self else { return }
             if tags.count <= 1 {
                 let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")

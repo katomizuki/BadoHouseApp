@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         setupCollectionView()
         setupEmptyState()
-        Firestore.deleteEvent()
+        EventServie.deleteEvent()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     

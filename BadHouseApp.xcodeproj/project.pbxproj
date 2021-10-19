@@ -101,6 +101,7 @@
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
 		D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32B271EC01600DE54ED /* Team-Service.swift */; };
+		D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +199,7 @@
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32B271EC01600DE54ED /* Team-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Team-Service.swift"; sourceTree = "<group>"; };
+		D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event-Service.swift"; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -504,6 +506,7 @@
 				D3FFD327271EBC9200DE54ED /* User-Service.swift */,
 				D3FFD329271EBECD00DE54ED /* Delete-Service.swift */,
 				D3FFD32B271EC01600DE54ED /* Team-Service.swift */,
+				D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */,
 			);
 			path = "API-Service";
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */,
 				D330032826E7013900208525 /* LevelViewController.swift in Sources */,
+				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3CF6D1126F8AE60007C4DF3 /* ChildViewController.swift in Sources */,
 				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,

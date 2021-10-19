@@ -47,8 +47,8 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         guard let image = eventImage else { return }
         Storage.addEventImage(image: image) { urlString in
             self.dic["urlEventString"] = urlString
-            Firestore.sendEventData(teamId:self.teamId, event: self.dic, eventId: self.eventId)
-            Firestore.sendTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
+            EventServie.sendEventData(teamId:self.teamId, event: self.dic, eventId: self.eventId)
+            EventServie.sendTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
         }
         navigationController?.popToRootViewController(animated: true)
     }

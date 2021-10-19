@@ -40,7 +40,7 @@ class ChildViewController: UIViewController {
     
     private func setupData() {
         fetchData.preDelegate = self
-        Firestore.getmyEventId { [weak self] event in
+        EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
             self.fetchData.getEventPreJoinData(eventArray: event)

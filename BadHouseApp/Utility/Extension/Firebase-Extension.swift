@@ -48,94 +48,44 @@ extension Firestore{
     }
 
     
-    //Mark: getFriendData
-//    static func getFriendData(uid:String,completion:@escaping([String]) -> (Void)) {
-//        var friendId = [String]()
-//        Ref.UsersRef.document(uid).collection("Friends").addSnapshotListener { snapShot, error in
-//            if let error = error {
-//                print("FriendData error",error)
-//            }
-//            guard let dataArray = snapShot?.documents else { return }
-//            friendId = []
-//            dataArray.forEach { data in
-//                let safeData = data.data()
-//                let id = safeData["uid"] as! String
-//                friendId.append(id)
-//            }
-//            completion(friendId)
-//        }
-//    }
+
 
     
-    static func getEventTagData(eventId:String,completion:@escaping([Tag])->Void) {
-        var tagArray = [Tag]()
-        Ref.EventRef.document(eventId).collection("Tag").getDocuments { snapShot, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let documents = snapShot?.documents else { return }
-            documents.forEach { document in
-                let data = document.data()
-                let tag = Tag(dic:data)
-                tagArray.append(tag)
-            }
-            completion(tagArray)
-        }
-    }
-    
-//    static func friendAction(myId:String,friend:User,bool:Bool) {
-//        let id = friend.uid
-//        if bool {
-//            //true → plusFriend
-//            print("plus")
-//            Ref.UsersRef.document(myId).collection("Friends").document(id).setData(["uid" : id])
-//            Ref.UsersRef.document(id).collection("Friends").document(myId).setData(["uid":myId])
-//        } else {
-//            // false　→ deleteFriend
-//            print("delete")
-//            Ref.UsersRef.document(id).collection("Friends").document(myId).delete()
-//            Ref.UsersRef.document(myId).collection("Friends").document(id).delete()
-//        }
-//    }
-    
-//    static func searchFriend(friend:User,myId:String,completion:@escaping (Bool)->Void) {
-//        let targetId = friend.uid
-//        var bool = false
-//        Ref.UsersRef.document(myId).collection("Friends").getDocuments { snapShot, error in
+//    static func getEventTagData(eventId:String,completion:@escaping([Tag])->Void) {
+//        var tagArray = [Tag]()
+//        Ref.EventRef.document(eventId).collection("Tag").getDocuments { snapShot, error in
 //            if let error = error {
 //                print(error)
 //                return
 //            }
 //            guard let documents = snapShot?.documents else { return }
-//            for doc in documents {
-//                let safeData = doc.data()
-//                let friendId = safeData["uid"] as! String
-//                if targetId == friendId {
-//                    bool = true
-//                }
+//            documents.forEach { document in
+//                let data = document.data()
+//                let tag = Tag(dic:data)
+//                tagArray.append(tag)
 //            }
-//            completion(bool)
+//            completion(tagArray)
 //        }
 //    }
     
-    //Mark: sendEventData
-    static func sendEventData(teamId:String,event:[String:Any],eventId:String) {
-        //Mark:team→eventdata
-        Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event)
-        Ref.EventRef.document(eventId).setData(event)
-    }
     
-    //Mark: TagData
-    static func sendTagData(eventId:String,tags:[String],teamId:String) {
-        for i in 0..<tags.count {
-            let tag = tags[i]
-            print(tag)
-            let tagId = "\(Ref.EventRef.document(eventId).documentID + String(i))"
-            let dic = ["tag":tag,"teamId":teamId,"tagId":tagId]
-            Ref.EventRef.document(eventId).collection("Tag").document(tagId).setData(dic)
-        }
-    }
+//    //Mark: sendEventData
+//    static func sendEventData(teamId:String,event:[String:Any],eventId:String) {
+//        //Mark:team→eventdata
+//        Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event)
+//        Ref.EventRef.document(eventId).setData(event)
+//    }
+    
+//    //Mark: TagData
+//    static func sendTagData(eventId:String,tags:[String],teamId:String) {
+//        for i in 0..<tags.count {
+//            let tag = tags[i]
+//            print(tag)
+//            let tagId = "\(Ref.EventRef.document(eventId).documentID + String(i))"
+//            let dic = ["tag":tag,"teamId":teamId,"tagId":tagId]
+//            Ref.EventRef.document(eventId).collection("Tag").document(tagId).setData(dic)
+//        }
+//    }
     
     //Mark: sendInvite
     static func sendInvite(team:TeamModel,inviter: [User]) {
@@ -199,27 +149,27 @@ extension Firestore{
         }
     }
     
-    static func getmyEventId(completion:@escaping([Event])->Void) {
-        var eventArray = [Event]()
-        Ref.EventRef.getDocuments { snapShot, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = snapShot?.documents else { return }
-            let myEvent = data.filter { document in
-                let safeData = document.data()
-                let leaderId = safeData["userId"] as? String ?? ""
-                return leaderId == AuthService.getUserId()
-            }
-            myEvent.forEach { data in
-                let safeData = data.data() as [String:Any]
-                let event = Event(dic: safeData)
-                eventArray.append(event)
-            }
-            completion(eventArray)
-        }
-    }
+//    static func getmyEventId(completion:@escaping([Event])->Void) {
+//        var eventArray = [Event]()
+//        Ref.EventRef.getDocuments { snapShot, error in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let data = snapShot?.documents else { return }
+//            let myEvent = data.filter { document in
+//                let safeData = document.data()
+//                let leaderId = safeData["userId"] as? String ?? ""
+//                return leaderId == AuthService.getUserId()
+//            }
+//            myEvent.forEach { data in
+//                let safeData = data.data() as [String:Any]
+//                let event = Event(dic: safeData)
+//                eventArray.append(event)
+//            }
+//            completion(eventArray)
+//        }
+//    }
     
     static func sendJoin(eventId:String,uid:String) {
         Ref.EventRef.document(eventId).collection("Join").document(uid).setData(["id":uid])
@@ -229,26 +179,25 @@ extension Firestore{
         Ref.EventRef.document(eventId).collection("PreJoin").document(userId).setData(["id":userId])
     }
     
-    static func deleteEvent() {
-        guard let now = DateUtils.getNow() else { return }
-        
-        Ref.EventRef.addSnapshotListener { snapShot, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = snapShot?.documents else { return }
-            data.forEach { element in
-                let safeData = element.data()
-                let endTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-                let eventId = safeData["eventId"] as? String ?? ""
-                let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
-                if date < now {
-                    DeleteService.deleteData(collectionName: "Event", documentId: eventId)
-                }
-            }
-        }
-    }
+//    static func deleteEvent() {
+//        guard let now = DateUtils.getNow() else { return }
+//        Ref.EventRef.addSnapshotListener { snapShot, error in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let data = snapShot?.documents else { return }
+//            data.forEach { element in
+//                let safeData = element.data()
+//                let endTime = safeData["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
+//                let eventId = safeData["eventId"] as? String ?? ""
+//                let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
+//                if date < now {
+//                    DeleteService.deleteData(collectionName: "Event", documentId: eventId)
+//                }
+//            }
+//        }
+//    }
     //Mark:LastGetChatData
     static func getChatLastData(chatId:String,completion:@escaping(Chat)-> Void){
         var textArray = [Chat]()
@@ -275,22 +224,22 @@ extension Firestore{
         }
     }
     
-    static func getmyEventIdArray(uid:String,completion:@escaping([String])->Void) {
-        var stringArray = [String]()
-        Ref.UsersRef.document(uid).collection("Join").getDocuments { Snapshot, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = Snapshot?.documents else { return }
-            data.forEach { doc in
-                let safedata = doc.data()
-                let id = safedata["id"] as? String ?? ""
-                stringArray.append(id)
-            }
-            completion(stringArray)
-        }
-    }
+//    static func getmyEventIdArray(uid:String,completion:@escaping([String])->Void) {
+//        var stringArray = [String]()
+//        Ref.UsersRef.document(uid).collection("Join").getDocuments { Snapshot, error in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let data = Snapshot?.documents else { return }
+//            data.forEach { doc in
+//                let safedata = doc.data()
+//                let id = safedata["id"] as? String ?? ""
+//                stringArray.append(id)
+//            }
+//            completion(stringArray)
+//        }
+//    }
     
 
 }

@@ -32,7 +32,7 @@ class ScheduleViewController: UIViewController{
     private func setupData() {
         fetchData.myEventDelegate = self
         guard let meId = me?.uid else { return }
-        Firestore.getmyEventIdArray(uid: meId) { [weak self] idArray in
+        EventServie.getmyEventIdArray(uid: meId) { [weak self] idArray in
             guard let self = self else { return }
             self.fetchData.getmyEventData(idArray: idArray)
         }
