@@ -46,7 +46,7 @@ class ChatViewController: UIViewController {
                     self.chatId = id
                 }
             } else {
-                self.fetchData.getChat(chatId: chatId)
+                self.fetchData.fetchDMChatData(chatId: chatId)
                 self.chatId = chatId
             }
         }
@@ -85,9 +85,9 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark:GetChatDelegate
-extension ChatViewController: GetChatDataDelgate {
+extension ChatViewController: FetchMyChatDataDelgate {
     
-    func getChatData(chatArray: [Chat]) {
+    func fetchMyChatData(chatArray: [Chat]) {
         self.messages = []
         self.messages = chatArray
         self.chatTableView.reloadData()
@@ -114,7 +114,7 @@ extension ChatViewController:InputDelegate {
         if text == "" { return }
         inputView.messageInputTextView.text = ""
         ChatRoomService.sendDMChat(chatroomId: self.chatId, senderId: myId, text: text,reciverId: youId)
-        fetchData.getChat(chatId: chatId)
+        fetchData.fetchDMChatData(chatId: chatId)
         inputView.messageInputTextView.resignFirstResponder()
     }
 }

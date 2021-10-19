@@ -98,9 +98,9 @@ class ChatListViewController:UIViewController {
     private func setupData() {
         ChatRoomService.getChatRoomData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
-            self.fetchData.getChatRoomModel(chatId:chatId)
+            self.fetchData.fetchChatRoomModelData(chatId:chatId)
             for i in 0..<chatId.count {
-                self.fetchData.getChat(chatId: chatId[i])
+                self.fetchData.fetchDMChatData(chatId: chatId[i])
             }
         }
     }
@@ -108,7 +108,7 @@ class ChatListViewController:UIViewController {
     private func setupOwnTeamData() {
         UserService.getOwnTeam(uid: AuthService.getUserId()) {[weak self] teamIds in
             guard let self = self else { return }
-            self.fetchData.getmyTeamData(idArray: teamIds)
+            self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
     }
     //Mark helperMethod
@@ -229,27 +229,27 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark getchatDelegate
-extension ChatListViewController: GetChatDataDelgate {
+extension ChatListViewController: FetchMyChatDataDelgate {
     
-    func getChatData(chatArray: [Chat]) {
+    func fetchMyChatData(chatArray: [Chat]) {
         self.chatArray.append(chatArray)
     }
 }
 //Mark getChatRoomDelegate
-extension ChatListViewController: GetChatRoomDataDelegate {
+extension ChatListViewController: FetchMyChatRoomDataDelegate {
     
-    func getChatRoomData(chatRoomArray: [ChatRoom]) {
+    func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
-        fetchData.getChatListData(chatModelArray: chatRoomArray)
+        fetchData.fetchMyChatListData(chatModelArray: chatRoomArray)
         self.chatModelArray = chatRoomArray
     }
 }
 //Mark getChatListDelegate
-extension ChatListViewController :GetChatListDelegate {
+extension ChatListViewController :FetchMyChatListDataDelegate {
     
     typealias sortChatArray = [EnumeratedSequence<[Chat]>.Element]
     
-    func getChatList(userArray: [User], anotherArray: [User], lastChatArray: [Chat],chatModelArray:[ChatRoom]) {
+    func fetchMyChatListData(userArray: [User], anotherArray: [User], lastChatArray: [Chat],chatModelArray:[ChatRoom]) {
         cleanArray()
         self.userArray = userArray
         self.anotherUserArray = anotherArray
@@ -283,12 +283,12 @@ extension ChatListViewController :GetChatListDelegate {
     }
 }
 //Mark GetmyTeamDelegate
-extension ChatListViewController:GetMyTeamDelegate {
-    func getMyteam(teamArray: [TeamModel]) {
+extension ChatListViewController:FetchMyTeamDataDelegate {
+    func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teams = teamArray
         for i in 0..<teams.count {
             let teamId = teams[i].teamId
-            self.fetchData.getGroupChat(teamId: teamId)
+            self.fetchData.fetchGroupChatData(teamId: teamId)
         }
     }
 }

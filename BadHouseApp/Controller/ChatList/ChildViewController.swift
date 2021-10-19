@@ -43,7 +43,7 @@ class ChildViewController: UIViewController {
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
-            self.fetchData.getEventPreJoinData(eventArray: event)
+            self.fetchData.fetchEventPreJoinData(eventArray: event)
         }
     }
 }
@@ -55,15 +55,15 @@ extension ChildViewController:IndicatorInfoProvider {
     }
 }
 //Mark:getPrejoinDelegate
-extension ChildViewController:GetPrejoinDataDelegate {
-    func getPrejoin(preJoin: [[String]]) {
+extension ChildViewController:FetchMyPrejoinDataDelegate {
+    func fetchMyPrejoinData(preJoinArray: [[String]]) {
         self.notificationArray = [[User]]()
         let group = DispatchGroup()
-        for i in 0..<preJoin.count {
+        for i in 0..<preJoinArray.count {
             var tempArray = [User]()
-            for j in 0..<preJoin[i].count {
+            for j in 0..<preJoinArray[i].count {
                 group.enter()
-                let id = preJoin[i][j]
+                let id = preJoinArray[i][j]
                 UserService.getUserData(uid: id) { user in
                     defer { group.leave() }
                     guard let user = user else { return }

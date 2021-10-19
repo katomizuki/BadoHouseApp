@@ -85,7 +85,7 @@ extension GroupSearchViewController:UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
-        fetchData.searchGroup(text: text,bool:false)
+        fetchData.searchGroupData(text: text,bool:false)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
@@ -107,7 +107,7 @@ extension GroupSearchViewController:UISearchBarDelegate {
             return
         }
         searchBar.text = ""
-        fetchData.searchGroup(text: text,bool:true)
+        fetchData.searchGroupData(text: text,bool:true)
     }
 }
 //Mark getGroupDelegate

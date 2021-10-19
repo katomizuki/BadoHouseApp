@@ -209,7 +209,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         let uid = AuthService.getUserId()
         UserService.getOwnTeam(uid: uid) { [weak self] teamIds in
             guard let self = self else { return }
-            self.fetchData.getmyTeamData(idArray: teamIds)
+            self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
     }
     //Mark:Selector
@@ -423,8 +423,8 @@ extension MakeEventViewController:UINavigationControllerDelegate {
     }
 }
 //Mark getmyTeamDelegate
-extension MakeEventViewController :GetMyTeamDelegate {
-    func getMyteam(teamArray: [TeamModel]) {
+extension MakeEventViewController :FetchMyTeamDataDelegate {
+    func fetchMyTeamData(teamArray: [TeamModel]) {
         pickerArray = teamArray
         if pickerArray.count == 1 {
             self.selectedTeam = pickerArray[0]

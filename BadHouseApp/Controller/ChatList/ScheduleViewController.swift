@@ -34,7 +34,7 @@ class ScheduleViewController: UIViewController{
         guard let meId = me?.uid else { return }
         EventServie.getmyEventIdArray(uid: meId) { [weak self] idArray in
             guard let self = self else { return }
-            self.fetchData.getmyEventData(idArray: idArray)
+            self.fetchData.fetchMyEventData(idArray: idArray)
         }
     }
     
@@ -101,9 +101,9 @@ extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark:eventDelegate
-extension ScheduleViewController:GetMyEventDelegate {
+extension ScheduleViewController:FetchMyEventDataDelegate {
     
-    func getEvent(eventArray: [Event]) {
+    func fetchMyEventData(eventArray: [Event]) {
         var array = eventArray
         array = eventArray.sorted { element, nextElement in
             guard let time = DateUtils.dateFromString(string: element.eventStartTime, format: "yyyy/MM/dd HH:mm:ss Z") else { return false}

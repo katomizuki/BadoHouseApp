@@ -30,7 +30,7 @@ class DaughterViewController: UIViewController {
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
-            self.fetchData.fetchJoinData(eventArray: event)
+            self.fetchData.fetchEventJoinData(eventArray: event)
         }
     }
 }
@@ -41,8 +41,8 @@ extension DaughterViewController:IndicatorInfoProvider {
     }
 }
 //Mark:getJoinDelegate
-extension DaughterViewController:GetJoinDataDelegate {
-    func getJoin(joinArray: [[String]]) {
+extension DaughterViewController:FetchMyJoinDataDelegate {
+    func fetchMyJoinData(joinArray: [[String]]) {
         notificationArray = [[User]]()
         let group = DispatchGroup()
         for i in 0..<joinArray.count {

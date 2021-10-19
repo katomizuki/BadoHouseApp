@@ -68,11 +68,11 @@ class GroupViewController: UIViewController{
         }
         UserService.getOwnTeam(uid: uid) { [weak self] teamId in
             guard let self = self else { return }
-            self.fetchData.getmyTeamData(idArray: teamId)
+            self.fetchData.fetchMyTeamData(idArray: teamId)
         }
         UserService.getFriendData(uid: uid) { [weak self] usersId in
             guard let self = self else { return }
-            self.fetchData.getFriendData(idArray: usersId)
+            self.fetchData.fetchMyFriendData(idArray: usersId)
         }
     }
     
@@ -176,9 +176,9 @@ extension GroupViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark freindDelegate
-extension GroupViewController:GetFriendDelegate {
+extension GroupViewController:FetchMyFriendDataDelegate {
     
-    func getFriend(friendArray: [User]) {
+    func fetchMyFriendData(friendArray: [User]) {
         self.friendArray = []
         self.friendArray = friendArray
         DispatchQueue.main.async {
@@ -187,8 +187,8 @@ extension GroupViewController:GetFriendDelegate {
     }
 }
 //Mark myTeamDelegate
-extension GroupViewController:GetMyTeamDelegate {
-    func getMyteam(teamArray: [TeamModel]) {
+extension GroupViewController:FetchMyTeamDataDelegate {
+    func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teamArray = []
         print("✊")
         var array = teamArray

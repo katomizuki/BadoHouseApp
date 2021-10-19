@@ -45,7 +45,7 @@ class GroupChatViewController: UIViewController {
             self.me = me
         }
         guard let teamId = team?.teamId else { return }
-        fetchData.getGroupChat(teamId: teamId)
+        fetchData.fetchGroupChatData(teamId: teamId)
         fetchData.groupChatDataDelegate = self
     }
 }
@@ -71,13 +71,13 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark:chatDelegate
-extension GroupChatViewController:GetGroupChatDelegate {
-    func getGroupChat(chatArray: [GroupChatModel]) {
+extension GroupChatViewController:FetchMyGroupChatDataDelegate {
+    func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
         self.chatArray = []
-        self.chatArray = chatArray
+        self.chatArray = groupChatModelArray
         self.tableView.reloadData()
-        if chatArray.count != 0 {
-            tableView.scrollToRow(at: IndexPath(row: chatArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
+        if groupChatModelArray.count != 0 {
+            tableView.scrollToRow(at: IndexPath(row: groupChatModelArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
         }
     }
 }

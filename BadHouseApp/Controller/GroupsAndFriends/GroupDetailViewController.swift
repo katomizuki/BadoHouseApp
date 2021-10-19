@@ -6,7 +6,7 @@ import Charts
 import FacebookCore
 import SwiftUI
 
-class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDelegate {
+class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate {
     //Mark: Properties
     private let fetchData = FetchFirestoreData()
     var team:TeamModel?
@@ -110,7 +110,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.fetchData.getGenderCount(teamPlayers: self.teamPlayers)
+                self.fetchData.fetchGenderCountData(teamPlayers: self.teamPlayers)
                 self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamPlayers)
                 self.IndicatorView.stopAnimating()
                 self.collectionView.reloadData()
@@ -119,8 +119,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     }
     
     private func setupDelegate() {
-        fetchData.delegate = self
-        fetchData.barDelegate = self
+        fetchData.circleAndBarChartdelegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -216,13 +215,13 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
         friendImageView.isUserInteractionEnabled = !flag
     }
     //Mark:Protocol
-    func getGenderCount(count: [Int]) {
-        self.genderArray = count
+    func fetchGenderCount(countArray: [Int]) {
+        self.genderArray = countArray
         self.setupPieChart()
     }
     
-    func getBarData(count: [Int]) {
-        self.rawData = count
+    func fetchBarData(countArray: [Int]) {
+        self.rawData = countArray
         self.setupGraph()
     }
     //Mark IBAction

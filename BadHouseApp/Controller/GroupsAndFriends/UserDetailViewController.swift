@@ -136,11 +136,11 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         }
         UserService.getOwnTeam(uid: memberId) { [weak self] teamIds in
             guard let self = self else { return }
-            self.fetchData.getmyTeamData(idArray: teamIds)
+            self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
         UserService.getFriendData(uid: memberId) {[weak self] friends in
             guard let self = self else { return }
-            self.fetchData.getFriendData(idArray: friends)
+            self.fetchData.fetchMyFriendData(idArray: friends)
         }
     }
     
@@ -233,8 +233,8 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
     }
 }
 //Mark GetFriendDelegate
-extension UserDetailViewController:GetFriendDelegate {
-    func getFriend(friendArray: [User]) {
+extension UserDetailViewController:FetchMyFriendDataDelegate {
+    func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray
         DispatchQueue.main.async {
@@ -243,8 +243,8 @@ extension UserDetailViewController:GetFriendDelegate {
     }
 }
 //Mark MyTeamDelegate
-extension UserDetailViewController:GetMyTeamDelegate {
-    func getMyteam(teamArray: [TeamModel]) {
+extension UserDetailViewController:FetchMyTeamDataDelegate {
+    func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = teamArray
         DispatchQueue.main.async {
             self.belongCollectionView.reloadData()

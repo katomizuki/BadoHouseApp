@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         fetchData.eventDelegate = self
         fetchData.eventSearchDelegate = self
         fetchData.eventTimeDelegate = self
-        fetchData.detailDelegate = self
+        fetchData.eventDetaiDelegate = self
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -187,7 +187,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 //Mark: GetEventSearchDelegate
-extension ViewController:GetEventSearchDelegate {
+extension ViewController:FetchSearchEventDataDelegate {
     
     func getEventSearchData(eventArray: [Event],bool:Bool) {
         print(#function)
@@ -215,7 +215,7 @@ extension ViewController: UISearchBarDelegate {
             self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
-        fetchData.searchEventText(text: searchText,bool:true)
+        fetchData.searchEventTextData(text: searchText,bool:true)
         searchBar.resignFirstResponder()
     }
     
@@ -238,7 +238,7 @@ extension ViewController: UISearchBarDelegate {
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
             searchBar.resignFirstResponder()
         } else {
-            fetchData.searchEventText(text: text,bool:false)
+            fetchData.searchEventTextData(text: text,bool:false)
         }
     }
 }
@@ -258,8 +258,8 @@ extension ViewController: GetEventTimeDelegate{
     }
 }
 //Mark GetEventDelegate
-extension ViewController:GetEventDelegate {
-    func getEventData(eventArray: [Event]) {
+extension ViewController:FetchEventDataDelegate {
+    func fetchEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
         self.IndicatorView.stopAnimating()
@@ -269,7 +269,7 @@ extension ViewController:GetEventDelegate {
     }
 }
 //Mark: GetDetailDataDelegate
-extension ViewController:GetDetailDataDelegate {
+extension ViewController:FetchEventDetailDataDelegate {
     func getDetailData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
@@ -289,7 +289,7 @@ extension ViewController: getDetailDelegate {
 extension ViewController: CalendarDelegate {
     
     func searchCalendar(dateString: String,text:String) {
-        fetchData.searchEventDate(dateString:dateString,text: text)
+        fetchData.searchEventDateData(dateString:dateString,text: text)
     }
 }
 //Mark EmptyStateDelegate

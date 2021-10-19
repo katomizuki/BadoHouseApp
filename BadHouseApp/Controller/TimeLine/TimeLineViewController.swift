@@ -16,7 +16,7 @@ class TimeLineViewController: UIViewController{
         super.viewDidLoad()
         setupCollectionView()
         setupIndicator()
-        fetchData.getVideoData()
+        fetchData.fetchVideoData()
         fetchData.videoDelegate = self
     }
     
@@ -78,8 +78,8 @@ extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
 }
 //Mark:getVideoDelegate
-extension TimeLineViewController:GetVideoDelegate {
-    func getVideo(videoArray: [VideoModel]) {
+extension TimeLineViewController:FetchVideoDataDelegate {
+    func fetchVideoData(videoArray: [VideoModel]) {
         self.data = videoArray
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
@@ -104,7 +104,7 @@ extension TimeLineViewController:VideoCollectionCellDelegate ,UIPopoverPresentat
     
     func didTapNextButton(video: VideoModel) {
         print(#function)
-        fetchData.getVideoData()
+        fetchData.fetchVideoData()
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
@@ -172,8 +172,8 @@ extension PopoverViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark:VideoDelegate
-extension PopoverViewController:GetVideoDelegate {
-    func getVideo(videoArray: [VideoModel]) {
+extension PopoverViewController:FetchVideoDataDelegate {
+    func fetchVideoData(videoArray: [VideoModel]) {
         self.SearchDelegate?.getVideoData(videoArray: videoArray)
         dismiss(animated: true, completion: nil)
     }
