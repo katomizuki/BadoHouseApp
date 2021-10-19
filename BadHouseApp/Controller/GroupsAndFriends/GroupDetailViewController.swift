@@ -77,7 +77,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     //Mark: setupMethod
     private func setupData() {
         guard let teamId = team?.teamId else { return }
-        Firestore.getTeamTagData(teamId: teamId) {[weak self] tags in
+        TeamService.getTeamTagData(teamId: teamId) {[weak self] tags in
             guard let self = self else { return }
             if tags.count <= 1 {
                 let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
@@ -100,7 +100,7 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     private func setUpTeamPlayer() {
         print(#function)
         guard let teamId = team?.teamId else { return }
-        Firestore.getTeamPlayer(teamId: teamId) { membersId in
+        TeamService.getTeamPlayer(teamId: teamId) { membersId in
             self.teamPlayers = []
             for i in 0..<membersId.count {
                 let teamPlayerId = membersId[i]
@@ -275,7 +275,7 @@ extension GroupDetailViewController:backDelegate {
     
     func updateTeamData() {
         guard let id = team?.teamId else { return }
-        Firestore.getTeamData(teamId: id) { team in
+        TeamService.getTeamData(teamId: id) { team in
             self.team = team
             self.placeLabel.text = team.teamPlace
             self.timeLabel.text = team.teamTime
@@ -398,7 +398,7 @@ class UpdateViewController:UIViewController {
             guard let self = self else { return }
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }
-            Firestore.updateTeamInfo(team: team)
+            TeamService.updateTeamInfo(team: team)
             self.delegate?.updateTeamData()
             self.dismiss(animated: true, completion: nil)
         }

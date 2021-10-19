@@ -168,7 +168,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailViewController
         vc.event = eventArray[indexPath.row]
         let teamId = eventArray[indexPath.row].teamId
-        Firestore.getTeamData(teamId: teamId) { team in
+        TeamService.getTeamData(teamId: teamId) { team in
             vc.team = team
             self.navigationController?.pushViewController(vc, animated: true)
         }

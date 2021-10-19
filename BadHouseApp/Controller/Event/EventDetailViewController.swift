@@ -119,7 +119,7 @@ class EventDetailViewController: UIViewController {
         fetchData.delegate = self
         fetchData.barDelegate = self
         guard let teamId = team?.teamId else { return }
-        Firestore.getTeamPlayer(teamId: teamId) { teamPlayers in
+        TeamService.getTeamPlayer(teamId: teamId) { teamPlayers in
             for i in 0..<teamPlayers.count {
                 let id = teamPlayers[i]
                 UserService.getUserData(uid: id) { [weak self] teamPlayer in

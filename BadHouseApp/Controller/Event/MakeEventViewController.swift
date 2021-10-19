@@ -239,7 +239,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         print(#function)
         var teamImageUrl = String()
         guard let teamId = selectedTeam?.teamId else { return }
-        Firestore.getTeamData(teamId: teamId) { [weak self] teamData in
+        TeamService.getTeamData(teamId: teamId) { [weak self] teamData in
             guard let self = self else { return }
             self.team = teamData
             teamImageUrl = self.team?.teamImageUrl ?? ""
