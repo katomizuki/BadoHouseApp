@@ -6,7 +6,6 @@ import CDAlertView
 protocol SearchLocationProtocol:AnyObject {
     func sendLocationData(location:[Double],placeName:String,placeAddress:String,vc:MapViewController)
 }
-
 class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRecognizerDelegate{
     //Mark:Properties
     @IBOutlet private weak var mapView: MKMapView! {
@@ -85,7 +84,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
 }
 //Mark searchBarDelegate
 extension MapViewController:UISearchBarDelegate {
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }

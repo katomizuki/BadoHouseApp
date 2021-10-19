@@ -129,7 +129,6 @@ extension FriendSearchViewController:UISearchBarDelegate {
 }
 //Mark:GetUserDelegate
 extension FriendSearchViewController:FetchSearchUserDataDelegate {
-    
     func fetchSearchUser(userArray: [User],bool:Bool) {
         print(#function)
         if bool == false {
@@ -151,7 +150,6 @@ extension FriendSearchViewController:FetchSearchUserDataDelegate {
 }
 //Mark EmptyStateDelegate
 extension FriendSearchViewController:EmptyStateDelegate{
-    
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()
     }

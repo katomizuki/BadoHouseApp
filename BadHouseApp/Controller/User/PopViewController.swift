@@ -45,7 +45,6 @@ class PopViewController: UIViewController{
 }
 //Mark tableViewDataSource
 extension PopViewController:UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellArray.count
     }
@@ -55,7 +54,6 @@ extension PopViewController:UITableViewDataSource {
         cell.textLabel?.text = cellArray[indexPath.row]
         return cell
     }
-    
 }
 //Mark tableViewDelegate
 extension PopViewController:UITableViewDelegate {
@@ -79,5 +77,4 @@ extension PopViewController:UITableViewDelegate {
         }
         self.delegate?.popDismiss(vc:self)
     }
-
 }

@@ -9,7 +9,7 @@ import CDAlertView
 protocol UserDismissDelegate:AnyObject {
     func userVCdismiss(vc:UserViewController)
 }
-class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
+class UserViewController: UIViewController{
     //Mark: properties
     var user:User?
     private let cellId = Constants.CellId.userCellId
@@ -157,7 +157,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     //Mark: Selector
     @objc private func back() {
         self.delegate?.userVCdismiss(vc: self)
-        dismiss(animated: true, completion: nil)
     }
     
     @objc private func handleLogout() {
@@ -181,21 +180,6 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
         place = user?.place ?? "未設定"
         age = user?.age ?? "未設定"
     }
-}
-//Mark: CollectionDelegate, Datasource
-extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! InfoCollectionViewCell
-        cell.user = self.user
-        bindingsCell(cell: cell)
-        return cell
-    }
-    
     private func bindingsCell(cell:InfoCollectionViewCell) {
         cell.nameTextField.rx.text
             .asDriver()
@@ -227,8 +211,28 @@ extension UserViewController:UICollectionViewDelegate,UICollectionViewDataSource
             }
             .disposed(by: diposeBag)
     }
+    //Mark segueMethod
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segue.gotoLevel {
+            let vc = segue.destination as! LevelViewController
+            vc.selectedLevel = self.level
+            vc.delegate = self
+        }
+    }
 }
-//Mark UIPickerDelegate,UINavigationControllerDelegate
+//Mark: CollectionDatasource
+extension UserViewController:UICollectionViewDataSource,UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! InfoCollectionViewCell
+        cell.user = self.user
+        bindingsCell(cell: cell)
+        return cell
+    }
+}
 extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -241,8 +245,39 @@ extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate
     }
 }
 //Mark tableViewDelegate,popoverDelegate
-extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate ,UIAdaptivePresentationControllerDelegate {
+extension UserViewController:UITableViewDelegate  {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
+            performSegue(withIdentifier: Constants.Segue.gotoLevel, sender: nil)
+        }
+        guard let cell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        let viewController = PopViewController()
+        viewController.modalPresentationStyle = .popover
+        viewController.preferredContentSize = CGSize(width: 200, height: 150)
+        viewController.delegate = self
+        let presentationController = viewController.popoverPresentationController
+        presentationController?.delegate = self
+        presentationController?.permittedArrowDirections = .up
+        presentationController?.sourceView = cell
+        presentationController?.sourceRect = cell.bounds
+        viewController.keyword = cellTitleArray[indexPath.row]
+        viewController.presentationController?.delegate = self
+        present(viewController, animated: true, completion: nil)
+    }
+}
+
+//Mark uipopoverViewDelegate
+extension UserViewController:UIPopoverPresentationControllerDelegate{
+    func adaptivePresentationStyle(for controller: UIPresentationController,
+                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+}
+//Mark UiTableview datasource
+extension UserViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTitleArray.count
     }
@@ -256,7 +291,6 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         cell.accessoryType = .disclosureIndicator
         let title = cellTitleArray[indexPath.row]
         cell.detailTextLabel?.text = ""
-        
         switch title {
         case UserInfo.level.rawValue:
             cell.detailTextLabel?.text = level
@@ -273,53 +307,15 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
-            performSegue(withIdentifier: Constants.Segue.gotoLevel, sender: nil)
-        }
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return
-        }
-        let viewController = PopViewController() //popoverで表示するViewController
-        viewController.modalPresentationStyle = .popover
-        viewController.preferredContentSize = CGSize(width: 200, height: 150)
-        viewController.delegate = self
-        let presentationController = viewController.popoverPresentationController
-        presentationController?.delegate = self
-        presentationController?.permittedArrowDirections = .up
-        presentationController?.sourceView = cell
-        presentationController?.sourceRect = cell.bounds
-        viewController.keyword = cellTitleArray[indexPath.row]
-        viewController.presentationController?.delegate = self
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController,
-                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
-    }
-    
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        
-        userTableView.reloadData()
-    }
-    //Mark segueMethod
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.gotoLevel {
-            let vc = segue.destination as! LevelViewController
-            vc.selectedLevel = self.level
-            vc.delegate = self
-        }
-    }
 }
 
+//extension UserViewControllerDismiss
 extension UserViewController:LevelDismissDelegate {
     func levelDismiss(vc: LevelViewController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-
+//Mark UserViewController:PopDismissDelegate
 extension UserViewController:PopDismissDelegate {
     func popDismiss(vc: PopViewController) {
         vc.dismiss(animated: true, completion: nil)
