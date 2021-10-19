@@ -117,7 +117,7 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
     private func setupData() {
         let myId = AuthService.getUserId()
         guard let user = user else { return }
-        Firestore.searchFriend(friend: user, myId: myId) { [weak self] result in
+        UserService.searchFriend(friend: user, myId: myId) { [weak self] result in
             guard let self = self else { return }
             if result {
                 self.friendButton.plusFriendButton()
@@ -136,11 +136,11 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
             let url = URL(string: urlString)
             friendsImageView.sd_setImage(with: url, completed: nil)
         }
-        Firestore.getOwnTeam(uid: memberId) { [weak self] teamIds in
+        UserService.getOwnTeam(uid: memberId) { [weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
-        Firestore.getFriendData(uid: memberId) {[weak self] friends in
+        UserService.getFriendData(uid: memberId) {[weak self] friends in
             guard let self = self else { return }
             self.fetchData.friendData(idArray: friends)
         }

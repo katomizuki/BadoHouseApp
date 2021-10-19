@@ -31,69 +31,6 @@ extension Firestore{
         Ref.TeamRef.document(teamId).collection("GroupChat").document(id).setData(dic)
     }
     
-//    //Mark:getTeamData
-//    static func getTeamData(teamId:String,completion:@escaping (TeamModel)->Void) {
-//
-//        Ref.TeamRef.document(teamId).addSnapshotListener { snapShot, error in
-//            if let error = error {
-//                print(error)
-//                return
-//            }
-//            guard let data = snapShot?.data() else { return }
-//            let dic = data as [String:Any]
-//            let team = TeamModel(dic: dic)
-//            completion(team)
-//        }
-//    }
-
-    
-//    //Mark:createTeam
-//    static func createTeam(teamName:String,teamPlace:String,teamTime:String,teamLevel:String,teamImageUrl:String,friends:[User],teamUrl:String,tagArray:[String]) {
-//        let teamId = Ref.TeamRef.document().documentID
-//        let dic = ["teamId":teamId,
-//                   "teamName":teamName,
-//                   "teamPlace":teamPlace,
-//                   "teamTime":teamTime,
-//                   "teamImageUrl":teamImageUrl,
-//                   "teamLevel":teamLevel,
-//                   "teamURL":teamUrl,
-//                   "createdAt":Timestamp(),
-//                   "updatedAt":Timestamp()] as [String : Any]
-//        Ref.TeamRef.document(teamId).setData(dic) { error in
-//            if let error = error {
-//                print("TeamData Error",error)
-//                return
-//            }
-//            print("TeamData Register Success")
-//        }
-//        //Mark:inviteTeamPlayer
-//        Firestore.sendTeamPlayerData(teamDic: dic, teamplayer: friends)
-//        Firestore.sendTeamTagData(teamId: teamId, tagArray: tagArray)
-//    }
-    
-//    static func sendTeamTagData(teamId:String,tagArray:[String]) {
-//        let tagId =  Ref.TeamRef.document(teamId).collection("TeamTag").document().documentID
-//        for i in 0..<tagArray.count {
-//            Ref.TeamRef.document(teamId).collection("TeamTag").document("\(tagId + String(i))").setData(["tagId" : tagId,"tag":tagArray[i]])
-//        }
-//    }
-    
-    //Mark GetTeamTagData
-//    static func getTeamTagData(teamId:String,completion:@escaping ([Tag])->Void) {
-//        Ref.TeamRef.document(teamId).collection("TeamTag").getDocuments { snapShot, error in
-//            var teamTag = [Tag]()
-//            if let error = error {
-//                print("TeamTag Error",error)
-//            }
-//            guard let data = snapShot?.documents else { return }
-//            data.forEach { doc in
-//                let safeData = doc.data()
-//                let tag = Tag(dic: safeData)
-//                teamTag.append(tag)
-//            }
-//            completion(teamTag)
-//        }
-//    }
     
     static func sendChatroom(myId:String,youId:String,completion:@escaping(String)->Void) {
         let chatRoomId = Ref.ChatroomRef.document().documentID
@@ -109,66 +46,26 @@ extension Firestore{
         let chatId = Ref.ChatroomRef.document(chatroomId).collection("Content").document().documentID
         Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic)
     }
-    
-//    //Mark: sendTeamPlayerData
-//    static func sendTeamPlayerData(teamDic:[String:Any],teamplayer:[User]) {
-//        print(#function)
-//        for i in 0..<teamplayer.count {
-//            let teamPlayerId = teamplayer[i].uid
-//            let dic = ["uid":teamPlayerId] as [String : Any]
-//            let teamId = teamDic["teamId"] as! String
-//            // TeamPlayer++
-//            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) {
-//                error in
-//                if let error = error {
-//                    print(error)
-//                }
-//            }
-//            Firestore.plusOwnTeam(id: teamPlayerId, dic: teamDic)
-//        }
-//    }
-    
-    //Mark OwnTeamPlus
-    static func plusOwnTeam(id:String,dic:[String:Any]) {
-        let teamId = dic["teamId"] as! String
-        Ref.UsersRef.document(id).collection("OwnTeam").document(teamId).setData(dic)
-    }
+
     
     //Mark: getFriendData
-    static func getFriendData(uid:String,completion:@escaping([String]) -> (Void)) {
-        var friendId = [String]()
-        Ref.UsersRef.document(uid).collection("Friends").addSnapshotListener { snapShot, error in
-            if let error = error {
-                print("FriendData error",error)
-            }
-            guard let dataArray = snapShot?.documents else { return }
-            friendId = []
-            dataArray.forEach { data in
-                let safeData = data.data()
-                let id = safeData["uid"] as! String
-                friendId.append(id)
-            }
-            completion(friendId)
-        }
-    }
-    
-    //Mark getOwnTeam
-    static func getOwnTeam(uid:String,completion:@escaping ([String])->Void) {
-        var teamIdArray = [String]()
-        Ref.UsersRef.document(uid).collection("OwnTeam").addSnapshotListener { snapShot, error in
-            if let error = error {
-                print("OwnTeam",error)
-            }
-            guard let data = snapShot?.documents else { return }
-            teamIdArray = []
-            data.forEach { doc in
-                let safeData = doc.data()
-                let teamId = safeData["teamId"] as? String ?? ""
-                teamIdArray.append(teamId)
-            }
-            completion(teamIdArray)
-        }
-    }
+//    static func getFriendData(uid:String,completion:@escaping([String]) -> (Void)) {
+//        var friendId = [String]()
+//        Ref.UsersRef.document(uid).collection("Friends").addSnapshotListener { snapShot, error in
+//            if let error = error {
+//                print("FriendData error",error)
+//            }
+//            guard let dataArray = snapShot?.documents else { return }
+//            friendId = []
+//            dataArray.forEach { data in
+//                let safeData = data.data()
+//                let id = safeData["uid"] as! String
+//                friendId.append(id)
+//            }
+//            completion(friendId)
+//        }
+//    }
+
     
     static func getEventTagData(eventId:String,completion:@escaping([Tag])->Void) {
         var tagArray = [Tag]()
@@ -187,55 +84,40 @@ extension Firestore{
         }
     }
     
-//    static func getTeamPlayer(teamId:String,completion:@escaping ([String])->Void) {
-//        Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
-//            var teamPlayers = [String]()
-//            guard let documents = snapShot?.documents else { return }
-//            teamPlayers = []
-//            documents.forEach { data in
-//                let safeData = data.data()
-//                let teamPlayerId = safeData["uid"] as? String ?? ""
-//                teamPlayers.append(teamPlayerId)
-//            }
-//            completion(teamPlayers)
+//    static func friendAction(myId:String,friend:User,bool:Bool) {
+//        let id = friend.uid
+//        if bool {
+//            //true → plusFriend
+//            print("plus")
+//            Ref.UsersRef.document(myId).collection("Friends").document(id).setData(["uid" : id])
+//            Ref.UsersRef.document(id).collection("Friends").document(myId).setData(["uid":myId])
+//        } else {
+//            // false　→ deleteFriend
+//            print("delete")
+//            Ref.UsersRef.document(id).collection("Friends").document(myId).delete()
+//            Ref.UsersRef.document(myId).collection("Friends").document(id).delete()
 //        }
 //    }
     
-    static func friendAction(myId:String,friend:User,bool:Bool) {
-        let id = friend.uid
-        
-        if bool {
-            //true → plusFriend
-            print("plus")
-            Ref.UsersRef.document(myId).collection("Friends").document(id).setData(["uid" : id])
-            Ref.UsersRef.document(id).collection("Friends").document(myId).setData(["uid":myId])
-        } else {
-            // false　→ deleteFriend
-            print("delete")
-            Ref.UsersRef.document(id).collection("Friends").document(myId).delete()
-            Ref.UsersRef.document(myId).collection("Friends").document(id).delete()
-        }
-    }
-    
-    static func searchFriend(friend:User,myId:String,completion:@escaping (Bool)->Void) {
-        let targetId = friend.uid
-        var bool = false
-        Ref.UsersRef.document(myId).collection("Friends").getDocuments { snapShot, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let documents = snapShot?.documents else { return }
-            for doc in documents {
-                let safeData = doc.data()
-                let friendId = safeData["uid"] as! String
-                if targetId == friendId {
-                    bool = true
-                }
-            }
-            completion(bool)
-        }
-    }
+//    static func searchFriend(friend:User,myId:String,completion:@escaping (Bool)->Void) {
+//        let targetId = friend.uid
+//        var bool = false
+//        Ref.UsersRef.document(myId).collection("Friends").getDocuments { snapShot, error in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let documents = snapShot?.documents else { return }
+//            for doc in documents {
+//                let safeData = doc.data()
+//                let friendId = safeData["uid"] as! String
+//                if targetId == friendId {
+//                    bool = true
+//                }
+//            }
+//            completion(bool)
+//        }
+//    }
     
     //Mark: sendEventData
     static func sendEventData(teamId:String,event:[String:Any],eventId:String) {
@@ -410,20 +292,7 @@ extension Firestore{
         }
     }
     
-//    static func updateTeamInfo(team:TeamModel) {
-//        let id = team.teamId
-//        let dic = ["teamId":id,
-//                   "teamName":team.teamName,
-//                   "teamPlace":team.teamPlace,
-//                   "teamTime":team.teamTime,
-//                   "teamLevel":team.teamLevel,
-//                   "teamUrl":team.teamUrl,
-//                   "teamImageUrl":team.teamImageUrl,
-//                   "createdAt":team.createdAt,
-//                   "updatedAt":team.updatedAt] as [String : Any]
-//        Ref.TeamRef.document(id).setData(dic)
-//        Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic)
-//    }
+
 }
 
 //Mark Storage

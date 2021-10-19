@@ -66,11 +66,11 @@ class GroupViewController: UIViewController{
             }
             self.myName.text = user.name
         }
-        Firestore.getOwnTeam(uid: uid) { [weak self] teamId in
+        UserService.getOwnTeam(uid: uid) { [weak self] teamId in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamId)
         }
-        Firestore.getFriendData(uid: uid) { [weak self] usersId in
+        UserService.getFriendData(uid: uid) { [weak self] usersId in
             guard let self = self else { return }
             self.fetchData.friendData(idArray: usersId)
         }

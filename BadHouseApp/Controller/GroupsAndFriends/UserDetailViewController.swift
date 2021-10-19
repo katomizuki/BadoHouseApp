@@ -114,7 +114,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     private func setupData() {
         let myId = AuthService.getUserId()
         guard let user = user else { return }
-        Firestore.searchFriend(friend: user, myId: myId) { [weak self] result in
+        UserService.searchFriend(friend: user, myId: myId) { [weak self] result in
             guard let self = self else { return }
             if result {
                 self.friendButton.plusFriendButton()
@@ -134,11 +134,11 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             let url = URL(string: urlString)
             friendsImageView.sd_setImage(with: url, completed: nil)
         }
-        Firestore.getOwnTeam(uid: memberId) { [weak self] teamIds in
+        UserService.getOwnTeam(uid: memberId) { [weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
-        Firestore.getFriendData(uid: memberId) {[weak self] friends in
+        UserService.getFriendData(uid: memberId) {[weak self] friends in
             guard let self = self else { return }
             self.fetchData.friendData(idArray: friends)
         }
@@ -163,11 +163,11 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         guard let user = user else { return }
         if friendButton.backgroundColor == .white {
             friendButton.tapRemoveFriend()
-            Firestore.friendAction(myId: myId, friend: user, bool: true)
+            UserService.friendAction(myId: myId, friend: user, bool: true)
         } else {
             friendButton.tapPlusFriend()
             self.friendButton.setTitle(" 友達申請 ", for: UIControl.State.normal)
-            Firestore.friendAction(myId: myId, friend: user, bool: false)
+            UserService.friendAction(myId: myId, friend: user, bool: false)
         }
     }
     

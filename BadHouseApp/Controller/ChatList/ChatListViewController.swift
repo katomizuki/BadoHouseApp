@@ -106,7 +106,7 @@ class ChatListViewController:UIViewController {
     }
     
     private func setupOwnTeamData() {
-        Firestore.getOwnTeam(uid: AuthService.getUserId()) {[weak self] teamIds in
+        UserService.getOwnTeam(uid: AuthService.getUserId()) {[weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }

@@ -76,7 +76,7 @@ struct TeamService {
                     print(error)
                 }
             }
-            Firestore.plusOwnTeam(id: teamPlayerId, dic: teamDic)
+            UserService.plusOwnTeam(id: teamPlayerId, dic: teamDic)
         }
     }
     

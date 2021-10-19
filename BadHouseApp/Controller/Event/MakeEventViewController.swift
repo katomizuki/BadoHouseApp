@@ -207,7 +207,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     
     private func setupOwnTeamData() {
         let uid = AuthService.getUserId()
-        Firestore.getOwnTeam(uid: uid) { [weak self] teamIds in
+        UserService.getOwnTeam(uid: uid) { [weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
