@@ -127,7 +127,7 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
             Firestore.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "PreJoin", subId: userId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
-            let meId = Auth.getUserId()
+            let meId = AuthService.getUserId()
             Firestore.sendJoin(eventId: eventId, uid: userId)
             self.fetchData.getChatData(meId: meId, youId: userId) { chatId in
                 Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "承認者からの参加が確定しました。", reciverId: userId)

@@ -3,46 +3,46 @@ import Firebase
 import UIKit
 import CoreLocation
 
-extension Auth {
-    
-    //Mark Register
-    static func register(name:String?,email:String?,password:String?,completion:@escaping (Bool,Error?) -> Void) {
-        guard let email = email else { return }
-        guard let name = name else { return }
-        guard let password = password else { return }
-        Auth.auth().createUser(withEmail: email,password: password) { result, error in
-            if let error = error {
-                print("createUser Error",error)
-                completion(false,error)
-                return
-            }
-            print("Register Success ")
-            guard let uid = result?.user.uid else { return }
-            Firestore.setUserData(uid: uid, password: password, email: email, name: name) { result in
-                completion(result, error)
-            }
-        }
-    }
-    
-    //Mark: Login
-    static func loginFirebaseAuth(email:String,password:String,completion:@escaping (Bool,Error?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("Login Error",error)
-                completion(false,error)
-                return
-            }
-            print("Login Success")
-            completion(true,error)
-        }
-    }
-    
-    //Mark:GetUserId
-    static func getUserId()->String {
-        guard let uid = Auth.auth().currentUser?.uid else { return ""}
-        return uid
-    }
-}
+//extension Auth {
+//
+//    //Mark Register
+//    static func register(name:String?,email:String?,password:String?,completion:@escaping (Bool,Error?) -> Void) {
+//        guard let email = email else { return }
+//        guard let name = name else { return }
+//        guard let password = password else { return }
+//        Auth.auth().createUser(withEmail: email,password: password) { result, error in
+//            if let error = error {
+//                print("createUser Error",error)
+//                completion(false,error)
+//                return
+//            }
+//            print("Register Success ")
+//            guard let uid = result?.user.uid else { return }
+//            Firestore.setUserData(uid: uid, password: password, email: email, name: name) { result in
+//                completion(result, error)
+//            }
+//        }
+//    }
+//
+//    //Mark: Login
+//    static func loginFirebaseAuth(email:String,password:String,completion:@escaping (Bool,Error?) -> Void) {
+//        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+//            if let error = error {
+//                print("Login Error",error)
+//                completion(false,error)
+//                return
+//            }
+//            print("Login Success")
+//            completion(true,error)
+//        }
+//    }
+//
+//    //Mark:GetUserId
+//    static func getUserId()->String {
+//        guard let uid = Auth.auth().currentUser?.uid else { return ""}
+//        return uid
+//    }
+//}
 //Mark:FireStore
 extension Firestore{
     
@@ -417,7 +417,7 @@ extension Firestore{
             let myEvent = data.filter { document in
                 let safeData = document.data()
                 let leaderId = safeData["userId"] as? String ?? ""
-                return leaderId == Auth.getUserId()
+                return leaderId == AuthService.getUserId()
             }
             myEvent.forEach { data in
                 let safeData = data.data() as [String:Any]
@@ -511,7 +511,7 @@ extension Firestore{
                    "createdAt":team.createdAt,
                    "updatedAt":team.updatedAt] as [String : Any]
         Ref.TeamRef.document(id).setData(dic)
-        Ref.UsersRef.document(Auth.getUserId()).collection("OwnTeam").document(id).setData(dic)
+        Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic)
     }
 }
 

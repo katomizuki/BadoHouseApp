@@ -52,7 +52,7 @@ class GroupViewController: UIViewController{
     private func setupData() {
         fetchData.friendDelegate = self
         fetchData.myTeamDelegate = self
-        let uid = Auth.getUserId()
+        let uid = AuthService.getUserId()
         Firestore.getUserData(uid: uid) { [weak self] user in
             guard let self = self else { return }
             guard let user = user else { return }

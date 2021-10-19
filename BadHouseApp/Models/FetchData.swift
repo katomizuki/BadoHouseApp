@@ -225,7 +225,7 @@ class FetchFirestoreData {
                 let safeData = data.data()
                 let name = safeData["name"] as? String ?? ""
                 let id = safeData["uid"] as? String ?? ""
-                if name.contains(text) && id != Auth.getUserId() {
+                if name.contains(text) && id != AuthService.getUserId() {
                     let user = User(dic: safeData)
                     userArray.append(user)
                 }
@@ -286,7 +286,7 @@ class FetchFirestoreData {
             data.forEach { doc in
                 let safeData = doc.data() as [String:Any]
                 let leaderId = safeData["userId"] as? String ?? ""
-                if leaderId != Auth.getUserId() {
+                if leaderId != AuthService.getUserId() {
                     let event = Event(dic:safeData)
                     eventArray.append(event)
                 }

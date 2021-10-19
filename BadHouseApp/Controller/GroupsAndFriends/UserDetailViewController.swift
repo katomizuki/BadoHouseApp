@@ -112,7 +112,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     private func setupData() {
-        let myId = Auth.getUserId()
+        let myId = AuthService.getUserId()
         guard let user = user else { return }
         Firestore.searchFriend(friend: user, myId: myId) { [weak self] result in
             guard let self = self else { return }
@@ -149,7 +149,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         print(#function)
         friendButton.isHidden = flag
         if user?.uid == me?.uid {
-            print("✊")
             friendButton.isHidden = true
         }
         friendsImageView.isUserInteractionEnabled = !flag
@@ -160,7 +159,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     @IBAction func plusFriend(_ sender: Any) {
         print(#function)
         friendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        let myId = Auth.getUserId()
+        let myId = AuthService.getUserId()
         guard let user = user else { return }
         if friendButton.backgroundColor == .white {
             friendButton.tapRemoveFriend()

@@ -40,7 +40,7 @@ class GroupChatViewController: UIViewController {
     }
     
     private func setupData() {
-        Firestore.getUserData(uid: Auth.getUserId()) { [weak self] me in
+        Firestore.getUserData(uid: AuthService.getUserId()) { [weak self] me in
             guard let self = self else { return }
             self.me = me
         }
@@ -58,7 +58,7 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatCell
-        cell.configure(chat: chatArray[indexPath.row],bool:self.chatArray[indexPath.row].senderId == Auth.getUserId())
+        cell.configure(chat: chatArray[indexPath.row],bool:self.chatArray[indexPath.row].senderId == AuthService.getUserId())
         return cell
     }
     

@@ -206,7 +206,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
     }
     
     private func setupOwnTeamData() {
-        let uid = Auth.getUserId()
+        let uid = AuthService.getUserId()
         Firestore.getOwnTeam(uid: uid) { [weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
@@ -251,7 +251,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         courtCount = courtCountLabel.text ?? "1"
         gatherCount = gatherCountLabel.text ?? "1"
         detailText = detaiTextView.text ?? ""
-        let userId = Auth.getUserId()
+        let userId = AuthService.getUserId()
         let eventId = Ref.EventRef.document().documentID
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             let dic = ["eventId":eventId,
@@ -310,7 +310,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         view.layer.masksToBounds = true
     }
     //Mark: MapDelegateMethod
-    func sendLocationData(location: [Double], placeName: String,placeAddress:String) {
+    func sendLocationData(location: [Double], placeName: String,placeAddress:String,vc:MapViewController) {
+        vc.dismiss(animated: true, completion: nil)
         self.teamPlace = placeName
         self.placeLatitude = location[0]
         self.placeLongitude = location[1]

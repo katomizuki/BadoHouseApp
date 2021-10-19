@@ -115,7 +115,7 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
     }
     
     private func setupData() {
-        let myId = Auth.getUserId()
+        let myId = AuthService.getUserId()
         guard let user = user else { return }
         Firestore.searchFriend(friend: user, myId: myId) { [weak self] result in
             guard let self = self else { return }

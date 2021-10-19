@@ -61,9 +61,9 @@ class FriendSearchViewController: UIViewController {
         let indexPathTapped = tableView.indexPath(for: cell)
         guard let index = indexPathTapped?[1] else { return }
         let friend = friendList[index]
-        Firestore.searchFriend(friend: friend, myId: Auth.getUserId()) { bool in
+        Firestore.searchFriend(friend: friend, myId: AuthService.getUserId()) { bool in
             if bool == false {
-                Firestore.friendAction(myId: Auth.getUserId(), friend: friend, bool: true)
+                Firestore.friendAction(myId: AuthService.getUserId(), friend: friend, bool: true)
             }
         }
     }

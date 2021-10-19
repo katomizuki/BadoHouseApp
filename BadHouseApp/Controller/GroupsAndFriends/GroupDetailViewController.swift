@@ -256,8 +256,8 @@ class GroupDetailViewController: UIViewController, GetGenderCount, GetBarChartDe
     @IBAction private func withdraw(_ sender: Any) {
         print(#function)
         guard let teamId = team?.teamId else { return }
-        Firestore.deleteSubCollectionData(collecionName: "Users", documentId: Auth.getUserId(), subCollectionName: "OwnTeam", subId: teamId)
-        Firestore.deleteSubCollectionData(collecionName: "Teams", documentId: teamId, subCollectionName: "TeamPlayer", subId: Auth.getUserId())
+        Firestore.deleteSubCollectionData(collecionName: "Users", documentId: AuthService.getUserId(), subCollectionName: "OwnTeam", subId: teamId)
+        Firestore.deleteSubCollectionData(collecionName: "Teams", documentId: teamId, subCollectionName: "TeamPlayer", subId: AuthService.getUserId())
         navigationController?.popViewController(animated: true
         )
     }

@@ -144,7 +144,7 @@ class LoginViewController:UIViewController {
         IndicatorView.stopAnimating()
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        Auth.loginFirebaseAuth(email: email, password: password) { result,error in
+        AuthService.loginFirebaseAuth(email: email, password: password) { result,error in
             if result {
                 self.IndicatorView.stopAnimating()
                 self.dismiss(animated: true, completion: nil)

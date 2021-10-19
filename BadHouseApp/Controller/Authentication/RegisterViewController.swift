@@ -185,7 +185,7 @@ class RegisterViewController:UIViewController{
         let name = nameTextField.text ?? ""
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        Auth.register(name: name, email: email, password: password) { result,error in
+        AuthService.register(name: name, email: email, password: password) { result,error in
             if result {
                 self.IndicatorView.stopAnimating()
                 let bool = false

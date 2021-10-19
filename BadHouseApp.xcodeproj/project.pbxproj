@@ -97,6 +97,7 @@
 		D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* EventBinding.swift */; };
 		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
 		D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195426E4CAC900B6740E /* TagViewController.swift */; };
+		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +191,7 @@
 		D3FD195026E4993A00B6740E /* EventBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBinding.swift; sourceTree = "<group>"; };
 		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		D3FD195426E4CAC900B6740E /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,6 +396,7 @@
 				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
 				D34852B126FD3DEE0027592A /* UIColor-Extension.swift */,
 				D34852B326FD3E160027592A /* Array-Extension.swift */,
+				D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3CF6D1326F8AE6C007C4DF3 /* DaughterViewController.swift in Sources */,
+				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
@@ -894,7 +898,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -915,7 +919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

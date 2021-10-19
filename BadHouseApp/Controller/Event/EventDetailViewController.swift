@@ -112,7 +112,7 @@ class EventDetailViewController: UIViewController {
     }
     
     private func setData() {
-        Firestore.getUserData(uid: Auth.getUserId()) { [weak self] user in
+        Firestore.getUserData(uid: AuthService.getUserId()) { [weak self] user in
             guard let self = self else { return }
             self.me = user
         }
@@ -301,7 +301,7 @@ class EventDetailViewController: UIViewController {
         guard let leaderId = event?.userId else { return }
    
         guard let eventId = event?.eventId else { return }
-        Firestore.searchPreJoin(myId: Auth.getUserId(), eventId: eventId) { bool in
+        Firestore.searchPreJoin(myId: AuthService.getUserId(), eventId: eventId) { bool in
             if bool == false {
                 //alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
                 let alert = UIAlertController(title: "参加申請をしますか？", message: "チャットで主催者に自動で連絡がいきます。", preferredStyle: .alert)
@@ -314,12 +314,12 @@ class EventDetailViewController: UIViewController {
                     guard let meId = self.me?.uid else { return }
                     
                     
-                    self.fetchData.getChatData(meId: Auth.getUserId(), youId: leaderId) { [weak self] chatId in
+                    self.fetchData.getChatData(meId: AuthService.getUserId(), youId: leaderId) { [weak self] chatId in
                         guard let self = self else { return }
                         print(chatId)
                         if chatId.isEmpty {
                             //チャットルームを作った後に申請を出す。
-                            Firestore.sendChatroom(myId: Auth.getUserId(), youId: leaderId) { id in
+                            Firestore.sendChatroom(myId: AuthService.getUserId(), youId: leaderId) { id in
                                 self.chatId = id
                                 guard let chatId = self.chatId else { return }
                                 Firestore.sendChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)

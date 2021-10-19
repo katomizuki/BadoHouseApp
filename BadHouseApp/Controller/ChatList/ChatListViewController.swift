@@ -85,18 +85,18 @@ class ChatListViewController:UIViewController {
     }
     
     private func setupNotification() {
-        self.notification(uid: Auth.getUserId()) { [weak self] bool in
+        self.notification(uid: AuthService.getUserId()) { [weak self] bool in
             if bool == true {
                 guard let self = self else { return }
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)
-                Firestore.changeTrue(uid: Auth.getUserId())
+                Firestore.changeTrue(uid: AuthService.getUserId())
                 LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "練習に申し込んだ方と連絡はとれましたか？", body: "ぜひ確認しましょう!")
             }
         }
     }
     
     private func setupData() {
-        Firestore.getChatData(uid: Auth.getUserId()) { [weak self] chatId in
+        Firestore.getChatData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
             self.fetchData.getChatRoomModel(chatId:chatId)
             for i in 0..<chatId.count {
@@ -106,7 +106,7 @@ class ChatListViewController:UIViewController {
     }
     
     private func setupOwnTeamData() {
-        Firestore.getOwnTeam(uid: Auth.getUserId()) {[weak self] teamIds in
+        Firestore.getOwnTeam(uid: AuthService.getUserId()) {[weak self] teamIds in
             guard let self = self else { return }
             self.fetchData.getmyTeamData(idArray: teamIds)
         }
@@ -129,7 +129,7 @@ class ChatListViewController:UIViewController {
     
     @objc private func handleSchedule() {
         print(#function)
-        Firestore.getUserData(uid: Auth.getUserId()) { user in
+        Firestore.getUserData(uid: AuthService.getUserId()) { user in
             guard let me = user else { return }
             let vc = ScheduleViewController(user: me)
             self.present(vc, animated: true, completion: nil)
@@ -176,7 +176,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             cell.commentLabel.isHidden = false
             cell.timeLabel.isHidden = true
             cell.setTimeLabelandCommentLabel(chat:sortLastCommentArray[indexPath.row])
-            if Auth.getUserId() == self.sortChatModelArray[indexPath.row].user {
+            if AuthService.getUserId() == self.sortChatModelArray[indexPath.row].user {
                 cell.user = sortAnotherUserArray[indexPath.row]
             } else {
                 cell.user = sortUserArray[indexPath.row]
@@ -195,7 +195,7 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
             
         } else if indexPath.section == 1 {
-            if Auth.getUserId() == sortChatModelArray[indexPath.row].user {
+            if AuthService.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
                 let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController

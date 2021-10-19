@@ -133,7 +133,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
                     "email":self.email,
                     "level":self.level,
                     "introduction":self.introduction,
-                    "uid":Auth.getUserId(),
+                    "uid":AuthService.getUserId(),
                     "gender":self.gender,
                     "place":self.place,
                     "badmintonTime":self.badmintonTime,
