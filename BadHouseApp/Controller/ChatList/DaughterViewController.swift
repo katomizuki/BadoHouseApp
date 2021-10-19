@@ -115,7 +115,7 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { action in
             let eventId = self.eventArray[indexPath.section].eventId
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
-            Firestore.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
+            DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             Firestore.sendPreJoin(eventId: eventId, userId: userId)
             tableView.reloadData()

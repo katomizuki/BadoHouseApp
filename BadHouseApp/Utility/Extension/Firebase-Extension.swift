@@ -7,47 +7,6 @@ import CoreLocation
 //Mark:FireStore
 extension Firestore{
     
-//    //Mark: setUserData
-//    static func setUserData(uid:String,password:String,email:String,name:String,completion:@escaping (Bool) ->()) {
-//        let dic = ["uid":uid,
-//                   "name":name,
-//                   "email":email,
-//                   "createdAt":Timestamp(),
-//                   "updatedAt":Timestamp()] as [String : Any]
-//        Ref.UsersRef.document(uid).setData(dic) { error in
-//            if let error = error {
-//                print("SetUserData",error)
-//            }
-//            completion(true)
-//            print("setUserData")
-//        }
-//    }
-//
-//    //Mark UserDataUpdate
-//    static func updateUserInfo(dic:[String:Any]) {
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//        Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
-//            if let error = error {
-//                print("更新エラー",error)
-//                return
-//            }
-//            print("更新成功")
-//        }
-//    }
-//
-//    //Mark: UserDataGet
-//    static func getUserData(uid:String,compeltion:@escaping (User?)->Void) {
-//        Ref.UsersRef.document(uid).addSnapshotListener { snapShot, error in
-//            if let error = error {
-//                print("UserInfo Get Error",error)
-//                return
-//            }
-//            guard let dic = snapShot?.data() else { return }
-//            let user = User(dic: dic)
-//            compeltion(user)
-//        }
-//    }
-    
     static func changeTrue(uid:String) {
         Ref.UsersRef.document(uid).collection("PreJoin").getDocuments { snapShot, error in
             if let error = error {
@@ -87,15 +46,15 @@ extension Firestore{
         }
     }
     
-    //Mark: DeleteData
-    static func deleteData(collectionName:String,documentId:String) {
-        Firestore.firestore().collection(collectionName).document(documentId).delete()
-    }
-    
-    //Mark:DeleteChatData
-    static func deleteSubCollectionData(collecionName:String,documentId:String,subCollectionName:String,subId:String) {
-        Firestore.firestore().collection(collecionName).document(documentId).collection(subCollectionName).document(subId).delete()
-    }
+//    //Mark: DeleteData
+//    static func deleteData(collectionName:String,documentId:String) {
+//        Firestore.firestore().collection(collectionName).document(documentId).delete()
+//    }
+//
+//    //Mark:DeleteChatData
+//    static func deleteSubCollectionData(collecionName:String,documentId:String,subCollectionName:String,subId:String) {
+//        Firestore.firestore().collection(collecionName).document(documentId).collection(subCollectionName).document(subId).delete()
+//    }
     
     //Mark:createTeam
     static func createTeam(teamName:String,teamPlace:String,teamTime:String,teamLevel:String,teamImageUrl:String,friends:[User],teamUrl:String,tagArray:[String]) {
@@ -412,7 +371,7 @@ extension Firestore{
                 let eventId = safeData["eventId"] as? String ?? ""
                 let date = DateUtils.dateFromString(string: endTime, format: "yyyy/MM/dd HH:mm:ss Z") ?? now
                 if date < now {
-                    Firestore.deleteData(collectionName: "Event", documentId: eventId)
+                    DeleteService.deleteData(collectionName: "Event", documentId: eventId)
                 }
             }
         }

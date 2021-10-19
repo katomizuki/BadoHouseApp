@@ -159,7 +159,7 @@ extension ScheduleViewController:CalendarEventDelegate {
             //firestoreでも消す
             guard let meId = self.me?.uid else { return }
             let eventId = self.eventArray[tappedIndex].eventId
-            Firestore.deleteSubCollectionData(collecionName: "Users", documentId: meId, subCollectionName: "Join", subId: eventId)
+            DeleteService.deleteSubCollectionData(collecionName: "Users", documentId: meId, subCollectionName: "Join", subId: eventId)
             DispatchQueue.main.async {
                 self.tableview.reloadData()
                 self.calendar.reloadData()
