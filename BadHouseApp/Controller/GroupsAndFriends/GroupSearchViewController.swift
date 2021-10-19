@@ -111,7 +111,7 @@ extension GroupSearchViewController:UISearchBarDelegate {
     }
 }
 //Mark getGroupDelegate
-extension GroupSearchViewController:GetGroupDelegate{
+extension GroupSearchViewController:FetchSearchGroupDelegate{
     
     func getGroup(groupArray: [TeamModel],bool:Bool) {
         

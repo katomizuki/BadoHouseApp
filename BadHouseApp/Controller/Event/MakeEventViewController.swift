@@ -114,7 +114,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         TeamPickerView.dataSource = self
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
-        fetchData.myTeamDelegate = self
+//        fetchData.myTeamDelegate = self
         titleTextField.delegate = self
     }
     

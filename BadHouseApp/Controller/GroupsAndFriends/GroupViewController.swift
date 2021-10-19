@@ -50,7 +50,7 @@ class GroupViewController: UIViewController{
     }
     //Mark: setupMethod
     private func setupData() {
-        fetchData.friendDelegate = self
+        fetchData.myFriendDelegate = self
         fetchData.myTeamDelegate = self
         let uid = AuthService.getUserId()
         UserService.getUserData(uid: uid) { [weak self] user in
@@ -190,7 +190,6 @@ extension GroupViewController:FetchMyFriendDataDelegate {
 extension GroupViewController:FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teamArray = []
-        print("✊")
         var array = teamArray
         array = array.sorted { element, nextElement in
             return element.updatedAt.dateValue() > nextElement.updatedAt.dateValue()

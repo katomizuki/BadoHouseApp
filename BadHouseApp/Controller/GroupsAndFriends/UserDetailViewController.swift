@@ -92,7 +92,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
         belongCollectionView.dataSource = self
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
-        fetchData.friendDelegate = self
+        fetchData.myFriendDelegate = self
         fetchData.myTeamDelegate = self
     }
     

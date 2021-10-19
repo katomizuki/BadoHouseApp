@@ -86,6 +86,14 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
 }
 //Mark:GetChatDelegate
 extension ChatViewController: FetchMyChatDataDelgate {
+    func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
+        print(#function)
+    }
+    
+    func fetchMyChatListData(userArray: [User], anotherArray: [User], lastChatArray: [Chat], chatModelArray: [ChatRoom]) {
+        print(#function)
+    }
+    
     
     func fetchMyChatData(chatArray: [Chat]) {
         self.messages = []

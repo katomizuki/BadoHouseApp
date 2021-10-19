@@ -39,7 +39,7 @@ class ChildViewController: UIViewController {
     }
     
     private func setupData() {
-        fetchData.preDelegate = self
+        fetchData.preJoinDelegate = self
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event

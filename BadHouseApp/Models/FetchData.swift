@@ -7,26 +7,18 @@ protocol FetchGenderCountDataDelegate:AnyObject  {
     func fetchGenderCount(countArray:[Int])
     func fetchBarData(countArray:[Int])
 }
-
 protocol FetchEventDataDelegate :AnyObject {
     func fetchEventData(eventArray:[Event])
-}
-protocol FetchSearchEventDataDelegate :AnyObject {
     func getEventSearchData(eventArray:[Event],bool:Bool)
-}
-protocol GetEventTimeDelegate:AnyObject  {
     func getEventTimeData(eventArray:[Event])
-}
-protocol FetchEventDetailDataDelegate:AnyObject  {
     func getDetailData(eventArray:[Event])
 }
 protocol FetchMyChatDataDelgate:AnyObject  {
     func fetchMyChatData(chatArray:[Chat])
-}
-protocol FetchMyChatRoomDataDelegate:AnyObject  {
     func fetchMyChatRoomData(chatRoomArray:[ChatRoom])
+    func fetchMyChatListData(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
 }
-protocol GetUserDataDelegate :AnyObject {
+protocol FetchSearchUserDataDelegate :AnyObject {
     func getUserData(userArray:[User],bool:Bool)
 }
 protocol FetchMyGroupChatDataDelegate:AnyObject  {
@@ -38,16 +30,10 @@ protocol FetchMyPrejoinDataDelegate:AnyObject  {
 protocol FetchMyJoinDataDelegate :AnyObject {
     func fetchMyJoinData(joinArray:[[String]])
 }
-protocol FetchMyFriendDataDelegate :AnyObject {
-    func fetchMyFriendData(friendArray:[User])
-}
-protocol FetchMyChatListDataDelegate :AnyObject {
-    func fetchMyChatListData(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
-}
 protocol FetchVideoDataDelegate :AnyObject {
     func fetchVideoData(videoArray:[VideoModel])
 }
-protocol GetGroupDelegate:AnyObject  {
+protocol FetchSearchGroupDelegate:AnyObject  {
     func getGroup(groupArray:[TeamModel],bool:Bool)
 }
 protocol FetchMyEventDataDelegate:AnyObject  {
@@ -56,25 +42,23 @@ protocol FetchMyEventDataDelegate:AnyObject  {
 protocol FetchMyTeamDataDelegate:AnyObject {
     func fetchMyTeamData(teamArray:[TeamModel])
 }
+protocol FetchMyFriendDataDelegate :AnyObject {
+    func fetchMyFriendData(friendArray:[User])
+}
 class FetchFirestoreData {
     
-    weak var circleAndBarChartdelegate:FetchGenderCountDataDelegate?
+    weak var chartsDelegate:FetchGenderCountDataDelegate?
     weak var eventDelegate:FetchEventDataDelegate?
-    weak var eventSearchDelegate:FetchSearchEventDataDelegate?
-    weak var eventTimeDelegate:GetEventTimeDelegate?
-    weak var eventDetaiDelegate:FetchEventDetailDataDelegate?
     weak var chatDelegate:FetchMyChatDataDelgate?
-    weak var chatRoomDelegate:FetchMyChatRoomDataDelegate?
-    weak var userDelegate:GetUserDataDelegate?
+    weak var userSearchDelegate:FetchSearchUserDataDelegate?
     weak var groupChatDataDelegate:FetchMyGroupChatDataDelegate?
-    weak var preDelegate:FetchMyPrejoinDataDelegate?
+    weak var preJoinDelegate:FetchMyPrejoinDataDelegate?
     weak var joinDelegate:FetchMyJoinDataDelegate?
-    weak var friendDelegate:FetchMyFriendDataDelegate?
-    weak var chatListDelegate:FetchMyChatListDataDelegate?
     weak var videoDelegate:FetchVideoDataDelegate?
-    weak var groupSearchDelegate:GetGroupDelegate?
+    weak var groupSearchDelegate:FetchSearchGroupDelegate?
     weak var myEventDelegate:FetchMyEventDataDelegate?
     weak var myTeamDelegate:FetchMyTeamDataDelegate?
+    weak var myFriendDelegate:FetchMyFriendDataDelegate?
     
     func fetchMyFriendData(idArray:[String]) {
         let group = DispatchGroup()
@@ -91,7 +75,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.friendDelegate?.fetchMyFriendData(friendArray: array)
+            self.myFriendDelegate?.fetchMyFriendData(friendArray: array)
         }
     }
     
@@ -159,7 +143,7 @@ class FetchFirestoreData {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.chatListDelegate?.fetchMyChatListData(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
+            self.chatDelegate?.fetchMyChatListData(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
         }
     }
     
@@ -167,10 +151,13 @@ class FetchFirestoreData {
         var manCount = 0
         var womanCount = 0
         var otherCount = 0
+        let group = DispatchGroup()
         for i in 0..<teamPlayers.count {
+            group.enter()
             let playerId = teamPlayers[i].uid
             UserService.getUserData(uid: playerId) { user in
                 guard let gender = user?.gender else { return }
+                defer { group.leave() }
                 if gender == "男性" {
                     manCount += 1
                 } else if gender == "女性" {
@@ -180,8 +167,8 @@ class FetchFirestoreData {
                 }
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.circleAndBarChartdelegate?.fetchGenderCount(countArray: [manCount,womanCount,otherCount])
+        group.notify(queue: .main) {
+            self.chartsDelegate?.fetchGenderCount(countArray: [manCount,womanCount,otherCount])
         }
     }
     
@@ -224,20 +211,22 @@ class FetchFirestoreData {
     
     func fetchChatRoomModelData(chatId:[String]){
         var chatRoomModelArray = [ChatRoom]()
+        let group = DispatchGroup()
         for i in 0..<chatId.count {
+            group.enter()
             Ref.ChatroomRef.document(chatId[i]).getDocument { snapShot, error in
                 if let error = error {
                     print(error)
                     return
                 }
+                defer { group.leave() }
                 guard let data = snapShot?.data() else { return }
                 let chatRoomModel = ChatRoom(dic: data)
                 chatRoomModelArray.append(chatRoomModel)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            print(chatRoomModelArray)
-            self.chatRoomDelegate?.fetchMyChatRoomData(chatRoomArray: chatRoomModelArray)
+        group.notify(queue: .main) {
+            self.chatDelegate?.fetchMyChatRoomData(chatRoomArray: chatRoomModelArray)
         }
     }
     
@@ -261,7 +250,9 @@ class FetchFirestoreData {
     
     func fetchEventPreJoinData(eventArray:[Event]) {
         var stringArray = [[String]]()
+        let group = DispatchGroup()
         for i in 0..<eventArray.count {
+            group.enter()
             let eventId = eventArray[i].eventId
             Ref.EventRef.document(eventId).collection("PreJoin").addSnapshotListener { snapShot, error in
                 if let error = error {
@@ -276,17 +267,20 @@ class FetchFirestoreData {
                     print(id)
                     tempArray.append(id)
                 }
+                defer { group.leave() }
                 stringArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.preDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
+        group.notify(queue: .main) {
+            self.preJoinDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
         }
     }
     
     func fetchEventJoinData(eventArray:[Event]) {
         var stringArray = [[String]]()
+        let group = DispatchGroup()
         for i in 0..<eventArray.count {
+            group.enter()
             let eventId = eventArray[i].eventId
             Ref.EventRef.document(eventId).collection("Join").addSnapshotListener { snapShot, error in
                 if let error = error {
@@ -300,10 +294,11 @@ class FetchFirestoreData {
                     let id = safeData["id"] as? String ?? ""
                     tempArray.append(id)
                 }
+                defer { group.leave() }
                 stringArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        group.notify(queue: .main) {
             self.joinDelegate?.fetchMyJoinData(joinArray: stringArray)
         }
     }
@@ -374,7 +369,7 @@ class FetchFirestoreData {
                     eventArray.append(event)
                 }
             }
-            self.eventSearchDelegate?.getEventSearchData(eventArray: eventArray,bool:bool)
+            self.eventDelegate?.getEventSearchData(eventArray: eventArray,bool:bool)
         }
     }
     
@@ -397,7 +392,7 @@ class FetchFirestoreData {
                 }
             }
             eventArray = eventArray.filter { $0.placeAddress.contains(text) || $0.eventPlace.contains(text) }
-            self.eventTimeDelegate?.getEventTimeData(eventArray: eventArray)
+            self.eventDelegate?.getEventTimeData(eventArray: eventArray)
         }
     }
     
@@ -432,7 +427,7 @@ class FetchFirestoreData {
             if time != "" {
                 eventArray = self.searchTimeData(time: time, event: eventArray)
             }
-            self.eventDetaiDelegate?.getDetailData(eventArray: eventArray)
+            self.eventDelegate?.getDetailData(eventArray: eventArray)
         }
     }
     
@@ -544,7 +539,7 @@ class FetchFirestoreData {
                     userArray.append(user)
                 }
             }
-            self.userDelegate?.getUserData(userArray: userArray,bool:bool)
+            self.userSearchDelegate?.getUserData(userArray: userArray,bool:bool)
         }
     }
     
@@ -586,7 +581,7 @@ class FetchFirestoreData {
                 break
             }
         }
-        self.circleAndBarChartdelegate?.fetchBarData(countArray: [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10])
+        self.chartsDelegate?.fetchBarData(countArray: [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10])
     }
 }
 

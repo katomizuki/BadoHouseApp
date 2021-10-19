@@ -95,8 +95,8 @@ class SubUserViewController: UIViewController , UIPopoverPresentationControllerD
         belongCollectionView.dataSource = self
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
-        fetchData.friendDelegate = self
-        fetchData.myTeamDelegate = self
+        fetchData.myFriendDelegate = self
+//        fetchData.myTeamDelegate = self
     }
     
     private func setupCollection() {

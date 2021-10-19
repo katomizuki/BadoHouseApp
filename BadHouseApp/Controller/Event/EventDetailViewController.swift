@@ -116,8 +116,7 @@ class EventDetailViewController: UIViewController {
             guard let self = self else { return }
             self.me = user
         }
-        fetchData.circleAndBarChartdelegate = self
-//        fetchData.barDelegate = self
+        fetchData.chartsDelegate = self
         guard let teamId = team?.teamId else { return }
         TeamService.getTeamPlayerData(teamId: teamId) { teamPlayers in
             for i in 0..<teamPlayers.count {
@@ -309,11 +308,8 @@ class EventDetailViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
                 let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
-//                    guard let chatId = self.chatId else { return }
                     guard let name = self.me?.name else { return }
                     guard let meId = self.me?.uid else { return }
-                    
-                    
                     ChatRoomService.getChatData(meId: AuthService.getUserId(), youId: leaderId) { [weak self] chatId in
                         guard let self = self else { return }
                         print(chatId)
@@ -358,16 +354,12 @@ extension EventDetailViewController:FetchGenderCountDataDelegate {
         self.genderArray = countArray
         self.setupPieChart()
     }
-}
-
-//Mark chatrtDelegate
-extension EventDetailViewController {
-    
     func fetchBarData(countArray: [Int]) {
         self.rawData = countArray
         self.setupBarChart()
     }
 }
+
 //Mark:collectionViewdelegate
 extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     

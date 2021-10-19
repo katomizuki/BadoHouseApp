@@ -101,7 +101,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     }
     //Mark setupMethod
     private func setupData() {
-        fetchData.friendDelegate = self
+        fetchData.myFriendDelegate = self
         guard let me = me else { return }
         let meId = me.uid
         UserService.getFriendData(uid: meId) { [weak self] ids in
@@ -385,6 +385,10 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
 }
 //Mark getFriendDelegate
 extension MakeGroupViewController:FetchMyFriendDataDelegate {
+    func fetchMyTeamData(teamArray: [TeamModel]) {
+        print(#function)
+    }
+    
     func fetchMyFriendData(friendArray: [User]) {
         self.friends = friendArray
     }

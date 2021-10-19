@@ -119,7 +119,7 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
     }
     
     private func setupDelegate() {
-        fetchData.circleAndBarChartdelegate = self
+        fetchData.chartsDelegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }

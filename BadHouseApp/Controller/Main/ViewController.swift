@@ -76,9 +76,6 @@ class ViewController: UIViewController {
     
     private func setupDelegate() {
         fetchData.eventDelegate = self
-        fetchData.eventSearchDelegate = self
-        fetchData.eventTimeDelegate = self
-        fetchData.eventDetaiDelegate = self
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -186,26 +183,7 @@ extension ViewController: CLLocationManagerDelegate {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
     }
 }
-//Mark: GetEventSearchDelegate
-extension ViewController:FetchSearchEventDataDelegate {
-    
-    func getEventSearchData(eventArray: [Event],bool:Bool) {
-        print(#function)
-        self.eventArray = eventArray
-        if bool == false {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        } else if bool == true {
-            if eventArray.isEmpty {
-                view.emptyState.show(State.noSearch)
-            }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
-}
+
 //Mark: UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
     
@@ -242,8 +220,17 @@ extension ViewController: UISearchBarDelegate {
         }
     }
 }
-//Mark GetEventTimeDelegate
-extension ViewController: GetEventTimeDelegate{
+
+//Mark EventDelegate
+extension ViewController:FetchEventDataDelegate {
+    func fetchEventData(eventArray: [Event]) {
+        print(#function)
+        self.eventArray = eventArray
+        self.IndicatorView.stopAnimating()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
     
     func getEventTimeData(eventArray: [Event]) {
         print(#function)
@@ -256,20 +243,6 @@ extension ViewController: GetEventTimeDelegate{
             }
         }
     }
-}
-//Mark GetEventDelegate
-extension ViewController:FetchEventDataDelegate {
-    func fetchEventData(eventArray: [Event]) {
-        print(#function)
-        self.eventArray = eventArray
-        self.IndicatorView.stopAnimating()
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
-}
-//Mark: GetDetailDataDelegate
-extension ViewController:FetchEventDetailDataDelegate {
     func getDetailData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
@@ -277,7 +250,24 @@ extension ViewController:FetchEventDetailDataDelegate {
             self.collectionView.reloadData()
         }
     }
+        func getEventSearchData(eventArray: [Event],bool:Bool) {
+            print(#function)
+            self.eventArray = eventArray
+            if bool == false {
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            } else if bool == true {
+                if eventArray.isEmpty {
+                    view.emptyState.show(State.noSearch)
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
 }
+
 //Mark: GetDatailDelegate
 extension ViewController: getDetailDelegate {
     

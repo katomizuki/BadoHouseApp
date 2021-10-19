@@ -54,8 +54,6 @@ class ChatListViewController:UIViewController {
     //Mark setupMethod
     private func setupFetchDataDelegate () {
         fetchData.chatDelegate = self
-        fetchData.chatRoomDelegate = self
-        fetchData.chatListDelegate = self
         fetchData.myTeamDelegate = self
     }
     
@@ -236,7 +234,7 @@ extension ChatListViewController: FetchMyChatDataDelgate {
     }
 }
 //Mark getChatRoomDelegate
-extension ChatListViewController: FetchMyChatRoomDataDelegate {
+extension ChatListViewController {
     
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
@@ -245,7 +243,7 @@ extension ChatListViewController: FetchMyChatRoomDataDelegate {
     }
 }
 //Mark getChatListDelegate
-extension ChatListViewController :FetchMyChatListDataDelegate {
+extension ChatListViewController  {
     
     typealias sortChatArray = [EnumeratedSequence<[Chat]>.Element]
     
