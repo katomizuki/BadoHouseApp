@@ -1,7 +1,11 @@
 import UIKit
 import Foundation
+protocol LevelDismissDelegate:AnyObject {
+    func levelDismiss(vc:LevelViewController)
+}
 class LevelViewController: UIViewController {
     //Mark:Properties
+    weak var delegate:LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
             backButton.updateBackButton()
@@ -34,7 +38,7 @@ class LevelViewController: UIViewController {
     }
     //Mark:selector
     @objc private func backtoUser() {
-        dismiss(animated: true, completion: nil)
+        self.delegate?.levelDismiss(vc: self)
     }
     
     @objc private func changeLevel(sender:UISlider) {
@@ -88,7 +92,7 @@ class LevelViewController: UIViewController {
         selectedLevel = levelLabel.text ?? "1"
         let vc = self.presentingViewController as! UserViewController
         vc.level = selectedLevel
-        dismiss(animated: true, completion: nil)
+        self.delegate?.levelDismiss(vc: self)
     }
     //Mark setupMethod
     private func setupSlider(level:String) {

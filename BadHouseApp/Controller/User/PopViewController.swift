@@ -1,8 +1,11 @@
 import UIKit
 import FacebookCore
-
+protocol PopDismissDelegate:AnyObject {
+    func popDismiss(vc:PopViewController)
+}
 class PopViewController: UIViewController{
     //Mark Properties
+    weak var delegate:PopDismissDelegate?
     private let CellId = Constants.CellId.popCellId
     var cellArray = Constants.Data.genderArray
     var keyword = String()
@@ -15,6 +18,7 @@ class PopViewController: UIViewController{
         return tb
     }()
     var (age,place,badmintonTime,gender) = (String(),String(),String(),String())
+    
     //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +43,8 @@ class PopViewController: UIViewController{
         tableView.reloadData()
     }
 }
-//Mark tableViewdelegate
-extension PopViewController:UITableViewDelegate,UITableViewDataSource {
+//Mark tableViewDataSource
+extension PopViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellArray.count
@@ -52,6 +56,9 @@ extension PopViewController:UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     
+}
+//Mark tableViewDelegate
+extension PopViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! UserViewController
         switch keyword {
@@ -70,6 +77,7 @@ extension PopViewController:UITableViewDelegate,UITableViewDataSource {
         default:
             break
         }
-        dismiss(animated: true, completion: nil)
+        self.delegate?.popDismiss(vc:self)
     }
+
 }

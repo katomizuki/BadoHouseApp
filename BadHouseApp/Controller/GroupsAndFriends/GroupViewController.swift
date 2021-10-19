@@ -31,7 +31,6 @@ class GroupViewController: UIViewController{
         setupIndicator()
         IndicatorView.startAnimating()
         setupTableView()
-        self.teamArray = []
         setupData()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -43,7 +42,6 @@ class GroupViewController: UIViewController{
             let vc = tabBarController?.viewControllers?[0]
             tabBarController?.selectedViewController = vc
         } else {
-            print("ああ")
             self.teamArray = []
             setupData()
         }
@@ -113,6 +111,7 @@ class GroupViewController: UIViewController{
         if segue.identifier ==  Constants.Segue.userProfile {
             let vc = segue.destination as! UserViewController
             vc.user = self.user
+            vc.delegate = self
         } else if segue.identifier == Constants.Segue.gotoSearch {
             let vc = segue.destination as! GroupSearchViewController
             vc.friends = self.friendArray
@@ -201,5 +200,11 @@ extension GroupViewController:FetchMyTeamDataDelegate {
             self.IndicatorView.stopAnimating()
             self.groupTableView.reloadData()
         }
+    }
+}
+
+extension GroupViewController:UserDismissDelegate {
+    func userVCdismiss(vc: UserViewController) {
+        vc.dismiss(animated: true, completion: nil)
     }
 }

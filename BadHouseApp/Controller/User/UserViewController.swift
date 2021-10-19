@@ -6,7 +6,9 @@ import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 import CDAlertView
-
+protocol UserDismissDelegate:AnyObject {
+    func userVCdismiss(vc:UserViewController)
+}
 class UserViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     //Mark: properties
     var user:User?
@@ -15,6 +17,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private var hasChangedImage = false
     private var name = ""
     private var email = ""
+    weak var delegate:UserDismissDelegate?
     private let logoutButton:UIButton = {
         let button = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14,weight: .bold)
@@ -153,6 +156,7 @@ class UserViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     //Mark: Selector
     @objc private func back() {
+        self.delegate?.userVCdismiss(vc: self)
         dismiss(animated: true, completion: nil)
     }
     
@@ -280,7 +284,7 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         let viewController = PopViewController() //popoverで表示するViewController
         viewController.modalPresentationStyle = .popover
         viewController.preferredContentSize = CGSize(width: 200, height: 150)
-        
+        viewController.delegate = self
         let presentationController = viewController.popoverPresentationController
         presentationController?.delegate = self
         presentationController?.permittedArrowDirections = .up
@@ -305,9 +309,21 @@ extension UserViewController:UITableViewDelegate,UITableViewDataSource,UIPopover
         if segue.identifier == Constants.Segue.gotoLevel {
             let vc = segue.destination as! LevelViewController
             vc.selectedLevel = self.level
+            vc.delegate = self
         }
     }
 }
 
+extension UserViewController:LevelDismissDelegate {
+    func levelDismiss(vc: LevelViewController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UserViewController:PopDismissDelegate {
+    func popDismiss(vc: PopViewController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
+}
 
 
