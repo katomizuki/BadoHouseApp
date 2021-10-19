@@ -12,8 +12,6 @@
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D330032626E61A2E00208525 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* PopViewController.swift */; };
 		D330032826E7013900208525 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* LevelViewController.swift */; };
-		D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B126FD3DEE0027592A /* UIColor-Extension.swift */; };
-		D34852B426FD3E160027592A /* Array-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B326FD3E160027592A /* Array-Extension.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* ChatViewController.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -32,7 +30,7 @@
 		D3A789D026F414310088E8BC /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* InviteViewController.swift */; };
 		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
 		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
-		D3A789D926F5DD8C0088E8BC /* UIVC-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */; };
+		D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* Extensions.swift */; };
 		D3A82BA527040C8100DDB4FC /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* CameraViewController.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
@@ -75,7 +73,6 @@
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
 		D3C4E94D26E1E9BB00C21E46 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94C26E1E9BB00C21E46 /* FriendsViewController.swift */; };
 		D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94E26E2F78400C21E46 /* InviteCell.swift */; };
-		D3C4E95526E3304600C21E46 /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */; };
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
@@ -84,7 +81,7 @@
 		D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostViewController.swift */; };
 		D3CF6D1126F8AE60007C4DF3 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */; };
 		D3CF6D1326F8AE6C007C4DF3 /* DaughterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */; };
-		D3DA98BA26F6D8C200DFF8B1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98B926F6D8C200DFF8B1 /* State.swift */; };
+		D3DA98BA26F6D8C200DFF8B1 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */; };
 		D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchViewController.swift */; };
 		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
 		D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */; };
@@ -113,8 +110,6 @@
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
-		D34852B126FD3DEE0027592A /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
-		D34852B326FD3E160027592A /* Array-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Extension.swift"; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -133,7 +128,7 @@
 		D3A789CF26F414310088E8BC /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-		D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC-Extension.swift"; sourceTree = "<group>"; };
+		D3A789D826F5DD8C0088E8BC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D3A82BA427040C8100DDB4FC /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +170,6 @@
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		D3C4E94C26E1E9BB00C21E46 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		D3C4E94E26E2F78400C21E46 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
-		D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
@@ -184,7 +178,7 @@
 		D3CECEE526F3061700B1C498 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaughterViewController.swift; sourceTree = "<group>"; };
-		D3DA98B926F6D8C200DFF8B1 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
@@ -287,15 +281,16 @@
 			path = ChatList;
 			sourceTree = "<group>";
 		};
-		D3AC05EE26EE279D00F40A51 /* Other */ = {
+		D3AC05EE26EE279D00F40A51 /* ConstantsAndOtherUtil */ = {
 			isa = PBXGroup;
 			children = (
 				D3BDB54526E055C900C53780 /* Constants.swift */,
 				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
 				D3AC05EC26EE274100F40A51 /* DateUtil.swift */,
 				D30B793B2700A5940086456E /* NotificationUtil.swift */,
+				D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */,
 			);
-			path = Other;
+			path = ConstantsAndOtherUtil;
 			sourceTree = "<group>";
 		};
 		D3BDB51B26E0525100C53780 = {
@@ -353,7 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				D3FFD326271EBBD100DE54ED /* API-Service */,
-				D3AC05EE26EE279D00F40A51 /* Other */,
+				D3AC05EE26EE279D00F40A51 /* ConstantsAndOtherUtil */,
 				D3BDB54E26E05D9500C53780 /* Extension */,
 			);
 			path = Utility;
@@ -403,11 +398,7 @@
 			children = (
 				D3BDB55226E05E7A00C53780 /* Anchor-Extension.swift */,
 				D3BDB55626E0644E00C53780 /* UIButton-Extension.swift */,
-				D3A789D826F5DD8C0088E8BC /* UIVC-Extension.swift */,
-				D3DA98B926F6D8C200DFF8B1 /* State.swift */,
-				D3C4E95426E3304600C21E46 /* UIImage-Extension.swift */,
-				D34852B126FD3DEE0027592A /* UIColor-Extension.swift */,
-				D34852B326FD3E160027592A /* Array-Extension.swift */,
+				D3A789D826F5DD8C0088E8BC /* Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -696,7 +687,6 @@
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
-				D34852B426FD3E160027592A /* Array-Extension.swift in Sources */,
 				D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
@@ -733,7 +723,6 @@
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
 				D3C4E94D26E1E9BB00C21E46 /* FriendsViewController.swift in Sources */,
 				D3BDB52C26E0525100C53780 /* ViewController.swift in Sources */,
-				D3C4E95526E3304600C21E46 /* UIImage-Extension.swift in Sources */,
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchViewController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
@@ -748,7 +737,6 @@
 				D330032626E61A2E00208525 /* PopViewController.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
 				D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */,
-				D34852B226FD3DEE0027592A /* UIColor-Extension.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* JoinService.swift in Sources */,
@@ -764,7 +752,7 @@
 				D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */,
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
-				D3A789D926F5DD8C0088E8BC /* UIVC-Extension.swift in Sources */,
+				D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */,
@@ -775,7 +763,7 @@
 				D37FA52C26EB4AD900B8559F /* EventDetailViewController.swift in Sources */,
 				D3976EF1270337F40016CEB2 /* InputView.swift in Sources */,
 				D3C4E93C26E0F57700C21E46 /* CollectionCell.swift in Sources */,
-				D3DA98BA26F6D8C200DFF8B1 /* State.swift in Sources */,
+				D3DA98BA26F6D8C200DFF8B1 /* EmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

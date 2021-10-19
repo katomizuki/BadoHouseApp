@@ -98,7 +98,7 @@ extension MapViewController:UISearchBarDelegate {
             geocoder.geocodeAddressString(search) { placemark, error in
                 if let error = error {
                     print("Location",error)
-                    self.showAlert(title: "検索エラー", message: "開催場所の正式名称を入力してください", actionTitle: "OK")
+                    self.setupCDAlert(title: "検索エラー", message: "開催場所の正式名称を入力してください", action: "OK", alertType: .error)
                     return
                 }
                 if let safePlacemark = placemark {

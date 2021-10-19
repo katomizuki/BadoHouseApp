@@ -5,34 +5,7 @@ import NVActivityIndicatorView
 import CDAlertView
 
 extension UIViewController {
-    func showAlert(title:String,message:String,actionTitle:String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        let alertAction = UIAlertAction(title: actionTitle, style: UIAlertAction.Style.default)
-        alertVC.addAction(alertAction)
-        present(alertVC, animated: true, completion: nil)
-    }
-    
-    func notification(uid:String,completion:@escaping(Bool)->Void) {
-        Ref.UsersRef.document(uid).collection("PreJoin").addSnapshotListener { snapShot, error in
-            var boolArray = [PreJoin]()
-            var result = false
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = snapShot?.documents else { return }
-            data.forEach { data in
-                let safeData = data.data()
-                let pre = PreJoin(dic:safeData)
-                boolArray.append(pre)
-            }
-            if boolArray.filter({ $0.alertOrNot == false }).count >= 1 {
-                result = true
-            }
-            completion(result)
-        }
-    }
-    
+
     func setupIndicatorView()->NVActivityIndicatorView {
         let frame = CGRect(x: view.frame.width / 2,
                            y: view.frame.height / 2,
@@ -43,7 +16,6 @@ extension UIViewController {
                                         color: Constants.AppColor.OriginalBlue,
                                         padding: 0)
     }
-    
     func setupCDAlert(title:String,message:String,action:String,alertType:CDAlertViewType) {
         let alert = CDAlertView(title: title, message: message, type: alertType)
         let alertAction = CDAlertViewAction(title: action, font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
@@ -90,9 +62,31 @@ extension UIViewController {
         navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
     }
-    
-    
 }
-
+//Mark: UIImageView Extension
+extension UIImageView {
+    func chageCircle() {
+        self.layer.cornerRadius = self.frame.width / 2
+        self.layer.masksToBounds = true
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 4
+        self.clipsToBounds = true
+        self.contentMode = .scaleAspectFill
+    }
+}
+//Mark:UIColor-Extension
+extension UIColor {
+    static func rgb(red:CGFloat,green:CGFloat,blue:CGFloat,alpha:CGFloat = 1)->UIColor {
+        return .init(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
+    }
+}
+//Mark:Array-Extension
+extension Array where Element: Equatable {
+    mutating func remove(value: Element) {
+        if let i = self.firstIndex(of: value) {
+            self.remove(at: i)
+        }
+    }
+}
 
 

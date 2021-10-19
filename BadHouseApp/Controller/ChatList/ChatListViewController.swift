@@ -85,7 +85,7 @@ class ChatListViewController:UIViewController {
     }
     
     private func setupNotification() {
-        self.notification(uid: AuthService.getUserId()) { [weak self] bool in
+        JoinService.notification(uid: AuthService.getUserId()) { [weak self] bool in
             if bool == true {
                 guard let self = self else { return }
                 self.setupCDAlert(title: "新規参加申請が来ております", message: "お知らせ画面で確認しよう!", action: "OK", alertType: CDAlertViewType.notification)

@@ -48,5 +48,25 @@ struct JoinService {
     static func sendPreJoin(eventId:String,userId:String) {
         Ref.EventRef.document(eventId).collection("PreJoin").document(userId).setData(["id":userId])
     }
+    static func notification(uid:String,completion:@escaping(Bool)->Void) {
+        Ref.UsersRef.document(uid).collection("PreJoin").addSnapshotListener { snapShot, error in
+            var boolArray = [PreJoin]()
+            var result = false
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = snapShot?.documents else { return }
+            data.forEach { data in
+                let safeData = data.data()
+                let pre = PreJoin(dic:safeData)
+                boolArray.append(pre)
+            }
+            if boolArray.filter({ $0.alertOrNot == false }).count >= 1 {
+                result = true
+            }
+            completion(result)
+        }
+    }
     
 }
