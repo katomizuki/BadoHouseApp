@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class GroupChatViewController: UIViewController {
+class GroupChatController: UIViewController {
     //Mark:Properties
     var team:TeamModel?
     private var chatArray = [GroupChatModel]()
@@ -50,7 +50,7 @@ class GroupChatViewController: UIViewController {
     }
 }
 //Mark :tableViewdelegate
-extension GroupChatViewController:UITableViewDataSource {
+extension GroupChatController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatArray.count
@@ -63,7 +63,7 @@ extension GroupChatViewController:UITableViewDataSource {
     }
 }
 //Mark tableViewdelegate
-extension GroupChatViewController:UITableViewDelegate {
+extension GroupChatController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -72,7 +72,7 @@ extension GroupChatViewController:UITableViewDelegate {
     }
 }
 //Mark:chatDelegate
-extension GroupChatViewController:FetchMyGroupChatDataDelegate {
+extension GroupChatController:FetchMyGroupChatDataDelegate {
     func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
         self.chatArray = []
         self.chatArray = groupChatModelArray
@@ -83,7 +83,7 @@ extension GroupChatViewController:FetchMyGroupChatDataDelegate {
     }
 }
 //Mark InputDelegate
-extension GroupChatViewController:InputDelegate {
+extension GroupChatController:InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         guard let teamId = self.team?.teamId else { return }
         guard let me = self.me else { return }

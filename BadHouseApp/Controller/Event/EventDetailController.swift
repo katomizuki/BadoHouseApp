@@ -284,7 +284,7 @@ class EventDetailController: UIViewController {
     //Mark: prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoChat {
-            let vc = segue.destination as! ChatViewController
+            let vc = segue.destination as! DMChatController
             guard let me = me else { return }
             guard let you = you else { return }
             vc.me = me

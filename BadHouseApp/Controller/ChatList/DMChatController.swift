@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController {
+class DMChatController: UIViewController {
     //Mark:Properties
     private let cellId = Constants.CellId.chatCellId
     @IBOutlet private weak var chatTableView: UITableView!
@@ -61,7 +61,7 @@ class ChatViewController: UIViewController {
     }
 }
 //Mark:UITableViewDataSource
-extension ChatViewController:UITableViewDataSource {
+extension DMChatController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -76,7 +76,7 @@ extension ChatViewController:UITableViewDataSource {
     }
 }
 //Mark:uitableViewdelegate
-extension ChatViewController:UITableViewDelegate {
+extension DMChatController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.rowHeight = 100
         return UITableView.automaticDimension
@@ -88,7 +88,7 @@ extension ChatViewController:UITableViewDelegate {
 }
 
 //Mark:GetChatDelegate
-extension ChatViewController: FetchMyChatDataDelgate {
+extension DMChatController: FetchMyChatDataDelgate {
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
     }
@@ -107,7 +107,7 @@ extension ChatViewController: FetchMyChatDataDelgate {
 }
 
 //Mark InputDelegate
-extension ChatViewController:InputDelegate {
+extension DMChatController:InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         print(#function)
         guard let text = inputView.messageInputTextView.text else { return }

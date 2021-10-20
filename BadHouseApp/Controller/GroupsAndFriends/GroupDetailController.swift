@@ -215,13 +215,13 @@ class GroupDetailController: UIViewController {
     }
     
     @IBAction private func gotoGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction private func go(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }

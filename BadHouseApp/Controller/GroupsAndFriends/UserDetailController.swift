@@ -165,14 +165,14 @@ class UserDetailController: UIViewController {
     }
     
     @IBAction func gotoChat(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
         vc.me = me
         vc.you = user
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func gotoDM(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
         vc.me = me
         vc.you = user
         navigationController?.pushViewController(vc, animated: true)

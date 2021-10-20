@@ -4,7 +4,7 @@ import AVFoundation
 import FirebaseStorage
 import Firebase
 
-class PostViewController: UIViewController {
+class PostVideoController: UIViewController {
     
     //Mark:Properties
     private let logoImage:UIImageView = {

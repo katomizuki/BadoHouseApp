@@ -13,7 +13,7 @@
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
-		D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* ChatViewController.swift */; };
+		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
@@ -26,12 +26,12 @@
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D3977167270959A70025BE19 /* TornamentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentListController.swift */; };
 		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
-		D39771722709D1D40025BE19 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* ScheduleViewController.swift */; };
+		D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* MyScheduleController.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
-		D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* ChatListViewController.swift */; };
+		D3A789D526F439A40088E8BC /* TalkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* TalkController.swift */; };
 		D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* Extensions.swift */; };
-		D3A82BA527040C8100DDB4FC /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* CameraViewController.swift */; };
+		D3A82BA527040C8100DDB4FC /* VideoCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */; };
@@ -76,17 +76,17 @@
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
-		D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */; };
+		D3CECEE126F2FFDA00B1C498 /* TimeLineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE026F2FFDA00B1C498 /* TimeLineController.swift */; };
 		D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE226F3019700B1C498 /* VideoCell.swift */; };
-		D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostViewController.swift */; };
-		D3CF6D1126F8AE60007C4DF3 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */; };
-		D3CF6D1326F8AE6C007C4DF3 /* DaughterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */; };
+		D3CECEE626F3061700B1C498 /* PostVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostVideoController.swift */; };
+		D3CF6D1126F8AE60007C4DF3 /* CheckPreJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */; };
+		D3CF6D1326F8AE6C007C4DF3 /* CheckJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */; };
 		D3DA98BA26F6D8C200DFF8B1 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */; };
 		D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */; };
 		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
-		D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */; };
+		D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
-		D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */; };
+		D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
@@ -113,7 +113,7 @@
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
-		D353D8D926F05B9600221B7D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -126,12 +126,12 @@
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D3977166270959A70025BE19 /* TornamentListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentListController.swift; sourceTree = "<group>"; };
 		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
-		D39771712709D1D40025BE19 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		D39771712709D1D40025BE19 /* MyScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
-		D3A789D426F439A40088E8BC /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		D3A789D426F439A40088E8BC /* TalkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkController.swift; sourceTree = "<group>"; };
 		D3A789D826F5DD8C0088E8BC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		D3A82BA427040C8100DDB4FC /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchController.swift; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -175,17 +175,17 @@
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
-		D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		D3CECEE026F2FFDA00B1C498 /* TimeLineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineController.swift; sourceTree = "<group>"; };
 		D3CECEE226F3019700B1C498 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
-		D3CECEE526F3061700B1C498 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
-		D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaughterViewController.swift; sourceTree = "<group>"; };
+		D3CECEE526F3061700B1C498 /* PostVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVideoController.swift; sourceTree = "<group>"; };
+		D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPreJoinController.swift; sourceTree = "<group>"; };
+		D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckJoinController.swift; sourceTree = "<group>"; };
 		D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchController.swift; sourceTree = "<group>"; };
 		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
-		D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
+		D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatController.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
-		D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinViewController.swift; sourceTree = "<group>"; };
+		D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPagerController.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
@@ -274,13 +274,13 @@
 		D3A789D326F4396A0088E8BC /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				D3CF6D1026F8AE60007C4DF3 /* ChildViewController.swift */,
-				D3CF6D1226F8AE6C007C4DF3 /* DaughterViewController.swift */,
-				D3A789D426F439A40088E8BC /* ChatListViewController.swift */,
-				D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */,
-				D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */,
-				D353D8D926F05B9600221B7D /* ChatViewController.swift */,
-				D39771712709D1D40025BE19 /* ScheduleViewController.swift */,
+				D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */,
+				D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */,
+				D3A789D426F439A40088E8BC /* TalkController.swift */,
+				D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */,
+				D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */,
+				D353D8D926F05B9600221B7D /* DMChatController.swift */,
+				D39771712709D1D40025BE19 /* MyScheduleController.swift */,
 			);
 			path = ChatList;
 			sourceTree = "<group>";
@@ -484,7 +484,7 @@
 		D3CECEDF26F2FFBC00B1C498 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
-				D3CECEE026F2FFDA00B1C498 /* TimeLineViewController.swift */,
+				D3CECEE026F2FFDA00B1C498 /* TimeLineController.swift */,
 				D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */,
 			);
 			path = TimeLine;
@@ -493,8 +493,8 @@
 		D3CECEE426F3060500B1C498 /* VideoPost */ = {
 			isa = PBXGroup;
 			children = (
-				D3CECEE526F3061700B1C498 /* PostViewController.swift */,
-				D3A82BA427040C8100DDB4FC /* CameraViewController.swift */,
+				D3CECEE526F3061700B1C498 /* PostVideoController.swift */,
+				D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */,
 			);
 			path = VideoPost;
 			sourceTree = "<group>";
@@ -691,14 +691,14 @@
 				D3C4E93226E0F0BD00C21E46 /* MyPageUserInfoController.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
-				D3A789D526F439A40088E8BC /* ChatListViewController.swift in Sources */,
+				D3A789D526F439A40088E8BC /* TalkController.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
-				D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */,
+				D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */,
 				D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */,
-				D39771722709D1D40025BE19 /* ScheduleViewController.swift in Sources */,
+				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
 				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
@@ -714,17 +714,17 @@
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
-				D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */,
+				D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */,
 				D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */,
-				D3CECEE626F3061700B1C498 /* PostViewController.swift in Sources */,
-				D3A82BA527040C8100DDB4FC /* CameraViewController.swift in Sources */,
+				D3CECEE626F3061700B1C498 /* PostVideoController.swift in Sources */,
+				D3A82BA527040C8100DDB4FC /* VideoCameraController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */,
 				D330032826E7013900208525 /* MyLevelController.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
-				D3CF6D1126F8AE60007C4DF3 /* ChildViewController.swift in Sources */,
+				D3CF6D1126F8AE60007C4DF3 /* CheckPreJoinController.swift in Sources */,
 				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */,
@@ -734,7 +734,7 @@
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
-				D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */,
+				D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */,
 				D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */,
 				D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */,
@@ -744,12 +744,12 @@
 				D3BDB55726E0644E00C53780 /* UIButton-Extension.swift in Sources */,
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
-				D3CECEE126F2FFDA00B1C498 /* TimeLineViewController.swift in Sources */,
+				D3CECEE126F2FFDA00B1C498 /* TimeLineController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* JoinService.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
-				D3CF6D1326F8AE6C007C4DF3 /* DaughterViewController.swift in Sources */,
+				D3CF6D1326F8AE6C007C4DF3 /* CheckJoinController.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,

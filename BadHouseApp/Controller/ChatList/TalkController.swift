@@ -4,7 +4,7 @@ import SDWebImage
 import CDAlertView
 import NVActivityIndicatorView
 
-class ChatListViewController:UIViewController {
+class TalkController:UIViewController {
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
@@ -34,7 +34,6 @@ class ChatListViewController:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupFetchDataDelegate()
         setupOwnTeamData()
         setupNotification()
         setupNav()
@@ -52,11 +51,6 @@ class ChatListViewController:UIViewController {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     //Mark setupMethod
-    private func setupFetchDataDelegate () {
-        fetchData.chatDelegate = self
-        fetchData.myTeamDelegate = self
-    }
-    
     private func setupNav() {
         navigationItem.title = "トーク"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
@@ -94,6 +88,8 @@ class ChatListViewController:UIViewController {
     }
     
     private func setupData() {
+        fetchData.chatDelegate = self
+        fetchData.myTeamDelegate = self
         ChatRoomService.getChatRoomData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
             self.fetchData.fetchChatRoomModelData(chatId:chatId)
@@ -129,7 +125,7 @@ class ChatListViewController:UIViewController {
         print(#function)
         UserService.getUserData(uid: AuthService.getUserId()) { user in
             guard let me = user else { return }
-            let vc = ScheduleViewController(user: me)
+            let vc = MyScheduleController(user: me)
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -143,7 +139,7 @@ class ChatListViewController:UIViewController {
     }
 }
 //Mark:tableViewdelegate,datasource
-extension ChatListViewController:UITableViewDataSource {
+extension TalkController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -191,13 +187,13 @@ extension ChatListViewController:UITableViewDataSource {
     }
 }
 
-extension ChatListViewController:UITableViewDelegate {
+extension TalkController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         if indexPath.section == 0 {
             let team = teams[indexPath.row]
             self.selectedTeam = team
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatController
             vc.team = self.selectedTeam
             navigationController?.pushViewController(vc, animated: true)
             
@@ -205,14 +201,14 @@ extension ChatListViewController:UITableViewDelegate {
             if AuthService.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 me = sortAnotherUserArray[indexPath.row]
                 you = sortUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! ChatViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
@@ -227,7 +223,7 @@ extension ChatListViewController:UITableViewDelegate {
     }
 }
 //Mark getchatDelegate
-extension ChatListViewController: FetchMyChatDataDelgate {
+extension TalkController: FetchMyChatDataDelgate {
     
     func fetchMyChatData(chatArray: [Chat]) {
         self.chatArray.append(chatArray)
@@ -273,7 +269,7 @@ extension ChatListViewController: FetchMyChatDataDelgate {
     }
 }
 //Mark GetmyTeamDelegate
-extension ChatListViewController:FetchMyTeamDataDelegate {
+extension TalkController:FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teams = teamArray
         for i in 0..<teams.count {

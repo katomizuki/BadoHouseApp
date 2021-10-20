@@ -4,7 +4,7 @@ import AVFoundation
 import FirebaseStorage
 import Firebase
 
-class CameraViewController: UIViewController {
+class VideoCameraController: UIViewController {
     //Mark properties
     var keyWord = String()
     let captureSession = AVCaptureSession()
@@ -72,7 +72,7 @@ class CameraViewController: UIViewController {
     }
 }
 //Mark AVfileoutputDelegate
-extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
+extension VideoCameraController: AVCaptureFileOutputRecordingDelegate {
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         StorageService.sendVideoData(videoUrl: outputFileURL, senderId: AuthService.getUserId(), keyWord:self.keyWord)

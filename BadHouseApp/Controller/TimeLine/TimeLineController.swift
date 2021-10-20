@@ -4,7 +4,7 @@ import AVKit
 import NVActivityIndicatorView
 import SkeletonView
 
-class TimeLineViewController: UIViewController{
+class TimeLineController: UIViewController{
     //Mark properties
     private var collectionView:UICollectionView?
     private var data = [VideoModel]()
@@ -55,7 +55,7 @@ class TimeLineViewController: UIViewController{
     }
 }
 //Mark:collectionViewdelegate & skeletonViewdelegate
-extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSource {
+extension TimeLineController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
@@ -68,13 +68,14 @@ extension TimeLineViewController:UICollectionViewDelegate,UICollectionViewDataSo
         return cell
     }
 }
-extension TimeLineViewController:SkeletonCollectionViewDataSource {
+//Mark SkeletonDatasource
+extension TimeLineController:SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return VideoCell.identifier
     }
 }
 //Mark:getVideoDelegate
-extension TimeLineViewController:FetchVideoDataDelegate {
+extension TimeLineController:FetchVideoDataDelegate {
     func fetchVideoData(videoArray: [VideoModel]) {
         self.data = videoArray
         DispatchQueue.main.async {
@@ -83,7 +84,7 @@ extension TimeLineViewController:FetchVideoDataDelegate {
     }
 }
 //Mark collectionCellDelegate
-extension TimeLineViewController:VideoCollectionCellDelegate{
+extension TimeLineController:VideoCollectionCellDelegate{
     
     func didTapSearchButton(video: VideoModel,button:UIButton) {
         print(#function)
@@ -104,14 +105,14 @@ extension TimeLineViewController:VideoCollectionCellDelegate{
     }
 }
 
-extension TimeLineViewController:UIPopoverPresentationControllerDelegate {
+extension TimeLineController:UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
 
 //Mark SearchVideoDelegate
-extension TimeLineViewController: SearchVideoDelegate{
+extension TimeLineController: SearchVideoDelegate{
     func getVideoData(videoArray: [VideoModel],vc:VideoPopoverController) {
         print(#function)
         vc.dismiss(animated: true, completion: nil)

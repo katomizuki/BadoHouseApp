@@ -5,7 +5,7 @@ import SDWebImage
 import FSCalendar
 import FacebookCore
 
-class ScheduleViewController: UIViewController{
+class MyScheduleController: UIViewController{
     //Mark properties
     var me:User?
     private let cellId = Constants.CellId.CellGroupId
@@ -86,7 +86,7 @@ class ScheduleViewController: UIViewController{
     }
 }
 //Mark: tableviewdelegate
-extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
+extension MyScheduleController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventArray.count
@@ -101,7 +101,7 @@ extension ScheduleViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark:eventDelegate
-extension ScheduleViewController:FetchMyEventDataDelegate {
+extension MyScheduleController:FetchMyEventDataDelegate {
     
     func fetchMyEventData(eventArray: [Event]) {
         var array = eventArray
@@ -118,7 +118,7 @@ extension ScheduleViewController:FetchMyEventDataDelegate {
     }
 }
 //Mark FSCalendarDelegate
-extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCalendarDelegateAppearance{
+extension MyScheduleController:FSCalendarDelegate,  FSCalendarDataSource,FSCalendarDelegateAppearance{
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let date = DateUtils.stringFromDate(date: date, format: "yyyy/MM/dd HH:mm:ss Z")
@@ -147,7 +147,7 @@ extension ScheduleViewController:FSCalendarDelegate,  FSCalendarDataSource,FSCal
     }
 }
 //Mark:CalendarEventDelegate
-extension ScheduleViewController:CalendarEventDelegate {
+extension MyScheduleController:CalendarEventDelegate {
     
     func removeEvent(eventModel: Event,cell:UITableViewCell) {
         guard let tappedIndex = tableview.indexPath(for: cell)?[1] else { return }

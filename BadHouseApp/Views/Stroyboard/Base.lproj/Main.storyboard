@@ -193,10 +193,10 @@
             </objects>
             <point key="canvasLocation" x="1132" y="-618.44077961019491"/>
         </scene>
-        <!--Post View Controller-->
+        <!--Post Video Controller-->
         <scene sceneID="6up-6B-0Hg">
             <objects>
-                <viewController id="0yB-Z1-h0j" customClass="PostViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0yB-Z1-h0j" customClass="PostVideoController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rX0-AP-Crc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,10 +212,10 @@
             </objects>
             <point key="canvasLocation" x="2538" y="-618"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Video Camera Controller-->
         <scene sceneID="X8G-qx-wRW">
             <objects>
-                <viewController storyboardIdentifier="CameraVC" id="NMF-4C-YF6" customClass="CameraViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraVC" id="NMF-4C-YF6" customClass="VideoCameraController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bIR-h2-bxt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -460,10 +460,10 @@
             </objects>
             <point key="canvasLocation" x="2702" y="904"/>
         </scene>
-        <!--Daughter View Controller-->
+        <!--Check Join Controller-->
         <scene sceneID="C3C-S7-0sL">
             <objects>
-                <viewController storyboardIdentifier="Second" id="0xL-Bl-eWb" customClass="DaughterViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Second" id="0xL-Bl-eWb" customClass="CheckJoinController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zJW-oa-IJZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1375,10 +1375,10 @@
             </objects>
             <point key="canvasLocation" x="2718" y="1617"/>
         </scene>
-        <!--Group Chat View Controller-->
+        <!--Group Chat Controller-->
         <scene sceneID="tpC-YF-15O">
             <objects>
-                <viewController storyboardIdentifier="GroupChatViewController" id="r26-CP-u6r" customClass="GroupChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupChatViewController" id="r26-CP-u6r" customClass="GroupChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSU-UL-UDT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1452,10 +1452,10 @@
             </objects>
             <point key="canvasLocation" x="3676" y="2332.9835082458771"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Chat Controller-->
         <scene sceneID="Xt1-Xx-BKm">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="ChatViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="DMChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1978,10 +1978,10 @@
             </objects>
             <point key="canvasLocation" x="2537" y="127"/>
         </scene>
-        <!--Child View Controller-->
+        <!--Check Pre Join Controller-->
         <scene sceneID="baQ-Vh-Spk">
             <objects>
-                <viewController storyboardIdentifier="First" id="VnG-47-0hQ" customClass="ChildViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="First" id="VnG-47-0hQ" customClass="CheckPreJoinController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74G-TS-af8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2008,10 +2008,10 @@
             </objects>
             <point key="canvasLocation" x="-1238" y="1630"/>
         </scene>
-        <!--Pre Join View Controller-->
+        <!--Pager Controller-->
         <scene sceneID="VoO-ON-oIO">
             <objects>
-                <viewController storyboardIdentifier="PreVC" id="dfj-id-3hV" customClass="PreJoinViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreVC" id="dfj-id-3hV" customClass="XLPagerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a9J-d4-5TP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2024,10 +2024,10 @@
             </objects>
             <point key="canvasLocation" x="-903" y="150"/>
         </scene>
-        <!--Chat List View Controller-->
+        <!--Talk Controller-->
         <scene sceneID="Kob-48-JwL">
             <objects>
-                <viewController storyboardIdentifier="chatListVC" id="Ui5-h4-V0J" customClass="ChatListViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatListVC" id="Ui5-h4-V0J" customClass="TalkController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ylQ-Kf-Lpx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3067,7 +3067,7 @@
         <!--タイムライン-->
         <scene sceneID="y9E-9F-eh8">
             <objects>
-                <viewController id="Cym-bj-dmW" customClass="TimeLineViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cym-bj-dmW" customClass="TimeLineController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HCc-3m-Iv8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

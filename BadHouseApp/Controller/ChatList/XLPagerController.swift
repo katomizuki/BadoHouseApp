@@ -7,7 +7,7 @@ enum XLPager:String {
     case first = "First"
     case second = "Second"
 }
-class PreJoinViewController: ButtonBarPagerTabStripViewController{
+class XLPagerController: ButtonBarPagerTabStripViewController {
     //Mark properties
     lazy var collectionView:ButtonBarView = {
         let cv = buttonBarView
@@ -21,12 +21,15 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
     override func viewDidLoad() {
         setupXLTab()
         super.viewDidLoad()
-        view.addSubview(collectionView)
-        view.addSubview(scrollView)
+        setupUI()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionAndScroll()
+    }
+    private func setupUI() {
+        view.addSubview(collectionView)
+        view.addSubview(scrollView)
     }
     //Mark helperMethod
     private func collectionAndScroll() {
@@ -62,8 +65,8 @@ class PreJoinViewController: ButtonBarPagerTabStripViewController{
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let firstVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! ChildViewController
-        let secondVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! DaughterViewController
+        let firstVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! CheckPreJoinController
+        let secondVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! CheckJoinController
         return [firstVC,secondVC]
     }
 }

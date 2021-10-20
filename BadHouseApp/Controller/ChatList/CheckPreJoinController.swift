@@ -1,23 +1,27 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
+import SDWebImage
+import NVActivityIndicatorView
 
-class DaughterViewController: UIViewController {
-    //Mark:Properties
-    @IBOutlet private weak var tableView: UITableView!
+class CheckPreJoinController: UIViewController {
+    //Mark properties
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
+    @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
-    //Mark:LifeCycle
+    private var IndicatorView:NVActivityIndicatorView!
+    //Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupData()
     }
-    //Mark:setupMethod
+    //Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -25,31 +29,41 @@ class DaughterViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
     }
     
+    private func setupIndicator() {
+        IndicatorView = self.setupIndicatorView()
+        view.addSubview(IndicatorView)
+        IndicatorView.anchor(centerX: view.centerXAnchor,
+                             centerY: view.centerYAnchor,
+                             width:100,
+                             height: 100)
+    }
+    
     private func setupData() {
-        fetchData.joinDelegate = self
+        fetchData.preJoinDelegate = self
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
-            self.fetchData.fetchEventJoinData(eventArray: event)
+            self.fetchData.fetchEventPreJoinData(eventArray: event)
         }
     }
 }
-//Mark:xlPagerExtension
-extension DaughterViewController:IndicatorInfoProvider {
+//Mark:IndicatorInfo-Extension
+extension CheckPreJoinController:IndicatorInfoProvider {
+    
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "参加確定者")
+        return IndicatorInfo(title: "承認待ち")
     }
 }
-//Mark:getJoinDelegate
-extension DaughterViewController:FetchMyJoinDataDelegate {
-    func fetchMyJoinData(joinArray: [[String]]) {
-        notificationArray = [[User]]()
+//Mark:getPrejoinDelegate
+extension CheckPreJoinController:FetchMyPrejoinDataDelegate {
+    func fetchMyPrejoinData(preJoinArray: [[String]]) {
+        self.notificationArray = [[User]]()
         let group = DispatchGroup()
-        for i in 0..<joinArray.count {
+        for i in 0..<preJoinArray.count {
             var tempArray = [User]()
-            for j in 0..<joinArray[i].count {
+            for j in 0..<preJoinArray[i].count {
                 group.enter()
-                let id = joinArray[i][j]
+                let id = preJoinArray[i][j]
                 UserService.getUserData(uid: id) { user in
                     defer { group.leave() }
                     guard let user = user else { return }
@@ -60,13 +74,18 @@ extension DaughterViewController:FetchMyJoinDataDelegate {
                 self.notificationArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)  {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.IndicatorView.stopAnimating()
             self.tableView.reloadData()
         }
     }
 }
-//Mark tableViewDataSource
-extension DaughterViewController:UITableViewDataSource {
+//Mark tableviewdelegate
+extension CheckPreJoinController:UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return eventArray.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if notificationArray.isEmpty {
@@ -81,13 +100,10 @@ extension DaughterViewController:UITableViewDataSource {
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return eventArray.count
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
-        cell.label.text = notificationArray[indexPath.section][indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId,for: indexPath) as! GroupCell
+        cell.label.text = "\(notificationArray[indexPath.section][indexPath.row].name)さんから参加承認がきています"
+        cell.label.numberOfLines = 0
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl
         if urlString == "" {
             cell.cellImagevView.image = UIImage(named: Constants.ImageName.noImages)
@@ -98,34 +114,42 @@ extension DaughterViewController:UITableViewDataSource {
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
     }
 }
-//Mark TableViewDelegate
-extension DaughterViewController:UITableViewDelegate {
+//Mark UITableViewDelegate
+extension CheckPreJoinController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alertVc = UIAlertController(title: "承認待ちにもどしますか", message: "", preferredStyle: UIAlertController.Style.alert)
-        let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { action in
+        let alertVC = UIAlertController(title: "参加申請を許可しますか？", message: "", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { _ in
             let eventId = self.eventArray[indexPath.section].eventId
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
-            DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
+            DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "PreJoin", subId: userId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
-            JoinService.sendPreJoinData(eventId: eventId, userId: userId)
+            let meId = AuthService.getUserId()
+            JoinService.sendJoinData(eventId: eventId, uid: userId)
+            ChatRoomService.getChatData(meId: meId, youId: userId) { chatId in
+                ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "承認者からの参加が確定しました。", reciverId: userId)
+            }
             tableView.reloadData()
         }
-        let cancleAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default) { action in
-            print("cancle")
+        let cancleAction = UIAlertAction(title: "いいえ", style: .default) { _ in
         }
-        alertVc.addAction(alertAction)
-        alertVc.addAction(cancleAction)
-        present(alertVc, animated: true, completion: nil)
+        alertVC.addAction(alertAction)
+        alertVC.addAction(cancleAction)
+        present(alertVC, animated: true, completion: nil)
     }
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
+    func tableView(_ tableView: UITableView, selectionFollowsFocusForRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 }
+
