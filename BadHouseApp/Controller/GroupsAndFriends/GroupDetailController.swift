@@ -18,7 +18,7 @@ class GroupDetailController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var teamNameLabel: UILabel! {
         didSet {
-            teamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            teamNameLabel.font = .boldSystemFont(ofSize: 20)
         }
     }
     @IBOutlet private weak var placeLabel: UILabel!
@@ -72,7 +72,10 @@ class GroupDetailController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     // Mark setupMethod
     private func setupData() {
@@ -168,7 +171,8 @@ class GroupDetailController: UIViewController {
         pieChartDataSet.colors = colors
     }
     private func setupGraph() {
-        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
+        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1),
+                                                                   y: Double($0.element)) }
         barChartView.scaleXEnabled = false
         barChartView.scaleYEnabled = false
         let dataSet = BarChartDataSet(entries: entries)
@@ -187,7 +191,6 @@ class GroupDetailController: UIViewController {
         barChartView.legend.enabled = false
         dataSet.colors = [.lightGray]
     }
-
     private func changeUI() {
         withdrawButton.isHidden = flag
         chatButton.isHidden = flag
@@ -224,8 +227,14 @@ class GroupDetailController: UIViewController {
     @IBAction private func withdraw(_ sender: Any) {
         print(#function)
         guard let teamId = team?.teamId else { return }
-        DeleteService.deleteSubCollectionData(collecionName: "Users", documentId: AuthService.getUserId(), subCollectionName: "OwnTeam", subId: teamId)
-        DeleteService.deleteSubCollectionData(collecionName: "Teams", documentId: teamId, subCollectionName: "TeamPlayer", subId: AuthService.getUserId())
+        DeleteService.deleteSubCollectionData(collecionName: "Users",
+                                              documentId: AuthService.getUserId(),
+                                              subCollectionName: "OwnTeam",
+                                              subId: teamId)
+        DeleteService.deleteSubCollectionData(collecionName: "Teams",
+                                              documentId: teamId,
+                                              subCollectionName: "TeamPlayer",
+                                              subId: AuthService.getUserId())
         navigationController?.popViewController(animated: true
         )
     }
@@ -238,7 +247,6 @@ class GroupDetailController: UIViewController {
         }
     }
 }
-
 // Mark ChatDelegate
 extension GroupDetailController: FetchGenderCountDataDelegate {
     func fetchGenderCount(countArray: [Int]) {

@@ -71,12 +71,18 @@ class CalendarViewController: UIViewController {
     // Mark Selector
     @objc func search() {
         if searchDateString.isEmpty {
-            self.setupCDAlert(title: "検索エラー", message: "日程を指定してください", action: "OK", alertType: CDAlertViewType.error)
+            self.setupCDAlert(title: "検索エラー",
+                              message: "日程を指定してください",
+                              action: "OK",
+                              alertType: CDAlertViewType.error)
             return
         }
         guard let text = textField.text else { return }
         if text.isEmpty {
-            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+            self.setupCDAlert(title: "検索エラー",
+                              message: "１文字以上入力してください",
+                              action: "OK",
+                              alertType: CDAlertViewType.error)
             return
         }
         self.delegate?.searchCalendar(dateString: searchDateString, text: text, vc: self)

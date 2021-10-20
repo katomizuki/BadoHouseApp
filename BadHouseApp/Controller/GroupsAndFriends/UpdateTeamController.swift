@@ -40,7 +40,9 @@ class UpdateTeamController: UIViewController {
     // Mark setupMethod
     private func setupLayout() {
         view.backgroundColor = .white
-        let stackView = UIStackView(arrangedSubviews: [placeTextField, timeTextField, moneyTextField])
+        let stackView = UIStackView(arrangedSubviews: [placeTextField,
+                                                       timeTextField,
+                                                       moneyTextField])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillEqually

@@ -164,8 +164,13 @@ class MakeGroupController: UIViewController {
         pickerView.delegate = self
         textField.inputView = pickerView
         let toolBar = UIToolbar()
-        toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
-        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolBar.frame = CGRect(x: 0,
+                               y: 0,
+                               width: self.view.frame.width,
+                               height: 44)
+        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                             target: nil,
+                                             action: nil)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
                                              target: self,
                                              action: #selector(donePicker))
@@ -194,7 +199,7 @@ class MakeGroupController: UIViewController {
                                                               buttonTag7,
                                                               buttonTag8])
         let buttonStackView3 = UIStackView(arrangedSubviews: [buttonTag9,
-                                                               buttonTag10,
+                                                              buttonTag10,
                                                               buttonTag11,
                                                               buttonTag11,
                                                               buttonTag12])

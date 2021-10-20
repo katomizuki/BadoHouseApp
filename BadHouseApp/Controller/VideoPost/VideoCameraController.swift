@@ -42,15 +42,19 @@ class VideoCameraController: UIViewController {
             fileOutput.setOutputSettings([AVVideoCodecKey: AVVideoCodecType.hevc], for: connection!)
         }
         // 録画ボタン
-        self.recordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        self.recordButton = UIButton(frame: CGRect(x: 0,
+                                                   y: 0,
+                                                   width: 80,
+                                                   height: 80))
         self.recordButton.backgroundColor = .white
         self.recordButton.layer.masksToBounds = true
         self.recordButton.layer.cornerRadius = 80 / 2
-        self.recordButton.layer.position = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height - 120)
+        self.recordButton.layer.position = CGPoint(x: self.view.bounds.width / 2,
+                                                   y: self.view.bounds.height - 120)
         self.recordButton.addTarget(self, action: #selector(self.tappedRecordButton(sender:)), for: .touchUpInside)
         self.view.addSubview(recordButton)
     }
-// Mark selector
+    // Mark selector
     @objc private func tappedRecordButton(sender: UIButton) {
         if isRecording {
             // 録画終了

@@ -97,7 +97,10 @@ extension GroupSearchController: UISearchBarDelegate {
         print(#function)
         guard let text = searchBar.text else { return }
         if text.isEmpty {
-            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+            self.setupCDAlert(title: "検索エラー",
+                              message: "１文字以上入力してください",
+                              action: "OK",
+                              alertType: CDAlertViewType.error)
             return
         }
         searchBar.text = ""
@@ -124,7 +127,6 @@ extension GroupSearchController: FetchSearchGroupDelegate {
         }
     }
 }
-
 // Mark EmptyStateDelegate
 extension GroupSearchController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {

@@ -184,7 +184,10 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
-            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+            self.setupCDAlert(title: "検索エラー",
+                              message: "１文字以上入力してください",
+                              action: "OK",
+                              alertType: CDAlertViewType.error)
             return
         }
         fetchData.searchEventTextData(text: searchText, bool: true)
@@ -260,7 +263,12 @@ extension HomeViewController: FetchEventDataDelegate {
 // Mark GetDatailDelegate
 extension HomeViewController: getDetailDelegate {
     func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String, vc: DetailSearchController) {
-        fetchData.searchEventDetailData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
+        fetchData.searchEventDetailData(title: title,
+                                        circle: circle,
+                                        level: level,
+                                        placeAddressString: placeAddressString,
+                                        money: money,
+                                        time: time)
         vc.dismiss(animated: true, completion: nil)
     }
 }

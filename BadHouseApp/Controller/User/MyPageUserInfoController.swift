@@ -20,7 +20,7 @@ class MyPageUserInfoController: UIViewController {
     weak var delegate: UserDismissDelegate?
     private lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
     }()
@@ -185,7 +185,10 @@ class MyPageUserInfoController: UIViewController {
                 } else {
                     UserService.updateUserData(dic: dic)
                 }
-                self.setupCDAlert(title: "ユーザー情報を保存しました", message: "", action: "OK", alertType: .success)
+                self.setupCDAlert(title: "ユーザー情報を保存しました",
+                                  message: "",
+                                  action: "OK",
+                                  alertType: .success)
             }.disposed(by: diposeBag)
     }
     // Mark Selector

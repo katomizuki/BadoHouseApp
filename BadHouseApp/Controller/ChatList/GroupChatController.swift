@@ -11,12 +11,15 @@ class GroupChatController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var me: User?
     private lazy var customInputView: CustomInputAccessoryView = {
-        let ci = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0,width: view.frame.width, height: 50))
+        let ci = CustomInputAccessoryView(frame: CGRect(x: 0,
+                                                        y: 0,
+                                                        width: view.frame.width,
+                                                        height: 50))
         ci.delegate = self
         return ci
     }()
     override var inputAccessoryView: UIView? {
-            return customInputView
+        return customInputView
     }
     override var canBecomeFirstResponder: Bool {
         return true

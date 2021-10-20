@@ -12,7 +12,10 @@ class InviteToTeamController: UIViewController {
     private var cellId = Constants.CellId.FriendCellId
     var friends = [User]()
     var inviter = [User]()
-    var (teamName, teamTime, teamPlace, teamLevel) = (String(), String(), String(), String())
+    var (teamName,
+         teamTime,
+         teamPlace,
+         teamLevel) = (String(), String(), String(), String())
     var teamImage: UIImage?
     var me: User?
     @IBOutlet private weak var inviteButton: UIButton! {

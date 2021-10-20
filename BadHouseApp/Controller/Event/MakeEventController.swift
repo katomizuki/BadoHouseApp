@@ -126,7 +126,10 @@ class MakeEventController: UIViewController {
     private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
-        toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
+        toolBar.frame = CGRect(x: 0,
+                               y: 0,
+                               width: self.view.frame.width,
+                               height: 44)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
         let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolBar.setItems([flexibleButton, doneButtonItem], animated: true)

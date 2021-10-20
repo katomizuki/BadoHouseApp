@@ -175,7 +175,7 @@ extension TalkController: UITableViewDataSource {
         }
     }
 }
-
+// Mark UITableViewDelegate
 extension TalkController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
@@ -220,7 +220,7 @@ extension TalkController: FetchMyChatDataDelgate {
         fetchData.fetchMyChatListData(chatModelArray: chatRoomArray)
         self.chatModelArray = chatRoomArray
     }
-    typealias sortChatArray = [EnumeratedSequence<[Chat]>.Element]
+    typealias SortChatArray = [EnumeratedSequence<[Chat]>.Element]
     func fetchMyChatListData(userArray: [User], anotherArray: [User], lastChatArray: [Chat], chatModelArray: [ChatRoom]) {
         cleanArray()
         self.userArray = userArray
@@ -234,7 +234,7 @@ extension TalkController: FetchMyChatDataDelgate {
             self.tableView.reloadData()
         }
     }
-    private func sortArray() -> sortChatArray {
+    private func sortArray() -> SortChatArray {
         let sortArray = self.lastCommentArray.enumerated().sorted {
             guard let time = $0.element.sendTime?.dateValue() else { return false }
             guard let time2 = $1.element.sendTime?.dateValue() else { return false }
@@ -242,7 +242,7 @@ extension TalkController: FetchMyChatDataDelgate {
         }
         return sortArray
     }
-    private func makeSortArray(sortArray: sortChatArray) {
+    private func makeSortArray(sortArray: SortChatArray) {
         for i in 0..<sortArray.count {
             let index = sortArray[i].offset
             self.sortUserArray.append(self.userArray[index])

@@ -107,7 +107,10 @@ class EventDetailController: UIViewController {
         imageView.anchor(width: 44, height: 44)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                                style: UIBarButtonItem.Style.plain,
+                                                                target: nil,
+                                                                action: nil)
     }
     private func setupData() {
         UserService.getUserData(uid: AuthService.getUserId()) { [weak self] user in

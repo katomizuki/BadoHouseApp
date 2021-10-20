@@ -70,7 +70,7 @@ extension CheckJoinController: UITableViewDataSource {
             return 0
         } else {
             for i in 0..<eventArray.count where section == i {
-                    return self.notificationArray[i].count
+                return self.notificationArray[i].count
             }
             return 0
         }
@@ -91,7 +91,7 @@ extension CheckJoinController: UITableViewDataSource {
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
     }

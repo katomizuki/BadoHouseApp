@@ -11,7 +11,7 @@ class UserDetailController: UIViewController {
     var userFriend = [User]()
     @IBOutlet private weak var teamLabel: UILabel! {
         didSet {
-            teamLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            teamLabel.font = .boldSystemFont(ofSize: 20)
         }
     }
     @IBOutlet private weak var friendsImageView: UIImageView! {
@@ -32,7 +32,7 @@ class UserDetailController: UIViewController {
     }
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
-            friendLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            friendLabel.font = .boldSystemFont(ofSize: 20)
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
@@ -58,14 +58,17 @@ class UserDetailController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
         navigationItem.title = user?.name
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     // Mark setupMethod
     private func setupUI() {
         nameLabel.text = user?.name
-        ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
+        ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定": user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
-        levelLabel.text = user?.level == "" || user?.level == nil || user?.level == "未設定" ? "未設定":user?.level
+        levelLabel.text = user?.level == "" || user?.level == nil || user?.level == "未設定" ? "未設定": user?.level
         badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
         if user?.uid == me?.uid {
             friendButton.isHidden = true
@@ -73,7 +76,10 @@ class UserDetailController: UIViewController {
     }
     private func setupBorder(view: UIView) {
         let border = CALayer()
-        border.frame = CGRect(x: view.frame.width - 1, y: 15, width: 5.0, height: view.frame.height)
+        border.frame = CGRect(x: view.frame.width - 1,
+                              y: 15,
+                              width: 5.0,
+                              height: view.frame.height)
         border.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(border)
     }
@@ -143,7 +149,7 @@ class UserDetailController: UIViewController {
     // Mark IBAction
     @IBAction func plusFriend(_ sender: Any) {
         print(#function)
-        friendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        friendButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         let myId = AuthService.getUserId()
         guard let user = user else { return }
         if friendButton.backgroundColor == .white {

@@ -5,8 +5,8 @@ import FacebookCore
 
 class SubUserDetailController: UIViewController {
     // Mark Properties
-    var user:User?
-    var me:User?
+    var user: User?
+    var me: User?
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
     @IBOutlet private weak var friendCollectionView: UICollectionView!
@@ -19,7 +19,7 @@ class SubUserDetailController: UIViewController {
     }
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
-            friendLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            friendLabel.font = .boldSystemFont(ofSize: 20)
             friendButton.isHidden = true
         }
     }
@@ -34,7 +34,7 @@ class SubUserDetailController: UIViewController {
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var teamLabel: UILabel! {
         didSet {
-            teamLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            teamLabel.font = .boldSystemFont(ofSize: 20)
         }
     }
     @IBOutlet weak var chatImage: UIButton! {
@@ -61,7 +61,10 @@ class SubUserDetailController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
         navigationItem.title = user?.name
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     // Mark setupMethod
     private func setupUI() {
@@ -76,7 +79,10 @@ class SubUserDetailController: UIViewController {
     }
     private func setupBorder(view: UIView) {
         let border = CALayer()
-        border.frame = CGRect(x: view.frame.width - 1, y: 15, width: 5.0, height: view.frame.height)
+        border.frame = CGRect(x: view.frame.width - 1,
+                              y: 15,
+                              width: 5.0,
+                              height: view.frame.height)
         border.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(border)
     }

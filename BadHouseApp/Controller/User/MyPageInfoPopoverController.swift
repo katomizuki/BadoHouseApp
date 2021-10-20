@@ -17,7 +17,10 @@ class MyPageInfoPopoverController: UIViewController {
         tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         return tb
     }()
-    var (age, place, badmintonTime, gender) = (String(), String(), String(), String())
+    var (age,
+         place,
+         badmintonTime,
+         gender) = (String(), String(), String(), String())
     // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,7 @@ class MyPageInfoPopoverController: UIViewController {
     // Mark setupMethod
     private func setUpTableView() {
         self.view.addSubview(tableView)
-        tableView.anchor(top:view.topAnchor,
+        tableView.anchor(top: view.topAnchor,
                          bottom: view.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor)

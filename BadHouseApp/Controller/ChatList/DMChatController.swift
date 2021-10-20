@@ -12,7 +12,10 @@ class DMChatController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var chatId = String()
     private lazy var customInputView: CustomInputAccessoryView = {
-        let iv = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        let iv = CustomInputAccessoryView(frame: CGRect(x: 0,
+                                                        y: 0,
+                                                        width: view.frame.width,
+                                                        height: 50))
         iv.delegate = self
         return iv
     }()
@@ -94,7 +97,8 @@ extension DMChatController: FetchMyChatDataDelgate {
         self.messages = chatArray
         self.chatTableView.reloadData()
         if messages.count != 0 {
-            chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+            chatTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0),
+                                      at: UITableView.ScrollPosition.bottom, animated: true)
         }
     }
 }

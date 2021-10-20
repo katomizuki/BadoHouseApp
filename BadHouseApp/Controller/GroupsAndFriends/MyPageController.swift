@@ -32,7 +32,10 @@ class MyPageController: UIViewController {
         indicatorView.startAnimating()
         setupTableView()
         setupData()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -96,7 +99,8 @@ class MyPageController: UIViewController {
     }
     @IBAction private func scroll(_ sender: Any) {
         if teamArray.count != 0 && friendArray.count != 0 {
-            groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+            groupTableView.scrollToRow(at: IndexPath(row: 0, section: 0),
+                                       at: UITableView.ScrollPosition.top, animated: true)
         }
     }
     // Mark prepareMethod

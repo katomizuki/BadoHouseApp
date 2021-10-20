@@ -1,7 +1,7 @@
 import UIKit
 import FacebookCore
 
-class WalkThroughController:UIPageViewController {
+class WalkThroughController: UIPageViewController {
     // Mark properties
     private let firstVC: UIViewController = {
         let vc = UIViewController()
@@ -92,7 +92,7 @@ class WalkThroughController:UIPageViewController {
     }()
     private let secondVC: UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
+        vc.view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let iv = UIImageView()
         iv.image = UIImage(named: Constants.ImageName.logoImage)
         let label = ProfileLabel(title: "早速初めてみよう！", num: 20)

@@ -99,7 +99,10 @@ extension FriendSearchController: UISearchBarDelegate {
         print(#function)
         guard let text = searchBar.text else { return }
         if text.isEmpty {
-            self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
+            self.setupCDAlert(title: "検索エラー",
+                              message: "１文字以上入力してください",
+                              action: "OK",
+                              alertType: CDAlertViewType.error)
             return
         }
         fetchData.searchFriends(text: text, bool: true)

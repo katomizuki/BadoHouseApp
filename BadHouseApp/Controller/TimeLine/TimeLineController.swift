@@ -10,7 +10,7 @@ class TimeLineController: UIViewController {
     private var data = [VideoModel]()
     private let fetchData = FetchFirestoreData()
     private var player = AVPlayer()
-    private var indicator:NVActivityIndicatorView!
+    private var indicator: NVActivityIndicatorView!
     // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +94,8 @@ extension TimeLineController: VideoCollectionCellDelegate {
         vc.modalPresentationStyle = .popover
         vc.preferredContentSize = CGSize(width: 200, height: 200)
         vc.popoverPresentationController?.sourceView = button
-        vc.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint.zero, size: button.bounds.size)
+        vc.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint.zero,
+                                                              size: button.bounds.size)
         vc.popoverPresentationController?.permittedArrowDirections = .down
         vc.popoverPresentationController?.delegate = self
         vc.searchDelegate = self
@@ -105,13 +106,12 @@ extension TimeLineController: VideoCollectionCellDelegate {
         fetchData.fetchVideoData()
     }
 }
-
+// Mark popdelegate
 extension TimeLineController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
-
 // Mark SearchVideoDelegate
 extension TimeLineController: SearchVideoDelegate {
     func getVideoData(videoArray: [VideoModel], vc: VideoPopoverController) {

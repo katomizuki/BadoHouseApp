@@ -110,7 +110,7 @@ class DetailSearchController: UIViewController {
         setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
     }
-    private func setPicker(pickerView:UIPickerView,textField:UITextField) {
+    private func setPicker(pickerView: UIPickerView, textField: UITextField) {
         pickerView.delegate = self
         textField.inputView = pickerView
         let toolBar = UIToolbar()

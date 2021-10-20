@@ -10,7 +10,7 @@ class CheckPreJoinController: UIViewController {
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
-    private var IndicatorView:NVActivityIndicatorView!
+    private var indicatorView: NVActivityIndicatorView!
     // Marklifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,9 @@ class CheckPreJoinController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
     }
     private func setupIndicator() {
-        IndicatorView = self.setupIndicatorView()
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor,
+        indicatorView = self.setupIndicatorView()
+        view.addSubview(indicatorView)
+        indicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
                              width: 100,
                              height: 100)
@@ -71,7 +71,7 @@ extension CheckPreJoinController: FetchMyPrejoinDataDelegate {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.IndicatorView.stopAnimating()
+            self.indicatorView.stopAnimating()
             self.tableView.reloadData()
         }
     }
@@ -86,7 +86,7 @@ extension CheckPreJoinController: UITableViewDataSource {
             return 0
         } else {
             for i in 0..<eventArray.count where section == i {
-                    return self.notificationArray[i].count
+                return self.notificationArray[i].count
             }
             return 0
         }
