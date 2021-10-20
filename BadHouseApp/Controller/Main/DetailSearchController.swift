@@ -3,16 +3,16 @@ import grpc
 import FacebookCore
 
 protocol getDetailDelegate:AnyObject {
-    func getDetailElement(title:String,
-                          circle:String,
-                          level:String,
-                          placeAddressString:String,
-                          money:String,
-                          time:String,
-                          vc:DetailSearchController)
+    func getDetailElement(title: String,
+                          circle: String,
+                          level: String,
+                          placeAddressString: String,
+                          money: String,
+                          time: String,
+                          vc: DetailSearchController)
 }
-class DetailSearchController: UIViewController{
-    //Mark:Properties
+class DetailSearchController: UIViewController {
+    // Mark Properties
     @IBOutlet private weak var titleStackView: UIStackView!
     @IBOutlet private weak var circleStackView: UIStackView!
     @IBOutlet private weak var levelStackView: UIStackView!
@@ -46,8 +46,20 @@ class DetailSearchController: UIViewController{
             searchButton.layer.masksToBounds = true
         }
     }
-    private let (pickerView,pickerMoneyView,pickerLevelView,placePickerView ) = (UIPickerView(),UIPickerView(),UIPickerView(),UIPickerView())
-    private let (data,place,money,level) = (Constants.Data.circle,Constants.Data.place,Constants.Data.money,Constants.Data.level)
+    private let (pickerView,
+                 pickerMoneyView,
+                 pickerLevelView,
+                 placePickerView ) = (UIPickerView(),
+                                      UIPickerView(),
+                                      UIPickerView(),
+                                      UIPickerView())
+    private let (data,
+                 place,
+                 money,
+                 level) = (Constants.Data.circle,
+                           Constants.Data.place,
+                           Constants.Data.money,
+                           Constants.Data.level)
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var datePicker: UIDatePicker! {
         didSet {
@@ -57,8 +69,8 @@ class DetailSearchController: UIViewController{
     }
     private var dateString = String()
     private var eventArray = [Event]()
-    weak var delegate:getDetailDelegate?
-    //Mark:LifeCycle
+    weak var delegate: getDetailDelegate?
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayer()
@@ -67,7 +79,7 @@ class DetailSearchController: UIViewController{
         setupAddtarget()
         setupDelegate()
     }
-    //Mark:setupMethod
+    // Mark setupMethod
     private func setupLayer() {
         setupUnderLayer(view: titleStackView)
         setupUnderLayer(view: circleStackView)
@@ -76,12 +88,10 @@ class DetailSearchController: UIViewController{
         setupUnderLayer(view: moneyStackView)
         setupUnderLayer(view: timeStackView)
     }
-    
     private func setupDelegate() {
         titleTextField.delegate = self
         cityTextField.delegate = self
     }
-    
     private func setupAddtarget() {
         titleTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
         circleTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
@@ -89,20 +99,17 @@ class DetailSearchController: UIViewController{
         cityTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
         moneyTextField.addTarget(self, action: #selector(handleChange), for: .editingChanged)
     }
-    
-    private func setupUnderLayer(view:UIView) {
+    private func setupUnderLayer(view: UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
         bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
         view.layer.addSublayer(bottomBorder)
     }
-    
     private func setupPickerView() {
         setPicker(pickerView: pickerView, textField: circleTextField)
         setPicker(pickerView: pickerMoneyView, textField: moneyTextField)
         setPicker(pickerView: pickerLevelView, textField: levelTextField)
     }
-    
     private func setPicker(pickerView:UIPickerView,textField:UITextField) {
         pickerView.delegate = self
         textField.inputView = pickerView
@@ -110,10 +117,9 @@ class DetailSearchController: UIViewController{
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
         let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
-        toolBar.setItems([flexibleButton,doneButtonItem], animated: true)
+        toolBar.setItems([flexibleButton, doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
-    
     private func setupBorder() {
         helperTextfield(textfield: titleTextField)
         helperTextfield(textfield: moneyTextField)
@@ -121,28 +127,25 @@ class DetailSearchController: UIViewController{
         helperTextfield(textfield: levelTextField)
         helperTextfield(textfield: circleTextField)
     }
-    //Mark HelperMethod
-    private func helperTextfield(textfield:UITextField) {
+    // Mark HelperMethod
+    private func helperTextfield(textfield: UITextField) {
         textfield.layer.borderColor = UIColor.lightGray.cgColor
         textfield.layer.borderWidth = 2
         textfield.toCorner(num: 15)
     }
-    
-    private func getCGrect(view:UIView)->CGRect {
+    private func getCGrect(view: UIView) -> CGRect {
         return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
     }
-    //Mark:SelectorMethod
+    // Mark SelectorMethod
     @objc private func donePicker() {
         circleTextField.endEditing(true)
         moneyTextField.endEditing(true)
         levelTextField.endEditing(true)
     }
-    
-    @objc private func getDate(sender:UIDatePicker) {
+    @objc private func getDate(sender: UIDatePicker) {
         let dateString = self.formatterUtil(date: sender.date)
         self.dateString = dateString
     }
-    
     @objc private func handleTap() {
         print(#function)
         titleTextField.resignFirstResponder()
@@ -151,8 +154,7 @@ class DetailSearchController: UIViewController{
         cityTextField.resignFirstResponder()
         moneyTextField.resignFirstResponder()
     }
-    
-    @objc private func handleChange(sender:UITextField) {
+    @objc private func handleChange(sender: UITextField) {
         switch sender {
         case titleTextField:
             titleTextField.layer.borderColor = titleTextField.text?.count == 0 ? UIColor.lightGray.cgColor :
@@ -174,7 +176,7 @@ class DetailSearchController: UIViewController{
             break
         }
     }
-    //Mark:IBAction
+    // Mark IBAction
     @IBAction private func search(_ sender: Any) {
         let title = titleTextField.text ?? ""
         let circle = circleTextField.text ?? ""
@@ -182,12 +184,17 @@ class DetailSearchController: UIViewController{
         let money = moneyTextField.text ?? ""
         let time = self.dateString
         let placeAddressString = cityTextField.text ?? ""
-        self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time,vc:self)
+        self.delegate?.getDetailElement(title: title,
+                                        circle: circle,
+                                        level: level,
+                                        placeAddressString: placeAddressString,
+                                        money: money,
+                                        time: time,
+                                        vc: self)
     }
 }
-//Mark:PickerViewDataSource
-extension DetailSearchController:UIPickerViewDataSource {
-    
+// Mark PickerViewDataSource
+extension DetailSearchController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -201,8 +208,8 @@ extension DetailSearchController:UIPickerViewDataSource {
         }
     }
 }
-//Mark UIPickerDelegate
-extension DetailSearchController:UIPickerViewDelegate{
+// Mark UIPickerDelegate
+extension DetailSearchController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
             return self.data[row]
@@ -212,7 +219,6 @@ extension DetailSearchController:UIPickerViewDelegate{
             return self.level[row]
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.pickerView {
             circleTextField.text = data[row]
@@ -223,14 +229,10 @@ extension DetailSearchController:UIPickerViewDelegate{
         }
     }
 }
-
-
-//Mark textFieldDelegate
-extension DetailSearchController:UITextFieldDelegate {
+// Mark textFieldDelegate
+extension DetailSearchController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
-
-

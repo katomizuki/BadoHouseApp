@@ -11,15 +11,15 @@ import CDAlertView
 import FacebookCore
 
 class HomeViewController: UIViewController {
-    //Mark: Properties
-    private var user:User?
-    private var IndicatorView:NVActivityIndicatorView!
+    // Mark Properties
+    private var user: User?
+    private var indicatorView: NVActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
-    private var locationManager:CLLocationManager!
+    private var locationManager: CLLocationManager!
     private var fetchData = FetchFirestoreData()
-    var (myLatitude,myLongitude) = (Double(),Double())
+    var (myLatitude, myLongitude) = (Double(), Double())
     private var eventArray = [Event]()
-    @IBOutlet weak var searchBar: UISearchBar!{
+    @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
@@ -32,11 +32,11 @@ class HomeViewController: UIViewController {
             timeButton.toCorner(num: 15)
         }
     }
-    //Mark LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIndicator()
-        IndicatorView.startAnimating()
+        indicatorView.startAnimating()
         setupLocationManager()
         setupDelegate()
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
@@ -45,7 +45,6 @@ class HomeViewController: UIViewController {
         EventServie.deleteEvent()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
@@ -55,41 +54,38 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
+    // Mark touchesBegan
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    //Mark:setupMethod
+    // Mark setupMethod
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
         format.buttonColor = Constants.AppColor.OriginalBlue
         format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
-        format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
+        format.titleAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
+        format.descriptionAttributes = [.strokeWidth: -5, .foregroundColor: UIColor.darkGray]
         format.animation = EmptyStateAnimation.scale(0.3, 2.0)
         format.imageSize = CGSize(width: 200, height: 200)
         format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
-    
     private func setupDelegate() {
         fetchData.eventDelegate = self
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
     private func setupIndicator() {
-        IndicatorView = self.setupIndicatorView()
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor,
+        indicatorView = self.setupIndicatorView()
+        view.addSubview(indicatorView)
+        indicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
-                             width:100,
+                             width: 100,
                              height: 100)
     }
-    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -98,7 +94,6 @@ class HomeViewController: UIViewController {
                         bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: Constants.CellId.eventId)
     }
-    
     private func setupLocationManager() {
         locationManager = CLLocationManager()
         guard let locationManager = locationManager else { return }
@@ -111,7 +106,7 @@ class HomeViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
-    //Mark:Segue
+    // Mark Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Constants.Segue.gotoUser {
             let vc = segue.destination as! MyPageUserInfoController
@@ -126,24 +121,23 @@ class HomeViewController: UIViewController {
             vc.delegate = self
         }
     }
-    //Mark:showAlert
+    // Mark showAlert
     func showAlert() {
         self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
-    //Mark IBAction
+    // Mark IBAction
     @IBAction private func scroll(_ sender: Any) {
         print(#function)
         if eventArray.count != 0 {
-            collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated:true)
+            collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated: true)
         }
     }
 }
-//Mark: UICollectionDataSource
-extension HomeViewController:UICollectionViewDataSource {
+// Mark UICollectionDataSource
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return eventArray.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.eventId, for: indexPath) as! EventInfoCell
         if eventArray.isEmpty {
@@ -155,15 +149,15 @@ extension HomeViewController:UICollectionViewDataSource {
         }
     }
 }
-//Mark collectionViewFlowLayoutDelegate
-extension HomeViewController:UICollectionViewDelegateFlowLayout {
+// Mark collectionViewFlowLayoutDelegate
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.collectionView.frame.width
         return CGSize(width: width, height: width - 50)
     }
 }
-//Mark collectionviewDelegate
-extension HomeViewController:UICollectionViewDelegate {
+// Mark collectionviewDelegate
+extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailController
         vc.event = eventArray[indexPath.row]
@@ -174,10 +168,8 @@ extension HomeViewController:UICollectionViewDelegate {
         }
     }
 }
-
-//Mark: CLLocationMangerDelegate
+// Mark CLLocationMangerDelegate
 extension HomeViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         guard let latitude = location?.coordinate.latitude else { return }
@@ -187,32 +179,27 @@ extension HomeViewController: CLLocationManagerDelegate {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
     }
 }
-
-//Mark: UISearchBarDelegate
+// Mark UISearchBarDelegate
 extension HomeViewController: UISearchBarDelegate {
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
             self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
-        fetchData.searchEventTextData(text: searchText,bool:true)
+        fetchData.searchEventTextData(text: searchText, bool: true)
         searchBar.resignFirstResponder()
     }
-    
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         return true
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(#function)
         guard let text = searchBar.text else { return }
@@ -220,22 +207,20 @@ extension HomeViewController: UISearchBarDelegate {
             fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
             searchBar.resignFirstResponder()
         } else {
-            fetchData.searchEventTextData(text: text,bool:false)
+            fetchData.searchEventTextData(text: text, bool: false)
         }
     }
 }
-
-//Mark EventDelegate
-extension HomeViewController:FetchEventDataDelegate {
+// Mark EventDelegate
+extension HomeViewController: FetchEventDataDelegate {
     func fetchEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
-        self.IndicatorView.stopAnimating()
+        self.indicatorView.stopAnimating()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-    
     func getEventTimeData(eventArray: [Event]) {
         print(#function)
         if eventArray.isEmpty {
@@ -254,46 +239,42 @@ extension HomeViewController:FetchEventDataDelegate {
             self.collectionView.reloadData()
         }
     }
-        func getEventSearchData(eventArray: [Event],bool:Bool) {
-            print(#function)
-            self.eventArray = eventArray
-            if bool == false {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            } else if bool == true {
-                if eventArray.isEmpty {
-                    view.emptyState.show(State.noSearch)
-                }
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+    func getEventSearchData(eventArray: [Event], bool: Bool) {
+        print(#function)
+        self.eventArray = eventArray
+        if bool == false {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        } else if bool == true {
+            if eventArray.isEmpty {
+                view.emptyState.show(State.noSearch)
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
+    }
 }
 
-//Mark: GetDatailDelegate
+// Mark GetDatailDelegate
 extension HomeViewController: getDetailDelegate {
-    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String,vc:DetailSearchController) {
+    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String, vc: DetailSearchController) {
         fetchData.searchEventDetailData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
         vc.dismiss(animated: true, completion: nil)
     }
 }
-//Mark: CalendarDelegate
+// Mark CalendarDelegate
 extension HomeViewController: CalendarDelegate {
-    func searchCalendar(dateString: String,text:String,vc:CalendarViewController) {
-        fetchData.searchEventDateData(dateString:dateString,text: text)
+    func searchCalendar(dateString: String, text: String, vc: CalendarViewController) {
+        fetchData.searchEventDateData(dateString: dateString, text: text)
         vc.dismiss(animated: true, completion: nil)
     }
 }
-//Mark EmptyStateDelegate
-extension HomeViewController:EmptyStateDelegate{
+// Mark EmptyStateDelegate
+extension HomeViewController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         view.emptyState.hide()
     }
 }
-
-
-
-

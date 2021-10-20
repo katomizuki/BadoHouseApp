@@ -2,41 +2,46 @@ import UIKit
 import FSCalendar
 import CDAlertView
 
-protocol CalendarDelegate:AnyObject {
-    func searchCalendar(dateString:String,text:String,vc:CalendarViewController)
+protocol CalendarDelegate: AnyObject {
+    func searchCalendar(dateString: String, text: String, vc: CalendarViewController)
 }
-
 class CalendarViewController: UIViewController {
-    //Mark:Properties
+    // MarkProperties
     @IBOutlet private weak var calendar: FSCalendar!
-    weak var delegate:CalendarDelegate?
+    weak var delegate: CalendarDelegate?
     private var searchDateString = String()
-    private lazy var button:UIButton = {
+    private lazy var button: UIButton = {
         let button = RegisterButton(text: "検索")
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
         return button
     }()
-    private let textField:UITextField = RegisterTextField(placeholder: "場所名入力")
-    //Mark:LifeCycle
+    private let textField: UITextField = RegisterTextField(placeholder: "場所名入力")
+    // Mark Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupCalendar()
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setupUI() {
         view.addSubview(button)
         view.addSubview(textField)
-        button.anchor(top:textField.bottomAnchor,
+        button.anchor(top: textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
                       paddingTop: 30,
                       paddingRight: 30,
-                      paddingLeft: 30,height: 45)
-        textField.anchor(top:calendar.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight: 30,paddingLeft: 30,height: 45)
+                      paddingLeft: 30,
+                      height: 45)
+        textField.anchor(top: calendar.bottomAnchor,
+                         left: view.leftAnchor,
+                         right: view.rightAnchor,
+                         paddingTop: 30,
+                         paddingRight: 30,
+                         paddingLeft: 30,
+                         height: 45)
     }
-    
     private func setupCalendar() {
         calendar.delegate = self
         calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
@@ -63,7 +68,7 @@ class CalendarViewController: UIViewController {
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue
     }
-    //Mark:Selector
+    // Mark Selector
     @objc func search() {
         if searchDateString.isEmpty {
             self.setupCDAlert(title: "検索エラー", message: "日程を指定してください", action: "OK", alertType: CDAlertViewType.error)
@@ -74,14 +79,13 @@ class CalendarViewController: UIViewController {
             self.setupCDAlert(title: "検索エラー", message: "１文字以上入力してください", action: "OK", alertType: CDAlertViewType.error)
             return
         }
-        self.delegate?.searchCalendar(dateString: searchDateString,text: text,vc:self)
+        self.delegate?.searchCalendar(dateString: searchDateString, text: text, vc: self)
     }
 }
-//Mark FSCalendarDelegate
-extension CalendarViewController:FSCalendarDelegate {
+// Mark FSCalendarDelegate
+extension CalendarViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString
     }
 }
-
