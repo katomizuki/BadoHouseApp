@@ -10,7 +10,9 @@ identifier_name:
     - x
     - y
 line_length: 200
+function_body_length: 200
 disabled_rules:
+
 
 # force_castは場合によっては使用するため
 - force_cast

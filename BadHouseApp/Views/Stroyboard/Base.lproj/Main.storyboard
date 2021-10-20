@@ -115,13 +115,13 @@
                                                         <rect key="frame" x="0.0" y="457" width="540" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yab-ZE-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="92" height="51.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="51.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-tL-9go">
-                                                                <rect key="frame" x="92" y="0.0" width="448" height="51.5"/>
+                                                                <rect key="frame" x="83.5" y="0.0" width="456.5" height="51.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -1345,7 +1345,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="BarChartView" destination="CKw-26-OHR" id="CU0-I1-dCm"/>
+                        <outlet property="barChartView" destination="CKw-26-OHR" id="CU0-I1-dCm"/>
                         <outlet property="chatButton" destination="NNo-Yt-j9F" id="xqC-5q-zJt"/>
                         <outlet property="collectionView" destination="LBf-E6-p5h" id="Euz-H1-8ze"/>
                         <outlet property="friendImageView" destination="mai-dU-KYF" id="VeH-ch-XlL"/>
@@ -2350,13 +2350,13 @@
                                                         <rect key="frame" x="0.0" y="44" width="560" height="72"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開催日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9M-uu-CzE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="91" height="72"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="72"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="l6L-K6-nGv">
-                                                                <rect key="frame" x="91" y="0.0" width="469" height="72"/>
+                                                                <rect key="frame" x="83.5" y="0.0" width="476.5" height="72"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2364,13 +2364,13 @@
                                                         <rect key="frame" x="0.0" y="126" width="560" height="73"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-j9-Cxb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="91" height="73"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="73"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-qY-G0G">
-                                                                <rect key="frame" x="91" y="0.0" width="469" height="73"/>
+                                                                <rect key="frame" x="83.5" y="0.0" width="476.5" height="73"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2378,13 +2378,13 @@
                                                         <rect key="frame" x="0.0" y="209" width="560" height="73"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="募集〆切り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-vB-azb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="116" height="73"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="104.5" height="73"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="HqZ-Nc-ffI">
-                                                                <rect key="frame" x="116" y="0.0" width="444" height="73"/>
+                                                                <rect key="frame" x="104.5" y="0.0" width="455.5" height="73"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>

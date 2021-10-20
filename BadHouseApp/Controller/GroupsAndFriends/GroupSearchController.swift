@@ -3,9 +3,8 @@ import EmptyStateKit
 import CDAlertView
 
 class GroupSearchController: UIViewController {
-    
-    //Mark:properties
-    @IBOutlet private weak var searchBar: UISearchBar!{
+    // Mark properties
+    @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
@@ -18,8 +17,7 @@ class GroupSearchController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
-    
-    //Mark:LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -35,34 +33,31 @@ class GroupSearchController: UIViewController {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    
-    //Mark helperMethod
+    // Mark setupMethod
     private func setupTableView() {
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
         tableView.delegate = self
         tableView.dataSource = self
     }
-    //Mark:setupMethod
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
         format.buttonColor = Constants.AppColor.OriginalBlue
         format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
-        format.descriptionAttributes = [.strokeWidth:-5,.foregroundColor:UIColor.darkGray]
+        format.titleAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
+        format.descriptionAttributes = [.strokeWidth: -5, .foregroundColor: UIColor.darkGray]
         format.animation = EmptyStateAnimation.scale(0.3, 2.0)
         format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named:Constants.AppColor.darkColor) ?? UIColor.systemGray
+        format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? .systemGray
         view.emptyState.format = format
     }
 }
-//Mark tableViewDataSource
-extension GroupSearchController:UITableViewDataSource {
+// Mark tableViewDataSource
+extension GroupSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
         let team = groupArray[indexPath.row]
@@ -70,8 +65,8 @@ extension GroupSearchController:UITableViewDataSource {
         return cell
     }
 }
-//Mark uitableViewDelegate
-extension GroupSearchController:UITableViewDelegate {
+// Mark uitableViewDelegate
+extension GroupSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let team = groupArray[indexPath.row]
@@ -82,25 +77,22 @@ extension GroupSearchController:UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-//Mark searchBarDelegate
-extension GroupSearchController:UISearchBarDelegate {
-    
+// Mark searchBarDelegate
+extension GroupSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
-        fetchData.searchGroupData(text: text,bool:false)
+        fetchData.searchGroupData(text: text, bool: false)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
-    
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         print(#function)
         searchBar.text = ""
         searchBar.resignFirstResponder()
         return true
     }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
         guard let text = searchBar.text else { return }
@@ -109,13 +101,12 @@ extension GroupSearchController:UISearchBarDelegate {
             return
         }
         searchBar.text = ""
-        fetchData.searchGroupData(text: text,bool:true)
+        fetchData.searchGroupData(text: text, bool: true)
     }
 }
-//Mark getGroupDelegate
-extension GroupSearchController:FetchSearchGroupDelegate{
-    
-    func fetchSearchGroup(groupArray: [TeamModel],bool:Bool) {
+// Mark getGroupDelegate
+extension GroupSearchController: FetchSearchGroupDelegate {
+    func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
         if bool == false {
             self.groupArray = groupArray
             DispatchQueue.main.async {
@@ -134,9 +125,8 @@ extension GroupSearchController:FetchSearchGroupDelegate{
     }
 }
 
-//Mark EmptyStateDelegate
-extension GroupSearchController:EmptyStateDelegate{
-    
+// Mark EmptyStateDelegate
+extension GroupSearchController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()
     }

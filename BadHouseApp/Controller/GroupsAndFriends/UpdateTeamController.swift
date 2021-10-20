@@ -1,16 +1,16 @@
 import Foundation
 import UIKit
-protocol backDelegate:AnyObject {
-    func updateTeamData(vc:UpdateTeamController)
+protocol backDelegate: AnyObject {
+    func updateTeamData(vc: UpdateTeamController)
 }
-class UpdateTeamController:UIViewController {
-    //Mark properties
-    var team:TeamModel?
+class UpdateTeamController: UIViewController {
+    // Mark properties
+    var team: TeamModel?
     private let placeTextField = ProfileTextField(placeholder: "")
     private let timeTextField = ProfileTextField(placeholder: "")
     private let moneyTextField = ProfileTextField(placeholder: "")
-    weak var delegate:backDelegate?
-    private lazy var iv:UIImageView = {
+    weak var delegate: backDelegate?
+    private lazy var iv: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Constants.ImageName.noImages)
         iv.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
@@ -22,8 +22,7 @@ class UpdateTeamController:UIViewController {
         iv.layer.masksToBounds = true
         return iv
     }()
-    
-    private let button:UIButton = {
+    private lazy var button: UIButton = {
         let button = UIButton()
         button.updateButton(radius: 15, backColor: Constants.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
         button.setTitle("保存", for: .normal)
@@ -31,28 +30,43 @@ class UpdateTeamController:UIViewController {
         return button
     }()
     private let imagePicker = UIImagePickerController()
-    //Mark lifecycle
+    // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupteamInfo()
         imagePicker.delegate = self
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setupLayout() {
         view.backgroundColor = .white
-        let stackView = UIStackView(arrangedSubviews: [placeTextField,timeTextField,moneyTextField])
+        let stackView = UIStackView(arrangedSubviews: [placeTextField, timeTextField, moneyTextField])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillEqually
         view.addSubview(stackView)
         view.addSubview(iv)
         view.addSubview(button)
-        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 100,centerX: view.centerXAnchor,width:150, height:150)
-        stackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight:30,paddingLeft:30,height: 170)
-        button.anchor(top:stackView.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 20,paddingRight: 30,paddingLeft: 30,height: 50)
+        iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                  paddingTop: 100,
+                  centerX: view.centerXAnchor,
+                  width: 150,
+                  height: 150)
+        stackView.anchor(top: iv.bottomAnchor,
+                         left: view.leftAnchor,
+                         right: view.rightAnchor,
+                         paddingTop: 20,
+                         paddingRight: 30,
+                         paddingLeft: 30,
+                         height: 170)
+        button.anchor(top: stackView.bottomAnchor,
+                      left: view.leftAnchor,
+                      right: view.rightAnchor,
+                      paddingTop: 20,
+                      paddingRight: 30,
+                      paddingLeft: 30,
+                      height: 50)
     }
-    
     private func setupteamInfo() {
         placeTextField.text = team?.teamPlace
         timeTextField.text = team?.teamTime
@@ -61,16 +75,15 @@ class UpdateTeamController:UIViewController {
         let url = URL(string: urlString)
         iv.sd_setImage(with: url, completed: nil)
     }
-    //Mark initalize
-    init(team:TeamModel) {
+    // Mark initalize
+    init(team: TeamModel) {
         super.init(nibName: nil, bundle: nil)
         self.team = team
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //Mark selector
+    // Mark selector
     @objc private func handleSave() {
         guard let place = placeTextField.text else { return }
         guard let time = timeTextField.text else { return }
@@ -84,19 +97,17 @@ class UpdateTeamController:UIViewController {
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }
             TeamService.updateTeamData(team: team)
-            self.delegate?.updateTeamData(vc:self)
+            self.delegate?.updateTeamData(vc: self)
         }
     }
-    
     @objc private func handleImagePicker() {
         print(#function)
         present(imagePicker, animated: true, completion: nil)
     }
 }
-//Mark: UIImagePickerDelegate
-extension UpdateTeamController:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Mark UIImagePickerDelegate
+extension UpdateTeamController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         print(#function)
         iv.image = image

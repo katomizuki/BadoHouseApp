@@ -91,7 +91,7 @@ class MyPageController: UIViewController {
     }
     @IBAction private func gotoMakeGroup(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.MakeGroupVC) as! MakeGroupController
-        vc.me = user
+        vc.myData = user
         navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction private func scroll(_ sender: Any) {

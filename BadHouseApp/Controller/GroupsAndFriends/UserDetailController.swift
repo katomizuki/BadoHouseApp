@@ -4,9 +4,9 @@ import SDWebImage
 import FacebookCore
 
 class UserDetailController: UIViewController {
-    //Mark: Properties
-    var user:User?
-    var me:User?
+    // Mark Properties
+    var user: User?
+    var me: User?
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
     @IBOutlet private weak var teamLabel: UILabel! {
@@ -32,7 +32,7 @@ class UserDetailController: UIViewController {
     }
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
-            friendLabel.font = UIFont.boldSystemFont(ofSize:20)
+            friendLabel.font = UIFont.boldSystemFont(ofSize: 20)
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
@@ -46,7 +46,7 @@ class UserDetailController: UIViewController {
     @IBOutlet private weak var levelStackView: UIStackView!
     private let fetchData = FetchFirestoreData()
     var flag = false
-    //Mark: LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -54,14 +54,13 @@ class UserDetailController: UIViewController {
         setupData()
         helperUI()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
         navigationItem.title = user?.name
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    //Mark:setupMethod
+    // Mark setupMethod
     private func setupUI() {
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
@@ -72,14 +71,12 @@ class UserDetailController: UIViewController {
             friendButton.isHidden = true
         }
     }
- 
-    private func setupBorder(view:UIView) {
+    private func setupBorder(view: UIView) {
         let border = CALayer()
         border.frame = CGRect(x: view.frame.width - 1, y: 15, width: 5.0, height: view.frame.height)
         border.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(border)
     }
-    
     private func setupDelegate() {
         belongCollectionView.delegate = self
         belongCollectionView.dataSource = self
@@ -88,7 +85,6 @@ class UserDetailController: UIViewController {
         fetchData.myFriendDelegate = self
         fetchData.myTeamDelegate = self
     }
-    
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
         belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Constants.CellId.MemberCellId)
@@ -103,7 +99,6 @@ class UserDetailController: UIViewController {
         setupDelegate()
         setupNeededMethod()
     }
-    
     private func setupData() {
         let myId = AuthService.getUserId()
         guard let user = user else { return }
@@ -116,7 +111,6 @@ class UserDetailController: UIViewController {
             }
         }
     }
-    
     private func setupNeededMethod() {
         self.userFriend = []
         guard let memberId = user?.uid else { return }
@@ -136,8 +130,7 @@ class UserDetailController: UIViewController {
             self.fetchData.fetchMyFriendData(idArray: friends)
         }
     }
-    
-    //Mark HelperMethod
+    // Mark HelperMethod
     private func helperUI() {
         print(#function)
         friendButton.isHidden = flag
@@ -146,9 +139,8 @@ class UserDetailController: UIViewController {
         }
         friendsImageView.isUserInteractionEnabled = !flag
         chatButton.isHidden = flag
-        
     }
-    //Mark:IBAction
+    // Mark IBAction
     @IBAction func plusFriend(_ sender: Any) {
         print(#function)
         friendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -163,14 +155,12 @@ class UserDetailController: UIViewController {
             UserService.friendAction(myId: myId, friend: user, bool: false)
         }
     }
-    
     @IBAction func gotoChat(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
         vc.me = me
         vc.you = user
         navigationController?.pushViewController(vc, animated: true)
     }
-    
     @IBAction func gotoDM(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
         vc.me = me
@@ -178,17 +168,15 @@ class UserDetailController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-//Mark: UserCollectionViewDelegate
-extension UserDetailController:UICollectionViewDataSource {
-    
+// Mark UserCollectionViewDelegate
+extension UserDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
             return ownTeam.count
-        } else  {
+        } else {
             return userFriend.count
         }
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.belongCollectionView && collectionView.tag == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
@@ -197,7 +185,7 @@ extension UserDetailController:UICollectionViewDataSource {
             cell.configure(name: name, urlString: urlString)
             cell.teamMemberImage.contentMode = .scaleAspectFill
             return cell
-        } else  {
+        } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.friendCellId, for: indexPath) as! TeammemberCell
             let name = userFriend[indexPath.row].name
             let urlString = userFriend[indexPath.row].profileImageUrl
@@ -206,8 +194,8 @@ extension UserDetailController:UICollectionViewDataSource {
         }
     }
 }
-//Mark CollectionViewDelegate
-extension UserDetailController:UICollectionViewDelegate {
+// Mark CollectionViewDelegate
+extension UserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
             let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
@@ -223,14 +211,14 @@ extension UserDetailController:UICollectionViewDelegate {
         }
     }
 }
-//Mark CollectionViewDelegateFlowLayout
-extension UserDetailController:UICollectionViewDelegateFlowLayout {
+// Mark CollectionViewDelegateFlowLayout
+extension UserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
 }
-//Mark GetFriendDelegate
-extension UserDetailController:FetchMyFriendDataDelegate {
+// Mark GetFriendDelegate
+extension UserDetailController: FetchMyFriendDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray
@@ -239,8 +227,8 @@ extension UserDetailController:FetchMyFriendDataDelegate {
         }
     }
 }
-//Mark MyTeamDelegate
-extension UserDetailController:FetchMyTeamDataDelegate {
+// Mark MyTeamDelegate
+extension UserDetailController: FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = teamArray
         DispatchQueue.main.async {

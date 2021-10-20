@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 class PlusTeamPlayerController: UIViewController {
-    //Mark: properties
+    // Mark properties
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
             inviteButton.layer.cornerRadius = 15
@@ -14,9 +14,8 @@ class PlusTeamPlayerController: UIViewController {
     var inviter = [User]()
     var team: TeamModel?
     private var cellId = Constants.CellId.inviteCellId
-    
-    //Mark CustomDelegate
-    func someMethodWantToCall(cell:UITableViewCell) {
+    // Mark CustomDelegate
+    func someMethodWantToCall(cell: UITableViewCell) {
         print(#function)
         let indexPathTapped = tableView.indexPath(for: cell)
         guard let index = indexPathTapped?[1] else { return }
@@ -28,8 +27,8 @@ class PlusTeamPlayerController: UIViewController {
             inviter.append(friend)
         }
     }
-    //Mark: HelperMethod
-    func judgeInvite(userId:String)->Int? {
+    // Mark HelperMethod
+    func judgeInvite(userId: String) -> Int? {
         if inviter.isEmpty { return nil }
         for i in 0..<inviter.count {
             let friendId = inviter[i].uid
@@ -37,23 +36,22 @@ class PlusTeamPlayerController: UIViewController {
         }
         return nil
     }
-    //Mark: lifeCycle
+    // Mark lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor:Constants.AppColor.OriginalBlue]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
     }
-    
+    // Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PlusTeamPlayersCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
-    //Mark:IBAction
+    // Mark IBAction
     @IBAction func invite(_ sender: Any) {
         print(#function)
         guard let team = self.team else {
@@ -62,13 +60,13 @@ class PlusTeamPlayerController: UIViewController {
         navigationController?.popToRootViewController(animated: true)
     }
 }
-//Mark:tableViewdelegate,datsource
-extension PlusTeamPlayerController:UITableViewDataSource {
+// Mark tableViewdatsource
+extension PlusTeamPlayerController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! PlusTeamPlayersCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlusTeamPlayersCell
         cell.linkInvite = self
         cell.nameLabel.text = friends[indexPath.row].name
         cell.tintColor = Constants.AppColor.OriginalBlue
@@ -82,8 +80,8 @@ extension PlusTeamPlayerController:UITableViewDataSource {
         return cell
     }
 }
-//Mark UITableViewDelegate
-extension PlusTeamPlayerController:UITableViewDelegate {
+// Mark UITableViewDelegate
+extension PlusTeamPlayerController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
