@@ -59,7 +59,7 @@ class InviteToTeamController: UIViewController {
     private func setupTableView() {
         friendTableView.delegate = self
         friendTableView.dataSource = self
-        friendTableView.register(ContactCell.self, forCellReuseIdentifier: cellId)
+        friendTableView.register(InviteCell.self, forCellReuseIdentifier: cellId)
     }
     
     private func setupIndicator() {
@@ -96,7 +96,7 @@ extension InviteToTeamController:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! ContactCell
+        let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as! InviteCell
         cell.linkFriend = self
         cell.nameLabel.text = friends[indexPath.row].name
         cell.button.tintColor = Constants.AppColor.OriginalBlue

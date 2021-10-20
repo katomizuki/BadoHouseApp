@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import FacebookCore
 
-class FriendsCell:UITableViewCell {
+class PlusTeamPlayersCell:UITableViewCell {
     
     //Mark:Properties
     var linkInvite:PlusTeamPlayerController!

@@ -50,7 +50,7 @@ class PlusTeamPlayerController: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(FriendsCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(PlusTeamPlayersCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
     //Mark:IBAction
@@ -68,7 +68,7 @@ extension PlusTeamPlayerController:UITableViewDataSource {
         return friends.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! FriendsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! PlusTeamPlayersCell
         cell.linkInvite = self
         cell.nameLabel.text = friends[indexPath.row].name
         cell.tintColor = Constants.AppColor.OriginalBlue

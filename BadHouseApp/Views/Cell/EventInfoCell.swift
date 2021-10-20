@@ -1,6 +1,6 @@
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class EventInfoCell: UICollectionViewCell {
     
     //Mark:Properties
     @IBOutlet weak var teamLabel: UILabel!

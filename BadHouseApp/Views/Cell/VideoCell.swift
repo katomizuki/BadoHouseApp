@@ -18,7 +18,6 @@ class VideoCell:UICollectionViewCell {
         iv.backgroundColor = .cyan
         return iv
     }()
-    
     var video:VideoModel? {
         didSet {
             configure()
@@ -71,10 +70,8 @@ class VideoCell:UICollectionViewCell {
         contentView.addSubview(containerView)
         contentView.addSubview(nextButton)
         contentView.addSubview(searchButton)
-        
         nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         searchButton.addTarget(self, action: #selector(handleSearch), for: .touchUpInside)
-        
         containerView.clipsToBounds = true
         contentView.sendSubviewToBack(containerView)
     }

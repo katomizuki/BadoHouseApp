@@ -17,7 +17,7 @@
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
-		D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* CollectionViewCell.swift */; };
+		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailController.swift */; };
 		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
@@ -28,7 +28,7 @@
 		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
 		D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* MyScheduleController.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
-		D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* FriendCell.swift */; };
+		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
 		D3A789D526F439A40088E8BC /* TalkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* TalkController.swift */; };
 		D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D826F5DD8C0088E8BC /* Extensions.swift */; };
 		D3A82BA527040C8100DDB4FC /* VideoCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */; };
@@ -65,7 +65,7 @@
 		D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93426E0F1BE00C21E46 /* ProfileLabel.swift */; };
 		D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */; };
 		D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */; };
-		D3C4E93C26E0F57700C21E46 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93B26E0F57700C21E46 /* CollectionCell.swift */; };
+		D3C4E93C26E0F57700C21E46 /* InfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93B26E0F57700C21E46 /* InfoCollectionViewCell.swift */; };
 		D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93D26E19E1800C21E46 /* MyPageController.swift */; };
 		D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */; };
 		D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */; };
@@ -117,7 +117,7 @@
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		D37FA52726EB091300B8559F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
 		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
 		D39771712709D1D40025BE19 /* MyScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
-		D3A789D126F416E10088E8BC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* TalkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkController.swift; sourceTree = "<group>"; };
 		D3A789D826F5DD8C0088E8BC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraController.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		D3C4E93426E0F1BE00C21E46 /* ProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLabel.swift; sourceTree = "<group>"; };
 		D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
-		D3C4E93B26E0F57700C21E46 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		D3C4E93B26E0F57700C21E46 /* InfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3C4E93D26E19E1800C21E46 /* MyPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageController.swift; sourceTree = "<group>"; };
 		D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailController.swift; sourceTree = "<group>"; };
 		D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroupController.swift; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 			path = ChatList;
 			sourceTree = "<group>";
 		};
-		D3AC05EE26EE279D00F40A51 /* ConstantsAndOtherUtil */ = {
+		D3AC05EE26EE279D00F40A51 /* ConstantsAndUtil */ = {
 			isa = PBXGroup;
 			children = (
 				D3BDB54526E055C900C53780 /* Constants.swift */,
@@ -294,7 +294,7 @@
 				D30B793B2700A5940086456E /* NotificationUtil.swift */,
 				D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */,
 			);
-			path = ConstantsAndOtherUtil;
+			path = ConstantsAndUtil;
 			sourceTree = "<group>";
 		};
 		D3BDB51B26E0525100C53780 = {
@@ -352,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				D3FFD326271EBBD100DE54ED /* API-Service */,
-				D3AC05EE26EE279D00F40A51 /* ConstantsAndOtherUtil */,
+				D3AC05EE26EE279D00F40A51 /* ConstantsAndUtil */,
 				D3BDB54E26E05D9500C53780 /* Extension */,
 			);
 			path = Utility;
@@ -380,9 +380,7 @@
 				D3976EEF270337580016CEB2 /* Stroyboard */,
 				D353D8E426F16C2F00221B7D /* Xib */,
 				D3C4E93A26E0F56900C21E46 /* Cell */,
-				D3C4E93326E0F1AC00C21E46 /* UserProfile */,
-				D3BDB54F26E05DB900C53780 /* Register,Login */,
-				D3976EF0270337F40016CEB2 /* InputView.swift */,
+				D3C4E93326E0F1AC00C21E46 /* Parts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,16 +405,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		D3BDB54F26E05DB900C53780 /* Register,Login */ = {
-			isa = PBXGroup;
-			children = (
-				D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */,
-				D3BDB55426E062E700C53780 /* RegisterTextField.swift */,
-				D3BDB55826E066CF00C53780 /* RegisterButton.swift */,
-			);
-			path = "Register,Login";
-			sourceTree = "<group>";
-		};
 		D3BDB55A26E0964200C53780 /* Bindings */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,27 +427,31 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		D3C4E93326E0F1AC00C21E46 /* UserProfile */ = {
+		D3C4E93326E0F1AC00C21E46 /* Parts */ = {
 			isa = PBXGroup;
 			children = (
 				D3C4E93426E0F1BE00C21E46 /* ProfileLabel.swift */,
 				D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */,
+				D3976EF0270337F40016CEB2 /* InputView.swift */,
 				D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */,
+				D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */,
+				D3BDB55426E062E700C53780 /* RegisterTextField.swift */,
+				D3BDB55826E066CF00C53780 /* RegisterButton.swift */,
 			);
-			path = UserProfile;
+			path = Parts;
 			sourceTree = "<group>";
 		};
 		D3C4E93A26E0F56900C21E46 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D3C4E93B26E0F57700C21E46 /* CollectionCell.swift */,
+				D3C4E93B26E0F57700C21E46 /* InfoCollectionViewCell.swift */,
 				D3C4E94E26E2F78400C21E46 /* InviteCell.swift */,
 				D3C4E95626E33A5700C21E46 /* GroupCell.swift */,
 				D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */,
-				D37FA52726EB091300B8559F /* CollectionViewCell.swift */,
+				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D353D8E026F1621F00221B7D /* ChatCell.swift */,
 				D3CECEE226F3019700B1C498 /* VideoCell.swift */,
-				D3A789D126F416E10088E8BC /* FriendCell.swift */,
+				D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */,
 				D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */,
 			);
 			path = Cell;
@@ -715,7 +707,7 @@
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */,
-				D37FA52926EB091300B8559F /* CollectionViewCell.swift in Sources */,
+				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3CECEE626F3061700B1C498 /* PostVideoController.swift in Sources */,
 				D3A82BA527040C8100DDB4FC /* VideoCameraController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
@@ -756,7 +748,7 @@
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
-				D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */,
+				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,
 				D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */,
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
@@ -770,7 +762,7 @@
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,
 				D37FA52C26EB4AD900B8559F /* EventDetailController.swift in Sources */,
 				D3976EF1270337F40016CEB2 /* InputView.swift in Sources */,
-				D3C4E93C26E0F57700C21E46 /* CollectionCell.swift in Sources */,
+				D3C4E93C26E0F57700C21E46 /* InfoCollectionViewCell.swift in Sources */,
 				D3DA98BA26F6D8C200DFF8B1 /* EmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

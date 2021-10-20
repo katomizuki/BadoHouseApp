@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ContactCell:UITableViewCell {
+class InviteCell:UITableViewCell {
     
     //Mark:Properties
     var linkFriend:InviteToTeamController!
