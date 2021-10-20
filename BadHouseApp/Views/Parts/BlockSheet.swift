@@ -24,6 +24,16 @@ class BlockSheet: NSObject {
     }()
     private lazy var mainView: UIView = {
         let view = UIView()
+        view.backgroundColor = .blue
+        let iv = UIImageView()
+        let logo = UIImage(named: Constants.ImageName.logoImage)
+        iv.image = logo
+        view.addSubview(iv)
+        iv.anchor(bottom: view.bottomAnchor,
+                  paddingBottom: -10,
+                  centerX: view.centerXAnchor,
+                  width: 40,
+                  height: 40)
         view.backgroundColor = .white
         return view
     }()
@@ -44,7 +54,6 @@ class BlockSheet: NSObject {
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 5
-        tableView.backgroundColor = .yellow
         tableView.register(BlockCell.self, forCellReuseIdentifier: "cellId")
     }
     // Mark helperMethod
@@ -92,7 +101,7 @@ extension BlockSheet: UITableViewDelegate {
         return mainView
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
+        return 30
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)

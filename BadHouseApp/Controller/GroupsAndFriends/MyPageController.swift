@@ -23,7 +23,11 @@ class MyPageController: UIViewController {
         }
     }
     @IBOutlet private weak var myName: UILabel!
-    @IBOutlet private weak var countLabel: UILabel!
+    @IBOutlet private weak var countLabel: UILabel! {
+        didSet {
+            countLabel.font = .boldSystemFont(ofSize: 14)
+        }
+    }
     private let fetchData = FetchFirestoreData()
     // Mark LifeCycle
     override func viewDidLoad() {

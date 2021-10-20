@@ -49,10 +49,13 @@ class UserDetailController: UIViewController {
     var flag = false
     private lazy var blockButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: ""), for: .normal)
+        button.setTitle("...", for: .normal)
+        button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
         button.addTarget(self, action: #selector(block), for: .touchUpInside)
-        button.backgroundColor = Constants.AppColor.OriginalBlue
-        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .white
+        button.layer.borderWidth = 3
+        button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+        button.toCorner(num: 20)
         return button
     }()
     // Mark LifeCycle
@@ -75,12 +78,12 @@ class UserDetailController: UIViewController {
     // Mark setupMethod
     private func setupUI() {
         view.addSubview(blockButton)
-        blockButton.anchor(top: levelStackView.bottomAnchor,
+        blockButton.anchor(top: friendButton.bottomAnchor,
                            right: view.rightAnchor,
-                           paddingTop: 10,
+                           paddingTop: 5,
                            paddingRight: 10,
-                           width: 30,
-                           height: 30)
+                           width: 40,
+                           height: 40)
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定": user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender

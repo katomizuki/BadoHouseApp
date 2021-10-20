@@ -1,13 +1,19 @@
 import Foundation
 import UIKit
+import SkeletonView
 
 class BlockCell: UITableViewCell {
     // Mark Properties
     private let cancleLabel: UILabel = {
         let label = UILabel()
         label.text = " 閉じる "
-        label.textColor = .white
+        label.textColor = Constants.AppColor.OriginalBlue
         label.font = .boldSystemFont(ofSize: 18)
+        label.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+        label.layer.borderWidth = 3
+        label.layer.cornerRadius = 15
+        label.layer.masksToBounds = true
+        label.textAlignment = .center
         return label
     }()
     var flag = false {
@@ -18,14 +24,19 @@ class BlockCell: UITableViewCell {
     private let blockLabel: UILabel = {
         let label = UILabel()
         label.text = " 通報する　"
-        label.textColor = .white
+        label.textColor = Constants.AppColor.OriginalBlue
         label.font = .boldSystemFont(ofSize: 18)
+        label.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+        label.layer.borderWidth = 3
+        label.layer.cornerRadius = 15
+        label.layer.masksToBounds = true
+        label.textAlignment = .center
         return label
     }()
     // Mark Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Constants.AppColor.OriginalBlue
+        backgroundColor = .white
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -33,11 +44,17 @@ class BlockCell: UITableViewCell {
     // Mark setupMethod
     private func setupUI(bool: Bool) {
         if bool {
-            addSubview(blockLabel)
-            blockLabel.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
-        } else {
             addSubview(cancleLabel)
-            cancleLabel.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
+            cancleLabel.anchor(centerX: centerXAnchor,
+                               centerY: centerYAnchor,
+                               width: 140,
+                               height: 45)
+        } else {
+            addSubview(blockLabel)
+            blockLabel.anchor(centerX: centerXAnchor,
+                              centerY: centerYAnchor,
+                              width: 140,
+                              height: 45)
         }
     }
 }
