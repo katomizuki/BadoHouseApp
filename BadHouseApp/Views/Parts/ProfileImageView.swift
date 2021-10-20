@@ -2,8 +2,7 @@ import Foundation
 import UIKit
 
 class ProfileImageView: UIImageView {
-    
-    //Mark:initialize
+    // Mark initialize
     init() {
         super.init(frame: .zero)
         self.image = UIImage(systemName: "person")
@@ -14,7 +13,6 @@ class ProfileImageView: UIImageView {
         self.layer.masksToBounds = true
         self.clipsToBounds = true
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

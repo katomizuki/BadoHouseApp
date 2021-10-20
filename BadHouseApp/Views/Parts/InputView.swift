@@ -1,15 +1,13 @@
 import Foundation
 import UIKit
 
-protocol InputDelegate :AnyObject{
-    func inputView(inputView:CustomInputAccessoryView,message:String)
+protocol InputDelegate: AnyObject {
+    func inputView(inputView: CustomInputAccessoryView, message: String)
 }
-
-class CustomInputAccessoryView:UIView {
-    
-    //Mark:Properties
-    weak var delegate:InputDelegate?
-    let messageInputTextView:UITextView = {
+class CustomInputAccessoryView: UIView {
+    // Mark Properties
+    weak var delegate: InputDelegate?
+    let messageInputTextView: UITextView = {
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 14)
         tv.isScrollEnabled = false
@@ -18,8 +16,7 @@ class CustomInputAccessoryView:UIView {
         tv.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return tv
     }()
-    
-    private let sendButton:UIButton = {
+    private lazy var sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
         button.tintColor = .white
@@ -30,59 +27,53 @@ class CustomInputAccessoryView:UIView {
         button.layer.cornerRadius = 20
         return button
     }()
-    
-    private let placeholder:UILabel = {
+    private let placeholder: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 16)
         label.textColor = .lightGray
         label.text = "Aa"
         return label
     }()
-    
-    //Mark:initialize
-    override init(frame:CGRect) {
-        super.init(frame:frame)
-        
+    // Mark initialize
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         layer.shadowOpacity = 0.25
-        layer.shadowOffset = .init(width:0,height: -8)
+        layer.shadowOffset = .init(width: 0, height: -8)
         layer.shadowRadius = 10
         layer.shadowColor = UIColor.lightGray.cgColor
-        
         backgroundColor = Constants.AppColor.OriginalBlue
         autoresizingMask = .flexibleHeight
-        
         addSubview(messageInputTextView)
         addSubview(sendButton)
         addSubview(placeholder)
-        
         sendButton.anchor(left: messageInputTextView.rightAnchor,
-                          paddingLeft:5,
-                          centerY:messageInputTextView.centerYAnchor,width:40, height:40)
-        messageInputTextView.anchor(top:topAnchor,
-                                    bottom:safeAreaLayoutGuide.bottomAnchor,
+                          paddingLeft: 5,
+                          centerY: messageInputTextView.centerYAnchor,
+                          width: 40,
+                          height: 40)
+        messageInputTextView.anchor(top: topAnchor,
+                                    bottom: safeAreaLayoutGuide.bottomAnchor,
                                     left: leftAnchor,
-                                    right:rightAnchor,
+                                    right: rightAnchor,
                                     paddingTop: 12,
                                     paddingBottom: 12,
                                     paddingRight: 60,
                                     paddingLeft: 20)
-        
-        placeholder.anchor(left:messageInputTextView.leftAnchor,
-                           paddingLeft: 4,centerY: messageInputTextView.centerYAnchor)
-        
+        placeholder.anchor(left: messageInputTextView.leftAnchor,
+                           paddingLeft: 4,
+                           centerY: messageInputTextView.centerYAnchor)
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: nil)
     }
-    
+    // Mark intrinsticContentSize
     override var intrinsicContentSize: CGSize {
         return .zero
     }
-    //Mark:selector
+    // Mark selector
     @objc func sendMessage() {
         print(#function)
         guard let text = messageInputTextView.text else { return }
         self.delegate?.inputView(inputView: self, message: text)
     }
-    
     @objc func textDidChange() {
         placeholder.isHidden = !self.messageInputTextView.isHidden
     }
@@ -90,6 +81,3 @@ class CustomInputAccessoryView:UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
-
