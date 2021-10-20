@@ -12,19 +12,22 @@ class PostViewController: UIViewController {
         iv.image = UIImage(named: Constants.ImageName.logoImage)
         return iv
     }()
-    private let singleButton:UIButton = {
+    private lazy var singleButton:UIButton = {
         let button = RegisterButton(text: Badominton.single.rawValue)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
         return button
     }()
-    private let doubleButton:UIButton = {
+    private lazy var doubleButton:UIButton = {
         let button = RegisterButton(text: Badominton.double.rawValue)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
         return button
     }()
-    private let mixButton:UIButton = {
+    private lazy var mixButton:UIButton = {
         let button = RegisterButton(text: Badominton.mix.rawValue)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
         return button
     }()
     private let label:UILabel = {
@@ -47,15 +50,10 @@ class PostViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillEqually
-        
         view.addSubview(stackView)
         view.addSubview(logoImage)
         stackView.anchor(top:logoImage.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight:30, paddingLeft: 30,height:300)
         logoImage.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 70,centerX: view.centerXAnchor,width: 100,height: 100)
-        
-        singleButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
-        doubleButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
-        mixButton.addTarget(self, action: #selector(handle), for: UIControl.Event.touchUpInside)
     }
     //Mark selector
     @objc private func handle(sender:UIButton) {

@@ -26,7 +26,6 @@ class ScheduleViewController: UIViewController{
         setupData()
         setupCalendar()
         setupTableView()
-        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
     }
     //Mark setupMethod
     private func setupData() {
@@ -39,13 +38,14 @@ class ScheduleViewController: UIViewController{
     }
     
     private func setupCalendar() {
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         calendar.delegate = self
         calendar.dataSource = self
         view.addSubview(calendar)
         calendar.anchor(top:view.safeAreaLayoutGuide.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingRight: 20,paddingLeft: 20,height: 400)
         calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
-        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)
+        calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
         calendar.appearance.titleDefaultColor = .systemGray
         calendar.appearance.headerDateFormat = "yyyy年MM月"
         calendar.appearance.selectionColor = Constants.AppColor.OriginalBlue
@@ -151,12 +151,9 @@ extension ScheduleViewController:CalendarEventDelegate {
     
     func removeEvent(eventModel: Event,cell:UITableViewCell) {
         guard let tappedIndex = tableview.indexPath(for: cell)?[1] else { return }
-        //showAlert主催者の方に連絡を入れたかどうかをチェックするアラート
-        print(eventArray[tappedIndex])
         let vc = UIAlertController(title: "こちらの予定を削除しますか？", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
             self.eventArray.remove(at: tappedIndex)
-            //firestoreでも消す
             guard let meId = self.me?.uid else { return }
             let eventId = self.eventArray[tappedIndex].eventId
             DeleteService.deleteSubCollectionData(collecionName: "Users", documentId: meId, subCollectionName: "Join", subId: eventId)
