@@ -10,65 +10,62 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
-import Firebase
 
-class RegisterViewController:UIViewController{
-    //Mark :Properties
-    private let nameTextField:UITextField = {
+class RegisterViewController: UIViewController {
+    // Mark Properties
+    private let nameTextField: UITextField = {
         let tf = RegisterTextField(placeholder: "名前")
         tf.keyboardType = .default
         tf.returnKeyType = .next
         tf.tag = 0
         return tf
     }()
-    private let emailTextField:UITextField = {
+    private let emailTextField: UITextField = {
         let tf = RegisterTextField(placeholder: "メールアドレス")
         tf.returnKeyType = .next
         tf.keyboardType = .emailAddress
         tf.tag = 1
         return tf
     }()
-    private let passwordTextField:UITextField = {
+    private let passwordTextField: UITextField = {
         let tf = RegisterTextField(placeholder: "パスワード")
         tf.returnKeyType = .done
         tf.tag = 2
         tf.isSecureTextEntry = true
         return tf
     }()
-    private let registerButton:UIButton = {
+    private let registerButton: UIButton = {
         let button = RegisterButton(text: "新規登録")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return button
     }()
-    private let alreadyButton:UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
-    private let googleView:GIDSignInButton = {
+    private let alreadyButton: UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
+    private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
         return button
     }()
     private var displayName = String()
     private var pictureURL = String()
-    private var pictureURLString = String()
-    private let iv:UIImageView = {
+    private let iv: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Constants.ImageName.logoImage)
         return iv
     }()
     private let disposeBag = DisposeBag()
     private let registerBinding = RegisterBindings()
-    private var IndicatorView:NVActivityIndicatorView!
+    private var indicatorView: NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
-    //Mark :LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupBinding()
         setupDelegate()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //UserDefaultで条件分岐をする
+        // UserDefaultで条件分岐をする
         if UserDefaults.standard.object(forKey: "MyId") == nil && Auth.auth().currentUser == nil {
             let vc = WalkThroughController()
             present(vc, animated: true, completion: nil)
@@ -76,7 +73,7 @@ class RegisterViewController:UIViewController{
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
     }
-    //Mark: setup Method
+    // Mark setup Method
     private func setupDelegate() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
@@ -86,34 +83,44 @@ class RegisterViewController:UIViewController{
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
-    
     private func setupLayout() {
-        let stackView = UIStackView(arrangedSubviews: [nameTextField,emailTextField,passwordTextField,registerButton,googleView,fbButton])
+        let stackView = UIStackView(arrangedSubviews: [nameTextField,
+                                                       emailTextField,
+                                                       passwordTextField,
+                                                       registerButton,
+                                                       googleView,
+                                                       fbButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
-        
         view.addSubview(stackView)
         view.addSubview(alreadyButton)
         view.addSubview(iv)
-        
-        nameTextField.anchor(height:45)
-        stackView.anchor(top:iv.bottomAnchor,
-                         left:view.leftAnchor,
-                         right:view.rightAnchor,
-                         paddingTop:20,
+        nameTextField.anchor(height: 45)
+        stackView.anchor(top: iv.bottomAnchor,
+                         left: view.leftAnchor,
+                         right: view.rightAnchor,
+                         paddingTop: 20,
                          paddingRight: 20,
                          paddingLeft: 20,
-                         centerX: view.centerXAnchor,height: 400)
-        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 30, centerX: view.centerXAnchor,width:100, height:100)
-        alreadyButton.anchor(top:stackView.bottomAnchor,paddingTop: 20, centerX: view.centerXAnchor)
-        
-        IndicatorView = self.setupIndicatorView()
-        view.addSubview(IndicatorView)
-        IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
+                         centerX: view.centerXAnchor,
+                         height: 400)
+        iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                  paddingTop: 30,
+                  centerX: view.centerXAnchor,
+                  width: 100,
+                  height: 100)
+        alreadyButton.anchor(top: stackView.bottomAnchor,
+                             paddingTop: 20,
+                             centerX: view.centerXAnchor)
+        indicatorView = self.setupIndicatorView()
+        view.addSubview(indicatorView)
+        indicatorView.anchor(centerX: view.centerXAnchor,
+                             centerY: view.centerYAnchor,
+                             width: 100,
+                             height: 100)
     }
-    
-    func setupBinding() {
+    private func setupBinding() {
         nameTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -127,7 +134,6 @@ class RegisterViewController:UIViewController{
                 self?.registerBinding.nameTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
-        
         emailTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -141,7 +147,6 @@ class RegisterViewController:UIViewController{
                 self?.registerBinding.emailTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
-        
         passwordTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -155,21 +160,18 @@ class RegisterViewController:UIViewController{
                 self?.registerBinding.passwordTextInput.onNext(text ?? "")
             }
             .disposed(by: disposeBag)
-        
         registerButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
                 self?.createUser()
             }
             .disposed(by: disposeBag)
-        
         registerBinding.validRegisterDriver
             .drive { validAll in
                 self.registerButton.isEnabled = validAll
                 self.registerButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
             }
             .disposed(by: disposeBag)
-        
         alreadyButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
@@ -178,16 +180,16 @@ class RegisterViewController:UIViewController{
             }
             .disposed(by: disposeBag)
     }
-    //Mark:Helper Method
+    // Mark Helper Method
     private func createUser() {
-        IndicatorView.startAnimating()
+        indicatorView.startAnimating()
         print(#function)
         let name = nameTextField.text ?? ""
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        AuthService.register(name: name, email: email, password: password) { result,error in
+        AuthService.register(name: name, email: email, password: password) { result, error in
             if result {
-                self.IndicatorView.stopAnimating()
+                self.indicatorView.stopAnimating()
                 let bool = false
                 UserDefaults.standard.set(bool, forKey: "MyId")
                 print("Create User Success")
@@ -200,23 +202,25 @@ class RegisterViewController:UIViewController{
             }
         }
     }
-    //Mark:signUPErrAlert
-    func signUpErrAlert(_ error: NSError){
+    // Mark signUPErrAlert
+    func signUpErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
-        self.setupCDAlert(title: "登録できません", message: message, action: "OK", alertType: .error)
+        self.setupCDAlert(title: "登録できません",
+                          message: message,
+                          action: "OK",
+                          alertType: .error)
     }
 }
-//Mark GoogleSigninDelegate
+// Mark GoogleSigninDelegate
 extension RegisterViewController: GIDSignInDelegate {
-    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("\(error.localizedDescription)")
+            return
         } else {
             let fullName = user.profile.name
             let email = user.profile.email
             guard let auth = user.authentication else { return }
-            
             let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
             Auth.auth().signIn(with: credential) { result, error in
                 if let error = error {
@@ -236,17 +240,15 @@ extension RegisterViewController: GIDSignInDelegate {
             }
         }
     }
-    
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
               withError error: Error!) {
         print(error.localizedDescription)
     }
 }
-//Mark FaceBookDelegate
-extension RegisterViewController:LoginButtonDelegate {
-    
+// Mark FaceBookDelegate
+extension RegisterViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if error == nil{
+        if error == nil {
             if result?.isCancelled == true {
                 return
             }
@@ -258,10 +260,6 @@ extension RegisterViewController:LoginButtonDelegate {
                 return
             }
             self.displayName = (result?.user.displayName)!
-            //string型に強制変換
-            self.pictureURLString = (result?.user.photoURL!.absoluteString)!
-            //画像の大きさを変更（大きくした）
-            self.pictureURLString = self.pictureURLString + "?type=large"
             guard let name = result?.user.displayName else { return }
             guard let email = result?.user.email else { return }
             guard let id = result?.user.uid else { return }
@@ -274,13 +272,12 @@ extension RegisterViewController:LoginButtonDelegate {
             }
         }
     }
-    
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("logout fb")
     }
 }
-//Mark uitextFieldDelegate
-extension RegisterViewController:UITextFieldDelegate {
+// Mark uitextFieldDelegate
+extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let tag = textField.tag

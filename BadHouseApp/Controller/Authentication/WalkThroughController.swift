@@ -2,11 +2,10 @@ import UIKit
 import FacebookCore
 
 class WalkThroughController:UIPageViewController {
-    
-    //Mark:properties
-    private let firstVC:UIViewController = {
+    // Mark properties
+    private let firstVC: UIViewController = {
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
+        vc.view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let iv = UIImageView()
         iv.image = UIImage(named: Constants.ImageName.logoImage)
         let label = UITextView()
@@ -46,17 +45,52 @@ class WalkThroughController:UIPageViewController {
         vc.view.addSubview(imagePlusLabel)
         vc.view.addSubview(explainImage2)
         vc.view.addSubview(imagePlusLabel2)
-        iv.anchor(top:vc.view.topAnchor,paddingTop: 20, centerX: vc.view.centerXAnchor,width: 100,height: 100)
-        label.anchor(top:iv.bottomAnchor,paddingTop: 20,centerX: vc.view.centerXAnchor,width:300,height:50)
-        explainLabel.anchor(top:label.bottomAnchor,paddingTop: 10,centerX: vc.view.centerXAnchor,width:300,height: 50)
-        imagePlusLabel.anchor(top:explainLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 20,paddingRight: 20,paddingLeft: 20,height:20)
-        explainImage.anchor(top:imagePlusLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:60)
-        imagePlusLabel2.anchor(top:explainImage.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 20,paddingRight: 20,paddingLeft: 20,height:20)
-        explainImage2.anchor(top:imagePlusLabel2.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:60)
+        iv.anchor(top: vc.view.topAnchor,
+                  paddingTop: 20,
+                  centerX: vc.view.centerXAnchor,
+                  width: 100,
+                  height: 100)
+        label.anchor(top: iv.bottomAnchor,
+                     paddingTop: 20,
+                     centerX: vc.view.centerXAnchor,
+                     width: 300,
+                     height: 50)
+        explainLabel.anchor(top: label.bottomAnchor,
+                            paddingTop: 10,
+                            centerX: vc.view.centerXAnchor,
+                            width: 300,
+                            height: 50)
+        imagePlusLabel.anchor(top: explainLabel.bottomAnchor,
+                              left: vc.view.leftAnchor,
+                              right: vc.view.rightAnchor,
+                              paddingTop: 20,
+                              paddingRight: 20,
+                              paddingLeft: 20,
+                              height: 20)
+        explainImage.anchor(top: imagePlusLabel.bottomAnchor,
+                            left: vc.view.leftAnchor,
+                            right: vc.view.rightAnchor,
+                            paddingTop: 5,
+                            paddingRight: 20,
+                            paddingLeft: 20,
+                            height: 60)
+        imagePlusLabel2.anchor(top: explainImage.bottomAnchor,
+                               left: vc.view.leftAnchor,
+                               right: vc.view.rightAnchor,
+                               paddingTop: 20,
+                               paddingRight: 20,
+                               paddingLeft: 20,
+                               height: 20)
+        explainImage2.anchor(top: imagePlusLabel2.bottomAnchor,
+                             left: vc.view.leftAnchor,
+                             right: vc.view.rightAnchor,
+                             paddingTop: 5,
+                             paddingRight: 20,
+                             paddingLeft: 20,
+                             height: 60)
         return vc
     }()
-    
-    private let secondVC:UIViewController = {
+    private let secondVC: UIViewController = {
         let vc = UIViewController()
         vc.view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
         let iv = UIImageView()
@@ -87,21 +121,48 @@ class WalkThroughController:UIPageViewController {
         vc.view.addSubview(plusLabel)
         vc.view.addSubview(imagePlusLabel)
         vc.view.addSubview(explainImage)
-        iv.anchor(top:vc.view.topAnchor,paddingTop: 10, centerX: vc.view.centerXAnchor,width: 100,height: 100)
-        explainLabel.anchor(top:iv.bottomAnchor,paddingTop: 5,centerX: vc.view.centerXAnchor,width:320,height:50)
-        plusLabel.anchor(top:explainLabel.bottomAnchor,paddingTop: 0,centerX: vc.view.centerXAnchor,width:350,height:40)
-        label.anchor(top:plusLabel.bottomAnchor,paddingTop: 5,centerX: vc.view.centerXAnchor,width: 300,height: 40)
-        imagePlusLabel.anchor(top:label.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:20)
-        explainImage.anchor(top:imagePlusLabel.bottomAnchor,left:vc.view.leftAnchor,right:vc.view.rightAnchor,paddingTop: 5,paddingRight: 20,paddingLeft: 20,height:230)
+        iv.anchor(top: vc.view.topAnchor,
+                  paddingTop: 10,
+                  centerX: vc.view.centerXAnchor,
+                  width: 100,
+                  height: 100)
+        explainLabel.anchor(top: iv.bottomAnchor,
+                            paddingTop: 5,
+                            centerX: vc.view.centerXAnchor,
+                            width: 320,
+                            height: 50)
+        plusLabel.anchor(top: explainLabel.bottomAnchor,
+                         paddingTop: 0,
+                         centerX: vc.view.centerXAnchor,
+                         width: 350,
+                         height: 40)
+        label.anchor(top: plusLabel.bottomAnchor,
+                     paddingTop: 5,
+                     centerX: vc.view.centerXAnchor,
+                     width: 300,
+                     height: 40)
+        imagePlusLabel.anchor(top: label.bottomAnchor,
+                              left: vc.view.leftAnchor,
+                              right: vc.view.rightAnchor,
+                              paddingTop: 5,
+                              paddingRight: 20,
+                              paddingLeft: 20,
+                              height: 20)
+        explainImage.anchor(top: imagePlusLabel.bottomAnchor,
+                            left: vc.view.leftAnchor,
+                            right: vc.view.rightAnchor,
+                            paddingTop: 5,
+                            paddingRight: 20,
+                            paddingLeft: 20,
+                            height: 230)
         return vc
     }()
-    
-    private lazy var pages:[UIViewController] = {
-        let views = [firstVC,secondVC]
+    private lazy var pages: [UIViewController] = {
+        let views = [firstVC, secondVC]
         return views
     }()
-    private var pageControl:UIPageControl!
-    private let dismissButton:UIButton = {
+    private var pageControl: UIPageControl!
+    private lazy var dismissButton: UIButton = {
         let button = UIButton()
         button.setTitle("はじめてみる", for: .normal)
         button.backgroundColor = .darkGray
@@ -109,32 +170,38 @@ class WalkThroughController:UIPageViewController {
         button.toCorner(num: 15)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         return button
     }()
-    //Mark lifecycle
+    // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
-        view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         self.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
         let width = self.view.frame.maxX
-        pageControl = UIPageControl(frame: CGRect(x:0, y:self.view.frame.maxY - 100, width:width, height:50))
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: self.view.frame.maxY - 100, width: width, height: 50))
         pageControl.backgroundColor = Constants.AppColor.OriginalBlue
         pageControl.numberOfPages = 2
         pageControl.currentPage = 0
         pageControl.isUserInteractionEnabled = false
         self.view.addSubview(dismissButton)
         self.view.addSubview(pageControl)
-        dismissButton.anchor(bottom:pageControl.topAnchor,left:view.leftAnchor,right: view.rightAnchor,paddingBottom: 10,paddingRight:40, paddingLeft: 40,height:40)
+        dismissButton.anchor(bottom: pageControl.topAnchor,
+                             left: view.leftAnchor,
+                             right: view.rightAnchor,
+                             paddingBottom: 10,
+                             paddingRight: 40,
+                             paddingLeft: 40,
+                             height: 40)
     }
-    //Mark selector
+    // Mark selector
     @objc private func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
 }
-//Mark pageViewControllorDatasource
-extension WalkThroughController:UIPageViewControllerDataSource {
+// Mark pageViewControllorDatasource
+extension WalkThroughController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex - 1 >= 0 {
             pageControl.currentPage = 0
@@ -144,7 +211,6 @@ extension WalkThroughController:UIPageViewControllerDataSource {
         }
         return nil
     }
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex + 1 < pages.count {
             pageControl.currentPage = 1
@@ -154,11 +220,9 @@ extension WalkThroughController:UIPageViewControllerDataSource {
         }
         return nil
     }
-    
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
-    
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
