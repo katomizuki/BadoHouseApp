@@ -108,7 +108,7 @@ class MyPageController: UIViewController{
     //Mark:prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Constants.Segue.userProfile {
-            let vc = segue.destination as! UserViewController
+            let vc = segue.destination as! MyPageUserInfoController
             vc.user = self.user
             vc.delegate = self
         } else if segue.identifier == Constants.Segue.gotoSearch {
@@ -203,7 +203,7 @@ extension MyPageController:FetchMyTeamDataDelegate {
 }
 //Mark UserDismissDelegate
 extension MyPageController:UserDismissDelegate {
-    func userVCdismiss(vc: UserViewController) {
+    func userVCdismiss(vc: MyPageUserInfoController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }

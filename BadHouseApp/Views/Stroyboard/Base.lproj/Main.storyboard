@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Detail Search View Controller-->
+        <!--Detail Search Controller-->
         <scene sceneID="FMa-Eg-56m">
             <objects>
-                <viewController id="cbu-Zi-uCJ" customClass="DetailSearchViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cbu-Zi-uCJ" customClass="DetailSearchController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7CX-mR-1mS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,13 +115,13 @@
                                                         <rect key="frame" x="0.0" y="457" width="540" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yab-ZE-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="140.5" height="51.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="92" height="51.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-tL-9go">
-                                                                <rect key="frame" x="140.5" y="0.0" width="399.5" height="51.5"/>
+                                                                <rect key="frame" x="92" y="0.0" width="448" height="51.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -491,10 +491,10 @@
             </objects>
             <point key="canvasLocation" x="-498" y="1630"/>
         </scene>
-        <!--Friend Search View Controller-->
+        <!--Friend Search Controller-->
         <scene sceneID="DaT-1c-T7V">
             <objects>
-                <viewController id="Heq-qa-yRZ" customClass="FriendSearchViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Heq-qa-yRZ" customClass="FriendSearchController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pdG-Cx-oOc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -533,7 +533,7 @@
         <!--イベント-->
         <scene sceneID="D0i-AW-P4S">
             <objects>
-                <viewController storyboardIdentifier="EventDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MhW-dQ-Hy9" customClass="EventDetailViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MhW-dQ-Hy9" customClass="EventDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SkE-AF-LHA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1843,10 +1843,10 @@
             </objects>
             <point key="canvasLocation" x="1108" y="130"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="Msd-gQ-eet">
             <objects>
-                <viewController storyboardIdentifier="rootVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tcQ-Ok-PMz" customClass="ViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tcQ-Ok-PMz" customClass="HomeViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ttv-wS-Eml">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2060,10 +2060,10 @@
             </objects>
             <point key="canvasLocation" x="1270" y="1630"/>
         </scene>
-        <!--User View Controller-->
+        <!--My Page User Info Controller-->
         <scene sceneID="0AW-Go-PMb">
             <objects>
-                <viewController storyboardIdentifier="UserVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cnA-oH-FKQ" customClass="UserViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cnA-oH-FKQ" customClass="MyPageUserInfoController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ods-LK-ope">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2111,10 +2111,10 @@
             </objects>
             <point key="canvasLocation" x="4234" y="-618"/>
         </scene>
-        <!--Level View Controller-->
+        <!--My Level Controller-->
         <scene sceneID="1jT-UP-iSM">
             <objects>
-                <viewController storyboardIdentifier="LevelVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uRX-ig-1c2" customClass="LevelViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LevelVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uRX-ig-1c2" customClass="MyLevelController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lh4-xl-MdN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3314,7 +3314,7 @@
         <!-- -->
         <scene sceneID="koT-5R-V9V">
             <objects>
-                <viewController id="2pZ-hL-4wl" customClass="TornamentController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2pZ-hL-4wl" customClass="TornamentListController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ld9-cd-bnS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

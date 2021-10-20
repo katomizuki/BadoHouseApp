@@ -9,9 +9,9 @@ protocol getDetailDelegate:AnyObject {
                           placeAddressString:String,
                           money:String,
                           time:String,
-                          vc:DetailSearchViewController)
+                          vc:DetailSearchController)
 }
-class DetailSearchViewController: UIViewController{
+class DetailSearchController: UIViewController{
     //Mark:Properties
     @IBOutlet private weak var titleStackView: UIStackView!
     @IBOutlet private weak var circleStackView: UIStackView!
@@ -186,7 +186,7 @@ class DetailSearchViewController: UIViewController{
     }
 }
 //Mark:PickerViewDataSource
-extension DetailSearchViewController:UIPickerViewDataSource {
+extension DetailSearchController:UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -202,7 +202,7 @@ extension DetailSearchViewController:UIPickerViewDataSource {
     }
 }
 //Mark UIPickerDelegate
-extension DetailSearchViewController:UIPickerViewDelegate{
+extension DetailSearchController:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
             return self.data[row]
@@ -226,7 +226,7 @@ extension DetailSearchViewController:UIPickerViewDelegate{
 
 
 //Mark textFieldDelegate
-extension DetailSearchViewController:UITextFieldDelegate {
+extension DetailSearchController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

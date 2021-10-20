@@ -25,8 +25,6 @@ class TornamentDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +33,8 @@ class TornamentDetailController: UIViewController {
     }
     //Mark setupMethod
     private func setupLayout() {
+        view.backgroundColor = UIColor(named:Constants.AppColor.darkColor)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         let stackView = UIStackView(arrangedSubviews: [tornamentLabel, holdDayLabel,startDayLabel,deadLineLabel,placeLabel,addressLabel,moneyLabel,inquiryLabel,shuttleLabel,competitionMethodLabel,urlLabel])
         stackView.axis = .vertical
         stackView.spacing = 10

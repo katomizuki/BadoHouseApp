@@ -1,6 +1,6 @@
 import UIKit
 
-class TornamentController: UIViewController {
+class TornamentListController: UIViewController {
     //Mark properties
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = Constants.CellId.CellGroupId
@@ -22,14 +22,14 @@ class TornamentController: UIViewController {
     }
 }
 //Mark TableViewDelegate
-extension TornamentController:UITableViewDelegate{
+extension TornamentListController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TornamentDetailVC) as! TornamentDetailController
         navigationController?.pushViewController(vc, animated: true)
     } 
 }
 
-extension TornamentController:UITableViewDataSource {
+extension TornamentListController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }

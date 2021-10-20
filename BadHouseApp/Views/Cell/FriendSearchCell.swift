@@ -5,7 +5,7 @@ import FacebookCore
 class FriendSearchCell: UITableViewCell {
     
     //Mark:properties
-    var link:FriendSearchViewController!
+    var link:FriendSearchController!
     var count = 0
     private var button:UIButton = {
         let button = UIButton(type: .system)
@@ -60,7 +60,7 @@ class FriendSearchCell: UITableViewCell {
             button.setTitle("　友だちになる　", for: UIControl.State.normal)
         }
         count += 1
-        link?.method(cell: self)
+        link?.plusFriend(cell: self)
     }
     
 }

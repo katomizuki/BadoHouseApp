@@ -7,9 +7,9 @@ import SDWebImage
 import FirebaseAuth
 import CDAlertView
 protocol UserDismissDelegate:AnyObject {
-    func userVCdismiss(vc:UserViewController)
+    func userVCdismiss(vc:MyPageUserInfoController)
 }
-class UserViewController: UIViewController{
+class MyPageUserInfoController: UIViewController{
     //Mark: properties
     var user:User?
     private let cellId = Constants.CellId.userCellId
@@ -96,13 +96,11 @@ class UserViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        setupAddSubView()
-        setupAnchor()
-        updateUI()
+        setupUI()
         setupBinding()
     }
-    //Mark: setupMethod
-    private func setupAddSubView() {
+    
+    private func setupUI() {
         scrollView.addSubview(backButton)
         scrollView.addSubview(saveButton)
         scrollView.addSubview(profileImageView)
@@ -111,9 +109,6 @@ class UserViewController: UIViewController{
         scrollView.addSubview(InfoCollectionView)
         scrollView.addSubview(userTableView)
         scrollView.addSubview(logoutButton)
-    }
-    
-    private func setupAnchor() {
         //Mark: Anchor
         backButton.anchor(top: scrollView.topAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft:15,width: 80)
         saveButton.anchor(top: scrollView.topAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 15,width: 80)
@@ -123,6 +118,15 @@ class UserViewController: UIViewController{
         userTableView.anchor(top:nameLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 5,paddingRight: 20, paddingLeft: 20,height: 220)
         InfoCollectionView.anchor(top: userTableView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10,paddingRight: 20, paddingLeft: 20)
         logoutButton.anchor(top:saveButton.bottomAnchor,right: view.rightAnchor,paddingTop: 40,paddingRight: 15,width:80)
+        nameLabel.text = user?.name
+        if let url = URL(string: user?.profileImageUrl ?? "") {
+            profileImageView.sd_setImage(with: url, completed: nil)
+        }
+        level = user?.level ?? BadmintonLevel.one.rawValue
+        gender = user?.gender ?? "未設定"
+        badmintonTime = user?.badmintonTime ?? "未設定"
+        place = user?.place ?? "未設定"
+        age = user?.age ?? "未設定"
     }
     
     private func setupBinding() {
@@ -168,18 +172,7 @@ class UserViewController: UIViewController{
             print(error)
         }
     }
-    //Mark helperMethod
-    private func updateUI() {
-        nameLabel.text = user?.name
-        if let url = URL(string: user?.profileImageUrl ?? "") {
-            profileImageView.sd_setImage(with: url, completed: nil)
-        }
-        level = user?.level ?? BadmintonLevel.one.rawValue
-        gender = user?.gender ?? "未設定"
-        badmintonTime = user?.badmintonTime ?? "未設定"
-        place = user?.place ?? "未設定"
-        age = user?.age ?? "未設定"
-    }
+    //Mark HelperMethod
     private func bindingsCell(cell:InfoCollectionViewCell) {
         cell.nameTextField.rx.text
             .asDriver()
@@ -214,14 +207,14 @@ class UserViewController: UIViewController{
     //Mark segueMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoLevel {
-            let vc = segue.destination as! LevelViewController
+            let vc = segue.destination as! MyLevelController
             vc.selectedLevel = self.level
             vc.delegate = self
         }
     }
 }
 //Mark: CollectionDatasource
-extension UserViewController:UICollectionViewDataSource,UICollectionViewDelegate {
+extension MyPageUserInfoController:UICollectionViewDataSource,UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -233,7 +226,7 @@ extension UserViewController:UICollectionViewDataSource,UICollectionViewDelegate
         return cell
     }
 }
-extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+extension MyPageUserInfoController:UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print(#function)
@@ -245,7 +238,7 @@ extension UserViewController:UIPickerViewDelegate,UINavigationControllerDelegate
     }
 }
 //Mark tableViewDelegate,popoverDelegate
-extension UserViewController:UITableViewDelegate  {
+extension MyPageUserInfoController:UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
@@ -254,7 +247,7 @@ extension UserViewController:UITableViewDelegate  {
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return
         }
-        let viewController = PopViewController()
+        let viewController = MyPageInfoPopoverController()
         viewController.modalPresentationStyle = .popover
         viewController.preferredContentSize = CGSize(width: 200, height: 150)
         viewController.delegate = self
@@ -270,14 +263,14 @@ extension UserViewController:UITableViewDelegate  {
 }
 
 //Mark uipopoverViewDelegate
-extension UserViewController:UIPopoverPresentationControllerDelegate{
+extension MyPageUserInfoController:UIPopoverPresentationControllerDelegate{
     func adaptivePresentationStyle(for controller: UIPresentationController,
                                    traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
 //Mark UiTableview datasource
-extension UserViewController:UITableViewDataSource {
+extension MyPageUserInfoController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTitleArray.count
     }
@@ -310,14 +303,14 @@ extension UserViewController:UITableViewDataSource {
 }
 
 //extension UserViewControllerDismiss
-extension UserViewController:LevelDismissDelegate {
-    func levelDismiss(vc: LevelViewController) {
+extension MyPageUserInfoController:LevelDismissDelegate {
+    func levelDismiss(vc: MyLevelController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
 //Mark UserViewController:PopDismissDelegate
-extension UserViewController:PopDismissDelegate {
-    func popDismiss(vc: PopViewController) {
+extension MyPageUserInfoController:PopDismissDelegate {
+    func popDismiss(vc: MyPageInfoPopoverController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }

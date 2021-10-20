@@ -10,7 +10,7 @@ import UserNotifications
 import CDAlertView
 import FacebookCore
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     //Mark: Properties
     private var user:User?
     private var IndicatorView:NVActivityIndicatorView!
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
     //Mark:Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Constants.Segue.gotoUser {
-            let vc = segue.destination as! UserViewController
+            let vc = segue.destination as! MyPageUserInfoController
             vc.user = self.user
         }
         if segue.identifier == Constants.Segue.gotoCalendar {
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
             vc.delegate = self
         }
         if segue.identifier == Constants.Segue.gotoDetail {
-            let vc = segue.destination as! DetailSearchViewController
+            let vc = segue.destination as! DetailSearchController
             vc.delegate = self
         }
     }
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
     }
 }
 //Mark: UICollectionDataSource
-extension ViewController:UICollectionViewDataSource {
+extension HomeViewController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return eventArray.count
     }
@@ -156,16 +156,16 @@ extension ViewController:UICollectionViewDataSource {
     }
 }
 //Mark collectionViewFlowLayoutDelegate
-extension ViewController:UICollectionViewDelegateFlowLayout {
+extension HomeViewController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.collectionView.frame.width
         return CGSize(width: width, height: width - 50)
     }
 }
 //Mark collectionviewDelegate
-extension ViewController:UICollectionViewDelegate {
+extension HomeViewController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailController
         vc.event = eventArray[indexPath.row]
         let teamId = eventArray[indexPath.row].teamId
         TeamService.getTeamData(teamId: teamId) { team in
@@ -176,7 +176,7 @@ extension ViewController:UICollectionViewDelegate {
 }
 
 //Mark: CLLocationMangerDelegate
-extension ViewController: CLLocationManagerDelegate {
+extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
@@ -189,7 +189,7 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 //Mark: UISearchBarDelegate
-extension ViewController: UISearchBarDelegate {
+extension HomeViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
@@ -226,7 +226,7 @@ extension ViewController: UISearchBarDelegate {
 }
 
 //Mark EventDelegate
-extension ViewController:FetchEventDataDelegate {
+extension HomeViewController:FetchEventDataDelegate {
     func fetchEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
@@ -273,21 +273,21 @@ extension ViewController:FetchEventDataDelegate {
 }
 
 //Mark: GetDatailDelegate
-extension ViewController: getDetailDelegate {
-    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String,vc:DetailSearchViewController) {
+extension HomeViewController: getDetailDelegate {
+    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String,vc:DetailSearchController) {
         fetchData.searchEventDetailData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
         vc.dismiss(animated: true, completion: nil)
     }
 }
 //Mark: CalendarDelegate
-extension ViewController: CalendarDelegate {
+extension HomeViewController: CalendarDelegate {
     func searchCalendar(dateString: String,text:String,vc:CalendarViewController) {
         fetchData.searchEventDateData(dateString:dateString,text: text)
         vc.dismiss(animated: true, completion: nil)
     }
 }
 //Mark EmptyStateDelegate
-extension ViewController:EmptyStateDelegate{
+extension HomeViewController:EmptyStateDelegate{
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         view.emptyState.hide()

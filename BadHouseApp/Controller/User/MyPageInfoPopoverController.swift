@@ -1,9 +1,9 @@
 import UIKit
 import FacebookCore
 protocol PopDismissDelegate:AnyObject {
-    func popDismiss(vc:PopViewController)
+    func popDismiss(vc:MyPageInfoPopoverController)
 }
-class PopViewController: UIViewController{
+class MyPageInfoPopoverController: UIViewController{
     //Mark Properties
     weak var delegate:PopDismissDelegate?
     private let CellId = Constants.CellId.popCellId
@@ -44,7 +44,7 @@ class PopViewController: UIViewController{
     }
 }
 //Mark tableViewDataSource
-extension PopViewController:UITableViewDataSource {
+extension MyPageInfoPopoverController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellArray.count
     }
@@ -56,9 +56,9 @@ extension PopViewController:UITableViewDataSource {
     }
 }
 //Mark tableViewDelegate
-extension PopViewController:UITableViewDelegate {
+extension MyPageInfoPopoverController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.presentingViewController as! UserViewController
+        let vc = self.presentingViewController as! MyPageUserInfoController
         switch keyword {
         case UserInfo.gender.rawValue:
             gender = cellArray[indexPath.row]

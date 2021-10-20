@@ -5,7 +5,7 @@ import FacebookCore
 import EmptyStateKit
 import CDAlertView
 
-class FriendSearchViewController: UIViewController {
+class FriendSearchController: UIViewController {
     //Mark:Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar! {
@@ -55,8 +55,8 @@ class FriendSearchViewController: UIViewController {
         format.backgroundColor = UIColor(named:Constants.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
-    //Mark helperMethod
-    func method(cell:UITableViewCell) {
+    //Mark CustomDelegate
+    func plusFriend(cell:UITableViewCell) {
         print(#function)
         let indexPathTapped = tableView.indexPath(for: cell)
         guard let index = indexPathTapped?[1] else { return }
@@ -68,8 +68,8 @@ class FriendSearchViewController: UIViewController {
         }
     }
 }
-//Mark:UITableViewDelegate,DataSource
-extension FriendSearchViewController: UITableViewDelegate,UITableViewDataSource {
+//Mark:UITableDataSource
+extension FriendSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendList.count
     }
@@ -89,13 +89,15 @@ extension FriendSearchViewController: UITableViewDelegate,UITableViewDataSource 
         }
         return cell
     }
-    
+}
+//Mark UITableViewdelegate
+extension FriendSearchController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.height / 10
     }
 }
 //Mark:UISearchDelegate
-extension FriendSearchViewController:UISearchBarDelegate {
+extension FriendSearchController:UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
@@ -128,7 +130,7 @@ extension FriendSearchViewController:UISearchBarDelegate {
     }
 }
 //Mark:GetUserDelegate
-extension FriendSearchViewController:FetchSearchUserDataDelegate {
+extension FriendSearchController:FetchSearchUserDataDelegate {
     func fetchSearchUser(userArray: [User],bool:Bool) {
         print(#function)
         if bool == false {
@@ -149,7 +151,7 @@ extension FriendSearchViewController:FetchSearchUserDataDelegate {
     }
 }
 //Mark EmptyStateDelegate
-extension FriendSearchViewController:EmptyStateDelegate{
+extension FriendSearchController:EmptyStateDelegate{
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()
     }

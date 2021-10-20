@@ -7,7 +7,7 @@ import Firebase
 import CDAlertView
 import FacebookCore
 
-class EventDetailViewController: UIViewController {
+class EventDetailController: UIViewController {
     //Mark :Properties
     var event:Event?
     var team:TeamModel?
@@ -151,8 +151,6 @@ class EventDetailViewController: UIViewController {
         guard let groupUrlString = event?.teamImageUrl else { return }
         let groupUrl = URL(string: groupUrlString)
         groupImageView.sd_setImage(with: groupUrl, completed: nil)
-        
-        //Mark:textLabel
         titleLabel.text = "\(event?.eventTitle ?? "")"
         groupLabel.text = "主催チーム \(event?.teamName ?? "")"
         var start = event?.eventStartTime ?? ""
@@ -348,7 +346,7 @@ class EventDetailViewController: UIViewController {
 }
 
 //Mark:genderDelegate
-extension EventDetailViewController:FetchGenderCountDataDelegate {
+extension EventDetailController:FetchGenderCountDataDelegate {
     
     func fetchGenderCount(countArray: [Int]) {
         self.genderArray = countArray
@@ -361,8 +359,7 @@ extension EventDetailViewController:FetchGenderCountDataDelegate {
 }
 
 //Mark:collectionViewdelegate
-extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    
+extension EventDetailController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamArray.count
     }
@@ -374,15 +371,19 @@ extension EventDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         cell.configure(name: memberName, urlString: urlString)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-    }
-    
+}
+//Mark CollectionDatasource
+extension EventDetailController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
         vc.user = teamArray[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+//Mark CollectionLayoutDelegate
+extension EventDetailController:UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
     }
 }

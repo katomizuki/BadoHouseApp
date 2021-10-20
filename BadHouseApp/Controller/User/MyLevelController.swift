@@ -1,9 +1,9 @@
 import UIKit
 import Foundation
 protocol LevelDismissDelegate:AnyObject {
-    func levelDismiss(vc:LevelViewController)
+    func levelDismiss(vc:MyLevelController)
 }
-class LevelViewController: UIViewController {
+class MyLevelController: UIViewController {
     //Mark:Properties
     weak var delegate:LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
@@ -90,7 +90,7 @@ class LevelViewController: UIViewController {
     //Mark IBAction
     @IBAction func back(_ sender: Any) {
         selectedLevel = levelLabel.text ?? "1"
-        let vc = self.presentingViewController as! UserViewController
+        let vc = self.presentingViewController as! MyPageUserInfoController
         vc.level = selectedLevel
         self.delegate?.levelDismiss(vc: self)
     }
