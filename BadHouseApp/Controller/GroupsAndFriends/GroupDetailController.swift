@@ -6,7 +6,7 @@ import Charts
 import FacebookCore
 import SwiftUI
 
-class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate {
+class GroupDetailController: UIViewController {
     //Mark: Properties
     private let fetchData = FetchFirestoreData()
     var team:TeamModel?
@@ -59,7 +59,6 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIndicator()
-        updateBorder()
         setupDelegate()
         IndicatorView.startAnimating()
         setupData()
@@ -129,16 +128,6 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width:100,height: 100)
     }
-    //Mark: setupBorder
-    private func setupBorder(view:UIView) {
-        let border = CALayer()
-        border.frame = CGRect(x: view.frame.width - 1,
-                              y: 15,
-                              width: 5.0,
-                              height: view.frame.height - 25)
-        border.backgroundColor = UIColor.lightGray.cgColor
-        view.layer.addSublayer(border)
-    }
     
     private func setUpTeamStatus() {
         print(#function)
@@ -147,7 +136,6 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
-        
         guard let urlString = team?.teamImageUrl else { return }
         let url = URL(string: urlString)
         friendImageView.sd_setImage(with: url, completed: nil)
@@ -199,12 +187,7 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
         BarChartView.legend.enabled = false
         dataSet.colors = [.lightGray]
     }
-    //Mark: helplerMethod
-    private func updateBorder() {
-        //        setupBorder(view: placeStackView)
-        //        setupBorder(view: timeStackView)
-    }
-    
+
     private func changeUI() {
         withdrawButton.isHidden = flag
         chatButton.isHidden = flag
@@ -214,16 +197,7 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
         }
         friendImageView.isUserInteractionEnabled = !flag
     }
-    //Mark:Protocol
-    func fetchGenderCount(countArray: [Int]) {
-        self.genderArray = countArray
-        self.setupPieChart()
-    }
-    
-    func fetchBarData(countArray: [Int]) {
-        self.rawData = countArray
-        self.setupGraph()
-    }
+   
     //Mark IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.inviteVC) as! InviteViewController
@@ -235,7 +209,7 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
     @IBAction private func updateTeamInfo(_ sender: Any) {
         print(#function)
         guard let team = self.team else { return }
-        let vc = UpdateViewController(team: team)
+        let vc = UpdateTeamController(team: team)
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
@@ -269,10 +243,22 @@ class GroupDetailViewController: UIViewController, FetchGenderCountDataDelegate 
         }
     }
 }
-//Mark detailSearchDelegate
-extension GroupDetailViewController:backDelegate {
+
+//Mark ChatDelegate
+extension GroupDetailController:FetchGenderCountDataDelegate {
+    func fetchGenderCount(countArray: [Int]) {
+        self.genderArray = countArray
+        self.setupPieChart()
+    }
     
-    func updateTeamData(vc:UpdateViewController) {
+    func fetchBarData(countArray: [Int]) {
+        self.rawData = countArray
+        self.setupGraph()
+    }
+}
+//Mark detailSearchDelegate
+extension GroupDetailController:backDelegate {
+    func updateTeamData(vc:UpdateTeamController) {
         vc.dismiss(animated: true, completion: nil)
         guard let id = team?.teamId else { return }
         TeamService.getTeamData(teamId: id) { team in
@@ -287,8 +273,7 @@ extension GroupDetailViewController:backDelegate {
     }
 }
 //Mark: CollectionViewDelegate,DataSource
-extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
-    
+extension GroupDetailController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamPlayers.count
     }
@@ -300,121 +285,20 @@ extension GroupDetailViewController:UICollectionViewDelegate,UICollectionViewDat
         cell.configure(name: memberName, urlString: urlString)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-    }
-    
+}
+//Mark GroupDetailViewController
+extension GroupDetailController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
         vc.user = teamPlayers[indexPath.row]
         vc.me = self.me
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+//Mark GroupDetailViewController
+extension GroupDetailController:UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+}
 
-protocol backDelegate:AnyObject {
-    func updateTeamData(vc:UpdateViewController)
-}
-class UpdateViewController:UIViewController {
-    //Mark properties
-    var team:TeamModel?
-    private let placeTextField = ProfileTextField(placeholder: "")
-    private let timeTextField = ProfileTextField(placeholder: "")
-    private let moneyTextField = ProfileTextField(placeholder: "")
-    weak var delegate:backDelegate?
-    private lazy var iv:UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: Constants.ImageName.noImages)
-        iv.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        iv.layer.borderWidth = 2
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(handleImagePicker))
-        iv.addGestureRecognizer(touchGesture)
-        iv.isUserInteractionEnabled = true
-        iv.layer.cornerRadius = 75
-        iv.layer.masksToBounds = true
-        return iv
-    }()
-    
-    private let button:UIButton = {
-        let button = UIButton()
-        button.updateButton(radius: 15, backColor: Constants.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
-        button.setTitle("保存", for: .normal)
-        return button
-    }()
-    private let imagePicker = UIImagePickerController()
-    //Mark lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLayout()
-        setupteamInfo()
-        imagePicker.delegate = self
-    }
-    //Mark setupMethod
-    private func setupLayout() {
-        view.backgroundColor = .white
-        let stackView = UIStackView(arrangedSubviews: [placeTextField,timeTextField,moneyTextField])
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.distribution = .fillEqually
-        
-        view.addSubview(stackView)
-        view.addSubview(iv)
-        view.addSubview(button)
-        
-        iv.anchor(top:view.safeAreaLayoutGuide.topAnchor,paddingTop: 100,centerX: view.centerXAnchor,width:150, height:150)
-        stackView.anchor(top:iv.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor,paddingTop:20, paddingRight:30,paddingLeft:30,height: 170)
-        button.anchor(top:stackView.bottomAnchor,left:view.leftAnchor,right:view.rightAnchor,paddingTop: 20,paddingRight: 30,paddingLeft: 30,height: 50)
-        button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
-    }
-    
-    private func setupteamInfo() {
-        placeTextField.text = team?.teamPlace
-        timeTextField.text = team?.teamTime
-        moneyTextField.text = team?.teamLevel
-        guard let urlString = team?.teamImageUrl else { return }
-        let url = URL(string: urlString)
-        iv.sd_setImage(with: url, completed: nil)
-    }
-    //Mark initalize
-    init(team:TeamModel) {
-        super.init(nibName: nil, bundle: nil)
-        self.team = team
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    //Mark selector
-    @objc private func handleSave() {
-        guard let place = placeTextField.text else { return }
-        guard let time = timeTextField.text else { return }
-        guard let money = moneyTextField.text else { return }
-        self.team?.teamPlace = place
-        self.team?.teamTime = time
-        self.team?.teamLevel = money
-        guard let image = iv.image else { return }
-        StorageService.addTeamImage(image: image) { [weak self] urlString in
-            guard let self = self else { return }
-            self.team?.teamImageUrl = urlString
-            guard let team = self.team else { return }
-            TeamService.updateTeamData(team: team)
-            self.delegate?.updateTeamData(vc:self)
-        }
-    }
-    
-    @objc private func handleImagePicker() {
-        print(#function)
-        present(imagePicker, animated: true, completion: nil)
-    }
-}
-//Mark: UIImagePickerDelegate
-extension UpdateViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.originalImage] as? UIImage else { return }
-        print(#function)
-        iv.image = image
-        dismiss(animated: true, completion: nil)
-    }
-}

@@ -66,12 +66,12 @@
 		D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */; };
 		D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */; };
 		D3C4E93C26E0F57700C21E46 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93B26E0F57700C21E46 /* CollectionCell.swift */; };
-		D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93D26E19E1800C21E46 /* GroupViewController.swift */; };
-		D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93F26E19EDE00C21E46 /* GroupDetailViewController.swift */; };
-		D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94126E1A54000C21E46 /* MakeGroupViewController.swift */; };
+		D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93D26E19E1800C21E46 /* MyPageController.swift */; };
+		D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */; };
+		D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamBinding.swift */; };
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
-		D3C4E94D26E1E9BB00C21E46 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94C26E1E9BB00C21E46 /* FriendsViewController.swift */; };
+		D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */; };
 		D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94E26E2F78400C21E46 /* InviteCell.swift */; };
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
@@ -87,7 +87,7 @@
 		D3DA98C026F7357100DFF8B1 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */; };
-		D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailViewController.swift */; };
+		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventViewController.swift */; };
 		D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* EventBinding.swift */; };
@@ -102,6 +102,7 @@
 		D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */; };
 		D3FFD334271EDCC300DE54ED /* JoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* JoinService.swift */; };
 		D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */; };
+		D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,12 +165,12 @@
 		D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		D3C4E93B26E0F57700C21E46 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		D3C4E93D26E19E1800C21E46 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
-		D3C4E93F26E19EDE00C21E46 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
-		D3C4E94126E1A54000C21E46 /* MakeGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroupViewController.swift; sourceTree = "<group>"; };
+		D3C4E93D26E19E1800C21E46 /* MyPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageController.swift; sourceTree = "<group>"; };
+		D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailController.swift; sourceTree = "<group>"; };
+		D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroupController.swift; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBinding.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
-		D3C4E94C26E1E9BB00C21E46 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToTeamController.swift; sourceTree = "<group>"; };
 		D3C4E94E26E2F78400C21E46 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
@@ -185,7 +186,7 @@
 		D3DA98BF26F7357100DFF8B1 /* GroupChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinViewController.swift; sourceTree = "<group>"; };
-		D3FD194226E3A26700B6740E /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewController.swift; sourceTree = "<group>"; };
 		D3FD195026E4993A00B6740E /* EventBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBinding.swift; sourceTree = "<group>"; };
@@ -200,6 +201,7 @@
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
 		D3FFD333271EDCC300DE54ED /* JoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinService.swift; sourceTree = "<group>"; };
 		D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPopoverController.swift; sourceTree = "<group>"; };
+		D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTeamController.swift; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -466,14 +468,15 @@
 		D3C4E94326E1A54D00C21E46 /* GroupsAndFriends */ = {
 			isa = PBXGroup;
 			children = (
-				D3C4E93D26E19E1800C21E46 /* GroupViewController.swift */,
-				D3C4E93F26E19EDE00C21E46 /* GroupDetailViewController.swift */,
-				D3C4E94126E1A54000C21E46 /* MakeGroupViewController.swift */,
-				D3C4E94C26E1E9BB00C21E46 /* FriendsViewController.swift */,
-				D3FD194226E3A26700B6740E /* UserDetailViewController.swift */,
+				D3C4E93D26E19E1800C21E46 /* MyPageController.swift */,
+				D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */,
+				D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */,
+				D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */,
+				D3FD194226E3A26700B6740E /* UserDetailController.swift */,
 				D3A789CF26F414310088E8BC /* InviteViewController.swift */,
 				D3A82BAF2707357800DDB4FC /* GroupSearchViewController.swift */,
 				D388F0EF27105AF900ACA6B8 /* SubUserViewController.swift */,
+				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
 			);
 			path = GroupsAndFriends;
 			sourceTree = "<group>";
@@ -702,12 +705,13 @@
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
-				D3C4E94226E1A54000C21E46 /* MakeGroupViewController.swift in Sources */,
+				D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */,
 				D388F0F027105AFA00ACA6B8 /* SubUserViewController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
 				D3977167270959A70025BE19 /* TornamentController.swift in Sources */,
-				D3C4E93E26E19E1800C21E46 /* GroupViewController.swift in Sources */,
+				D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */,
+				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* ChatViewController.swift in Sources */,
@@ -717,7 +721,7 @@
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
-				D3FD194326E3A26700B6740E /* UserDetailViewController.swift in Sources */,
+				D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */,
 				D330032826E7013900208525 /* LevelViewController.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3CF6D1126F8AE60007C4DF3 /* ChildViewController.swift in Sources */,
@@ -725,7 +729,7 @@
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
-				D3C4E94D26E1E9BB00C21E46 /* FriendsViewController.swift in Sources */,
+				D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */,
 				D3BDB52C26E0525100C53780 /* ViewController.swift in Sources */,
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchViewController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
@@ -759,7 +763,7 @@
 				D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */,
-				D3C4E94026E19EDE00C21E46 /* GroupDetailViewController.swift in Sources */,
+				D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
 				D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */,
 				D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */,

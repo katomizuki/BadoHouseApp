@@ -3,7 +3,7 @@ import Firebase
 import SDWebImage
 import FacebookCore
 
-class UserDetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class UserDetailController: UIViewController {
     //Mark: Properties
     var user:User?
     var me:User?
@@ -50,7 +50,6 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupLayer()
         setupCollection()
         setupData()
         helperUI()
@@ -73,13 +72,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
             friendButton.isHidden = true
         }
     }
-    
-    private func setupLayer() {
-        //        setupBorder(view: ageStackView)
-        //        setupBorder(view: genderStackView)
-        //        setupBorder(view: badmintonTimeStackView)
-    }
-    
+ 
     private func setupBorder(view:UIView) {
         let border = CALayer()
         border.frame = CGRect(x: view.frame.width - 1, y: 15, width: 5.0, height: view.frame.height)
@@ -186,7 +179,7 @@ class UserDetailViewController: UIViewController, UIPopoverPresentationControlle
     }
 }
 //Mark: UserCollectionViewDelegate
-extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension UserDetailController:UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
@@ -212,14 +205,12 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
             return cell
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-    }
-    
+}
+//Mark CollectionViewDelegate
+extension UserDetailController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
             vc.team = ownTeam[indexPath.row]
             vc.friends = userFriend
             vc.flag = true
@@ -232,8 +223,14 @@ extension UserDetailViewController:UICollectionViewDelegate,UICollectionViewData
         }
     }
 }
+//Mark CollectionViewDelegateFlowLayout
+extension UserDetailController:UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+}
 //Mark GetFriendDelegate
-extension UserDetailViewController:FetchMyFriendDataDelegate {
+extension UserDetailController:FetchMyFriendDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray
@@ -243,7 +240,7 @@ extension UserDetailViewController:FetchMyFriendDataDelegate {
     }
 }
 //Mark MyTeamDelegate
-extension UserDetailViewController:FetchMyTeamDataDelegate {
+extension UserDetailController:FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = teamArray
         DispatchQueue.main.async {

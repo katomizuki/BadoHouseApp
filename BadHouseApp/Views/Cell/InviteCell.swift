@@ -4,7 +4,7 @@ import UIKit
 class ContactCell:UITableViewCell {
     
     //Mark:Properties
-    var linkFriend:FriendsViewController!
+    var linkFriend:InviteToTeamController!
     var count = 0
     var button:UIButton = {
         let button = UIButton(type: .system)

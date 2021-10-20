@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import NVActivityIndicatorView
 
-class FriendsViewController: UIViewController {
+class InviteToTeamController: UIViewController {
     //Mark: Properties
     @IBOutlet private weak var friendTableView: UITableView! {
         didSet {
@@ -27,6 +27,7 @@ class FriendsViewController: UIViewController {
     var teamTagArray = [String]()
     var url:String?
     private let fetchData = FetchFirestoreData()
+    
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)
@@ -89,8 +90,7 @@ class FriendsViewController: UIViewController {
     }
 }
 //Mark TableviewExtension
-extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
-    
+extension InviteToTeamController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -109,7 +109,9 @@ extension FriendsViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return cell
     }
-    
+}
+//Mark tableViewDelegate
+extension InviteToTeamController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }

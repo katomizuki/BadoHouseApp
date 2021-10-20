@@ -6,7 +6,7 @@ import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 
-class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate {
+class MakeGroupController: UIViewController {
     //Mark :Properties
     private let disposeBag = DisposeBag()
     private let teamBinding = TeamRegisterBindings()
@@ -60,18 +60,68 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
-    private let buttonTag1 = UIButton(type: .system).createTagButton(title: "シングル可")
-    private let buttonTag2 = UIButton(type: .system).createTagButton(title: "バド好き")
-    private let buttonTag3 = UIButton(type: .system).createTagButton(title: "ミックス可")
-    private let buttonTag4 = UIButton(type: .system).createTagButton(title: "ダブルス")
-    private let buttonTag5 = UIButton(type: .system).createTagButton(title: "上級者限定")
-    private let buttonTag6 = UIButton(type: .system).createTagButton(title: "学生限定")
-    private let buttonTag7 = UIButton(type: .system).createTagButton(title: "初心者歓迎")
-    private let buttonTag8 = UIButton(type: .system).createTagButton(title: "練習中心")
-    private let buttonTag9 = UIButton(type: .system).createTagButton(title: "子供,学生OK")
-    private let buttonTag10 = UIButton(type: .system).createTagButton(title: "大会出ます!")
-    private let buttonTag11 = UIButton(type: .system).createTagButton(title: "土日開催")
-    private let buttonTag12 = UIButton(type: .system).createTagButton(title: "平日開催")
+    private lazy var buttonTag1:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "シングル可")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var buttonTag2:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "バド好き")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var buttonTag3:UIButton =  {
+        let button = UIButton(type: .system).createTagButton(title: "ミックス可")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag4:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "ダブルス")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag5:UIButton = {
+        let button =  UIButton(type: .system).createTagButton(title: "上級者限定")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag6:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "学生限定")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag7:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "初心者歓迎")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag8:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "練習中心")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag9:UIButton = {
+        let button =  UIButton(type: .system).createTagButton(title: "子供,学生OK")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag10:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "大会出ます!")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag11:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "土日開催")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
+    private lazy var buttonTag12:UIButton = {
+        let button = UIButton(type: .system).createTagButton(title: "平日開催")
+        button.addTarget(self, action: #selector(tap(sender:)), for: .touchUpInside)
+        return button
+    }()
     @IBOutlet private weak var scrollView: UIView! {
         didSet {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -167,22 +217,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         buttonStackView2.anchor(top:buttonStackView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         buttonStackView3.anchor(top: buttonStackView2.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20,paddingLeft: 20)
         registerButton.anchor(top:buttonStackView3.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 15,paddingRight: 20, paddingLeft: 20,height: 45)
-        setupAddTarget()
-    }
-    
-    private func setupAddTarget() {
-        buttonTag1.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag2.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag3.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag4.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag5.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag6.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag7.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag8.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag9.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag10.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag11.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
-        buttonTag12.addTarget(self, action: #selector(tap(sender:)), for: UIControl.Event.touchUpInside)
     }
     
     private func setupBinding() {
@@ -270,7 +304,6 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         registerButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                //SendTeamData
                 self?.createTeam()
             }
             .disposed(by: disposeBag)
@@ -321,8 +354,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
         guard let teamLevel = levelTextField.text else { return }
         guard let teamImage = groupImageView.image else { return }
         guard let teamUrl = plusTextField.text else { return }
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.FriendVC) as! FriendsViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.FriendVC) as! InviteToTeamController
         vc.friends = self.friends
         vc.teamName = teamName
         vc.teamTime = teamTime
@@ -345,7 +377,7 @@ class MakeGroupViewController: UIViewController,UIImagePickerControllerDelegate 
     }
 }
 //Mark UIPickerDelegate,UINavigationControllerDelegate
-extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDelegate,UIPickerViewDataSource {
+extension MakeGroupController:UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print(#function)
@@ -354,7 +386,9 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
+}
+//Mark UIPickerViewDataSource
+extension MakeGroupController:UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -366,15 +400,9 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
             return moneyArray.count
         }
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == self.placePickerView {
-            return placeArray[row]
-        } else {
-            return moneyArray[row]
-        }
-    }
-    
+}
+//Mark UIPickerViewDelegate
+extension MakeGroupController:UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.placePickerView {
             placeTextField.text = placeArray[row]
@@ -382,9 +410,16 @@ extension MakeGroupViewController:UIPickerViewDelegate,UINavigationControllerDel
             levelTextField.text = moneyArray[row]
         }
     }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == self.placePickerView {
+            return placeArray[row]
+        } else {
+            return moneyArray[row]
+        }
+    }
 }
 //Mark getFriendDelegate
-extension MakeGroupViewController:FetchMyFriendDataDelegate {
+extension MakeGroupController:FetchMyFriendDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         print(#function)
     }
@@ -394,7 +429,7 @@ extension MakeGroupViewController:FetchMyFriendDataDelegate {
     }
 }
 //Mark: uitextFieldDelegate
-extension MakeGroupViewController:UITextFieldDelegate {
+extension MakeGroupController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if textField.tag == 0 {
