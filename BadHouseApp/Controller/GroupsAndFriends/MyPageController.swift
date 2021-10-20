@@ -26,6 +26,7 @@ class MyPageController: UIViewController {
     @IBOutlet private weak var countLabel: UILabel! {
         didSet {
             countLabel.font = .boldSystemFont(ofSize: 14)
+            countLabel.textColor = .systemGray
         }
     }
     private let fetchData = FetchFirestoreData()

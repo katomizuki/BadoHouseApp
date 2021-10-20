@@ -13,6 +13,7 @@ class UserDetailController: UIViewController {
     @IBOutlet private weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 20)
+            teamLabel.textColor = .systemGray
         }
     }
     @IBOutlet private weak var friendsImageView: UIImageView! {
@@ -25,7 +26,11 @@ class UserDetailController: UIViewController {
     }
     @IBOutlet private weak var friendCollectionView: UICollectionView!
     @IBOutlet private weak var belongCollectionView: UICollectionView!
-    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel! {
+        didSet {
+            nameLabel.textColor = .systemGray
+        }
+    }
     @IBOutlet private weak var friendButton: UIButton! {
         didSet {
             friendButton.updateFriendButton()
@@ -34,6 +39,7 @@ class UserDetailController: UIViewController {
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
             friendLabel.font = .boldSystemFont(ofSize: 20)
+            friendLabel.textColor = .systemGray
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
