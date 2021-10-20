@@ -9,6 +9,7 @@ class UserDetailController: UIViewController {
     var me: User?
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
+    private var blockSheet: BlockSheet!
     @IBOutlet private weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 20)
@@ -46,6 +47,14 @@ class UserDetailController: UIViewController {
     @IBOutlet private weak var levelStackView: UIStackView!
     private let fetchData = FetchFirestoreData()
     var flag = false
+    private lazy var blockButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(" 通報 ", for: .normal)
+        button.addTarget(self, action: #selector(block), for: .touchUpInside)
+        button.backgroundColor = Constants.AppColor.OriginalBlue
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +74,13 @@ class UserDetailController: UIViewController {
     }
     // Mark setupMethod
     private func setupUI() {
+        view.addSubview(blockButton)
+        blockButton.anchor(top: levelStackView.bottomAnchor,
+                           right: view.rightAnchor,
+                           paddingTop: 10,
+                           paddingRight: 10,
+                           width: 30,
+                           height: 30)
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定": user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
@@ -145,6 +161,12 @@ class UserDetailController: UIViewController {
         }
         friendsImageView.isUserInteractionEnabled = !flag
         chatButton.isHidden = flag
+    }
+    // Mark selector
+    @objc private func block() {
+        print(#function)
+        blockSheet.delegate = self
+        blockSheet.show()
     }
     // Mark IBAction
     @IBAction func plusFriend(_ sender: Any) {
@@ -240,5 +262,11 @@ extension UserDetailController: FetchMyTeamDataDelegate {
         DispatchQueue.main.async {
             self.belongCollectionView.reloadData()
         }
+    }
+}
+// Mark BlockSheetDelegate
+extension UserDetailController: BlockDelegate {
+    func blockSheet(option: BlockOptions) {
+        print(option)
     }
 }
