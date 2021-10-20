@@ -3,11 +3,14 @@ import MapKit
 import CoreLocation
 import CDAlertView
 
-protocol SearchLocationProtocol:AnyObject {
-    func sendLocationData(location:[Double],placeName:String,placeAddress:String,vc:MapViewController)
+protocol SearchLocationProtocol: AnyObject {
+    func sendLocationData(location: [Double],
+                          placeName: String,
+                          placeAddress: String,
+                          vc: MapViewController)
 }
-class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRecognizerDelegate{
-    //Mark:Properties
+class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+    // Mark Properties
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
@@ -15,7 +18,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             mapView.isUserInteractionEnabled = true
         }
     }
-    var locManager:CLLocationManager!
+    var locManager: CLLocationManager!
     @IBOutlet private weak var saveButton: UIButton! {
         didSet {
             saveButton.updateSaveButton()
@@ -30,32 +33,31 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             searchBar.autocapitalizationType = .none
         }
     }
-    private var (placeName,placeAddress) = (String(),String())
-    private var (placeLatitude,placeLongitude) = (Double(),Double())
-    weak var delegate:SearchLocationProtocol?
+    private var (placeName, placeAddress) = (String(), String())
+    private var (placeLatitude, placeLongitude) = (Double(), Double())
+    weak var delegate: SearchLocationProtocol?
     private var defaultRegion: MKCoordinateRegion {
         let coordinate = CLLocationCoordinate2D(
             latitude: 35.680,
             longitude: 139.767
         )
-        let span = MKCoordinateSpan (
+        let span = MKCoordinateSpan(
             latitudeDelta: 0.001,
             longitudeDelta: 0.001
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    //Mark:LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.setRegion(defaultRegion, animated: false)
         searchBar.delegate = self
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         searchBar.becomeFirstResponder()
     }
-    //Mark:selector
-    @objc private func mapTap(_ gesture:UITapGestureRecognizer) {
+    // Mark selector
+    @objc private func mapTap(_ gesture: UITapGestureRecognizer) {
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
@@ -77,25 +79,30 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,UIGestureRec
             self.placeLongitude = longitude
         }
     }
-    //Mark:IBAction
+    // Mark IBAction
     @IBAction private func saveButton(_ sender: Any) {
-        self.delegate?.sendLocationData(location: [placeLatitude,placeLongitude], placeName: placeName,placeAddress:placeAddress,vc:self)
+        self.delegate?.sendLocationData(location: [placeLatitude, placeLongitude],
+                                        placeName: placeName,
+                                        placeAddress: placeAddress,
+                                        vc: self)
     }
 }
-//Mark searchBarDelegate
-extension MapViewController:UISearchBarDelegate {
+// Mark searchBarDelegate
+extension MapViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let search = searchBar.text {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(search) { placemark, error in
                 if let error = error {
-                    print("Location",error)
-                    self.setupCDAlert(title: "検索エラー", message: "開催場所の正式名称を入力してください", action: "OK", alertType: .error)
+                    print("Location", error)
+                    self.setupCDAlert(title: "検索エラー",
+                                      message: "開催場所の正式名称を入力してください",
+                                      action: "OK",
+                                      alertType: .error)
                     return
                 }
                 if let safePlacemark = placemark {
@@ -105,12 +112,10 @@ extension MapViewController:UISearchBarDelegate {
                         let thorough = firstPlacemark.thoroughfare ?? ""
                         let subThorough = firstPlacemark.subThoroughfare ?? ""
                         self.placeAddress = preference + locality + thorough + subThorough
-                        
                         if let location = firstPlacemark.location {
                             let targetCoordinate = location.coordinate
                             let targetLatitude = targetCoordinate.latitude
                             let targetLongitude = targetCoordinate.longitude
-                            
                             self.placeLatitude = targetLatitude
                             self.placeLongitude = targetLongitude
                             self.placeName = search
@@ -118,7 +123,9 @@ extension MapViewController:UISearchBarDelegate {
                             pin.coordinate = targetCoordinate
                             pin.title = search
                             self.mapView.addAnnotation(pin)
-                            self.mapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+                            self.mapView.region = MKCoordinateRegion(center: targetCoordinate,
+                                                                     latitudinalMeters: 500.0,
+                                                                     longitudinalMeters: 500.0)
                         }
                     }
                 }

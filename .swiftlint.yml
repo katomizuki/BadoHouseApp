@@ -17,6 +17,9 @@ disabled_rules:
 # force_castは場合によっては使用するため
 - force_cast
 - force_try
+- cyclomatic_complexity
+
+
 
 
 excluded:

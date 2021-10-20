@@ -4,8 +4,8 @@ import RxCocoa
 import Firebase
 import RangeUISlider
 
-class MakeEventController: UIViewController{
-    //Mark:properties
+class MakeEventController: UIViewController {
+    // Mark properties
     @IBOutlet private weak var gatherCountLabel: UILabel!
     @IBOutlet private weak var courtCountLabel: UILabel!
     @IBOutlet private weak var moneyTextField: UITextField! {
@@ -39,9 +39,9 @@ class MakeEventController: UIViewController{
             datePicker.locale = Locale(identifier: "ja-JP")
         }
     }
-    @IBOutlet private weak var TeamPickerView: UIPickerView! {
+    @IBOutlet private weak var teamPickerView: UIPickerView! {
         didSet {
-            TeamPickerView.toCorner(num: 15)
+            teamPickerView.toCorner(num: 15)
         }
     }
     @IBOutlet private weak var placeTextField: UITextField! {
@@ -77,13 +77,21 @@ class MakeEventController: UIViewController{
             scrollView.addGestureRecognizer(gesture)
         }
     }
-    private var selectedTeam:TeamModel?
-    private var (teamPlace,teamTime) = (String(),String())
-    private var (eventTitle,eventStartTime,eventLastTime,eventLevel,eventMoney,courtCount,gatherCount,detailText,placeAddress) = (String(),String(),String(),String(),String(),String(),String(),String(),String())
+    private var selectedTeam: TeamModel?
+    private var (teamPlace, teamTime) = (String(), String())
+    private var (eventTitle,
+                 eventStartTime,
+                 eventLastTime,
+                 eventLevel,
+                 eventMoney,
+                 courtCount,
+                 gatherCount,
+                 detailText,
+                 placeAddress) = (String(), String(), String(), String(), String(), String(), String(), String(), String())
     private var kindCircle = BadmintonCircle.student.rawValue
-    private var (placeLatitude,placeLongitude) = (Double(),Double())
-    private var dic = [String:Any]()
-    private var team:TeamModel?
+    private var (placeLatitude, placeLongitude) = (Double(), Double())
+    private var dic = [String: Any]()
+    private var team: TeamModel?
     @IBOutlet weak var levelUISlider: RangeUISlider! {
         didSet {
             levelUISlider.leftKnobColor = Constants.AppColor.OriginalBlue
@@ -94,7 +102,7 @@ class MakeEventController: UIViewController{
     private let moneyArray = Constants.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     private let fetchData = FetchFirestoreData()
-    //Mark:LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
@@ -102,31 +110,28 @@ class MakeEventController: UIViewController{
         setupOwnTeamData()
         setupToolBar()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setupDelegate() {
         levelUISlider.delegate = self
-        TeamPickerView.delegate = self
-        TeamPickerView.dataSource = self
+        teamPickerView.delegate = self
+        teamPickerView.dataSource = self
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         titleTextField.delegate = self
     }
-    
     private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
         let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([flexibleButton,doneButtonItem], animated: true)
+        toolBar.setItems([flexibleButton, doneButtonItem], animated: true)
         moneyTextField.inputAccessoryView = toolBar
     }
-    
     private func setupBinding() {
         datePicker.rx.value.changed
             .asObservable()
@@ -136,29 +141,25 @@ class MakeEventController: UIViewController{
                 self.eventBinding.dateTextInput.onNext(string)
                 self.teamTime = string
             })
-            .disposed(by:disposeBag)
-        
+            .disposed(by: disposeBag)
         finishPicker.rx.value.changed
             .asObservable()
-            .subscribe (onNext: { [weak self] data in
+            .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
                 let string = self.formatterUtil(date: data)
                 self.eventLastTime = string
                 self.eventBinding.finishTextInput.onNext(string)
             })
             .disposed(by: disposeBag)
-        
         startPicker.rx.value.changed
             .asObservable()
-            .subscribe (onNext:{ [weak self] data in
+            .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
                 let string = self.formatterUtil(date: data)
-                
                 self.eventStartTime = string
                 self.eventBinding.startTextInput.onNext(string)
             })
             .disposed(by: disposeBag)
-        
         moneyTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
@@ -169,7 +170,6 @@ class MakeEventController: UIViewController{
                 self.eventBinding.moneyTextInput.onNext(text)
             }
             .disposed(by: disposeBag)
-        
         titleTextField.rx.text.asDriver()
             .drive { [weak self] text in
                 guard let self = self else { return }
@@ -179,9 +179,8 @@ class MakeEventController: UIViewController{
                 self.eventTitle = title
                 self.eventBinding.titleTextInput.onNext(title)
             }
-            .disposed(by:disposeBag)
-        
-        TeamPickerView.rx.itemSelected.asObservable()
+            .disposed(by: disposeBag)
+        teamPickerView.rx.itemSelected.asObservable()
             .subscribe { [weak self] element in
                 guard let self = self else { return }
                 if let data = element.element {
@@ -192,7 +191,6 @@ class MakeEventController: UIViewController{
                 }
             }
             .disposed(by: disposeBag)
-        
         eventBinding.valideMakeDriver
             .drive { [weak self] validAll in
                 guard let self = self else { return }
@@ -202,7 +200,6 @@ class MakeEventController: UIViewController{
             }
             .disposed(by: disposeBag)
     }
-    
     private func setupOwnTeamData() {
         let uid = AuthService.getUserId()
         UserService.getOwnTeam(uid: uid) { [weak self] teamIds in
@@ -210,8 +207,8 @@ class MakeEventController: UIViewController{
             self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
     }
-    //Mark:Selector
-    @objc private func segmentTap(sender:UISegmentedControl) {
+    // Mark Selector
+    @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         switch index {
         case 0:
@@ -232,7 +229,6 @@ class MakeEventController: UIViewController{
     @objc private func donePicker() {
         moneyTextField.endEditing(true)
     }
-    
     @objc private func createEvent() {
         print(#function)
         var teamImageUrl = String()
@@ -252,25 +248,25 @@ class MakeEventController: UIViewController{
         let userId = AuthService.getUserId()
         let eventId = Ref.EventRef.document().documentID
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let dic = ["eventId":eventId,
-                       "time":self.teamTime,
-                       "place":self.teamPlace,
-                       "teamId":teamId,
-                       "teamName":teamName,
-                       "eventStartTime":self.eventStartTime,
-                       "eventLastTime":self.eventLastTime,
-                       "eventLavel":self.eventLevel,
-                       "eventMoney":self.eventMoney,
-                       "detailText":self.detailText,
-                       "kindCircle":self.kindCircle,
-                       "courtCount":self.courtCount,
-                       "gatherCount":self.gatherCount,
-                       "eventTitle":self.eventTitle,
-                       "latitude":self.placeLatitude,
-                       "longitude":self.placeLongitude,
-                       "teamImageUrl":teamImageUrl,
-                       "placeAddress":self.placeAddress,
-                       "userId":userId] as [String : Any]
+            let dic = ["eventId": eventId,
+                       "time": self.teamTime,
+                       "place": self.teamPlace,
+                       "teamId": teamId,
+                       "teamName": teamName,
+                       "eventStartTime": self.eventStartTime,
+                       "eventLastTime": self.eventLastTime,
+                       "eventLavel": self.eventLevel,
+                       "eventMoney": self.eventMoney,
+                       "detailText": self.detailText,
+                       "kindCircle": self.kindCircle,
+                       "courtCount": self.courtCount,
+                       "gatherCount": self.gatherCount,
+                       "eventTitle": self.eventTitle,
+                       "latitude": self.placeLatitude,
+                       "longitude": self.placeLongitude,
+                       "teamImageUrl": teamImageUrl,
+                       "placeAddress": self.placeAddress,
+                       "userId": userId] as [String: Any]
             guard let eventImage = self.noImageView.image else { return }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TagVC) as! EventTagController
             vc.dic = dic
@@ -280,7 +276,7 @@ class MakeEventController: UIViewController{
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    //Mark:IBAction
+    // Mark IBAction
     @IBAction private func plusCourt(_ sender: UIStepper) {
         let num = String(Int(sender.value) + 1)
         courtCountLabel.text = num
@@ -295,20 +291,18 @@ class MakeEventController: UIViewController{
         pickerView.delegate = self
         self.present(pickerView, animated: true, completion: nil)
     }
-    
     @IBAction private func gotoMap(_ sender: Any) {
         print(#function)
         performSegue(withIdentifier: Constants.Segue.gotoMap, sender: nil)
     }
-    //Mark helperMethod
-    private func tfupdate(view:UIView) {
+    // Mark helperMethod
+    private func tfupdate(view: UIView) {
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 2
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
     }
-    
-    //Mark:Prepare
+    // Mark Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoMap {
             let nextVC = segue.destination as! MapViewController
@@ -316,43 +310,39 @@ class MakeEventController: UIViewController{
         }
     }
 }
-//Mark: UIPickerViewDataSource
-extension MakeEventController:UIPickerViewDataSource {
-    
+// Mark UIPickerViewDataSource
+extension MakeEventController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == self.TeamPickerView {
+        if pickerView == self.teamPickerView {
             return pickerArray.count
         } else {
             return moneyArray.count
         }
     }
 }
-//Mark PickerDelegate
-extension MakeEventController:UIPickerViewDelegate {
+// Mark PickerDelegate
+extension MakeEventController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == self.TeamPickerView {
+        if pickerView == self.teamPickerView {
             return pickerArray[row].teamName
         } else {
             return moneyArray[row]
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == moneyPickerView {
             moneyTextField.text = moneyArray[row]
         }
     }
 }
-//Mark: RangeUISliderDelegate
-extension MakeEventController:RangeUISliderDelegate{
-    //Mark RangeDelegate
+// Mark RangeUISliderDelegate
+extension MakeEventController: RangeUISliderDelegate {
+    // Mark RangeDelegate
     func rangeChangeFinished(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
     }
-    
     func rangeIsChanging(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
         switch minValueSelected {
         case 0..<1:
@@ -378,7 +368,6 @@ extension MakeEventController:RangeUISliderDelegate{
         default:
             break
         }
-        
         switch maxValueSelected {
         case 0..<1:
             maxLevelLabel.text = BadmintonLevel.one.rawValue
@@ -405,34 +394,34 @@ extension MakeEventController:RangeUISliderDelegate{
         }
     }
 }
-//Mark:uinavigationDelegate
-extension MakeEventController:UINavigationControllerDelegate,UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Mark uinavigationDelegate
+extension MakeEventController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             noImageView.image = image.withRenderingMode(.alwaysOriginal)
         }
         self.dismiss(animated: true, completion: nil)
     }
 }
-//Mark getmyTeamDelegate
-extension MakeEventController :FetchMyTeamDataDelegate {
+// Mark getmyTeamDelegate
+extension MakeEventController: FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         pickerArray = teamArray
         if pickerArray.count == 1 {
             self.selectedTeam = pickerArray[0]
         }
-        TeamPickerView.reloadAllComponents()
+        teamPickerView.reloadAllComponents()
     }
 }
-//Mark textFieldDelegate
-extension MakeEventController:UITextFieldDelegate {
+// Mark textFieldDelegate
+extension MakeEventController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
 }
-//Mark SearchLocationProtocol
-extension MakeEventController:SearchLocationProtocol {
-    func sendLocationData(location: [Double], placeName: String,placeAddress:String,vc:MapViewController) {
+// Mark SearchLocationProtocol
+extension MakeEventController: SearchLocationProtocol {
+    func sendLocationData(location: [Double], placeName: String, placeAddress: String, vc: MapViewController) {
         vc.dismiss(animated: true, completion: nil)
         self.teamPlace = placeName
         self.placeLatitude = location[0]

@@ -2771,7 +2771,6 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="Z7t-9m-5Np"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="TeamPickerView" destination="zud-m0-Kvc" id="0qB-RI-hPk"/>
                         <outlet property="circleSegment" destination="wcJ-qB-KZn" id="24i-e0-tgK"/>
                         <outlet property="courtCountLabel" destination="Za7-17-dkt" id="Uax-Pb-FlY"/>
                         <outlet property="datePicker" destination="HqZ-Nc-ffI" id="rdd-hZ-Jm0"/>
@@ -2787,6 +2786,7 @@
                         <outlet property="placeTextField" destination="wBM-v6-A5p" id="bfc-g5-Yms"/>
                         <outlet property="scrollView" destination="BEE-5R-Wpj" id="qKI-tz-qJj"/>
                         <outlet property="startPicker" destination="l6L-K6-nGv" id="UuY-Gk-ewr"/>
+                        <outlet property="teamPickerView" destination="zud-m0-Kvc" id="0qB-RI-hPk"/>
                         <outlet property="titleTextField" destination="Ual-0V-WvQ" id="lct-xx-9Ei"/>
                         <segue destination="gjh-my-rgV" kind="show" identifier="show" id="JeJ-Yd-jy7"/>
                         <segue destination="ogp-MK-TpW" kind="presentation" identifier="gotoMap" id="IWQ-rf-83W"/>

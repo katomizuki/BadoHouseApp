@@ -8,9 +8,9 @@ import CDAlertView
 import FacebookCore
 
 class EventDetailController: UIViewController {
-    //Mark :Properties
-    var event:Event?
-    var team:TeamModel?
+    // Mark Properties
+    var event: Event?
+    var team: TeamModel?
     @IBOutlet private weak var eventImageView: UIImageView! {
         didSet {
             eventImageView.contentMode = .scaleAspectFill
@@ -51,7 +51,7 @@ class EventDetailController: UIViewController {
     @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
     private var genderValue = Constants.Data.genderArray
-    private var rawData:[Int] = []
+    private var rawData: [Int] = []
     private var fetchData = FetchFirestoreData()
     private var teamArray = [User]()
     private var defaultRegion: MKCoordinateRegion {
@@ -61,14 +61,14 @@ class EventDetailController: UIViewController {
             latitude: x,
             longitude: y
         )
-        let span = MKCoordinateSpan (
+        let span = MKCoordinateSpan(
             latitudeDelta: 0.01,
             longitudeDelta: 0.01
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    private var me :User?
-    private var you :User?
+    private var me: User?
+    private var you: User?
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var stackView: UIStackView! {
         didSet {
@@ -83,24 +83,23 @@ class EventDetailController: UIViewController {
     @IBOutlet private weak var moneyStackView: UIStackView!
     @IBOutlet private weak var placeStackView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
-    private var chatId:String?
-    //Mark:Lifecycle
+    private var chatId: String?
+    // Mark Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setData()
+        setupData()
         setupCell()
         setupTag()
         setupUnderLine()
         setupUser()
         setupNav()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
-    //Mark:SetupMethod
+    // Mark SetupMethod
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
         self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
@@ -110,8 +109,7 @@ class EventDetailController: UIViewController {
         navigationItem.titleView = imageView
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
     }
-    
-    private func setData() {
+    private func setupData() {
         UserService.getUserData(uid: AuthService.getUserId()) { [weak self] user in
             guard let self = self else { return }
             self.me = user
@@ -134,7 +132,6 @@ class EventDetailController: UIViewController {
             }
         }
     }
-    
     private func setupCell() {
         let nib = TeammemberCell.nib()
         let layout = UICollectionViewFlowLayout()
@@ -143,7 +140,6 @@ class EventDetailController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
     private func setupUI() {
         guard let urlString = event?.eventUrl else { return }
         let url = URL(string: urlString)
@@ -174,38 +170,22 @@ class EventDetailController: UIViewController {
         pin.coordinate = CLLocationCoordinate2D(latitude: x, longitude: y)
         mapView.addAnnotation(pin)
     }
-    //Mark:HelperMethod
-    private func changeString(string:String)->String {
-        var text = string
-        let from = text.index(text.startIndex, offsetBy: 5)
-        let to = text.index(text.startIndex, offsetBy: 15)
-        text = String(text[from...to])
-        let index = text.index(text.startIndex, offsetBy: 5)
-        text.insert("日", at: index)
-        if text.prefix(1) == "0" {
-            let index = text.index(text.startIndex, offsetBy: 0)
-            text.remove(at: index)
-        }
-        text = text.replacingOccurrences(of: "/", with: "月")
-        text = text.replacingOccurrences(of: ":", with: "時")
-        return text
-    }
-    
     private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
-            entry.append(PieChartDataEntry(value: Double(genderArray[i]),label:genderValue[i], data: genderArray[i]))
+            entry.append(PieChartDataEntry(value: Double(genderArray[i]),
+                                           label: genderValue[i],
+                                           data: genderArray[i]))
         }
-        let pieChartDataSet = PieChartDataSet(entries: entry,label: "男女比")
+        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
         pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
         pieChartDataSet.drawValuesEnabled = false
         pieView.centerText = "男女比"
         pieView.legend.enabled = false
-        pieView.data = PieChartData(dataSet:pieChartDataSet)
-        let colors = [UIColor.blue,.red,Constants.AppColor.OriginalBlue]
+        pieView.data = PieChartData(dataSet: pieChartDataSet)
+        let colors = [UIColor.blue, .red, Constants.AppColor.OriginalBlue]
         pieChartDataSet.colors = colors
     }
-    
     private func setupBarChart() {
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
         barView.scaleXEnabled = false
@@ -226,7 +206,6 @@ class EventDetailController: UIViewController {
         barView.legend.enabled = false
         dataSet.colors = [.lightGray]
     }
-    
     private func setupTag() {
         guard let eventId = event?.eventId else { return }
         EventServie.getEventTagData(eventId: eventId) { [weak self] tags in
@@ -246,7 +225,6 @@ class EventDetailController: UIViewController {
             }
         }
     }
-    
     private func setupUnderLine() {
         setupUnderLayer(view: lastTimeStackView)
         setupUnderLayer(view: gatherStackView)
@@ -256,14 +234,12 @@ class EventDetailController: UIViewController {
         setupUnderLayer(view: moneyStackView)
         setupUnderLayer(view: placeStackView)
     }
-    
-    private func setupUnderLayer(view:UIView) {
+    private func setupUnderLayer(view: UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
         bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
         view.layer.addSublayer(bottomBorder)
     }
-    
     private func setupUser() {
         guard let userId = event?.userId else { return }
         UserService.getUserData(uid: userId) { [weak self] user in
@@ -280,8 +256,23 @@ class EventDetailController: UIViewController {
             self.leaderLabel.text = name
         }
     }
-    
-    //Mark: prepareMethod
+    // Mark HelperMethod
+    private func changeString(string: String) -> String {
+        var text = string
+        let from = text.index(text.startIndex, offsetBy: 5)
+        let to = text.index(text.startIndex, offsetBy: 15)
+        text = String(text[from...to])
+        let index = text.index(text.startIndex, offsetBy: 5)
+        text.insert("日", at: index)
+        if text.prefix(1) == "0" {
+            let index = text.index(text.startIndex, offsetBy: 0)
+            text.remove(at: index)
+        }
+        text = text.replacingOccurrences(of: "/", with: "月")
+        text = text.replacingOccurrences(of: ":", with: "時")
+        return text
+    }
+    // Mark prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoChat {
             let vc = segue.destination as! DMChatController
@@ -292,15 +283,14 @@ class EventDetailController: UIViewController {
             vc.flag = true
         }
     }
-    //Mark IBAction
+    // Mark IBAction
     @IBAction func join(_ sender: Any) {
         print(#function)
         guard let leaderId = event?.userId else { return }
-   
         guard let eventId = event?.eventId else { return }
         JoinService.searchPreJoinData(myId: AuthService.getUserId(), eventId: eventId) { bool in
             if bool == false {
-                //alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
+                // alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
                 let alert = UIAlertController(title: "参加申請をしますか？", message: "チャットで主催者に自動で連絡がいきます。", preferredStyle: .alert)
                 let cancleAction = UIAlertAction(title: "キャンセル", style: .default) { _ in
                     self.navigationController?.popViewController(animated: true)
@@ -312,42 +302,49 @@ class EventDetailController: UIViewController {
                         guard let self = self else { return }
                         print(chatId)
                         if chatId.isEmpty {
-                            //チャットルームを作った後に申請を出す。
+                            // チャットルームを作った後に申請を出す。
                             ChatRoomService.sendChatroom(myId: AuthService.getUserId(), youId: leaderId) { id in
                                 self.chatId = id
                                 guard let chatId = self.chatId else { return }
-                                ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
+                                ChatRoomService.sendDMChat(chatroomId: chatId,
+                                                           senderId: meId,
+                                                           text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。",
+                                                           reciverId: leaderId)
                             }
                         } else {
-                            //既に存在していればそのまま出す。
+                            // 既に存在していればそのまま出す。
                             self.chatId = chatId
                             guard let chatId = self.chatId else { return }
-                            ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。", reciverId: leaderId)
+                            ChatRoomService.sendDMChat(chatroomId: chatId,
+                                                       senderId: meId,
+                                                       text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。",
+                                                       reciverId: leaderId)
                         }
-                        JoinService.sendPreJoinDataToEventAndUser(myId: meId, eventId: eventId,leaderId: leaderId)
+                        JoinService.sendPreJoinDataToEventAndUser(myId: meId,
+                                                                  eventId: eventId,
+                                                                  leaderId: leaderId)
                         self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
                         LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
                     }
-
                 }
                 alert.addAction(alertAction)
                 alert.addAction(cancleAction)
-                self.present(alert,animated: true,completion: nil)
-            } else  {
-                self.setupCDAlert(title: "既に申請しております", message: "主催者からの承認をお待ち下さい", action: "OK", alertType: CDAlertViewType.notification)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.setupCDAlert(title: "既に申請しております",
+                                  message: "主催者からの承認をお待ち下さい",
+                                  action: "OK",
+                                  alertType: CDAlertViewType.notification)
             }
         }
     }
-    
-    //Mark helperMethod
-    private func getCGrect(view:UIView)->CGRect {
+    // Mark helperMethod
+    private func getCGrect(view: UIView) -> CGRect {
         return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
     }
 }
-
-//Mark:genderDelegate
-extension EventDetailController:FetchGenderCountDataDelegate {
-    
+// Mark genderDelegate
+extension EventDetailController: FetchGenderCountDataDelegate {
     func fetchGenderCount(countArray: [Int]) {
         self.genderArray = countArray
         self.setupPieChart()
@@ -357,13 +354,11 @@ extension EventDetailController:FetchGenderCountDataDelegate {
         self.setupBarChart()
     }
 }
-
-//Mark:collectionViewdelegate
-extension EventDetailController:UICollectionViewDelegate{
+// Mark collectionViewdelegate
+extension EventDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamArray.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
         let memberName = teamArray[indexPath.row].name
@@ -372,8 +367,8 @@ extension EventDetailController:UICollectionViewDelegate{
         return cell
     }
 }
-//Mark CollectionDatasource
-extension EventDetailController:UICollectionViewDataSource {
+// Mark CollectionDatasource
+extension EventDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
@@ -381,9 +376,10 @@ extension EventDetailController:UICollectionViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-//Mark CollectionLayoutDelegate
-extension EventDetailController:UICollectionViewDelegateFlowLayout {
+// Mark CollectionLayoutDelegate
+extension EventDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        let size = CGSize(width: 100, height: 100)
+        return size
     }
 }

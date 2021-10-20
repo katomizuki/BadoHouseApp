@@ -1,8 +1,7 @@
 import UIKit
 
 class LevelDetailViewController: UIViewController {
-    
-    //Mark properties
+    // Mark properties
     @IBOutlet private weak var levelLabel: UILabel! {
         didSet {
             levelLabel.text = BadmintonLevel.ten.rawValue
@@ -20,20 +19,20 @@ class LevelDetailViewController: UIViewController {
     }
     @IBOutlet private weak var textView: UITextView!
     private var selectedLevel = BadmintonLevel.ten.rawValue
-    //Mark:lifecycle
+    // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let end = String(selectedLevel.suffix(1))
-        setupSlider(level:end)
+        setupSlider(level: end)
     }
-    //Mark IBAction
+    // Mark IBAction
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    //Mark selector
-    @objc private func changeLevel(sender:UISlider) {
+    // Mark selector
+    @objc private func changeLevel(sender: UISlider) {
         let level = Double(sender.value)
-        //分割して条件分岐する
+        // 分割して条件分岐する
         if case 0..<0.1 = level {
             levelLabel.text = BadmintonLevel.one.rawValue
             textView.text = Constants.Data.levelSentence[0]
@@ -75,8 +74,8 @@ class LevelDetailViewController: UIViewController {
             textView.text = Constants.Data.levelSentence[9]
         }
     }
-    //Mark:setupMethod
-    private func setupSlider(level:String) {
+    // Mark setupMethod
+    private func setupSlider(level: String) {
         switch level {
         case "1":
             slider.value = 0.1
@@ -87,7 +86,6 @@ class LevelDetailViewController: UIViewController {
         case "3":
             slider.value = 0.3
             textView.text = Constants.Data.levelSentence[2]
-            
         case "4":
             slider.value = 0.4
             textView.text = Constants.Data.levelSentence[3]
