@@ -2,14 +2,13 @@ import Foundation
 import Firebase
 
 struct GroupChatModel {
-    var senderId:String
-    var senderUrl:String
-    var senderName:String
-    var chatId:String
-    var timeStamp:Timestamp?
-    var text:String
-    
-    init(dic:[String:Any]) {
+    var senderId: String
+    var senderUrl: String
+    var senderName: String
+    var chatId: String
+    var timeStamp: Timestamp?
+    var text: String
+    init(dic: [String: Any]) {
         self.senderId = dic["senderId"] as? String ?? ""
         self.senderName = dic["senderName"] as? String ?? ""
         self.senderUrl = dic["senderUrl"] as? String ?? ""
@@ -18,5 +17,3 @@ struct GroupChatModel {
         self.text = dic["text"] as? String ?? ""
     }
 }
-
-

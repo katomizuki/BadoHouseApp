@@ -5,62 +5,65 @@ import RxSwift
 
 protocol FetchGenderCountDataDelegate: AnyObject {
     func fetchGenderCount(countArray: [Int])
-    func fetchBarData(countArray:[Int])
+    func fetchBarData(countArray: [Int])
 }
-protocol FetchEventDataDelegate :AnyObject {
-    func fetchEventData(eventArray:[Event])
-    func getEventSearchData(eventArray:[Event],bool:Bool)
-    func getEventTimeData(eventArray:[Event])
-    func getDetailData(eventArray:[Event])
+protocol FetchEventDataDelegate: AnyObject {
+    func fetchEventData(eventArray: [Event])
+    func getEventSearchData(eventArray: [Event], bool: Bool)
+    func getEventTimeData(eventArray: [Event])
+    func getDetailData(eventArray: [Event])
 }
-protocol FetchMyChatDataDelgate:AnyObject  {
-    func fetchMyChatData(chatArray:[Chat])
-    func fetchMyChatRoomData(chatRoomArray:[ChatRoom])
-    func fetchMyChatListData(userArray:[User],anotherArray:[User],lastChatArray:[Chat],chatModelArray:[ChatRoom])
+protocol FetchMyChatDataDelgate: AnyObject {
+    func fetchMyChatData(chatArray: [Chat])
+    func fetchMyChatRoomData(chatRoomArray: [ChatRoom])
+    func fetchMyChatListData(userArray: [User],
+                             anotherArray: [User],
+                             lastChatArray: [Chat],
+                             chatModelArray: [ChatRoom])
 }
-protocol FetchSearchUserDataDelegate :AnyObject {
-    func fetchSearchUser(userArray:[User],bool:Bool)
+protocol FetchSearchUserDataDelegate: AnyObject {
+    func fetchSearchUser(userArray: [User], bool: Bool)
 }
-protocol FetchMyGroupChatDataDelegate:AnyObject  {
-    func fetchMyGroupChatData(groupChatModelArray:[GroupChatModel])
+protocol FetchMyGroupChatDataDelegate: AnyObject {
+    func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel])
 }
-protocol FetchMyPrejoinDataDelegate:AnyObject  {
-    func fetchMyPrejoinData(preJoinArray:[[String]])
+protocol FetchMyPrejoinDataDelegate: AnyObject {
+    func fetchMyPrejoinData(preJoinArray: [[String]])
 }
-protocol FetchMyJoinDataDelegate :AnyObject {
-    func fetchMyJoinData(joinArray:[[String]])
+protocol FetchMyJoinDataDelegate: AnyObject {
+    func fetchMyJoinData(joinArray: [[String]])
 }
-protocol FetchVideoDataDelegate :AnyObject {
-    func fetchVideoData(videoArray:[VideoModel])
+protocol FetchVideoDataDelegate: AnyObject {
+    func fetchVideoData(videoArray: [VideoModel])
 }
-protocol FetchSearchGroupDelegate:AnyObject  {
-    func fetchSearchGroup(groupArray:[TeamModel],bool:Bool)
+protocol FetchSearchGroupDelegate: AnyObject {
+    func fetchSearchGroup(groupArray: [TeamModel], bool: Bool)
 }
-protocol FetchMyEventDataDelegate:AnyObject  {
-    func fetchMyEventData(eventArray:[Event])
+protocol FetchMyEventDataDelegate: AnyObject {
+    func fetchMyEventData(eventArray: [Event])
 }
-protocol FetchMyTeamDataDelegate:AnyObject {
-    func fetchMyTeamData(teamArray:[TeamModel])
+protocol FetchMyTeamDataDelegate: AnyObject {
+    func fetchMyTeamData(teamArray: [TeamModel])
 }
-protocol FetchMyFriendDataDelegate :AnyObject {
-    func fetchMyFriendData(friendArray:[User])
+protocol FetchMyFriendDataDelegate: AnyObject {
+    func fetchMyFriendData(friendArray: [User])
 }
 class FetchFirestoreData {
-    
-    weak var chartsDelegate:FetchGenderCountDataDelegate?
-    weak var eventDelegate:FetchEventDataDelegate?
-    weak var chatDelegate:FetchMyChatDataDelgate?
-    weak var userSearchDelegate:FetchSearchUserDataDelegate?
-    weak var groupChatDataDelegate:FetchMyGroupChatDataDelegate?
-    weak var preJoinDelegate:FetchMyPrejoinDataDelegate?
-    weak var joinDelegate:FetchMyJoinDataDelegate?
-    weak var videoDelegate:FetchVideoDataDelegate?
-    weak var groupSearchDelegate:FetchSearchGroupDelegate?
-    weak var myEventDelegate:FetchMyEventDataDelegate?
-    weak var myTeamDelegate:FetchMyTeamDataDelegate?
-    weak var myFriendDelegate:FetchMyFriendDataDelegate?
-    
-    func fetchMyFriendData(idArray:[String]) {
+    // Mark Delegate
+    weak var chartsDelegate: FetchGenderCountDataDelegate?
+    weak var eventDelegate: FetchEventDataDelegate?
+    weak var chatDelegate: FetchMyChatDataDelgate?
+    weak var userSearchDelegate: FetchSearchUserDataDelegate?
+    weak var groupChatDataDelegate: FetchMyGroupChatDataDelegate?
+    weak var preJoinDelegate: FetchMyPrejoinDataDelegate?
+    weak var joinDelegate: FetchMyJoinDataDelegate?
+    weak var videoDelegate: FetchVideoDataDelegate?
+    weak var groupSearchDelegate: FetchSearchGroupDelegate?
+    weak var myEventDelegate: FetchMyEventDataDelegate?
+    weak var myTeamDelegate: FetchMyTeamDataDelegate?
+    weak var myFriendDelegate: FetchMyFriendDataDelegate?
+    // Mark FetchFriendData
+    func fetchMyFriendData(idArray: [String]) {
         let group = DispatchGroup()
         var array = [User]()
         for i in 0..<idArray.count {
@@ -78,19 +81,19 @@ class FetchFirestoreData {
             self.myFriendDelegate?.fetchMyFriendData(friendArray: array)
         }
     }
-    
-    func fetchMyTeamData(idArray:[String]) {
+    // Mark fetchMyTeamData
+    func fetchMyTeamData(idArray: [String]) {
         var teamArray = [TeamModel]()
         let group = DispatchGroup()
         idArray.forEach { id in
             group.enter()
-            Ref.TeamRef.document(id).getDocument { Snapshot, error in
+            Ref.TeamRef.document(id).getDocument { snapShot, error in
                 if let error = error {
                     print(error)
                     return
                 }
                 defer { group.leave() }
-                guard let data = Snapshot?.data() else { return }
+                guard let data = snapShot?.data() else { return }
                 let team = TeamModel(dic: data)
                 teamArray.append(team)
             }
@@ -99,19 +102,19 @@ class FetchFirestoreData {
             self.myTeamDelegate?.fetchMyTeamData(teamArray: teamArray)
         }
     }
-    
-    func fetchMyEventData(idArray:[String]) {
+    // Mark FetchMyEventData
+    func fetchMyEventData(idArray: [String]) {
         var eventArray = [Event]()
         let group = DispatchGroup()
         idArray.forEach { id in
             group.enter()
-            Ref.EventRef.document(id).getDocument { Snapshot, error in
+            Ref.EventRef.document(id).getDocument { snapShot, error in
                 if let error = error {
                     print(error)
                     return
                 }
                 defer { group.leave() }
-                guard let data = Snapshot?.data() else { return }
+                guard let data = snapShot?.data() else { return }
                 let event = Event(dic: data)
                 eventArray.append(event)
             }
@@ -120,8 +123,8 @@ class FetchFirestoreData {
             self.myEventDelegate?.fetchMyEventData(eventArray: eventArray)
         }
     }
-    
-    func fetchMyChatListData(chatModelArray:[ChatRoom]) {
+    // Mark fetchChatlistData
+    func fetchMyChatListData(chatModelArray: [ChatRoom]) {
         var userArray = [User]()
         var anotherArray = [User]()
         var lastCommentArray = [Chat]()
@@ -129,7 +132,6 @@ class FetchFirestoreData {
             let userId = chatModelArray[i].user
             let anotherId = chatModelArray[i].user2
             let chatId = chatModelArray[i].chatRoom
-            
             UserService.getUserData(uid: userId) { user in
                 guard let user = user else { return }
                 userArray.append(user)
@@ -143,11 +145,14 @@ class FetchFirestoreData {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.chatDelegate?.fetchMyChatListData(userArray: userArray, anotherArray: anotherArray, lastChatArray: lastCommentArray,chatModelArray:chatModelArray)
+            self.chatDelegate?.fetchMyChatListData(userArray: userArray,
+                                                   anotherArray: anotherArray,
+                                                   lastChatArray: lastCommentArray,
+                                                   chatModelArray: chatModelArray)
         }
     }
-    
-    func fetchGenderCountData(teamPlayers:[User]) {
+    // Mark fetchGenderCount
+    func fetchGenderCountData(teamPlayers: [User]) {
         var manCount = 0
         var womanCount = 0
         var otherCount = 0
@@ -168,31 +173,33 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.chartsDelegate?.fetchGenderCount(countArray: [manCount,womanCount,otherCount])
+            self.chartsDelegate?.fetchGenderCount(countArray: [manCount, womanCount, otherCount])
         }
     }
-    
-    func fetchEventData(latitude:Double,longitude:Double) {
+    // Mark FetchEventData
+    func fetchEventData(latitude: Double, longitude: Double) {
         Ref.EventRef.addSnapshotListener { snapShot, error in
             var eventArray = [Event]()
             if let error = error {
-                print("EventData",error)
+                print("EventData", error)
             }
             guard let data = snapShot?.documents else { return }
             eventArray = []
             data.forEach { doc in
-                let safeData = doc.data() as [String:Any]
+                let safeData = doc.data() as [String: Any]
                 let leaderId = safeData["userId"] as? String ?? ""
                 if leaderId != AuthService.getUserId() {
-                    let event = Event(dic:safeData)
+                    let event = Event(dic: safeData)
                     eventArray.append(event)
                 }
             }
-            self.sortEventDate(data: eventArray,latitude:latitude,longitude:longitude)
+            self.sortEventDate(data: eventArray,
+                               latitude: latitude,
+                               longitude: longitude)
         }
     }
-    
-    func fetchDMChatData(chatId:String) {
+    // Mark FetchDMChat
+    func fetchDMChatData(chatId: String) {
         Ref.ChatroomRef.document(chatId).collection("Content").order(by: "sendTime").addSnapshotListener { snapShot, error in
             var chatArray = [Chat]()
             if let error = error {
@@ -202,14 +209,14 @@ class FetchFirestoreData {
             guard let document = snapShot?.documents else { return }
             document.forEach { doc in
                 let data = doc.data()
-                let chat = Chat(dic:data)
+                let chat = Chat(dic: data)
                 chatArray.append(chat)
             }
             self.chatDelegate?.fetchMyChatData(chatArray: chatArray)
         }
     }
-    
-    func fetchChatRoomModelData(chatId:[String]){
+    // Mark fetchChatroomData
+    func fetchChatRoomModelData(chatId: [String]) {
         var chatRoomModelArray = [ChatRoom]()
         let group = DispatchGroup()
         for i in 0..<chatId.count {
@@ -229,11 +236,11 @@ class FetchFirestoreData {
             self.chatDelegate?.fetchMyChatRoomData(chatRoomArray: chatRoomModelArray)
         }
     }
-    
-    func fetchGroupChatData(teamId:String) {
+    // Mark fetchGroupChat
+    func fetchGroupChatData(teamId: String) {
         var groupChat = [GroupChatModel]()
         Ref.TeamRef.document(teamId).collection("GroupChat").order(by: "timeStamp").addSnapshotListener { snapShot, error in
-            if let error = error  {
+            if let error = error {
                 print(error)
                 return
             }
@@ -247,8 +254,8 @@ class FetchFirestoreData {
             self.groupChatDataDelegate?.fetchMyGroupChatData(groupChatModelArray: groupChat)
         }
     }
-    
-    func fetchEventPreJoinData(eventArray:[Event]) {
+    // Mark FetchEventPrejoinData
+    func fetchEventPreJoinData(eventArray: [Event]) {
         var stringArray = [[String]]()
         let group = DispatchGroup()
         for i in 0..<eventArray.count {
@@ -275,8 +282,8 @@ class FetchFirestoreData {
             self.preJoinDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
         }
     }
-    
-    func fetchEventJoinData(eventArray:[Event]) {
+    // Mark FetchEventJoin
+    func fetchEventJoinData(eventArray: [Event]) {
         var stringArray = [[String]]()
         let group = DispatchGroup()
         for i in 0..<eventArray.count {
@@ -302,7 +309,7 @@ class FetchFirestoreData {
             self.joinDelegate?.fetchMyJoinData(joinArray: stringArray)
         }
     }
-    
+    // Mark FetchVideoData
     func fetchVideoData() {
         var videoArray = [VideoModel]()
         Ref.VideoRef.getDocuments { snapShot, error in
@@ -318,11 +325,11 @@ class FetchFirestoreData {
             }
             videoArray.shuffle()
             let array = Array(videoArray[0..<3])
-            self.videoDelegate?.fetchVideoData(videoArray:array)
+            self.videoDelegate?.fetchVideoData(videoArray: array)
         }
     }
-    
-    func sortEventDate(data:[Event],latitude:Double,longitude:Double) {
+    // Mark sortEventDate
+    func sortEventDate(data: [Event], latitude: Double, longitude: Double) {
         var data = data
         data = data.sorted(by: {
             $0.eventStartTime.compare($1.eventStartTime) == .orderedAscending
@@ -338,8 +345,8 @@ class FetchFirestoreData {
         for i in 0..<data.count {
             let eventLatitude = data[i].latitude
             let eventLongitude = data[i].longitude
-            let currentPosition:CLLocation = CLLocation(latitude: latitude, longitude: longitude)
-            let eventPosition:CLLocation = CLLocation(latitude: eventLatitude, longitude: eventLongitude)
+            let currentPosition: CLLocation = CLLocation(latitude: latitude, longitude: longitude)
+            let eventPosition: CLLocation = CLLocation(latitude: eventLatitude, longitude: eventLongitude)
             let distance = currentPosition.distance(from: eventPosition)
             data[i].distance = distance
         }
@@ -348,15 +355,15 @@ class FetchFirestoreData {
         })
         self.eventDelegate?.fetchEventData(eventArray: data)
     }
-    
-    func searchEventTextData(text:String,bool:Bool) {
+    // Mark searchEventTextData
+    func searchEventTextData(text: String, bool: Bool) {
         var eventArray = [Event]()
-        Ref.EventRef.getDocuments { Snapshot, error in
+        Ref.EventRef.getDocuments { snapShot, error in
             if let error = error {
                 print(error)
                 return
             }
-            guard let data = Snapshot?.documents else {return}
+            guard let data = snapShot?.documents else {return}
             data.forEach { doc in
                 let safeData = doc.data()
                 let placeAddress = safeData["placeAddress"] as? String ?? ""
@@ -365,20 +372,24 @@ class FetchFirestoreData {
                 let kindCircle = safeData["kindCircle"] as? String ?? ""
                 let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
                 if placeAddress.contains(text) || place.contains(text) || teamName.contains(text) || kindCircle.contains(text) || eventTitle.contains(text) {
-                    let event = Event(dic:safeData)
+                    let event = Event(dic: safeData)
                     eventArray.append(event)
                 }
             }
-            self.eventDelegate?.getEventSearchData(eventArray: eventArray,bool:bool)
+            self.eventDelegate?.getEventSearchData(eventArray: eventArray, bool: bool)
         }
     }
-    
-    func searchEventDateData(dateString:String,text:String) {
+    // Mark searchEventDateData
+    func searchEventDateData(dateString: String, text: String) {
         var eventArray = [Event]()
         let startIndex = dateString.index(dateString.startIndex, offsetBy: 0)
         let endIndex = dateString.index(dateString.startIndex, offsetBy: 10)
         let keyDate = String(dateString[startIndex..<endIndex])
         Ref.EventRef.getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
             guard let data = snapShot?.documents else { return }
             data.forEach { doc in
                 let safeData = doc.data()
@@ -387,7 +398,7 @@ class FetchFirestoreData {
                 let lastIndex = eventStartTime.index(eventStartTime.startIndex, offsetBy: 10)
                 let startTimeString = String(eventStartTime[firstIndex..<lastIndex])
                 if startTimeString == keyDate {
-                    let event = Event(dic:safeData)
+                    let event = Event(dic: safeData)
                     eventArray.append(event)
                 }
             }
@@ -395,8 +406,13 @@ class FetchFirestoreData {
             self.eventDelegate?.getEventTimeData(eventArray: eventArray)
         }
     }
-    
-    func searchEventDetailData(title:String,circle:String,level:String,placeAddressString:String,money:String,time:String) {
+    // Mark searchEventDetailData
+    func searchEventDetailData(title: String,
+                               circle: String,
+                               level: String,
+                               placeAddressString: String,
+                               money: String,
+                               time: String) {
         var eventArray = [Event]()
         Ref.EventRef.getDocuments { snapShot, error in
             if let error = error {
@@ -413,10 +429,10 @@ class FetchFirestoreData {
                 eventArray = eventArray.filter { $0.eventTitle.contains(title) }
             }
             if circle != "" {
-                eventArray = eventArray.filter{ $0.kindCircle == circle }
+                eventArray = eventArray.filter { $0.kindCircle == circle }
             }
             if placeAddressString != "" {
-                eventArray = eventArray.filter{ $0.placeAddress.contains(placeAddressString) }
+                eventArray = eventArray.filter { $0.placeAddress.contains(placeAddressString) }
             }
             if money != "" {
                 eventArray = self.searchMoneyData(money: money, events: eventArray)
@@ -430,8 +446,8 @@ class FetchFirestoreData {
             self.eventDelegate?.getDetailData(eventArray: eventArray)
         }
     }
-    
-    func searchMoneyData(money:String,events:[Event])->[Event] {
+    // Mark searchMoneyData
+    func searchMoneyData(money: String, events: [Event]) -> [Event] {
         var eventArray = [Event]()
         for i in 0..<events.count {
             let eventMoney = Int(events[i].money) ?? 500
@@ -451,8 +467,8 @@ class FetchFirestoreData {
         }
         return eventArray
     }
-    
-    func searchLevelData(searchLevel:String,event:[Event])->[Event] {
+    // Mark searchLevelData
+    func searchLevelData(searchLevel: String, event: [Event]) -> [Event] {
         var eventArray = [Event]()
         for i in 0..<event.count {
             let level = event[i].eventLevel
@@ -470,15 +486,15 @@ class FetchFirestoreData {
         }
         return eventArray
     }
-    
-    func searchTimeData(time:String ,event:[Event])->[Event] {
+    // Mark searchTimeData
+    func searchTimeData(time: String, event: [Event]) -> [Event] {
         print(#function)
         var eventArray = [Event]()
         eventArray = event.filter { $0.eventStartTime == time }
         return eventArray
     }
-
-    func searchVideoData(text:String) {
+    // Mark searchVideoData
+    func searchVideoData(text: String) {
         var videoArray = [VideoModel]()
         Ref.VideoRef.getDocuments { snapShot, error in
             if let error = error {
@@ -495,22 +511,22 @@ class FetchFirestoreData {
             array.shuffle()
             if array.count >= 3 {
                 array = Array(array[0..<3])
-                self.videoDelegate?.fetchVideoData(videoArray:array)
+                self.videoDelegate?.fetchVideoData(videoArray: array)
             } else {
                 videoArray = Array(videoArray[0..<3])
-                self.videoDelegate?.fetchVideoData(videoArray:videoArray)
+                self.videoDelegate?.fetchVideoData(videoArray: videoArray)
             }
         }
     }
-    
-    func searchGroupData(text:String,bool:Bool) {
+    // Mark searchGroupData
+    func searchGroupData(text: String, bool: Bool) {
         var groupArray = [TeamModel]()
-        Ref.TeamRef.getDocuments { Snapshot, error in
+        Ref.TeamRef.getDocuments { snapShot, error in
             if let error = error {
                 print(error)
                 return
             }
-            guard let data = Snapshot?.documents else { return }
+            guard let data = snapShot?.documents else { return }
             data.forEach { document in
                 let safeData = document.data()
                 let teamName = safeData["teamName"] as? String ?? ""
@@ -520,11 +536,11 @@ class FetchFirestoreData {
                     groupArray.append(team)
                 }
             }
-            self.groupSearchDelegate?.fetchSearchGroup(groupArray: groupArray,bool:bool)
+            self.groupSearchDelegate?.fetchSearchGroup(groupArray: groupArray, bool: bool)
         }
     }
-    
-    func searchFriends(text:String,bool:Bool) {
+    // Mark searchFriends
+    func searchFriends(text: String, bool: Bool) {
         var userArray = [User]()
         Ref.UsersRef.getDocuments { snapShot, error in
             if let error = error {
@@ -541,11 +557,11 @@ class FetchFirestoreData {
                     userArray.append(user)
                 }
             }
-            self.userSearchDelegate?.fetchSearchUser(userArray: userArray,bool:bool)
+            self.userSearchDelegate?.fetchSearchUser(userArray: userArray, bool: bool)
         }
     }
-    
-    func searchTeamPlayerLevelCount(teamPlayers:[User]) {
+    // Mark searchTeamPlayerLevelcount
+    func searchTeamPlayerLevelCount(teamPlayers: [User]) {
         var level1 = 0
         var level2 = 0
         var level3 = 0
@@ -583,8 +599,15 @@ class FetchFirestoreData {
                 break
             }
         }
-        self.chartsDelegate?.fetchBarData(countArray: [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10])
+        self.chartsDelegate?.fetchBarData(countArray: [level1,
+                                                       level2,
+                                                       level3,
+                                                       level4,
+                                                       level5,
+                                                       level6,
+                                                       level7,
+                                                       level8,
+                                                       level9,
+                                                       level10])
     }
 }
-
-

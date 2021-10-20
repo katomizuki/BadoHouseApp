@@ -2,20 +2,19 @@ import Foundation
 import Firebase
 
 struct User {
-    var uid:String
-    var name:String
-    var email:String
-    var createdAt:Timestamp
-    var updatedAt:Timestamp
-    var introduction:String
-    var profileImageUrl:String
-    var level:String
-    var gender:String
-    var place:String
-    var badmintonTime:String
-    var age:String
-    
-    init(dic:[String:Any]) {
+    var uid: String
+    var name: String
+    var email: String
+    var createdAt: Timestamp
+    var updatedAt: Timestamp
+    var introduction: String
+    var profileImageUrl: String
+    var level: String
+    var gender: String
+    var place: String
+    var badmintonTime: String
+    var age: String
+    init(dic: [String: Any]) {
         self.email = dic["email"] as? String ?? ""
         self.name = dic["name"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()

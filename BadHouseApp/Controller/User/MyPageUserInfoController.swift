@@ -56,7 +56,7 @@ class MyPageUserInfoController: UIViewController {
         return button
     }()
     private let saveButton = UIButton(type: .system).createProfileTopButton(title: "保存する")
-    private let profileImageView:UIImageView = {
+    private let profileImageView: UIImageView = {
         let iv = ProfileImageView()
         iv.contentMode = .scaleAspectFill
         iv.toCorner(num: 90)
@@ -70,7 +70,7 @@ class MyPageUserInfoController: UIViewController {
     }()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
     private let dismissButton = UIButton(type: .system).createAuthButton(text: "もどる")
-    lazy var infoCollectionView:UICollectionView = {
+    lazy var infoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
