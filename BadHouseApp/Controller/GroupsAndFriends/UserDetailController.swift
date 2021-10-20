@@ -49,7 +49,7 @@ class UserDetailController: UIViewController {
     var flag = false
     private lazy var blockButton: UIButton = {
         let button = UIButton()
-        button.setTitle(" 通報 ", for: .normal)
+        button.setImage(UIImage(systemName: ""), for: .normal)
         button.addTarget(self, action: #selector(block), for: .touchUpInside)
         button.backgroundColor = Constants.AppColor.OriginalBlue
         button.setTitleColor(.white, for: .normal)
@@ -165,6 +165,8 @@ class UserDetailController: UIViewController {
     // Mark selector
     @objc private func block() {
         print(#function)
+        guard let me = self.me else { return }
+        blockSheet = BlockSheet(user: me)
         blockSheet.delegate = self
         blockSheet.show()
     }
@@ -267,6 +269,11 @@ extension UserDetailController: FetchMyTeamDataDelegate {
 // Mark BlockSheetDelegate
 extension UserDetailController: BlockDelegate {
     func blockSheet(option: BlockOptions) {
-        print(option)
+        switch option {
+        case .dismiss:
+            print("dismiss")
+        case .block:
+            print("block")
+        }
     }
 }

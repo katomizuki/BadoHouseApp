@@ -104,6 +104,7 @@
 		D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */; };
 		D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */; };
 		D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33F2720252E00DE54ED /* BlockSheet.swift */; };
+		D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD34127203FD900DE54ED /* BlockCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +205,7 @@
 		D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPopoverController.swift; sourceTree = "<group>"; };
 		D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTeamController.swift; sourceTree = "<group>"; };
 		D3FFD33F2720252E00DE54ED /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
+		D3FFD34127203FD900DE54ED /* BlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCell.swift; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -456,6 +458,7 @@
 				D3CECEE226F3019700B1C498 /* VideoCell.swift */,
 				D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */,
 				D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */,
+				D3FFD34127203FD900DE54ED /* BlockCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
+				D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3CECEE626F3061700B1C498 /* PostVideoController.swift in Sources */,

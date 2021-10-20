@@ -9,10 +9,10 @@ protocol BlockDelegate: AnyObject {
 }
 class BlockSheet: NSObject {
     // Mark properties
-    private let user: User?
+    private var user: User?
     private let tableView = UITableView()
-    private var window: UIWindow?
     weak var delegate: BlockDelegate?
+    private var window: UIWindow?
     private var tableViewHeight = CGFloat()
     private lazy var blackView: UIView = {
         let view = UIView()
@@ -22,23 +22,9 @@ class BlockSheet: NSObject {
         view.addGestureRecognizer(tap)
         return view
     }()
-    private lazy var blockButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("通報しますか", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(handleBlock), for: .touchUpInside)
-        return button
-    }()
     private lazy var mainView: UIView = {
         let view = UIView()
-        view.addSubview(blockButton)
-        blockButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        blockButton.anchor(left: view.leftAnchor,
-                           right: view.rightAnchor,
-                           paddingRight: 12,
-                           paddingLeft: 12)
-        blockButton.layer.cornerRadius = 50 / 2
+        view.backgroundColor = .white
         return view
     }()
     // Mark Initialize
@@ -46,6 +32,9 @@ class BlockSheet: NSObject {
         self.user = user
         super.init()
         setupTableView()
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     // Mark setupMethod
     private func setupTableView() {
@@ -55,17 +44,19 @@ class BlockSheet: NSObject {
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 5
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.backgroundColor = .yellow
+        tableView.register(BlockCell.self, forCellReuseIdentifier: "cellId")
     }
     // Mark helperMethod
     func show() {
+        print(#function)
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow
         }) else { return }
         self.window = window
         window.backgroundColor = .white
         window.addSubview(tableView)
         window.addSubview(blackView)
-        let height = CGFloat(3 * 60) + 100
+        let height = CGFloat(2 * 40) + 100
         blackView.frame = CGRect(x: 0,
                                  y: 0,
                                  width: window.frame.width,
@@ -75,7 +66,7 @@ class BlockSheet: NSObject {
                                  y: window.frame.height,
                                  width: window.frame.width,
                                  height: tableViewHeight)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.blackView.alpha = 1
             self.showTable(show: true)
         }
@@ -83,18 +74,15 @@ class BlockSheet: NSObject {
     private func showTable(show: Bool) {
         guard let window = window else { return }
         let height  = tableViewHeight
-        let y = show ? window.frame.height - height:window.frame.height
+        let y = show ? window.frame.height - height: window.frame.height
         tableView.frame.origin.y = y
     }
     // Mark selector
-    @objc private func handleBlock() {
-        print(#function)
-    }
     @objc private func handleDismiss() {
         print(#function)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.blackView.alpha = 0
-            self.tableView.frame.origin.y += 300
+            self.tableView.frame.origin.y += 180
         }
     }
 }
@@ -104,12 +92,12 @@ extension BlockSheet: UITableViewDelegate {
         return mainView
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 60
+        return 10
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         guard let option = BlockOptions(rawValue: indexPath.row) else { return }
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.blackView.alpha = 0
             self.showTable(show: false)
         }) { _ in
@@ -123,7 +111,8 @@ extension BlockSheet: UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! BlockCell
+        cell.flag = indexPath.row == 1 ? true : false
         return cell
     }
 }
