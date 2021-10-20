@@ -10,7 +10,7 @@ struct TeamService {
                 return
             }
             guard let data = snapShot?.data() else { return }
-            let dic = data as [String:Any]
+            let dic = data as [String: Any]
             let team = TeamModel(dic: dic)
             completion(team)
         }

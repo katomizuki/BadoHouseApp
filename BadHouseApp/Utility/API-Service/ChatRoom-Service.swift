@@ -18,7 +18,7 @@ struct ChatRoomService {
         let chatId = Ref.ChatroomRef.document(chatroomId).collection("Content").document().documentID
         Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic)
     }
-    static func sendGroupChat(teamId: String, me:User, text: String) {
+    static func sendGroupChat(teamId: String, me: User, text: String) {
         let senderId = me.uid
         let senderUrl = me.profileImageUrl
         let senderName = me.name

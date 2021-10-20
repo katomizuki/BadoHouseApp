@@ -2,7 +2,7 @@ import Foundation
 import Firebase
 
 struct UserService {
-    //Mark: setUserData
+    // Mark setUserData
     static func setUserData(uid: String, password: String, email: String, name: String, completion: @escaping (Bool) -> Void) {
         let dic = ["uid": uid,
                    "name": name,
@@ -11,7 +11,7 @@ struct UserService {
                    "updatedAt": Timestamp()] as [String: Any]
         Ref.UsersRef.document(uid).setData(dic) { error in
             if let error = error {
-                print("SetUserData",error)
+                print("SetUserData", error)
             }
             completion(true)
             print("setUserData")

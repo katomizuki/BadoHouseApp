@@ -5,7 +5,7 @@ import Firebase
 import FacebookCore
 import RxSwift
 protocol CalendarEventDelegate: AnyObject {
-    func removeEvent(eventModel:Event,cell: UITableViewCell)
+    func removeEvent(eventModel: Event, cell: UITableViewCell)
 }
 class GroupCell: UITableViewCell {
     // Mark Properties
@@ -19,12 +19,12 @@ class GroupCell: UITableViewCell {
             configure()
         }
     }
-    var user:User? {
+    var user: User? {
         didSet {
             userconfigure()
         }
     }
-    var event:Event? {
+    var event: Event? {
         didSet {
             eventConfigure()
         }

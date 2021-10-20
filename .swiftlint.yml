@@ -12,7 +12,9 @@ identifier_name:
 line_length: 200
 function_body_length: 200
 disabled_rules:
-
+- type_body_length
+- function_parameter_count
+- file_length
 
 # force_castは場合によっては使用するため
 - force_cast

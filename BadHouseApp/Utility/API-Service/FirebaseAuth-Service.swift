@@ -3,12 +3,12 @@ import FirebaseAuth
 import Firebase
 
 struct AuthService {
-    //Mark Register
+    // Mark Register
     static func register(name: String?, email: String?, password: String?, completion: @escaping (Bool, Error?) -> Void) {
         guard let email = email else { return }
         guard let name = name else { return }
         guard let password = password else { return }
-        Auth.auth().createUser(withEmail: email,password: password) { result, error in
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("createUser Error")
                 completion(false, error)
