@@ -200,7 +200,7 @@ class GroupDetailController: UIViewController {
    
     //Mark IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.inviteVC) as! InviteViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.inviteVC) as! PlusTeamPlayerController
         vc.friends = self.friends
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
@@ -237,7 +237,7 @@ class GroupDetailController: UIViewController {
     //Mark prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoInvite {
-            let vc = segue.destination as! InviteViewController
+            let vc = segue.destination as! PlusTeamPlayerController
             vc.friends = self.friends
             vc.team = self.team
         }

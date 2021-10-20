@@ -5,7 +5,7 @@ import FacebookCore
 class FriendsCell:UITableViewCell {
     
     //Mark:Properties
-    var linkInvite:InviteViewController!
+    var linkInvite:PlusTeamPlayerController!
     var count = 0
     var button:UIButton = {
         let button = UIButton(type: .system)

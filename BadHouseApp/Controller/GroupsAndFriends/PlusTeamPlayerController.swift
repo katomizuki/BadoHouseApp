@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class InviteViewController: UIViewController {
+class PlusTeamPlayerController: UIViewController {
     //Mark: properties
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
@@ -14,6 +14,7 @@ class InviteViewController: UIViewController {
     var inviter = [User]()
     var team: TeamModel?
     private var cellId = Constants.CellId.inviteCellId
+    
     //Mark CustomDelegate
     func someMethodWantToCall(cell:UITableViewCell) {
         print(#function)
@@ -62,7 +63,7 @@ class InviteViewController: UIViewController {
     }
 }
 //Mark:tableViewdelegate,datsource
-extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
+extension PlusTeamPlayerController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -80,6 +81,9 @@ extension InviteViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return cell
     }
+}
+//Mark UITableViewDelegate
+extension PlusTeamPlayerController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }

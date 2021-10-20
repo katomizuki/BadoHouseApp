@@ -216,7 +216,7 @@ extension UserDetailController:UICollectionViewDelegate {
             vc.flag = true
             navigationController?.pushViewController(vc, animated: true)
         } else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "SubUserVC") as! SubUserViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SubUserVC") as! SubUserDetailController
             vc.user = userFriend[indexPath.row]
             vc.me = self.user
             navigationController?.pushViewController(vc, animated: true)

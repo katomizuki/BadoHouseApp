@@ -112,7 +112,7 @@ class MyPageController: UIViewController{
             vc.user = self.user
             vc.delegate = self
         } else if segue.identifier == Constants.Segue.gotoSearch {
-            let vc = segue.destination as! GroupSearchViewController
+            let vc = segue.destination as! GroupSearchController
             vc.friends = self.friendArray
         }
     }

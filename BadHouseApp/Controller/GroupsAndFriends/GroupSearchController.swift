@@ -2,7 +2,7 @@ import UIKit
 import EmptyStateKit
 import CDAlertView
 
-class GroupSearchViewController: UIViewController {
+class GroupSearchController: UIViewController {
     
     //Mark:properties
     @IBOutlet private weak var searchBar: UISearchBar!{
@@ -57,8 +57,8 @@ class GroupSearchViewController: UIViewController {
         view.emptyState.format = format
     }
 }
-//Mark tableViewDelegate
-extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
+//Mark tableViewDataSource
+extension GroupSearchController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
@@ -69,7 +69,9 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
         cell.team = team
         return cell
     }
-    
+}
+//Mark uitableViewDelegate
+extension GroupSearchController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let team = groupArray[indexPath.row]
@@ -81,7 +83,7 @@ extension GroupSearchViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 //Mark searchBarDelegate
-extension GroupSearchViewController:UISearchBarDelegate {
+extension GroupSearchController:UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
@@ -111,10 +113,9 @@ extension GroupSearchViewController:UISearchBarDelegate {
     }
 }
 //Mark getGroupDelegate
-extension GroupSearchViewController:FetchSearchGroupDelegate{
+extension GroupSearchController:FetchSearchGroupDelegate{
     
     func fetchSearchGroup(groupArray: [TeamModel],bool:Bool) {
-        
         if bool == false {
             self.groupArray = groupArray
             DispatchQueue.main.async {
@@ -134,7 +135,7 @@ extension GroupSearchViewController:FetchSearchGroupDelegate{
 }
 
 //Mark EmptyStateDelegate
-extension GroupSearchViewController:EmptyStateDelegate{
+extension GroupSearchController:EmptyStateDelegate{
     
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()

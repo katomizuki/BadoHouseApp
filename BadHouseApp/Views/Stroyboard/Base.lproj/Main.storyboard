@@ -418,10 +418,10 @@
             </objects>
             <point key="canvasLocation" x="1878" y="903"/>
         </scene>
-        <!--Group Search View Controller-->
+        <!--Group Search Controller-->
         <scene sceneID="dUK-GN-mLr">
             <objects>
-                <viewController id="r0h-3b-jR1" customClass="GroupSearchViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="r0h-3b-jR1" customClass="GroupSearchController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Gl-Q4-JYA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1409,7 +1409,7 @@
         <!--  -->
         <scene sceneID="0Bs-Vl-gkg">
             <objects>
-                <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="InviteViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="PlusTeamPlayerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3408,10 +3408,10 @@
             </objects>
             <point key="canvasLocation" x="1233" y="2333"/>
         </scene>
-        <!--Sub User View Controller-->
+        <!--Sub User Detail Controller-->
         <scene sceneID="9PU-lW-nrh">
             <objects>
-                <viewController storyboardIdentifier="SubUserVC" id="N5Z-oj-ym1" customClass="SubUserViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SubUserVC" id="N5Z-oj-ym1" customClass="SubUserDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3LP-Us-KKw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
