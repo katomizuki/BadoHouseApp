@@ -1,11 +1,11 @@
 import UIKit
 import Foundation
-protocol LevelDismissDelegate:AnyObject {
-    func levelDismiss(vc:MyLevelController)
+protocol LevelDismissDelegate: AnyObject {
+    func levelDismiss(vc: MyLevelController)
 }
 class MyLevelController: UIViewController {
-    //Mark:Properties
-    weak var delegate:LevelDismissDelegate?
+    // Mark Properties
+    weak var delegate: LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
             backButton.updateBackButton()
@@ -13,7 +13,7 @@ class MyLevelController: UIViewController {
         }
     }
     @IBOutlet private weak var saveButton: UIButton! {
-        didSet{
+        didSet {
             saveButton.updateSaveButton()
         }
     }
@@ -29,22 +29,19 @@ class MyLevelController: UIViewController {
         }
     }
     var selectedLevel = String()
-    
-    //Mark:LifeCycle
+    // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let end = String(selectedLevel.suffix(1))
-        setupSlider(level:end)
+        setupSlider(level: end)
     }
-    //Mark:selector
+    // Mark selector
     @objc private func backtoUser() {
         self.delegate?.levelDismiss(vc: self)
     }
-    
-    @objc private func changeLevel(sender:UISlider) {
+    @objc private func changeLevel(sender: UISlider) {
         let level = Double(sender.value)
-        print(level)
-        //分割して条件分岐する
+        // 分割して条件分岐する
         if case 0..<0.1 = level {
             levelLabel.text = BadmintonLevel.one.rawValue
             textView.text = Constants.Data.levelSentence[0]
@@ -64,7 +61,6 @@ class MyLevelController: UIViewController {
         if case 0.4..<0.5 = level {
             levelLabel.text = BadmintonLevel.five.rawValue
             textView.text = Constants.Data.levelSentence[4]
-            
         }
         if case 0.5..<0.6 = level {
             levelLabel.text = BadmintonLevel.six.rawValue
@@ -87,15 +83,15 @@ class MyLevelController: UIViewController {
             textView.text = Constants.Data.levelSentence[9]
         }
     }
-    //Mark IBAction
+    // Mark IBAction
     @IBAction func back(_ sender: Any) {
         selectedLevel = levelLabel.text ?? "1"
         let vc = self.presentingViewController as! MyPageUserInfoController
         vc.level = selectedLevel
         self.delegate?.levelDismiss(vc: self)
     }
-    //Mark setupMethod
-    private func setupSlider(level:String) {
+    // Mark setupMethod
+    private func setupSlider(level: String) {
         switch level {
         case "1":
             slider.value = 0.1
@@ -130,5 +126,3 @@ class MyLevelController: UIViewController {
         }
     }
 }
-
-

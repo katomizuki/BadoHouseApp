@@ -1,33 +1,35 @@
 import UIKit
 import FacebookCore
-protocol PopDismissDelegate:AnyObject {
-    func popDismiss(vc:MyPageInfoPopoverController)
+protocol PopDismissDelegate: AnyObject {
+    func popDismiss(vc: MyPageInfoPopoverController)
 }
-class MyPageInfoPopoverController: UIViewController{
-    //Mark Properties
-    weak var delegate:PopDismissDelegate?
-    private let CellId = Constants.CellId.popCellId
+class MyPageInfoPopoverController: UIViewController {
+    // Mark Properties
+    weak var delegate: PopDismissDelegate?
+    private let cellId = Constants.CellId.popCellId
     var cellArray = Constants.Data.genderArray
     var keyword = String()
-    lazy var tableView:UITableView = {
+    lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.delegate = self
         tb.dataSource = self
         tb.separatorStyle = .none
-        tb.register(UITableViewCell.self, forCellReuseIdentifier: CellId)
+        tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         return tb
     }()
-    var (age,place,badmintonTime,gender) = (String(),String(),String(),String())
-    
-    //Mark lifecycle
+    var (age, place, badmintonTime, gender) = (String(), String(), String(), String())
+    // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setUpTableView() {
         self.view.addSubview(tableView)
-        tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor)
+        tableView.anchor(top:view.topAnchor,
+                         bottom: view.bottomAnchor,
+                         left: view.leftAnchor,
+                         right: view.rightAnchor)
         switch keyword {
         case UserInfo.gender.rawValue:
             cellArray = Constants.Data.genderArray
@@ -43,20 +45,19 @@ class MyPageInfoPopoverController: UIViewController{
         tableView.reloadData()
     }
 }
-//Mark tableViewDataSource
-extension MyPageInfoPopoverController:UITableViewDataSource {
+// Mark tableViewDataSource
+extension MyPageInfoPopoverController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellArray.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = cellArray[indexPath.row]
         return cell
     }
 }
-//Mark tableViewDelegate
-extension MyPageInfoPopoverController:UITableViewDelegate {
+// Mark tableViewDelegate
+extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! MyPageUserInfoController
         switch keyword {
@@ -75,6 +76,6 @@ extension MyPageInfoPopoverController:UITableViewDelegate {
         default:
             break
         }
-        self.delegate?.popDismiss(vc:self)
+        self.delegate?.popDismiss(vc: self)
     }
 }
