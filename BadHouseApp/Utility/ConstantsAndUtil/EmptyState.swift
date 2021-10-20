@@ -2,11 +2,11 @@ import Foundation
 import EmptyStateKit
 
 enum State: CustomState {
-    
+    // Mark case
     case noNotifications
     case noSearch
     case noInternet
-    
+    // Mark Properties
     var image: UIImage? {
         switch self {
         case .noNotifications: return UIImage(named: "Messages")
@@ -14,7 +14,6 @@ enum State: CustomState {
         case .noInternet: return UIImage(named: "Internet")
         }
     }
-    
     var title: String? {
         switch self {
         case .noNotifications: return "No message notifications"
@@ -22,7 +21,6 @@ enum State: CustomState {
         case .noInternet: return "We’re Sorry"
         }
     }
-    
     var description: String? {
         switch self {
         case .noNotifications: return "Sorry, you don't have any message. Please come back later!"
@@ -30,7 +28,6 @@ enum State: CustomState {
         case .noInternet: return "Our staff is still working on the issue for better experience"
         }
     }
-    
     var titleButton: String? {
         switch self {
         case .noNotifications: return "Search again?"
