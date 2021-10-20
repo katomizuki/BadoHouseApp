@@ -2,7 +2,7 @@ import UIKit
 import TaggerKit
 import Firebase
 
-class TagViewController: UIViewController, TKCollectionViewDelegate {
+class EventTagController: UIViewController {
     //Mark:Properties
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var testContainerView: UIView!
@@ -28,6 +28,7 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
     var (teamId,eventId) = (String(),String())
     var eventImage:UIImage?
     private var tagCollection = TKCollectionView()
+    
     //Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,18 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
         }
         navigationController?.popToRootViewController(animated: true)
     }
-    //Mark:HelperMethod
+    //Mark:helperMethod
+    private func searchTag(text:String)->Int? {
+        for i in 0..<plusTagArray.count {
+            if text == plusTagArray[i] {
+                return i
+            }
+        }
+        return nil
+    }
+}
+//Mark TKCollectionViewDelegate
+extension EventTagController: TKCollectionViewDelegate {
     func tagIsBeingAdded(name: String?) {
         guard let text = name else { return }
         if searchTag(text: text) == nil {
@@ -66,14 +78,5 @@ class TagViewController: UIViewController, TKCollectionViewDelegate {
             guard let index = searchTag(text:text) else { return }
             plusTagArray.remove(at: index)
         }
-    }
-    
-    private func searchTag(text:String)->Int? {
-        for i in 0..<plusTagArray.count {
-            if text == plusTagArray[i] {
-                return i
-            }
-        }
-        return nil
     }
 }

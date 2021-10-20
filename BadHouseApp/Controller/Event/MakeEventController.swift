@@ -4,7 +4,7 @@ import RxCocoa
 import Firebase
 import RangeUISlider
 
-class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate,SearchLocationProtocol{
+class MakeEventController: UIViewController{
     //Mark:properties
     @IBOutlet private weak var gatherCountLabel: UILabel!
     @IBOutlet private weak var courtCountLabel: UILabel!
@@ -114,7 +114,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         TeamPickerView.dataSource = self
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
-//        fetchData.myTeamDelegate = self
         titleTextField.delegate = self
     }
     
@@ -193,7 +192,6 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                 }
             }
             .disposed(by: disposeBag)
-        
         
         eventBinding.valideMakeDriver
             .drive { [weak self] validAll in
@@ -274,7 +272,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
                        "placeAddress":self.placeAddress,
                        "userId":userId] as [String : Any]
             guard let eventImage = self.noImageView.image else { return }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TagVC) as! TagViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TagVC) as! EventTagController
             vc.dic = dic
             vc.teamId = teamId
             vc.eventId = eventId
@@ -309,15 +307,7 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
     }
-    //Mark: MapDelegateMethod
-    func sendLocationData(location: [Double], placeName: String,placeAddress:String,vc:MapViewController) {
-        vc.dismiss(animated: true, completion: nil)
-        self.teamPlace = placeName
-        self.placeLatitude = location[0]
-        self.placeLongitude = location[1]
-        self.placeTextField.text = placeName
-        self.placeAddress = placeAddress
-    }
+    
     //Mark:Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoMap {
@@ -326,8 +316,8 @@ class MakeEventViewController: UIViewController ,UIImagePickerControllerDelegate
         }
     }
 }
-//Mark: UIPickerViewDelegate
-extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
+//Mark: UIPickerViewDataSource
+extension MakeEventController:UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -339,8 +329,10 @@ extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             return moneyArray.count
         }
-        
     }
+}
+//Mark PickerDelegate
+extension MakeEventController:UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.TeamPickerView {
             return pickerArray[row].teamName
@@ -356,7 +348,7 @@ extension MakeEventViewController:UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 //Mark: RangeUISliderDelegate
-extension MakeEventViewController:RangeUISliderDelegate{
+extension MakeEventController:RangeUISliderDelegate{
     //Mark RangeDelegate
     func rangeChangeFinished(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
     }
@@ -414,7 +406,7 @@ extension MakeEventViewController:RangeUISliderDelegate{
     }
 }
 //Mark:uinavigationDelegate
-extension MakeEventViewController:UINavigationControllerDelegate {
+extension MakeEventController:UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             noImageView.image = image.withRenderingMode(.alwaysOriginal)
@@ -423,7 +415,7 @@ extension MakeEventViewController:UINavigationControllerDelegate {
     }
 }
 //Mark getmyTeamDelegate
-extension MakeEventViewController :FetchMyTeamDataDelegate {
+extension MakeEventController :FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         pickerArray = teamArray
         if pickerArray.count == 1 {
@@ -433,8 +425,19 @@ extension MakeEventViewController :FetchMyTeamDataDelegate {
     }
 }
 //Mark textFieldDelegate
-extension MakeEventViewController:UITextFieldDelegate {
+extension MakeEventController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+    }
+}
+//Mark SearchLocationProtocol
+extension MakeEventController:SearchLocationProtocol {
+    func sendLocationData(location: [Double], placeName: String,placeAddress:String,vc:MapViewController) {
+        vc.dismiss(animated: true, completion: nil)
+        self.teamPlace = placeName
+        self.placeLatitude = location[0]
+        self.placeLongitude = location[1]
+        self.placeTextField.text = placeName
+        self.placeAddress = placeAddress
     }
 }

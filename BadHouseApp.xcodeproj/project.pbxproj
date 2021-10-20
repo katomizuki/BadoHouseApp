@@ -89,10 +89,10 @@
 		D3DA98C426F80A0100DFF8B1 /* PreJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
-		D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventViewController.swift */; };
+		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
 		D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* EventBinding.swift */; };
 		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
-		D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195426E4CAC900B6740E /* TagViewController.swift */; };
+		D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195426E4CAC900B6740E /* EventTagController.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -188,10 +188,10 @@
 		D3DA98C326F80A0100DFF8B1 /* PreJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinViewController.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
-		D3FD194E26E482C200B6740E /* MakeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewController.swift; sourceTree = "<group>"; };
+		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
 		D3FD195026E4993A00B6740E /* EventBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBinding.swift; sourceTree = "<group>"; };
 		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
-		D3FD195426E4CAC900B6740E /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		D3FD195426E4CAC900B6740E /* EventTagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTagController.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 		D37FA52626EAFDAE00B8559F /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				D3FD195426E4CAC900B6740E /* TagViewController.swift */,
-				D3FD194E26E482C200B6740E /* MakeEventViewController.swift */,
+				D3FD195426E4CAC900B6740E /* EventTagController.swift */,
+				D3FD194E26E482C200B6740E /* MakeEventController.swift */,
 				D37FA52B26EB4AD900B8559F /* EventDetailViewController.swift */,
 				D3AC05E626EB82E300F40A51 /* MapViewController.swift */,
 				D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */,
@@ -754,10 +754,10 @@
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
-				D3FD194F26E482C200B6740E /* MakeEventViewController.swift in Sources */,
+				D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* FriendCell.swift in Sources */,
-				D3FD195526E4CAC900B6740E /* TagViewController.swift in Sources */,
+				D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */,
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
 				D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */,

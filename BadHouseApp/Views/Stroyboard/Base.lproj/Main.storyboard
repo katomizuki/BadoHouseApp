@@ -2272,7 +2272,7 @@
         <!--練習作成-->
         <scene sceneID="XPt-gx-oPm">
             <objects>
-                <viewController id="uvZ-IK-hUs" customClass="MakeEventViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uvZ-IK-hUs" customClass="MakeEventController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4SG-aj-dnV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2350,13 +2350,13 @@
                                                         <rect key="frame" x="0.0" y="44" width="560" height="72"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開催日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9M-uu-CzE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="137" height="72"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="91" height="72"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="l6L-K6-nGv">
-                                                                <rect key="frame" x="137" y="0.0" width="423" height="72"/>
+                                                                <rect key="frame" x="91" y="0.0" width="469" height="72"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2364,13 +2364,13 @@
                                                         <rect key="frame" x="0.0" y="126" width="560" height="73"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-j9-Cxb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="137" height="73"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="91" height="73"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-qY-G0G">
-                                                                <rect key="frame" x="137" y="0.0" width="423" height="73"/>
+                                                                <rect key="frame" x="91" y="0.0" width="469" height="73"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2378,13 +2378,13 @@
                                                         <rect key="frame" x="0.0" y="209" width="560" height="73"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="募集〆切り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-vB-azb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="170.5" height="73"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116" height="73"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="HqZ-Nc-ffI">
-                                                                <rect key="frame" x="170.5" y="0.0" width="389.5" height="73"/>
+                                                                <rect key="frame" x="116" y="0.0" width="444" height="73"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2864,10 +2864,10 @@
             </objects>
             <point key="canvasLocation" x="5144.8000000000002" y="129.98500749625188"/>
         </scene>
-        <!--Tag View Controller-->
+        <!--Event Tag Controller-->
         <scene sceneID="YMI-YK-I2k">
             <objects>
-                <viewController storyboardIdentifier="TagVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gjh-my-rgV" customClass="TagViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gjh-my-rgV" customClass="EventTagController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MaZ-R5-twe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
