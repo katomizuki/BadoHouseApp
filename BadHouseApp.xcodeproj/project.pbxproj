@@ -103,6 +103,7 @@
 		D3FFD334271EDCC300DE54ED /* JoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* JoinService.swift */; };
 		D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */; };
 		D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */; };
+		D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33F2720252E00DE54ED /* BlockSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,6 +203,7 @@
 		D3FFD333271EDCC300DE54ED /* JoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinService.swift; sourceTree = "<group>"; };
 		D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPopoverController.swift; sourceTree = "<group>"; };
 		D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTeamController.swift; sourceTree = "<group>"; };
+		D3FFD33F2720252E00DE54ED /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,6 +439,7 @@
 				D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */,
 				D3BDB55426E062E700C53780 /* RegisterTextField.swift */,
 				D3BDB55826E066CF00C53780 /* RegisterButton.swift */,
+				D3FFD33F2720252E00DE54ED /* BlockSheet.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */,
+				D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */,
 				D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
