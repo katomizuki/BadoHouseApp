@@ -3,33 +3,31 @@ import Firebase
 import SDWebImage
 
 class GroupChatController: UIViewController {
-    //Mark:Properties
-    var team:TeamModel?
+    // Mark Properties
+    var team: TeamModel?
     private var chatArray = [GroupChatModel]()
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = Constants.CellId.chatCellId
     private let fetchData = FetchFirestoreData()
-    private var me:User?
-    private lazy var customInputView:CustomInputAccessoryView = {
-        let ci = CustomInputAccessoryView(frame: CGRect(x:0,y:0,width:view.frame.width,height:50))
+    private var me: User?
+    private lazy var customInputView: CustomInputAccessoryView = {
+        let ci = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0,width: view.frame.width, height: 50))
         ci.delegate = self
         return ci
     }()
-    
     override var inputAccessoryView: UIView? {
-        get{ return customInputView }
+            return customInputView
     }
-    
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    //Mark lifecycle
+    // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupData()
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setupTableView() {
         view.backgroundColor = .white
         tableView.delegate = self
@@ -38,7 +36,6 @@ class GroupChatController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
-    
     private func setupData() {
         UserService.getUserData(uid: AuthService.getUserId()) { [weak self] me in
             guard let self = self else { return }
@@ -49,21 +46,19 @@ class GroupChatController: UIViewController {
         fetchData.groupChatDataDelegate = self
     }
 }
-//Mark :tableViewdelegate
-extension GroupChatController:UITableViewDataSource {
-    
+// Mark tableViewdelegate
+extension GroupChatController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatArray.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatCell
-        cell.configure(chat: chatArray[indexPath.row],bool:self.chatArray[indexPath.row].senderId == AuthService.getUserId())
+        cell.configure(chat: chatArray[indexPath.row], bool: self.chatArray[indexPath.row].senderId == AuthService.getUserId())
         return cell
     }
 }
-//Mark tableViewdelegate
-extension GroupChatController:UITableViewDelegate {
+// Mark tableViewdelegate
+extension GroupChatController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -71,19 +66,19 @@ extension GroupChatController:UITableViewDelegate {
         return false
     }
 }
-//Mark:chatDelegate
-extension GroupChatController:FetchMyGroupChatDataDelegate {
+// Mark chatDelegate
+extension GroupChatController: FetchMyGroupChatDataDelegate {
     func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
         self.chatArray = []
         self.chatArray = groupChatModelArray
         self.tableView.reloadData()
         if groupChatModelArray.count != 0 {
-            tableView.scrollToRow(at: IndexPath(row: groupChatModelArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated:true)
+            tableView.scrollToRow(at: IndexPath(row: groupChatModelArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
         }
     }
 }
-//Mark InputDelegate
-extension GroupChatController:InputDelegate {
+// Mark InputDelegate
+extension GroupChatController: InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         guard let teamId = self.team?.teamId else { return }
         guard let me = self.me else { return }

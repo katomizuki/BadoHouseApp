@@ -527,7 +527,7 @@
 				D3BDB52126E0525100C53780 /* Frameworks */,
 				D3BDB52226E0525100C53780 /* Resources */,
 				CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */,
-				D3A789CB26F3F8710088E8BC /* ShellScript */,
+				D3A789CB26F3F8710088E8BC /* Run SwiftLint */,
 				4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -633,7 +633,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D3A789CB26F3F8710088E8BC /* ShellScript */ = {
+		D3A789CB26F3F8710088E8BC /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -642,14 +642,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Run SwiftLint";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		E7653B2371FC9E9AD21CB60D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

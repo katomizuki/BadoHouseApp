@@ -3,8 +3,8 @@ import Firebase
 import CoreLocation
 import RxSwift
 
-protocol FetchGenderCountDataDelegate:AnyObject  {
-    func fetchGenderCount(countArray:[Int])
+protocol FetchGenderCountDataDelegate: AnyObject {
+    func fetchGenderCount(countArray: [Int])
     func fetchBarData(countArray:[Int])
 }
 protocol FetchEventDataDelegate :AnyObject {

@@ -1,0 +1,23 @@
+
+# 変数名に関する制約
+identifier_name:
+  allowed_symbols: "_"
+  min_length: 2
+  excluded:
+    - i
+    - j
+    - n
+    - x
+    - y
+line_length: 200
+disabled_rules:
+
+# force_castは場合によっては使用するため
+- force_cast
+
+
+excluded:
+- Pods/
+- Carthage/
+
+

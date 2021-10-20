@@ -5,39 +5,36 @@ import SDWebImage
 import NVActivityIndicatorView
 
 class CheckPreJoinController: UIViewController {
-    //Mark properties
+    // Mark properties
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
     private var IndicatorView:NVActivityIndicatorView!
-    //Mark lifecycle
+    // Marklifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupIndicator()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         setupData()
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
     }
-    
     private func setupIndicator() {
         IndicatorView = self.setupIndicatorView()
         view.addSubview(IndicatorView)
         IndicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
-                             width:100,
+                             width: 100,
                              height: 100)
     }
-    
     private func setupData() {
         fetchData.preJoinDelegate = self
         EventServie.getmyEventId { [weak self] event in
@@ -47,15 +44,14 @@ class CheckPreJoinController: UIViewController {
         }
     }
 }
-//Mark:IndicatorInfo-Extension
-extension CheckPreJoinController:IndicatorInfoProvider {
-    
+// Mark IndicatorInfo-Extension
+extension CheckPreJoinController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "承認待ち")
     }
 }
-//Mark:getPrejoinDelegate
-extension CheckPreJoinController:FetchMyPrejoinDataDelegate {
+// Mark getPrejoinDelegate
+extension CheckPreJoinController: FetchMyPrejoinDataDelegate {
     func fetchMyPrejoinData(preJoinArray: [[String]]) {
         self.notificationArray = [[User]]()
         let group = DispatchGroup()
@@ -80,28 +76,23 @@ extension CheckPreJoinController:FetchMyPrejoinDataDelegate {
         }
     }
 }
-//Mark tableviewdelegate
-extension CheckPreJoinController:UITableViewDataSource {
-    
+// Mark tableviewdelegate
+extension CheckPreJoinController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return eventArray.count
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if notificationArray.isEmpty {
             return 0
         } else {
-            for i in 0..<eventArray.count {
-                if section == i {
+            for i in 0..<eventArray.count where section == i {
                     return self.notificationArray[i].count
-                }
             }
             return 0
         }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId,for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
         cell.label.text = "\(notificationArray[indexPath.section][indexPath.row].name)さんから参加承認がきています"
         cell.label.numberOfLines = 0
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl
@@ -114,13 +105,12 @@ extension CheckPreJoinController:UITableViewDataSource {
         }
         return cell
     }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
     }
 }
-//Mark UITableViewDelegate
-extension CheckPreJoinController:UITableViewDelegate {
+// Mark UITableViewDelegate
+extension CheckPreJoinController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertVC = UIAlertController(title: "参加申請を許可しますか？", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { _ in
@@ -141,7 +131,6 @@ extension CheckPreJoinController:UITableViewDelegate {
         alertVC.addAction(cancleAction)
         present(alertVC, animated: true, completion: nil)
     }
-    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
@@ -152,4 +141,3 @@ extension CheckPreJoinController:UITableViewDelegate {
         return false
     }
 }
-
