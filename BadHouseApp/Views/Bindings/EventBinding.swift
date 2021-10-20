@@ -1,28 +1,27 @@
 import Foundation
 import RxCocoa
 import RxSwift
-//Mark InputProtocol
+// Mark InputProtocol
 protocol MakeEventInputProtocol {
-    var dateTextInput:AnyObserver<String> { get }
-    var groupTextInput:AnyObserver<String> { get }
-    var startTextInput:AnyObserver<String> { get }
-    var finishTextInput:AnyObserver<String> { get }
-    var titleTextInput:AnyObserver<String> { get }
-    var moneyTextInput:AnyObserver<String> { get }
+    var dateTextInput: AnyObserver<String> { get }
+    var groupTextInput: AnyObserver<String> { get }
+    var startTextInput: AnyObserver<String> { get }
+    var finishTextInput: AnyObserver<String> { get }
+    var titleTextInput: AnyObserver<String> { get }
+    var moneyTextInput: AnyObserver<String> { get }
 }
-//Mark:OutputProtocol
+// Mark OutputProtocol
 protocol MakeEventOutputProtocol {
-    var dateTextOutput:PublishSubject<String> { get }
-    var groupTextOutput:PublishSubject<String> { get }
-    var startTextOutput:PublishSubject<String> { get }
-    var finishTextOutput:PublishSubject<String> { get }
-    var titleTextOutput:PublishSubject<String> { get }
-    var moneyTextOutput:PublishSubject<String> { get }
+    var dateTextOutput: PublishSubject<String> { get }
+    var groupTextOutput: PublishSubject<String> { get }
+    var startTextOutput: PublishSubject<String> { get }
+    var finishTextOutput: PublishSubject<String> { get }
+    var titleTextOutput: PublishSubject<String> { get }
+    var moneyTextOutput: PublishSubject<String> { get }
 }
-class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
-    
+class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
+    // Mark Observable
     private let disposeBag = DisposeBag()
-    //Mark: Observable
     var dateTextOutput = PublishSubject<String>()
     var groupTextOutput = PublishSubject<String>()
     var titleTextOutput = PublishSubject<String>()
@@ -30,31 +29,27 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
     var startTextOutput = PublishSubject<String>()
     var moneyTextOutput = PublishSubject<String>()
     var validMakeSubject = BehaviorSubject<Bool>(value: false)
-    
-    //Mark: Observer
-    var dateTextInput:AnyObserver<String> {
+    // Mark Observer
+    var dateTextInput: AnyObserver<String> {
         dateTextOutput.asObserver()
     }
-    
-    var groupTextInput:AnyObserver<String> {
+    var groupTextInput: AnyObserver<String> {
         groupTextOutput.asObserver()
     }
-    var titleTextInput:AnyObserver<String> {
+    var titleTextInput: AnyObserver<String> {
         titleTextOutput.asObserver()
     }
-    var startTextInput:AnyObserver<String> {
+    var startTextInput: AnyObserver<String> {
         startTextOutput.asObserver()
     }
-    var finishTextInput:AnyObserver<String> {
+    var finishTextInput: AnyObserver<String> {
         finishTextOutput.asObserver()
     }
-    var moneyTextInput:AnyObserver<String> {
+    var moneyTextInput: AnyObserver<String> {
         moneyTextOutput.asObserver()
     }
-    
-    var valideMakeDriver:Driver<Bool> = Driver.never()
-    
-    //Mark:initialize
+    var valideMakeDriver: Driver<Bool> = Driver.never()
+    // Mark initialize
     init() {
         valideMakeDriver = validMakeSubject.asDriver(onErrorDriveWith: Driver.empty())
         let dateValid = dateTextOutput
@@ -87,7 +82,7 @@ class MakeEventBindings:MakeEventInputProtocol,MakeEventOutputProtocol {
             .map { text ->Bool in
                 return text.count >= 1
             }
-        Observable.combineLatest(dateValid, groupValid,startValid,finishValid,moneyValid,titleValid) { $0 && $1 && $2 && $3 && $4 && $5 }
+        Observable.combineLatest(dateValid, groupValid, startValid, finishValid, moneyValid, titleValid) { $0 && $1 && $2 && $3 && $4 && $5 }
         .subscribe {validAll in
             self.validMakeSubject.onNext(validAll)
         }

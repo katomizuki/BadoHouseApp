@@ -4,47 +4,43 @@ import AVFoundation
 import SDWebImage
 import SkeletonView
 
-protocol VideoCollectionCellDelegate:AnyObject {
-    func didTapSearchButton(video:VideoModel,button:UIButton)
-    func didTapNextButton(video:VideoModel)
+protocol VideoCollectionCellDelegate: AnyObject {
+    func didTapSearchButton(video: VideoModel, button: UIButton)
+    func didTapNextButton(video: VideoModel)
 }
-class VideoCell:UICollectionViewCell {
-    
-    //Mark properties
+class VideoCell: UICollectionViewCell {
+    // Mark properties
     var player: AVPlayer?
     static let identifier = Constants.CellId.videoCell
-    var iv:UIImageView = {
+    var iv: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .cyan
         return iv
     }()
-    var video:VideoModel? {
+    var video: VideoModel? {
         didSet {
             configure()
         }
     }
-    private let nextButton:UIButton = {
+    private let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: Constants.ImageName.reload), for: .normal)
         button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
-    
-    private let searchButton:UIButton = {
+    private let searchButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named:Constants.ImageName.search), for: .normal)
+        button.setImage(UIImage(named: Constants.ImageName.search), for: .normal)
         button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
-    
-    private let containerView:UIView = {
+    private let containerView: UIView = {
         let view = UIView()
         return view
     }()
-    weak var delegate:VideoCollectionCellDelegate?
-    
-    //Mark initialize
-    override init(frame:CGRect) {
+    weak var delegate: VideoCollectionCellDelegate?
+    // Mark initialize
+    override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.clipsToBounds = true
         player?.automaticallyWaitsToMinimizeStalling = true
@@ -55,17 +51,23 @@ class VideoCell:UICollectionViewCell {
         isSkeletonable = true
         containerView.showAnimatedSkeleton()
     }
-    
+    // Mark layoutSubViews
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.frame = contentView.bounds
         let size = contentView.frame.size.width / 6
         let width = contentView.frame.size.width
         let height = contentView.frame.size.height - 80
-        searchButton.frame = CGRect(x:width - size,y:height - size ,width: size,height: size)
-        nextButton.frame = CGRect(x: width - size, y: height - (size * 2) - 10, width: size, height: size)
+        searchButton.frame = CGRect(x: width - size,
+                                    y: height - size ,
+                                    width: size,
+                                    height: size)
+        nextButton.frame = CGRect(x: width - size,
+                                  y: height - (size * 2) - 10,
+                                  width: size,
+                                  height: size)
     }
-    //Mark setupMethod
+    // Mark setupMethod
     private func setupLayout() {
         contentView.addSubview(containerView)
         contentView.addSubview(nextButton)
@@ -75,7 +77,7 @@ class VideoCell:UICollectionViewCell {
         containerView.clipsToBounds = true
         contentView.sendSubviewToBack(containerView)
     }
-    //Mark selector
+    // Mark selector
     @objc private func handleNext() {
         print(#function)
         guard let video = video else {
@@ -83,15 +85,14 @@ class VideoCell:UICollectionViewCell {
         }
         self.delegate?.didTapNextButton(video: video)
     }
-    
     @objc private func handleSearch() {
         print(#function)
         guard let video = video else {
             return
         }
-        self.delegate?.didTapSearchButton(video: video,button: searchButton)
+        self.delegate?.didTapSearchButton(video: video, button: searchButton)
     }
-    //Mark helperMethod
+    // Mark helperMethod
     func configure() {
         setupLayout()
         guard let videoUrl = URL(string: video?.videoUrl ?? "") else { return }
@@ -104,9 +105,7 @@ class VideoCell:UICollectionViewCell {
         player?.play()
         containerView.stopSkeletonAnimation()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

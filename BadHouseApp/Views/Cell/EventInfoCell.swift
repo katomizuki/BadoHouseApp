@@ -1,8 +1,7 @@
 import UIKit
 
 class EventInfoCell: UICollectionViewCell {
-    
-    //Mark:Properties
+    // Mark Properties
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -15,18 +14,16 @@ class EventInfoCell: UICollectionViewCell {
             userImageView.layer.borderWidth = 2
         }
     }
-    var event:Event? {
+    var event: Event? {
         didSet {
             configure()
         }
     }
-    
-    //Mark:LifeCycle
+    // Mark LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    //Mark helperMethod
+    // Mark helperMethod
     func configure() {
         guard let event = event else { return }
         self.placeLabel.text = "at " + event.eventPlace

@@ -4,23 +4,21 @@ import SDWebImage
 import Firebase
 import FacebookCore
 import RxSwift
-protocol CalendarEventDelegate :AnyObject{
-    func removeEvent(eventModel:Event,cell:UITableViewCell)
+protocol CalendarEventDelegate: AnyObject {
+    func removeEvent(eventModel:Event,cell: UITableViewCell)
 }
-class GroupCell:UITableViewCell {
-    
-    //Mark:Properties
+class GroupCell: UITableViewCell {
+    // Mark Properties
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    weak var trashDelegate:CalendarEventDelegate?
-    var team:TeamModel? {
+    weak var trashDelegate: CalendarEventDelegate?
+    var team: TeamModel? {
         didSet {
             configure()
         }
     }
-    
     var user:User? {
         didSet {
             userconfigure()
@@ -31,22 +29,20 @@ class GroupCell:UITableViewCell {
             eventConfigure()
         }
     }
-    private let formatter:DateFormatter = {
+    private let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter
     }()
-    
-    let trashButton:UIButton = {
+    let trashButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash"), for: UIControl.State.normal)
         button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
-    
-    //Mark: LifeCycle
+    // Mark LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor(named: Constants.AppColor.darkColor)
@@ -59,24 +55,27 @@ class GroupCell:UITableViewCell {
         self.selectionStyle = .none
         addSubview(trashButton)
         trashButton.isHidden = true
-        trashButton.anchor(bottom:bottomAnchor,right:rightAnchor,paddingBottom:10, paddingRight: 20,width:30, height: 30)
+        trashButton.anchor(bottom: bottomAnchor,
+                           right: rightAnchor,
+                           paddingBottom: 10,
+                           paddingRight: 20,
+                           width: 30,
+                           height: 30)
         trashButton.addTarget(self, action: #selector(handleTrash), for: .touchUpInside)
     }
-    
-    //Mark: nibMethod
-    static func nib() ->UINib {
+    // Mark nibMethod
+    static func nib() -> UINib {
         return UINib(nibName: Constants.Cell.GroupCell, bundle: nil)
     }
-    //Mark selector
+    // Mark selector
     @objc private func handleTrash() {
         print(#function)
         guard let event = event else {
             return
         }
-        self.trashDelegate?.removeEvent(eventModel:event,cell:self)
+        self.trashDelegate?.removeEvent(eventModel: event, cell: self)
     }
-    
-    //Mark helperMethod
+    // Mark helperMethod
     private func eventConfigure() {
         label.text = event?.eventTitle
         if let dateString = event?.eventStartTime.prefix(16) {
@@ -88,9 +87,8 @@ class GroupCell:UITableViewCell {
         cellImagevView.sd_setImage(with: url, completed: nil)
         accessoryType = .none
         trashButton.isHidden = false
-        
     }
-    
+    // Mark Configure
     private func configure() {
         guard let team = team else { return }
         self.label.text = team.teamName
@@ -98,9 +96,7 @@ class GroupCell:UITableViewCell {
         self.cellImagevView.sd_setImage(with: url, completed: nil)
         self.cellImagevView.contentMode = .scaleAspectFill
         self.cellImagevView.chageCircle()
-        
     }
-    
     private func userconfigure() {
         guard let user = user else { return }
         self.label.text = user.name
@@ -112,8 +108,7 @@ class GroupCell:UITableViewCell {
         }
         self.cellImagevView.chageCircle()
     }
-    
-    func setTimeLabelandCommentLabel(chat:Chat) {
+    func setTimeLabelandCommentLabel(chat: Chat) {
         let text = chat.text
         let date = chat.sendTime
         self.commentLabel.text = text

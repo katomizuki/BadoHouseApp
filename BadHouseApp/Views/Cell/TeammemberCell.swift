@@ -3,19 +3,16 @@ import UIKit
 import SDWebImage
 import FacebookCore
 
-class TeammemberCell:UICollectionViewCell {
-    
-    //Mark:Properties
+class TeammemberCell: UICollectionViewCell {
+    // Mark Properties
     var teamMember = [User]()
     @IBOutlet weak var teamMemberImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
-    //Mark:nibMethod
-    static func nib()->UINib {
-        return UINib(nibName:Constants.Cell.TeammemberCell, bundle: nil)
+    // Mark nibMethod
+    static func nib() -> UINib {
+        return UINib(nibName: Constants.Cell.TeammemberCell, bundle: nil)
     }
-    
-    //Mark:LifeCycle
+    // Mark LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         teamMemberImage.layer.cornerRadius = 30
@@ -24,11 +21,10 @@ class TeammemberCell:UICollectionViewCell {
         teamMemberImage.layer.borderWidth = 2
         teamMemberImage.contentMode = .scaleAspectFill
     }
-    
-    //Mark:HelperMethod
-    func configure(name:String,urlString:String) {
+    // Mark HelperMethod
+    func configure(name: String, urlString: String) {
         nameLabel.text = name
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 11)
+        nameLabel.font = .boldSystemFont(ofSize: 11)
         nameLabel.textColor = .darkGray
         if urlString == "" {
             teamMemberImage.image = UIImage(named: Constants.ImageName.noImages)

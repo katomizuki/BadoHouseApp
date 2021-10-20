@@ -1,8 +1,7 @@
 import UIKit
 
 class ChatCell: UITableViewCell {
-    
-    //Mark:properties
+    // Mark properties
     var message: String? {
         didSet {
             guard let message = message else { return }
@@ -11,13 +10,12 @@ class ChatCell: UITableViewCell {
             mytextView.text = message
         }
     }
-    var yourMessaege:String? {
+    var yourMessaege: String? {
         didSet {
             guard let message = yourMessaege else { return }
             let width = estimateFrameSize(text: message).width + 10
             widthConstraint.constant = width
             textView.text = message
-            
         }
     }
     @IBOutlet weak var userImageView: UIImageView!
@@ -28,14 +26,14 @@ class ChatCell: UITableViewCell {
     @IBOutlet weak var messageConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    private let formatter:DateFormatter = {
+    private let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         formatter.locale = Locale(identifier: "ja-JP")
         return formatter
     }()
-    //Mark: LifeCycle
+    // Mark LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.layer.cornerRadius = 30
@@ -50,23 +48,24 @@ class ChatCell: UITableViewCell {
         self.mytextView.font = UIFont(name: "Kailasa", size: 14)
         self.textView.font = UIFont(name: "Kailasa", size: 14)
     }
-    
-    //Mark: nibMethod
-    static func nib()->UINib {
+    // Mark nibMethod
+    static func nib() -> UINib {
         return UINib(nibName: "ChatCell", bundle: nil)
     }
-    
+    // Mark setSelectedOverride
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    //Mark helperMethod
-    private func estimateFrameSize(text:String)->CGRect {
+    // Mark helperMethod
+    private func estimateFrameSize(text: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)], context: nil)
+        return NSString(string: text).boundingRect(with: size,
+                                                   options: options,
+                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)],
+                                                   context: nil)
     }
-    
-    func configure(chat:GroupChatModel,bool:Bool) {
+    func configure(chat: GroupChatModel, bool: Bool) {
         timeLabel.text = ""
         mytimeLabel.text = ""
         mytextView.text = ""
@@ -103,8 +102,7 @@ class ChatCell: UITableViewCell {
             yourMessaege = text
         }
     }
-    
-    func dmchatCel(chat:Chat,bool:Bool,you:User) {
+    func dmchatCel(chat: Chat, bool: Bool, you: User) {
         guard let date = chat.sendTime?.dateValue() else { return }
         let dateText = self.formatter.string(from: date)
         let dateTextFirst = String(dateText.suffix(11))
@@ -141,4 +139,3 @@ class ChatCell: UITableViewCell {
         }
     }
 }
-

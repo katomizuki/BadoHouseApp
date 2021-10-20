@@ -2,12 +2,11 @@ import Foundation
 import UIKit
 import FacebookCore
 
-class PlusTeamPlayersCell:UITableViewCell {
-    
-    //Mark:Properties
-    var linkInvite:PlusTeamPlayerController!
+class PlusTeamPlayersCell: UITableViewCell {
+    // Mark Properties
+    var linkInvite: PlusTeamPlayerController!
     var count = 0
-    var button:UIButton = {
+    var button: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = Constants.AppColor.OriginalBlue
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -15,32 +14,39 @@ class PlusTeamPlayersCell:UITableViewCell {
         button.setImage(image, for: .normal)
         return button
     }()
-    var iv:UIImageView = {
+    var iv: UIImageView = {
         let iv = UIImageView()
         iv.layer.cornerRadius = 25
         iv.layer.masksToBounds = true
         return iv
     }()
-    var nameLabel:UILabel = {
+    var nameLabel: UILabel = {
         let label = UILabel()
         return label
     }()
-    
-    //Mark: initialize
+    // Mark initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)
         self.addSubview(nameLabel)
-        iv.anchor(top:self.topAnchor,left: self.leftAnchor,paddingTop: 10,paddingLeft: 10,width: 50,height: 50)
-        nameLabel.anchor(top:self.topAnchor,left: iv.rightAnchor,paddingTop: 20,paddingLeft: 10,height: 25)
+        iv.anchor(top: self.topAnchor,
+                  left: self.leftAnchor,
+                  paddingTop: 10,
+                  paddingLeft: 10,
+                  width: 50,
+                  height: 50)
+        nameLabel.anchor(top: self.topAnchor,
+                         left: iv.rightAnchor,
+                         paddingTop: 20,
+                         paddingLeft: 10,
+                         height: 25)
     }
-    required init?(coder: NSCoder){
+    required init?(coder: NSCoder) {
         fatalError()
     }
-    
-    //Mark: selector
+    // Mark selector
     @objc private func handleInvite() {
         button.tintColor = Constants.AppColor.OriginalBlue
         if count % 2 == 0 {
