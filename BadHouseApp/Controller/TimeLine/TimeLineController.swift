@@ -6,7 +6,7 @@ import SkeletonView
 
 class TimeLineController: UIViewController {
     // Mark properties
-    private var collectionView:UICollectionView?
+    private var collectionView: UICollectionView?
     private var data = [VideoModel]()
     private let fetchData = FetchFirestoreData()
     private var player = AVPlayer()

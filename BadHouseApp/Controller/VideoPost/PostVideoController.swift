@@ -13,13 +13,13 @@ class PostVideoController: UIViewController {
     }()
     private lazy var singleButton: UIButton = {
         let button = RegisterButton(text: Badominton.single.rawValue)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handle), for: .touchUpInside)
         return button
     }()
     private lazy var doubleButton: UIButton = {
         let button = RegisterButton(text: Badominton.double.rawValue)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handle), for: .touchUpInside)
         return button
     }()

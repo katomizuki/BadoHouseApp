@@ -85,15 +85,15 @@ class GroupDetailController: UIViewController {
             if tags.count <= 1 {
                 let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
                 let button2 = UIButton(type: .system).cretaTagButton(text: "仲良く")
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-                button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+                button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+                button2.titleLabel?.font = .boldSystemFont(ofSize: 14)
                 self.teamTagStackView.addArrangedSubview(button)
                 self.teamTagStackView.addArrangedSubview(button2)
             }
             for i in 0..<tags.count {
                 let title = tags[i].tag
                 let button = UIButton(type: .system).cretaTagButton(text: title)
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+                button.titleLabel?.font = .boldSystemFont(ofSize: 14)
                 if i == 4 { return }
                 self.teamTagStackView.addArrangedSubview(button)
             }
@@ -160,14 +160,14 @@ class GroupDetailController: UIViewController {
                                            data: genderArray[i]))
         }
         let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
-        pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
+        pieChartDataSet.entryLabelFont = .boldSystemFont(ofSize: 12)
         pieChartDataSet.drawValuesEnabled = false
         pieView.centerText = "男女比"
         pieView.legend.textColor = .label
         pieChartDataSet.valueTextColor = .label
         pieView.legend.enabled = false
         pieView.data = PieChartData(dataSet: pieChartDataSet)
-        let colors = [UIColor.blue, .red, Constants.AppColor.OriginalBlue]
+        let colors = [.blue, .red, Constants.AppColor.OriginalBlue]
         pieChartDataSet.colors = colors
     }
     private func setupGraph() {
