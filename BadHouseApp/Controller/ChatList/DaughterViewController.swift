@@ -65,8 +65,8 @@ extension DaughterViewController:FetchMyJoinDataDelegate {
         }
     }
 }
-//Mark tableViewDelegate
-extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
+//Mark tableViewDataSource
+extension DaughterViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if notificationArray.isEmpty {
@@ -98,18 +98,13 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Constants.AppColor.OriginalBlue
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .white
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-    }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
     }
-    
+}
+//Mark TableViewDelegate
+extension DaughterViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertVc = UIAlertController(title: "承認待ちにもどしますか", message: "", preferredStyle: UIAlertController.Style.alert)
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { action in
@@ -126,5 +121,11 @@ extension DaughterViewController:UITableViewDelegate,UITableViewDataSource {
         alertVc.addAction(alertAction)
         alertVc.addAction(cancleAction)
         present(alertVc, animated: true, completion: nil)
+    }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = Constants.AppColor.OriginalBlue
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = .white
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
 }

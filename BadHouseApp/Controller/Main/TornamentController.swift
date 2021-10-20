@@ -22,8 +22,14 @@ class TornamentController: UIViewController {
     }
 }
 //Mark TableViewDelegate
-extension TornamentController:UITableViewDelegate,UITableViewDataSource {
-    
+extension TornamentController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TornamentDetailVC) as! TornamentDetailController
+        navigationController?.pushViewController(vc, animated: true)
+    } 
+}
+
+extension TornamentController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -39,9 +45,4 @@ extension TornamentController:UITableViewDelegate,UITableViewDataSource {
         cell.commentLabel.text = "○月○日 開催"
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TornamentDetailVC) as! TornamentDetailController
-        navigationController?.pushViewController(vc, animated: true)
-    } 
 }

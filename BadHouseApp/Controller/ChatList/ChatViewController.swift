@@ -60,8 +60,8 @@ class ChatViewController: UIViewController {
         fetchData.chatDelegate = self
     }
 }
-//Mark:UITableViewDelegate,DataSource
-extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
+//Mark:UITableViewDataSource
+extension ChatViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -74,7 +74,9 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
         cell.dmchatCel(chat: messages[indexPath.row], bool: messages[indexPath.row].senderId == me.uid,you:you)
         return cell
     }
-    
+}
+//Mark:uitableViewdelegate
+extension ChatViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.rowHeight = 100
         return UITableView.automaticDimension
@@ -84,6 +86,7 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
         return false
     }
 }
+
 //Mark:GetChatDelegate
 extension ChatViewController: FetchMyChatDataDelgate {
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
@@ -93,8 +96,6 @@ extension ChatViewController: FetchMyChatDataDelgate {
     func fetchMyChatListData(userArray: [User], anotherArray: [User], lastChatArray: [Chat], chatModelArray: [ChatRoom]) {
         print(#function)
     }
-    
-    
     func fetchMyChatData(chatArray: [Chat]) {
         self.messages = []
         self.messages = chatArray
@@ -104,14 +105,7 @@ extension ChatViewController: FetchMyChatDataDelgate {
         }
     }
 }
-//Mark imagePickerDelegate
-extension ChatViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print(#function)
-    }
-    
-}
+
 //Mark InputDelegate
 extension ChatViewController:InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {

@@ -7,7 +7,6 @@ enum XLPager:String {
     case first = "First"
     case second = "Second"
 }
-
 class PreJoinViewController: ButtonBarPagerTabStripViewController{
     //Mark properties
     lazy var collectionView:ButtonBarView = {

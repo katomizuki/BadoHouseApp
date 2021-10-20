@@ -143,7 +143,7 @@ class ChatListViewController:UIViewController {
     }
 }
 //Mark:tableViewdelegate,datasource
-extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
+extension ChatListViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -182,7 +182,16 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
+extension ChatListViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         if indexPath.section == 0 {
@@ -210,15 +219,6 @@ extension ChatListViewController:UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            return false
-        } else {
-            return true
-        }
-    }
-    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
@@ -232,18 +232,11 @@ extension ChatListViewController: FetchMyChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
         self.chatArray.append(chatArray)
     }
-}
-//Mark getChatRoomDelegate
-extension ChatListViewController {
-    
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
         fetchData.fetchMyChatListData(chatModelArray: chatRoomArray)
         self.chatModelArray = chatRoomArray
     }
-}
-//Mark getChatListDelegate
-extension ChatListViewController  {
     
     typealias sortChatArray = [EnumeratedSequence<[Chat]>.Element]
     
@@ -260,7 +253,6 @@ extension ChatListViewController  {
             self.tableView.reloadData()
         }
     }
-    
     private func sortArray()->sortChatArray {
         let sortArray = self.lastCommentArray.enumerated().sorted { a, b in
             guard let time = a.element.sendTime?.dateValue() else { return false }

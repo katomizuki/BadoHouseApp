@@ -81,7 +81,7 @@ extension ChildViewController:FetchMyPrejoinDataDelegate {
     }
 }
 //Mark tableviewdelegate
-extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
+extension ChildViewController:UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return eventArray.count
@@ -118,9 +118,10 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
     }
-    
+}
+//Mark UITableViewDelegate
+extension ChildViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let alertVC = UIAlertController(title: "参加申請を許可しますか？", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default) { _ in
             let eventId = self.eventArray[indexPath.section].eventId
@@ -147,10 +148,8 @@ extension ChildViewController:UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
-    
     func tableView(_ tableView: UITableView, selectionFollowsFocusForRowAt indexPath: IndexPath) -> Bool {
         return false
     }
 }
-
 

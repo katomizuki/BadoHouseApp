@@ -138,9 +138,8 @@ class ViewController: UIViewController {
         }
     }
 }
-//Mark: UICollectionDelegate
-extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
+//Mark: UICollectionDataSource
+extension ViewController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return eventArray.count
     }
@@ -155,12 +154,16 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             return cell
         }
     }
-    
+}
+//Mark collectionViewFlowLayoutDelegate
+extension ViewController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.collectionView.frame.width
         return CGSize(width: width, height: width - 50)
     }
-    
+}
+//Mark collectionviewDelegate
+extension ViewController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailViewController
         vc.event = eventArray[indexPath.row]
@@ -171,6 +174,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         }
     }
 }
+
 //Mark: CLLocationMangerDelegate
 extension ViewController: CLLocationManagerDelegate {
     
@@ -270,7 +274,6 @@ extension ViewController:FetchEventDataDelegate {
 
 //Mark: GetDatailDelegate
 extension ViewController: getDetailDelegate {
-    
     func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String,vc:DetailSearchViewController) {
         fetchData.searchEventDetailData(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time)
         vc.dismiss(animated: true, completion: nil)
@@ -285,7 +288,6 @@ extension ViewController: CalendarDelegate {
 }
 //Mark EmptyStateDelegate
 extension ViewController:EmptyStateDelegate{
-    
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         view.emptyState.hide()

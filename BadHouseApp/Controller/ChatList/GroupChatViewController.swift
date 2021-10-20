@@ -28,10 +28,10 @@ class GroupChatViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupData()
-        view.backgroundColor = .white
     }
     //Mark setupMethod
     private func setupTableView() {
+        view.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         let nib = ChatCell.nib()
@@ -50,7 +50,7 @@ class GroupChatViewController: UIViewController {
     }
 }
 //Mark :tableViewdelegate
-extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
+extension GroupChatViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatArray.count
@@ -61,11 +61,12 @@ extension GroupChatViewController:UITableViewDelegate,UITableViewDataSource {
         cell.configure(chat: chatArray[indexPath.row],bool:self.chatArray[indexPath.row].senderId == AuthService.getUserId())
         return cell
     }
-    
+}
+//Mark tableViewdelegate
+extension GroupChatViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
@@ -83,7 +84,6 @@ extension GroupChatViewController:FetchMyGroupChatDataDelegate {
 }
 //Mark InputDelegate
 extension GroupChatViewController:InputDelegate {
-    
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         guard let teamId = self.team?.teamId else { return }
         guard let me = self.me else { return }

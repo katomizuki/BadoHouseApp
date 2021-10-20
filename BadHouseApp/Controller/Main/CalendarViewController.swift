@@ -11,9 +11,10 @@ class CalendarViewController: UIViewController {
     @IBOutlet private weak var calendar: FSCalendar!
     weak var delegate:CalendarDelegate?
     private var searchDateString = String()
-    private let button:UIButton = {
+    private lazy var button:UIButton = {
         let button = RegisterButton(text: "検索")
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
         return button
     }()
     private let textField:UITextField = RegisterTextField(placeholder: "場所名入力")
@@ -21,14 +22,12 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        calendar.delegate = self
         setupCalendar()
     }
     //Mark setupMethod
     private func setupUI() {
         view.addSubview(button)
         view.addSubview(textField)
-        
         button.anchor(top:textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
@@ -36,11 +35,10 @@ class CalendarViewController: UIViewController {
                       paddingRight: 30,
                       paddingLeft: 30,height: 45)
         textField.anchor(top:calendar.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 30,paddingRight: 30,paddingLeft: 30,height: 45)
-        
-        button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
     }
     
     private func setupCalendar() {
+        calendar.delegate = self
         calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20)

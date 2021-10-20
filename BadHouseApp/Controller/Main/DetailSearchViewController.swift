@@ -11,7 +11,6 @@ protocol getDetailDelegate:AnyObject {
                           time:String,
                           vc:DetailSearchViewController)
 }
-
 class DetailSearchViewController: UIViewController{
     //Mark:Properties
     @IBOutlet private weak var titleStackView: UIStackView!
@@ -184,16 +183,14 @@ class DetailSearchViewController: UIViewController{
         let time = self.dateString
         let placeAddressString = cityTextField.text ?? ""
         self.delegate?.getDetailElement(title: title, circle: circle, level: level, placeAddressString: placeAddressString, money: money, time: time,vc:self)
-        
     }
 }
-//Mark:PickerViewDelegate
-extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource {
+//Mark:PickerViewDataSource
+extension DetailSearchViewController:UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.pickerView {
             return data.count
@@ -203,7 +200,9 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
             return level.count
         }
     }
-    
+}
+//Mark UIPickerDelegate
+extension DetailSearchViewController:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
             return self.data[row]
@@ -224,6 +223,8 @@ extension DetailSearchViewController:UIPickerViewDelegate,UIPickerViewDataSource
         }
     }
 }
+
+
 //Mark textFieldDelegate
 extension DetailSearchViewController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
