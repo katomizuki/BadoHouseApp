@@ -183,9 +183,16 @@ class EventDetailController: UIViewController {
         let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
         pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
         pieChartDataSet.drawValuesEnabled = false
-        pieView.centerText = "男女比"
         pieView.legend.enabled = false
         pieView.data = PieChartData(dataSet: pieChartDataSet)
+        let stringAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.systemGray,
+            .font: UIFont.boldSystemFont(ofSize: 16.0)
+        ]
+        let string = NSAttributedString(string: "男女比",
+                                        attributes: stringAttributes)
+        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
+        pieView.centerAttributedText = string
         let colors = [UIColor.blue, .red, Constants.AppColor.OriginalBlue]
         pieChartDataSet.colors = colors
     }
@@ -343,7 +350,10 @@ class EventDetailController: UIViewController {
     }
     // Mark helperMethod
     private func getCGrect(view: UIView) -> CGRect {
-        return CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 1.0)
+        return CGRect(x: 0,
+                      y: view.frame.height,
+                      width: view.frame.width,
+                      height: 1.0)
     }
 }
 // Mark genderDelegate

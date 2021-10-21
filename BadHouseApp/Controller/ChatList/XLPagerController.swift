@@ -35,9 +35,21 @@ class XLPagerController: ButtonBarPagerTabStripViewController {
     private func collectionAndScroll() {
         let width = view.frame.size.width
         let height = view.frame.size.height
-        collectionView.frame = CGRect(x: 0, y: 50, width: width, height: 64)
-        scrollView.frame = CGRect(x: 0, y: 50 + 64, width: width, height: height - 64)
-        collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 50, paddingRight: 0, paddingLeft: 0, height: 70)
+        collectionView.frame = CGRect(x: 0,
+                                      y: 50,
+                                      width: width,
+                                      height: 64)
+        scrollView.frame = CGRect(x: 0,
+                                  y: 50 + 64,
+                                  width: width,
+                                  height: height - 64)
+        collectionView.anchor(top: view.topAnchor,
+                              left: view.leftAnchor,
+                              right: view.rightAnchor,
+                              paddingTop: 50,
+                              paddingRight: 0,
+                              paddingLeft: 0,
+                              height: 70)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
