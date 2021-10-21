@@ -70,7 +70,6 @@ class RegisterViewController: UIViewController {
             let vc = WalkThroughController()
             present(vc, animated: true, completion: nil)
         }
-        view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
     }
     // Mark setup Method
@@ -130,7 +129,7 @@ class RegisterViewController: UIViewController {
                     self?.nameTextField.layer.borderWidth = 3
                 } else {
                     self?.nameTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.nameTextField.layer.borderWidth = 1
+                    self?.nameTextField.layer.borderWidth = 2
                 }
                 self?.registerBinding.nameTextInput.onNext(text ?? "")
             }
@@ -143,7 +142,7 @@ class RegisterViewController: UIViewController {
                     self?.emailTextField.layer.borderWidth = 3
                 } else {
                     self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.emailTextField.layer.borderWidth = 1
+                    self?.emailTextField.layer.borderWidth = 2
                 }
                 self?.registerBinding.emailTextInput.onNext(text ?? "")
             }
@@ -156,7 +155,7 @@ class RegisterViewController: UIViewController {
                     self?.passwordTextField.layer.borderWidth = 3
                 } else {
                     self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.passwordTextField.layer.borderWidth = 1
+                    self?.passwordTextField.layer.borderWidth = 2
                 }
                 self?.registerBinding.passwordTextInput.onNext(text ?? "")
             }

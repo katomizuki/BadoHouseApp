@@ -111,7 +111,7 @@ class LoginViewController: UIViewController {
                     self?.emailTextField.layer.borderWidth = 3
                 } else {
                     self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.emailTextField.layer.borderWidth = 1
+                    self?.emailTextField.layer.borderWidth = 2
                 }
                 self?.loginBinding.emailTextInput.onNext(text ?? "")
             }
@@ -124,7 +124,7 @@ class LoginViewController: UIViewController {
                     self?.passwordTextField.layer.borderWidth = 3
                 } else {
                     self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.passwordTextField.layer.borderWidth = 1
+                    self?.passwordTextField.layer.borderWidth = 2
                 }
                 self?.loginBinding.passwordTextInput.onNext(text ?? "")
             }

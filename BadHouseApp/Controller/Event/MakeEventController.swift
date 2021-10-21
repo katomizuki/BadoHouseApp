@@ -122,6 +122,7 @@ class MakeEventController: UIViewController {
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         titleTextField.delegate = self
+        fetchData.myTeamDelegate = self
     }
     private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView

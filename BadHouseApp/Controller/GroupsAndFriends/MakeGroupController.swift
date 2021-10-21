@@ -270,11 +270,11 @@ class MakeGroupController: UIViewController {
             .drive { [weak self] text in
                 if text != "" {
                     self?.nameTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.nameTextField.layer.borderWidth = 4
+                    self?.nameTextField.layer.borderWidth = 3
                     self?.nameTextField.layer.cornerRadius = 15
                 } else {
                     self?.nameTextField.layer.borderColor = UIColor.systemGray.cgColor
-                    self?.nameTextField.layer.borderWidth = 1
+                    self?.nameTextField.layer.borderWidth = 2
                 }
                 self?.teamBinding.nameTextInput.onNext(text ?? "")
             }
@@ -284,11 +284,11 @@ class MakeGroupController: UIViewController {
             .drive { [weak self] text in
                 if text != "" {
                     self?.placeTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.placeTextField.layer.borderWidth = 4
+                    self?.placeTextField.layer.borderWidth = 3
                     self?.placeTextField.layer.cornerRadius = 15
                 } else {
                     self?.placeTextField.layer.borderColor = UIColor.systemGray.cgColor
-                    self?.placeTextField.layer.borderWidth = 1
+                    self?.placeTextField.layer.borderWidth = 2
                 }
                 self?.teamBinding.placeTextInput.onNext(text ?? "")
             }
@@ -298,11 +298,11 @@ class MakeGroupController: UIViewController {
             .drive { [weak self] text in
                 if text != "" {
                     self?.timeTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.timeTextField.layer.borderWidth = 4
+                    self?.timeTextField.layer.borderWidth = 3
                     self?.timeTextField.layer.cornerRadius = 15
                 } else {
                     self?.timeTextField.layer.borderColor = UIColor.systemGray.cgColor
-                    self?.timeTextField.layer.borderWidth = 1
+                    self?.timeTextField.layer.borderWidth = 2
                 }
                 self?.teamBinding.timeTextInput.onNext(text ?? "")
             }
@@ -312,11 +312,11 @@ class MakeGroupController: UIViewController {
             .drive { [weak self] text in
                 if text != "" {
                     self?.levelTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.levelTextField.layer.borderWidth = 4
+                    self?.levelTextField.layer.borderWidth = 3
                     self?.levelTextField.layer.cornerRadius = 15
                 } else {
                     self?.levelTextField.layer.borderColor = UIColor.systemGray.cgColor
-                    self?.levelTextField.layer.borderWidth = 1
+                    self?.levelTextField.layer.borderWidth = 2
                 }
                 self?.teamBinding.levelTextInput.onNext(text ?? "")
             }
@@ -326,11 +326,11 @@ class MakeGroupController: UIViewController {
             .drive { [weak self] text in
                 if text != "" {
                     self?.plusTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.plusTextField.layer.borderWidth = 4
+                    self?.plusTextField.layer.borderWidth = 3
                     self?.plusTextField.layer.cornerRadius = 15
                 } else {
                     self?.plusTextField.layer.borderColor = UIColor.systemGray.cgColor
-                    self?.plusTextField.layer.borderWidth = 1
+                    self?.plusTextField.layer.borderWidth = 2
                 }
             }
             .disposed(by: disposeBag)

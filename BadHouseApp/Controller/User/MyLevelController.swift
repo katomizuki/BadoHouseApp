@@ -17,7 +17,11 @@ class MyLevelController: UIViewController {
             saveButton.updateSaveButton()
         }
     }
-    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var textView: UITextView! {
+        didSet {
+            textView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        }
+    }
     @IBOutlet private weak var slider: UISlider! {
         didSet {
             slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)

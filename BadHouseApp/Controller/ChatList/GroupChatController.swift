@@ -29,7 +29,6 @@ class GroupChatController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupData()
-        navigationController?.navigationBar.barTintColor = Constants.AppColor.OriginalBlue
     }
     // Mark setupMethod
     private func setupTableView() {

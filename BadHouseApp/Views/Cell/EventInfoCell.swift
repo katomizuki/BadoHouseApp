@@ -2,7 +2,11 @@ import UIKit
 
 class EventInfoCell: UICollectionViewCell {
     // Mark Properties
-    @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var teamLabel: UILabel! {
+        didSet {
+            teamLabel.font = .boldSystemFont(ofSize: 10)
+        }
+    }
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!

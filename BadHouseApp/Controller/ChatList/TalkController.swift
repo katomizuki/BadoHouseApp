@@ -46,7 +46,6 @@ class TalkController: UIViewController {
         let image = UIImage(named: Constants.ImageName.double)
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     // Mark setupMethod

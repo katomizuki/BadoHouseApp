@@ -11,7 +11,11 @@ class GroupCell: UITableViewCell {
     // Mark Properties
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel! {
+        didSet {
+            commentLabel.font = .boldSystemFont(ofSize: 12)
+        }
+    }
     @IBOutlet weak var timeLabel: UILabel!
     weak var trashDelegate: CalendarEventDelegate?
     var team: TeamModel? {
