@@ -157,10 +157,13 @@ extension MyScheduleController: CalendarEventDelegate {
         guard let tappedIndex = tableview.indexPath(for: cell)?[1] else { return }
         let vc = UIAlertController(title: "こちらの予定を削除しますか？", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.eventArray.remove(at: tappedIndex)
             guard let meId = self.me?.uid else { return }
             let eventId = self.eventArray[tappedIndex].eventId
-            DeleteService.deleteSubCollectionData(collecionName: "Users", documentId: meId, subCollectionName: "Join", subId: eventId)
+            DeleteService.deleteSubCollectionData(collecionName: "Users",
+                                                  documentId: meId,
+                                                  subCollectionName: "Join",
+                                                  subId: eventId)
+            self.eventArray.remove(at: tappedIndex)
             DispatchQueue.main.async {
                 self.tableview.reloadData()
                 self.calendar.reloadData()

@@ -25,6 +25,12 @@ class MyPageUserInfoController: UIViewController {
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
     }()
+    private lazy var officialButton: UIButton = {
+        let button = UIButton(type: .system).createProfileTopButton(title: "運営元")
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        button.addTarget(self, action: #selector(handleOfficial), for: .touchUpInside)
+        return button
+    }()
     var level: String = "" {
         didSet {
             userTableView.reloadData()
@@ -110,6 +116,7 @@ class MyPageUserInfoController: UIViewController {
         scrollView.addSubview(infoCollectionView)
         scrollView.addSubview(userTableView)
         scrollView.addSubview(logoutButton)
+        scrollView.addSubview(officialButton)
         backButton.anchor(top: scrollView.topAnchor,
                           left: view.leftAnchor,
                           paddingTop: 50,
@@ -145,11 +152,16 @@ class MyPageUserInfoController: UIViewController {
                                   paddingTop: 10,
                                   paddingRight: 20,
                                   paddingLeft: 20)
-        logoutButton.anchor(top: saveButton.bottomAnchor,
+        logoutButton.anchor(top: officialButton.bottomAnchor,
                             right: view.rightAnchor,
-                            paddingTop: 40,
+                            paddingTop: 20,
                             paddingRight: 15,
                             width: 80)
+        officialButton.anchor(top: saveButton.bottomAnchor,
+                              right: view.rightAnchor,
+                              paddingTop: 20,
+                              paddingRight: 15,
+                              width: 80)
         nameLabel.text = user?.name
         if let url = URL(string: user?.profileImageUrl ?? "") {
             profileImageView.sd_setImage(with: url, completed: nil)
@@ -204,6 +216,19 @@ class MyPageUserInfoController: UIViewController {
         } catch {
             print(error)
         }
+    }
+    @objc private func handleOfficial() {
+        print(#function)
+        let vc = AppExplainController()
+        vc.preferredContentSize = CGSize(width: 200, height: 300)
+        vc.modalPresentationStyle = .popover
+        let presentationController = vc.popoverPresentationController
+        presentationController?.delegate = self
+        presentationController?.permittedArrowDirections = .up
+        presentationController?.sourceView = officialButton
+        presentationController?.sourceRect = officialButton.bounds
+        vc.presentationController?.delegate = self
+        present(vc, animated: true, completion: nil)
     }
     // Mark HelperMethod
     private func bindingsCell(cell: InfoCollectionViewCell) {

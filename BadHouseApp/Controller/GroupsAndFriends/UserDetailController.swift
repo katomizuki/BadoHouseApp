@@ -288,6 +288,7 @@ extension UserDetailController: BlockDelegate {
         }
     }
 }
+// Mark BlockDismissDelegate
 extension UserDetailController: BlockDismissDelegate {
     func blockDismiss(vc: BlockController) {
         vc.dismiss(animated: true, completion: nil)
