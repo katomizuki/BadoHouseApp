@@ -30,6 +30,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location access for updating nearby events</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
@@ -41,7 +43,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Need camera access for uploading Images</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need location access for updating nearby friends</string>
+	<string>Need location access for updating nearby events</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need microphone access for uploading videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
