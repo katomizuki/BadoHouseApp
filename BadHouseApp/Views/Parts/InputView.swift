@@ -9,7 +9,7 @@ class CustomInputAccessoryView: UIView {
     weak var delegate: InputDelegate?
     let messageInputTextView: UITextView = {
         let tv = UITextView()
-        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.font = .systemFont(ofSize: 14)
         tv.isScrollEnabled = false
         tv.layer.cornerRadius = 15
         tv.layer.masksToBounds = true

@@ -5,7 +5,7 @@ class ProfileLabel: UILabel {
     // Mark initialize
     init() {
         super.init(frame: .zero)
-        self.font = UIFont.systemFont(ofSize: 45,weight: .bold)
+        self.font = .systemFont(ofSize: 45, weight: .bold)
         self.textColor = .black
     }
     init(title: String) {
