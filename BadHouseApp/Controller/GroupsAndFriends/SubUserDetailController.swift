@@ -9,6 +9,7 @@ class SubUserDetailController: UIViewController {
     var me: User?
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
+    private var blockSheet: BlockSheet!
     @IBOutlet private weak var friendCollectionView: UICollectionView!
     @IBOutlet private weak var belongCollectionView: UICollectionView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -50,6 +51,17 @@ class SubUserDetailController: UIViewController {
             friendsImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         }
     }
+    private lazy var blockButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("...", for: .normal)
+        button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
+        button.addTarget(self, action: #selector(block), for: .touchUpInside)
+        button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        button.layer.borderWidth = 3
+        button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+        button.toCorner(num: 20)
+        return button
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +80,12 @@ class SubUserDetailController: UIViewController {
     }
     // Mark setupMethod
     private func setupUI() {
+        view.addSubview(blockButton)
+        blockButton.anchor(left: nameLabel.rightAnchor,
+                           paddingLeft: 5,
+                           centerY: nameLabel.centerYAnchor,
+                           width: 40,
+                           height: 40)
         nameLabel.text = user?.name
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
@@ -132,13 +150,20 @@ class SubUserDetailController: UIViewController {
         }
         UserService.getOwnTeam(uid: memberId) { [weak self] teamIds in
             guard let self = self else { return }
-            print("✊", teamIds)
             self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
         UserService.getFriendData(uid: memberId) {[weak self] friends in
             guard let self = self else { return }
             self.fetchData.fetchMyFriendData(idArray: friends)
         }
+    }
+    // Mark #selector
+    @objc private func block() {
+        print(#function)
+        guard let me = self.me else { return }
+        blockSheet = BlockSheet(user: me)
+        blockSheet.delegate = self
+        blockSheet.show()
     }
 }
 // Mark UserCollectionViewDelegate
@@ -209,6 +234,17 @@ extension SubUserDetailController: FetchMyTeamDataDelegate {
         print(ownTeam)
         DispatchQueue.main.async {
             self.belongCollectionView.reloadData()
+        }
+    }
+}
+// Mark blockDelegate
+extension SubUserDetailController: BlockDelegate {
+    func blockSheet(option: BlockOptions) {
+        switch option {
+        case .dismiss:
+            print("dismiss")
+        case .block:
+            print("dismiss")
         }
     }
 }

@@ -1063,11 +1063,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -1436,11 +1436,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupChatViewController" id="r26-CP-u6r" customClass="GroupChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSU-UL-UDT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-ua-dg9">
-                                <rect key="frame" x="0.0" y="138" width="414" height="626"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="743"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1467,15 +1467,15 @@
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="PlusTeamPlayerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="743"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="20" y="688" width="374" height="36"/>
+                                <rect key="frame" x="20" y="717" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -1565,7 +1565,7 @@
                                                 </connections>
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gE6-B4-bkd">
-                                                <rect key="frame" x="0.0" y="295.5" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="290.5" width="414" height="100"/>
                                                 <color key="backgroundColor" name="backGroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="e5x-Fq-4wK"/>
@@ -1588,7 +1588,7 @@
                                                 </cells>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Ik-gM-Yf2">
-                                                <rect key="frame" x="0.0" y="455.5" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="450.5" width="414" height="100"/>
                                                 <color key="backgroundColor" name="backGroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="7kU-uk-ooU"/>
@@ -1611,7 +1611,7 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  お友達" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud6-1f-ycp">
-                                                <rect key="frame" x="0.0" y="415.5" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="410.5" width="414" height="30"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="SXj-Iu-YXq"/>
@@ -1621,7 +1621,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  所属チーム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfR-4w-34R">
-                                                <rect key="frame" x="0.0" y="255.5" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="250.5" width="414" height="30"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="CpP-bE-RQ9"/>
@@ -1637,7 +1637,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OyN-9M-sla">
-                                                <rect key="frame" x="0.0" y="595.5" width="414" height="60"/>
+                                                <rect key="frame" x="0.0" y="590.5" width="414" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PCV-h3-IDz">
                                                         <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
@@ -1733,10 +1733,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-j1-DrH">
-                                                <rect key="frame" x="260" y="187" width="46" height="50"/>
+                                                <rect key="frame" x="260" y="192" width="46" height="40"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="zyW-EY-vGM"/>
+                                                    <constraint firstAttribute="height" constant="40" id="zyW-EY-vGM"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
@@ -1744,7 +1744,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  その他紹介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdm-Rd-HoR">
-                                                <rect key="frame" x="0.0" y="555.5" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="550.5" width="414" height="30"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="AB7-aj-Wrw"/>
@@ -1767,7 +1767,7 @@
                                             <constraint firstAttribute="trailing" secondItem="xfR-4w-34R" secondAttribute="trailing" id="GjP-KF-ACa"/>
                                             <constraint firstItem="LYh-R3-VEF" firstAttribute="leading" secondItem="x6e-Sm-peI" secondAttribute="leading" constant="248" id="ICT-0r-9Bv"/>
                                             <constraint firstAttribute="trailing" secondItem="9Ik-gM-Yf2" secondAttribute="trailing" id="KJe-El-9vL"/>
-                                            <constraint firstItem="xfR-4w-34R" firstAttribute="top" secondItem="igu-dh-wdf" secondAttribute="bottom" constant="30" id="MHL-yh-Uz5"/>
+                                            <constraint firstItem="xfR-4w-34R" firstAttribute="top" secondItem="igu-dh-wdf" secondAttribute="bottom" constant="25" id="MHL-yh-Uz5"/>
                                             <constraint firstItem="xfR-4w-34R" firstAttribute="top" secondItem="bRa-j1-DrH" secondAttribute="bottom" constant="18.5" id="MjT-Na-yhQ"/>
                                             <constraint firstItem="igu-dh-wdf" firstAttribute="top" secondItem="lNg-ud-oYY" secondAttribute="bottom" constant="40" id="OEN-KX-cSA"/>
                                             <constraint firstItem="bRa-j1-DrH" firstAttribute="leading" secondItem="igu-dh-wdf" secondAttribute="trailing" constant="10" id="PYU-xq-h8F"/>
@@ -3781,13 +3781,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="uMH-yM-k5X"/>
         <segue reference="TJv-Zf-4Gw"/>
         <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
         <segue reference="fuc-E9-X1F"/>
         <segue reference="cdz-Ff-0Nv"/>
-        <segue reference="XjJ-C8-ncf"/>
+        <segue reference="PHY-qr-DAt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>

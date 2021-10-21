@@ -134,7 +134,7 @@ extension CheckPreJoinController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .white
+        header.textLabel?.textColor = UIColor(named: Constants.AppColor.darkColor)
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     }
     func tableView(_ tableView: UITableView, selectionFollowsFocusForRowAt indexPath: IndexPath) -> Bool {

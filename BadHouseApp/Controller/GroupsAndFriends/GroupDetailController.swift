@@ -173,7 +173,14 @@ class GroupDetailController: UIViewController {
         let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
         pieChartDataSet.entryLabelFont = .boldSystemFont(ofSize: 12)
         pieChartDataSet.drawValuesEnabled = false
-        pieView.centerText = "男女比"
+        let stringAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.systemGray,
+            .font: UIFont.boldSystemFont(ofSize: 16.0)
+        ]
+        let string = NSAttributedString(string: "男女比",
+                                        attributes: stringAttributes)
+        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
+        pieView.centerAttributedText = string
         pieView.legend.textColor = .label
         pieChartDataSet.valueTextColor = .label
         pieView.legend.enabled = false

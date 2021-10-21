@@ -188,7 +188,7 @@ class UserDetailController: UIViewController {
             UserService.friendAction(myId: myId, friend: user, bool: true)
         } else {
             friendButton.tapPlusFriend()
-            self.friendButton.setTitle(" 友達申請 ", for: .normal)
+            self.friendButton.setTitle(" バド友になる ", for: .normal)
             UserService.friendAction(myId: myId, friend: user, bool: false)
         }
     }
