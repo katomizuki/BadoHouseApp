@@ -7,6 +7,7 @@ class PlusTeamPlayerController: UIViewController {
         didSet {
             inviteButton.layer.cornerRadius = 15
             inviteButton.layer.masksToBounds = true
+            inviteButton.setTitleColor(.systemGray6, for: .normal)
         }
     }
     @IBOutlet private weak var tableView: UITableView!

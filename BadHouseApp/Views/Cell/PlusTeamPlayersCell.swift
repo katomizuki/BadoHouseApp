@@ -31,6 +31,7 @@ class PlusTeamPlayersCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryView = button
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         button.addTarget(self, action: #selector(handleInvite), for: UIControl.Event.touchUpInside)
         self.addSubview(iv)
         self.addSubview(nameLabel)

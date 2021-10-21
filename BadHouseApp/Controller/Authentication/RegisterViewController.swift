@@ -75,6 +75,7 @@ class RegisterViewController: UIViewController {
     }
     // Mark setup Method
     private func setupDelegate() {
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         fbButton.delegate = self

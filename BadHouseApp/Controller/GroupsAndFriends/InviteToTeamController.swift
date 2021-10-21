@@ -21,7 +21,7 @@ class InviteToTeamController: UIViewController {
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
             inviteButton.backgroundColor = Constants.AppColor.OriginalBlue
-            inviteButton.setTitleColor(.white, for: .normal)
+            inviteButton.setTitleColor(.systemGray6, for: .normal)
             inviteButton.layer.cornerRadius = 15
             inviteButton.layer.masksToBounds = true
         }
