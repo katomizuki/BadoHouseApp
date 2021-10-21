@@ -10,6 +10,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
+import AuthenticationServices
 
 class RegisterViewController: UIViewController {
     // Mark Properties
@@ -56,6 +57,7 @@ class RegisterViewController: UIViewController {
     private let registerBinding = RegisterBindings()
     private var indicatorView: NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
+    private let appleButton = ASAuthorizationAppleIDButton()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,13 +91,16 @@ class RegisterViewController: UIViewController {
                                                        passwordTextField,
                                                        registerButton,
                                                        googleView,
-                                                       fbButton])
+                                                       fbButton,
+                                                       appleButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
         view.addSubview(stackView)
         view.addSubview(alreadyButton)
         view.addSubview(iv)
+        view.addSubview(indicatorView)
+        view.addSubview(appleButton)
         nameTextField.anchor(height: 45)
         stackView.anchor(top: iv.bottomAnchor,
                          left: view.leftAnchor,
@@ -104,7 +109,7 @@ class RegisterViewController: UIViewController {
                          paddingRight: 20,
                          paddingLeft: 20,
                          centerX: view.centerXAnchor,
-                         height: 400)
+                         height: 450)
         iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                   paddingTop: 30,
                   centerX: view.centerXAnchor,
@@ -114,7 +119,6 @@ class RegisterViewController: UIViewController {
                              paddingTop: 20,
                              centerX: view.centerXAnchor)
         indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
         indicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
                              width: 100,

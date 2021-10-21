@@ -189,6 +189,7 @@
 		D3D3D37A2721733200E2853A /* BlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockController.swift; sourceTree = "<group>"; };
 		D3D3D37C2721753A00E2853A /* BlockTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTextView.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
+		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3DA98B926F6D8C200DFF8B1 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchController.swift; sourceTree = "<group>"; };
 		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
@@ -331,6 +332,7 @@
 		D3BDB52626E0525100C53780 /* BadHouseApp */ = {
 			isa = PBXGroup;
 			children = (
+				D3D3D380272194D100E2853A /* BadHouseApp.entitlements */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
 				D3BDB53E26E0542900C53780 /* Views */,
@@ -935,6 +937,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BadHouseApp/BadHouseApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LSUSGUW6L4;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
@@ -956,6 +959,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BadHouseApp/BadHouseApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LSUSGUW6L4;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
