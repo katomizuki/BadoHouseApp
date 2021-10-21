@@ -3,8 +3,8 @@ import Firebase
 import Foundation
 
 struct StorageService {
-    //Mark DownURL
-    static func downloadStorage(userIconRef:StorageReference, completion: @escaping (URL) -> Void) {
+    // Mark DownURL
+    static func downloadStorage(userIconRef: StorageReference, completion: @escaping (URL) -> Void) {
         userIconRef.downloadURL { url, error in
             if let error = error {
                 print(error)

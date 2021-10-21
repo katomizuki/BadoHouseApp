@@ -110,7 +110,7 @@ extension UIButton {
     }
     func plusFriendButton() {
         backgroundColor = Constants.AppColor.OriginalBlue
-        setTitle(" バド友だよ ", for: .normal)
+        setTitle(" バド友だよ！ ", for: .normal)
         setTitleColor(.white, for: .normal)
     }
     func removeFriendButton() {
@@ -122,7 +122,7 @@ extension UIButton {
     }
     func tapRemoveFriend() {
         backgroundColor = Constants.AppColor.OriginalBlue
-        setTitle(" バド友だよ ", for: .normal)
+        setTitle(" バド友だよ！ ", for: .normal)
         setTitleColor(.white, for: .normal)
     }
     func tapPlusFriend() {

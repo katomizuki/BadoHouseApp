@@ -209,6 +209,7 @@ class RegisterViewController: UIViewController {
                           message: message,
                           action: "OK",
                           alertType: .error)
+        indicatorView.stopAnimating()
     }
 }
 // Mark GoogleSigninDelegate

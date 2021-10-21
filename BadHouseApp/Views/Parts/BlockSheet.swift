@@ -122,7 +122,7 @@ extension BlockSheet: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! BlockCell
         cell.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
-        cell.flag = indexPath.row == 1 ? true : false
+        cell.flag = indexPath.row == 1 ? false : true
         return cell
     }
 }

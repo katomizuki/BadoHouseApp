@@ -11,4 +11,5 @@ struct Ref {
     static let ChatroomRef = Firestore.firestore().collection("ChatRoom")
     static let VideoRef = Firestore.firestore().collection("Video")
     static let StorageVideoRef = Storage.storage().reference().child("Video")
+    static let BlockRef = Firestore.firestore().collection("Block")
 }

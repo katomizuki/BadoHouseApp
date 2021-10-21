@@ -59,7 +59,7 @@ class UserDetailController: UIViewController {
         button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         button.layer.borderWidth = 3
         button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        button.toCorner(num: 20)
+        button.toCorner(num: 15)
         return button
     }()
     // Mark LifeCycle
@@ -280,7 +280,16 @@ extension UserDetailController: BlockDelegate {
         case .dismiss:
             print("dismiss")
         case .block:
-            print("block")
+            guard let user = self.user else { return }
+            let vc = BlockController(user: user)
+            vc.modalPresentationStyle = .formSheet
+            vc.delegate = self
+            present(vc, animated: true, completion: nil)
         }
+    }
+}
+extension UserDetailController: BlockDismissDelegate {
+    func blockDismiss(vc: BlockController) {
+        vc.dismiss(animated: true, completion: nil)
     }
 }

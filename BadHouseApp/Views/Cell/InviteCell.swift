@@ -12,7 +12,8 @@ class InviteCell: UITableViewCell {
                               y: 0,
                               width: 50,
                               height: 50)
-        button.setImage(UIImage(named: "circle-1"), for: .normal)
+        let image = UIImage(named: "circle-1")?.withRenderingMode(.alwaysOriginal)
+        button.setImage(image, for: .normal)
         return button
     }()
     var iv: UIImageView = {

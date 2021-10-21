@@ -169,6 +169,7 @@ class LoginViewController: UIViewController {
         print(#function)
         let message = setupErrorMessage(error: error)
         self.setupCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
+        indicatorView.stopAnimating()
     }
 }
 // Mark GoogleSigninDelegate

@@ -1,7 +1,7 @@
 import Foundation
 struct EventServie {
     // Mark sendEventData
-    static func sendEventData(teamId: String,event: [String: Any], eventId: String) {
+    static func sendEventData(teamId: String, event: [String: Any], eventId: String) {
         // Mark team→eventdata
         Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event)
         Ref.EventRef.document(eventId).setData(event)

@@ -59,7 +59,7 @@ class SubUserDetailController: UIViewController {
         button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         button.layer.borderWidth = 3
         button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        button.toCorner(num: 20)
+        button.toCorner(num: 15)
         return button
     }()
     // Mark LifeCycle
@@ -245,6 +245,17 @@ extension SubUserDetailController: BlockDelegate {
             print("dismiss")
         case .block:
             print("dismiss")
+            guard let user = self.user else { return }
+            let vc = BlockController(user: user)
+            vc.modalPresentationStyle = .formSheet
+            vc.delegate = self
+            present(vc, animated: true, completion: nil)
         }
+    }
+}
+// Mark BlockDelegate
+extension SubUserDetailController: BlockDismissDelegate {
+    func blockDismiss(vc: BlockController) {
+        vc.dismiss(animated: true, completion: nil)
     }
 }
