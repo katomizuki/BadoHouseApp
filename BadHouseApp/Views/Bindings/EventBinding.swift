@@ -60,7 +60,7 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
         let groupValid = groupTextOutput
             .asObservable()
             .map { text in
-                return text.count >= 1
+                return true
             }
         let startValid = startTextOutput
             .asObservable()

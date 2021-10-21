@@ -205,7 +205,7 @@ extension TalkController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Constants.AppColor.OriginalBlue
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .white
+        header.textLabel?.textColor = .systemGray6
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
 }

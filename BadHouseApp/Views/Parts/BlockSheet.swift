@@ -24,7 +24,6 @@ class BlockSheet: NSObject {
     }()
     private lazy var mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
         let iv = UIImageView()
         let logo = UIImage(named: Constants.ImageName.logoImage)
         iv.image = logo
@@ -55,6 +54,7 @@ class BlockSheet: NSObject {
         tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 5
         tableView.register(BlockCell.self, forCellReuseIdentifier: "cellId")
+        tableView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
     }
     // Mark helperMethod
     func show() {
