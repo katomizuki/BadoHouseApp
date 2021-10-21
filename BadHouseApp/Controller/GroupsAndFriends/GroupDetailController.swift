@@ -43,20 +43,28 @@ class GroupDetailController: UIViewController {
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton! {
         didSet {
-            withdrawButton.updateButton(radius: 15, backColor: Constants.AppColor.OriginalBlue, titleColor: .white, fontSize: 14)
+            withdrawButton.updateButton(radius: 15,
+                                        backColor: Constants.AppColor.OriginalBlue,
+                                        titleColor: .white,
+                                        fontSize: 14)
         }
     }
     var flag = false
+    @IBOutlet weak var teamStackView: UIStackView!
     @IBOutlet private weak var updateButton: UIButton! {
         didSet {
             updateButton.updateButton(radius: 15,
-                                      backColor: .white,
+                                      backColor: UIColor(named:  Constants.AppColor.darkColor)!,
                                       titleColor: Constants.AppColor.OriginalBlue,
                                       fontSize: 14)
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
-    @IBOutlet private weak var inviteButton: UIBarButtonItem!
+    @IBOutlet private weak var inviteButton: UIBarButtonItem! {
+        didSet {
+            inviteButton.customView?.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        }
+    }
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +76,8 @@ class GroupDetailController: UIViewController {
         setUpTeamPlayer()
         setupGraph()
         changeUI()
+        navigationController?.navigationBar.barTintColor = UIColor(named: Constants.AppColor.darkColor)
+        navigationController?.navigationBar.tintColor = UIColor(named: Constants.AppColor.darkColor)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

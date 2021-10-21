@@ -105,6 +105,7 @@
 		D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */; };
 		D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33F2720252E00DE54ED /* BlockSheet.swift */; };
 		D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD34127203FD900DE54ED /* BlockCell.swift */; };
+		D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD3432721043800DE54ED /* Block-Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +207,7 @@
 		D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTeamController.swift; sourceTree = "<group>"; };
 		D3FFD33F2720252E00DE54ED /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
 		D3FFD34127203FD900DE54ED /* BlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCell.swift; sourceTree = "<group>"; };
+		D3FFD3432721043800DE54ED /* Block-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Block-Service.swift"; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -508,6 +510,7 @@
 				D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */,
 				D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */,
 				D3FFD333271EDCC300DE54ED /* JoinService.swift */,
+				D3FFD3432721043800DE54ED /* Block-Service.swift */,
 			);
 			path = "API-Service";
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
+				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */,
 				D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */,

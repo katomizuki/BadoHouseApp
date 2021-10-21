@@ -43,10 +43,12 @@ extension UIButton {
     }
     func cretaTagButton(text: String) -> UIButton {
         self.setTitle(text, for: .normal)
-        self.backgroundColor = Constants.AppColor.OriginalBlue
+        self.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
-        self.setTitleColor(UIColor(named: Constants.AppColor.darkColor), for: .normal)
+        self.layer.borderWidth = 3
+        self.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+        self.setTitleColor(.systemGray, for: .normal)
         self.isEnabled = false
         return self
     }

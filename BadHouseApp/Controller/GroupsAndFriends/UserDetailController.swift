@@ -13,7 +13,6 @@ class UserDetailController: UIViewController {
     @IBOutlet private weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 20)
-            teamLabel.textColor = .systemGray
         }
     }
     @IBOutlet private weak var friendsImageView: UIImageView! {
@@ -39,7 +38,6 @@ class UserDetailController: UIViewController {
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
             friendLabel.font = .boldSystemFont(ofSize: 20)
-            friendLabel.textColor = .systemGray
         }
     }
     @IBOutlet private weak var chatButton: UIButton!
@@ -58,7 +56,7 @@ class UserDetailController: UIViewController {
         button.setTitle("...", for: .normal)
         button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
         button.addTarget(self, action: #selector(block), for: .touchUpInside)
-        button.backgroundColor = .white
+        button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         button.layer.borderWidth = 3
         button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         button.toCorner(num: 20)
@@ -71,6 +69,7 @@ class UserDetailController: UIViewController {
         setupCollection()
         setupData()
         helperUI()
+        navigationController?.navigationBar.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,10 +83,9 @@ class UserDetailController: UIViewController {
     // Mark setupMethod
     private func setupUI() {
         view.addSubview(blockButton)
-        blockButton.anchor(top: friendButton.bottomAnchor,
-                           right: view.rightAnchor,
-                           paddingTop: 5,
-                           paddingRight: 10,
+        blockButton.anchor(left: friendButton.rightAnchor,
+                           paddingLeft: 5,
+                           centerY: friendButton.centerYAnchor,
                            width: 40,
                            height: 40)
         nameLabel.text = user?.name
@@ -185,12 +183,12 @@ class UserDetailController: UIViewController {
         friendButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         let myId = AuthService.getUserId()
         guard let user = user else { return }
-        if friendButton.backgroundColor == .white {
+        if friendButton.backgroundColor == UIColor(named: Constants.AppColor.darkColor) {
             friendButton.tapRemoveFriend()
             UserService.friendAction(myId: myId, friend: user, bool: true)
         } else {
             friendButton.tapPlusFriend()
-            self.friendButton.setTitle(" 友達申請 ", for: UIControl.State.normal)
+            self.friendButton.setTitle(" 友達申請 ", for: .normal)
             UserService.friendAction(myId: myId, friend: user, bool: false)
         }
     }

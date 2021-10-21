@@ -34,7 +34,7 @@ class BlockSheet: NSObject {
                   centerX: view.centerXAnchor,
                   width: 40,
                   height: 40)
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return view
     }()
     // Mark Initialize
@@ -62,7 +62,7 @@ class BlockSheet: NSObject {
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow
         }) else { return }
         self.window = window
-        window.backgroundColor = .white
+        window.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         window.addSubview(tableView)
         window.addSubview(blackView)
         let height = CGFloat(2 * 40) + 100
@@ -121,6 +121,7 @@ extension BlockSheet: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! BlockCell
+        cell.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         cell.flag = indexPath.row == 1 ? true : false
         return cell
     }
