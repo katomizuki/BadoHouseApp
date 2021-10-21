@@ -45,7 +45,7 @@ class GroupDetailController: UIViewController {
         didSet {
             withdrawButton.updateButton(radius: 15,
                                         backColor: Constants.AppColor.OriginalBlue,
-                                        titleColor: .white,
+                                        titleColor: .systemGray6,
                                         fontSize: 14)
         }
     }
@@ -54,7 +54,8 @@ class GroupDetailController: UIViewController {
     @IBOutlet private weak var updateButton: UIButton! {
         didSet {
             updateButton.updateButton(radius: 15,
-                                      backColor: UIColor(named:  Constants.AppColor.darkColor)!,
+                                      backColor:
+                                        UIColor(named: Constants.AppColor.darkColor)!,
                                       titleColor: Constants.AppColor.OriginalBlue,
                                       fontSize: 14)
         }

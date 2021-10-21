@@ -92,6 +92,7 @@ class SubUserDetailController: UIViewController {
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
         fetchData.myFriendDelegate = self
+        fetchData.myTeamDelegate = self
     }
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
@@ -131,6 +132,7 @@ class SubUserDetailController: UIViewController {
         }
         UserService.getOwnTeam(uid: memberId) { [weak self] teamIds in
             guard let self = self else { return }
+            print("✊", teamIds)
             self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
         UserService.getFriendData(uid: memberId) {[weak self] friends in
@@ -202,7 +204,9 @@ extension SubUserDetailController: FetchMyFriendDataDelegate {
 // Mark MyTeamDelegate
 extension SubUserDetailController: FetchMyTeamDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
+        self.ownTeam = []
         self.ownTeam = teamArray
+        print(ownTeam)
         DispatchQueue.main.async {
             self.belongCollectionView.reloadData()
         }

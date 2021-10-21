@@ -39,7 +39,7 @@ class UpdateTeamController: UIViewController {
     }
     // Mark setupMethod
     private func setupLayout() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let stackView = UIStackView(arrangedSubviews: [placeTextField,
                                                        timeTextField,
                                                        moneyTextField])

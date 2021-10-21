@@ -3,12 +3,16 @@ import UIKit
 
 class InviteCell: UITableViewCell {
     // Mark Properties
-    var linkFriend:InviteToTeamController!
+    var linkFriend: InviteToTeamController!
     var count = 0
-    var button:UIButton = {
+    var button: UIButton = {
         let button = UIButton(type: .system)
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        button.setImage(UIImage(named: Constants.ImageName.circle)?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.frame = CGRect(x: 0,
+                              y: 0,
+                              width: 50,
+                              height: 50)
+        button.setImage(UIImage(named: "circle-1"), for: .normal)
         return button
     }()
     var iv: UIImageView = {
@@ -24,6 +28,7 @@ class InviteCell: UITableViewCell {
     // Mark initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         accessoryView = button
         button.addTarget(self, action: #selector(handleInvite), for: .touchUpInside)
         self.addSubview(iv)

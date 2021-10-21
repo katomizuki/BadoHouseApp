@@ -48,7 +48,6 @@ class MyPageController: UIViewController {
             let vc = tabBarController?.viewControllers?[0]
             tabBarController?.selectedViewController = vc
         } else {
-            self.teamArray = []
             setupData()
         }
     }

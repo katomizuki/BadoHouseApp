@@ -9,7 +9,10 @@ class PlusTeamPlayersCell: UITableViewCell {
     var button: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = Constants.AppColor.OriginalBlue
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        button.frame = CGRect(x: 0,
+                              y: 0,
+                              width: 50,
+                              height: 50)
         let image = UIImage(named: Constants.ImageName.circle)?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
         return button

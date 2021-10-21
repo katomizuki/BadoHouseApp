@@ -45,6 +45,7 @@ class ChatCell: UITableViewCell {
         backgroundColor = .clear
         textView.autoresizingMask = [.flexibleHeight]
         mytextView.autoresizingMask = [.flexibleHeight]
+        textView.textAlignment = .center
         self.mytextView.font = UIFont(name: "Kailasa", size: 14)
         self.textView.font = UIFont(name: "Kailasa", size: 14)
     }

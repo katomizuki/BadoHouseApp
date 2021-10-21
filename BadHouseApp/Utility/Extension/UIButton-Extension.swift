@@ -75,7 +75,7 @@ extension UIButton {
     }
     func updateButton(radius: CGFloat, backColor: UIColor, titleColor: UIColor, fontSize: CGFloat) {
         self.toCorner(num: radius)
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
+        titleLabel?.font = .boldSystemFont(ofSize: fontSize)
         layer.backgroundColor = backColor.cgColor
         setTitleColor(titleColor, for: .normal)
     }
@@ -83,38 +83,40 @@ extension UIButton {
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
         layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         layer.borderWidth = 2
-        setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
         backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         titleLabel?.numberOfLines = 0
     }
     func updateSavebutton() {
        backgroundColor = Constants.AppColor.OriginalBlue
-        setTitleColor(.white, for: UIControl.State.normal)
+        setTitleColor(.white, for: .normal)
         layer.cornerRadius = 15
         layer.masksToBounds = true
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel?.font = .boldSystemFont(ofSize: 20)
     }
     func updateBackbutton() {
         layer.cornerRadius = 14
         layer.masksToBounds = true
         backgroundColor = Constants.AppColor.OriginalBlue
-        setTitleColor(.white, for: UIControl.State.normal)
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        setTitleColor(.white, for: .normal)
+        titleLabel?.font = .boldSystemFont(ofSize: 18)
     }
     func updateFriendButton() {
         layer.cornerRadius = 15
         layer.masksToBounds = true
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel?.font = .boldSystemFont(ofSize: 16)
+        setTitleColor(.systemGray6, for: .normal)
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
     }
     func plusFriendButton() {
         backgroundColor = Constants.AppColor.OriginalBlue
-        setTitle(" 友達解除 ", for: UIControl.State.normal)
-        setTitleColor(.white, for: UIControl.State.normal)
+        setTitle(" 友達解除 ", for: .normal)
+        setTitleColor(.white, for: .normal)
     }
     func removeFriendButton() {
-        backgroundColor = .white
-        setTitle(" 友達申請 ", for: UIControl.State.normal)
-        setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        setTitle(" 友達申請 ", for: .normal)
+        setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
         layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         layer.borderWidth = 4
     }
@@ -124,8 +126,8 @@ extension UIButton {
         setTitleColor(.white, for: .normal)
     }
     func tapPlusFriend() {
-        backgroundColor = .white
-        setTitleColor(Constants.AppColor.OriginalBlue, for: UIControl.State.normal)
+        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
         layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         layer.borderWidth = 4
         layer.cornerRadius = 15
