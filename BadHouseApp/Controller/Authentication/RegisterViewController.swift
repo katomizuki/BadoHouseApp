@@ -57,7 +57,11 @@ class RegisterViewController: UIViewController {
     private let registerBinding = RegisterBindings()
     private var indicatorView: NVActivityIndicatorView!
     private let fbButton = FBLoginButton()
-    private let appleButton = ASAuthorizationAppleIDButton()
+    private lazy var appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
+        return button
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,16 +96,15 @@ class RegisterViewController: UIViewController {
                                                        registerButton,
                                                        googleView,
                                                        fbButton,
-                                                       appleButton])
+                                                       appleButton
+                                                       ])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
         view.addSubview(stackView)
         view.addSubview(alreadyButton)
         view.addSubview(iv)
-        view.addSubview(indicatorView)
-        view.addSubview(appleButton)
-        nameTextField.anchor(height: 45)
+                nameTextField.anchor(height: 45)
         stackView.anchor(top: iv.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
@@ -109,7 +112,7 @@ class RegisterViewController: UIViewController {
                          paddingRight: 20,
                          paddingLeft: 20,
                          centerX: view.centerXAnchor,
-                         height: 450)
+                         height: 430)
         iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                   paddingTop: 30,
                   centerX: view.centerXAnchor,
@@ -119,6 +122,7 @@ class RegisterViewController: UIViewController {
                              paddingTop: 20,
                              centerX: view.centerXAnchor)
         indicatorView = self.setupIndicatorView()
+        view.addSubview(indicatorView)
         indicatorView.anchor(centerX: view.centerXAnchor,
                              centerY: view.centerYAnchor,
                              width: 100,
@@ -215,6 +219,16 @@ class RegisterViewController: UIViewController {
                           alertType: .error)
         indicatorView.stopAnimating()
     }
+    // Mark selector
+    @objc private func appleRegister() {
+        print(#function)
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authController = ASAuthorizationController(authorizationRequests: [request])
+        authController.delegate = self
+        authController.performRequests()
+    }
 }
 // Mark GoogleSigninDelegate
 extension RegisterViewController: GIDSignInDelegate {
@@ -292,5 +306,33 @@ extension RegisterViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         }
         return true
+    }
+}
+// Mark AppleRegister Delegate
+extension RegisterViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            
+            let userId = credential.user
+            guard let fullname = credential.fullName else { return }
+            guard let email = credential.email else { return }
+            guard let givenname = fullname.givenName else { return }
+            guard let familyname = fullname.familyName  else { return }
+            let name = givenname + familyname
+            UserService.setUserData(uid: userId,
+                                    password: "",
+                                    email: email,
+                                    name: name) { result in
+                if result == true {
+                    let bool = false
+                    UserDefaults.standard.set(bool, forKey: "MyId")
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error)
     }
 }

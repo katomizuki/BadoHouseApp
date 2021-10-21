@@ -50,6 +50,7 @@ class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
+                print("怒り")
                 self.performSegue(withIdentifier: Constants.Segue.gotoRegister, sender: nil)
             }
         }

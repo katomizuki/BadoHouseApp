@@ -9,6 +9,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
+import AuthenticationServices
 
 class LoginViewController: UIViewController {
     // Mark Properties
@@ -47,6 +48,11 @@ class LoginViewController: UIViewController {
         return button
     }()
     private let dontHaveButton = UIButton(type: .system).createAuthButton(text: "新規登録の方はこちらへ")
+    private lazy var appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleLogin), for: .touchUpInside)
+        return button
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         setupLayout()
@@ -63,7 +69,8 @@ class LoginViewController: UIViewController {
                                                             passwordTextField,
                                                             loginButton,
                                                             googleView,
-                                                            fbButton])
+                                                            fbButton,
+                                                            appleButton])
         basicStackView.axis = .vertical
         basicStackView.distribution = .fillEqually
         basicStackView.spacing = 20
@@ -77,7 +84,7 @@ class LoginViewController: UIViewController {
                               paddingTop: 20,
                               paddingRight: 20,
                               paddingLeft: 20,
-                              height: 330)
+                              height: 380)
         iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                   paddingTop: 30,
                   centerX: view.centerXAnchor,
@@ -143,9 +150,18 @@ class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     // Mark selector
-    @objc func moveAlready() {
+    @objc private func moveAlready() {
         print(#function)
         navigationController?.popViewController(animated: true)
+    }
+    @objc private func appleLogin() {
+        print(#function)
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authController = ASAuthorizationController(authorizationRequests: [request])
+        authController.delegate = self
+        authController.performRequests()
     }
     // Mark Login
     private func login() {
@@ -221,5 +237,26 @@ extension LoginViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         }
         return true
+    }
+}
+// Mark AppleRegister Delegate
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let userId = credential.user
+            let fullname = credential.fullName
+            let email = credential.email
+//            Auth.auth().signIn(with: credential) { (_, error) in
+//                if let error = error {
+//                    print(error)
+//                    return
+//                } else {
+//                    self.dismiss(animated: true)
+//                }
+//            }
+        }
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error)
     }
 }
