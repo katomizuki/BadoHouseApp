@@ -22,7 +22,11 @@ class MyPageController: UIViewController {
             myImageView.toCorner(num: 40)
         }
     }
-    @IBOutlet private weak var myName: UILabel!
+    @IBOutlet private weak var myName: UILabel! {
+        didSet {
+            myName.text = Constants.appName
+        }
+    }
     @IBOutlet private weak var countLabel: UILabel! {
         didSet {
             countLabel.font = .boldSystemFont(ofSize: 14)

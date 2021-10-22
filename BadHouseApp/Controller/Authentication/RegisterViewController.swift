@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
 import AuthenticationServices
+import CryptoKit
 
 class RegisterViewController: UIViewController {
     // Mark Properties
@@ -62,6 +63,7 @@ class RegisterViewController: UIViewController {
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
         return button
     }()
+    private var currentNonce: String?
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,14 +99,14 @@ class RegisterViewController: UIViewController {
                                                        googleView,
                                                        fbButton,
                                                        appleButton
-                                                       ])
+                                                      ])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
         view.addSubview(stackView)
         view.addSubview(alreadyButton)
         view.addSubview(iv)
-                nameTextField.anchor(height: 45)
+        nameTextField.anchor(height: 45)
         stackView.anchor(top: iv.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
@@ -210,6 +212,41 @@ class RegisterViewController: UIViewController {
             }
         }
     }
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        return hashString
+    }
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        return result
+    }
     // Mark signUPErrAlert
     func signUpErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
@@ -222,12 +259,16 @@ class RegisterViewController: UIViewController {
     // Mark selector
     @objc private func appleRegister() {
         print(#function)
-        let provider = ASAuthorizationAppleIDProvider()
-        let request = provider.createRequest()
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-        let authController = ASAuthorizationController(authorizationRequests: [request])
-        authController.delegate = self
-        authController.performRequests()
+        request.nonce = sha256(nonce)
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
 }
 // Mark GoogleSigninDelegate
@@ -248,7 +289,9 @@ extension RegisterViewController: GIDSignInDelegate {
                     guard let id = result?.user.uid else { return }
                     guard let email = email else { return }
                     guard let name = fullName else { return }
-                    UserService.setUserData(uid: id, password: "", email: email, name: name) { result in
+                    UserService.setUserData(uid: id, password: "",
+                                            email: email,
+                                            name: name) { result in
                         if result == true {
                             let bool = false
                             UserDefaults.standard.set(bool, forKey: "MyId")
@@ -282,7 +325,9 @@ extension RegisterViewController: LoginButtonDelegate {
             guard let name = result?.user.displayName else { return }
             guard let email = result?.user.email else { return }
             guard let id = result?.user.uid else { return }
-            UserService.setUserData(uid: id, password: "", email: email, name: name) { result in
+            UserService.setUserData(uid: id, password: "",
+                                    email: email,
+                                    name: name) { result in
                 if result == true {
                     let bool = false
                     UserDefaults.standard.set(bool, forKey: "MyId")
@@ -311,28 +356,44 @@ extension RegisterViewController: UITextFieldDelegate {
 // Mark AppleRegister Delegate
 extension RegisterViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
-            
-            let userId = credential.user
-            guard let fullname = credential.fullName else { return }
-            guard let email = credential.email else { return }
-            guard let givenname = fullname.givenName else { return }
-            guard let familyname = fullname.familyName  else { return }
-            let name = givenname + familyname
-            UserService.setUserData(uid: userId,
-                                    password: "",
-                                    email: email,
-                                    name: name) { result in
-                if result == true {
-                    let bool = false
-                    UserDefaults.standard.set(bool, forKey: "MyId")
-                    self.dismiss(animated: true, completion: nil)
+        if let appleCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let name = appleCredential.fullName?.givenName else {
+                return
+            }
+            guard let idToken = appleCredential.identityToken else { return }
+            guard let nonce = currentNonce else { return }
+            guard let idTokenString = String(data: idToken,
+                                             encoding: .utf8) else { return }
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            Auth.auth().signIn(with: credential) { result, error in
+                if let error = error {
+                    print(error)
+                    return
+                } else {
+                    guard let email = result?.user.email else { return }
+                    guard let uid = result?.user.uid else { return }
+                    UserService.setUserData(uid: uid,
+                                            password: "",
+                                            email: email,
+                                            name: name) { result in
+                        if result == true {
+                            let bool = false
+                            UserDefaults.standard.set(bool, forKey: "MyId")
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
                 }
             }
         }
     }
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print(error)
+    }
+}
+extension RegisterViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }
