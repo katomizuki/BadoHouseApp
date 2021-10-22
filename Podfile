@@ -26,4 +26,6 @@ pod 'FacebookLogin'
 pod 'FacebookShare'
 pod "SkeletonView"
 pod 'RangeUISlider', '~> 3.0'
+pod 'Firebase/Crashlytics'
+pod 'Firebase/Analytics'
 end

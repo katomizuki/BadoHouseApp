@@ -549,6 +549,7 @@
 				CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */,
 				D3A789CB26F3F8710088E8BC /* Run SwiftLint */,
 				4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */,
+				D33D29392722F87B000453B5 /* Run FirebaseCrash */,
 			);
 			buildRules = (
 			);
@@ -652,6 +653,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D33D29392722F87B000453B5 /* Run FirebaseCrash */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\n$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run FirebaseCrash";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		D3A789CB26F3F8710088E8BC /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

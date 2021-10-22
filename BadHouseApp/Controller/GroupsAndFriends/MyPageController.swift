@@ -193,7 +193,6 @@ extension MyPageController {
         array = array.sorted { element, nextElement in
             return element.updatedAt.dateValue() > nextElement.updatedAt.dateValue()
         }
-        print(array)
         self.teamArray = array
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         DispatchQueue.main.async {
