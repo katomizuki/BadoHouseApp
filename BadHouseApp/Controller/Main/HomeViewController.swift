@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
             }
         }
     }
+
     // Mark touchesBegan
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)

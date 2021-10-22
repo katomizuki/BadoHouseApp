@@ -959,6 +959,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BadHouseApp/BadHouseApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LSUSGUW6L4;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
