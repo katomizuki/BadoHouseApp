@@ -357,7 +357,7 @@ class EventDetailController: UIViewController {
     }
 }
 // Mark genderDelegate
-extension EventDetailController: FetchGenderCountDataDelegate {
+extension EventDetailController: FetchChartsDataDelegate {
     func fetchGenderCount(countArray: [Int]) {
         self.genderArray = countArray
         self.setupPieChart()

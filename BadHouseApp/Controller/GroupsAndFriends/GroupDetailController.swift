@@ -266,7 +266,7 @@ class GroupDetailController: UIViewController {
     }
 }
 // Mark ChatDelegate
-extension GroupDetailController: FetchGenderCountDataDelegate {
+extension GroupDetailController: FetchChartsDataDelegate {
     func fetchGenderCount(countArray: [Int]) {
         self.genderArray = countArray
         self.setupPieChart()

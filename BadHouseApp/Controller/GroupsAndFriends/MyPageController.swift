@@ -53,8 +53,7 @@ class MyPageController: UIViewController {
     }
     // Mark setupMethod
     private func setupData() {
-        fetchData.myFriendDelegate = self
-        fetchData.myTeamDelegate = self
+        fetchData.myDataDelegate = self
         let uid = AuthService.getUserId()
         UserService.getUserData(uid: uid) { [weak self] user in
             guard let self = self else { return }
@@ -173,7 +172,7 @@ extension MyPageController: UITableViewDelegate {
     }
 }
 // Mark freindDelegate
-extension MyPageController: FetchMyFriendDataDelegate {
+extension MyPageController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.friendArray = []
         self.friendArray = friendArray
@@ -183,7 +182,7 @@ extension MyPageController: FetchMyFriendDataDelegate {
     }
 }
 // Mark myTeamDelegate
-extension MyPageController: FetchMyTeamDataDelegate {
+extension MyPageController {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teamArray = []
         var array = teamArray

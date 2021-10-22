@@ -24,7 +24,7 @@ class CheckJoinController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
     }
     private func setupData() {
-        fetchData.joinDelegate = self
+        fetchData.myDataDelegate = self
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
@@ -39,7 +39,7 @@ extension CheckJoinController: IndicatorInfoProvider {
     }
 }
 // Mark getJoinDelegate
-extension CheckJoinController: FetchMyJoinDataDelegate {
+extension CheckJoinController: FetchMyDataDelegate {
     func fetchMyJoinData(joinArray: [[String]]) {
         notificationArray = [[User]]()
         let group = DispatchGroup()
@@ -91,7 +91,6 @@ extension CheckJoinController: UITableViewDataSource {
         }
         return cell
     }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return eventArray[section].eventTitle
     }

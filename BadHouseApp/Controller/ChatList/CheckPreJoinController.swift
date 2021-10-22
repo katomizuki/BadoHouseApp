@@ -36,7 +36,7 @@ class CheckPreJoinController: UIViewController {
                              height: 100)
     }
     private func setupData() {
-        fetchData.preJoinDelegate = self
+        fetchData.myDataDelegate = self
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
             self.eventArray = event
@@ -51,7 +51,7 @@ extension CheckPreJoinController: IndicatorInfoProvider {
     }
 }
 // Mark getPrejoinDelegate
-extension CheckPreJoinController: FetchMyPrejoinDataDelegate {
+extension CheckPreJoinController: FetchMyDataDelegate {
     func fetchMyPrejoinData(preJoinArray: [[String]]) {
         self.notificationArray = [[User]]()
         let group = DispatchGroup()

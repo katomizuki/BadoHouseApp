@@ -109,8 +109,8 @@ class SubUserDetailController: UIViewController {
         belongCollectionView.dataSource = self
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
-        fetchData.myFriendDelegate = self
-        fetchData.myTeamDelegate = self
+        fetchData.myDataDelegate = self
+//        fetchData.myTeamDelegate = self
     }
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
@@ -217,7 +217,7 @@ extension SubUserDetailController: UICollectionViewDelegateFlowLayout {
     }
 }
 // Mark GetFriendDelegate
-extension SubUserDetailController: FetchMyFriendDataDelegate {
+extension SubUserDetailController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray
@@ -227,11 +227,10 @@ extension SubUserDetailController: FetchMyFriendDataDelegate {
     }
 }
 // Mark MyTeamDelegate
-extension SubUserDetailController: FetchMyTeamDataDelegate {
+extension SubUserDetailController {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = []
         self.ownTeam = teamArray
-        print(ownTeam)
         DispatchQueue.main.async {
             self.belongCollectionView.reloadData()
         }

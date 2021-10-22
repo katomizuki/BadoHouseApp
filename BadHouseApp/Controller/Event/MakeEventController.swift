@@ -122,7 +122,8 @@ class MakeEventController: UIViewController {
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         titleTextField.delegate = self
-        fetchData.myTeamDelegate = self
+//        fetchData.myTeamDelegate = self
+        fetchData.myDataDelegate = self
     }
     private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView
@@ -408,7 +409,7 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
     }
 }
 // Mark getmyTeamDelegate
-extension MakeEventController: FetchMyTeamDataDelegate {
+extension MakeEventController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         pickerArray = teamArray
         if pickerArray.count == 1 {

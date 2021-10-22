@@ -33,7 +33,7 @@ class FriendSearchController: UIViewController {
     // Mark setupMethod
     private func setupDelegate() {
         searchBar.delegate = self
-        fetchData.userSearchDelegate = self
+        fetchData.searchDelegate = self
     }
     private func setupTableView() {
         tableView.delegate = self
@@ -126,7 +126,7 @@ extension FriendSearchController: UISearchBarDelegate {
     }
 }
 // Mark GetUserDelegate
-extension FriendSearchController: FetchSearchUserDataDelegate {
+extension FriendSearchController: FetchSearchDataDelegate {
     func fetchSearchUser(userArray: [User], bool: Bool) {
         print(#function)
         if bool == false {

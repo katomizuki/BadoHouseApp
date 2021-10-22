@@ -225,7 +225,7 @@ extension HomeViewController: FetchEventDataDelegate {
             self.collectionView.reloadData()
         }
     }
-    func getEventTimeData(eventArray: [Event]) {
+    func fetchEventTimeData(eventArray: [Event]) {
         print(#function)
         if eventArray.isEmpty {
             view.emptyState.show(State.noSearch)
@@ -236,14 +236,14 @@ extension HomeViewController: FetchEventDataDelegate {
             }
         }
     }
-    func getDetailData(eventArray: [Event]) {
+    func fetchDetailData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-    func getEventSearchData(eventArray: [Event], bool: Bool) {
+    func fetchEventSearchData(eventArray: [Event], bool: Bool) {
         print(#function)
         self.eventArray = eventArray
         if bool == false {

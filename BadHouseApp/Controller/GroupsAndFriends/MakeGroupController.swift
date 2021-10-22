@@ -157,7 +157,7 @@ class MakeGroupController: UIViewController {
     }
     // Mark setupMethod
     private func setupData() {
-        fetchData.myFriendDelegate = self
+        fetchData.myDataDelegate = self
         guard let me = myData else { return }
         let meId = me.uid
         UserService.getFriendData(uid: meId) { [weak self] ids in
@@ -452,7 +452,7 @@ extension MakeGroupController: UIPickerViewDelegate {
     }
 }
 // Mark getFriendDelegate
-extension MakeGroupController: FetchMyFriendDataDelegate {
+extension MakeGroupController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         print(#function)
     }

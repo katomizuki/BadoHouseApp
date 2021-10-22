@@ -29,7 +29,7 @@ class MyScheduleController: UIViewController {
     }
     // Mark setupMethod
     private func setupData() {
-        fetchData.myEventDelegate = self
+        fetchData.myDataDelegate = self
         guard let meId = me?.uid else { return }
         EventServie.getmyEventIdArray(uid: meId) { [weak self] idArray in
             guard let self = self else { return }
@@ -109,7 +109,7 @@ extension MyScheduleController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 // Mark eventDelegate
-extension MyScheduleController: FetchMyEventDataDelegate {
+extension MyScheduleController: FetchMyDataDelegate {
     func fetchMyEventData(eventArray: [Event]) {
         var array = eventArray
         array = eventArray.sorted { element, nextElement in

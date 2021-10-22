@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         setupNotifications(on: application)
         UIApplication.shared.applicationIconBadgeNumber = 0
-                do {
-                    try Auth.auth().signOut()
-                } catch {
-
-                }
+//                do {
+//                    try Auth.auth().signOut()
+//                } catch {
+//
+//                }
         return true
     }
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {

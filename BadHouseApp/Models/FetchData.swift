@@ -2,18 +2,20 @@ import Foundation
 import Firebase
 import CoreLocation
 import RxSwift
-
-protocol FetchGenderCountDataDelegate: AnyObject {
+// Mark ChatsProtocol
+protocol FetchChartsDataDelegate: AnyObject {
     func fetchGenderCount(countArray: [Int])
     func fetchBarData(countArray: [Int])
 }
+// Mark EventProtocol
 protocol FetchEventDataDelegate: AnyObject {
     func fetchEventData(eventArray: [Event])
-    func getEventSearchData(eventArray: [Event], bool: Bool)
-    func getEventTimeData(eventArray: [Event])
-    func getDetailData(eventArray: [Event])
+    func fetchEventSearchData(eventArray: [Event], bool: Bool)
+    func fetchEventTimeData(eventArray: [Event])
+    func fetchDetailData(eventArray: [Event])
 }
-protocol FetchMyChatDataDelgate: AnyObject {
+// Mark ChatProtocol
+protocol FetchChatDataDelgate: AnyObject {
     func fetchMyChatData(chatArray: [Chat])
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom])
     func fetchMyChatListData(userArray: [User],
@@ -21,47 +23,33 @@ protocol FetchMyChatDataDelgate: AnyObject {
                              lastChatArray: [Chat],
                              chatModelArray: [ChatRoom])
 }
-protocol FetchSearchUserDataDelegate: AnyObject {
-    func fetchSearchUser(userArray: [User], bool: Bool)
-}
-protocol FetchMyGroupChatDataDelegate: AnyObject {
+// Mark MyDataProtocol
+protocol FetchMyDataDelegate: AnyObject {
+    func fetchMyFriendData(friendArray: [User])
+    func fetchMyTeamData(teamArray: [TeamModel])
+    func fetchMyEventData(eventArray: [Event])
     func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel])
-}
-protocol FetchMyPrejoinDataDelegate: AnyObject {
     func fetchMyPrejoinData(preJoinArray: [[String]])
-}
-protocol FetchMyJoinDataDelegate: AnyObject {
     func fetchMyJoinData(joinArray: [[String]])
 }
+// Mark SearchProtocol
+protocol FetchSearchDataDelegate: AnyObject {
+    func fetchSearchUser(userArray: [User], bool: Bool)
+    func fetchSearchGroup(groupArray: [TeamModel], bool: Bool)
+}
+// Mark VideoProtocol
 protocol FetchVideoDataDelegate: AnyObject {
     func fetchVideoData(videoArray: [VideoModel])
 }
-protocol FetchSearchGroupDelegate: AnyObject {
-    func fetchSearchGroup(groupArray: [TeamModel], bool: Bool)
-}
-protocol FetchMyEventDataDelegate: AnyObject {
-    func fetchMyEventData(eventArray: [Event])
-}
-protocol FetchMyTeamDataDelegate: AnyObject {
-    func fetchMyTeamData(teamArray: [TeamModel])
-}
-protocol FetchMyFriendDataDelegate: AnyObject {
-    func fetchMyFriendData(friendArray: [User])
-}
+
 class FetchFirestoreData {
     // Mark Delegate
-    weak var chartsDelegate: FetchGenderCountDataDelegate?
+    weak var chartsDelegate: FetchChartsDataDelegate?
     weak var eventDelegate: FetchEventDataDelegate?
-    weak var chatDelegate: FetchMyChatDataDelgate?
-    weak var userSearchDelegate: FetchSearchUserDataDelegate?
-    weak var groupChatDataDelegate: FetchMyGroupChatDataDelegate?
-    weak var preJoinDelegate: FetchMyPrejoinDataDelegate?
-    weak var joinDelegate: FetchMyJoinDataDelegate?
+    weak var chatDelegate: FetchChatDataDelgate?
+    weak var searchDelegate: FetchSearchDataDelegate?
     weak var videoDelegate: FetchVideoDataDelegate?
-    weak var groupSearchDelegate: FetchSearchGroupDelegate?
-    weak var myEventDelegate: FetchMyEventDataDelegate?
-    weak var myTeamDelegate: FetchMyTeamDataDelegate?
-    weak var myFriendDelegate: FetchMyFriendDataDelegate?
+    weak var myDataDelegate: FetchMyDataDelegate?
     // Mark FetchFriendData
     func fetchMyFriendData(idArray: [String]) {
         let group = DispatchGroup()
@@ -78,7 +66,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.myFriendDelegate?.fetchMyFriendData(friendArray: array)
+            self.myDataDelegate?.fetchMyFriendData(friendArray: array)
         }
     }
     // Mark fetchMyTeamData
@@ -99,7 +87,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.myTeamDelegate?.fetchMyTeamData(teamArray: teamArray)
+            self.myDataDelegate?.fetchMyTeamData(teamArray: teamArray)
         }
     }
     // Mark FetchMyEventData
@@ -120,7 +108,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.myEventDelegate?.fetchMyEventData(eventArray: eventArray)
+            self.myDataDelegate?.fetchMyEventData(eventArray: eventArray)
         }
     }
     // Mark fetchChatlistData
@@ -251,7 +239,7 @@ class FetchFirestoreData {
                 let groupChatModel = GroupChatModel(dic: safeData)
                 groupChat.append(groupChatModel)
             }
-            self.groupChatDataDelegate?.fetchMyGroupChatData(groupChatModelArray: groupChat)
+            self.myDataDelegate?.fetchMyGroupChatData(groupChatModelArray: groupChat)
         }
     }
     // Mark FetchEventPrejoinData
@@ -279,7 +267,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.preJoinDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
+            self.myDataDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
         }
     }
     // Mark FetchEventJoin
@@ -306,7 +294,7 @@ class FetchFirestoreData {
             }
         }
         group.notify(queue: .main) {
-            self.joinDelegate?.fetchMyJoinData(joinArray: stringArray)
+            self.myDataDelegate?.fetchMyJoinData(joinArray: stringArray)
         }
     }
     // Mark FetchVideoData
@@ -376,7 +364,7 @@ class FetchFirestoreData {
                     eventArray.append(event)
                 }
             }
-            self.eventDelegate?.getEventSearchData(eventArray: eventArray, bool: bool)
+            self.eventDelegate?.fetchEventSearchData(eventArray: eventArray, bool: bool)
         }
     }
     // Mark searchEventDateData
@@ -403,7 +391,7 @@ class FetchFirestoreData {
                 }
             }
             eventArray = eventArray.filter { $0.placeAddress.contains(text) || $0.eventPlace.contains(text) }
-            self.eventDelegate?.getEventTimeData(eventArray: eventArray)
+            self.eventDelegate?.fetchEventTimeData(eventArray: eventArray)
         }
     }
     // Mark searchEventDetailData
@@ -443,7 +431,7 @@ class FetchFirestoreData {
             if time != "" {
                 eventArray = self.searchTimeData(time: time, event: eventArray)
             }
-            self.eventDelegate?.getDetailData(eventArray: eventArray)
+            self.eventDelegate?.fetchDetailData(eventArray: eventArray)
         }
     }
     // Mark searchMoneyData
@@ -536,7 +524,7 @@ class FetchFirestoreData {
                     groupArray.append(team)
                 }
             }
-            self.groupSearchDelegate?.fetchSearchGroup(groupArray: groupArray, bool: bool)
+            self.searchDelegate?.fetchSearchGroup(groupArray: groupArray, bool: bool)
         }
     }
     // Mark searchFriends
@@ -557,7 +545,7 @@ class FetchFirestoreData {
                     userArray.append(user)
                 }
             }
-            self.userSearchDelegate?.fetchSearchUser(userArray: userArray, bool: bool)
+            self.searchDelegate?.fetchSearchUser(userArray: userArray, bool: bool)
         }
     }
     // Mark searchTeamPlayerLevelcount
@@ -609,5 +597,26 @@ class FetchFirestoreData {
                                                        level8,
                                                        level9,
                                                        level10])
+    }
+}
+// Mark DefaultProtocol Method
+extension FetchMyDataDelegate {
+    func fetchMyFriendData(friendArray: [User]) {
+    }
+    func fetchMyTeamData(teamArray: [TeamModel]) {
+    }
+    func fetchMyEventData(eventArray: [Event]) {
+    }
+    func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
+    }
+    func fetchMyPrejoinData(preJoinArray: [[String]]) {
+    }
+    func fetchMyJoinData(joinArray: [[String]]) {
+    }
+}
+extension FetchSearchDataDelegate {
+    func fetchSearchUser(userArray: [User], bool: Bool) {
+    }
+    func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
     }
 }

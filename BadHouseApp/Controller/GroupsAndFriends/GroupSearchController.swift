@@ -22,7 +22,7 @@ class GroupSearchController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         searchBar.delegate = self
-        fetchData.groupSearchDelegate = self
+        fetchData.searchDelegate = self
         setupEmptyState()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -108,7 +108,7 @@ extension GroupSearchController: UISearchBarDelegate {
     }
 }
 // Mark getGroupDelegate
-extension GroupSearchController: FetchSearchGroupDelegate {
+extension GroupSearchController: FetchSearchDataDelegate {
     func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
         if bool == false {
             self.groupArray = groupArray

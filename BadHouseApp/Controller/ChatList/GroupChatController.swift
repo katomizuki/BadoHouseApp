@@ -46,7 +46,7 @@ class GroupChatController: UIViewController {
         }
         guard let teamId = team?.teamId else { return }
         fetchData.fetchGroupChatData(teamId: teamId)
-        fetchData.groupChatDataDelegate = self
+        fetchData.myDataDelegate = self
     }
 }
 // Mark tableViewdelegate
@@ -70,7 +70,7 @@ extension GroupChatController: UITableViewDelegate {
     }
 }
 // Mark chatDelegate
-extension GroupChatController: FetchMyGroupChatDataDelegate {
+extension GroupChatController: FetchMyDataDelegate {
     func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
         self.chatArray = []
         self.chatArray = groupChatModelArray

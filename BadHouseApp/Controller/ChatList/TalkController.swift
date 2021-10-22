@@ -84,7 +84,7 @@ class TalkController: UIViewController {
     }
     private func setupData() {
         fetchData.chatDelegate = self
-        fetchData.myTeamDelegate = self
+        fetchData.myDataDelegate = self
         ChatRoomService.getChatRoomData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
             self.fetchData.fetchChatRoomModelData(chatId: chatId)
@@ -210,7 +210,7 @@ extension TalkController: UITableViewDelegate {
     }
 }
 // Mark getchatDelegate
-extension TalkController: FetchMyChatDataDelgate {
+extension TalkController: FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
         self.chatArray.append(chatArray)
     }
@@ -252,7 +252,7 @@ extension TalkController: FetchMyChatDataDelgate {
     }
 }
 // Mark GetmyTeamDelegate
-extension TalkController: FetchMyTeamDataDelegate {
+extension TalkController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teams = teamArray
         for i in 0..<teams.count {
