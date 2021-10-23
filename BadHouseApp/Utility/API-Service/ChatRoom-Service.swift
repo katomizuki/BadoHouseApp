@@ -59,17 +59,21 @@ struct ChatRoomService {
             }
             guard let document = snapShot?.documents else { return }
             if document.isEmpty {
-                let dic = ["sendTime": nil,
+                let dic = ["sendTime": Timestamp(),
                            "text": "",
                            "sender": "",
                            "reciver": ""] as [String: Any]
                 let chat = Chat(dic: dic)
-                textArray.append(chat)
+                if let chat = chat {
+                    textArray.append(chat)
+                }
             } else {
                 document.forEach { element in
                     let data = element.data()
                     let chat = Chat(dic: data)
-                    textArray.append(chat)
+                    if let chat = chat {
+                        textArray.append(chat)
+                    }
                 }
             }
             guard let lastComment = textArray.last else { return }

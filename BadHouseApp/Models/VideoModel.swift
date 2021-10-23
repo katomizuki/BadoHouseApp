@@ -3,14 +3,18 @@ import Foundation
 struct VideoModel {
     let keyWord: String
     let senderId: String
-    let thumnailUrl: String
-    let videoUrl: String
+    var videoUrl: URL?
     let videoId: String
-    init(dic: [String: Any]) {
-        self.keyWord = dic["keyWord"] as? String ?? ""
-        self.senderId = dic["senderId"] as? String ?? ""
-        self.thumnailUrl = dic["thumnailUrl"] as? String ?? ""
-        self.videoUrl = dic["videoUrl"] as? String ?? ""
-        self.videoId = dic["videoId"] as? String ?? ""
+    init?(dic: [String: Any]) {
+        guard let keyWord = dic["keyWord"] as? String,
+              let senderId = dic["senderId"] as? String,
+              let videoId = dic["videoId"] as? String else { return nil }
+        self.keyWord = keyWord
+        self.senderId = senderId
+        self.videoId = videoId
+        if let videoUrl = dic["videoUrl"] as? String {
+            guard let url = URL(string: videoUrl) else { return nil }
+            self.videoUrl = url
+        }
     }
 }

@@ -218,14 +218,14 @@ extension UserDetailController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
             let name = ownTeam[indexPath.row].teamName
             let urlString = ownTeam[indexPath.row].teamImageUrl
-            cell.configure(name: name, urlString: urlString)
+            cell.configure(name: name, url: urlString)
             cell.teamMemberImage.contentMode = .scaleAspectFill
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.friendCellId, for: indexPath) as! TeammemberCell
             let name = userFriend[indexPath.row].name
             let urlString = userFriend[indexPath.row].profileImageUrl
-            cell.configure(name: name, urlString: urlString)
+            cell.configure(name: name, url: urlString)
             return cell
         }
     }

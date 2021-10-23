@@ -96,7 +96,8 @@ class GroupCell: UITableViewCell {
     private func configure() {
         guard let team = team else { return }
         self.label.text = team.teamName
-        let url = URL(string: team.teamImageUrl)
+        let urlString = team.teamImageUrl
+        guard let url = URL(string: urlString) else { return }
         self.cellImagevView.sd_setImage(with: url, completed: nil)
         self.cellImagevView.contentMode = .scaleAspectFill
         self.cellImagevView.chageCircle()

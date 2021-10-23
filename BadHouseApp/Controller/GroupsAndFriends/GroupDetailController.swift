@@ -151,7 +151,7 @@ class GroupDetailController: UIViewController {
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
         guard let urlString = team?.teamImageUrl else { return }
-        let url = URL(string: urlString)
+        guard let url = URL(string: urlString) else { return }
         friendImageView.sd_setImage(with: url, completed: nil)
         friendImageView.contentMode = .scaleAspectFill
         friendImageView.chageCircle()
@@ -301,7 +301,7 @@ extension GroupDetailController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: teamMemberCellId, for: indexPath) as! TeammemberCell
         let memberName = teamPlayers[indexPath.row].name
         let urlString = teamPlayers[indexPath.row].profileImageUrl
-        cell.configure(name: memberName, urlString: urlString)
+        cell.configure(name: memberName, url: urlString)
         return cell
     }
 }

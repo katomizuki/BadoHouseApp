@@ -74,7 +74,7 @@ class UpdateTeamController: UIViewController {
         timeTextField.text = team?.teamTime
         moneyTextField.text = team?.teamLevel
         guard let urlString = team?.teamImageUrl else { return }
-        let url = URL(string: urlString)
+        let url = URL(string: urlString) 
         iv.sd_setImage(with: url, completed: nil)
     }
     // Mark initalize

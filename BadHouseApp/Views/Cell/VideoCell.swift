@@ -95,7 +95,7 @@ class VideoCell: UICollectionViewCell {
     // Mark helperMethod
     func configure() {
         setupLayout()
-        guard let videoUrl = URL(string: video?.videoUrl ?? "") else { return }
+        guard let videoUrl = video?.videoUrl else { return }
         player = AVPlayer(url: videoUrl)
         let playerView = AVPlayerLayer()
         playerView.videoGravity = .resizeAspectFill

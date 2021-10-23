@@ -376,7 +376,7 @@ extension EventDetailController: UICollectionViewDelegate {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
         let memberName = teamArray[indexPath.row].name
         let urlString = teamArray[indexPath.row].profileImageUrl
-        cell.configure(name: memberName, urlString: urlString)
+        cell.configure(name: memberName, url: urlString)
         return cell
     }
 }

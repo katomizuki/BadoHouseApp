@@ -76,7 +76,9 @@ extension EventServie {
             documents.forEach { document in
                 let data = document.data()
                 let tag = Tag(dic: data)
-                tagArray.append(tag)
+                if let tag = tag {
+                    tagArray.append(tag)
+                }
             }
             completion(tagArray)
         }

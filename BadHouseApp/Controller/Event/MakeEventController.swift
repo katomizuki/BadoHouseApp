@@ -241,7 +241,9 @@ class MakeEventController: UIViewController {
         TeamService.getTeamData(teamId: teamId) { [weak self] teamData in
             guard let self = self else { return }
             self.team = teamData
-            teamImageUrl = self.team?.teamImageUrl ?? ""
+            if let url = self.team?.teamImageUrl {
+                teamImageUrl = url
+            }
         }
         guard let teamName = selectedTeam?.teamName else { return }
         let max = maxLevelLabel.text ?? BadmintonLevel.six.rawValue

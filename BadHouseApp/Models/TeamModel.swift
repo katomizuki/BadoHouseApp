@@ -11,15 +11,23 @@ struct TeamModel {
     var teamUrl: String
     var createdAt: Timestamp
     var updatedAt: Timestamp
-    init(dic: [String: Any]) {
-        self.teamId = dic["teamId"] as? String ?? ""
-        self.teamName = dic["teamName"] as? String ?? ""
-        self.teamPlace = dic["teamPlace"] as? String ?? ""
-        self.teamTime = dic["teamTime"] as? String ?? ""
-        self.teamLevel = dic["teamLevel"] as? String ?? "1"
+    init?(dic: [String: Any]) {
+        guard let teamId = dic["teamId"] as? String,
+              let teamName = dic["teamName"] as? String,
+              let teamPlace = dic["teamPlace"] as? String,
+              let teamTime = dic["teamTime"] as? String,
+              let teamLevel = dic["teamLevel"] as? String,
+              let teamImageUrl = dic["teamImageUrl"] as? String,
+              let createdAt: Timestamp = dic["createdAt"] as? Timestamp,
+              let updatedAt: Timestamp = dic["createdAt"] as? Timestamp else { return nil }
+        self.teamId = teamId
+        self.teamName = teamName
+        self.teamPlace = teamPlace
+        self.teamTime = teamTime
+        self.teamLevel = teamLevel
         self.teamUrl = dic["teamUrl"] as? String ?? ""
-        self.teamImageUrl = dic["teamImageUrl"] as? String ?? ""
-        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
-        self.updatedAt = dic["updatedAt"] as? Timestamp ?? Timestamp()
+        self.teamImageUrl = teamImageUrl
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 }

@@ -83,7 +83,9 @@ class FetchFirestoreData {
                 defer { group.leave() }
                 guard let data = snapShot?.data() else { return }
                 let team = TeamModel(dic: data)
-                teamArray.append(team)
+                if let team = team {
+                    teamArray.append(team)
+                }
             }
         }
         group.notify(queue: .main) {
@@ -198,7 +200,9 @@ class FetchFirestoreData {
             document.forEach { doc in
                 let data = doc.data()
                 let chat = Chat(dic: data)
-                chatArray.append(chat)
+                if let chat = chat {
+                    chatArray.append(chat)
+                }
             }
             self.chatDelegate?.fetchMyChatData(chatArray: chatArray)
         }
@@ -217,7 +221,9 @@ class FetchFirestoreData {
                 defer { group.leave() }
                 guard let data = snapShot?.data() else { return }
                 let chatRoomModel = ChatRoom(dic: data)
-                chatRoomModelArray.append(chatRoomModel)
+                if let chatRoomModel = chatRoomModel {
+                    chatRoomModelArray.append(chatRoomModel)
+                }
             }
         }
         group.notify(queue: .main) {
@@ -237,7 +243,9 @@ class FetchFirestoreData {
             document.forEach { data in
                 let safeData = data.data()
                 let groupChatModel = GroupChatModel(dic: safeData)
-                groupChat.append(groupChatModel)
+                if let groupChatModel = groupChatModel {
+                    groupChat.append(groupChatModel)
+                }
             }
             self.myDataDelegate?.fetchMyGroupChatData(groupChatModelArray: groupChat)
         }
@@ -309,7 +317,9 @@ class FetchFirestoreData {
             document.forEach { doc in
                 let data = doc.data()
                 let video = VideoModel(dic: data)
-                videoArray.append(video)
+                if let video = video {
+                    videoArray.append(video)
+                }
             }
             videoArray.shuffle()
             let array = Array(videoArray[0..<3])
@@ -493,7 +503,9 @@ class FetchFirestoreData {
             document.forEach { doc in
                 let data = doc.data()
                 let video = VideoModel(dic: data)
-                videoArray.append(video)
+                if let video = video {
+                    videoArray.append(video)
+                }
             }
             var array = videoArray.filter { $0.keyWord == text }
             array.shuffle()
@@ -521,7 +533,9 @@ class FetchFirestoreData {
                 let teamPlace = safeData["teamPlace"] as? String ?? ""
                 if teamName.contains(text) || teamPlace.contains(text) {
                     let team = TeamModel(dic: safeData)
-                    groupArray.append(team)
+                    if let team = team {
+                        groupArray.append(team)
+                    }
                 }
             }
             self.searchDelegate?.fetchSearchGroup(groupArray: groupArray, bool: bool)

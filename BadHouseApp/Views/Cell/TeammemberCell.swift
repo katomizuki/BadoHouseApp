@@ -22,14 +22,14 @@ class TeammemberCell: UICollectionViewCell {
         teamMemberImage.contentMode = .scaleAspectFill
     }
     // Mark HelperMethod
-    func configure(name: String, urlString: String) {
+    func configure(name: String, url: String) {
         nameLabel.text = name
         nameLabel.font = .boldSystemFont(ofSize: 11)
         nameLabel.textColor = .darkGray
-        if urlString == "" {
+        if url == "" {
             teamMemberImage.image = UIImage(named: Constants.ImageName.noImages)
         } else {
-            let url = URL(string: urlString)
+            let url = URL(string: url)
             teamMemberImage.sd_setImage(with: url, completed: nil)
         }
     }

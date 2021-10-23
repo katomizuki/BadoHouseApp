@@ -12,7 +12,9 @@ struct TeamService {
             guard let data = snapShot?.data() else { return }
             let dic = data as [String: Any]
             let team = TeamModel(dic: dic)
-            completion(team)
+            if let team = team {
+                completion(team)
+            }
         }
     }
     // Mark createTeam
@@ -79,8 +81,7 @@ extension TeamService {
             let teamPlayerId = teamplayer[i].uid
             let dic = ["uid": teamPlayerId] as [String: Any]
             let teamId = teamDic["teamId"] as! String
-            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) {
-                error in
+            Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) { error in
                 if let error = error {
                     print(error)
                 }
@@ -125,7 +126,9 @@ extension TeamService {
             data.forEach { doc in
                 let safeData = doc.data()
                 let tag = Tag(dic: safeData)
-                teamTag.append(tag)
+                if let tag = tag {
+                    teamTag.append(tag)
+                }
             }
             completion(teamTag)
         }
