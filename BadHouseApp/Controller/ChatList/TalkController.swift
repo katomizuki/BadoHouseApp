@@ -214,13 +214,11 @@ extension TalkController: UITableViewDelegate {
 // Mark getchatDelegate
 extension TalkController: FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
-        print("🌀")
         self.chatArray.append(chatArray)
     }
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
         fetchData.fetchMyChatListData(chatModelArray: chatRoomArray)
-        print(chatRoomArray,"⚡️⚡️⚡️")
         self.chatModelArray = chatRoomArray
     }
     typealias SortChatArray = [EnumeratedSequence<[Chat]>.Element]

@@ -110,7 +110,6 @@ class SubUserDetailController: UIViewController {
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
         fetchData.myDataDelegate = self
-//        fetchData.myTeamDelegate = self
     }
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()

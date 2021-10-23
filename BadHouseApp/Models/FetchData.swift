@@ -255,9 +255,7 @@ class FetchFirestoreData {
     // Mark FetchEventPrejoinData
     func fetchEventPreJoinData(eventArray: [Event]) {
         var stringArray = [[String]]()
-        let group = DispatchGroup()
         for i in 0..<eventArray.count {
-            group.enter()
             let eventId = eventArray[i].eventId
             Ref.EventRef.document(eventId).collection("PreJoin").addSnapshotListener { snapShot, error in
                 if let error = error {
@@ -272,20 +270,17 @@ class FetchFirestoreData {
                     print(id)
                     tempArray.append(id)
                 }
-                defer { group.leave() }
                 stringArray.append(tempArray)
             }
         }
-        group.notify(queue: .main) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.myDataDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
-        }
+        })
     }
     // Mark FetchEventJoin
     func fetchEventJoinData(eventArray: [Event]) {
         var stringArray = [[String]]()
-        let group = DispatchGroup()
         for i in 0..<eventArray.count {
-            group.enter()
             let eventId = eventArray[i].eventId
             Ref.EventRef.document(eventId).collection("Join").addSnapshotListener { snapShot, error in
                 if let error = error {
@@ -299,13 +294,12 @@ class FetchFirestoreData {
                     let id = safeData["id"] as? String ?? ""
                     tempArray.append(id)
                 }
-                defer { group.leave() }
                 stringArray.append(tempArray)
             }
         }
-        group.notify(queue: .main) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.myDataDelegate?.fetchMyJoinData(joinArray: stringArray)
-        }
+        })
     }
     // Mark FetchVideoData
     func fetchVideoData() {

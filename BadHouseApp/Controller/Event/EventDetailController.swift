@@ -102,10 +102,6 @@ class EventDetailController: UIViewController {
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
         self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
-        let imageView = UIImageView(image: UIImage(named: Constants.ImageName.logoImage))
-        imageView.anchor(width: 44, height: 44)
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
                                                                 style: UIBarButtonItem.Style.plain,
                                                                 target: nil,
@@ -138,6 +134,7 @@ class EventDetailController: UIViewController {
         let nib = TeammemberCell.nib()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        collectionView.collectionViewLayout = layout
         collectionView.register(nib, forCellWithReuseIdentifier: Constants.CellId.MemberCellId)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -392,7 +389,6 @@ extension EventDetailController: UICollectionViewDataSource {
 // Mark CollectionLayoutDelegate
 extension EventDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 100, height: 100)
-        return size
+        return CGSize(width: 100, height: 100)
     }
 }

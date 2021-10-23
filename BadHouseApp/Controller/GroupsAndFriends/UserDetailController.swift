@@ -25,11 +25,7 @@ class UserDetailController: UIViewController {
     }
     @IBOutlet private weak var friendCollectionView: UICollectionView!
     @IBOutlet private weak var belongCollectionView: UICollectionView!
-    @IBOutlet private weak var nameLabel: UILabel! {
-        didSet {
-            nameLabel.textColor = .systemGray
-        }
-    }
+    @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var friendButton: UIButton! {
         didSet {
             friendButton.updateFriendButton()

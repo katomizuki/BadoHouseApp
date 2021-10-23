@@ -20,6 +20,7 @@ class TeammemberCell: UICollectionViewCell {
         teamMemberImage.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         teamMemberImage.layer.borderWidth = 2
         teamMemberImage.contentMode = .scaleAspectFill
+        teamMemberImage.clipsToBounds = true
     }
     // Mark HelperMethod
     func configure(name: String, url: String) {

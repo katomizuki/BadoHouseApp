@@ -10,7 +10,7 @@ class MyPageController: UIViewController {
     var friendArray = [User]()
     private let cellId = Constants.CellId.CellGroupId
     private var userIdArray = [String]()
-    private let sectionArray = ["所属サークル", "お友達"]
+    private let sectionArray = ["所属チーム", "お友達"]
     @IBOutlet private weak var groupTableView: UITableView! {
         didSet {
             groupTableView.separatorColor = Constants.AppColor.OriginalBlue
