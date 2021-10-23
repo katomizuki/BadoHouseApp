@@ -88,7 +88,7 @@ class MakeEventController: UIViewController {
                  gatherCount,
                  detailText,
                  placeAddress) = (String(), String(), String(), String(), String(), String(), String(), String(), String())
-    private var kindCircle = BadmintonCircle.student.rawValue
+    private var kindCircle = BadmintonCircle(rawValue: 0)?.name
     private var (placeLatitude, placeLongitude) = (Double(), Double())
     private var dic = [String: Any]()
     private var team: TeamModel?
@@ -122,7 +122,6 @@ class MakeEventController: UIViewController {
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         titleTextField.delegate = self
-//        fetchData.myTeamDelegate = self
         fetchData.myDataDelegate = self
     }
     private func setupToolBar() {
@@ -215,16 +214,7 @@ class MakeEventController: UIViewController {
     // Mark Selector
     @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
-        switch index {
-        case 0:
-            kindCircle = BadmintonCircle.student.rawValue
-        case 1:
-            kindCircle = BadmintonCircle.society.rawValue
-        case 2:
-            kindCircle = BadmintonCircle.other.rawValue
-        default:
-            break
-        }
+        kindCircle = BadmintonCircle(rawValue: index)?.name
     }
     @objc private func handleTap() {
         titleTextField.resignFirstResponder()

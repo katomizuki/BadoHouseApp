@@ -5,7 +5,7 @@ class ChatCell: UITableViewCell {
     var message: String? {
         didSet {
             guard let message = message else { return }
-            let width = estimateFrameSize(text: message).width + 20
+            let width = estimateFrameSize(text: message).width + 25
             messageConstraint.constant = width
             mytextView.text = message
         }
@@ -13,7 +13,7 @@ class ChatCell: UITableViewCell {
     var yourMessaege: String? {
         didSet {
             guard let message = yourMessaege else { return }
-            let width = estimateFrameSize(text: message).width + 10
+            let width = estimateFrameSize(text: message).width + 25
             widthConstraint.constant = width
             textView.text = message
         }
@@ -45,7 +45,6 @@ class ChatCell: UITableViewCell {
         backgroundColor = .clear
         textView.autoresizingMask = [.flexibleHeight]
         mytextView.autoresizingMask = [.flexibleHeight]
-        textView.textAlignment = .center
         self.mytextView.font = UIFont(name: "Kailasa", size: 14)
         self.textView.font = UIFont(name: "Kailasa", size: 14)
     }

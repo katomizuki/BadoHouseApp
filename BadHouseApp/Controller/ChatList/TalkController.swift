@@ -85,8 +85,10 @@ class TalkController: UIViewController {
     private func setupData() {
         fetchData.chatDelegate = self
         fetchData.myDataDelegate = self
+        //　自分のチャットルームデータ
         ChatRoomService.getChatRoomData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
+            //　ここでチャットルームのデータをとってきて
             self.fetchData.fetchChatRoomModelData(chatId: chatId)
             for i in 0..<chatId.count {
                 self.fetchData.fetchDMChatData(chatId: chatId[i])
@@ -212,11 +214,13 @@ extension TalkController: UITableViewDelegate {
 // Mark getchatDelegate
 extension TalkController: FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
+        print("🌀")
         self.chatArray.append(chatArray)
     }
     func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
         print(#function)
         fetchData.fetchMyChatListData(chatModelArray: chatRoomArray)
+        print(chatRoomArray,"⚡️⚡️⚡️")
         self.chatModelArray = chatRoomArray
     }
     typealias SortChatArray = [EnumeratedSequence<[Chat]>.Element]
@@ -228,6 +232,7 @@ extension TalkController: FetchChatDataDelgate {
         self.chatModelArray = chatModelArray
         let sortArray = self.sortArray()
         makeSortArray(sortArray: sortArray)
+        print(sortLastCommentArray,"😓😓✊")
         DispatchQueue.main.async {
             self.indicatorView.stopAnimating()
             self.tableView.reloadData()

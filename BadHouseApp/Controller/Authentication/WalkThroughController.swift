@@ -198,6 +198,7 @@ class WalkThroughController: UIPageViewController {
     // Mark selector
     @objc private func handleDismiss() {
         dismiss(animated: true, completion: nil)
+        UserDefaults.standard.set(false, forKey: "MyId")
     }
 }
 // Mark pageViewControllorDatasource

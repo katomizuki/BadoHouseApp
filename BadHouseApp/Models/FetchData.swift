@@ -170,7 +170,6 @@ class FetchFirestoreData {
     }
     // Mark FetchEventData
     func fetchEventData(latitude: Double, longitude: Double) {
-        print("✊")
         Ref.EventRef.addSnapshotListener { snapShot, error in
             var eventArray = [Event]()
             if let error = error {
@@ -185,8 +184,6 @@ class FetchFirestoreData {
                     let event = Event(dic: safeData)
                     if let event = event {
                         eventArray.append(event)
-                    } else {
-                        print(event)
                     }
                 }
             }
@@ -207,9 +204,7 @@ class FetchFirestoreData {
             document.forEach { doc in
                 let data = doc.data()
                 let chat = Chat(dic: data)
-                if let chat = chat {
                     chatArray.append(chat)
-                }
             }
             self.chatDelegate?.fetchMyChatData(chatArray: chatArray)
         }
@@ -522,10 +517,8 @@ class FetchFirestoreData {
             var array = videoArray.filter { $0.keyWord == text }
             array.shuffle()
             if array.count >= 3 {
-//                array = Array(array[0..<3])
                 self.videoDelegate?.fetchVideoData(videoArray: array)
             } else {
-//                videoArray = Array(videoArray[0..<3])
                 self.videoDelegate?.fetchVideoData(videoArray: videoArray)
             }
         }
@@ -646,5 +639,16 @@ extension FetchSearchDataDelegate {
     func fetchSearchUser(userArray: [User], bool: Bool) {
     }
     func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
+    }
+}
+extension FetchChatDataDelgate {
+    func fetchMyChatData(chatArray: [Chat]) {
+    }
+    func fetchMyChatRoomData(chatRoomArray: [ChatRoom]){
+    }
+    func fetchMyChatListData(userArray: [User],
+                             anotherArray: [User],
+                             lastChatArray: [Chat],
+                             chatModelArray: [ChatRoom]){
     }
 }

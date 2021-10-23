@@ -64,16 +64,12 @@ struct ChatRoomService {
                            "sender": "",
                            "reciver": ""] as [String: Any]
                 let chat = Chat(dic: dic)
-                if let chat = chat {
                     textArray.append(chat)
-                }
             } else {
                 document.forEach { element in
                     let data = element.data()
                     let chat = Chat(dic: data)
-                    if let chat = chat {
                         textArray.append(chat)
-                    }
                 }
             }
             guard let lastComment = textArray.last else { return }
