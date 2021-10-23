@@ -13,7 +13,7 @@ class VideoPopoverController: UIViewController {
         return tv
     }()
     private let cellId = "cellId"
-    private let kindArray = Constants.Data.badomintonArray
+//    private let kindArray = Constants.Data.badomintonArray
     private let fetchData = FetchFirestoreData()
     weak var searchDelegate: SearchVideoDelegate?
     // Mark properties
@@ -39,18 +39,21 @@ class VideoPopoverController: UIViewController {
 // Mark tableviewdatasource
 extension VideoPopoverController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return kindArray.count
+        return Badominton.allCases.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = kindArray[indexPath.row]
+        guard let option = Badominton(rawValue: indexPath.row) else { return cell }
+        let badminton = option.name
+        cell.textLabel?.text = badminton
         return cell
     }
 }
 // Extension UITableViewDelegate
 extension VideoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let text = kindArray[indexPath.row]
+        guard let option = Badominton(rawValue: indexPath.row) else { return }
+        let text = option.name
         fetchData.searchVideoData(text: text)
     }
 }

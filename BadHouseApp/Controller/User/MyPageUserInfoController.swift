@@ -293,7 +293,7 @@ extension MyPageUserInfoController: UINavigationControllerDelegate, UIImagePicke
 // Mark tableViewDelegate
 extension MyPageUserInfoController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if cellTitleArray[indexPath.row] == UserInfo.level.rawValue {
+        if cellTitleArray[indexPath.row] == UserInfo.level {
             performSegue(withIdentifier: Constants.Segue.gotoLevel, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
@@ -335,15 +335,15 @@ extension MyPageUserInfoController: UITableViewDataSource {
         let title = cellTitleArray[indexPath.row]
         cell.detailTextLabel?.text = ""
         switch title {
-        case UserInfo.level.rawValue:
+        case UserInfo.level:
             cell.detailTextLabel?.text = level
-        case UserInfo.gender.rawValue:
+        case UserInfo.gender:
             cell.detailTextLabel?.text = gender
-        case UserInfo.badmintonTime.rawValue:
+        case UserInfo.badmintonTime:
             cell.detailTextLabel?.text = badmintonTime
-        case UserInfo.place.rawValue:
+        case UserInfo.place:
             cell.detailTextLabel?.text = place
-        case UserInfo.age.rawValue:
+        case UserInfo.age:
             cell.detailTextLabel?.text = age
         default:
             break

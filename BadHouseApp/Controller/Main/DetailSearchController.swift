@@ -2,7 +2,7 @@ import UIKit
 import grpc
 import FacebookCore
 
-protocol getDetailDelegate:AnyObject {
+protocol getDetailDelegate: AnyObject {
     func getDetailElement(title: String,
                           circle: String,
                           level: String,
@@ -53,13 +53,7 @@ class DetailSearchController: UIViewController {
                                       UIPickerView(),
                                       UIPickerView(),
                                       UIPickerView())
-    private let (data,
-                 place,
-                 money,
-                 level) = (Constants.Data.circle,
-                           Constants.Data.place,
-                           Constants.Data.money,
-                           Constants.Data.level)
+    private let level = BadmintonLevel.level
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var datePicker: UIDatePicker! {
         didSet {
@@ -200,9 +194,9 @@ extension DetailSearchController: UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.pickerView {
-            return data.count
+            return BadmintonCircle.allCases.count
         } else if pickerView == self.pickerMoneyView {
-            return money.count
+            return Money.allCases.count
         } else {
             return level.count
         }
@@ -212,18 +206,22 @@ extension DetailSearchController: UIPickerViewDataSource {
 extension DetailSearchController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
-            return self.data[row]
+            guard let data = BadmintonCircle(rawValue: row)?.name else { return nil }
+            return data
         } else if pickerView == self.pickerMoneyView {
-            return self.money[row]
+            guard let money = Money(rawValue: row)?.name else { return nil }
+            return money
         } else {
             return self.level[row]
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.pickerView {
-            circleTextField.text = data[row]
+            guard let data = BadmintonCircle(rawValue: row)?.name else { return }
+            circleTextField.text = data
         } else if pickerView == self.pickerMoneyView {
-            moneyTextField.text = money[row]
+            guard let text = Money(rawValue: row)?.name else { return }
+            moneyTextField.text = text
         } else {
             levelTextField.text = level[row]
         }

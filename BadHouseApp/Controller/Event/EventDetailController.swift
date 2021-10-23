@@ -50,7 +50,6 @@ class EventDetailController: UIViewController {
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
-    private var genderValue = Constants.Data.genderArray
     private var rawData: [Int] = []
     private var fetchData = FetchFirestoreData()
     private var teamArray = [User]()
@@ -176,8 +175,9 @@ class EventDetailController: UIViewController {
     private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
+            guard let gender = Gender(rawValue: i)?.name else { return }
             entry.append(PieChartDataEntry(value: Double(genderArray[i]),
-                                           label: genderValue[i],
+                                           label: gender,
                                            data: genderArray[i]))
         }
         let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")

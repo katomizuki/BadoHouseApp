@@ -7,7 +7,7 @@ class MyPageInfoPopoverController: UIViewController {
     // Mark Properties
     weak var delegate: PopDismissDelegate?
     private let cellId = Constants.CellId.popCellId
-    var cellArray = Constants.Data.genderArray
+    var cellArray = Gender.genderArray
     var keyword = String()
     lazy var tableView: UITableView = {
         let tb = UITableView()
@@ -34,13 +34,13 @@ class MyPageInfoPopoverController: UIViewController {
                          left: view.leftAnchor,
                          right: view.rightAnchor)
         switch keyword {
-        case UserInfo.gender.rawValue:
-            cellArray = Constants.Data.genderArray
-        case UserInfo.badmintonTime.rawValue:
+        case UserInfo.gender:
+            cellArray = Gender.genderArray
+        case UserInfo.badmintonTime:
             cellArray = Constants.Data.yearArray
-        case UserInfo.place.rawValue:
-            cellArray = Constants.Data.placeArray
-        case UserInfo.age.rawValue:
+        case UserInfo.place:
+            cellArray = Place.placeArray
+        case UserInfo.age:
             cellArray = Constants.Data.ageArray
         default:
             break
@@ -64,16 +64,16 @@ extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! MyPageUserInfoController
         switch keyword {
-        case UserInfo.gender.rawValue:
+        case UserInfo.gender:
             gender = cellArray[indexPath.row]
             vc.gender = self.gender
-        case UserInfo.badmintonTime.rawValue:
+        case UserInfo.badmintonTime:
             badmintonTime = cellArray[indexPath.row]
             vc.badmintonTime = self.badmintonTime
-        case UserInfo.place.rawValue:
+        case UserInfo.place:
             place = cellArray[indexPath.row]
             vc.place = self.place
-        case UserInfo.age.rawValue:
+        case UserInfo.age:
             age = cellArray[indexPath.row]
             vc.age = self.age
         default:

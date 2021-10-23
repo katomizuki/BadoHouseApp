@@ -38,7 +38,6 @@ class GroupDetailController: UIViewController {
     @IBOutlet private weak var barChartView: BarChartView!
     private let teamMemberCellId = Constants.CellId.MemberCellId
     private var genderArray = [Int]()
-    private var genderValue = Constants.Data.genderArray
     private var indicatorView: NVActivityIndicatorView!
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton! {
@@ -166,8 +165,9 @@ class GroupDetailController: UIViewController {
     private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
+            guard let gender = Gender(rawValue: i)?.name else { return }
             entry.append(PieChartDataEntry(value: Double(genderArray[i]),
-                                           label: genderValue[i],
+                                           label: gender,
                                            data: genderArray[i]))
         }
         let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")

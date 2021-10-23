@@ -139,7 +139,7 @@ class MakeGroupController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
     private let placePickerView = UIPickerView()
-    private let placeArray = Constants.Data.placeArray
+//    private let placeArray = Constants.Data.placeArray
     private let moneyArray = Constants.Data.moneyArray
     // Mark LifeCycle
     override func viewDidLoad() {
@@ -428,7 +428,7 @@ extension MakeGroupController: UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.placePickerView {
-            return placeArray.count
+            return Place.allCases.count
         } else {
             return moneyArray.count
         }
@@ -438,14 +438,16 @@ extension MakeGroupController: UIPickerViewDataSource {
 extension MakeGroupController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.placePickerView {
-            placeTextField.text = placeArray[row]
+            guard let text = Place(rawValue: row)?.name else { return }
+            placeTextField.text = text
         } else {
             levelTextField.text = moneyArray[row]
         }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.placePickerView {
-            return placeArray[row]
+            guard let text = Place(rawValue: row)?.name else { return nil }
+            return text
         } else {
             return moneyArray[row]
         }

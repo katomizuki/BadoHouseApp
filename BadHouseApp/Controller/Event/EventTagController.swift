@@ -14,7 +14,7 @@ class EventTagController: UIViewController {
     private var plusTagArray = [String]()
     private var productTags: TKCollectionView! {
         didSet {
-            productTags.customBackgroundColor = Constants.AppColor.OriginalLightBlue
+            productTags.customBackgroundColor = Constants.AppColor.OriginalBlue
         }
     }
     private var allTags: TKCollectionView! {
