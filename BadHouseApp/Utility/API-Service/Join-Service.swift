@@ -64,7 +64,9 @@ struct JoinService {
             data.forEach { data in
                 let safeData = data.data()
                 let pre = PreJoin(dic: safeData)
-                boolArray.append(pre)
+                if let pre = pre {
+                    boolArray.append(pre)
+                }
             }
             if boolArray.filter({ $0.alertOrNot == false }).count >= 1 {
                 result = true
