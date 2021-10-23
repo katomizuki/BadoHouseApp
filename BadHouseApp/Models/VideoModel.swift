@@ -8,7 +8,7 @@ struct VideoModel {
     init?(dic: [String: Any]) {
         guard let keyWord = dic["keyWord"] as? String,
               let senderId = dic["senderId"] as? String,
-              let videoId = dic["videoId"] as? String else { return nil }
+              let videoId = dic["id"] as? String else { return nil }
         self.keyWord = keyWord
         self.senderId = senderId
         self.videoId = videoId

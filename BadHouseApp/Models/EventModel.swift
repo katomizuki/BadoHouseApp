@@ -23,27 +23,46 @@ struct Event {
     var placeAddress: String
     var eventLevel: String
     var userId: String
-    init(dic: [String: Any]) {
-        self.eventStartTime = dic["eventStartTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-        self.eventId = dic["eventId"] as? String ?? ""
-        self.eventFinishTime = dic["eventLastTime"] as? String ?? "2015/03/04 12:34:56 +09:00"
-        self.money = dic["eventMoney"] as? String ?? "1000"
-        self.eventGatherCount = dic["gatherCount"] as? String ?? "1"
-        self.eventTitle = dic["eventTitle"] as? String ?? "バドハウス"
-        self.kindCircle = dic["kindCircle"] as? String ?? "社会人サークル"
-        self.eventPlace = dic["place"] as? String ?? "神奈川県"
-        self.teamId = dic["teamId"] as? String ?? ""
-        self.teamName = dic["teamName"] as? String ?? ""
-        self.eventTime = dic["time"] as? String ?? ""
-        self.eventUrl = dic["urlEventString"] as? String ?? ""
+    init?(dic: [String: Any]) {
+        guard let eventStartTime = dic["eventStartTime"] as? String,
+              let eventId = dic["eventId"] as? String,
+              let eventFinishTime = dic["eventLastTime"] as? String,
+              let money = dic["eventMoney"] as? String,
+              let gatherCount = dic["gatherCount"] as? String,
+              let eventTitle =  dic["eventTitle"] as? String,
+              let kindCircle = dic["kindCircle"] as? String,
+              let eventPlace = dic["place"] as? String,
+              let teamId = dic["teamId"] as? String,
+              let eventUrl = dic["urlEventString"] as? String,
+              let teamName = dic["teamName"] as? String,
+              let eventTime = dic["time"] as? String,
+              let eventCourtCount = dic["courtCount"] as? String,
+              let latitude = dic["latitude"] as? Double,
+              let longitude = dic["longitude"] as? Double,
+              let teamImageUrl = dic["teamImageUrl"] as? String,
+              let placeAddress = dic["placeAddress"] as? String,
+              let eventLevel = dic["eventLavel"] as? String,
+              let userId = dic["userId"] as? String else { return nil }
+        self.eventStartTime = eventStartTime
+        self.eventId = eventId
+        self.eventFinishTime = eventFinishTime
+        self.money = money
+        self.eventGatherCount = gatherCount
+        self.eventTitle = eventTitle
+        self.kindCircle =  kindCircle
+        self.eventPlace =  eventPlace
+        self.teamId = teamId
+        self.teamName =  teamName
+        self.eventTime =  eventTime
+        self.eventUrl =  eventUrl
         self.detailText = dic["detailText"] as? String ?? ""
-        self.eventCourtCount = dic["courtCount"] as? String ?? "1"
-        self.latitude = dic["latitude"] as? Double ?? 35.680
-        self.longitude = dic["longitude"] as? Double ?? 139.767
-        self.teamImageUrl = dic["teamImageUrl"] as? String ?? ""
-        self.placeAddress = dic["placeAddress"] as? String ?? ""
-        self.eventLevel = dic["eventLavel"] as? String ?? ""
-        self.userId = dic["userId"] as? String ?? ""
+        self.eventCourtCount = eventCourtCount
+        self.latitude = latitude
+        self.longitude =  longitude
+        self.teamImageUrl = teamImageUrl
+        self.placeAddress = placeAddress
+        self.eventLevel = eventLevel
+        self.userId = userId
         self.distance = dic["distance"] as? Double ?? 0.0
     }
 }

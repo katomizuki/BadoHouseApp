@@ -106,7 +106,9 @@ class FetchFirestoreData {
                 defer { group.leave() }
                 guard let data = snapShot?.data() else { return }
                 let event = Event(dic: data)
-                eventArray.append(event)
+                if let event = event {
+                    eventArray.append(event)
+                }
             }
         }
         group.notify(queue: .main) {
@@ -168,6 +170,7 @@ class FetchFirestoreData {
     }
     // Mark FetchEventData
     func fetchEventData(latitude: Double, longitude: Double) {
+        print("✊")
         Ref.EventRef.addSnapshotListener { snapShot, error in
             var eventArray = [Event]()
             if let error = error {
@@ -180,7 +183,11 @@ class FetchFirestoreData {
                 let leaderId = safeData["userId"] as? String ?? ""
                 if leaderId != AuthService.getUserId() {
                     let event = Event(dic: safeData)
-                    eventArray.append(event)
+                    if let event = event {
+                        eventArray.append(event)
+                    } else {
+                        print(event)
+                    }
                 }
             }
             self.sortEventDate(data: eventArray,
@@ -322,8 +329,7 @@ class FetchFirestoreData {
                 }
             }
             videoArray.shuffle()
-            let array = Array(videoArray[0..<3])
-            self.videoDelegate?.fetchVideoData(videoArray: array)
+            self.videoDelegate?.fetchVideoData(videoArray: videoArray)
         }
     }
     // Mark sortEventDate
@@ -371,7 +377,9 @@ class FetchFirestoreData {
                 let eventTitle = safeData["eventTitle"] as? String ?? "バドハウス"
                 if placeAddress.contains(text) || place.contains(text) || teamName.contains(text) || kindCircle.contains(text) || eventTitle.contains(text) {
                     let event = Event(dic: safeData)
-                    eventArray.append(event)
+                    if let event = event {
+                        eventArray.append(event)
+                    }
                 }
             }
             self.eventDelegate?.fetchEventSearchData(eventArray: eventArray, bool: bool)
@@ -397,7 +405,9 @@ class FetchFirestoreData {
                 let startTimeString = String(eventStartTime[firstIndex..<lastIndex])
                 if startTimeString == keyDate {
                     let event = Event(dic: safeData)
-                    eventArray.append(event)
+                    if let event = event {
+                        eventArray.append(event)
+                    }
                 }
             }
             eventArray = eventArray.filter { $0.placeAddress.contains(text) || $0.eventPlace.contains(text) }
@@ -421,7 +431,9 @@ class FetchFirestoreData {
             data.forEach { doc in
                 let safeData = doc.data()
                 let event = Event(dic: safeData)
-                eventArray.append(event)
+                if let event = event {
+                    eventArray.append(event)
+                }
             }
             if title != "" {
                 eventArray = eventArray.filter { $0.eventTitle.contains(title) }
@@ -510,10 +522,10 @@ class FetchFirestoreData {
             var array = videoArray.filter { $0.keyWord == text }
             array.shuffle()
             if array.count >= 3 {
-                array = Array(array[0..<3])
+//                array = Array(array[0..<3])
                 self.videoDelegate?.fetchVideoData(videoArray: array)
             } else {
-                videoArray = Array(videoArray[0..<3])
+//                videoArray = Array(videoArray[0..<3])
                 self.videoDelegate?.fetchVideoData(videoArray: videoArray)
             }
         }
@@ -556,7 +568,9 @@ class FetchFirestoreData {
                 let id = safeData["uid"] as? String ?? ""
                 if name.contains(text) && id != AuthService.getUserId() {
                     let user = User(dic: safeData)
-                    userArray.append(user)
+                    if let user = user {
+                        userArray.append(user)
+                    }
                 }
             }
             self.searchDelegate?.fetchSearchUser(userArray: userArray, bool: bool)

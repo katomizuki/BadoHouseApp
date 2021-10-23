@@ -22,7 +22,9 @@ struct EventServie {
             myEvent.forEach { data in
                 let safeData = data.data() as [String: Any]
                 let event = Event(dic: safeData)
-                eventArray.append(event)
+                if let event = event {
+                    eventArray.append(event)
+                }
             }
             completion(eventArray)
         }
