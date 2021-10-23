@@ -1047,6 +1047,7 @@
                         <outlet property="timeToLabel" destination="ocm-Ji-ji8" id="mjf-TO-3Rj"/>
                         <outlet property="titleLabel" destination="fTQ-0S-pls" id="79r-D2-lAx"/>
                         <segue destination="1Uh-qc-e7F" kind="show" identifier="gotoFrie" id="t41-KJ-vjm"/>
+                        <segue destination="cza-8i-jCI" kind="show" id="u8k-iQ-9IU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKp-yd-OBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1063,11 +1064,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -1436,11 +1437,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupChatViewController" id="r26-CP-u6r" customClass="GroupChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSU-UL-UDT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-ua-dg9">
-                                <rect key="frame" x="0.0" y="50" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="626"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1467,15 +1468,15 @@
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="PlusTeamPlayerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="626"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="20" y="717" width="374" height="36"/>
+                                <rect key="frame" x="20" y="688" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -3787,7 +3788,7 @@
         <segue reference="BI6-59-EIl"/>
         <segue reference="9Ym-mF-wrv"/>
         <segue reference="cdz-Ff-0Nv"/>
-        <segue reference="xsh-lb-gGf"/>
+        <segue reference="u8k-iQ-9IU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>

@@ -93,6 +93,7 @@ class EventDetailController: UIViewController {
         setupUnderLine()
         setupUser()
         setupNav()
+        setupGesture()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -106,6 +107,11 @@ class EventDetailController: UIViewController {
                                                                 style: UIBarButtonItem.Style.plain,
                                                                 target: nil,
                                                                 action: nil)
+    }
+    private func setupGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapGroupImage))
+        groupImageView.addGestureRecognizer(tap)
+        groupImageView.isUserInteractionEnabled = true
     }
     private func setupData() {
         UserService.getUserData(uid: AuthService.getUserId()) { [weak self] user in
@@ -331,7 +337,10 @@ class EventDetailController: UIViewController {
                                                                   eventId: eventId,
                                                                   leaderId: leaderId)
                         self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
-                        LocalNotificationManager.setNotification(2, of: .hours, repeats: false, title: "申し込んだ練習から返信がありましたか？", body: "ぜひ確認しましょう!")
+                        LocalNotificationManager.setNotification(2, of: .hours,
+                                                                 repeats: false,
+                                                                 title: "申し込んだ練習から返信がありましたか？",
+                                                                 body: "ぜひ確認しましょう!")
                     }
                 }
                 alert.addAction(alertAction)
@@ -351,6 +360,15 @@ class EventDetailController: UIViewController {
                       y: view.frame.height,
                       width: view.frame.width,
                       height: 1.0)
+    }
+    // Mark selectorMethod
+    @objc private func didTapGroupImage() {
+        print(#function)
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
+        vc.team = self.team
+        vc.flag = true
+        navigationController?.pushViewController(vc, animated: true)
+
     }
 }
 // Mark genderDelegate
