@@ -368,7 +368,6 @@ class EventDetailController: UIViewController {
         vc.team = self.team
         vc.flag = true
         navigationController?.pushViewController(vc, animated: true)
-
     }
 }
 // Mark genderDelegate

@@ -51,7 +51,7 @@ class MyScheduleController: UIViewController {
         calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
-        calendar.appearance.titleDefaultColor = .systemGray
+        calendar.appearance.titleDefaultColor = .systemGray3
         calendar.appearance.headerDateFormat = "yyyy年MM月"
         calendar.appearance.selectionColor = Constants.AppColor.OriginalBlue
         calendar.appearance.todayColor = .systemRed
