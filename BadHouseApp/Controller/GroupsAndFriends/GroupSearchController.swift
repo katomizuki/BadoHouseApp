@@ -133,6 +133,17 @@ extension GroupSearchController: FetchSearchDataDelegate {
             }
         }
     }
+    func fetchSearchDetailGroup(groupArray: [TeamModel]) {
+        print(#function)
+        self.groupArray = groupArray
+        if self.groupArray.isEmpty {
+            view.emptyState.show(State.noSearch)
+        } else {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+       }
+    }
 }
 // Mark EmptyStateDelegate
 extension GroupSearchController: EmptyStateDelegate {
@@ -143,5 +154,6 @@ extension GroupSearchController: EmptyStateDelegate {
 extension GroupSearchController: SearchDetailGroupDelegate {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
         vc.dismiss(animated: true, completion: nil)
+        fetchData.searchDetailGroup(day: time, money: money, place: place)
     }
 }

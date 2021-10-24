@@ -13,7 +13,6 @@ class VideoPopoverController: UIViewController {
         return tv
     }()
     private let cellId = "cellId"
-//    private let kindArray = Constants.Data.badomintonArray
     private let fetchData = FetchFirestoreData()
     weak var searchDelegate: SearchVideoDelegate?
     // Mark properties

@@ -8,9 +8,10 @@ class SearchDetailGroupController: UIViewController {
     private let searchLabel: UILabel = ProfileLabel(title: "チーム詳細検索", num: 24)
     private let timeTextField = ProfileTextField(placeholder: "主な活動　○曜日")
     private let ｍoneyTextField = ProfileTextField(placeholder: "会費　〇〇円/月")
-    private let placeTextFiled = ProfileTextField(placeholder: "場所  〇〇県")
+    private let placeTextField = ProfileTextField(placeholder: "場所  〇〇県")
     private lazy var searchButton: UIButton = {
         let button = RegisterButton(text: "検索")
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
         button.backgroundColor = Constants.AppColor.OriginalBlue
         return button
@@ -28,19 +29,31 @@ class SearchDetailGroupController: UIViewController {
     }
     // Mark setupMethod
     private func setupUI() {
+        placeTextField.returnKeyType = .next
+        placeTextField.keyboardType = .namePhonePad
+        placeTextField.backgroundColor = UIColor(named: "TFColor")
+        placeTextField.layer.borderColor = UIColor.systemGray.cgColor
+        ｍoneyTextField.returnKeyType = .next
+        ｍoneyTextField.keyboardType = .namePhonePad
+        ｍoneyTextField.backgroundColor = UIColor(named: "TFColor")
+        ｍoneyTextField.layer.borderColor = UIColor.systemGray.cgColor
+        timeTextField.returnKeyType = .next
+        timeTextField.keyboardType = .namePhonePad
+        timeTextField.backgroundColor = UIColor(named: "TFColor")
+        timeTextField.layer.borderColor = UIColor.systemGray.cgColor
         searchLabel.textColor = .white
         searchLabel.backgroundColor = Constants.AppColor.OriginalBlue
         navigationItem.title = "チーム詳細検索"
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let stack = UIStackView(arrangedSubviews: [timeTextField,
                                                    ｍoneyTextField,
-                                                   placeTextFiled,
+                                                   placeTextField,
                                                    searchButton])
         view.addSubview(stack)
         view.addSubview(searchLabel)
         timeTextField.heightAnchor.constraint(equalToConstant: 45).isActive = true
         stack.axis = .vertical
-        stack.spacing = 15
+        stack.spacing = 30
         stack.distribution = .fillEqually
         searchLabel.anchor(bottom: stack.topAnchor,
                            left: view.leftAnchor,
@@ -56,7 +69,7 @@ class SearchDetailGroupController: UIViewController {
                      paddingRight: 20,
                      paddingLeft: 20)
         setupPicker(pickerView: moneyPickerView, textField: ｍoneyTextField)
-        setupPicker(pickerView: placePickerView, textField: placeTextFiled)
+        setupPicker(pickerView: placePickerView, textField: placeTextField)
         setupPicker(pickerView: dayPickerView, textField: timeTextField)
     }
     private func setupPicker(pickerView: UIPickerView, textField: UITextField) {
@@ -81,11 +94,11 @@ class SearchDetailGroupController: UIViewController {
         print(#function)
         let time = timeTextField.text ?? ""
         let money = timeTextField.text ?? ""
-        let place = placeTextFiled.text ?? ""
+        let place = placeTextField.text ?? ""
         self.delegate?.seachDetailGroup(vc: self, time: time, money: money, place: place)
     }
     @objc private func donePicker() {
-        placeTextFiled.endEditing(true)
+        placeTextField.endEditing(true)
         ｍoneyTextField.endEditing(true)
         timeTextField.endEditing(true)
     }
@@ -95,7 +108,7 @@ extension SearchDetailGroupController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.placePickerView {
             guard let text = Place(rawValue: row)?.name else { return }
-            placeTextFiled.text = text
+            placeTextField.text = text
         } else if pickerView == self.dayPickerView {
             timeTextField.text = dayArray[row]
         } else {

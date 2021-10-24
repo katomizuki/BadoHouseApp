@@ -139,6 +139,7 @@ class MakeGroupController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
     private let placePickerView = UIPickerView()
+    private let dayPickerView = UIPickerView()
     private let moneyArray = Constants.Data.moneyArray
     private let dayArray = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
     // Mark LifeCycle
@@ -168,6 +169,7 @@ class MakeGroupController: UIViewController {
     private func setupPickerView() {
         setPicker(pickerView: moneyPickerView, textField: levelTextField)
         setPicker(pickerView: placePickerView, textField: placeTextField)
+        setPicker(pickerView: dayPickerView, textField: timeTextField)
     }
     private func setPicker(pickerView: UIPickerView, textField: UITextField) {
         pickerView.delegate = self
@@ -351,6 +353,7 @@ class MakeGroupController: UIViewController {
     @objc private func donePicker() {
         placeTextField.endEditing(true)
         levelTextField.endEditing(true)
+        timeTextField.endEditing(true)
     }
     @objc private func handleTap() {
         print(#function)
@@ -429,6 +432,8 @@ extension MakeGroupController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.placePickerView {
             return Place.allCases.count
+        } else if pickerView == self.dayPickerView {
+            return dayArray.count
         } else {
             return moneyArray.count
         }
@@ -440,6 +445,8 @@ extension MakeGroupController: UIPickerViewDelegate {
         if pickerView == self.placePickerView {
             guard let text = Place(rawValue: row)?.name else { return }
             placeTextField.text = text
+        } else if pickerView == self.dayPickerView {
+            timeTextField.text = dayArray[row]
         } else {
             levelTextField.text = moneyArray[row]
         }
@@ -448,6 +455,8 @@ extension MakeGroupController: UIPickerViewDelegate {
         if pickerView == self.placePickerView {
             guard let text = Place(rawValue: row)?.name else { return nil }
             return text
+        } else if pickerView == self.dayPickerView {
+            return dayArray[row]
         } else {
             return moneyArray[row]
         }
@@ -455,9 +464,6 @@ extension MakeGroupController: UIPickerViewDelegate {
 }
 // Mark getFriendDelegate
 extension MakeGroupController: FetchMyDataDelegate {
-    func fetchMyTeamData(teamArray: [TeamModel]) {
-        print(#function)
-    }
     func fetchMyFriendData(friendArray: [User]) {
         self.friends = friendArray
     }

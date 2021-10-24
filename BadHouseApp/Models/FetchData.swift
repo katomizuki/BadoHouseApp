@@ -36,6 +36,7 @@ protocol FetchMyDataDelegate: AnyObject {
 protocol FetchSearchDataDelegate: AnyObject {
     func fetchSearchUser(userArray: [User], bool: Bool)
     func fetchSearchGroup(groupArray: [TeamModel], bool: Bool)
+    func fetchSearchDetailGroup(groupArray: [TeamModel])
 }
 // Mark VideoProtocol
 protocol FetchVideoDataDelegate: AnyObject {
@@ -563,6 +564,34 @@ class FetchFirestoreData {
             self.searchDelegate?.fetchSearchUser(userArray: userArray, bool: bool)
         }
     }
+    // Mark SearchDetailGroup
+    func searchDetailGroup(day: String, money: String, place: String) {
+        var groupArray = [TeamModel]()
+        Ref.TeamRef.getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let document = snapShot?.documents else { return }
+            document.forEach { data in
+                let safeData = data.data()
+                if let team = TeamModel(dic: safeData) {
+                    groupArray.append(team)
+                }
+            }
+            print(groupArray)
+            if day != "" {
+                groupArray = groupArray.filter { $0.teamTime.contains(day) }
+            }
+            if money != "" {
+                groupArray = groupArray.filter { $0.teamLevel.contains(money) }
+            }
+            if place != "" {
+                groupArray = groupArray.filter { $0.teamPlace.contains(place) }
+            }
+            self.searchDelegate?.fetchSearchDetailGroup(groupArray: groupArray)
+        }
+    }
     // Mark searchTeamPlayerLevelcount
     func searchTeamPlayerLevelCount(teamPlayers: [User]) {
         var level1 = 0
@@ -634,15 +663,17 @@ extension FetchSearchDataDelegate {
     }
     func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
     }
+    func fetchSearchDetailGroup(groupArray: [TeamModel]) {
+    }
 }
 extension FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
     }
-    func fetchMyChatRoomData(chatRoomArray: [ChatRoom]){
+    func fetchMyChatRoomData(chatRoomArray: [ChatRoom]) {
     }
     func fetchMyChatListData(userArray: [User],
                              anotherArray: [User],
                              lastChatArray: [Chat],
-                             chatModelArray: [ChatRoom]){
+                             chatModelArray: [ChatRoom]) {
     }
 }
