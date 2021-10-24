@@ -111,17 +111,20 @@ class GroupDetailController: UIViewController {
     }
     private func setUpTeamPlayer() {
         print(#function)
+        let group = DispatchGroup()
         guard let teamId = team?.teamId else { return }
         TeamService.getTeamPlayerData(teamId: teamId) { membersId in
+            group.enter()
             self.teamPlayers = []
             for i in 0..<membersId.count {
                 let teamPlayerId = membersId[i]
                 UserService.getUserData(uid: teamPlayerId) { teamPlayer in
+                    defer { group.leave() }
                     guard let teamPlayer = teamPlayer else { return }
                     self.teamPlayers.append(teamPlayer)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            group.notify(queue: .main) {
                 self.fetchData.fetchGenderCountData(teamPlayers: self.teamPlayers)
                 self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamPlayers)
                 self.indicatorView.stopAnimating()
