@@ -90,6 +90,7 @@
 		D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */; };
+		D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860202725064300085ABD /* SearchDetailGroupController.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
@@ -196,6 +197,7 @@
 		D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatController.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPagerController.swift; sourceTree = "<group>"; };
+		D3F860202725064300085ABD /* SearchDetailGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailGroupController.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */,
 				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
 				D3D3D37A2721733200E2853A /* BlockController.swift */,
+				D3F860202725064300085ABD /* SearchDetailGroupController.swift */,
 			);
 			path = GroupsAndFriends;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				D3977167270959A70025BE19 /* TornamentListController.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */,
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
+				D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */,

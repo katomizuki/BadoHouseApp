@@ -28,6 +28,7 @@ class GroupSearchController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapRightButtonItem))
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
@@ -51,6 +52,12 @@ class GroupSearchController: UIViewController {
         format.imageSize = CGSize(width: 200, height: 200)
         format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? .systemGray
         view.emptyState.format = format
+    }
+    // Mark selector
+    @objc private func didTapRightButtonItem() {
+        let vc = SearchDetailGroupController()
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
     }
 }
 // Mark tableViewDataSource
@@ -131,5 +138,10 @@ extension GroupSearchController: FetchSearchDataDelegate {
 extension GroupSearchController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()
+    }
+}
+extension GroupSearchController: SearchDetailGroupDelegate {
+    func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
+        vc.dismiss(animated: true, completion: nil)
     }
 }

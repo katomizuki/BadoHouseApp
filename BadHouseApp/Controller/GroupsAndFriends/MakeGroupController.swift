@@ -38,7 +38,7 @@ class MakeGroupController: UIViewController {
         return textField
     }()
     private let timeTextField: UITextField = {
-        let textField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日○時から,不定期等")
+        let textField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日")
         textField.tag = 2
         textField.returnKeyType = .next
         textField.keyboardType = .namePhonePad
@@ -139,8 +139,8 @@ class MakeGroupController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
     private let placePickerView = UIPickerView()
-//    private let placeArray = Constants.Data.placeArray
     private let moneyArray = Constants.Data.moneyArray
+    private let dayArray = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
