@@ -114,9 +114,9 @@ class GroupDetailController: UIViewController {
         let group = DispatchGroup()
         guard let teamId = team?.teamId else { return }
         TeamService.getTeamPlayerData(teamId: teamId) { membersId in
-            group.enter()
             self.teamPlayers = []
             for i in 0..<membersId.count {
+                group.enter()
                 let teamPlayerId = membersId[i]
                 UserService.getUserData(uid: teamPlayerId) { teamPlayer in
                     defer { group.leave() }
