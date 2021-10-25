@@ -6,6 +6,7 @@ import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 import CDAlertView
+import SkeletonView
 
 protocol UserDismissDelegate: AnyObject {
     func userVCdismiss(vc: MyPageUserInfoController)
@@ -58,7 +59,9 @@ class MyPageUserInfoController: UIViewController {
     }
     private var introduction = ""
     private lazy var backButton: UIButton = {
-        let button = UIButton(type: .system).createProfileTopButton(title: "もどる")
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
@@ -119,9 +122,10 @@ class MyPageUserInfoController: UIViewController {
         scrollView.addSubview(officialButton)
         backButton.anchor(top: scrollView.topAnchor,
                           left: view.leftAnchor,
-                          paddingTop: 50,
+                          paddingTop: 0,
                           paddingLeft: 15,
-                          width: 80)
+                          width: 35,
+                          height: 35)
         saveButton.anchor(top: scrollView.topAnchor,
                           right: view.rightAnchor,
                           paddingTop: 50,

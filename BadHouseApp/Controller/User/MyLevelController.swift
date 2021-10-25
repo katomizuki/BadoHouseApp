@@ -8,7 +8,8 @@ class MyLevelController: UIViewController {
     weak var delegate: LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
-            backButton.updateBackButton()
+            backButton.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+            backButton.tintColor = Constants.AppColor.OriginalBlue
             backButton.addTarget(self, action: #selector(backtoUser), for: .touchUpInside)
         }
     }
