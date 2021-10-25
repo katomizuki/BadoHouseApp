@@ -10,6 +10,7 @@ protocol getDetailDelegate: AnyObject {
                           money: String,
                           time: String,
                           vc: DetailSearchController)
+    func dismissDetailSearchVC(vc: DetailSearchController)
 }
 class DetailSearchController: UIViewController {
     // Mark Properties
@@ -63,6 +64,20 @@ class DetailSearchController: UIViewController {
     }
     private var dateString = String()
     private var eventArray = [Event]()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
+    private let searchLabel: UILabel = {
+        let label = UILabel()
+        label.text = "検索条件"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .darkText
+        return label
+    }()
     weak var delegate: getDetailDelegate?
     // Mark LifeCycle
     override func viewDidLoad() {
@@ -72,6 +87,18 @@ class DetailSearchController: UIViewController {
         setupBorder()
         setupAddtarget()
         setupDelegate()
+        view.addSubview(backButton)
+        view.addSubview(searchLabel)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
+        searchLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                           centerX: view.centerXAnchor,
+                           centerY: backButton.centerYAnchor,
+                           height: 35)
     }
     // Mark setupMethod
     private func setupLayer() {
@@ -172,6 +199,9 @@ class DetailSearchController: UIViewController {
         default:
             break
         }
+    }
+    @objc private func back() {
+        self.delegate?.dismissDetailSearchVC(vc: self)
     }
     // Mark IBAction
     @IBAction private func search(_ sender: Any) {

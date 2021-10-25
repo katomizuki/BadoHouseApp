@@ -22,13 +22,13 @@ class MyPageUserInfoController: UIViewController {
     weak var delegate: UserDismissDelegate?
     private lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system).createProfileTopButton(title: "ログアウト")
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
     }()
     private lazy var officialButton: UIButton = {
         let button = UIButton(type: .system).createProfileTopButton(title: "運営元")
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.addTarget(self, action: #selector(handleOfficial), for: .touchUpInside)
         return button
     }()
@@ -79,7 +79,6 @@ class MyPageUserInfoController: UIViewController {
         return label
     }()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
-    private let dismissButton = UIButton(type: .system).createAuthButton(text: "もどる")
     lazy var infoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -175,6 +174,7 @@ class MyPageUserInfoController: UIViewController {
         badmintonTime = user?.badmintonTime ?? "未設定"
         place = user?.place ?? "未設定"
         age = user?.age ?? "未設定"
+        saveButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
     }
     private func setupBinding() {
         print(#function)

@@ -2288,20 +2288,6 @@
                                     <constraint firstAttribute="width" constant="300" id="fqx-8Q-fPo"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbK-Ok-cdK">
-                                <rect key="frame" x="130" y="548" width="154" height="50"/>
-                                <color key="backgroundColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="GoO-9J-CdQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
-                                <state key="normal" title="保存">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="back:" destination="uRX-ig-1c2" eventType="touchUpInside" id="X37-tE-yyy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8R0-Eu-JP3">
                                 <rect key="frame" x="15" y="15" width="35" height="35"/>
                                 <constraints>
@@ -2327,20 +2313,16 @@
                             <constraint firstItem="IIa-je-SLf" firstAttribute="centerX" secondItem="Lh4-xl-MdN" secondAttribute="centerX" id="I4B-H4-05F"/>
                             <constraint firstItem="gNZ-W2-Ped" firstAttribute="top" secondItem="Lh4-xl-MdN" secondAttribute="top" constant="156" id="Izt-9m-Xme"/>
                             <constraint firstItem="8R0-Eu-JP3" firstAttribute="leading" secondItem="1Yd-Ln-2oo" secondAttribute="leading" constant="15" id="KBr-4C-ibt"/>
-                            <constraint firstItem="nbK-Ok-cdK" firstAttribute="centerX" secondItem="Lh4-xl-MdN" secondAttribute="centerX" id="bP0-Nj-KPa"/>
-                            <constraint firstItem="nbK-Ok-cdK" firstAttribute="top" secondItem="h4n-2W-krP" secondAttribute="bottom" constant="37.5" id="edD-EP-O0t"/>
                             <constraint firstItem="IIa-je-SLf" firstAttribute="top" secondItem="gNZ-W2-Ped" secondAttribute="bottom" constant="10" id="fux-IM-dOa"/>
                             <constraint firstItem="gNZ-W2-Ped" firstAttribute="leading" secondItem="1Yd-Ln-2oo" secondAttribute="leading" constant="67" id="n7S-m3-X8U"/>
                             <constraint firstItem="h4n-2W-krP" firstAttribute="top" secondItem="gNZ-W2-Ped" secondAttribute="bottom" constant="24.5" id="pPB-sQ-yXG"/>
                             <constraint firstItem="gNZ-W2-Ped" firstAttribute="top" secondItem="TZQ-tV-5Zi" secondAttribute="bottom" constant="8" symbolic="YES" id="tWJ-y1-AL8"/>
-                            <constraint firstItem="nbK-Ok-cdK" firstAttribute="leading" secondItem="1Yd-Ln-2oo" secondAttribute="leading" constant="130" id="wuk-Ma-Rh1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ujz-09-OP2"/>
                     <connections>
                         <outlet property="backButton" destination="8R0-Eu-JP3" id="wpy-Zd-Htp"/>
                         <outlet property="levelLabel" destination="TZQ-tV-5Zi" id="0Dp-Y2-PwV"/>
-                        <outlet property="saveButton" destination="nbK-Ok-cdK" id="Xck-S3-bA8"/>
                         <outlet property="slider" destination="h4n-2W-krP" id="lbk-up-9Tj"/>
                         <outlet property="textView" destination="gNZ-W2-Ped" id="GKH-tv-wqs"/>
                     </connections>

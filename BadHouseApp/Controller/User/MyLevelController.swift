@@ -42,6 +42,9 @@ class MyLevelController: UIViewController {
     }
     // Mark selector
     @objc private func backtoUser() {
+        selectedLevel = levelLabel.text ?? "1"
+        let vc = self.presentingViewController as! MyPageUserInfoController
+        vc.level = selectedLevel
         self.delegate?.levelDismiss(vc: self)
     }
     @objc private func changeLevel(sender: UISlider) {
@@ -89,12 +92,12 @@ class MyLevelController: UIViewController {
         }
     }
     // Mark IBAction
-    @IBAction func back(_ sender: Any) {
-        selectedLevel = levelLabel.text ?? "1"
-        let vc = self.presentingViewController as! MyPageUserInfoController
-        vc.level = selectedLevel
-        self.delegate?.levelDismiss(vc: self)
-    }
+//    @IBAction func back(_ sender: Any) {
+//        selectedLevel = levelLabel.text ?? "1"
+//        let vc = self.presentingViewController as! MyPageUserInfoController
+//        vc.level = selectedLevel
+//        self.delegate?.levelDismiss(vc: self)
+//    }
     // Mark setupMethod
     private func setupSlider(level: String) {
         switch level {

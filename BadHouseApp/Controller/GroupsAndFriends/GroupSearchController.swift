@@ -156,4 +156,7 @@ extension GroupSearchController: SearchDetailGroupDelegate {
         vc.dismiss(animated: true, completion: nil)
         fetchData.searchDetailGroup(day: time, money: money, place: place)
     }
+    func dismissGroupVC(vc: SearchDetailGroupController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
 }

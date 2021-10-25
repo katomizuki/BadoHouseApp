@@ -2,10 +2,10 @@ import UIKit
 import SkeletonView
 protocol SearchDetailGroupDelegate: AnyObject {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String)
+    func dismissGroupVC(vc: SearchDetailGroupController)
 }
 class SearchDetailGroupController: UIViewController {
     // Mark Properties
-    private let searchLabel: UILabel = ProfileLabel(title: "チーム詳細検索", num: 24)
     private let timeTextField = ProfileTextField(placeholder: "主な活動　○曜日")
     private let ｍoneyTextField = ProfileTextField(placeholder: "会費　〇〇円/月")
     private let placeTextField = ProfileTextField(placeholder: "場所  〇〇県")
@@ -22,6 +22,20 @@ class SearchDetailGroupController: UIViewController {
     private let moneyArray = Constants.Data.moneyArray
     private let dayArray = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
     weak var delegate: SearchDetailGroupDelegate?
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
+    private let searchLabel: UILabel = {
+        let label = UILabel()
+        label.text = "検索条件"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .darkText
+        return label
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +55,6 @@ class SearchDetailGroupController: UIViewController {
         timeTextField.keyboardType = .namePhonePad
         timeTextField.backgroundColor = UIColor(named: "TFColor")
         timeTextField.layer.borderColor = UIColor.systemGray.cgColor
-        searchLabel.textColor = .white
-        searchLabel.backgroundColor = Constants.AppColor.OriginalBlue
-        navigationItem.title = "チーム詳細検索"
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let stack = UIStackView(arrangedSubviews: [timeTextField,
                                                    ｍoneyTextField,
@@ -51,16 +62,22 @@ class SearchDetailGroupController: UIViewController {
                                                    searchButton])
         view.addSubview(stack)
         view.addSubview(searchLabel)
+        view.addSubview(backButton)
         timeTextField.heightAnchor.constraint(equalToConstant: 45).isActive = true
         stack.axis = .vertical
         stack.spacing = 30
         stack.distribution = .fillEqually
-        searchLabel.anchor(bottom: stack.topAnchor,
-                           left: view.leftAnchor,
-                           right: view.rightAnchor,
-                           paddingBottom: 25,
-                           paddingRight: 0,
-                           paddingLeft: 0,
+        view.addSubview(backButton)
+        view.addSubview(searchLabel)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
+        searchLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                           centerX: view.centerXAnchor,
+                           centerY: backButton.centerYAnchor,
                            height: 35)
         stack.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                      left: view.leftAnchor,
@@ -101,6 +118,9 @@ class SearchDetailGroupController: UIViewController {
         placeTextField.endEditing(true)
         ｍoneyTextField.endEditing(true)
         timeTextField.endEditing(true)
+    }
+    @objc private func back() {
+        self.delegate?.dismissGroupVC(vc: self)
     }
 }
 // Mark pickerDelegate

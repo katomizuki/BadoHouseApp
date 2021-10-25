@@ -274,6 +274,9 @@ extension HomeViewController: getDetailDelegate {
                                         time: time)
         vc.dismiss(animated: true, completion: nil)
     }
+    func dismissDetailSearchVC(vc: DetailSearchController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
 }
 // Mark CalendarDelegate
 extension HomeViewController: CalendarDelegate {
