@@ -21,6 +21,13 @@ class BlockController: UIViewController {
         button.addTarget(self, action: #selector(handlerBlock), for: .touchUpInside)
         return button
     }()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -46,14 +53,23 @@ class BlockController: UIViewController {
                           centerX: view.centerXAnchor,
                           width: view.frame.width - 300,
                           height: 40)
+        view.addSubview(backButton)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
     }
     @objc private func handlerBlock() {
         print(#function)
         guard let text = blockTextView.text else { return }
-        guard let user = user else {
-            return
-        }
+        guard let user = user else { return }
         BlockService.sendBlockData(userId: user.uid, reason: text)
+        self.delegate?.blockDismiss(vc: self)
+    }
+    // Mark Selector
+    @objc private func back() {
         self.delegate?.blockDismiss(vc: self)
     }
 }

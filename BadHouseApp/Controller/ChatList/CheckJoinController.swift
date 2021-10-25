@@ -58,7 +58,9 @@ extension CheckJoinController: FetchMyDataDelegate {
                 self.notificationArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print(self.notificationArray)
+            print(self.eventArray)
             self.tableView.reloadData()
         }
     }

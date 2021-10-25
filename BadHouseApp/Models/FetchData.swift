@@ -1,7 +1,7 @@
 import Foundation
 import Firebase
 import CoreLocation
-import RxSwift
+
 // Mark ChatsProtocol
 protocol FetchChartsDataDelegate: AnyObject {
     func fetchGenderCount(countArray: [Int])
@@ -253,55 +253,54 @@ class FetchFirestoreData {
             self.myDataDelegate?.fetchMyGroupChatData(groupChatModelArray: groupChat)
         }
     }
-    // Mark FetchEventPrejoinData
     func fetchEventPreJoinData(eventArray: [Event]) {
-        var stringArray = [[String]]()
-        for i in 0..<eventArray.count {
-            let eventId = eventArray[i].eventId
-            Ref.EventRef.document(eventId).collection("PreJoin").addSnapshotListener { snapShot, error in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let document = snapShot?.documents else { return }
-                var tempArray = [String]()
-                document.forEach { data in
-                    let safeData = data.data()
-                    let id = safeData["id"] as? String ?? ""
-                    print(id)
-                    tempArray.append(id)
-                }
-                stringArray.append(tempArray)
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.myDataDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
-        })
-    }
+          var stringArray = [[String]]()
+          for i in 0..<eventArray.count {
+              let eventId = eventArray[i].eventId
+              Ref.EventRef.document(eventId).collection("PreJoin").addSnapshotListener { snapShot, error in
+                  if let error = error {
+                      print(error)
+                      return
+                  }
+                  guard let document = snapShot?.documents else { return }
+                  var tempArray = [String]()
+                  document.forEach { data in
+                      let safeData = data.data()
+                      let id = safeData["id"] as? String ?? ""
+                      print(id)
+                      tempArray.append(id)
+                  }
+                  stringArray.append(tempArray)
+              }
+          }
+          DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+              self.myDataDelegate?.fetchMyPrejoinData(preJoinArray: stringArray)
+          })
+      }
     // Mark FetchEventJoin
-    func fetchEventJoinData(eventArray: [Event]) {
-        var stringArray = [[String]]()
-        for i in 0..<eventArray.count {
-            let eventId = eventArray[i].eventId
-            Ref.EventRef.document(eventId).collection("Join").addSnapshotListener { snapShot, error in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let document = snapShot?.documents else { return }
-                var tempArray = [String]()
-                document.forEach { data in
-                    let safeData = data.data()
-                    let id = safeData["id"] as? String ?? ""
-                    tempArray.append(id)
-                }
-                stringArray.append(tempArray)
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.myDataDelegate?.fetchMyJoinData(joinArray: stringArray)
-        })
-    }
+       func fetchEventJoinData(eventArray: [Event]) {
+           var stringArray = [[String]]()
+           for i in 0..<eventArray.count {
+               let eventId = eventArray[i].eventId
+               Ref.EventRef.document(eventId).collection("Join").addSnapshotListener { snapShot, error in
+                   if let error = error {
+                       print(error)
+                       return
+                   }
+                   guard let document = snapShot?.documents else { return }
+                   var tempArray = [String]()
+                   document.forEach { data in
+                       let safeData = data.data()
+                       let id = safeData["id"] as? String ?? ""
+                       tempArray.append(id)
+                   }
+                   stringArray.append(tempArray)
+               }
+           }
+           DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+               self.myDataDelegate?.fetchMyJoinData(joinArray: stringArray)
+           })
+       }
     // Mark FetchVideoData
     func fetchVideoData() {
         var videoArray = [VideoModel]()

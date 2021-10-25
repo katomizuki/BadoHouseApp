@@ -24,6 +24,7 @@ class TalkController: UIViewController {
     private var groupChatArray = [GroupChatModel]()
     private var sortGroupArray = [TeamModel]()
     private var sortChatModelArray = [ChatRoom]()
+    private var eventArray = [Event]()
     private lazy var refreshView: UIRefreshControl = {
         let view = UIRefreshControl()
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -39,6 +40,12 @@ class TalkController: UIViewController {
         setupNav()
         setupIndicator()
         indicatorView.startAnimating()
+        fetchData.myDataDelegate = self
+        EventServie.getmyEventId { [weak self] event in
+            guard let self = self else { return }
+            self.eventArray = event
+            self.fetchData.fetchEventJoinData(eventArray: event)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         setupData()
@@ -263,6 +270,10 @@ extension TalkController: FetchMyDataDelegate {
             self.fetchData.fetchGroupChatData(teamId: teamId)
         }
     }
+    func fetchMyJoinData(joinArray: [[String]]) {
+    }
+    func fetchMyPrejoinData(preJoinArray: [[String]]) {
+    }
 }
 // Mark ScheduleDelegate
 extension TalkController: MyScheduleDelegate {
@@ -270,4 +281,3 @@ extension TalkController: MyScheduleDelegate {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-

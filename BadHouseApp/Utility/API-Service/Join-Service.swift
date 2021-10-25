@@ -14,7 +14,7 @@ struct JoinService {
                 let safeData = data.data()
                 let id = safeData["id"] as? String ?? ""
                 Ref.UsersRef.document(uid).collection("PreJoin").document(id).setData(["id": id,
-                                                                                       "alertOrNot": true])
+                    "alertOrNot": true])
             }
         }
     }
@@ -22,7 +22,7 @@ struct JoinService {
     static func sendPreJoinDataToEventAndUser(myId: String, eventId: String, leaderId: String) {
         Ref.EventRef.document(eventId).collection("PreJoin").document(myId).setData(["id": myId])
         Ref.UsersRef.document(leaderId).collection("PreJoin").document(myId).setData(["id": myId,
-                                                                                      "alertOrNot": false])
+            "alertOrNot": false])
         Ref.UsersRef.document(myId).collection("Join").document(eventId).setData(["id": eventId])
     }
     static func searchPreJoinData(myId: String, eventId: String, completion: @escaping(Bool) -> Void) {
@@ -72,6 +72,24 @@ struct JoinService {
                 result = true
             }
             completion(result)
+        }
+    }
+    static func helperPrejoin(eventId: String, completion:@escaping([String]) -> Void) {
+        print(eventId)
+        var idArray = [String]()
+        Ref.EventRef.document(eventId).collection("PreJoin").getDocuments { snapShot, error in
+            if let error = error {
+                print(error)
+            } else {
+                guard let document = snapShot?.documents else { return }
+                document.forEach { data in
+                    let safeData = data.data()
+                    let id  = safeData["id"] as? String ?? ""
+                    idArray.append(id)
+                }
+            }
+            print(idArray,"⚡️")
+            completion(idArray)
         }
     }
 }

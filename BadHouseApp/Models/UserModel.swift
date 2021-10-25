@@ -19,7 +19,7 @@ struct User {
               let name = dic["name"] as? String,
               let createdAt: Timestamp = dic["createdAt"] as? Timestamp,
               let uid = dic["uid"] as? String,
-              let updateAt:Timestamp = dic["updatedAt"] as? Timestamp else { return nil }
+              let updateAt: Timestamp = dic["updatedAt"] as? Timestamp else { return nil }
         self.email = email
         self.name = name
         self.createdAt = createdAt

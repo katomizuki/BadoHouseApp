@@ -16,6 +16,7 @@ class CheckPreJoinController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupIndicator()
+        indicatorView.startAnimating()
     }
     override func viewWillAppear(_ animated: Bool) {
         setupData()
@@ -70,7 +71,7 @@ extension CheckPreJoinController: FetchMyDataDelegate {
                 self.notificationArray.append(tempArray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.indicatorView.stopAnimating()
             self.tableView.reloadData()
         }
@@ -117,6 +118,7 @@ extension CheckPreJoinController: UITableViewDelegate {
             let eventId = self.eventArray[indexPath.section].eventId
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
             DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "PreJoin", subId: userId)
+            print(eventId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             let meId = AuthService.getUserId()
             JoinService.sendJoinData(eventId: eventId, uid: userId)

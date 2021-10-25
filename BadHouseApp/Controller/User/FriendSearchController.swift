@@ -19,12 +19,26 @@ class FriendSearchController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
     private let cellId = Constants.CellId.searchCell
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupDelegate()
         setupEmptyState()
+        view.addSubview(backButton)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
@@ -64,6 +78,10 @@ class FriendSearchController: UIViewController {
                 UserService.friendAction(myId: AuthService.getUserId(), friend: friend, bool: true)
             }
         }
+    }
+    // Mark Selector
+    @objc private func back() {
+        dismiss(animated: true, completion: nil)
     }
 }
 // Mark UITableDataSource
