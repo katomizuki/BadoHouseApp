@@ -23,6 +23,7 @@ class MakeEventController: UIViewController {
             finishPicker.locale = Locale(identifier: "ja-JP")
         }
     }
+    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet private weak var maxLevelLabel: UILabel!
     @IBOutlet private weak var minLevelLabel: UILabel!
     @IBOutlet private weak var titleTextField: UITextField! {
@@ -404,6 +405,9 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
 extension MakeEventController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         pickerArray = teamArray
+        if teamArray.isEmpty {
+            warningLabel.isHidden = false
+        }
         if pickerArray.count == 1 {
             self.selectedTeam = pickerArray[0]
         }

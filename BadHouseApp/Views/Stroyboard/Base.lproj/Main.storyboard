@@ -2544,6 +2544,12 @@
                                                         <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属しているチームがないのでイベントを作成できません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqq-2z-TLW">
+                                                        <rect key="frame" x="0.0" y="23" width="374" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                        <color key="textColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zud-m0-Kvc">
                                                         <rect key="frame" x="0.0" y="23" width="374" height="216"/>
                                                     </pickerView>
@@ -2867,6 +2873,7 @@
                         <outlet property="startPicker" destination="l6L-K6-nGv" id="UuY-Gk-ewr"/>
                         <outlet property="teamPickerView" destination="zud-m0-Kvc" id="0qB-RI-hPk"/>
                         <outlet property="titleTextField" destination="Ual-0V-WvQ" id="lct-xx-9Ei"/>
+                        <outlet property="warningLabel" destination="vqq-2z-TLW" id="zK8-iT-ba0"/>
                         <segue destination="gjh-my-rgV" kind="show" identifier="show" id="JeJ-Yd-jy7"/>
                         <segue destination="ogp-MK-TpW" kind="presentation" identifier="gotoMap" id="IWQ-rf-83W"/>
                     </connections>

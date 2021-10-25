@@ -20,7 +20,7 @@ class RegisterBindings: RegisterBindingInputs, RegisterBindingsOutputs {
     var nameTextOutput = PublishSubject<String>()
     var emailTextOutput = PublishSubject<String>()
     var passwordTextOutput = PublishSubject<String>()
-    var valideRegisterSubject = BehaviorSubject<Bool>(value: false)
+    var valideRegisterSubject = BehaviorSubject<Bool>(value: false)//初期値を入れられる。
     // Mark Observer(監視者)
     var nameTextInput: AnyObserver<String> {
         nameTextOutput.asObserver()
