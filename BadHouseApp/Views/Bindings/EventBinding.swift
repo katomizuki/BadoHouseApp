@@ -4,7 +4,7 @@ import RxSwift
 // Mark InputProtocol
 protocol MakeEventInputProtocol {
     var dateTextInput: AnyObserver<String> { get }
-    var groupTextInput: AnyObserver<String> { get }
+//    var groupTextInput: AnyObserver<String> { get }
     var startTextInput: AnyObserver<String> { get }
     var finishTextInput: AnyObserver<String> { get }
     var titleTextInput: AnyObserver<String> { get }
@@ -13,7 +13,7 @@ protocol MakeEventInputProtocol {
 // Mark OutputProtocol
 protocol MakeEventOutputProtocol {
     var dateTextOutput: PublishSubject<String> { get }
-    var groupTextOutput: PublishSubject<String> { get }
+//    var groupTextOutput: PublishSubject<String> { get }
     var startTextOutput: PublishSubject<String> { get }
     var finishTextOutput: PublishSubject<String> { get }
     var titleTextOutput: PublishSubject<String> { get }
@@ -23,7 +23,7 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
     // Mark Observable
     private let disposeBag = DisposeBag()
     var dateTextOutput = PublishSubject<String>()
-    var groupTextOutput = PublishSubject<String>()
+//    var groupTextOutput = PublishSubject<String>()
     var titleTextOutput = PublishSubject<String>()
     var finishTextOutput = PublishSubject<String>()
     var startTextOutput = PublishSubject<String>()
@@ -33,9 +33,9 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
     var dateTextInput: AnyObserver<String> {
         dateTextOutput.asObserver()
     }
-    var groupTextInput: AnyObserver<String> {
-        groupTextOutput.asObserver()
-    }
+//    var groupTextInput: AnyObserver<String> {
+//        groupTextOutput.asObserver()
+//    }
     var titleTextInput: AnyObserver<String> {
         titleTextOutput.asObserver()
     }
@@ -57,11 +57,11 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
             .map { text -> Bool in
                 return text.count >= 1
             }
-        let groupValid = groupTextOutput
-            .asObservable()
-            .map { text in
-                return true
-            }
+//        let groupValid = groupTextOutput
+//            .asObservable()
+//            .map { text -> Bool in
+//                return true
+//            }
         let startValid = startTextOutput
             .asObservable()
             .map { text -> Bool in
@@ -82,7 +82,7 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
             .map { text ->Bool in
                 return text.count >= 1
             }
-        Observable.combineLatest(dateValid, groupValid, startValid, finishValid, moneyValid, titleValid) { $0 && $1 && $2 && $3 && $4 && $5 }
+        Observable.combineLatest(dateValid, startValid, finishValid, moneyValid, titleValid) { $0 && $1 && $2 && $3 && $4 }
         .subscribe {validAll in
             self.validMakeSubject.onNext(validAll)
         }

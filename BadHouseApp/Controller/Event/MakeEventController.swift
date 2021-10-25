@@ -124,6 +124,7 @@ class MakeEventController: UIViewController {
         moneyPickerView.dataSource = self
         titleTextField.delegate = self
         fetchData.myDataDelegate = self
+        teamPickerView.delegate = self
     }
     private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView
@@ -185,17 +186,19 @@ class MakeEventController: UIViewController {
                 self.eventBinding.titleTextInput.onNext(title)
             }
             .disposed(by: disposeBag)
-        teamPickerView.rx.itemSelected.asObservable()
-            .subscribe { [weak self] element in
-                guard let self = self else { return }
-                if let data = element.element {
-                    let index = data.row
-                    let teamName = self.pickerArray[index].teamName
-                    self.eventBinding.groupTextInput.onNext(teamName)
-                    self.selectedTeam = self.pickerArray[index]
-                }
-            }
-            .disposed(by: disposeBag)
+//        teamPickerView.rx.itemSelected.asObservable()
+//            .subscribe { [weak self] element in
+//                guard let self = self else { return }
+//                if let data = element.element {
+//                    let index = data.row
+//                    let teamName = self.pickerArray[index].teamName
+//                    print(teamName)
+//                    self.eventBinding.groupTextInput.onNext(teamName)
+//                    self.selectedTeam = self.pickerArray[index]
+//                    print(self.selectedTeam)
+//                }
+//            }
+//            .disposed(by: disposeBag)
         eventBinding.valideMakeDriver
             .drive { [weak self] validAll in
                 guard let self = self else { return }
@@ -331,6 +334,10 @@ extension MakeEventController: UIPickerViewDelegate {
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == teamPickerView {
+            self.selectedTeam = pickerArray[row]
+            print(selectedTeam)
+        }
         if pickerView == moneyPickerView {
             moneyTextField.text = moneyArray[row]
         }
