@@ -121,6 +121,7 @@ class TalkController: UIViewController {
         UserService.getUserData(uid: AuthService.getUserId()) { user in
             guard let me = user else { return }
             let vc = MyScheduleController(user: me)
+            vc.delegate = self
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -230,7 +231,6 @@ extension TalkController: FetchChatDataDelgate {
         self.chatModelArray = chatModelArray
         let sortArray = self.sortArray()
         makeSortArray(sortArray: sortArray)
-        print(sortLastCommentArray,"😓😓✊")
         DispatchQueue.main.async {
             self.indicatorView.stopAnimating()
             self.tableView.reloadData()
@@ -264,3 +264,10 @@ extension TalkController: FetchMyDataDelegate {
         }
     }
 }
+// Mark ScheduleDelegate
+extension TalkController: MyScheduleDelegate {
+    func dismissMyScheduleVC(vc: MyScheduleController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
+}
+

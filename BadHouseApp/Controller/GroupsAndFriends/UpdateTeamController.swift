@@ -25,8 +25,15 @@ class UpdateTeamController: UIViewController {
     private lazy var button: UIButton = {
         let button = UIButton()
         button.updateButton(radius: 15, backColor: Constants.AppColor.OriginalBlue, titleColor: .white, fontSize: 16)
-        button.setTitle("保存", for: .normal)
+        button.setTitle("保存する", for: .normal)
         button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+        return button
+    }()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
     private let imagePicker = UIImagePickerController()
@@ -49,6 +56,7 @@ class UpdateTeamController: UIViewController {
         view.addSubview(stackView)
         view.addSubview(iv)
         view.addSubview(button)
+        view.addSubview(backButton)
         iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                   paddingTop: 100,
                   centerX: view.centerXAnchor,
@@ -68,6 +76,12 @@ class UpdateTeamController: UIViewController {
                       paddingRight: 30,
                       paddingLeft: 30,
                       height: 50)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
     }
     private func setupteamInfo() {
         placeTextField.text = team?.teamPlace
@@ -105,6 +119,9 @@ class UpdateTeamController: UIViewController {
     @objc private func handleImagePicker() {
         print(#function)
         present(imagePicker, animated: true, completion: nil)
+    }
+    @objc private func back() {
+        self.delegate?.updateTeamData(vc: self)
     }
 }
 // Mark UIImagePickerDelegate

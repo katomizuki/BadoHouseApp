@@ -284,6 +284,9 @@ extension HomeViewController: CalendarDelegate {
         fetchData.searchEventDateData(dateString: dateString, text: text)
         vc.dismiss(animated: true, completion: nil)
     }
+    func dismissCalendarVC(vc: CalendarViewController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
 }
 // Mark EmptyStateDelegate
 extension HomeViewController: EmptyStateDelegate {

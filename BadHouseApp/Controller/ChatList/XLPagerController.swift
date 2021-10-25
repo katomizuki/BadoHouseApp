@@ -9,13 +9,20 @@ enum XLPager: String {
 }
 class XLPagerController: ButtonBarPagerTabStripViewController {
     // Mark properties
-    lazy var collectionView: ButtonBarView = {
+    private lazy var collectionView: ButtonBarView = {
         let cv = buttonBarView
         return cv!
     }()
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let sv = containerView
         return sv!
+    }()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
     }()
     // Mark lifecycle
     override func viewDidLoad() {
@@ -30,6 +37,13 @@ class XLPagerController: ButtonBarPagerTabStripViewController {
     private func setupUI() {
         view.addSubview(collectionView)
         view.addSubview(scrollView)
+        view.addSubview(backButton)
+        backButton.anchor(top: view.topAnchor,
+                           left: view.leftAnchor,
+                           paddingTop: 15,
+                           paddingLeft: 15,
+                           width: 35,
+                           height: 35)
     }
     // Mark helperMethod
     private func collectionAndScroll() {
@@ -76,5 +90,9 @@ class XLPagerController: ButtonBarPagerTabStripViewController {
         let firstVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! CheckPreJoinController
         let secondVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! CheckJoinController
         return [firstVC, secondVC]
+    }
+    // Mark Selector
+    @objc private func back() {
+        dismiss(animated: true)
     }
 }

@@ -4,7 +4,9 @@ import Firebase
 import SDWebImage
 import FSCalendar
 import FacebookCore
-
+protocol MyScheduleDelegate: AnyObject {
+    func dismissMyScheduleVC(vc: MyScheduleController)
+}
 class MyScheduleController: UIViewController {
     // Mark properties
     var me: User?
@@ -20,6 +22,14 @@ class MyScheduleController: UIViewController {
         let view = FSCalendar()
         return view
     }()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
+    weak var delegate: MyScheduleDelegate?
     // Mark lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +47,7 @@ class MyScheduleController: UIViewController {
         }
     }
     private func setupCalendar() {
+        view.addSubview(backButton)
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         calendar.delegate = self
         calendar.dataSource = self
@@ -44,10 +55,10 @@ class MyScheduleController: UIViewController {
         calendar.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                         left: view.leftAnchor,
                         right: view.rightAnchor,
-                        paddingTop: 10,
+                        paddingTop: 60,
                         paddingRight: 20,
                         paddingLeft: 20,
-                        height: 400)
+                        height: 350)
         calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
@@ -70,6 +81,12 @@ class MyScheduleController: UIViewController {
         calendar.calendarWeekdayView.weekdayLabels[6].font = UIFont.boldSystemFont(ofSize: 16)
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
     }
     private func setupTableView() {
         view.addSubview(tableview)
@@ -93,6 +110,10 @@ class MyScheduleController: UIViewController {
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    // Mark Selector
+    @objc private func back() {
+        self.delegate?.dismissMyScheduleVC(vc: self)
     }
 }
 // Mark tableviewdelegate

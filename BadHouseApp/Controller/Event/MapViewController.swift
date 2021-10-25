@@ -8,6 +8,7 @@ protocol SearchLocationProtocol: AnyObject {
                           placeName: String,
                           placeAddress: String,
                           vc: MapViewController)
+    func dismissMapVC(vc: MapViewController)
 }
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     // Mark Properties
@@ -47,11 +48,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
     // Mark LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.setRegion(defaultRegion, animated: false)
         searchBar.delegate = self
+        view.addSubview(backButton)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
     }
     override func viewWillAppear(_ animated: Bool) {
         searchBar.becomeFirstResponder()
@@ -85,6 +100,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                                         placeName: placeName,
                                         placeAddress: placeAddress,
                                         vc: self)
+    }
+    // Mark Selector
+    @objc private func back() {
+        self.delegate?.dismissMapVC(vc: self)
     }
 }
 // Mark searchBarDelegate

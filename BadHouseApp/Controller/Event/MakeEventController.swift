@@ -426,4 +426,7 @@ extension MakeEventController: SearchLocationProtocol {
         self.placeTextField.text = placeName
         self.placeAddress = placeAddress
     }
+    func dismissMapVC(vc: MapViewController) {
+        vc.dismiss(animated: true, completion: nil)
+    }
 }

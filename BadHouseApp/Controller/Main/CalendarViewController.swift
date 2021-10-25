@@ -4,6 +4,7 @@ import CDAlertView
 
 protocol CalendarDelegate: AnyObject {
     func searchCalendar(dateString: String, text: String, vc: CalendarViewController)
+    func dismissCalendarVC(vc: CalendarViewController)
 }
 class CalendarViewController: UIViewController {
     // MarkProperties
@@ -14,6 +15,13 @@ class CalendarViewController: UIViewController {
         let button = RegisterButton(text: "検索")
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
     private let textField: UITextField = RegisterTextField(placeholder: "場所名入力")
@@ -27,20 +35,27 @@ class CalendarViewController: UIViewController {
     private func setupUI() {
         view.addSubview(button)
         view.addSubview(textField)
+        view.addSubview(backButton)
         button.anchor(top: textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
-                      paddingTop: 30,
+                      paddingTop: 10,
                       paddingRight: 30,
                       paddingLeft: 30,
                       height: 45)
         textField.anchor(top: calendar.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
-                         paddingTop: 30,
+                         paddingTop: 10,
                          paddingRight: 30,
                          paddingLeft: 30,
                          height: 45)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.leftAnchor,
+                         paddingTop: 15,
+                         paddingLeft: 15,
+                         width: 35,
+                         height: 35)
     }
     private func setupCalendar() {
         calendar.delegate = self
@@ -86,6 +101,9 @@ class CalendarViewController: UIViewController {
             return
         }
         self.delegate?.searchCalendar(dateString: searchDateString, text: text, vc: self)
+    }
+    @objc private func back() {
+        self.delegate?.dismissCalendarVC(vc: self)
     }
 }
 // Mark FSCalendarDelegate
