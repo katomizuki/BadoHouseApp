@@ -2413,7 +2413,7 @@
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="〇〇学校,△△スポーツセンター" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wBM-v6-A5p">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="〇〇学校,△△スポーツセンター(必須)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wBM-v6-A5p">
                                                                 <rect key="frame" x="108" y="0.0" width="266" height="34"/>
                                                                 <color key="backgroundColor" name="TFColor"/>
                                                                 <gestureRecognizers/>
@@ -2476,7 +2476,7 @@
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="金額を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ntg-5n-Eyk">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="金額を入力してください(必須)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ntg-5n-Eyk">
                                                                 <rect key="frame" x="149" y="0.0" width="225" height="34"/>
                                                                 <color key="backgroundColor" name="TFColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2546,7 +2546,7 @@
                                                     </label>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属しているチームがないのでイベントを作成できません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqq-2z-TLW">
                                                         <rect key="frame" x="0.0" y="23" width="374" height="0.0"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                         <color key="textColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -3790,7 +3790,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="t41-KJ-vjm"/>
-        <segue reference="3Ng-cG-BBs"/>
+        <segue reference="VQy-IJ-T3o"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
         <segue reference="9Ym-mF-wrv"/>

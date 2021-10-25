@@ -57,11 +57,6 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
             .map { text -> Bool in
                 return text.count >= 1
             }
-//        let groupValid = groupTextOutput
-//            .asObservable()
-//            .map { text -> Bool in
-//                return true
-//            }
         let startValid = startTextOutput
             .asObservable()
             .map { text -> Bool in
