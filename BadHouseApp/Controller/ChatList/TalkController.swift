@@ -31,7 +31,7 @@ class TalkController: UIViewController {
         return view
     }()
     private var indicatorView: NVActivityIndicatorView!
-    // Mark lifeCycle
+    // MARK: -lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -55,7 +55,7 @@ class TalkController: UIViewController {
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    // Mark setupMethod
+    // MARK: -setupMethod
     private func setupNav() {
         navigationItem.title = "トーク"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
@@ -108,7 +108,7 @@ class TalkController: UIViewController {
             self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     private func cleanArray() {
         self.anotherUserArray = []
         self.userArray = []
@@ -119,7 +119,7 @@ class TalkController: UIViewController {
         self.sortLastCommentArray = []
         self.sortChatModelArray = []
     }
-    // Mark selector
+    // MARK: - selector
     @objc private func handleNotification() {
         performSegue(withIdentifier: Constants.Segue.gotoNotification, sender: nil)
     }
@@ -140,7 +140,7 @@ class TalkController: UIViewController {
         }
     }
 }
-// Mark tableViewdelegate,datasource
+// MARK: - tableViewdelegate,datasource
 extension TalkController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {

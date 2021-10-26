@@ -239,13 +239,13 @@ class EventDetailController: UIViewController {
         }
     }
     private func setupUnderLine() {
-        setupUnderLayer(view: lastTimeStackView)
-        setupUnderLayer(view: gatherStackView)
-        setupUnderLayer(view: courtStackView)
-        setupUnderLayer(view: kindStackView)
-        setupUnderLayer(view: levelStackView)
-        setupUnderLayer(view: moneyStackView)
-        setupUnderLayer(view: placeStackView)
+//        setupUnderLayer(view: lastTimeStackView)
+//        setupUnderLayer(view: gatherStackView)
+//        setupUnderLayer(view: courtStackView)
+//        setupUnderLayer(view: kindStackView)
+//        setupUnderLayer(view: levelStackView)
+//        setupUnderLayer(view: moneyStackView)
+//        setupUnderLayer(view: placeStackView)
     }
     private func setupUnderLayer(view: UIView) {
         let bottomBorder = CALayer()
