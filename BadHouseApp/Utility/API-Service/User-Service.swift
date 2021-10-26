@@ -11,7 +11,7 @@ struct UserService {
                    "updatedAt": Timestamp()] as [String: Any]
         Ref.UsersRef.document(uid).setData(dic) { error in
             if let error = error {
-                print("SetUserData", error)
+                print("SetUserData", error.localizedDescription)
             }
             completion(true)
             print("setUserData")
@@ -22,7 +22,7 @@ struct UserService {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
             if let error = error {
-                print("更新エラー", error)
+                print("更新エラー", error.localizedDescription)
                 return
             }
             print("更新成功")
@@ -32,7 +32,7 @@ struct UserService {
     static func getUserData(uid: String, compeltion: @escaping (User?) -> Void) {
         Ref.UsersRef.document(uid).addSnapshotListener { snapShot, error in
             if let error = error {
-                print("UserInfo Get Error", error)
+                print("UserInfo Get Error", error.localizedDescription)
                 return
             }
             guard let dic = snapShot?.data() else { return }
@@ -51,7 +51,7 @@ extension UserService {
         var teamIdArray = [String]()
         Ref.UsersRef.document(uid).collection("OwnTeam").addSnapshotListener { snapShot, error in
             if let error = error {
-                print("OwnTeam", error)
+                print("OwnTeam", error.localizedDescription)
             }
             guard let data = snapShot?.documents else { return }
             teamIdArray = []
@@ -70,7 +70,7 @@ extension UserService {
         var friendId = [String]()
         Ref.UsersRef.document(uid).collection("Friends").addSnapshotListener { snapShot, error in
             if let error = error {
-                print("FriendData error", error)
+                print("FriendData error", error.localizedDescription)
             }
             guard let dataArray = snapShot?.documents else { return }
             friendId = []
@@ -97,7 +97,7 @@ extension UserService {
         var bool = false
         Ref.UsersRef.document(myId).collection("Friends").getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let documents = snapShot?.documents else { return }

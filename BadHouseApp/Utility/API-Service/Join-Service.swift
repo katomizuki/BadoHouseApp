@@ -6,7 +6,7 @@ struct JoinService {
     static func changePrejoinTrue(uid: String) {
         Ref.UsersRef.document(uid).collection("PreJoin").getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let document = snapShot?.documents else { return }
@@ -29,7 +29,7 @@ struct JoinService {
         var bool = false
         Ref.EventRef.document(eventId).collection("PreJoin").getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let document = snapShot?.documents else { return }
@@ -57,7 +57,7 @@ struct JoinService {
             var boolArray = [PreJoin]()
             var result = false
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let data = snapShot?.documents else { return }
@@ -79,7 +79,7 @@ struct JoinService {
         var idArray = [String]()
         Ref.EventRef.document(eventId).collection("PreJoin").getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
             } else {
                 guard let document = snapShot?.documents else { return }
                 document.forEach { data in

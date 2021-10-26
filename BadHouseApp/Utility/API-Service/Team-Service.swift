@@ -6,7 +6,7 @@ struct TeamService {
     static func getTeamData(teamId: String, completion: @escaping (TeamModel) -> Void) {
         Ref.TeamRef.document(teamId).addSnapshotListener { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let data = snapShot?.data() else { return }
@@ -61,7 +61,7 @@ extension TeamService {
     static func getTeamPlayerData(teamId: String, completion: @escaping ([String]) -> Void) {
         Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             var teamPlayers = [String]()
@@ -83,7 +83,7 @@ extension TeamService {
             let teamId = teamDic["teamId"] as! String
             Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) { error in
                 if let error = error {
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
             UserService.plusOwnTeam(id: teamPlayerId, dic: teamDic)
@@ -119,7 +119,7 @@ extension TeamService {
         Ref.TeamRef.document(teamId).collection("TeamTag").getDocuments { snapShot, error in
             var teamTag = [Tag]()
             if let error = error {
-                print("TeamTag Error", error)
+                print("TeamTag Error", error.localizedDescription)
                 return
             }
             guard let data = snapShot?.documents else { return }

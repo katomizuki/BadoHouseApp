@@ -5,8 +5,9 @@ struct ChatRoomService {
         let chatRoomId = Ref.ChatroomRef.document().documentID
         let chatRoomDic = ["chatRoomId": chatRoomId, "user": myId, "user2": youId]
         Ref.ChatroomRef.document(chatRoomId).setData(chatRoomDic)
-        Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
-        Ref.UsersRef.document(youId).collection("ChatRoom").document(chatRoomId).setData(["chatId":chatRoomId])
+        Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId":  chatRoomId])
+        Ref.UsersRef.document(youId).collection("ChatRoom").document(chatRoomId).setData([
+            "chatId": chatRoomId])
         completion(chatRoomId)
     }
     static func sendDMChat(chatroomId: String, senderId: String, text: String, reciverId: String) {
@@ -36,7 +37,7 @@ struct ChatRoomService {
         var chatArray = [String]()
         Ref.UsersRef.document(uid).collection("ChatRoom").addSnapshotListener { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let document = snapShot?.documents else { return }
@@ -54,7 +55,7 @@ struct ChatRoomService {
         Ref.ChatroomRef.document(chatId).collection("Content").order(by: "sendTime").addSnapshotListener { snapShot, error in
             textArray = []
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let document = snapShot?.documents else { return }
@@ -81,7 +82,7 @@ struct ChatRoomService {
         var string = ""
         Ref.ChatroomRef.getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let document = snapShot?.documents else { return }

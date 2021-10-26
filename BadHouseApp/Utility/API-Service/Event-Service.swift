@@ -10,7 +10,7 @@ struct EventServie {
         var eventArray = [Event]()
         Ref.EventRef.getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let data = snapShot?.documents else { return }
@@ -33,7 +33,7 @@ struct EventServie {
         guard let now = DateUtils.getNow() else { return }
         Ref.EventRef.addSnapshotListener { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let data = snapShot?.documents else { return }
@@ -52,7 +52,7 @@ struct EventServie {
         var stringArray = [String]()
         Ref.UsersRef.document(uid).collection("Join").getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let data = snapShot?.documents else { return }
@@ -71,7 +71,7 @@ extension EventServie {
         var tagArray = [Tag]()
         Ref.EventRef.document(eventId).collection("Tag").getDocuments { snapShot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let documents = snapShot?.documents else { return }

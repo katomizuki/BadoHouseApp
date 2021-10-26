@@ -92,6 +92,7 @@
 		D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */; };
 		D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860202725064300085ABD /* SearchDetailGroupController.swift */; };
 		D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860772727AF7E00085ABD /* GroupSearchListController.swift */; };
+		D3F8607A2727EEDF00085ABD /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860792727EEDF00085ABD /* FirebaseError.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
@@ -200,6 +201,7 @@
 		D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPagerController.swift; sourceTree = "<group>"; };
 		D3F860202725064300085ABD /* SearchDetailGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailGroupController.swift; sourceTree = "<group>"; };
 		D3F860772727AF7E00085ABD /* GroupSearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchListController.swift; sourceTree = "<group>"; };
+		D3F860792727EEDF00085ABD /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				D3BDB55226E05E7A00C53780 /* Anchor-Extension.swift */,
 				D3BDB55626E0644E00C53780 /* UIButton-Extension.swift */,
 				D3A789D826F5DD8C0088E8BC /* Extensions.swift */,
+				D3F860792727EEDF00085ABD /* FirebaseError.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
+				D3F8607A2727EEDF00085ABD /* FirebaseError.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,

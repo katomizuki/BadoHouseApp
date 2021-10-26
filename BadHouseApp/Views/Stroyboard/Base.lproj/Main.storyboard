@@ -2439,21 +2439,21 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="7Eq-8t-jef">
-                                                        <rect key="frame" x="0.0" y="208.5" width="374" height="74"/>
+                                                        <rect key="frame" x="0.0" y="208.5" width="374" height="73.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="募集〆切り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-vB-azb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="102" height="74"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="102" height="73.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="HqZ-Nc-ffI">
-                                                                <rect key="frame" x="102" y="0.0" width="272" height="74"/>
+                                                                <rect key="frame" x="102" y="0.0" width="272" height="73.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="108" translatesAutoresizingMaskIntoConstraints="NO" id="aP7-xf-tyV">
-                                                        <rect key="frame" x="0.0" y="292.5" width="374" height="34"/>
+                                                        <rect key="frame" x="0.0" y="292" width="374" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNa-pD-TaY">
                                                                 <rect key="frame" x="0.0" y="0.0" width="86" height="34"/>
@@ -2473,7 +2473,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="FKa-aP-20S">
-                                                        <rect key="frame" x="0.0" y="336.5" width="374" height="31.5"/>
+                                                        <rect key="frame" x="0.0" y="336" width="374" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="コート数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5j-iP-eas">
                                                                 <rect key="frame" x="0.0" y="4" width="164" height="24"/>
@@ -2482,16 +2482,16 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUe-Ou-IC1">
-                                                                <rect key="frame" x="194" y="0.0" width="180" height="31.5"/>
+                                                                <rect key="frame" x="194" y="0.0" width="180" height="32"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za7-17-dkt">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="31.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="32"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="jgH-2e-oyV">
-                                                                        <rect key="frame" x="86" y="0.0" width="94" height="31.5"/>
+                                                                        <rect key="frame" x="86" y="0.0" width="94" height="32"/>
                                                                         <connections>
                                                                             <action selector="plusCourt:" destination="uvZ-IK-hUs" eventType="valueChanged" id="i91-Nj-9Qu"/>
                                                                         </connections>
