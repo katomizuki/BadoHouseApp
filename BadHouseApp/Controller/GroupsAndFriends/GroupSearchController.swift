@@ -56,8 +56,9 @@ class GroupSearchController: UIViewController {
     // Mark selector
     @objc private func didTapRightButtonItem() {
         let vc = SearchDetailGroupController()
+        let nav = UINavigationController(rootViewController: vc)
         vc.delegate = self
-        present(vc, animated: true, completion: nil)
+        present(nav, animated: true, completion: nil)
     }
 }
 // Mark tableViewDataSource

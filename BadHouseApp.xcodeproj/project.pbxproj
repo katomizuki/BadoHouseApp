@@ -91,6 +91,7 @@
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */; };
 		D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860202725064300085ABD /* SearchDetailGroupController.swift */; };
+		D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860772727AF7E00085ABD /* GroupSearchListController.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
@@ -198,6 +199,7 @@
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPagerController.swift; sourceTree = "<group>"; };
 		D3F860202725064300085ABD /* SearchDetailGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailGroupController.swift; sourceTree = "<group>"; };
+		D3F860772727AF7E00085ABD /* GroupSearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchListController.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
 				D3D3D37A2721733200E2853A /* BlockController.swift */,
 				D3F860202725064300085ABD /* SearchDetailGroupController.swift */,
+				D3F860772727AF7E00085ABD /* GroupSearchListController.swift */,
 			);
 			path = GroupsAndFriends;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */,
+				D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */,
 				D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */,
 				D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */,

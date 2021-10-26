@@ -79,7 +79,7 @@ class MyPageUserInfoController: UIViewController {
         return label
     }()
     private let profileEditButton = UIButton(type: .system).createProfileEditButton()
-    lazy var infoCollectionView: UICollectionView = {
+    private lazy var infoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -90,7 +90,7 @@ class MyPageUserInfoController: UIViewController {
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return collectionView
     }()
-    lazy var userTableView: UITableView = {
+    private lazy var userTableView: UITableView = {
         let tb = UITableView()
         tb.delegate = self
         tb.dataSource = self
