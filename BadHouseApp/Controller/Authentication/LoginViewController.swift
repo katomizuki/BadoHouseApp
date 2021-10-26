@@ -259,7 +259,7 @@ extension LoginViewController: LoginButtonDelegate {
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential) { (_, error) in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             } else {
                 self.dismiss(animated: true, completion: nil)
@@ -290,7 +290,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                                                           rawNonce: nonce)
                 Auth.auth().signIn(with: credential) { _, error in
                     if let error = error {
-                        print(error)
+                        print(error.localizedDescription)
                         return
                     } else {
                         print("success")
@@ -300,6 +300,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
         }
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print(error)
+        print(error.localizedDescription)
     }
 }

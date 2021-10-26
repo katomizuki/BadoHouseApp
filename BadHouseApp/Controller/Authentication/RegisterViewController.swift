@@ -275,7 +275,7 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            print("\(error.localizedDescription)")
+            print(error.localizedDescription)
             return
         } else {
             let fullName = user.profile.name
@@ -318,7 +318,7 @@ extension RegisterViewController: LoginButtonDelegate {
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             self.displayName = (result?.user.displayName)!
@@ -369,7 +369,7 @@ extension RegisterViewController: ASAuthorizationControllerDelegate {
                                                       rawNonce: nonce)
             Auth.auth().signIn(with: credential) { result, error in
                 if let error = error {
-                    print(error)
+                    print(error.localizedDescription)
                     return
                 } else {
                     guard let email = result?.user.email else { return }
@@ -389,7 +389,7 @@ extension RegisterViewController: ASAuthorizationControllerDelegate {
         }
     }
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print(error)
+        print(error.localizedDescription)
     }
 }
 extension RegisterViewController: ASAuthorizationControllerPresentationContextProviding {

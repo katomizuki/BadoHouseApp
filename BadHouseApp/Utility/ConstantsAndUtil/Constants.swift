@@ -84,7 +84,7 @@ struct Constants {
         ]
         static let yearArray = ["1年未満", "1年~3年", "4年~6年", "7年~10年", "10年以上"]
         static let ageArray = ["10代以下", "10代", "20代", "30代", "40代", "50代", "60代", "70代以上"]
-
+        static let placeArray = ["神奈川県","東京都","千葉県","埼玉県"]
     }
 }
 // Mark Enum UserInfo

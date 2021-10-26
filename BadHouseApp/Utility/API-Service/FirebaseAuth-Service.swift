@@ -11,7 +11,7 @@ struct AuthService {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("createUser Error")
-                completion(false, error.localizedDescription)
+                completion(false, error)
                 return
             }
             print("Register Success")
@@ -26,7 +26,7 @@ struct AuthService {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if let error = error {
                 print("Login Error")
-                completion(false, error.localizedDescription)
+                completion(false, error)
                 return
             }
             print("Login Success")

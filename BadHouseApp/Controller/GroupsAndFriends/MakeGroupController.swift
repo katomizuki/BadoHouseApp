@@ -389,8 +389,23 @@ class MakeGroupController: UIViewController {
         print(#function)
         guard let teamName = nameTextField.text else { return }
         guard let teamTime = timeTextField.text else { return }
+        if !judgeDate(teamTime) {
+            print("not day")
+            self.setupCDAlert(title: "適切な曜日を入れてください", message: "", action: "OK", alertType: .warning)
+            return
+        }
         guard let teamPlace = placeTextField.text else { return }
-        guard let teamLevel = levelTextField.text else { return }
+        guard let teamMoney = changeInt(levelTextField.text) else {
+            print("not Int")
+            self.setupCDAlert(title: "適切な金額を入れてください", message: "", action: "OK", alertType: .warning)
+            return
+        }
+        if !judgePlace(teamPlace) {
+            print("not place")
+            self.setupCDAlert(title: "適切な都道府県を入れてください", message: "", action: "OK", alertType: .warning)
+            return
+        }
+        let teamMoneyString = String(teamMoney)
         guard let teamImage = groupImageView.image else { return }
         guard let teamUrl = plusTextField.text else { return }
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.FriendVC) as! InviteToTeamController
@@ -399,11 +414,23 @@ class MakeGroupController: UIViewController {
         vc.teamTime = teamTime
         vc.teamPlace = teamPlace
         vc.teamImage = teamImage
-        vc.teamLevel = teamLevel
+        vc.teamLevel = teamMoneyString
         vc.me = myData
         vc.url = teamUrl
         vc.teamTagArray = self.tagArray
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    private func changeInt(_ target: String?) -> Int? {
+        guard let target = target else {
+            return nil
+        }
+        return Int(target)
+    }
+    private func judgeDate(_ target: String) -> Bool {
+        return dayArray.contains(target)
+    }
+    private func judgePlace(_ target: String) -> Bool {
+        return Constants.Data.placeArray.contains(target)
     }
     // Mark IBAction
     @IBAction func cameraTap(_ sender: Any) {
