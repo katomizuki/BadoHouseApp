@@ -37,6 +37,15 @@ class SearchDetailGroupController: UIViewController {
         tableView.dataSource = self
         return tableView
     }()
+    var selectedMoney: String? {
+        didSet { tableView.reloadData() }
+    }
+    var selectedDay: String? {
+        didSet { tableView.reloadData() }
+    }
+    var selectedPlace: String? {
+        didSet { tableView.reloadData() }
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +86,10 @@ class SearchDetailGroupController: UIViewController {
     // MARK: - Selector
     @objc private func didTapSearchButton() {
         print(#function)
-
-//        self.delegate?.seachDetailGroup(vc: self, time: time, money: money, place: place)
+        let time = selectedDay ?? ""
+        let money = selectedMoney ?? ""
+        let place = selectedPlace ?? ""
+        self.delegate?.seachDetailGroup(vc: self, time: time, money: money, place: place)
     }
     @objc private func back() {
         self.delegate?.dismissGroupVC(vc: self)
@@ -97,6 +108,7 @@ extension SearchDetailGroupController: UITableViewDelegate {
         default:break
         }
         vc.judgeListKeyword = judgeListKeyword
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -106,12 +118,37 @@ extension SearchDetailGroupController: UITableViewDataSource {
         return cellTitleArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cellId")
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = cellTitleArray[indexPath.row]
+        switch indexPath.row {
+        case 0:
+            cell.detailTextLabel?.text = selectedDay
+        case 1:
+            cell.detailTextLabel?.text = selectedMoney
+        case 2:
+            cell.detailTextLabel?.text = selectedPlace
+        default:break
+        }
         return cell
+    }
+}
+// MARK: - GroupSerachListDelegate-Extension
+extension SearchDetailGroupController: GroupSearchListDelegate {
+    func didTapMoneyList(seletedMoney: String) {
+        print(seletedMoney)
+        self.selectedMoney = seletedMoney
+    }
+    func didTapDayList(selectedDay: String) {
+        print(selectedDay)
+        self.selectedDay = selectedDay
+    }
+    func didTapPlaceList(selectedPlace: String) {
+        print(selectedPlace)
+        self.selectedPlace = selectedPlace
     }
 }
