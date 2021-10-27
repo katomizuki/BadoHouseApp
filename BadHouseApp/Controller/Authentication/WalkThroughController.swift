@@ -2,7 +2,7 @@ import UIKit
 import FacebookCore
 
 class WalkThroughController: UIPageViewController {
-    // Mark properties
+    // MARK: - FirstVC
     private let firstVC: UIViewController = {
         let vc = UIViewController()
         vc.view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
@@ -90,6 +90,7 @@ class WalkThroughController: UIPageViewController {
                              height: 60)
         return vc
     }()
+    // MARK: - SecondVC
     private let secondVC: UIViewController = {
         let vc = UIViewController()
         vc.view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
@@ -157,6 +158,7 @@ class WalkThroughController: UIPageViewController {
                             height: 230)
         return vc
     }()
+    // MARK: - Properties
     private lazy var pages: [UIViewController] = {
         let views = [firstVC, secondVC]
         return views
@@ -173,7 +175,7 @@ class WalkThroughController: UIPageViewController {
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         return button
     }()
-    // Mark lifecycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
@@ -195,13 +197,13 @@ class WalkThroughController: UIPageViewController {
                              paddingLeft: 40,
                              height: 40)
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func handleDismiss() {
         dismiss(animated: true, completion: nil)
         UserDefaults.standard.set(false, forKey: "MyId")
     }
 }
-// Mark pageViewControllorDatasource
+// MARK: - pageViewControllorDatasource
 extension WalkThroughController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let pageIndex = pages.firstIndex(of: viewController), pageIndex - 1 >= 0 {

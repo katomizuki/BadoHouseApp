@@ -2,16 +2,16 @@ import UIKit
 import FSCalendar
 import CDAlertView
 
-protocol CalendarDelegate: AnyObject {
-    func searchCalendar(dateString: String, text: String, vc: CalendarViewController)
-    func dismissCalendarVC(vc: CalendarViewController)
+protocol SearchCalendarDelegate: AnyObject {
+    func didTapSearchButton(dateString: String, text: String, vc: SearchCalendarController)
+    func dismissCalendarVC(vc: SearchCalendarController)
 }
-class CalendarViewController: UIViewController {
-    // MarkProperties
+class SearchCalendarController: UIViewController {
+    // MARK: - Properties
     @IBOutlet private weak var calendar: FSCalendar!
-    weak var delegate: CalendarDelegate?
+    weak var delegate: SearchCalendarDelegate?
     private var searchDateString = String()
-    private lazy var button: UIButton = {
+    private lazy var searchButton: UIButton = {
         let button = RegisterButton(text: "検索")
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(search), for: UIControl.Event.touchUpInside)
@@ -25,18 +25,18 @@ class CalendarViewController: UIViewController {
         return button
     }()
     private let textField: UITextField = RegisterTextField(placeholder: "場所名入力")
-    // Mark Lifecycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupCalendar()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupUI() {
-        view.addSubview(button)
+        view.addSubview(searchButton)
         view.addSubview(textField)
         view.addSubview(backButton)
-        button.anchor(top: textField.bottomAnchor,
+        searchButton.anchor(top: textField.bottomAnchor,
                       left: view.leftAnchor,
                       right: view.rightAnchor,
                       paddingTop: 10,
@@ -83,7 +83,7 @@ class CalendarViewController: UIViewController {
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue
     }
-    // Mark Selector
+    // MARK: - SelectorMethod
     @objc func search() {
         if searchDateString.isEmpty {
             self.setupCDAlert(title: "検索エラー",
@@ -100,14 +100,14 @@ class CalendarViewController: UIViewController {
                               alertType: CDAlertViewType.error)
             return
         }
-        self.delegate?.searchCalendar(dateString: searchDateString, text: text, vc: self)
+        self.delegate?.didTapSearchButton(dateString: searchDateString, text: text, vc: self)
     }
     @objc private func back() {
         self.delegate?.dismissCalendarVC(vc: self)
     }
 }
-// Mark FSCalendarDelegate
-extension CalendarViewController: FSCalendarDelegate {
+// MARK: - FSCalendarDelegate
+extension SearchCalendarController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString

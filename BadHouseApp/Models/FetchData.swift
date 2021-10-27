@@ -1,6 +1,7 @@
 import Foundation
 import Firebase
 import CoreLocation
+import grpc
 
 // Mark ChatsProtocol
 protocol FetchChartsDataDelegate: AnyObject {
@@ -125,19 +126,19 @@ class FetchFirestoreData {
             let userId = chatModelArray[i].user
             let anotherId = chatModelArray[i].user2
             let chatId = chatModelArray[i].chatRoom
-            UserService.getUserData(uid: userId) { user in
-                guard let user = user else { return }
-                userArray.append(user)
+                UserService.getUserData(uid: userId) { user in
+                    guard let user = user else { return }
+                    userArray.append(user)
             }
-            UserService.getUserData(uid: anotherId) { another in
-                guard let another = another else { return }
-                anotherArray.append(another)
-            }
-            ChatRoomService.getChatLastData(chatId: chatId) { lastComment in
-                lastCommentArray.append(lastComment)
-            }
+                UserService.getUserData(uid: anotherId) { another in
+                    guard let another = another else { return }
+                    anotherArray.append(another)
+                }
+                ChatRoomService.getChatLastData(chatId: chatId) { lastComment in
+                    lastCommentArray.append(lastComment)
+                }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.chatDelegate?.fetchMyChatListData(userArray: userArray,
                                                    anotherArray: anotherArray,
                                                    lastChatArray: lastCommentArray,

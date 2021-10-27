@@ -14,8 +14,8 @@ import AuthenticationServices
 import CryptoKit
 
 class RegisterViewController: UIViewController {
-    // Mark Properties
-    private let nameTextField: UITextField = {
+    // MARK: - Properties
+        private let nameTextField: UITextField = {
         let tf = RegisterTextField(placeholder: "名前")
         tf.keyboardType = .default
         tf.returnKeyType = .next
@@ -64,7 +64,7 @@ class RegisterViewController: UIViewController {
         return button
     }()
     private var currentNonce: String?
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -80,7 +80,7 @@ class RegisterViewController: UIViewController {
         }
         navigationController?.isNavigationBarHidden = true
     }
-    // Mark setup Method
+    // MARK: - SetupMethod
     private func setupDelegate() {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         GIDSignIn.sharedInstance()?.delegate = self
@@ -190,7 +190,7 @@ class RegisterViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    // Mark Helper Method
+    // MARK: - HelperMethod
     private func createUser() {
         indicatorView.startAnimating()
         print(#function)
@@ -247,7 +247,6 @@ class RegisterViewController: UIViewController {
         }
         return result
     }
-    // Mark signUPErrAlert
     func signUpErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
         self.setupCDAlert(title: "登録できません",
@@ -256,7 +255,7 @@ class RegisterViewController: UIViewController {
                           alertType: .error)
         indicatorView.stopAnimating()
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func appleRegister() {
         print(#function)
         let nonce = randomNonceString()
@@ -271,7 +270,7 @@ class RegisterViewController: UIViewController {
         authorizationController.performRequests()
     }
 }
-// Mark GoogleSigninDelegate
+// MARK: - GIDSignInDelegate
 extension RegisterViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -307,7 +306,7 @@ extension RegisterViewController: GIDSignInDelegate {
         print(error.localizedDescription)
     }
 }
-// Mark FaceBookDelegate
+// MARK: - LoginButtonDelegate
 extension RegisterViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if error == nil {
@@ -340,20 +339,19 @@ extension RegisterViewController: LoginButtonDelegate {
         print("logout fb")
     }
 }
-// Mark uitextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let tag = textField.tag
-        if tag == 0 {
-            emailTextField.becomeFirstResponder()
-        } else if tag == 1 {
-            passwordTextField.becomeFirstResponder()
+        switch textField.tag {
+        case 0: emailTextField.becomeFirstResponder()
+        case 1: passwordTextField.becomeFirstResponder()
+        default: break
         }
         return true
     }
 }
-// Mark AppleRegister Delegate
+// MARK: - ASAuthorizationControllerDelegate
 extension RegisterViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
@@ -392,6 +390,7 @@ extension RegisterViewController: ASAuthorizationControllerDelegate {
         print(error.localizedDescription)
     }
 }
+// MARK: - ASAuthorizationControllerPresentationContextProviding
 extension RegisterViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!

@@ -5,7 +5,7 @@ import CDAlertView
 import NVActivityIndicatorView
 
 class TalkController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()
     private var chatArray = [[Chat]]()
@@ -31,7 +31,7 @@ class TalkController: UIViewController {
         return view
     }()
     private var indicatorView: NVActivityIndicatorView!
-    // MARK: -lifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -55,7 +55,7 @@ class TalkController: UIViewController {
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    // MARK: -setupMethod
+    // MARK: - SetupMethod
     private func setupNav() {
         navigationItem.title = "トーク"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
@@ -92,10 +92,8 @@ class TalkController: UIViewController {
     private func setupData() {
         fetchData.chatDelegate = self
         fetchData.myDataDelegate = self
-        //　自分のチャットルームデータ
         ChatRoomService.getChatRoomData(uid: AuthService.getUserId()) { [weak self] chatId in
             guard let self = self else { return }
-            //　ここでチャットルームのデータをとってきて
             self.fetchData.fetchChatRoomModelData(chatId: chatId)
             for i in 0..<chatId.count {
                 self.fetchData.fetchDMChatData(chatId: chatId[i])
@@ -108,7 +106,7 @@ class TalkController: UIViewController {
             self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
     }
-    // MARK: - helperMethod
+    // MARK: - HelperMethod
     private func cleanArray() {
         self.anotherUserArray = []
         self.userArray = []
@@ -119,7 +117,7 @@ class TalkController: UIViewController {
         self.sortLastCommentArray = []
         self.sortChatModelArray = []
     }
-    // MARK: - selector
+    // MARK: - SelectorMethod
     @objc private func handleNotification() {
         performSegue(withIdentifier: Constants.Segue.gotoNotification, sender: nil)
     }
@@ -140,15 +138,10 @@ class TalkController: UIViewController {
         }
     }
 }
-// MARK: - tableViewdelegate,datasource
+// MARK: - tableViewdatasource
 extension TalkController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return teams.count
-        } else if section == 1 {
-            return chatModelArray.count
-        }
-        return chatModelArray.count
+        return section == 0 ? teams.count : chatModelArray.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return section.count
@@ -177,14 +170,10 @@ extension TalkController: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            return false
-        } else {
-            return true
-        }
+        return indexPath.section == 0 ? false : true
     }
 }
-// Mark UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension TalkController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
@@ -219,7 +208,7 @@ extension TalkController: UITableViewDelegate {
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
 }
-// Mark getchatDelegate
+// MARK: - getchatDelegate
 extension TalkController: FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
         self.chatArray.append(chatArray)
@@ -261,7 +250,7 @@ extension TalkController: FetchChatDataDelgate {
         }
     }
 }
-// Mark GetmyTeamDelegate
+// MARK: - GetmyTeamDelegate
 extension TalkController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teams = teamArray
@@ -275,7 +264,7 @@ extension TalkController: FetchMyDataDelegate {
     func fetchMyPrejoinData(preJoinArray: [[String]]) {
     }
 }
-// Mark ScheduleDelegate
+// MARK: - ScheduleDelegate
 extension TalkController: MyScheduleDelegate {
     func dismissMyScheduleVC(vc: MyScheduleController) {
         vc.dismiss(animated: true, completion: nil)

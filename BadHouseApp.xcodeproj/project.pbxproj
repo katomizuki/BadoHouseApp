@@ -36,7 +36,7 @@
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */; };
 		D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E626EB82E300F40A51 /* MapViewController.swift */; };
-		D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* CalendarViewController.swift */; };
+		D3AC05E926ED763000F40A51 /* SearchCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */; };
 		D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
@@ -144,7 +144,7 @@
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchController.swift; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		D3AC05E826ED763000F40A51 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCalendarController.swift; sourceTree = "<group>"; };
 		D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				D3BDB52B26E0525100C53780 /* HomeViewController.swift */,
-				D3AC05E826ED763000F40A51 /* CalendarViewController.swift */,
+				D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */,
 				D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */,
 				D3977168270961E40025BE19 /* TornamentDetailController.swift */,
 				D3977166270959A70025BE19 /* TornamentListController.swift */,
@@ -812,7 +812,7 @@
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
 				D3A789D926F5DD8C0088E8BC /* Extensions.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
-				D3AC05E926ED763000F40A51 /* CalendarViewController.swift in Sources */,
+				D3AC05E926ED763000F40A51 /* SearchCalendarController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
 				D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */,

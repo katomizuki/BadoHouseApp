@@ -11,7 +11,7 @@ import CDAlertView
 import FacebookCore
 
 class HomeViewController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     private var user: User?
     private var indicatorView: NVActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
             timeButton.toCorner(num: 15)
         }
     }
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIndicator()
@@ -50,18 +50,17 @@ class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                print("怒り")
                 self.performSegue(withIdentifier: Constants.Segue.gotoRegister, sender: nil)
             }
         }
     }
 
-    // Mark touchesBegan
+    // MARK: - touchesBegan
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupEmptyState() {
         view.emptyState.delegate = self
         var format = EmptyStateFormat()
@@ -108,14 +107,14 @@ class HomeViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
-    // Mark Segue
+    // MARK: - prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Constants.Segue.gotoUser {
             let vc = segue.destination as! MyPageUserInfoController
             vc.user = self.user
         }
         if segue.identifier == Constants.Segue.gotoCalendar {
-            let vc = segue.destination as! CalendarViewController
+            let vc = segue.destination as! SearchCalendarController
             vc.delegate = self
         }
         if segue.identifier == Constants.Segue.gotoDetail {
@@ -123,11 +122,11 @@ class HomeViewController: UIViewController {
             vc.delegate = self
         }
     }
-    // Mark showAlert
+    // MARK: HelperMethod
     func showAlert() {
         self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
-    // Mark IBAction
+    // MARK: IBAction
     @IBAction private func scroll(_ sender: Any) {
         print(#function)
         if eventArray.count != 0 {
@@ -135,7 +134,7 @@ class HomeViewController: UIViewController {
         }
     }
 }
-// Mark UICollectionDataSource
+// MARK: UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return eventArray.count
@@ -151,15 +150,13 @@ extension HomeViewController: UICollectionViewDataSource {
         }
     }
 }
-// Mark collectionViewFlowLayoutDelegate
+// MARK: UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.collectionView.frame.width
-
-        return CGSize(width: width, height: width - 50)
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width - 50)
     }
 }
-// Mark collectionviewDelegate
+// MARK: UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailController
@@ -171,23 +168,23 @@ extension HomeViewController: UICollectionViewDelegate {
         }
     }
 }
-// Mark CLLocationMangerDelegate
+// MARK: - CLLOcationManagerDelegate
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         guard let latitude = location?.coordinate.latitude else { return }
         guard let longitude = location?.coordinate.longitude else { return }
-        self.myLatitude = latitude
-        self.myLongitude = longitude
-        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        myLatitude = latitude
+        myLongitude = longitude
+        fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
     }
 }
-// Mark UISearchBarDelegate
+// MARK: UISearchBarDelegate
 extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
-            self.setupCDAlert(title: "検索エラー",
+                setupCDAlert(title: "検索エラー",
                               message: "１文字以上入力してください",
                               action: "OK",
                               alertType: CDAlertViewType.error)
@@ -210,14 +207,14 @@ extension HomeViewController: UISearchBarDelegate {
         print(#function)
         guard let text = searchBar.text else { return }
         if searchBar.text == "" {
-            fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+            fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
             searchBar.resignFirstResponder()
         } else {
             fetchData.searchEventTextData(text: text, bool: false)
         }
     }
 }
-// Mark EventDelegate
+// MARK: - FetchEventDataDelegate
 extension HomeViewController: FetchEventDataDelegate {
     func fetchEventData(eventArray: [Event]) {
         print(#function)
@@ -263,9 +260,9 @@ extension HomeViewController: FetchEventDataDelegate {
     }
 }
 
-// Mark GetDatailDelegate
-extension HomeViewController: getDetailDelegate {
-    func getDetailElement(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String, vc: DetailSearchController) {
+// MARK: - DetailSearchDelegate
+extension HomeViewController: DetailSearchDelegate {
+    func didTapDetailSearchButton(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String, vc: DetailSearchController) {
         fetchData.searchEventDetailData(title: title,
                                         circle: circle,
                                         level: level,
@@ -278,20 +275,20 @@ extension HomeViewController: getDetailDelegate {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-// Mark CalendarDelegate
-extension HomeViewController: CalendarDelegate {
-    func searchCalendar(dateString: String, text: String, vc: CalendarViewController) {
+// MARK: - SearchCalendarDelegate
+extension HomeViewController: SearchCalendarDelegate {
+    func didTapSearchButton(dateString: String, text: String, vc: SearchCalendarController) {
         fetchData.searchEventDateData(dateString: dateString, text: text)
         vc.dismiss(animated: true, completion: nil)
     }
-    func dismissCalendarVC(vc: CalendarViewController) {
+    func dismissCalendarVC(vc: SearchCalendarController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-// Mark EmptyStateDelegate
+// MARK: - EmptyStateDelegate
 extension HomeViewController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
-        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
+        fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
         view.emptyState.hide()
     }
 }

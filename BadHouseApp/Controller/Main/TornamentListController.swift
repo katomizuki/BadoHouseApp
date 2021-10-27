@@ -1,19 +1,19 @@
 import UIKit
 
 class TornamentListController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = Constants.CellId.CellGroupId
-    // Mark lifecycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    // Mark helperMethod
+    // MARK: - setupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -21,14 +21,14 @@ class TornamentListController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
 }
-// Mark TableViewDelegate
+// MARK: - UITableViewDelegate
 extension TornamentListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TornamentDetailVC) as! TornamentDetailController
         navigationController?.pushViewController(vc, animated: true)
  }
 }
-// Mark UitableViewdatasource
+// MARK: - UITableViewDataSource
 extension TornamentListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5

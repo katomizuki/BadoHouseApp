@@ -13,7 +13,7 @@ import AuthenticationServices
 import CryptoKit
 
 class LoginViewController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()
     private var indicatorView: NVActivityIndicatorView!
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     private var currentNonce: String?
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         setupLayout()
         setupBinding()
@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
     }
-    // Mark SetupMethod
+    // MARK: - SetupMethod
     private func setupLayout() {
         let basicStackView = UIStackView(arrangedSubviews: [emailTextField,
                                                             passwordTextField,
@@ -151,7 +151,7 @@ class LoginViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    // Mark AppleLoginMethod
+    // MARK: - HelperMethod
     private func sha256(input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
@@ -184,7 +184,7 @@ class LoginViewController: UIViewController {
             }
             return result
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func moveAlready() {
         print(#function)
         navigationController?.popViewController(animated: true)
@@ -201,7 +201,7 @@ class LoginViewController: UIViewController {
         authController.delegate = self
         authController.performRequests()
     }
-    // Mark Login
+    // MARK: - Login
     private func login() {
         print(#function)
         indicatorView.stopAnimating()
@@ -218,7 +218,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    // Mark LoginError
+    // MARK: - LoginError
     private func signInErrAlert(_ error: NSError) {
         print(#function)
         let message = setupErrorMessage(error: error)
@@ -226,7 +226,7 @@ class LoginViewController: UIViewController {
         indicatorView.stopAnimating()
     }
 }
-// Mark GoogleSigninDelegate
+// MARK: - GoogleSigninDelegate
 extension LoginViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -245,7 +245,7 @@ extension LoginViewController: GIDSignInDelegate {
         }
     }
 }
-// Mark facebookDelegate
+// MARK: - FacebookDelegate
 extension LoginViewController: LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("logout fb")
@@ -267,7 +267,7 @@ extension LoginViewController: LoginButtonDelegate {
         }
     }
 }
-// Mark textFieldDelegate
+// MARK: - TextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -277,7 +277,7 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-// Mark AppleRegister Delegate
+// MARK: - ASAuthorizationControllerDelegate
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
             if let appleCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
