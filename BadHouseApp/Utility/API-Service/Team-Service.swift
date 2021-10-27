@@ -2,11 +2,10 @@ import Foundation
 import Firebase
 
 struct TeamService {
-    // Mark getTeamData
     static func getTeamData(teamId: String, completion: @escaping (TeamModel) -> Void) {
         Ref.TeamRef.document(teamId).addSnapshotListener { snapShot, error in
             if let error = error {
-                print(error.localizedDescription)
+                print("Team Get Error",error.localizedDescription)
                 return
             }
             guard let data = snapShot?.data() else { return }
@@ -17,7 +16,6 @@ struct TeamService {
             }
         }
     }
-    // Mark createTeam
     static func createTeamData(teamName: String, teamPlace: String, teamTime: String, teamLevel: String, teamImageUrl: String, friends: [User], teamUrl: String, tagArray: [String]) {
         let teamId = Ref.TeamRef.document().documentID
         let dic = ["teamId": teamId,
@@ -31,16 +29,14 @@ struct TeamService {
                    "updatedAt": Timestamp()] as [String: Any]
         Ref.TeamRef.document(teamId).setData(dic) { error in
             if let error = error {
-                print("TeamData Error", error)
+                print("TeamData Create Error", error)
                 return
             }
-            print("TeamData Register Success")
+            print("TeamData Create Success")
         }
-        // Mark inviteTeamPlayer
         TeamService.sendTeamPlayerData(teamDic: dic, teamplayer: friends)
         TeamService.sendTeamTagData(teamId: teamId, tagArray: tagArray)
     }
-
     static func updateTeamData(team: TeamModel) {
         let id = team.teamId
         let dic = ["teamId": id,
@@ -56,12 +52,12 @@ struct TeamService {
         Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic)
     }
 }
-// Mark TeamPlayer-Extension
+// MARK: - TeamPlayer-Extension
 extension TeamService {
     static func getTeamPlayerData(teamId: String, completion: @escaping ([String]) -> Void) {
         Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
             if let error = error {
-                print(error.localizedDescription)
+                print("TeamPlayer Get Error",error.localizedDescription)
                 return
             }
             var teamPlayers = [String]()
@@ -72,6 +68,7 @@ extension TeamService {
                 let teamPlayerId = safeData["uid"] as? String ?? ""
                 teamPlayers.append(teamPlayerId)
             }
+            print("TeamPlayer Get Suceess")
             completion(teamPlayers)
         }
     }
@@ -83,9 +80,10 @@ extension TeamService {
             let teamId = teamDic["teamId"] as! String
             Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) { error in
                 if let error = error {
-                    print(error.localizedDescription)
+                    print("TeamPlayer Send Error",error.localizedDescription)
                 }
             }
+            print("TeamPlayer Send Sucess")
             UserService.plusOwnTeam(id: teamPlayerId, dic: teamDic)
         }
     }
@@ -107,7 +105,7 @@ extension TeamService {
         }
     }
 }
-// Mark TeamTagExtension
+// MARK: - TeamTag-Extension
 extension TeamService {
     static func sendTeamTagData(teamId: String, tagArray: [String]) {
         let tagId =  Ref.TeamRef.document(teamId).collection("TeamTag").document().documentID
@@ -130,6 +128,7 @@ extension TeamService {
                     teamTag.append(tag)
                 }
             }
+            print("TeamTag Success")
             completion(teamTag)
         }
     }

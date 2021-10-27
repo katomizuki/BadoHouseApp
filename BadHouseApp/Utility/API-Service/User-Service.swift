@@ -2,8 +2,11 @@ import Foundation
 import Firebase
 
 struct UserService {
-    // Mark setUserData
-    static func setUserData(uid: String, password: String, email: String, name: String, completion: @escaping (Bool) -> Void) {
+    static func setUserData(uid: String,
+                            password: String,
+                            email: String,
+                            name: String,
+                            completion: @escaping (Bool) -> Void) {
         let dic = ["uid": uid,
                    "name": name,
                    "email": email,
@@ -14,21 +17,19 @@ struct UserService {
                 print("SetUserData", error.localizedDescription)
             }
             completion(true)
-            print("setUserData")
+            print("UserData Set Success")
         }
     }
-    // Mark UserDataUpdate
     static func updateUserData(dic: [String: Any]) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
             if let error = error {
-                print("更新エラー", error.localizedDescription)
+                print("UserInfo Update Error", error.localizedDescription)
                 return
             }
-            print("更新成功")
+            print("UserInfo Update Success")
         }
     }
-    // Mark UserDataGet
     static func getUserData(uid: String, compeltion: @escaping (User?) -> Void) {
         Ref.UsersRef.document(uid).addSnapshotListener { snapShot, error in
             if let error = error {
@@ -41,7 +42,7 @@ struct UserService {
         }
     }
 }
-// Mark OwnTeam-Extension
+// MARK: - OwnTeam-Extension
 extension UserService {
     static func plusOwnTeam(id: String, dic: [String: Any]) {
         let teamId = dic["teamId"] as! String
@@ -51,7 +52,7 @@ extension UserService {
         var teamIdArray = [String]()
         Ref.UsersRef.document(uid).collection("OwnTeam").addSnapshotListener { snapShot, error in
             if let error = error {
-                print("OwnTeam", error.localizedDescription)
+                print("OwnTeam Get Error", error.localizedDescription)
             }
             guard let data = snapShot?.documents else { return }
             teamIdArray = []
@@ -60,17 +61,18 @@ extension UserService {
                 let teamId = safeData["teamId"] as? String ?? ""
                 teamIdArray.append(teamId)
             }
+            print("OwnTeam Get Sucess")
             completion(teamIdArray)
         }
     }
 }
-// Mark Friend-Extension
+// MARK: - Friend-Extension
 extension UserService {
     static func getFriendData(uid: String, completion: @escaping([String]) -> Void) {
         var friendId = [String]()
         Ref.UsersRef.document(uid).collection("Friends").addSnapshotListener { snapShot, error in
             if let error = error {
-                print("FriendData error", error.localizedDescription)
+                print("FriendData Get error", error.localizedDescription)
             }
             guard let dataArray = snapShot?.documents else { return }
             friendId = []
@@ -79,6 +81,7 @@ extension UserService {
                 let id = safeData["uid"] as! String
                 friendId.append(id)
             }
+            print("FriendData Get Success")
             completion(friendId)
         }
     }
@@ -97,7 +100,7 @@ extension UserService {
         var bool = false
         Ref.UsersRef.document(myId).collection("Friends").getDocuments { snapShot, error in
             if let error = error {
-                print(error.localizedDescription)
+                print("Friend Search Error",error.localizedDescription)
                 return
             }
             guard let documents = snapShot?.documents else { return }
@@ -108,6 +111,7 @@ extension UserService {
                     bool = true
                 }
             }
+            print("Friend Search Suceess")
             completion(bool)
         }
     }
