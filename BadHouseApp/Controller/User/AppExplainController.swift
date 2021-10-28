@@ -2,7 +2,7 @@ import UIKit
 import SkeletonView
 
 class AppExplainController: UIViewController {
-// Mark Properties
+// MARK: - Properties
     private let explainLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.appName
@@ -21,11 +21,12 @@ class AppExplainController: UIViewController {
         label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    // Mark setupUI
+    // MARK: - SetupMethod
     private func setupUI() {
         view.backgroundColor = .white
         let stackView = UIStackView(arrangedSubviews: [explainLabel,

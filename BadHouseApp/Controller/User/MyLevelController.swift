@@ -4,7 +4,7 @@ protocol LevelDismissDelegate: AnyObject {
     func levelDismiss(vc: MyLevelController)
 }
 class MyLevelController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     weak var delegate: LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
@@ -34,13 +34,13 @@ class MyLevelController: UIViewController {
         }
     }
     var selectedLevel = String()
-    // Mark LifeCycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let end = String(selectedLevel.suffix(1))
         setupSlider(level: end)
     }
-    // Mark selector
+    // MARK: SelectorMethod
     @objc private func backtoUser() {
         selectedLevel = levelLabel.text ?? "1"
         let vc = self.presentingViewController as! MyPageUserInfoController
@@ -49,7 +49,6 @@ class MyLevelController: UIViewController {
     }
     @objc private func changeLevel(sender: UISlider) {
         let level = Double(sender.value)
-        // 分割して条件分岐する
         if case 0..<0.1 = level {
             levelLabel.text = BadmintonLevel.one.rawValue
             textView.text = Constants.Data.levelSentence[0]
@@ -91,14 +90,7 @@ class MyLevelController: UIViewController {
             textView.text = Constants.Data.levelSentence[9]
         }
     }
-    // Mark IBAction
-//    @IBAction func back(_ sender: Any) {
-//        selectedLevel = levelLabel.text ?? "1"
-//        let vc = self.presentingViewController as! MyPageUserInfoController
-//        vc.level = selectedLevel
-//        self.delegate?.levelDismiss(vc: self)
-//    }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupSlider(level: String) {
         switch level {
         case "1":

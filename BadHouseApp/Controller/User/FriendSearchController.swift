@@ -6,7 +6,7 @@ import EmptyStateKit
 import CDAlertView
 
 class FriendSearchController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
@@ -26,7 +26,7 @@ class FriendSearchController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
-    // Mark LifeCycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -44,7 +44,7 @@ class FriendSearchController: UIViewController {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupDelegate() {
         searchBar.delegate = self
         fetchData.searchDelegate = self
@@ -67,7 +67,7 @@ class FriendSearchController: UIViewController {
         format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? UIColor.systemGray
         view.emptyState.format = format
     }
-    // Mark CustomDelegate
+    // MARK: - CustomDelegate
     func plusFriend(cell: UITableViewCell) {
         print(#function)
         let indexPathTapped = tableView.indexPath(for: cell)
@@ -79,12 +79,12 @@ class FriendSearchController: UIViewController {
             }
         }
     }
-    // Mark Selector
+    // MARK: - SelectorMethod
     @objc private func back() {
         dismiss(animated: true, completion: nil)
     }
 }
-// Mark UITableDataSource
+// MARK: - TableViewDataSource
 extension FriendSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendList.count
@@ -105,13 +105,13 @@ extension FriendSearchController: UITableViewDataSource {
         return cell
     }
 }
-// Mark UITableViewdelegate
+// MARK: - TableViewDelegate
 extension FriendSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.height / 10
     }
 }
-// Mark UISearchDelegate
+// MARK: SearchBarDelegate
 extension FriendSearchController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
@@ -143,7 +143,7 @@ extension FriendSearchController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-// Mark GetUserDelegate
+// MARK: FetchSearchDelegate
 extension FriendSearchController: FetchSearchDataDelegate {
     func fetchSearchUser(userArray: [User], bool: Bool) {
         print(#function)
@@ -164,7 +164,7 @@ extension FriendSearchController: FetchSearchDataDelegate {
         }
     }
 }
-// Mark EmptyStateDelegate
+// MARK: - EmptyStateDelegate
 extension FriendSearchController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()

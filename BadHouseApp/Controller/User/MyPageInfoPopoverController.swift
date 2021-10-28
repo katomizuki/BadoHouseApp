@@ -4,7 +4,7 @@ protocol PopDismissDelegate: AnyObject {
     func popDismiss(vc: MyPageInfoPopoverController)
 }
 class MyPageInfoPopoverController: UIViewController {
-    // Mark Properties
+    // MARK: Properties
     weak var delegate: PopDismissDelegate?
     private let cellId = Constants.CellId.popCellId
     var cellArray = Gender.genderArray
@@ -21,12 +21,12 @@ class MyPageInfoPopoverController: UIViewController {
          place,
          badmintonTime,
          gender) = (String(), String(), String(), String())
-    // Mark lifecycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setUpTableView() {
         self.view.addSubview(tableView)
         tableView.anchor(top: view.topAnchor,
@@ -48,7 +48,7 @@ class MyPageInfoPopoverController: UIViewController {
         tableView.reloadData()
     }
 }
-// Mark tableViewDataSource
+// MARK: - TableViewDatasource
 extension MyPageInfoPopoverController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellArray.count
@@ -59,7 +59,7 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
         return cell
     }
 }
-// Mark tableViewDelegate
+// MARK: - TableViewDelegate
 extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! MyPageUserInfoController

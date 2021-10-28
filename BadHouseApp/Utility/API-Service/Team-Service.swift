@@ -5,7 +5,7 @@ struct TeamService {
     static func getTeamData(teamId: String, completion: @escaping (TeamModel) -> Void) {
         Ref.TeamRef.document(teamId).addSnapshotListener { snapShot, error in
             if let error = error {
-                print("Team Get Error",error.localizedDescription)
+                print("Team Get Error", error.localizedDescription)
                 return
             }
             guard let data = snapShot?.data() else { return }
@@ -80,7 +80,7 @@ extension TeamService {
             let teamId = teamDic["teamId"] as! String
             Ref.TeamRef.document(teamId).collection("TeamPlayer").document(teamPlayerId).setData(dic) { error in
                 if let error = error {
-                    print("TeamPlayer Send Error",error.localizedDescription)
+                    print("TeamPlayer Send Error", error.localizedDescription)
                 }
             }
             print("TeamPlayer Send Sucess")

@@ -10,7 +10,7 @@ protocol UserDismissDelegate: AnyObject {
     func userVCdismiss(vc: MyPageUserInfoController)
 }
 class MyPageUserInfoController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     var user: User?
     private let cellId = Constants.CellId.userCellId
     private let diposeBag = DisposeBag()
@@ -99,14 +99,14 @@ class MyPageUserInfoController: UIViewController {
     }()
     var cellTitleArray = Constants.Data.userSection
     @IBOutlet private weak var scrollView: UIView!
-    // Mark LifeCycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         setupUI()
         setupBinding()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupUI() {
         scrollView.addSubview(backButton)
         scrollView.addSubview(saveButton)
@@ -213,7 +213,7 @@ class MyPageUserInfoController: UIViewController {
                 }
             }.disposed(by: diposeBag)
     }
-    // Mark Selector
+    // MARK: - SelectorMethod
     @objc private func back() {
         self.delegate?.userVCdismiss(vc: self)
     }
@@ -239,7 +239,7 @@ class MyPageUserInfoController: UIViewController {
         vc.presentationController?.delegate = self
         present(vc, animated: true, completion: nil)
     }
-    // Mark HelperMethod
+    // MARK: - helperMethod
     private func bindingsCell(cell: InfoCollectionViewCell) {
         cell.nameTextField.rx.text
             .asDriver()
@@ -268,7 +268,7 @@ class MyPageUserInfoController: UIViewController {
             }
             .disposed(by: diposeBag)
     }
-    // Mark segueMethod
+    // MARK: - PrepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoLevel {
             let vc = segue.destination as! MyLevelController
@@ -277,7 +277,7 @@ class MyPageUserInfoController: UIViewController {
         }
     }
 }
-// Mark CollectionDatasource
+// MARK: - collectionViewDatasource
 extension MyPageUserInfoController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
@@ -289,6 +289,7 @@ extension MyPageUserInfoController: UICollectionViewDataSource, UICollectionView
         return cell
     }
 }
+// MARK: - ImagePickerDelegate
 extension MyPageUserInfoController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         print(#function)
@@ -299,7 +300,7 @@ extension MyPageUserInfoController: UINavigationControllerDelegate, UIImagePicke
         self.dismiss(animated: true, completion: nil)
     }
 }
-// Mark tableViewDelegate
+// MARK: UITableViewDelegate
 extension MyPageUserInfoController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == UserInfo.level {
@@ -322,14 +323,14 @@ extension MyPageUserInfoController: UITableViewDelegate {
         present(viewController, animated: true, completion: nil)
     }
 }
-// Mark uipopoverViewDelegate
+// MARK: - UIPopoverPresentationControllerDelegate
 extension MyPageUserInfoController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController,
                                    traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
-// Mark UiTableview datasource
+// MARK: - UITableViewDatasource
 extension MyPageUserInfoController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTitleArray.count
@@ -360,13 +361,13 @@ extension MyPageUserInfoController: UITableViewDataSource {
         return cell
     }
 }
-// extension UserViewControllerDismiss
+// MARK: - LevelDismissDelegate
 extension MyPageUserInfoController: LevelDismissDelegate {
     func levelDismiss(vc: MyLevelController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-// Mark UserViewController:PopDismissDelegate
+// MARK: - PopDismissDelegate
 extension MyPageUserInfoController: PopDismissDelegate {
     func popDismiss(vc: MyPageInfoPopoverController) {
         vc.dismiss(animated: true, completion: nil)
