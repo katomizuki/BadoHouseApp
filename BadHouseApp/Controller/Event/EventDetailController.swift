@@ -8,7 +8,7 @@ import CDAlertView
 import FacebookCore
 
 class EventDetailController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     var event: Event?
     var team: TeamModel?
     @IBOutlet private weak var eventImageView: UIImageView! {
@@ -83,14 +83,13 @@ class EventDetailController: UIViewController {
     @IBOutlet private weak var placeStackView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
     private var chatId: String?
-    // Mark Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupData()
         setupCell()
         setupTag()
-        setupUnderLine()
         setupUser()
         setupNav()
         setupGesture()
@@ -99,7 +98,7 @@ class EventDetailController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
-    // Mark SetupMethod
+    // MARK: SetupMethod
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
         self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
@@ -238,15 +237,6 @@ class EventDetailController: UIViewController {
             }
         }
     }
-    private func setupUnderLine() {
-//        setupUnderLayer(view: lastTimeStackView)
-//        setupUnderLayer(view: gatherStackView)
-//        setupUnderLayer(view: courtStackView)
-//        setupUnderLayer(view: kindStackView)
-//        setupUnderLayer(view: levelStackView)
-//        setupUnderLayer(view: moneyStackView)
-//        setupUnderLayer(view: placeStackView)
-    }
     private func setupUnderLayer(view: UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
@@ -269,7 +259,7 @@ class EventDetailController: UIViewController {
             self.leaderLabel.text = name
         }
     }
-    // Mark HelperMethod
+    // MARK: - HelperMethod
     private func changeString(string: String) -> String {
         var text = string
         let from = text.index(text.startIndex, offsetBy: 5)
@@ -285,7 +275,13 @@ class EventDetailController: UIViewController {
         text = text.replacingOccurrences(of: ":", with: "時")
         return text
     }
-    // Mark prepareMethod
+    private func getCGrect(view: UIView) -> CGRect {
+        return CGRect(x: 0,
+                      y: view.frame.height,
+                      width: view.frame.width,
+                      height: 1.0)
+    }
+    // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoChat {
             let vc = segue.destination as! DMChatController
@@ -296,7 +292,7 @@ class EventDetailController: UIViewController {
             vc.flag = true
         }
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction func join(_ sender: Any) {
         print(#function)
         guard let leaderId = event?.userId else { return }
@@ -354,14 +350,7 @@ class EventDetailController: UIViewController {
             }
         }
     }
-    // Mark helperMethod
-    private func getCGrect(view: UIView) -> CGRect {
-        return CGRect(x: 0,
-                      y: view.frame.height,
-                      width: view.frame.width,
-                      height: 1.0)
-    }
-    // Mark selectorMethod
+    // MARK: SelectorMethod
     @objc private func didTapGroupImage() {
         print(#function)
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
@@ -370,7 +359,7 @@ class EventDetailController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-// Mark genderDelegate
+// MARK: - FetchChartsDataDelegate
 extension EventDetailController: FetchChartsDataDelegate {
     func fetchGenderCount(countArray: [Int]) {
         self.genderArray = countArray
@@ -381,7 +370,7 @@ extension EventDetailController: FetchChartsDataDelegate {
         self.setupBarChart()
     }
 }
-// Mark collectionViewdelegate
+// MARK: - CollectionViewDelegate
 extension EventDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamArray.count
@@ -394,7 +383,7 @@ extension EventDetailController: UICollectionViewDelegate {
         return cell
     }
 }
-// Mark CollectionDatasource
+// MARK: - CollectionViewDataSource
 extension EventDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
@@ -403,7 +392,7 @@ extension EventDetailController: UICollectionViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-// Mark CollectionLayoutDelegate
+// MARK: - ColletionViewDelegateFlowLayout
 extension EventDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)

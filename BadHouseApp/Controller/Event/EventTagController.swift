@@ -3,7 +3,7 @@ import TaggerKit
 import Firebase
 
 class EventTagController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var testContainerView: UIView!
     @IBOutlet private weak var finishButton: UIButton! {
@@ -28,12 +28,12 @@ class EventTagController: UIViewController {
     var (teamId, eventId) = (String(), String())
     var eventImage: UIImage?
     private var tagCollection = TKCollectionView()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTag()
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupTag() {
         productTags = TKCollectionView(tags: ["#バド好き歓迎"], action: .removeTag, receiver: nil)
         allTags = TKCollectionView(tags: Constants.Data.tagArray, action: .addTag, receiver: productTags)
@@ -42,7 +42,7 @@ class EventTagController: UIViewController {
         add(allTags, toView: testContainerView)
         add(productTags, toView: searchContainerView)
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction func finishAction(_ sender: Any) {
         guard let image = eventImage else { return }
         StorageService.addEventImage(image: image) { urlString in
@@ -52,7 +52,7 @@ class EventTagController: UIViewController {
         }
         navigationController?.popToRootViewController(animated: true)
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     private func searchTag(text: String) -> Int? {
         for i in 0..<plusTagArray.count where text == plusTagArray[i] {
                 return i
@@ -60,7 +60,7 @@ class EventTagController: UIViewController {
         return nil
     }
 }
-// Mark TKCollectionViewDelegate
+// MARK: - TKCollectionViewDelegate
 extension EventTagController: TKCollectionViewDelegate {
     func tagIsBeingAdded(name: String?) {
         guard let text = name else { return }

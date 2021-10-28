@@ -6,7 +6,7 @@ import RangeUISlider
 import SkeletonView
 
 class MakeEventController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     @IBOutlet private weak var gatherCountLabel: UILabel!
     @IBOutlet private weak var courtCountLabel: UILabel!
     @IBOutlet private weak var moneyTextField: UITextField! {
@@ -104,7 +104,7 @@ class MakeEventController: UIViewController {
     private let moneyArray = Constants.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     private let fetchData = FetchFirestoreData()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
@@ -116,7 +116,7 @@ class MakeEventController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavAccessory()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupDelegate() {
         levelUISlider.delegate = self
         teamPickerView.delegate = self
@@ -202,7 +202,7 @@ class MakeEventController: UIViewController {
             self.fetchData.fetchMyTeamData(idArray: teamIds)
         }
     }
-    // Mark Selector
+    // MARK: - SelectorMethod
     @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         kindCircle = BadmintonCircle(rawValue: index)?.name
@@ -264,7 +264,7 @@ class MakeEventController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    // Mark IBAction
+    // MARK: IBAction
     @IBAction private func plusCourt(_ sender: UIStepper) {
         let num = String(Int(sender.value) + 1)
         courtCountLabel.text = num
@@ -283,14 +283,14 @@ class MakeEventController: UIViewController {
         print(#function)
         performSegue(withIdentifier: Constants.Segue.gotoMap, sender: nil)
     }
-    // Mark helperMethod
+    // MARK: - HelperMethod
     private func tfupdate(view: UIView) {
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 2
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
     }
-    // Mark Prepare
+    // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoMap {
             let nextVC = segue.destination as! MapViewController
@@ -301,7 +301,7 @@ class MakeEventController: UIViewController {
         print(#function)
     }
 }
-// Mark UIPickerViewDataSource
+// MARK: - PickerViewDatasource
 extension MakeEventController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -314,7 +314,7 @@ extension MakeEventController: UIPickerViewDataSource {
         }
     }
 }
-// Mark PickerDelegate
+// MARK: - PickerViewDelegate
 extension MakeEventController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.teamPickerView {
@@ -332,9 +332,8 @@ extension MakeEventController: UIPickerViewDelegate {
         }
     }
 }
-// Mark RangeUISliderDelegate
+// MARK: - RangeUISliderDelegate
 extension MakeEventController: RangeUISliderDelegate {
-    // Mark RangeDelegate
     func rangeChangeFinished(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
     }
     func rangeIsChanging(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
@@ -388,7 +387,7 @@ extension MakeEventController: RangeUISliderDelegate {
         }
     }
 }
-// Mark uinavigationDelegate
+// MARK: - UInavigationDelegate
 extension MakeEventController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -397,7 +396,7 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
         self.dismiss(animated: true, completion: nil)
     }
 }
-// Mark getmyTeamDelegate
+// MARK: - getmyTeamDelegate
 extension MakeEventController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         pickerArray = teamArray
@@ -410,13 +409,13 @@ extension MakeEventController: FetchMyDataDelegate {
         teamPickerView.reloadAllComponents()
     }
 }
-// Mark textFieldDelegate
+// MARK: - textFieldDelegate
 extension MakeEventController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
 }
-// Mark SearchLocationProtocol
+// MARK: - SearchLocationProtocol
 extension MakeEventController: SearchLocationProtocol {
     func sendLocationData(location: [Double], placeName: String, placeAddress: String, vc: MapViewController) {
         vc.dismiss(animated: true, completion: nil)

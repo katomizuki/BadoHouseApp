@@ -2,7 +2,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import CDAlertView
-
+// MARK: - Protocol
 protocol SearchLocationProtocol: AnyObject {
     func sendLocationData(location: [Double],
                           placeName: String,
@@ -11,7 +11,7 @@ protocol SearchLocationProtocol: AnyObject {
     func dismissMapVC(vc: MapViewController)
 }
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
@@ -55,7 +55,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
-    // Mark LifeCycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.setRegion(defaultRegion, animated: false)
@@ -71,7 +71,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     override func viewWillAppear(_ animated: Bool) {
         searchBar.becomeFirstResponder()
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func mapTap(_ gesture: UITapGestureRecognizer) {
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -94,19 +94,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             self.placeLongitude = longitude
         }
     }
-    // Mark IBAction
+    @objc private func back() {
+        self.delegate?.dismissMapVC(vc: self)
+    }
+    // MARK: - IBAtion
     @IBAction private func saveButton(_ sender: Any) {
         self.delegate?.sendLocationData(location: [placeLatitude, placeLongitude],
                                         placeName: placeName,
                                         placeAddress: placeAddress,
                                         vc: self)
     }
-    // Mark Selector
-    @objc private func back() {
-        self.delegate?.dismissMapVC(vc: self)
-    }
 }
-// Mark searchBarDelegate
+// MARK: - SearchBarDelegate
 extension MapViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

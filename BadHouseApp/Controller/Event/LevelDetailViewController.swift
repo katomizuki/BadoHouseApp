@@ -1,7 +1,7 @@
 import UIKit
 
 class LevelDetailViewController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     @IBOutlet private weak var levelLabel: UILabel! {
         didSet {
             levelLabel.text = BadmintonLevel.ten.rawValue
@@ -20,20 +20,19 @@ class LevelDetailViewController: UIViewController {
     }
     @IBOutlet private weak var textView: UITextView!
     private var selectedLevel = BadmintonLevel.ten.rawValue
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let end = String(selectedLevel.suffix(1))
         setupSlider(level: end)
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction private func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func changeLevel(sender: UISlider) {
         let level = Double(sender.value)
-        // 分割して条件分岐する
         if case 0..<0.1 = level {
             levelLabel.text = BadmintonLevel.one.rawValue
             textView.text = Constants.Data.levelSentence[0]
@@ -75,7 +74,7 @@ class LevelDetailViewController: UIViewController {
             textView.text = Constants.Data.levelSentence[9]
         }
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupSlider(level: String) {
         switch level {
         case "1":
