@@ -1,0 +1,561 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "25r-Rz-L6G"; */
+"25r-Rz-L6G.text" = "Label";
+
+/* Class = "UILabel"; text = "8"; ObjectID = "2Ao-2c-TK7"; */
+"2Ao-2c-TK7.text" = "8";
+
+/* Class = "UILabel"; text = "　男女比"; ObjectID = "2Pl-nU-mq3"; */
+"2Pl-nU-mq3.text" = "　男女比";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "2rE-mI-c8c"; */
+"2rE-mI-c8c.text" = "10";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "35R-E7-AFQ"; */
+"35R-E7-AFQ.normalTitle" = "Button";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "3Mq-6W-P1S"; */
+"3Mq-6W-P1S.title" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3Us-NW-THr"; */
+"3Us-NW-THr.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "投稿"; ObjectID = "3Vn-ac-RR5"; */
+"3Vn-ac-RR5.title" = "投稿";
+
+/* Class = "UILabel"; text = "人数"; ObjectID = "4Vn-co-fuS"; */
+"4Vn-co-fuS.text" = "人数";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "4a1-FN-8m2"; */
+"4a1-FN-8m2.title" = " ";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "4ad-P7-Jhl"; */
+"4ad-P7-Jhl.text" = "レベル";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "4nI-AF-5gO"; */
+"4nI-AF-5gO.text" = "5";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "5aL-aX-vJg"; */
+"5aL-aX-vJg.text" = "1";
+
+/* Class = "UILabel"; text = "場所名"; ObjectID = "5kx-aH-IhV"; */
+"5kx-aH-IhV.text" = "場所名";
+
+/* Class = "UIButton"; configuration.title = "退会"; ObjectID = "5sf-aC-88J"; */
+"5sf-aC-88J.configuration.title" = "退会";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "5sf-aC-88J"; */
+"5sf-aC-88J.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "4"; ObjectID = "6Rr-9d-1y3"; */
+"6Rr-9d-1y3.text" = "4";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6js-vb-guE"; */
+"6js-vb-guE.text" = "Label";
+
+/* Class = "UILabel"; text = "レベル1"; ObjectID = "7Ks-57-5le"; */
+"7Ks-57-5le.text" = "レベル1";
+
+/* Class = "UILabel"; text = "9"; ObjectID = "7T2-Qg-TVw"; */
+"7T2-Qg-TVw.text" = "9";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7XT-fC-oub"; */
+"7XT-fC-oub.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7x1-II-qWt"; */
+"7x1-II-qWt.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "8rQ-ra-QmL"; */
+"8rQ-ra-QmL.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "おすすめタグ"; ObjectID = "9Ol-kB-20N"; */
+"9Ol-kB-20N.text" = "おすすめタグ";
+
+/* Class = "UILabel"; text = "終了時間"; ObjectID = "9hb-j9-Cxb"; */
+"9hb-j9-Cxb.text" = "終了時間";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "A0D-O1-GgN"; */
+"A0D-O1-GgN.text" = "3";
+
+/* Class = "UILabel"; text = "4"; ObjectID = "AMr-Cv-Yci"; */
+"AMr-Cv-Yci.text" = "4";
+
+/* Class = "UIButton"; normalTitle = "日にちと場所で検索"; ObjectID = "BV6-mn-5x8"; */
+"BV6-mn-5x8.normalTitle" = "日にちと場所で検索";
+
+/* Class = "UIViewController"; title = "ホーム"; ObjectID = "Bv2-1l-phB"; */
+"Bv2-1l-phB.title" = "ホーム";
+
+/* Class = "UILabel"; text = "青葉区スポーツセンター"; ObjectID = "C6G-8g-pYo"; */
+"C6G-8g-pYo.text" = "青葉区スポーツセンター";
+
+/* Class = "UILabel"; text = "コート数"; ObjectID = "CFS-lA-duA"; */
+"CFS-lA-duA.text" = "コート数";
+
+/* Class = "UIButton"; normalTitle = "練習作成"; ObjectID = "Cz4-bX-KXc"; */
+"Cz4-bX-KXc.normalTitle" = "練習作成";
+
+/* Class = "UILabel"; text = "主催者にチャットで質問する"; ObjectID = "D8P-mB-j8X"; */
+"D8P-mB-j8X.text" = "主催者にチャットで質問する";
+
+/* Class = "UIBarButtonItem"; title = "イベント"; ObjectID = "Dcw-Mc-Rc6"; */
+"Dcw-Mc-Rc6.title" = "イベント";
+
+/* Class = "UILabel"; text = "フリーワード"; ObjectID = "DfM-Av-5Qg"; */
+"DfM-Av-5Qg.text" = "フリーワード";
+
+/* Class = "UIButton"; normalTitle = "練習検索"; ObjectID = "EJc-bs-ynB"; */
+"EJc-bs-ynB.normalTitle" = "練習検索";
+
+/* Class = "UILabel"; text = "追加項目"; ObjectID = "Ed6-uh-5Iv"; */
+"Ed6-uh-5Iv.text" = "追加項目";
+
+/* Class = "UILabel"; text = "年代"; ObjectID = "EnL-Vs-zUp"; */
+"EnL-Vs-zUp.text" = "年代";
+
+/* Class = "UILabel"; text = "場所"; ObjectID = "FbL-q0-fva"; */
+"FbL-q0-fva.text" = "場所";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Fv7-UB-qsl"; */
+"Fv7-UB-qsl.text" = "Label";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Gsg-7f-y5Z"; */
+"Gsg-7f-y5Z.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "主な活動場所"; ObjectID = "HQW-x0-SQy"; */
+"HQW-x0-SQy.text" = "主な活動場所";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "HXg-Pb-Yh2"; */
+"HXg-Pb-Yh2.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HXg-Pb-Yh2"; */
+"HXg-Pb-Yh2.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "レベル"; ObjectID = "Hbw-QB-7bg"; */
+"Hbw-QB-7bg.placeholder" = "レベル";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Hfj-iy-lcK"; */
+"Hfj-iy-lcK.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "もどる"; ObjectID = "HmJ-OO-1l0"; */
+"HmJ-OO-1l0.configuration.title" = "もどる";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HmJ-OO-1l0"; */
+"HmJ-OO-1l0.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "Iha-EO-BBq"; */
+"Iha-EO-BBq.text" = "5";
+
+/* Class = "UINavigationItem"; title = "練習作成"; ObjectID = "Ir9-rA-b4b"; */
+"Ir9-rA-b4b.title" = "練習作成";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "Iuc-oV-TUo"; */
+"Iuc-oV-TUo.title" = "Item";
+
+/* Class = "UILabel"; text = "4"; ObjectID = "JCG-rg-CDW"; */
+"JCG-rg-CDW.text" = "4";
+
+/* Class = "UILabel"; text = "レベル10"; ObjectID = "JJf-ff-ToJ"; */
+"JJf-ff-ToJ.text" = "レベル10";
+
+/* Class = "UILabel"; text = "会費"; ObjectID = "JND-jX-e7u"; */
+"JND-jX-e7u.text" = "会費";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JcR-On-bVV"; */
+"JcR-On-bVV.text" = "Label";
+
+/* Class = "UINavigationItem"; title = " "; ObjectID = "KpN-VH-iiX"; */
+"KpN-VH-iiX.title" = " ";
+
+/* Class = "UILabel"; text = "追加画像"; ObjectID = "L6I-Ul-Y09"; */
+"L6I-Ul-Y09.text" = "追加画像";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "LD4-0z-mBF"; */
+"LD4-0z-mBF.text" = "1";
+
+/* Class = "UITabBarItem"; title = "トーク"; ObjectID = "La9-8T-6bi"; */
+"La9-8T-6bi.title" = "トーク";
+
+/* Class = "UILabel"; text = "主催チーム選択"; ObjectID = "LlX-oc-RsL"; */
+"LlX-oc-RsL.text" = "主催チーム選択";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "MAO-Wf-p59"; */
+"MAO-Wf-p59.text" = "7";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ms5-wL-dMn"; */
+"Ms5-wL-dMn.text" = "Label";
+
+/* Class = "UILabel"; text = "　レベル"; ObjectID = "MsT-Ht-f29"; */
+"MsT-Ht-f29.text" = "　レベル";
+
+/* Class = "UITextField"; placeholder = "サークル名"; ObjectID = "Ne2-1b-KDf"; */
+"Ne2-1b-KDf.placeholder" = "サークル名";
+
+/* Class = "UILabel"; text = "6"; ObjectID = "NvS-m0-E30"; */
+"NvS-m0-E30.text" = "6";
+
+/* Class = "UILabel"; text = "年代"; ObjectID = "O08-Wz-fjx"; */
+"O08-Wz-fjx.text" = "年代";
+
+/* Class = "UILabel"; text = "6"; ObjectID = "OUl-c4-XB9"; */
+"OUl-c4-XB9.text" = "6";
+
+/* Class = "UIButton"; normalTitle = "招待"; ObjectID = "Oo0-te-Xy6"; */
+"Oo0-te-Xy6.normalTitle" = "招待";
+
+/* Class = "UILabel"; text = "から"; ObjectID = "PWx-a5-O8c"; */
+"PWx-a5-O8c.text" = "から";
+
+/* Class = "UINavigationItem"; title = "招待"; ObjectID = "PqT-hH-kMh"; */
+"PqT-hH-kMh.title" = "招待";
+
+/* Class = "UIButton"; normalTitle = "友達追加"; ObjectID = "QBM-3w-HCi"; */
+"QBM-3w-HCi.normalTitle" = "友達追加";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QVg-bV-KzL"; */
+"QVg-bV-KzL.text" = "Label";
+
+/* Class = "UILabel"; text = "9"; ObjectID = "QhS-sU-Fii"; */
+"QhS-sU-Fii.text" = "9";
+
+/* Class = "UIButton"; normalTitle = "招待"; ObjectID = "RTu-CM-XZb"; */
+"RTu-CM-XZb.normalTitle" = "招待";
+
+/* Class = "UILabel"; text = "応募締め切り"; ObjectID = "Rsh-Eq-2j8"; */
+"Rsh-Eq-2j8.text" = "応募締め切り";
+
+/* Class = "UILabel"; text = "時間"; ObjectID = "SGO-Gu-MeK"; */
+"SGO-Gu-MeK.text" = "時間";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "TR1-ru-FhC"; */
+"TR1-ru-FhC.text" = "レベル";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TZQ-tV-5Zi"; */
+"TZQ-tV-5Zi.text" = "Label";
+
+/* Class = "UILabel"; text = "金額"; ObjectID = "UNa-pD-TaY"; */
+"UNa-pD-TaY.text" = "金額";
+
+/* Class = "UILabel"; text = "募集人数"; ObjectID = "UVK-lE-7vC"; */
+"UVK-lE-7vC.text" = "募集人数";
+
+/* Class = "UITextView"; text = "現在,こちらの機能は準備中となっております。　　　大変申し訳ございませんが,もうしばらくお待ち下さい。"; ObjectID = "Ubu-qA-hog"; */
+"Ubu-qA-hog.text" = "現在,こちらの機能は準備中となっております。　　　大変申し訳ございませんが,もうしばらくお待ち下さい。";
+
+/* Class = "UILabel"; text = "　お友達"; ObjectID = "Ud6-1f-ycp"; */
+"Ud6-1f-ycp.text" = "　お友達";
+
+/* Class = "UITextField"; placeholder = "〇〇円"; ObjectID = "VGH-D1-EPy"; */
+"VGH-D1-EPy.placeholder" = "〇〇円";
+
+/* Class = "UITextField"; placeholder = "住所や施設名入力"; ObjectID = "VNE-aP-ydn"; */
+"VNE-aP-ydn.placeholder" = "住所や施設名入力";
+
+/* Class = "UINavigationItem"; title = "  "; ObjectID = "W04-FO-RsK"; */
+"W04-FO-RsK.title" = "  ";
+
+/* Class = "UILabel"; text = "バド歴"; ObjectID = "W2R-xY-t0R"; */
+"W2R-xY-t0R.text" = "バド歴";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WmD-KB-oFC"; */
+"WmD-KB-oFC.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xbh-CY-Oez"; */
+"Xbh-CY-Oez.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "YMe-dn-NEu"; */
+"YMe-dn-NEu.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YMe-dn-NEu"; */
+"YMe-dn-NEu.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "開始時間"; ObjectID = "Yab-ZE-a2g"; */
+"Yab-ZE-a2g.text" = "開始時間";
+
+/* Class = "UILabel"; text = "　所属チーム"; ObjectID = "YpO-Ki-VHq"; */
+"YpO-Ki-VHq.text" = "　所属チーム";
+
+/* Class = "UILabel"; text = "6"; ObjectID = "Z5U-PU-TFa"; */
+"Z5U-PU-TFa.text" = "6";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Z7t-9m-5Np"; */
+"Z7t-9m-5Np.title" = " ";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "ZZe-hm-qUd"; */
+"ZZe-hm-qUd.text" = "レベル";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "Za7-17-dkt"; */
+"Za7-17-dkt.text" = "1";
+
+/* Class = "UILabel"; text = "8"; ObjectID = "Zag-7A-HxT"; */
+"Zag-7A-HxT.text" = "8";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "b0F-jp-Zij"; */
+"b0F-jp-Zij.text" = "7";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "bGX-bF-oei"; */
+"bGX-bF-oei.text" = "10";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bRa-j1-DrH"; */
+"bRa-j1-DrH.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "イベントを作成する"; ObjectID = "c1c-Eu-rQy"; */
+"c1c-Eu-rQy.normalTitle" = "イベントを作成する";
+
+/* Class = "UIBarButtonItem"; title = "  "; ObjectID = "cKr-jb-en2"; */
+"cKr-jb-en2.title" = "  ";
+
+/* Class = "UISearchBar"; placeholder = "ともだち名検索"; ObjectID = "cO3-C4-xEi"; */
+"cO3-C4-xEi.placeholder" = "ともだち名検索";
+
+/* Class = "UIButton"; normalTitle = "チーム登録"; ObjectID = "cZj-KP-oUe"; */
+"cZj-KP-oUe.normalTitle" = "チーム登録";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "cxA-8t-DMo"; */
+"cxA-8t-DMo.text" = "2";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "dYP-wv-GIW"; */
+"dYP-wv-GIW.text" = "レベル";
+
+/* Class = "UILabel"; text = "募集〆切り"; ObjectID = "dku-vB-azb"; */
+"dku-vB-azb.text" = "募集〆切り";
+
+/* Class = "UILabel"; text = "金額"; ObjectID = "dzH-Mp-MhN"; */
+"dzH-Mp-MhN.text" = "金額";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "e5o-du-SoS"; */
+"e5o-du-SoS.text" = "10";
+
+/* Class = "UILabel"; text = "ハッシュタグ"; ObjectID = "eDf-21-8Za"; */
+"eDf-21-8Za.text" = "ハッシュタグ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eL5-pV-Qaq"; */
+"eL5-pV-Qaq.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "フリーワード"; ObjectID = "epP-um-tbf"; */
+"epP-um-tbf.placeholder" = "フリーワード";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "f2g-9f-RMa"; */
+"f2g-9f-RMa.text" = "1";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "fNE-l8-KnE"; */
+"fNE-l8-KnE.title" = " ";
+
+/* Class = "UILabel"; text = "タイトル"; ObjectID = "fTQ-0S-pls"; */
+"fTQ-0S-pls.text" = "タイトル";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fo9-da-wlE"; */
+"fo9-da-wlE.text" = "Label";
+
+/* Class = "UILabel"; text = "タイトル                                      "; ObjectID = "fzM-Pp-or3"; */
+"fzM-Pp-or3.text" = "タイトル                                      ";
+
+/* Class = "UILabel"; text = "9"; ObjectID = "gBU-fy-sdw"; */
+"gBU-fy-sdw.text" = "9";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "gG8-KP-riw"; */
+"gG8-KP-riw.text" = "レベル";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "gNZ-W2-Ped"; */
+"gNZ-W2-Ped.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITabBarItem"; title = "タイムライン"; ObjectID = "gPy-Td-Q4o"; */
+"gPy-Td-Q4o.title" = "タイムライン";
+
+/* Class = "UISearchBar"; placeholder = "フリワード検索"; ObjectID = "gf7-lJ-H8V"; */
+"gf7-lJ-H8V.placeholder" = "フリワード検索";
+
+/* Class = "UINavigationItem"; title = " "; ObjectID = "grd-Aq-Ru8"; */
+"grd-Aq-Ru8.title" = " ";
+
+/* Class = "UILabel"; text = "　その他紹介"; ObjectID = "hba-XU-vTw"; */
+"hba-XU-vTw.text" = "　その他紹介";
+
+/* Class = "UILabel"; text = "性別"; ObjectID = "i6u-el-jQb"; */
+"i6u-el-jQb.text" = "性別";
+
+/* Class = "UILabel"; text = "加藤瑞樹"; ObjectID = "iBS-XX-oD7"; */
+"iBS-XX-oD7.text" = "加藤瑞樹";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "ibV-Tp-bbX"; */
+"ibV-Tp-bbX.text" = "7";
+
+/* Class = "UILabel"; text = "加藤瑞樹"; ObjectID = "igu-dh-wdf"; */
+"igu-dh-wdf.text" = "加藤瑞樹";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "ipZ-wh-lNa"; */
+"ipZ-wh-lNa.text" = "3";
+
+/* Class = "UILabel"; text = "開催日時"; ObjectID = "j9M-uu-CzE"; */
+"j9M-uu-CzE.text" = "開催日時";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "k1g-cc-Vvc"; */
+"k1g-cc-Vvc.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "この練習に参加する"; ObjectID = "kKr-6I-b5S"; */
+"kKr-6I-b5S.normalTitle" = "この練習に参加する";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lQX-f6-9W8"; */
+"lQX-f6-9W8.text" = "Label";
+
+/* Class = "UILabel"; text = "サークル種類"; ObjectID = "lXx-9d-Z36"; */
+"lXx-9d-Z36.text" = "サークル種類";
+
+/* Class = "UILabel"; text = "サークル種類"; ObjectID = "mae-dK-cyZ"; */
+"mae-dK-cyZ.text" = "サークル種類";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mw4-dW-4oO"; */
+"mw4-dW-4oO.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nCa-XG-MfZ"; */
+"nCa-XG-MfZ.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "nab-7A-YkH"; */
+"nab-7A-YkH.title" = " ";
+
+/* Class = "UITextField"; placeholder = "金額(必須)"; ObjectID = "ntg-5n-Eyk"; */
+"ntg-5n-Eyk.placeholder" = "金額(必須)";
+
+/* Class = "UINavigationItem"; title = " "; ObjectID = "oP3-Qa-A5c"; */
+"oP3-Qa-A5c.title" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ocm-Ji-ji8"; */
+"ocm-Ji-ji8.text" = "Label";
+
+/* Class = "UILabel"; text = "　お友達"; ObjectID = "oi6-BV-m3s"; */
+"oi6-BV-m3s.text" = "　お友達";
+
+/* Class = "UIButton"; normalTitle = "保存"; ObjectID = "pgl-jK-tE3"; */
+"pgl-jK-tE3.normalTitle" = "保存";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "piD-DS-VNT"; */
+"piD-DS-VNT.text" = "3";
+
+/* Class = "UITabBarItem"; title = "ホーム"; ObjectID = "r0x-zl-ZiU"; */
+"r0x-zl-ZiU.title" = "ホーム";
+
+/* Class = "UILabel"; text = "ユーザー名"; ObjectID = "r1T-Us-44o"; */
+"r1T-Us-44o.text" = "ユーザー名";
+
+/* Class = "UILabel"; text = "金額"; ObjectID = "r3U-E2-2pm"; */
+"r3U-E2-2pm.text" = "金額";
+
+/* Class = "UIButton"; normalTitle = "招待"; ObjectID = "r4S-ZI-Qtn"; */
+"r4S-ZI-Qtn.normalTitle" = "招待";
+
+/* Class = "UILabel"; text = "コート数"; ObjectID = "r5j-iP-eas"; */
+"r5j-iP-eas.text" = "コート数";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rcU-lc-5XT"; */
+"rcU-lc-5XT.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "編集"; ObjectID = "rmJ-8F-SO6"; */
+"rmJ-8F-SO6.configuration.title" = "編集";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rmJ-8F-SO6"; */
+"rmJ-8F-SO6.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "募集人数"; ObjectID = "rmS-t0-DtR"; */
+"rmS-t0-DtR.text" = "募集人数";
+
+/* Class = "UIButton"; configuration.title = "大会検索"; ObjectID = "s2d-fK-9dh"; */
+"s2d-fK-9dh.configuration.title" = "大会検索";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "s2d-fK-9dh"; */
+"s2d-fK-9dh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "sHJ-WV-lmA"; */
+"sHJ-WV-lmA.text" = "レベル";
+
+/* Class = "UIButton"; normalTitle = "検索"; ObjectID = "sre-4r-k67"; */
+"sre-4r-k67.normalTitle" = "検索";
+
+/* Class = "UILabel"; text = "場所"; ObjectID = "t7L-4Z-w1x"; */
+"t7L-4Z-w1x.text" = "場所";
+
+/* Class = "UIBarButtonItem"; title = "検索"; ObjectID = "tSz-g6-eRh"; */
+"tSz-g6-eRh.title" = "検索";
+
+/* Class = "UILabel"; text = "　その他紹介"; ObjectID = "tdm-Rd-HoR"; */
+"tdm-Rd-HoR.text" = "　その他紹介";
+
+/* Class = "UILabel"; text = "　チームメンバー"; ObjectID = "teH-GC-N9C"; */
+"teH-GC-N9C.text" = "　チームメンバー";
+
+/* Class = "UILabel"; text = "性別"; ObjectID = "vAR-eo-aa6"; */
+"vAR-eo-aa6.text" = "性別";
+
+/* Class = "UILabel"; text = "　特徴"; ObjectID = "vW2-VK-sG6"; */
+"vW2-VK-sG6.text" = "　特徴";
+
+/* Class = "UILabel"; text = "男女比 レベル"; ObjectID = "vaC-IE-Svx"; */
+"vaC-IE-Svx.text" = "男女比 レベル";
+
+/* Class = "UILabel"; text = "8"; ObjectID = "vdS-1o-uaZ"; */
+"vdS-1o-uaZ.text" = "8";
+
+/* Class = "UILabel"; text = "所属しているチームがないのでイベントを作成できません"; ObjectID = "vqq-2z-TLW"; */
+"vqq-2z-TLW.text" = "所属しているチームがないのでイベントを作成できません";
+
+/* Class = "UITabBarItem"; title = "マイページ"; ObjectID = "vxV-7T-gUh"; */
+"vxV-7T-gUh.title" = "マイページ";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "vxe-fH-WlL"; */
+"vxe-fH-WlL.text" = "1";
+
+/* Class = "UITextField"; placeholder = "施設名,住所(必須)"; ObjectID = "wBM-v6-A5p"; */
+"wBM-v6-A5p.placeholder" = "施設名,住所(必須)";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "wSg-ye-t2E"; */
+"wSg-ye-t2E.text" = "2";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wZS-aO-2H4"; */
+"wZS-aO-2H4.text" = "Label";
+
+/* Class = "UISegmentedControl"; wcJ-qB-KZn.segmentTitles[0] = "社会人サークル"; ObjectID = "wcJ-qB-KZn"; */
+"wcJ-qB-KZn.segmentTitles[0]" = "社会人サークル";
+
+/* Class = "UISegmentedControl"; wcJ-qB-KZn.segmentTitles[1] = "学生サークル"; ObjectID = "wcJ-qB-KZn"; */
+"wcJ-qB-KZn.segmentTitles[1]" = "学生サークル";
+
+/* Class = "UISegmentedControl"; wcJ-qB-KZn.segmentTitles[2] = "その他練習"; ObjectID = "wcJ-qB-KZn"; */
+"wcJ-qB-KZn.segmentTitles[2]" = "その他練習";
+
+/* Class = "UINavigationItem"; title = " "; ObjectID = "wf6-th-aPU"; */
+"wf6-th-aPU.title" = " ";
+
+/* Class = "UILabel"; text = "グループ名"; ObjectID = "wm8-g4-yKy"; */
+"wm8-g4-yKy.text" = "グループ名";
+
+/* Class = "UILabel"; text = "人数"; ObjectID = "wmC-Yb-Ons"; */
+"wmC-Yb-Ons.text" = "人数";
+
+/* Class = "UIBarButtonItem"; title = "チーム検索"; ObjectID = "wq4-4A-eHZ"; */
+"wq4-4A-eHZ.title" = "チーム検索";
+
+/* Class = "UILabel"; text = "チームメンバー"; ObjectID = "wtE-qH-41c"; */
+"wtE-qH-41c.text" = "チームメンバー";
+
+/* Class = "UILabel"; text = "レベル"; ObjectID = "xFj-gX-Mhn"; */
+"xFj-gX-Mhn.text" = "レベル";
+
+/* Class = "UILabel"; text = "　所属チーム"; ObjectID = "xfR-4w-34R"; */
+"xfR-4w-34R.text" = "　所属チーム";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "xyO-Le-1tG"; */
+"xyO-Le-1tG.text" = "2";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yRo-oL-G2R"; */
+"yRo-oL-G2R.text" = "Label";
+
+/* Class = "UILabel"; text = "主な活動時間"; ObjectID = "ySo-bn-HAV"; */
+"ySo-bn-HAV.text" = "主な活動時間";
+
+/* Class = "UILabel"; text = "レベル10"; ObjectID = "ycT-gU-Ycd"; */
+"ycT-gU-Ycd.text" = "レベル10";
+
+/* Class = "UILabel"; text = "バド歴"; ObjectID = "ykl-My-UPA"; */
+"ykl-My-UPA.text" = "バド歴";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "z8F-8L-zL9"; */
+"z8F-8L-zL9.text" = "5";

@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>ja_JP</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ja</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>BadoHouse</string>
 	<key>CFBundleExecutable</key>
@@ -41,9 +45,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Need camera access for uploading Images</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Need location access for updating nearby events</string>
+	<string>現在地から近い練習を表示させていただく際に利用します。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need location access for updating nearby events</string>
+	<string>現在地から近い練習を表示させていただく際に利用します。</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need microphone access for uploading videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>

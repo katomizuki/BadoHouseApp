@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
             searchBar.autocapitalizationType = .none
         }
     }
+    @IBOutlet weak var tornmentSearchButton: UIButton! {
+        didSet { tornmentSearchButton.setTitle("大会検索", for: .normal)}
+    }
     @IBOutlet weak var timeButton: UIButton! {
         didSet {
             timeButton.toCorner(num: 15)
@@ -48,10 +51,10 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
-        if !Network.shared.isOnline() {
-            print("ネットワークないよ！")
-            self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
-        }
+//        if !Network.shared.isOnline() {
+//            print("ネットワークないよ！")
+//            self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
+//        }
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: Constants.Segue.gotoRegister, sender: nil)
