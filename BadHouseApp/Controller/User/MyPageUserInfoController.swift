@@ -6,8 +6,6 @@ import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 import CDAlertView
-import SkeletonView
-
 protocol UserDismissDelegate: AnyObject {
     func userVCdismiss(vc: MyPageUserInfoController)
 }
@@ -200,12 +198,19 @@ class MyPageUserInfoController: UIViewController {
                         self.hasChangedImage = false
                     }
                 } else {
-                    UserService.updateUserData(dic: dic)
+                    UserService.updateUserData(dic: dic) { result in
+                        switch result {
+                        case .failure(let error):
+                            self.setupCDAlert(title: "ユーザー情報の保存に失敗しました", message: "", action: "OK", alertType: .warning)
+                            print("update UserInfo", error)
+                        case .success:
+                            self.setupCDAlert(title: "ユーザー情報を保存しました",
+                                              message: "",
+                                              action: "OK",
+                                              alertType: .success)
+                        }
+                    }
                 }
-                self.setupCDAlert(title: "ユーザー情報を保存しました",
-                                  message: "",
-                                  action: "OK",
-                                  alertType: .success)
             }.disposed(by: diposeBag)
     }
     // Mark Selector

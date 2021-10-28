@@ -5,7 +5,7 @@ struct ChatRoomService {
         let chatRoomId = Ref.ChatroomRef.document().documentID
         let chatRoomDic = ["chatRoomId": chatRoomId, "user": myId, "user2": youId]
         Ref.ChatroomRef.document(chatRoomId).setData(chatRoomDic)
-        Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId":  chatRoomId])
+        Ref.UsersRef.document(myId).collection("ChatRoom").document(chatRoomId).setData(["chatId": chatRoomId])
         Ref.UsersRef.document(youId).collection("ChatRoom").document(chatRoomId).setData([
             "chatId": chatRoomId])
         completion(chatRoomId)

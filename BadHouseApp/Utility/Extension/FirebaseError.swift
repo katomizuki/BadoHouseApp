@@ -1,6 +1,9 @@
 import Foundation
-
-enum FirebaseError: Error {
-    case networkError
-    case unknown
+enum Result<T,Error> {
+    case success(T)
+    case failure(Error)
 }
+enum FirebaseError:Error {
+    case netError
+}
+

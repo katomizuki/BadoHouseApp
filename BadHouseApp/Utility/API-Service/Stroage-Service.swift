@@ -29,10 +29,18 @@ struct StorageService {
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
-                UserService.updateUserData(dic: dicWithImage)
+                UserService.updateUserData(dic: dicWithImage) { result in
+                    switch result {
+                    case .failure(let error):
+                        completion()
+                        print("upload Image Error",error)
+                    case .success:
+                        completion()
+                }
             }
         }
     }
+ }
     // Mark TeamImageAdd
     static func addTeamImage(image: UIImage, completion: @escaping (String) -> Void) {
         guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }

@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import RxSwift
 
 struct UserService {
     static func setUserData(uid: String,
@@ -20,14 +21,17 @@ struct UserService {
             print("UserData Set Success")
         }
     }
-    static func updateUserData(dic: [String: Any]) {
+    static func updateUserData(dic: [String: Any],
+                               completion: @escaping(Result<String, Error>) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Firestore.firestore().collection("Users").document(uid).updateData(dic) { error in
             if let error = error {
                 print("UserInfo Update Error", error.localizedDescription)
+                completion(.failure(FirebaseError.netError))
                 return
             }
             print("UserInfo Update Success")
+            completion(.success("Success"))
         }
     }
     static func getUserData(uid: String, compeltion: @escaping (User?) -> Void) {
@@ -100,7 +104,7 @@ extension UserService {
         var bool = false
         Ref.UsersRef.document(myId).collection("Friends").getDocuments { snapShot, error in
             if let error = error {
-                print("Friend Search Error",error.localizedDescription)
+                print("Friend Search Error", error.localizedDescription)
                 return
             }
             guard let documents = snapShot?.documents else { return }

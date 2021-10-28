@@ -4,7 +4,7 @@ import IQKeyboardManagerSwift
 import UserNotifications
 import GoogleSignIn
 import FBSDKCoreKit
-
+import Network
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -15,11 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         setupNotifications(on: application)
         UIApplication.shared.applicationIconBadgeNumber = 0
-//                do {
-//                    try Auth.auth().signOut()
-//                } catch {
-//
-//                }
+        Network.shared.setupNetPathMonitor()
+        
         return true
     }
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
