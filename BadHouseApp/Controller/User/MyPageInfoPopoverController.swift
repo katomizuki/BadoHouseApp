@@ -3,7 +3,7 @@ import FacebookCore
 protocol PopDismissDelegate: AnyObject {
     func popDismiss(vc: MyPageInfoPopoverController)
 }
-class MyPageInfoPopoverController: UIViewController {
+final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
     weak var delegate: PopDismissDelegate?
     private let cellId = Constants.CellId.popCellId

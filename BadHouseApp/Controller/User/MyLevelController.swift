@@ -3,7 +3,7 @@ import Foundation
 protocol LevelDismissDelegate: AnyObject {
     func levelDismiss(vc: MyLevelController)
 }
-class MyLevelController: UIViewController {
+final class MyLevelController: UIViewController {
     // MARK: - Properties
     weak var delegate: LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
