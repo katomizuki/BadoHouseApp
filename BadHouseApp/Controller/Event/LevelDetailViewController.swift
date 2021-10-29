@@ -1,6 +1,6 @@
 import UIKit
 
-class LevelDetailViewController: UIViewController {
+final class LevelDetailViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var levelLabel: UILabel! {
         didSet {

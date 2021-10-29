@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-class ProfileTextField: UITextField {
-    // Mark initialize
+final class ProfileTextField: UITextField {
+    // MARK: - Initialize
     init(placeholder: String) {
         super.init(frame: .zero)
         self.borderStyle = .bezel

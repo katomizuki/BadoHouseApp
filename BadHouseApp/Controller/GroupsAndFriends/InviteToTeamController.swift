@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import NVActivityIndicatorView
 
-class InviteToTeamController: UIViewController {
+final class InviteToTeamController: UIViewController {
     // Mark Properties
     @IBOutlet private weak var friendTableView: UITableView! {
         didSet {

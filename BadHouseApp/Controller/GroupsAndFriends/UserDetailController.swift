@@ -3,7 +3,7 @@ import Firebase
 import SDWebImage
 import FacebookCore
 
-class UserDetailController: UIViewController {
+final class UserDetailController: UIViewController {
     // Mark Properties
     var user: User?
     var me: User?

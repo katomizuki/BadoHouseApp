@@ -4,7 +4,7 @@ import UIKit
 protocol InputDelegate: AnyObject {
     func inputView(inputView: CustomInputAccessoryView, message: String)
 }
-class CustomInputAccessoryView: UIView {
+final class CustomInputAccessoryView: UIView {
     // Mark Properties
     weak var delegate: InputDelegate?
     let messageInputTextView: UITextView = {

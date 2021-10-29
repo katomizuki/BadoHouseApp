@@ -8,7 +8,7 @@ protocol VideoCollectionCellDelegate: AnyObject {
     func didTapSearchButton(video: VideoModel, button: UIButton)
     func didTapNextButton(video: VideoModel)
 }
-class VideoCell: UICollectionViewCell {
+final class VideoCell: UICollectionViewCell {
     // Mark properties
     var player: AVPlayer?
     static let identifier = Constants.CellId.videoCell

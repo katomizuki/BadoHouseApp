@@ -6,7 +6,7 @@ protocol SearchCalendarDelegate: AnyObject {
     func didTapSearchButton(dateString: String, text: String, vc: SearchCalendarController)
     func dismissCalendarVC(vc: SearchCalendarController)
 }
-class SearchCalendarController: UIViewController {
+final class SearchCalendarController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var calendar: FSCalendar!
     weak var delegate: SearchCalendarDelegate?

@@ -7,7 +7,7 @@ import RxSwift
 protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Event, cell: UITableViewCell)
 }
-class GroupCell: UITableViewCell {
+final class GroupCell: UITableViewCell {
     // Mark Properties
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!

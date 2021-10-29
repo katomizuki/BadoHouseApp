@@ -4,7 +4,6 @@ import RxSwift
 // Mark InputProtocol
 protocol MakeEventInputProtocol {
     var dateTextInput: AnyObserver<String> { get }
-//    var groupTextInput: AnyObserver<String> { get }
     var startTextInput: AnyObserver<String> { get }
     var finishTextInput: AnyObserver<String> { get }
     var titleTextInput: AnyObserver<String> { get }
@@ -19,11 +18,10 @@ protocol MakeEventOutputProtocol {
     var titleTextOutput: PublishSubject<String> { get }
     var moneyTextOutput: PublishSubject<String> { get }
 }
-class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
+final class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
     // Mark Observable
     private let disposeBag = DisposeBag()
     var dateTextOutput = PublishSubject<String>()
-//    var groupTextOutput = PublishSubject<String>()
     var titleTextOutput = PublishSubject<String>()
     var finishTextOutput = PublishSubject<String>()
     var startTextOutput = PublishSubject<String>()
@@ -33,9 +31,6 @@ class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
     var dateTextInput: AnyObserver<String> {
         dateTextOutput.asObserver()
     }
-//    var groupTextInput: AnyObserver<String> {
-//        groupTextOutput.asObserver()
-//    }
     var titleTextInput: AnyObserver<String> {
         titleTextOutput.asObserver()
     }

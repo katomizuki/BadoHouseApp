@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RegisterButton: UIButton {
+final class RegisterButton: UIButton {
     // Mark initialize
     init(text: String) {
         super.init(frame: .zero)

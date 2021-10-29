@@ -1,7 +1,7 @@
 import UIKit
 import FacebookCore
 
-class WalkThroughController: UIPageViewController {
+final class WalkThroughController: UIPageViewController {
     // MARK: - FirstVC
     private let firstVC: UIViewController = {
         let vc = UIViewController()

@@ -7,7 +7,7 @@ enum BlockOptions: Int {
 protocol BlockDelegate: AnyObject {
     func blockSheet(option: BlockOptions)
 }
-class BlockSheet: NSObject {
+final class BlockSheet: NSObject {
     // Mark properties
     private var user: User?
     private let tableView = UITableView()

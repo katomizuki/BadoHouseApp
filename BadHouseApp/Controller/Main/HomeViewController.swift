@@ -10,7 +10,7 @@ import UserNotifications
 import CDAlertView
 import FacebookCore
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     // MARK: - Properties
     private var user: User?
     private var indicatorView: NVActivityIndicatorView!

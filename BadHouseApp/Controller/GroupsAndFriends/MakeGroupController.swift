@@ -6,7 +6,7 @@ import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 
-class MakeGroupController: UIViewController {
+final class MakeGroupController: UIViewController {
     // Mark Properties
     private let disposeBag = DisposeBag()
     private let teamBinding = TeamRegisterBindings()

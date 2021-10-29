@@ -3,7 +3,7 @@ import UIKit
 import SDWebImage
 import FacebookCore
 
-class TeammemberCell: UICollectionViewCell {
+final class TeammemberCell: UICollectionViewCell {
     // Mark Properties
     var teamMember = [User]()
     @IBOutlet weak var teamMemberImage: UIImageView!

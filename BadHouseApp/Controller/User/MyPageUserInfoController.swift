@@ -9,7 +9,7 @@ import CDAlertView
 protocol UserDismissDelegate: AnyObject {
     func userVCdismiss(vc: MyPageUserInfoController)
 }
-class MyPageUserInfoController: UIViewController {
+final class MyPageUserInfoController: UIViewController {
     // MARK: - Properties
     var user: User?
     private let cellId = Constants.CellId.userCellId

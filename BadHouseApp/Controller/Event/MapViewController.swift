@@ -10,7 +10,7 @@ protocol SearchLocationProtocol: AnyObject {
                           vc: MapViewController)
     func dismissMapVC(vc: MapViewController)
 }
-class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+final class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     // MARK: - Properties
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {

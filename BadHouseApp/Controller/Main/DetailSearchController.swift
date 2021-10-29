@@ -12,7 +12,7 @@ protocol DetailSearchDelegate: AnyObject {
                                   vc: DetailSearchController)
     func dismissDetailSearchVC(vc: DetailSearchController)
 }
-class DetailSearchController: UIViewController {
+final class DetailSearchController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var titleStackView: UIStackView!
     @IBOutlet private weak var circleStackView: UIStackView!

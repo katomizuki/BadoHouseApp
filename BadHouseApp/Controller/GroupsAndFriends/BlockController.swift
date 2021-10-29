@@ -3,7 +3,7 @@ import SwiftUI
 protocol BlockDismissDelegate: AnyObject {
     func blockDismiss(vc: BlockController)
 }
-class BlockController: UIViewController {
+final class BlockController: UIViewController {
     // Mark TextView
     let blockTextView = BlockTextView()
     weak var delegate: BlockDismissDelegate?

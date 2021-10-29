@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RegisterTitleLabel: UILabel {
+final class RegisterTitleLabel: UILabel {
     // Mark initialize
     init(text: String) {
         super.init(frame: .zero)

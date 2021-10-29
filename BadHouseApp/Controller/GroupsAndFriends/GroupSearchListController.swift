@@ -4,7 +4,7 @@ protocol GroupSearchListDelegate: AnyObject {
     func didTapDayList(selectedDay: String)
     func didTapPlaceList(selectedPlace: String)
 }
-class GroupSearchListController: UIViewController {
+final class GroupSearchListController: UIViewController {
     // MARK: - Properties
     private lazy var tableView: UITableView = {
         let tableView = UITableView()

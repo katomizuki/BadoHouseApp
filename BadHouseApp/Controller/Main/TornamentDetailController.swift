@@ -1,6 +1,6 @@
 import UIKit
 
-class TornamentDetailController: UIViewController {
+final class TornamentDetailController: UIViewController {
     // MARK: - Properties
     private let tornamentLabel = ProfileLabel(title: "〇〇大会", num: 20)
     private let detailTextView: UITextView = {

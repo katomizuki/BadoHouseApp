@@ -3,7 +3,7 @@ import Firebase
 import NVActivityIndicatorView
 import FacebookCore
 
-class MyPageController: UIViewController {
+final class MyPageController: UIViewController {
     // Mark Properties
     var user: User?
     var teamArray = [TeamModel]()

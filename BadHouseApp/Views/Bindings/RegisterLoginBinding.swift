@@ -14,13 +14,13 @@ protocol RegisterBindingsOutputs {
     var emailTextOutput: PublishSubject<String> { get }
     var passwordTextOutput: PublishSubject<String> { get }
 }
-class RegisterBindings: RegisterBindingInputs, RegisterBindingsOutputs {
+final class RegisterBindings: RegisterBindingInputs, RegisterBindingsOutputs {
     private let disposeBag = DisposeBag()
     // Mark Observable(状態を保持している監視対象）
     var nameTextOutput = PublishSubject<String>()
     var emailTextOutput = PublishSubject<String>()
     var passwordTextOutput = PublishSubject<String>()
-    var valideRegisterSubject = BehaviorSubject<Bool>(value: false)//初期値を入れられる。
+    var valideRegisterSubject = BehaviorSubject<Bool>(value: false)
     // Mark Observer(監視者)
     var nameTextInput: AnyObserver<String> {
         nameTextOutput.asObserver()

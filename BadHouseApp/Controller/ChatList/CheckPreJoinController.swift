@@ -4,7 +4,7 @@ import Firebase
 import SDWebImage
 import NVActivityIndicatorView
 
-class CheckPreJoinController: UIViewController {
+final class CheckPreJoinController: UIViewController {
     // Mark properties
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()

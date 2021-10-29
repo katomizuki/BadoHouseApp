@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ProfileImageView: UIImageView {
+final class ProfileImageView: UIImageView {
     // Mark initialize
     init() {
         super.init(frame: .zero)

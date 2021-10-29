@@ -2,7 +2,7 @@ import UIKit
 import TaggerKit
 import Firebase
 
-class EventTagController: UIViewController {
+final class EventTagController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var testContainerView: UIView!

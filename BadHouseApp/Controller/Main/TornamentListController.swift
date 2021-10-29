@@ -1,6 +1,6 @@
 import UIKit
 
-class TornamentListController: UIViewController {
+final class TornamentListController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = Constants.CellId.CellGroupId

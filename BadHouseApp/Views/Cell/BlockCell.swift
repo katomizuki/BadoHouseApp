@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import SkeletonView
 
-class BlockCell: UITableViewCell {
+final class BlockCell: UITableViewCell {
     // Mark Properties
     private let cancleLabel: UILabel = {
         let label = UILabel()

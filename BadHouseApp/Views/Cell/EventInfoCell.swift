@@ -3,7 +3,7 @@ import SkeletonView
 protocol EventInfoCellDelegate: AnyObject {
     func didTapBlockButton(_ cell: EventInfoCell)
 }
-class EventInfoCell: UICollectionViewCell {
+final class EventInfoCell: UICollectionViewCell {
     // Mark Properties
     @IBOutlet weak var teamLabel: UILabel! {
         didSet {

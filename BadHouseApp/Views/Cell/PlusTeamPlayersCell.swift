@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import FacebookCore
 
-class PlusTeamPlayersCell: UITableViewCell {
+final class PlusTeamPlayersCell: UITableViewCell {
     // Mark Properties
     var linkInvite: PlusTeamPlayerController!
     var count = 0

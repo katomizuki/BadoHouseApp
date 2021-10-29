@@ -14,7 +14,7 @@ import AuthenticationServices
 import CryptoKit
 import SkeletonView
 
-class RegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
     // MARK: - Properties
         private let nameTextField: UITextField = {
         let tf = RegisterTextField(placeholder: "名前")

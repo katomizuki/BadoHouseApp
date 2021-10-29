@@ -4,8 +4,8 @@ import AVFoundation
 import FirebaseStorage
 import Firebase
 
-class PostVideoController: UIViewController {
-    // Mark Properties
+final class PostVideoController: UIViewController {
+    // MARK: - Properties
     private let logoImage: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: Constants.ImageName.logoImage)
@@ -38,12 +38,12 @@ class PostVideoController: UIViewController {
     let fileOutput = AVCaptureMovieFileOutput()
     var recordButton: UIButton!
     var isRecording = false
-    // Mark lifeCycle
+    // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [label,
                                                        singleButton,
@@ -67,7 +67,7 @@ class PostVideoController: UIViewController {
                          width: 100,
                          height: 100)
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func handle(sender: UIButton) {
 #if targetEnvironment(simulator)
         // do nothing

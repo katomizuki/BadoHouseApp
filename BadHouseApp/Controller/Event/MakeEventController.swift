@@ -5,7 +5,7 @@ import Firebase
 import RangeUISlider
 import SkeletonView
 
-class MakeEventController: UIViewController {
+final class MakeEventController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var gatherCountLabel: UILabel!
     @IBOutlet private weak var courtCountLabel: UILabel!

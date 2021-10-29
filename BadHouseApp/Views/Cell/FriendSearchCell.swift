@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import FacebookCore
 
-class FriendSearchCell: UITableViewCell {
+final class FriendSearchCell: UITableViewCell {
     // Mark properties
     var link: FriendSearchController!
     var count = 0

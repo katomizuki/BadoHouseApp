@@ -1,7 +1,7 @@
 import UIKit
 import SkeletonView
 
-class AppExplainController: UIViewController {
+final class AppExplainController: UIViewController {
 // MARK: - Properties
     private let explainLabel: UILabel = {
         let label = UILabel()

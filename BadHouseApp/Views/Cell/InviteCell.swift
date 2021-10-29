@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class InviteCell: UITableViewCell {
+final class InviteCell: UITableViewCell {
     // Mark Properties
     var linkFriend: InviteToTeamController!
     var count = 0

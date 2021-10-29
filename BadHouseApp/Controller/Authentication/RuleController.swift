@@ -3,7 +3,7 @@ import UIKit
 protocol RuleControllerDelegate: AnyObject {
     func didTapBackButton(_ vc: RuleController)
 }
-class RuleController: UIViewController {
+final class RuleController: UIViewController {
     weak var delegate: RuleControllerDelegate?
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)

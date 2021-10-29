@@ -5,7 +5,7 @@ import FacebookCore
 import EmptyStateKit
 import CDAlertView
 
-class FriendSearchController: UIViewController {
+final class FriendSearchController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar! {

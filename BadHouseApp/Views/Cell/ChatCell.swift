@@ -1,6 +1,6 @@
 import UIKit
 
-class ChatCell: UITableViewCell {
+final class ChatCell: UITableViewCell {
     // Mark properties
     var message: String? {
         didSet {

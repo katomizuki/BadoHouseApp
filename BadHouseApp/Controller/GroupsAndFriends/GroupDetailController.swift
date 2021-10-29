@@ -6,7 +6,7 @@ import Charts
 import FacebookCore
 import SwiftUI
 
-class GroupDetailController: UIViewController {
+final class GroupDetailController: UIViewController {
     // Mark Properties
     private let fetchData = FetchFirestoreData()
     var team: TeamModel?

@@ -2,7 +2,7 @@ import UIKit
 import EmptyStateKit
 import CDAlertView
 
-class GroupSearchController: UIViewController {
+final class GroupSearchController: UIViewController {
     // Mark properties
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {

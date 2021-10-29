@@ -4,19 +4,19 @@ import AVFoundation
 import FirebaseStorage
 import Firebase
 
-class VideoCameraController: UIViewController {
-    // Mark properties
+final class VideoCameraController: UIViewController {
+    // MARK: - Properties
     var keyWord = String()
     let captureSession = AVCaptureSession()
     let fileOutput = AVCaptureMovieFileOutput()
     var recordButton: UIButton!
     var isRecording = false
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCamera()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setUpCamera() {
         // デバイスの初期化
         let videoDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.video)
@@ -54,7 +54,7 @@ class VideoCameraController: UIViewController {
         self.recordButton.addTarget(self, action: #selector(self.tappedRecordButton(sender:)), for: .touchUpInside)
         self.view.addSubview(recordButton)
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func tappedRecordButton(sender: UIButton) {
         if isRecording {
             // 録画終了
@@ -75,7 +75,7 @@ class VideoCameraController: UIViewController {
         }
     }
 }
-// Mark AVfileoutputDelegate
+// MARK: - AVfileoutputDelegate
 extension VideoCameraController: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         StorageService.sendVideoData(videoUrl: outputFileURL, senderId: AuthService.getUserId(), keyWord: self.keyWord)

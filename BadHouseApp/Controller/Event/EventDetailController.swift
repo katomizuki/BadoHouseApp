@@ -7,7 +7,7 @@ import Firebase
 import CDAlertView
 import FacebookCore
 
-class EventDetailController: UIViewController {
+final class EventDetailController: UIViewController {
     // MARK: - Properties
     var event: Event?
     var team: TeamModel?

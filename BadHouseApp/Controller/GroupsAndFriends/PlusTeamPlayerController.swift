@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class PlusTeamPlayerController: UIViewController {
+final class PlusTeamPlayerController: UIViewController {
     // Mark properties
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {

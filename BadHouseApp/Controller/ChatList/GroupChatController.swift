@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class GroupChatController: UIViewController {
+final class GroupChatController: UIViewController {
     // Mark Properties
     var team: TeamModel?
     private var chatArray = [GroupChatModel]()

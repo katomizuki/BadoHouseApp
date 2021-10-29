@@ -12,7 +12,7 @@ import FacebookLogin
 import AuthenticationServices
 import CryptoKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()

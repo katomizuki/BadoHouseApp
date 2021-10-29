@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import FacebookCore
 
-class InfoCollectionViewCell: UICollectionViewCell {
+final class InfoCollectionViewCell: UICollectionViewCell {
     // Mark Properties
     var user: User? {
         didSet {

@@ -15,7 +15,7 @@ protocol TeamRegisterOutput {
     var timeTextOutput: PublishSubject<String> { get }
     var levelTextOutput: PublishSubject<String> { get }
 }
-class TeamRegisterBindings: TeamRegisterInput, TeamRegisterOutput {
+final class TeamRegisterBindings: TeamRegisterInput, TeamRegisterOutput {
     private let disposeBag = DisposeBag()
     // Mark Observable
     var nameTextOutPut = PublishSubject<String>()

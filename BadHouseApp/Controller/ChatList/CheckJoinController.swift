@@ -2,7 +2,7 @@ import UIKit
 import XLPagerTabStrip
 import Firebase
 
-class CheckJoinController: UIViewController {
+final class CheckJoinController: UIViewController {
     // Mark Properties
     @IBOutlet private weak var tableView: UITableView!
     private var eventArray = [Event]()

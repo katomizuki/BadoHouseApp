@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-class BlockTextView: UITextView {
+final class BlockTextView: UITextView {
     // Mark properties
     var placeholder: UILabel = {
         let label = UILabel()

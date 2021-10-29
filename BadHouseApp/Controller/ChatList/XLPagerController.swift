@@ -7,7 +7,7 @@ enum XLPager: String {
     case first = "First"
     case second = "Second"
 }
-class XLPagerController: ButtonBarPagerTabStripViewController {
+final class XLPagerController: ButtonBarPagerTabStripViewController {
     // Mark properties
     private lazy var collectionView: ButtonBarView = {
         let cv = buttonBarView

@@ -4,7 +4,7 @@ import SDWebImage
 import CDAlertView
 import NVActivityIndicatorView
 
-class TalkController: UIViewController {
+final class TalkController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private let fetchData = FetchFirestoreData()

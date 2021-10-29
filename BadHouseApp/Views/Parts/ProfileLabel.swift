@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ProfileLabel: UILabel {
+final class ProfileLabel: UILabel {
     // Mark initialize
     init() {
         super.init(frame: .zero)

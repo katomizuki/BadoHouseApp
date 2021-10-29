@@ -5,7 +5,7 @@ protocol SearchDetailGroupDelegate: AnyObject {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String)
     func dismissGroupVC(vc: SearchDetailGroupController)
 }
-class SearchDetailGroupController: UIViewController {
+final class SearchDetailGroupController: UIViewController {
     // MARK: - Properties
     private let cellTitleArray = ["活動曜日　○曜日", "会費　〇〇円/月", "場所  〇〇県"]
     private lazy var searchButton: UIButton = {

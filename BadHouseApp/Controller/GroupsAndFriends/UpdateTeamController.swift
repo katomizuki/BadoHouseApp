@@ -3,7 +3,7 @@ import UIKit
 protocol backDelegate: AnyObject {
     func updateTeamData(vc: UpdateTeamController)
 }
-class UpdateTeamController: UIViewController {
+final class UpdateTeamController: UIViewController {
     // Mark properties
     var team: TeamModel?
     private let placeTextField = ProfileTextField(placeholder: "")

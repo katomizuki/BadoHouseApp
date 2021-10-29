@@ -7,7 +7,7 @@ import FacebookCore
 protocol MyScheduleDelegate: AnyObject {
     func dismissMyScheduleVC(vc: MyScheduleController)
 }
-class MyScheduleController: UIViewController {
+final class MyScheduleController: UIViewController {
     // Mark properties
     var me: User?
     private let cellId = Constants.CellId.CellGroupId
