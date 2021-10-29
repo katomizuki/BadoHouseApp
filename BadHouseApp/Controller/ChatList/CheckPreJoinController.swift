@@ -5,13 +5,13 @@ import SDWebImage
 import NVActivityIndicatorView
 
 final class CheckPreJoinController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
     private var indicatorView: NVActivityIndicatorView!
-    // Marklifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -21,7 +21,7 @@ final class CheckPreJoinController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupData()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,13 +45,13 @@ final class CheckPreJoinController: UIViewController {
         }
     }
 }
-// Mark IndicatorInfo-Extension
+// MARK: - IndicatorInfo-Extension
 extension CheckPreJoinController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "承認待ち")
     }
 }
-// Mark getPrejoinDelegate
+// MARK: - FetchMyDataDelegate
 extension CheckPreJoinController: FetchMyDataDelegate {
     func fetchMyPrejoinData(preJoinArray: [[String]]) {
         self.notificationArray = [[User]]()
@@ -77,7 +77,7 @@ extension CheckPreJoinController: FetchMyDataDelegate {
         }
     }
 }
-// Mark tableviewdelegate
+// MARK: - TableviewDatasource
 extension CheckPreJoinController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return eventArray.count
@@ -110,7 +110,7 @@ extension CheckPreJoinController: UITableViewDataSource {
         return eventArray[section].eventTitle
     }
 }
-// Mark UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension CheckPreJoinController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertVC = UIAlertController(title: "参加申請を許可しますか？", message: "", preferredStyle: .alert)
@@ -123,7 +123,15 @@ extension CheckPreJoinController: UITableViewDelegate {
             let meId = AuthService.getUserId()
             JoinService.sendJoinData(eventId: eventId, uid: userId)
             ChatRoomService.getChatData(meId: meId, youId: userId) { chatId in
-                ChatRoomService.sendDMChat(chatroomId: chatId, senderId: meId, text: "承認者からの参加が確定しました。", reciverId: userId)
+                ChatRoomService.sendDMChat(chatroomId: chatId,
+                                           senderId: meId,
+                                           text: "承認者からの参加が確定しました。",
+                                           reciverId: userId) { result in
+                    switch result {
+                    case .success(let success):print(success)
+                    case .failure(let error):print(error)
+                    }
+                }
             }
             tableView.reloadData()
         }

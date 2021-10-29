@@ -318,7 +318,17 @@ final class EventDetailController: UIViewController {
                                 ChatRoomService.sendDMChat(chatroomId: chatId,
                                                            senderId: meId,
                                                            text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。",
-                                                           reciverId: leaderId)
+                                                           reciverId: leaderId) { result in
+                                    switch result {
+                                    case .success(let success):
+                                     print(success)
+                                    case .failure:
+                                        self.setupCDAlert(title: "参加申請に失敗しました",
+                                                          message: "",
+                                                          action: "OK",
+                                                          alertType: .warning)
+                                    }
+                                }
                             }
                         } else {
                             // 既に存在していればそのまま出す。
@@ -327,13 +337,24 @@ final class EventDetailController: UIViewController {
                             ChatRoomService.sendDMChat(chatroomId: chatId,
                                                        senderId: meId,
                                                        text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。",
-                                                       reciverId: leaderId)
+                                                       reciverId: leaderId) { result in
+                                switch result {
+                                case .success(let success):
+                                    print(success)
+                                case .failure:
+                                    self.setupCDAlert(title: "参加申請に失敗しました",
+                                                      message: "",
+                                                      action: "OK",
+                                                      alertType: .warning)
+                                }
+                            }
                         }
                         JoinService.sendPreJoinDataToEventAndUser(myId: meId,
                                                                   eventId: eventId,
                                                                   leaderId: leaderId)
                         self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
-                        LocalNotificationManager.setNotification(2, of: .hours,
+                        LocalNotificationManager.setNotification(2,
+                                                                 of: .hours,
                                                                  repeats: false,
                                                                  title: "申し込んだ練習から返信がありましたか？",
                                                                  body: "ぜひ確認しましょう!")

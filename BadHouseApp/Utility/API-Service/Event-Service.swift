@@ -1,12 +1,26 @@
 import Foundation
 struct EventServie {
-    // Mark sendEventData
-    static func sendEventData(teamId: String, event: [String: Any], eventId: String) {
-        // Mark team→eventdata
-        Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event)
-        Ref.EventRef.document(eventId).setData(event)
+    static func sendEventData(teamId: String,
+                              event: [String: Any],
+                              eventId: String,
+                              completion: @escaping(Result<String, Error>) -> Void) {
+        Ref.TeamRef.document(teamId).collection("Event").document(eventId).setData(event) { error in
+            if let error = error {
+                print(error)
+                completion(.failure(FirebaseError.netError))
+                return
+            }
+            Ref.EventRef.document(eventId).setData(event) { error in
+                if let error = error {
+                    print(error)
+                    completion(.failure(FirebaseError.netError))
+                    return
+                }
+                completion(.success("Success"))
+            }
+        }
     }
-    static func getmyEventId(completion: @escaping([Event]) -> Void) {
+    static func getmyEventId(completion: @escaping([Event])-> Void) {
         var eventArray = [Event]()
         Ref.EventRef.getDocuments { snapShot, error in
             if let error = error {
@@ -65,7 +79,7 @@ struct EventServie {
         }
     }
 }
-// Mark EventTag-Extension
+// MARK: - EventTag-Extension
 extension EventServie {
     static func getEventTagData(eventId: String, completion: @escaping([Tag]) -> Void) {
         var tagArray = [Tag]()
@@ -88,7 +102,6 @@ extension EventServie {
     static func sendEventTagData(eventId: String, tags: [String], teamId: String) {
         for i in 0..<tags.count {
             let tag = tags[i]
-            print(tag)
             let tagId = "\(Ref.EventRef.document(eventId).documentID + String(i))"
             let dic = ["tag": tag, "teamId": teamId, "tagId": tagId]
             Ref.EventRef.document(eventId).collection("Tag").document(tagId).setData(dic)

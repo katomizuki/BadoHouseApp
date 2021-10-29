@@ -16,7 +16,15 @@ struct TeamService {
             }
         }
     }
-    static func createTeamData(teamName: String, teamPlace: String, teamTime: String, teamLevel: String, teamImageUrl: String, friends: [User], teamUrl: String, tagArray: [String]) {
+    static func createTeamData(teamName: String,
+                               teamPlace: String,
+                               teamTime: String,
+                               teamLevel: String,
+                               teamImageUrl: String,
+                               friends: [User],
+                               teamUrl: String,
+                               tagArray: [String],
+                               completion: @escaping(Result<String, Error>) -> Void) {
         let teamId = Ref.TeamRef.document().documentID
         let dic = ["teamId": teamId,
                    "teamName": teamName,
@@ -30,14 +38,16 @@ struct TeamService {
         Ref.TeamRef.document(teamId).setData(dic) { error in
             if let error = error {
                 print("TeamData Create Error", error)
+                completion(.failure(FirebaseError.netError))
                 return
             }
+            completion(.success("Success"))
             print("TeamData Create Success")
         }
         TeamService.sendTeamPlayerData(teamDic: dic, teamplayer: friends)
         TeamService.sendTeamTagData(teamId: teamId, tagArray: tagArray)
     }
-    static func updateTeamData(team: TeamModel) {
+    static func updateTeamData(team: TeamModel, completion: @escaping(Result<String, Error>) -> Void) {
         let id = team.teamId
         let dic = ["teamId": id,
                    "teamName": team.teamName,
@@ -48,8 +58,21 @@ struct TeamService {
                    "teamImageUrl": team.teamImageUrl,
                    "createdAt": team.createdAt,
                    "updatedAt": team.updatedAt] as [String: Any]
-        Ref.TeamRef.document(id).setData(dic)
-        Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic)
+        Ref.TeamRef.document(id).setData(dic) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(.failure(FirebaseError.netError))
+                return
+            }
+            Ref.UsersRef.document(AuthService.getUserId()).collection("OwnTeam").document(id).setData(dic) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(FirebaseError.netError))
+                    return
+                }
+                completion(.success("Success"))
+            }
+        }
     }
 }
 // MARK: - TeamPlayer-Extension
@@ -57,7 +80,7 @@ extension TeamService {
     static func getTeamPlayerData(teamId: String, completion: @escaping ([String]) -> Void) {
         Ref.TeamRef.document(teamId).collection("TeamPlayer").addSnapshotListener { snapShot, error in
             if let error = error {
-                print("TeamPlayer Get Error",error.localizedDescription)
+                print("TeamPlayer Get Error", error.localizedDescription)
                 return
             }
             var teamPlayers = [String]()

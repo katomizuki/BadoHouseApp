@@ -105,8 +105,20 @@ extension DMChatController: InputDelegate {
         guard let youId = you?.uid else { return }
         if text == "" { return }
         inputView.messageInputTextView.text = ""
-        ChatRoomService.sendDMChat(chatroomId: self.chatId, senderId: myId, text: text, reciverId: youId)
-        fetchData.fetchDMChatData(chatId: chatId)
-        inputView.messageInputTextView.resignFirstResponder()
+        ChatRoomService.sendDMChat(chatroomId: chatId,
+                                   senderId: myId,
+                                   text: text,
+                                   reciverId: youId) { result in
+            switch result {
+            case .success:
+                self.fetchData.fetchDMChatData(chatId: self.chatId)
+                inputView.messageInputTextView.resignFirstResponder()
+            case .failure:
+                self.setupCDAlert(title: "メッセージの送信に失敗しました",
+                                  message: "",
+                                  action: "OK",
+                                  alertType: .warning)
+            }
+        }
     }
 }

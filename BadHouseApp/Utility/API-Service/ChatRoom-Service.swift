@@ -10,14 +10,25 @@ struct ChatRoomService {
             "chatId": chatRoomId])
         completion(chatRoomId)
     }
-    static func sendDMChat(chatroomId: String, senderId: String, text: String, reciverId: String) {
+    static func sendDMChat(chatroomId: String,
+                           senderId: String,
+                           text: String,
+                           reciverId: String,
+                           completion: @escaping(Result<String, Error>) -> Void) {
         let dic = ["chatRoomId": chatroomId,
                    "sender": senderId,
                    "text": text,
                    "reciver": reciverId,
                    "sendTime": Timestamp()] as [String: Any]
         let chatId = Ref.ChatroomRef.document(chatroomId).collection("Content").document().documentID
-        Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic)
+        Ref.ChatroomRef.document(chatroomId).collection("Content").document(chatId).setData(dic) { error in
+            if let error = error {
+                print(error)
+                completion(.failure(FirebaseError.netError))
+                return
+            }
+            completion(.success("Success"))
+        }
     }
     static func sendGroupChat(teamId: String, me: User, text: String) {
         let senderId = me.uid

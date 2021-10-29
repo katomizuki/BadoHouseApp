@@ -47,10 +47,16 @@ final class EventTagController: UIViewController {
         guard let image = eventImage else { return }
         StorageService.addEventImage(image: image) { urlString in
             self.dic["urlEventString"] = urlString
-            EventServie.sendEventData(teamId: self.teamId, event: self.dic, eventId: self.eventId)
-            EventServie.sendEventTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
+            EventServie.sendEventData(teamId: self.teamId, event: self.dic, eventId: self.eventId) { result in
+                switch result {
+                case .success:
+                    EventServie.sendEventTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
+                    self.navigationController?.popToRootViewController(animated: true)
+                case .failure:
+                    self.setupCDAlert(title: "イベント作成に失敗しました", message: "", action: "OK", alertType: .warning)
+                }
+            }
         }
-        navigationController?.popToRootViewController(animated: true)
     }
     // MARK: - helperMethod
     private func searchTag(text: String) -> Int? {

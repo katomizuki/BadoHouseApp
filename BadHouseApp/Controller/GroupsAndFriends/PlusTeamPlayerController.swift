@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 final class PlusTeamPlayerController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
             inviteButton.layer.cornerRadius = 15
@@ -28,7 +28,7 @@ final class PlusTeamPlayerController: UIViewController {
             inviter.append(friend)
         }
     }
-    // Mark HelperMethod
+    // MARK: - HelperMethod
     func judgeInvite(userId: String) -> Int? {
         if inviter.isEmpty { return nil }
         for i in 0..<inviter.count {
@@ -37,7 +37,7 @@ final class PlusTeamPlayerController: UIViewController {
         }
         return nil
     }
-    // Mark lifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -45,14 +45,14 @@ final class PlusTeamPlayerController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PlusTeamPlayersCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction func invite(_ sender: Any) {
         print(#function)
         guard let team = self.team else {
@@ -61,7 +61,7 @@ final class PlusTeamPlayerController: UIViewController {
         navigationController?.popToRootViewController(animated: true)
     }
 }
-// Mark tableViewdatsource
+// MARK: - TableViewDataSource
 extension PlusTeamPlayerController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
@@ -81,7 +81,7 @@ extension PlusTeamPlayerController: UITableViewDataSource {
         return cell
     }
 }
-// Mark UITableViewDelegate
+// MARK: - TableViewDelegate
 extension PlusTeamPlayerController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false

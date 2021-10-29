@@ -112,8 +112,18 @@ final class UpdateTeamController: UIViewController {
             guard let self = self else { return }
             self.team?.teamImageUrl = urlString
             guard let team = self.team else { return }
-            TeamService.updateTeamData(team: team)
-            self.delegate?.updateTeamData(vc: self)
+            TeamService.updateTeamData(team: team) { result in
+                switch result {
+                case .success:
+                    self.delegate?.updateTeamData(vc: self)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.setupCDAlert(title: "チーム情報の更新に失敗しました",
+                                 message: "",
+                                 action: "OK",
+                                 alertType: .warning)
+                }
+            }
         }
     }
     @objc private func handleImagePicker() {

@@ -91,9 +91,17 @@ final class InviteToTeamController: UIViewController {
                                        teamImageUrl: urlString,
                                        friends: self.inviter,
                                        teamUrl: teamUrl,
-                                       tagArray: self.teamTagArray)
-            self.indicatorView.stopAnimating()
-            self.navigationController?.popToRootViewController(animated: true)
+                                       tagArray: self.teamTagArray) { result in
+                self.indicatorView.stopAnimating()
+                switch result {
+                case .success:
+                    self.navigationController?.popToRootViewController(animated: true)
+                case .failure(let error):
+                    print(error)
+                    self.setupCDAlert(title: "チーム作成に失敗しました。", message: "", action: "OK", alertType: .warning)
+                    self.indicatorView.stopAnimating()
+                }
+            }
         }
     }
 }
