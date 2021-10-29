@@ -285,6 +285,9 @@ class RegisterViewController: UIViewController {
     }
     @objc private func handleRuleButton() {
         print(#function)
+        let vc = RuleController()
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
     }
 }
 // MARK: - GIDSignInDelegate
@@ -411,5 +414,11 @@ extension RegisterViewController: ASAuthorizationControllerDelegate {
 extension RegisterViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+// MARK: - RuleControllerDelegate
+extension RegisterViewController: RuleControllerDelegate {
+    func didTapBackButton(_ vc: RuleController) {
+        vc.dismiss(animated: true, completion: nil)
     }
 }

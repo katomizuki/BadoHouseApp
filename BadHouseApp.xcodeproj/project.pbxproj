@@ -10,6 +10,7 @@
 		2F43C7F339CC617506877AF3 /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
 		D30B7939270090EA0086456E /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B7938270090EA0086456E /* ChatRoom.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
+		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
@@ -124,6 +125,7 @@
 		D31C1634272B5E0A00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D31C163B272B64CE00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				D3BDB54026E0546000C53780 /* RegisterViewController.swift */,
 				D3BDB54326E0547300C53780 /* LoginViewController.swift */,
 				D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */,
+				D31C163C272B78AA00A94FC6 /* RuleController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor-Extension.swift in Sources */,
+				D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */,
 				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
