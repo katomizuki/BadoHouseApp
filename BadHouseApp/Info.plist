@@ -43,15 +43,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Need camera access for uploading Images</string>
+	<string>プロフィールやチーム画像を変更するには許可が必要です</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>現在地から近い練習を表示させていただく際に利用します。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>現在地から近い練習を表示させていただく際に利用します。</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Need microphone access for uploading videos</string>
+	<string>ラリー動画を撮影するためには許可が必要です</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>NeedLibrary access for uploading Images</string>
+	<string>プロフィールやチーム画像を変更するには許可が必要です</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

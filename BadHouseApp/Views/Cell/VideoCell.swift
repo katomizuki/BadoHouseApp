@@ -7,6 +7,7 @@ import SkeletonView
 protocol VideoCollectionCellDelegate: AnyObject {
     func didTapSearchButton(video: VideoModel, button: UIButton)
     func didTapNextButton(video: VideoModel)
+    func didTapDeleteButton(_ cell: VideoCell)
 }
 final class VideoCell: UICollectionViewCell {
     // Mark properties
@@ -32,6 +33,15 @@ final class VideoCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: Constants.ImageName.search), for: .normal)
         button.tintColor = Constants.AppColor.OriginalBlue
+        return button
+    }()
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("...", for: .normal)
+        button.addTarget(self, action: #selector(handleDelete), for: .touchUpInside)
+        button.tintColor = Constants.AppColor.OriginalBlue
+        button.toCorner(num: 15)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 30)
         return button
     }()
     private let containerView: UIView = {
@@ -66,12 +76,17 @@ final class VideoCell: UICollectionViewCell {
                                   y: height - (size * 2) - 10,
                                   width: size,
                                   height: size)
+        deleteButton.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: 35,
+                                    height: 50)
     }
     // Mark setupMethod
     private func setupLayout() {
         contentView.addSubview(containerView)
         contentView.addSubview(nextButton)
         contentView.addSubview(searchButton)
+        contentView.addSubview(deleteButton)
         nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         searchButton.addTarget(self, action: #selector(handleSearch), for: .touchUpInside)
         containerView.clipsToBounds = true
@@ -91,6 +106,9 @@ final class VideoCell: UICollectionViewCell {
             return
         }
         self.delegate?.didTapSearchButton(video: video, button: searchButton)
+    }
+    @objc private func handleDelete() {
+        self.delegate?.didTapDeleteButton(self)
     }
     // Mark helperMethod
     func configure() {

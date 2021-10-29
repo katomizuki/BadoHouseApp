@@ -9,7 +9,8 @@ struct BlockService {
                                                 "reason": reason,
                                                 "id": blockId])
     }
-    static func sendBlockEventData(eventId: String,completion:@escaping (Result<String, Error?>) -> Void) {
+    static func sendBlockEventData(eventId: String,
+                                   completion:@escaping (Result<String, Error?>) -> Void) {
         let blockId = Ref.BlockRef.document().documentID
         Ref.BlockRef.document(blockId).setData(["eventId": eventId,
                                                 "id": blockId]) { error in
@@ -19,6 +20,18 @@ struct BlockService {
                 return
             }
             completion(.success("Success"))
+        }
+    }
+    static func sendVideoBlockContent(videoId:String,
+                                      completion:@escaping (Result<String, Error?>) -> Void) {
+        let blockId = Ref.BlockRef.document().documentID
+        Ref.BlockRef.document(blockId).setData(["videoId":videoId,"id":blockId]) { error in
+            if let error = error {
+                print(error)
+                completion(.failure(FirebaseError.netError))
+                return
+            }
+            completion(.success("success"))
         }
     }
 }

@@ -7,7 +7,7 @@ import SkeletonView
 class TimeLineController: UIViewController {
     // Mark properties
     private var collectionView: UICollectionView?
-    private var data = [VideoModel]()
+    private var videoArray = [VideoModel]()
     private let fetchData = FetchFirestoreData()
     private var player = AVPlayer()
     private var indicator: NVActivityIndicatorView!
@@ -61,11 +61,11 @@ class TimeLineController: UIViewController {
 // Mark collectionViewdelegate & skeletonViewdelegate
 extension TimeLineController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return videoArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCell.identifier, for: indexPath) as! VideoCell
-        let video = data[indexPath.row]
+        let video = videoArray[indexPath.row]
         cell.video = video
         cell.delegate = self
         return cell
@@ -80,7 +80,7 @@ extension TimeLineController: SkeletonCollectionViewDataSource {
 // Mark getVideoDelegate
 extension TimeLineController: FetchVideoDataDelegate {
     func fetchVideoData(videoArray: [VideoModel]) {
-        self.data = videoArray
+        self.videoArray = videoArray
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
@@ -88,6 +88,27 @@ extension TimeLineController: FetchVideoDataDelegate {
 }
 // Mark collectionCellDelegate
 extension TimeLineController: VideoCollectionCellDelegate {
+    func didTapDeleteButton(_ cell: VideoCell) {
+        let indexPath = collectionView?.indexPath(for: cell)
+        guard let index = indexPath?[1] else { return }
+        let videoId = videoArray[index].videoId
+        let alertVC = UIAlertController(title: "不正なコンテンツであれば通報してください。", message: "", preferredStyle: .actionSheet)
+        let alertAction = UIAlertAction(title: "通報する", style: .default) { _ in
+            BlockService.sendVideoBlockContent(videoId: videoId) { result in
+                switch result {
+                case .success:
+                    self.videoArray.remove(at: index)
+                    self.collectionView?.reloadData()
+                case .failure:
+                    self.setupCDAlert(title: "通報に失敗しました", message: "", action: "OK", alertType: .warning)
+                }
+            }
+        }
+        let cancleAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        alertVC.addAction(alertAction)
+        alertVC.addAction(cancleAction)
+        present(alertVC, animated: true, completion: nil)
+    }
     func didTapSearchButton(video: VideoModel, button: UIButton) {
         print(#function)
         let vc = VideoPopoverController()
@@ -117,7 +138,7 @@ extension TimeLineController: SearchVideoDelegate {
     func getVideoData(videoArray: [VideoModel], vc: VideoPopoverController) {
         print(#function)
         vc.dismiss(animated: true, completion: nil)
-        self.data = videoArray
+        self.videoArray = videoArray
         collectionView?.reloadData()
     }
 }
