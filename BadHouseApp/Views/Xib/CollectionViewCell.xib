@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -60,6 +62,20 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-lr-Ogh">
+                        <rect key="frame" x="418" y="220" width="60" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="2X0-a2-gMQ"/>
+                            <constraint firstAttribute="height" constant="25" id="NU1-Lz-sMT"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="....">
+                            <color key="baseForegroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="didTapBlockButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Imt-im-gnJ"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -77,10 +93,13 @@
                 <constraint firstAttribute="bottom" secondItem="Kxz-Qh-5U0" secondAttribute="bottom" id="XyO-Op-Dak"/>
                 <constraint firstItem="Kxz-Qh-5U0" firstAttribute="leading" secondItem="z3l-mi-KRV" secondAttribute="trailing" id="bFl-IO-nOS"/>
                 <constraint firstItem="BMA-mu-hE0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="cEq-TX-Xi0"/>
+                <constraint firstItem="cBM-lr-Ogh" firstAttribute="top" secondItem="S6S-pU-e3I" secondAttribute="top" id="fc1-fl-0IZ"/>
                 <constraint firstItem="z3l-mi-KRV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rvM-J5-1ZZ"/>
+                <constraint firstAttribute="trailing" secondItem="cBM-lr-Ogh" secondAttribute="trailing" id="tWx-fL-ePZ"/>
             </constraints>
             <size key="customSize" width="478" height="326"/>
             <connections>
+                <outlet property="blockButton" destination="cBM-lr-Ogh" id="gLQ-pl-kIm"/>
                 <outlet property="placeLabel" destination="2a3-jz-yzm" id="ReR-Ea-r0x"/>
                 <outlet property="teamImage" destination="BMA-mu-hE0" id="G04-0B-Vv4"/>
                 <outlet property="teamLabel" destination="z3l-mi-KRV" id="Itj-O8-l3o"/>

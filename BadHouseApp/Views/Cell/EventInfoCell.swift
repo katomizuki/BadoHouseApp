@@ -1,10 +1,21 @@
 import UIKit
-
+import SkeletonView
+protocol EventInfoCellDelegate: AnyObject {
+    func didTapBlockButton(_ cell: EventInfoCell)
+}
 class EventInfoCell: UICollectionViewCell {
     // Mark Properties
     @IBOutlet weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 10)
+        }
+    }
+    @IBOutlet weak var blockButton: UIButton! {
+        didSet {
+            blockButton.layer.cornerRadius = 10
+            blockButton.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+            blockButton.layer.masksToBounds = true
+            blockButton.layer.borderWidth = 2
         }
     }
     @IBOutlet weak var placeLabel: UILabel!
@@ -18,6 +29,7 @@ class EventInfoCell: UICollectionViewCell {
             userImageView.layer.borderWidth = 2
         }
     }
+    weak var delegate: EventInfoCellDelegate?
     var event: Event? {
         didSet {
             configure()
@@ -55,5 +67,8 @@ class EventInfoCell: UICollectionViewCell {
             self.userImageView.contentMode = .scaleAspectFill
         }
         self.teamImage.sd_setImage(with: url, completed: nil)
+    }
+    @IBAction func didTapBlockButton(_ sender: Any) {
+        self.delegate?.didTapBlockButton(self)
     }
 }

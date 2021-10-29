@@ -51,10 +51,10 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
-//        if !Network.shared.isOnline() {
-//            print("ネットワークないよ！")
-//            self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
-//        }
+        if !Network.shared.isOnline() {
+            print("ネットワークないよ！")
+            self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
+        }
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: Constants.Segue.gotoRegister, sender: nil)
@@ -148,6 +148,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.eventId, for: indexPath) as! EventInfoCell
+        cell.delegate = self
         if eventArray.isEmpty {
             return cell
         } else {
@@ -297,5 +298,31 @@ extension HomeViewController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
         view.emptyState.hide()
+    }
+}
+// MARK: - EventInfoCellDelegate
+extension HomeViewController: EventInfoCellDelegate {
+    func didTapBlockButton(_ cell: EventInfoCell) {
+        guard let eventId = cell.event?.eventId else { return }
+        let alertVC = UIAlertController(title: "コンテンツに不正な内容を発見した場合は通報またはブロックしてください", message: "", preferredStyle: .actionSheet)
+        let alertAction = UIAlertAction(title: "通報する", style: .default) { _ in
+            print("通報")
+            BlockService.sendBlockEventData(eventId: eventId) { result in
+                switch result {
+                case .success:
+                    self.setupCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
+                    guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
+                    self.eventArray.remove(at: indexPath[1])
+                    self.collectionView.reloadData()
+                case .failure(let error):
+                    self.setupCDAlert(title: "通報に失敗しました", message: "", action: "OK", alertType: .warning)
+                    print(error)
+                }
+            }
+        }
+        let cancleAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        alertVC.addAction(alertAction)
+        alertVC.addAction(cancleAction)
+        present(alertVC, animated: true, completion: nil)
     }
 }

@@ -12,6 +12,7 @@ import FacebookCore
 import FacebookLogin
 import AuthenticationServices
 import CryptoKit
+import SkeletonView
 
 class RegisterViewController: UIViewController {
     // MARK: - Properties
@@ -38,7 +39,7 @@ class RegisterViewController: UIViewController {
     }()
     private let registerButton: UIButton = {
         let button = RegisterButton(text: "新規登録")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        button.titleLabel?.font = .systemFont(ofSize: 25, weight: .bold)
         return button
     }()
     private let alreadyButton: UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
@@ -61,6 +62,14 @@ class RegisterViewController: UIViewController {
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
+        return button
+    }()
+    private lazy var ruleButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("利用規約", for: .normal)
+        button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
+        button.addTarget(self, action: #selector(handleRuleButton), for: .touchUpInside)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         return button
     }()
     private var currentNonce: String?
@@ -106,6 +115,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(stackView)
         view.addSubview(alreadyButton)
         view.addSubview(iv)
+        view.addSubview(ruleButton)
         nameTextField.anchor(height: 45)
         stackView.anchor(top: iv.bottomAnchor,
                          left: view.leftAnchor,
@@ -123,6 +133,10 @@ class RegisterViewController: UIViewController {
         alreadyButton.anchor(top: stackView.bottomAnchor,
                              paddingTop: 20,
                              centerX: view.centerXAnchor)
+        ruleButton.anchor(top: alreadyButton.bottomAnchor,
+                          paddingTop: 10,
+                          centerX: view.centerXAnchor,
+                          width: 100)
         indicatorView = self.setupIndicatorView()
         view.addSubview(indicatorView)
         indicatorView.anchor(centerX: view.centerXAnchor,
@@ -268,6 +282,9 @@ class RegisterViewController: UIViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
+    }
+    @objc private func handleRuleButton() {
+        print(#function)
     }
 }
 // MARK: - GIDSignInDelegate
