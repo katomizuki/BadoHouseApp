@@ -2,13 +2,14 @@ import UIKit
 import Firebase
 import SDWebImage
 import XLPagerTabStrip
+// MARK: - XLpagerEnum
 enum XLPager: String {
     case main = "Main"
     case first = "First"
     case second = "Second"
 }
 final class XLPagerController: ButtonBarPagerTabStripViewController {
-    // Mark properties
+    // MARK: - Properties
     private lazy var collectionView: ButtonBarView = {
         let cv = buttonBarView
         return cv!
@@ -24,7 +25,7 @@ final class XLPagerController: ButtonBarPagerTabStripViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         setupXLTab()
         super.viewDidLoad()
@@ -33,6 +34,22 @@ final class XLPagerController: ButtonBarPagerTabStripViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionAndScroll()
+    }
+    // MARK: - SetupMethod
+    private func setupXLTab() {
+        settings.style.buttonBarItemBackgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        settings.style.buttonBarItemTitleColor = .darkGray
+        settings.style.buttonBarBackgroundColor = UIColor(named: Constants.AppColor.darkColor)
+        settings.style.selectedBarBackgroundColor = Constants.AppColor.OriginalBlue
+        settings.style.selectedBarHeight = 3.0
+        settings.style.buttonBarMinimumLineSpacing = 8.0
+        settings.style.buttonBarLeftContentInset = 10.0
+        settings.style.buttonBarRightContentInset = 10.0
+        changeCurrentIndexProgressive = { oldCell, newCell, _, changeCurrentIndex, _ in
+            guard changeCurrentIndex, let oldCell = oldCell, let newCell = newCell else { return }
+            oldCell.label.textColor = .lightGray
+            newCell.label.textColor = .darkGray
+        }
     }
     private func setupUI() {
         view.addSubview(collectionView)
@@ -45,7 +62,7 @@ final class XLPagerController: ButtonBarPagerTabStripViewController {
                            width: 35,
                            height: 35)
     }
-    // Mark helperMethod
+    // MARK: - HelperMethod
     private func collectionAndScroll() {
         let width = view.frame.size.width
         let height = view.frame.size.height
@@ -70,28 +87,12 @@ final class XLPagerController: ButtonBarPagerTabStripViewController {
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-    // Mark setupMethod
-    private func setupXLTab() {
-        settings.style.buttonBarItemBackgroundColor = UIColor(named: Constants.AppColor.darkColor)
-        settings.style.buttonBarItemTitleColor = .darkGray
-        settings.style.buttonBarBackgroundColor = UIColor(named: Constants.AppColor.darkColor)
-        settings.style.selectedBarBackgroundColor = Constants.AppColor.OriginalBlue
-        settings.style.selectedBarHeight = 3.0
-        settings.style.buttonBarMinimumLineSpacing = 8.0
-        settings.style.buttonBarLeftContentInset = 10.0
-        settings.style.buttonBarRightContentInset = 10.0
-        changeCurrentIndexProgressive = { oldCell, newCell, _, changeCurrentIndex, _ in
-            guard changeCurrentIndex, let oldCell = oldCell, let newCell = newCell else { return }
-            oldCell.label.textColor = .lightGray
-            newCell.label.textColor = .darkGray
-        }
-    }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let firstVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! CheckPreJoinController
         let secondVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! CheckJoinController
         return [firstVC, secondVC]
     }
-    // Mark Selector
+    // MARK: - SelectorMethod
     @objc private func back() {
         dismiss(animated: true)
     }

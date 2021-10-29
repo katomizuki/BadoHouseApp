@@ -3,12 +3,12 @@ import XLPagerTabStrip
 import Firebase
 
 final class CheckJoinController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
     private var notificationArray = [[User]]()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -16,7 +16,7 @@ final class CheckJoinController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupData()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -32,13 +32,13 @@ final class CheckJoinController: UIViewController {
         }
     }
 }
-// Mark xlPagerExtension
+// MARK: - XlPagerExtension
 extension CheckJoinController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "参加確定者")
     }
 }
-// Mark getJoinDelegate
+// MARK: - FetchMyDataDelegate
 extension CheckJoinController: FetchMyDataDelegate {
     func fetchMyJoinData(joinArray: [[String]]) {
         notificationArray = [[User]]()
@@ -65,7 +65,7 @@ extension CheckJoinController: FetchMyDataDelegate {
         }
     }
 }
-// Mark tableViewDataSource
+// MARK: - TableViewDataSource
 extension CheckJoinController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if notificationArray.isEmpty {
@@ -97,7 +97,7 @@ extension CheckJoinController: UITableViewDataSource {
         return eventArray[section].eventTitle
     }
 }
-// Mark TableViewDelegate
+// MARK: - TableViewDelegate
 extension CheckJoinController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertVc = UIAlertController(title: "承認待ちにもどしますか", message: "", preferredStyle: .alert)
@@ -106,8 +106,17 @@ extension CheckJoinController: UITableViewDelegate {
             let userId = self.notificationArray[indexPath.section][indexPath.row].uid
             DeleteService.deleteSubCollectionData(collecionName: "Event", documentId: eventId, subCollectionName: "Join", subId: userId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
-            JoinService.sendPreJoinData(eventId: eventId, userId: userId)
-            tableView.reloadData()
+            JoinService.sendPreJoinData(eventId: eventId, userId: userId) { result in
+                switch result {
+                case .success:
+                    self.tableView.reloadData()
+                case .failure:
+                    self.setupCDAlert(title: "参加者情報の変更に失敗しました",
+                                      message: "",
+                                      action: "OK",
+                                      alertType: .warning)
+                }
+            }
         }
         let cancleAction = UIAlertAction(title: "いいえ", style: .default)
         alertVc.addAction(alertAction)

@@ -3,7 +3,7 @@ import Firebase
 import Foundation
 
 struct StorageService {
-    // Mark DownURL
+    // MARK: - DownloadUrl
     static func downloadStorage(userIconRef: StorageReference, completion: @escaping (URL) -> Void) {
         userIconRef.downloadURL { url, error in
             if let error = error {
@@ -14,7 +14,7 @@ struct StorageService {
             completion(url)
         }
     }
-    // Mark ProfileImageStorage
+    // MARK: - ProfileImageStorage
     static func addProfileImageToStorage(image: UIImage, dic: [String: Any], completion: @escaping() -> Void) {
         guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }
         let fileName = NSUUID().uuidString
@@ -41,7 +41,7 @@ struct StorageService {
         }
     }
  }
-    // Mark TeamImageAdd
+    // MARK: - TeamImageAdd
     static func addTeamImage(image: UIImage, completion: @escaping (String) -> Void) {
         guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }
         let fileName = NSUUID().uuidString
@@ -58,7 +58,7 @@ struct StorageService {
             }
         }
     }
-    // Mark StorageAddImage
+    // MARK: - addEventImage
     static func addEventImage(image: UIImage, completion: @escaping (String) -> Void) {
         guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }
         let fileName = NSUUID().uuidString
@@ -74,6 +74,7 @@ struct StorageService {
             }
         }
     }
+    // MARK: - sendVideoData
     static func sendVideoData(videoUrl: URL, senderId: String, keyWord: String) {
         let id = UUID().uuidString
         let videoRef = Ref.StorageVideoRef.child(id)

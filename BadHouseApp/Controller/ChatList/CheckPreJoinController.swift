@@ -121,16 +121,22 @@ extension CheckPreJoinController: UITableViewDelegate {
             print(eventId)
             self.notificationArray[indexPath.section].remove(at: indexPath.row)
             let meId = AuthService.getUserId()
-            JoinService.sendJoinData(eventId: eventId, uid: userId)
-            ChatRoomService.getChatData(meId: meId, youId: userId) { chatId in
-                ChatRoomService.sendDMChat(chatroomId: chatId,
-                                           senderId: meId,
-                                           text: "承認者からの参加が確定しました。",
-                                           reciverId: userId) { result in
-                    switch result {
-                    case .success(let success):print(success)
-                    case .failure(let error):print(error)
+            JoinService.sendJoinData(eventId: eventId, uid: userId) { result in
+                switch result {
+                case .success:
+                    ChatRoomService.getChatData(meId: meId, youId: userId) { chatId in
+                        ChatRoomService.sendDMChat(chatroomId: chatId,
+                                                   senderId: meId,
+                                                   text: "承認者からの参加が確定しました。",
+                                                   reciverId: userId) { result in
+                            switch result {
+                            case .success(let success):print(success)
+                            case .failure(let error):print(error)
+                            }
+                        }
                     }
+                case .failure:
+                    self.setupCDAlert(title: "参加者情報の変更に失敗しました", message: "", action: "OK", alertType: .warning)
                 }
             }
             tableView.reloadData()
