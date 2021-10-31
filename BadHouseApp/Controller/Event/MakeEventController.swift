@@ -57,9 +57,6 @@ final class MakeEventController: UIViewController {
             makeEventButton.toCorner(num: 15)
             makeEventButton.setTitleColor(.white, for: .normal)
             makeEventButton.addTarget(self, action: #selector(createEvent), for: .touchUpInside)
-            let tap = UITapGestureRecognizer(target: self, action: #selector(handleBinding))
-            makeEventButton.isUserInteractionEnabled = true
-            makeEventButton.addGestureRecognizer(tap)
         }
     }
     private var pickerArray = [TeamModel]()
@@ -96,13 +93,18 @@ final class MakeEventController: UIViewController {
     private var (placeLatitude, placeLongitude) = (Double(), Double())
     private var dic = [String: Any]()
     private var team: TeamModel?
-    @IBOutlet weak var levelUISlider: RangeUISlider! {
+    @IBOutlet private weak var levelUISlider: RangeUISlider! {
         didSet {
             levelUISlider.leftKnobColor = Constants.AppColor.OriginalBlue
             levelUISlider.rightKnobColor = Constants.AppColor.OriginalBlue
             levelUISlider.rangeSelectedColor = Constants.AppColor.OriginalBlue
         }
     }
+    
+    @IBOutlet private weak var notMoneyLabel: UILabel!
+    @IBOutlet private weak var notTimeLabel: UILabel!
+    @IBOutlet private weak var notTitleLabel: UILabel!
+    @IBOutlet private weak var notPlaceLabel: UILabel!
     private let moneyArray = Constants.Data.moneyArray
     private let moneyPickerView = UIPickerView()
     private let fetchData = FetchFirestoreData()
@@ -213,6 +215,16 @@ final class MakeEventController: UIViewController {
         titleTextField.resignFirstResponder()
         moneyTextField.resignFirstResponder()
         detaiTextView.resignFirstResponder()
+            notTitleLabel.isHidden = titleTextField.text?.isEmpty == true ? false : true
+        notMoneyLabel.isHidden = moneyTextField.text?.isEmpty == true ? false : true
+        
+        notPlaceLabel.isHidden = placeTextField.text?.isEmpty == true ? false : true
+        if teamTime.isEmpty || eventStartTime.isEmpty || eventLastTime.isEmpty {
+            notTimeLabel.isHidden = false
+        } else {
+            notTimeLabel.isHidden = true
+        }
+        
     }
     @objc private func donePicker() {
         moneyTextField.endEditing(true)
@@ -266,9 +278,6 @@ final class MakeEventController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    @objc private func handleBinding() {
-        print(#function)
-    }
     // MARK: IBAction
     @IBAction private func plusCourt(_ sender: UIStepper) {
         let num = String(Int(sender.value) + 1)
@@ -301,9 +310,6 @@ final class MakeEventController: UIViewController {
             let nextVC = segue.destination as! MapViewController
             nextVC.delegate = self
         }
-    }
-    @objc private func handleDatePicker() {
-        print(#function)
     }
 }
 // MARK: - PickerViewDatasource

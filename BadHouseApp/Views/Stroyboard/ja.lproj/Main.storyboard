@@ -117,13 +117,13 @@
                                                         <rect key="frame" x="0.0" y="457" width="354" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yab-ZE-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="51.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="51.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-tL-9go">
-                                                                <rect key="frame" x="80.5" y="0.0" width="273.5" height="51.5"/>
+                                                                <rect key="frame" x="81.5" y="0.0" width="272.5" height="51.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2361,6 +2361,18 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日時が入力されていません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lng-8G-iS5">
+                                                        <rect key="frame" x="0.0" y="148.5" width="374" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" systemColor="systemPinkColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金額が入力されていません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD3-Wi-OAU">
+                                                        <rect key="frame" x="0.0" y="148.5" width="374" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" systemColor="systemPinkColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1c-Eu-rQy">
@@ -2415,13 +2427,13 @@
                                                         <rect key="frame" x="0.0" y="44" width="374" height="71"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開催日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9M-uu-CzE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="81" height="71"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="71"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="l6L-K6-nGv">
-                                                                <rect key="frame" x="81" y="0.0" width="293" height="71"/>
+                                                                <rect key="frame" x="82" y="0.0" width="292" height="71"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2429,13 +2441,13 @@
                                                         <rect key="frame" x="0.0" y="125" width="374" height="73.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-j9-Cxb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="81" height="73.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="73.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-qY-G0G">
-                                                                <rect key="frame" x="81" y="0.0" width="293" height="73.5"/>
+                                                                <rect key="frame" x="82" y="0.0" width="292" height="73.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2443,13 +2455,13 @@
                                                         <rect key="frame" x="0.0" y="208.5" width="374" height="73.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="募集〆切り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-vB-azb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="73.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="102" height="73.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="HqZ-Nc-ffI">
-                                                                <rect key="frame" x="100" y="0.0" width="274" height="73.5"/>
+                                                                <rect key="frame" x="102" y="0.0" width="272" height="73.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -2630,6 +2642,24 @@
                                                     <segue destination="kaT-B6-Lhg" kind="presentation" id="VQy-IJ-T3o"/>
                                                 </connections>
                                             </button>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトルが入力されていません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jY-nW-tG5">
+                                                <rect key="frame" x="194" y="85" width="200" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="Ag3-fI-cJ2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="場所が入力されていません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5q-ho-Vhm">
+                                                <rect key="frame" x="250" y="814" width="160" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="2RE-vv-dqG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="backGroundColor"/>
                                         <constraints>
@@ -2647,6 +2677,8 @@
                                             <constraint firstItem="vsG-ga-3BH" firstAttribute="top" secondItem="YZ2-z5-zD0" secondAttribute="bottom" constant="20" id="Re1-6G-Ysx"/>
                                             <constraint firstItem="vsG-ga-3BH" firstAttribute="leading" secondItem="A8C-Hl-RUy" secondAttribute="leading" constant="20" id="TW6-Bo-qcQ"/>
                                             <constraint firstItem="YZ2-z5-zD0" firstAttribute="leading" secondItem="A8C-Hl-RUy" secondAttribute="leading" constant="20" id="Tdq-1W-ZWd"/>
+                                            <constraint firstAttribute="trailing" secondItem="p5q-ho-Vhm" secondAttribute="trailing" constant="4" id="UsU-cn-fsH"/>
+                                            <constraint firstItem="G9g-mD-3Ci" firstAttribute="top" secondItem="2jY-nW-tG5" secondAttribute="bottom" constant="5" id="Uzk-j8-17p"/>
                                             <constraint firstItem="L6I-Ul-Y09" firstAttribute="top" secondItem="G9g-mD-3Ci" secondAttribute="bottom" constant="35" id="WIE-JQ-0Mc"/>
                                             <constraint firstAttribute="bottom" secondItem="iGU-fY-xrt" secondAttribute="bottom" constant="186.5" id="Wps-57-buG"/>
                                             <constraint firstItem="ycT-gU-Ycd" firstAttribute="leading" secondItem="7Ks-57-5le" secondAttribute="trailing" constant="39" id="XFC-IX-mPV"/>
@@ -2655,10 +2687,12 @@
                                             <constraint firstAttribute="trailing" secondItem="HXg-Pb-Yh2" secondAttribute="trailing" constant="20" id="Zhu-zA-qGg"/>
                                             <constraint firstItem="G9g-mD-3Ci" firstAttribute="leading" secondItem="A8C-Hl-RUy" secondAttribute="leading" constant="20" id="a7t-mv-lvu"/>
                                             <constraint firstItem="7Ks-57-5le" firstAttribute="baseline" secondItem="PWx-a5-O8c" secondAttribute="baseline" id="bbJ-sT-HRB"/>
+                                            <constraint firstItem="rA7-AT-i7T" firstAttribute="top" secondItem="p5q-ho-Vhm" secondAttribute="bottom" id="dV1-dt-tdM"/>
                                             <constraint firstItem="c1c-Eu-rQy" firstAttribute="leading" secondItem="iGU-fY-xrt" secondAttribute="leading" id="fLp-G7-HHp"/>
                                             <constraint firstItem="rA7-AT-i7T" firstAttribute="leading" secondItem="A8C-Hl-RUy" secondAttribute="leading" constant="20" id="h2M-Ii-Ufl"/>
                                             <constraint firstItem="rA7-AT-i7T" firstAttribute="top" secondItem="A8C-Hl-RUy" secondAttribute="top" constant="830" id="i6F-1B-ND8"/>
                                             <constraint firstItem="iGU-fY-xrt" firstAttribute="top" secondItem="A8C-Hl-RUy" secondAttribute="top" constant="1248" id="k0E-G8-oca"/>
+                                            <constraint firstAttribute="trailing" secondItem="2jY-nW-tG5" secondAttribute="trailing" constant="20" id="lEJ-4L-fUS"/>
                                             <constraint firstAttribute="trailing" secondItem="YZ2-z5-zD0" secondAttribute="trailing" constant="20" id="t9p-yU-jqV"/>
                                             <constraint firstItem="c1c-Eu-rQy" firstAttribute="top" secondItem="iGU-fY-xrt" secondAttribute="bottom" constant="29" id="tBy-Mw-ge9"/>
                                             <constraint firstItem="HXg-Pb-Yh2" firstAttribute="centerY" secondItem="7Ks-57-5le" secondAttribute="centerY" id="tgf-fI-ajV"/>
@@ -2873,6 +2907,10 @@
                         <outlet property="minLevelLabel" destination="7Ks-57-5le" id="bXI-y6-fT3"/>
                         <outlet property="moneyTextField" destination="ntg-5n-Eyk" id="iU0-tN-by3"/>
                         <outlet property="noImageView" destination="YZ2-z5-zD0" id="ZXK-Oq-hTT"/>
+                        <outlet property="notMoneyLabel" destination="AD3-Wi-OAU" id="kba-UI-1No"/>
+                        <outlet property="notPlaceLabel" destination="p5q-ho-Vhm" id="lkb-V2-bGv"/>
+                        <outlet property="notTimeLabel" destination="Lng-8G-iS5" id="WrT-gf-gzo"/>
+                        <outlet property="notTitleLabel" destination="2jY-nW-tG5" id="kHh-dn-KiI"/>
                         <outlet property="placeTextField" destination="wBM-v6-A5p" id="bfc-g5-Yms"/>
                         <outlet property="scrollView" destination="BEE-5R-Wpj" id="qKI-tz-qJj"/>
                         <outlet property="startPicker" destination="l6L-K6-nGv" id="UuY-Gk-ewr"/>
@@ -3849,6 +3887,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
