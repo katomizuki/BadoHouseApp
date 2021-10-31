@@ -69,6 +69,7 @@ final class PostVideoController: UIViewController {
     }
     // MARK: - SelectorMethod
     @objc private func handle(sender: UIButton) {
+        print(UIDevice.current.userInterfaceIdiom.rawValue)
 #if targetEnvironment(simulator)
         // do nothing
 #else

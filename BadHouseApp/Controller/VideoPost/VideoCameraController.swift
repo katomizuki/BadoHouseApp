@@ -19,6 +19,7 @@ final class VideoCameraController: UIViewController {
     // MARK: - SetupMethod
     private func setUpCamera() {
         // デバイスの初期化
+        if UIDevice.current.userInterfaceIdiom.rawValue == 0 {
         let videoDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.video)
         let audioDevice: AVCaptureDevice? = AVCaptureDevice.default(for: AVMediaType.audio)
         // ビデオの画質
@@ -53,6 +54,9 @@ final class VideoCameraController: UIViewController {
                                                    y: self.view.bounds.height - 120)
         self.recordButton.addTarget(self, action: #selector(self.tappedRecordButton(sender:)), for: .touchUpInside)
         self.view.addSubview(recordButton)
+        } else {
+            self.setupCDAlert(title: "利用できる端末ではありません", message: "", action: "OK", alertType: .warning)
+        }
     }
     // MARK: - SelectorMethod
     @objc private func tappedRecordButton(sender: UIButton) {

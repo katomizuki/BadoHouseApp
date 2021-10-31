@@ -3,7 +3,6 @@ import RxSwift
 import RxCocoa
 import Firebase
 import RangeUISlider
-import SkeletonView
 
 final class MakeEventController: UIViewController {
     // MARK: - Properties
@@ -58,6 +57,9 @@ final class MakeEventController: UIViewController {
             makeEventButton.toCorner(num: 15)
             makeEventButton.setTitleColor(.white, for: .normal)
             makeEventButton.addTarget(self, action: #selector(createEvent), for: .touchUpInside)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleBinding))
+            makeEventButton.isUserInteractionEnabled = true
+            makeEventButton.addGestureRecognizer(tap)
         }
     }
     private var pickerArray = [TeamModel]()
@@ -263,6 +265,9 @@ final class MakeEventController: UIViewController {
             vc.eventImage = eventImage
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    @objc private func handleBinding() {
+        print(#function)
     }
     // MARK: IBAction
     @IBAction private func plusCourt(_ sender: UIStepper) {
