@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import openssl_grpc
 protocol RuleControllerDelegate: AnyObject {
     func didTapBackButton(_ vc: RuleController)
 }

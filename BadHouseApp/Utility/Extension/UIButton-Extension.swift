@@ -48,7 +48,7 @@ extension UIButton {
         self.layer.masksToBounds = true
         self.layer.borderWidth = 3
         self.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        self.setTitleColor(.darkText, for: .normal)
+        self.setTitleColor(.label, for: .normal)
         self.isEnabled = false
         return self
     }

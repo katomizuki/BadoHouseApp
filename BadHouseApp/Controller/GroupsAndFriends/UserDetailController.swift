@@ -4,7 +4,7 @@ import SDWebImage
 import FacebookCore
 
 final class UserDetailController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     var user: User?
     var me: User?
     var ownTeam = [TeamModel]()
@@ -58,7 +58,7 @@ final class UserDetailController: UIViewController {
         button.toCorner(num: 15)
         return button
     }()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -76,7 +76,7 @@ final class UserDetailController: UIViewController {
                                                            target: nil,
                                                            action: nil)
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupUI() {
         view.addSubview(blockButton)
         blockButton.anchor(left: friendButton.rightAnchor,
@@ -154,7 +154,7 @@ final class UserDetailController: UIViewController {
             self.fetchData.fetchMyFriendData(idArray: friends)
         }
     }
-    // Mark HelperMethod
+    // MARK: - HelperMethod
     private func helperUI() {
         print(#function)
         friendButton.isHidden = flag
@@ -164,7 +164,7 @@ final class UserDetailController: UIViewController {
         friendsImageView.isUserInteractionEnabled = !flag
         chatButton.isHidden = flag
     }
-    // Mark selector
+    // MARK: - Selector
     @objc private func block() {
         print(#function)
         guard let me = self.me else { return }
@@ -172,7 +172,7 @@ final class UserDetailController: UIViewController {
         blockSheet.delegate = self
         blockSheet.show()
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction func plusFriend(_ sender: Any) {
         print(#function)
         friendButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
@@ -200,7 +200,7 @@ final class UserDetailController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-// Mark UserCollectionViewDelegate
+// MARK: - UserCollectionViewDelegate
 extension UserDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
@@ -226,7 +226,7 @@ extension UserDetailController: UICollectionViewDataSource {
         }
     }
 }
-// Mark CollectionViewDelegate
+// MARK: - CollectionViewDelegate
 extension UserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
@@ -243,13 +243,13 @@ extension UserDetailController: UICollectionViewDelegate {
         }
     }
 }
-// Mark CollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
 extension UserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
 }
-// Mark GetFriendDelegate
+// MARK: - FetchMyDataDelegate
 extension UserDetailController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
@@ -259,7 +259,7 @@ extension UserDetailController: FetchMyDataDelegate {
         }
     }
 }
-// Mark MyTeamDelegate
+// MARK: - MyTeamDelegate
 extension UserDetailController {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = teamArray
@@ -268,7 +268,7 @@ extension UserDetailController {
         }
     }
 }
-// Mark BlockSheetDelegate
+// MARK: - BlockDelegate
 extension UserDetailController: BlockDelegate {
     func blockSheet(option: BlockOptions) {
         switch option {
@@ -283,7 +283,7 @@ extension UserDetailController: BlockDelegate {
         }
     }
 }
-// Mark BlockDismissDelegate
+// MARK: - BlockDismissDelegate
 extension UserDetailController: BlockDismissDelegate {
     func blockDismiss(vc: BlockController) {
         vc.dismiss(animated: true, completion: nil)

@@ -81,7 +81,7 @@ final class MyPageUserInfoController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.dataSource = self

@@ -63,7 +63,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-lr-Ogh">
-                        <rect key="frame" x="418" y="220" width="60" height="25"/>
+                        <rect key="frame" x="408" y="220" width="60" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="2X0-a2-gMQ"/>
                             <constraint firstAttribute="height" constant="25" id="NU1-Lz-sMT"/>
@@ -81,6 +81,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" name="backGroundColor"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="cBM-lr-Ogh" secondAttribute="trailing" constant="10" id="2Ln-bm-dqF"/>
                 <constraint firstItem="BMA-mu-hE0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3Fd-Cl-QaK"/>
                 <constraint firstItem="S6S-pU-e3I" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="7et-hh-ghv"/>
                 <constraint firstItem="z3l-mi-KRV" firstAttribute="top" secondItem="S6S-pU-e3I" secondAttribute="bottom" id="Ava-yq-OpH"/>
@@ -95,7 +96,6 @@
                 <constraint firstItem="BMA-mu-hE0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="cEq-TX-Xi0"/>
                 <constraint firstItem="cBM-lr-Ogh" firstAttribute="top" secondItem="S6S-pU-e3I" secondAttribute="top" id="fc1-fl-0IZ"/>
                 <constraint firstItem="z3l-mi-KRV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rvM-J5-1ZZ"/>
-                <constraint firstAttribute="trailing" secondItem="cBM-lr-Ogh" secondAttribute="trailing" id="tWx-fL-ePZ"/>
             </constraints>
             <size key="customSize" width="478" height="326"/>
             <connections>
