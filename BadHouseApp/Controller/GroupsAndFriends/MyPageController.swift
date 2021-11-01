@@ -55,7 +55,7 @@ final class MyPageController: UIViewController {
             setupData()
         }
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupData() {
         fetchData.myDataDelegate = self
         let uid = AuthService.getUserId()
@@ -110,7 +110,7 @@ final class MyPageController: UIViewController {
                                        at: UITableView.ScrollPosition.top, animated: true)
         }
     }
-    // Mark prepareMethod
+    // MARK: - PrepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Constants.Segue.userProfile {
             let vc = segue.destination as! MyPageUserInfoController

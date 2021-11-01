@@ -27,7 +27,7 @@ final class SearchDetailGroupController: UIViewController {
         let label = UILabel()
         label.text = "検索条件"
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .darkText
+        label.textColor = .label
         return label
     }()
     private lazy var tableView: UITableView = {
@@ -35,6 +35,7 @@ final class SearchDetailGroupController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return tableView
     }()
     var selectedMoney: String? {

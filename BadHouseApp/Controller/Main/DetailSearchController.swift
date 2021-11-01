@@ -73,7 +73,7 @@ final class DetailSearchController: UIViewController {
         let label = UILabel()
         label.text = "検索条件"
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .darkText
+        label.textColor = .label
         return label
     }()
     weak var delegate: DetailSearchDelegate?
@@ -92,6 +92,7 @@ final class DetailSearchController: UIViewController {
         cityTextField.delegate = self
     }
     private func setupUI() {
+        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         view.addSubview(backButton)
         view.addSubview(searchLabel)
         backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
