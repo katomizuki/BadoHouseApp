@@ -47,8 +47,8 @@ extension UIButton {
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
         self.layer.borderWidth = 3
-        self.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        self.setTitleColor(.label, for: .normal)
+        self.layer.borderColor = UIColor.systemGray.cgColor
+        self.setTitleColor(.systemGray, for: .normal)
         self.isEnabled = false
         return self
     }
@@ -81,9 +81,9 @@ extension UIButton {
     }
     func tagButton() {
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
-        layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+        layer.borderColor = UIColor.systemGray.cgColor
         layer.borderWidth = 2
-        setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
+        setTitleColor(.systemGray, for: .normal)
         backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         titleLabel?.numberOfLines = 0
     }

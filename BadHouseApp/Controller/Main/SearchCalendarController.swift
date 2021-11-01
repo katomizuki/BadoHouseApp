@@ -1,6 +1,7 @@
 import UIKit
 import FSCalendar
 import CDAlertView
+import PKHUD
 
 protocol SearchCalendarDelegate: AnyObject {
     func didTapSearchButton(dateString: String, text: String, vc: SearchCalendarController)
@@ -24,7 +25,9 @@ final class SearchCalendarController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
-    private let textField: UITextField = RegisterTextField(placeholder: "場所名入力")
+    private let textField: UITextField = RegisterTextField(placeholder: "都道府県選択")
+    private let placePicker = UIPickerView()
+    private let placeArray = Constants.Data.placeArray
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +59,21 @@ final class SearchCalendarController: UIViewController {
                          paddingLeft: 15,
                          width: 35,
                          height: 35)
+        textField.inputView = placePicker
+        placePicker.delegate = self
+        let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0,
+                               y: 0,
+                               width: self.view.frame.width,
+                               height: 44)
+        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                             target: nil,
+                                             action: nil)
+        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                             target: self,
+                                             action: #selector(donePicker))
+        toolBar.setItems([flexibleButton, doneButtonItem], animated: true)
+        textField.inputAccessoryView = toolBar
     }
     private func setupCalendar() {
         calendar.delegate = self
@@ -105,11 +123,41 @@ final class SearchCalendarController: UIViewController {
     @objc private func back() {
         self.delegate?.dismissCalendarVC(vc: self)
     }
+    @objc private func donePicker() {
+        textField.endEditing(true)
+    }
 }
 // MARK: - FSCalendarDelegate
 extension SearchCalendarController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = self.formatterUtil(date: date)
         self.searchDateString = dateString
+    }
+}
+// MARK: - PickerViewDelegate
+extension SearchCalendarController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let place = placeArray[row]
+        textField.text = place
+        if !textField.text!.isEmpty == true {
+            textField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+            textField.layer.borderWidth = 3
+        } else {
+            textField.layer.borderColor = UIColor.systemGray.cgColor
+            textField.layer.borderWidth = 1
+        }
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        print(placeArray)
+        return placeArray[row]
+    }
+}
+// MARK: - PickerViewDataSource
+extension SearchCalendarController: UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return placeArray.count
+    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
 }

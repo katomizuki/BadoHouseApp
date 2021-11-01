@@ -725,7 +725,7 @@
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="青葉区スポーツセンター" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6G-8g-pYo">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="青葉区スポーツセンター" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6G-8g-pYo">
                                                                 <rect key="frame" x="62.5" y="0.0" width="291.5" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -1063,11 +1063,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -1467,15 +1467,15 @@
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="PlusTeamPlayerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="626"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="20" y="717" width="374" height="36"/>
+                                <rect key="frame" x="20" y="688" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -1513,11 +1513,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="DMChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="695"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -1527,7 +1527,7 @@
                             <constraint firstAttribute="trailing" secondItem="W7u-be-lQM" secondAttribute="trailing" id="LUm-zr-WbW"/>
                             <constraint firstItem="W7u-be-lQM" firstAttribute="leading" secondItem="FKS-e1-8wm" secondAttribute="leading" id="V2R-kW-xjR"/>
                             <constraint firstItem="W7u-be-lQM" firstAttribute="top" secondItem="8hA-I4-t5F" secondAttribute="top" id="pLF-q9-Mdh"/>
-                            <constraint firstItem="8hA-I4-t5F" firstAttribute="bottom" secondItem="W7u-be-lQM" secondAttribute="bottom" id="uf1-Oc-Tpg"/>
+                            <constraint firstItem="8hA-I4-t5F" firstAttribute="bottom" secondItem="W7u-be-lQM" secondAttribute="bottom" constant="30" id="uf1-Oc-Tpg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UwF-CL-gvP"/>
@@ -1926,14 +1926,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="" placeholder="フリワード検索" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-lJ-H8V">
+                            <searchBar hidden="YES" contentMode="redraw" text="" placeholder="フリワード検索" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-lJ-H8V">
                                 <rect key="frame" x="30" y="98" width="354" height="51"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                                 <color key="barTintColor" name="backGroundColor"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-Yh-lgT">
-                                <rect key="frame" x="20" y="215" width="374" height="598"/>
+                                <rect key="frame" x="20" y="185" width="374" height="628"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9yV-Kg-5aq">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1953,7 +1953,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV6-mn-5x8">
-                                <rect key="frame" x="40" y="159" width="334" height="36"/>
+                                <rect key="frame" x="40" y="129" width="334" height="36"/>
                                 <color key="backgroundColor" red="0.49019607843137253" green="0.51372549019607838" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="日にちと場所で検索">
@@ -1980,7 +1980,7 @@
                         <color key="backgroundColor" name="backGroundColor"/>
                         <constraints>
                             <constraint firstItem="Uu9-Yh-lgT" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="20" id="5z3-ne-UaH"/>
-                            <constraint firstItem="BV6-mn-5x8" firstAttribute="top" secondItem="gf7-lJ-H8V" secondAttribute="bottom" constant="10" id="6Wz-zo-c9q"/>
+                            <constraint firstItem="BV6-mn-5x8" firstAttribute="top" secondItem="gf7-lJ-H8V" secondAttribute="bottom" constant="-20" id="6Wz-zo-c9q"/>
                             <constraint firstItem="gf7-lJ-H8V" firstAttribute="top" secondItem="Iot-v5-aGu" secondAttribute="top" constant="10" id="Fna-Ya-Meb"/>
                             <constraint firstItem="Iot-v5-aGu" firstAttribute="bottom" secondItem="3jG-lw-2P6" secondAttribute="bottom" constant="15" id="M30-0u-FyP"/>
                             <constraint firstItem="BV6-mn-5x8" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="40" id="Qiz-av-HDt"/>
@@ -3836,12 +3836,12 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="t41-KJ-vjm"/>
-        <segue reference="VQy-IJ-T3o"/>
+        <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
-        <segue reference="fuc-E9-X1F"/>
+        <segue reference="9Ym-mF-wrv"/>
         <segue reference="3rr-Jc-WrJ"/>
-        <segue reference="xsh-lb-gGf"/>
+        <segue reference="u8k-iQ-9IU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>
