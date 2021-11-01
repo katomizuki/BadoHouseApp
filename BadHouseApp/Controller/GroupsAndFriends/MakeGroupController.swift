@@ -29,7 +29,7 @@ final class MakeGroupController: UIViewController {
         return textField
     }()
     private let placeTextField: UITextField = {
-        let textField = RegisterTextField(placeholder: "主な活動場所 〇〇県")
+        let textField = RegisterTextField(placeholder: "都道府県選択")
         textField.tag = 1
         textField.returnKeyType = .next
         textField.keyboardType = .namePhonePad
@@ -38,7 +38,7 @@ final class MakeGroupController: UIViewController {
         return textField
     }()
     private let timeTextField: UITextField = {
-        let textField = RegisterTextField(placeholder: "主な活動時間 毎週〇〇曜日")
+        let textField = RegisterTextField(placeholder: "活動曜日選択")
         textField.tag = 2
         textField.returnKeyType = .next
         textField.keyboardType = .namePhonePad

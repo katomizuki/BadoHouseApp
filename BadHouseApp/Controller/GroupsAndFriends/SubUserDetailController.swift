@@ -21,7 +21,7 @@ final class SubUserDetailController: UIViewController {
     @IBOutlet private weak var friendLabel: UILabel! {
         didSet {
             friendLabel.font = .boldSystemFont(ofSize: 20)
-            friendButton.isHidden = true
+            friendButton.isHidden = false
         }
     }
     @IBOutlet private weak var ageLabel: UILabel!
@@ -40,7 +40,7 @@ final class SubUserDetailController: UIViewController {
     }
     @IBOutlet weak var chatImage: UIButton! {
         didSet {
-            chatImage.isHidden = true
+            chatImage.isHidden = false
         }
     }
     @IBOutlet private weak var friendsImageView: UIImageView! {
@@ -81,9 +81,9 @@ final class SubUserDetailController: UIViewController {
     // Mark setupMethod
     private func setupUI() {
         view.addSubview(blockButton)
-        blockButton.anchor(left: nameLabel.rightAnchor,
+        blockButton.anchor(left: friendButton.rightAnchor,
                            paddingLeft: 5,
-                           centerY: nameLabel.centerYAnchor,
+                           centerY: friendButton.centerYAnchor,
                            width: 40,
                            height: 40)
         nameLabel.text = user?.name

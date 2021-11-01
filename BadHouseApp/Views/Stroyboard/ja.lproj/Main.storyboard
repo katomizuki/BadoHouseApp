@@ -117,13 +117,13 @@
                                                         <rect key="frame" x="0.0" y="457" width="354" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yab-ZE-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="51.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="51.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-tL-9go">
-                                                                <rect key="frame" x="81.5" y="0.0" width="272.5" height="51.5"/>
+                                                                <rect key="frame" x="82" y="0.0" width="272" height="51.5"/>
                                                             </datePicker>
                                                         </subviews>
                                                     </stackView>
@@ -1063,11 +1063,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -1467,15 +1467,15 @@
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="PlusTeamPlayerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="743"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="20" y="688" width="374" height="36"/>
+                                <rect key="frame" x="20" y="717" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -1513,11 +1513,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="DMChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                         </subviews>
@@ -3729,17 +3729,6 @@
                                                     <action selector="gotoDM:" destination="oj7-Ug-OXr" eventType="touchUpInside" id="57o-6Y-3Ir"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rQ-ra-QmL">
-                                                <rect key="frame" x="302" y="150" width="46" height="50"/>
-                                                <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="ciK-hx-P3p"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="plusFriend:" destination="oj7-Ug-OXr" eventType="touchUpInside" id="ktp-tb-7ai"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　その他紹介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hba-XU-vTw">
                                                 <rect key="frame" x="0.0" y="555.5" width="414" height="30"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -3750,11 +3739,21 @@
                                                 <color key="textColor" systemColor="systemGray6Color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rQ-ra-QmL">
+                                                <rect key="frame" x="260" y="197" width="46" height="40"/>
+                                                <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="ciK-hx-P3p"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="plusFriend:" destination="oj7-Ug-OXr" eventType="touchUpInside" id="ktp-tb-7ai"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="backGroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="oi6-BV-m3s" secondAttribute="trailing" id="APD-hr-dG8"/>
-                                            <constraint firstItem="8rQ-ra-QmL" firstAttribute="top" secondItem="Ffn-DR-MYb" secondAttribute="bottom" constant="70" id="G5f-Jy-vh3"/>
                                             <constraint firstItem="YpO-Ki-VHq" firstAttribute="leading" secondItem="c4a-Pr-Fy9" secondAttribute="leading" id="Myl-LT-hqi"/>
                                             <constraint firstItem="Ufx-Yk-X2F" firstAttribute="top" secondItem="oi6-BV-m3s" secondAttribute="bottom" constant="10" id="O8n-3e-Fqz"/>
                                             <constraint firstItem="YpO-Ki-VHq" firstAttribute="top" secondItem="iBS-XX-oD7" secondAttribute="bottom" constant="30" id="PCd-I1-DUm"/>
@@ -3765,11 +3764,11 @@
                                             <constraint firstAttribute="trailing" secondItem="e6F-pH-Kip" secondAttribute="trailing" id="UMp-de-K0V"/>
                                             <constraint firstItem="hba-XU-vTw" firstAttribute="leading" secondItem="c4a-Pr-Fy9" secondAttribute="leading" id="UqR-tZ-ys6"/>
                                             <constraint firstItem="Ffn-DR-MYb" firstAttribute="leading" secondItem="c4a-Pr-Fy9" secondAttribute="leading" constant="248" id="biW-xp-g5O"/>
+                                            <constraint firstItem="8rQ-ra-QmL" firstAttribute="leading" secondItem="iBS-XX-oD7" secondAttribute="trailing" constant="10" id="bkj-Lt-cW0"/>
                                             <constraint firstItem="iBS-XX-oD7" firstAttribute="top" secondItem="euH-in-Cbh" secondAttribute="bottom" constant="40" id="cSV-O9-zvd"/>
                                             <constraint firstItem="oi6-BV-m3s" firstAttribute="top" secondItem="e6F-pH-Kip" secondAttribute="bottom" constant="20" id="ewc-Hy-eFJ"/>
                                             <constraint firstAttribute="height" constant="700" id="exW-Tk-JNm"/>
                                             <constraint firstItem="oi6-BV-m3s" firstAttribute="leading" secondItem="c4a-Pr-Fy9" secondAttribute="leading" id="h4V-dt-sKu"/>
-                                            <constraint firstItem="8rQ-ra-QmL" firstAttribute="leading" secondItem="euH-in-Cbh" secondAttribute="trailing" constant="20" id="i2g-Fe-Jnr"/>
                                             <constraint firstAttribute="trailing" secondItem="6Ht-QB-diC" secondAttribute="trailing" id="iAb-CJ-cgQ"/>
                                             <constraint firstAttribute="trailing" secondItem="hba-XU-vTw" secondAttribute="trailing" id="kJu-1a-MKa"/>
                                             <constraint firstItem="e6F-pH-Kip" firstAttribute="top" secondItem="YpO-Ki-VHq" secondAttribute="bottom" constant="10" id="kT2-Lc-GRt"/>
@@ -3777,6 +3776,7 @@
                                             <constraint firstItem="euH-in-Cbh" firstAttribute="centerX" secondItem="c4a-Pr-Fy9" secondAttribute="centerX" id="kzW-gd-gve"/>
                                             <constraint firstItem="6Ht-QB-diC" firstAttribute="top" secondItem="hba-XU-vTw" secondAttribute="bottom" constant="10" id="lP2-bv-HC5"/>
                                             <constraint firstItem="6Ht-QB-diC" firstAttribute="top" secondItem="Ufx-Yk-X2F" secondAttribute="bottom" constant="40" id="mta-A1-vb3"/>
+                                            <constraint firstItem="YpO-Ki-VHq" firstAttribute="top" secondItem="8rQ-ra-QmL" secondAttribute="bottom" constant="18.5" id="sOp-AH-YVk"/>
                                             <constraint firstItem="iBS-XX-oD7" firstAttribute="centerX" secondItem="c4a-Pr-Fy9" secondAttribute="centerX" id="tq9-jc-Wbh"/>
                                             <constraint firstItem="euH-in-Cbh" firstAttribute="top" secondItem="c4a-Pr-Fy9" secondAttribute="top" constant="10" id="uTL-85-T4k"/>
                                             <constraint firstAttribute="trailing" secondItem="YpO-Ki-VHq" secondAttribute="trailing" id="zzl-Xc-VU3"/>
@@ -3839,9 +3839,9 @@
         <segue reference="VQy-IJ-T3o"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
-        <segue reference="FQ5-8I-bax"/>
+        <segue reference="fuc-E9-X1F"/>
         <segue reference="3rr-Jc-WrJ"/>
-        <segue reference="u8k-iQ-9IU"/>
+        <segue reference="xsh-lb-gGf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>

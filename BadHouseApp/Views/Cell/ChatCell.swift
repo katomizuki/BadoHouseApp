@@ -5,7 +5,7 @@ final class ChatCell: UITableViewCell {
     var message: String? {
         didSet {
             guard let message = message else { return }
-            let width = estimateFrameSize(text: message).width + 25
+            let width = estimateFrameSize(text: message).width + 20
             messageConstraint.constant = width
             mytextView.text = message
         }
@@ -13,7 +13,7 @@ final class ChatCell: UITableViewCell {
     var yourMessaege: String? {
         didSet {
             guard let message = yourMessaege else { return }
-            let width = estimateFrameSize(text: message).width + 25
+            let width = estimateFrameSize(text: message).width + 20
             widthConstraint.constant = width
             textView.text = message
         }
@@ -74,7 +74,10 @@ final class ChatCell: UITableViewCell {
         guard let date = chat.timeStamp?.dateValue() else { return }
         let dateText = self.formatter.string(from: date)
         let text = chat.text
-        let dateTextFirst = String(dateText.suffix(11))
+        var dateTextFirst = String(dateText.suffix(11))
+        if dateTextFirst.prefix(1) == "/" {
+            dateTextFirst = String(dateTextFirst.suffix(dateTextFirst.count - 1))
+        }
         if bool {
             message = text
             userImageView.isHidden = true
@@ -105,7 +108,10 @@ final class ChatCell: UITableViewCell {
     func dmchatCel(chat: Chat, bool: Bool, you: User) {
         guard let date = chat.sendTime?.dateValue() else { return }
         let dateText = self.formatter.string(from: date)
-        let dateTextFirst = String(dateText.suffix(11))
+        var dateTextFirst = String(dateText.suffix(11))
+        if dateTextFirst.prefix(1) == "/" {
+            dateTextFirst = String(dateTextFirst.suffix(dateTextFirst.count - 1))
+        }
         mytextView.text = ""
         textView.text = ""
         timeLabel.text = ""

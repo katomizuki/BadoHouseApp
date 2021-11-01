@@ -138,7 +138,7 @@ class FetchFirestoreData {
                     lastCommentArray.append(lastComment)
                 }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.chatDelegate?.fetchMyChatListData(userArray: userArray,
                                                    anotherArray: anotherArray,
                                                    lastChatArray: lastCommentArray,
