@@ -174,6 +174,26 @@ extension MyPageController: UITableViewDelegate {
         header.textLabel?.textColor = .systemGray6
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let friendId = friendArray[indexPath.row].uid
+        guard let myId = user?.uid else { return }
+        if editingStyle == .delete {
+            let alertVC = UIAlertController(title: "このユーザーをブロックしますか", message: "", preferredStyle: .actionSheet)
+            let alertAction = UIAlertAction(title: "ブロック", style: .default) { _ in
+                Ref.UsersRef.document(friendId).collection("Friends").document(myId).delete()
+                Ref.UsersRef.document(myId).collection("Friends").document(friendId).delete()
+                self.friendArray.remove(at: indexPath.row)
+                self.groupTableView.reloadData()
+            }
+            let cancleAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            alertVC.addAction(alertAction)
+            alertVC.addAction(cancleAction)
+            present(alertVC, animated: true, completion: nil)
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section != 0
+    }
 }
 // Mark freindDelegate
 extension MyPageController: FetchMyDataDelegate {
@@ -201,7 +221,7 @@ extension MyPageController {
         }
     }
 }
-// Mark UserDismissDelegate
+// MARK: - UserDismissDelegate
 extension MyPageController: UserDismissDelegate {
     func userVCdismiss(vc: MyPageUserInfoController) {
         vc.dismiss(animated: true, completion: nil)

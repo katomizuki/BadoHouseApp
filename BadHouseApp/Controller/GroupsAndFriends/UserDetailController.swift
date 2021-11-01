@@ -157,12 +157,6 @@ final class UserDetailController: UIViewController {
     // MARK: - HelperMethod
     private func helperUI() {
         print(#function)
-//        friendButton.isHidden = flag
-//        if user?.uid == me?.uid {
-//            friendButton.isHidden = true
-//        }
-//        friendsImageView.isUserInteractionEnabled = !flag
-//        chatButton.isHidden = flag
     }
     // MARK: - Selector
     @objc private func block() {
