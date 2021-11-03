@@ -113,9 +113,10 @@ extension DMChatController: InputDelegate {
             case .success:
                 self.fetchData.fetchDMChatData(chatId: self.chatId)
                 inputView.messageInputTextView.resignFirstResponder()
-            case .failure:
+            case .failure(let error):
+                let message = self.setupFirestoreErrorMessage(error: error as! NSError)
                 self.setupCDAlert(title: "メッセージの送信に失敗しました",
-                                  message: "",
+                                  message: message,
                                   action: "OK",
                                   alertType: .warning)
             }

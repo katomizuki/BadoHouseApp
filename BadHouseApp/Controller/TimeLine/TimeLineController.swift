@@ -99,8 +99,9 @@ extension TimeLineController: VideoCollectionCellDelegate {
                 case .success:
                     self.videoArray.remove(at: index)
                     self.collectionView?.reloadData()
-                case .failure:
-                    self.setupCDAlert(title: "通報に失敗しました", message: "", action: "OK", alertType: .warning)
+                case .failure(let error):
+                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
+                    self.setupCDAlert(title: "通報に失敗しました", message: message, action: "OK", alertType: .warning)
                 }
             }
         }

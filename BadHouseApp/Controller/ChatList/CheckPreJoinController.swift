@@ -135,8 +135,9 @@ extension CheckPreJoinController: UITableViewDelegate {
                             }
                         }
                     }
-                case .failure:
-                    self.setupCDAlert(title: "参加者情報の変更に失敗しました", message: "", action: "OK", alertType: .warning)
+                case .failure(let error):
+                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
+                    self.setupCDAlert(title: "参加者情報の変更に失敗しました", message: message, action: "OK", alertType: .warning)
                 }
             }
             tableView.reloadData()

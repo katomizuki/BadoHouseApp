@@ -110,9 +110,10 @@ extension CheckJoinController: UITableViewDelegate {
                 switch result {
                 case .success:
                     self.tableView.reloadData()
-                case .failure:
+                case .failure(let error):
+                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
                     self.setupCDAlert(title: "参加者情報の変更に失敗しました",
-                                      message: "",
+                                      message: message,
                                       action: "OK",
                                       alertType: .warning)
                 }

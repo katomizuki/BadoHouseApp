@@ -7,7 +7,7 @@ import SDWebImage
 import FirebaseAuth
 
 final class MakeGroupController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let teamBinding = TeamRegisterBindings()
     var friends = [User]()
@@ -142,7 +142,7 @@ final class MakeGroupController: UIViewController {
     private let dayPickerView = UIPickerView()
     private let moneyArray = Constants.Data.moneyArray
     private let dayArray = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -156,7 +156,7 @@ final class MakeGroupController: UIViewController {
         navigationItem.title = "サークル登録"
         nameTextField.becomeFirstResponder()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupData() {
         fetchData.myDataDelegate = self
         guard let me = myData else { return }
@@ -349,7 +349,7 @@ final class MakeGroupController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    // Mark selector
+    // MARK: - selector
     @objc private func donePicker() {
         placeTextField.endEditing(true)
         levelTextField.endEditing(true)
@@ -379,7 +379,7 @@ final class MakeGroupController: UIViewController {
             tagArray.remove(value: title)
         }
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     private func helper(stackview: UIStackView, bool: Bool) {
         stackview.axis = bool == true ? .vertical:.horizontal
         stackview.distribution = .fillEqually
@@ -432,7 +432,7 @@ final class MakeGroupController: UIViewController {
     private func judgePlace(_ target: String) -> Bool {
         return Constants.Data.placeArray.contains(target)
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction func cameraTap(_ sender: Any) {
         print(#function)
         let pickerView = UIImagePickerController()
@@ -440,7 +440,7 @@ final class MakeGroupController: UIViewController {
         self.present(pickerView, animated: true)
     }
 }
-// Mark UIPickerDelegate,UINavigationControllerDelegate
+// MARK: - UIPickerDelegate,UINavigationControllerDelegate
 extension MakeGroupController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -451,7 +451,7 @@ extension MakeGroupController: UINavigationControllerDelegate, UIImagePickerCont
         self.dismiss(animated: true, completion: nil)
     }
 }
-// Mark UIPickerViewDataSource
+// MARK: - UIPickerViewDataSource
 extension MakeGroupController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -466,7 +466,7 @@ extension MakeGroupController: UIPickerViewDataSource {
         }
     }
 }
-// Mark UIPickerViewDelegate
+// MARK: - UIPickerViewDelegate
 extension MakeGroupController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.placePickerView {
@@ -489,13 +489,13 @@ extension MakeGroupController: UIPickerViewDelegate {
         }
     }
 }
-// Mark getFriendDelegate
+// MARK: - getFriendDelegate
 extension MakeGroupController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.friends = friendArray
     }
 }
-// Mark uitextFieldDelegate
+// MARK: - uitextFieldDelegate
 extension MakeGroupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

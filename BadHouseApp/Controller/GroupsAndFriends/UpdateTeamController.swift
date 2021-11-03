@@ -4,7 +4,7 @@ protocol backDelegate: AnyObject {
     func updateTeamData(vc: UpdateTeamController)
 }
 final class UpdateTeamController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     var team: TeamModel?
     private let placeTextField = ProfileTextField(placeholder: "")
     private let timeTextField = ProfileTextField(placeholder: "")
@@ -37,14 +37,14 @@ final class UpdateTeamController: UIViewController {
         return button
     }()
     private let imagePicker = UIImagePickerController()
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupteamInfo()
         imagePicker.delegate = self
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupLayout() {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let stackView = UIStackView(arrangedSubviews: [placeTextField,
@@ -91,7 +91,7 @@ final class UpdateTeamController: UIViewController {
         let url = URL(string: urlString)
         iv.sd_setImage(with: url, completed: nil)
     }
-    // Mark initalize
+    // MARK: - Initalize
     init(team: TeamModel) {
         super.init(nibName: nil, bundle: nil)
         self.team = team
@@ -99,7 +99,7 @@ final class UpdateTeamController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // Mark selector
+    // MARK: - Selector
     @objc private func handleSave() {
         guard let place = placeTextField.text else { return }
         guard let time = timeTextField.text else { return }
@@ -117,9 +117,9 @@ final class UpdateTeamController: UIViewController {
                 case .success:
                     self.delegate?.updateTeamData(vc: self)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
                     self.setupCDAlert(title: "チーム情報の更新に失敗しました",
-                                 message: "",
+                                 message: message,
                                  action: "OK",
                                  alertType: .warning)
                 }
@@ -134,7 +134,7 @@ final class UpdateTeamController: UIViewController {
         self.delegate?.updateTeamData(vc: self)
     }
 }
-// Mark UIImagePickerDelegate
+// MARK: - UIImagePickerDelegate
 extension UpdateTeamController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }

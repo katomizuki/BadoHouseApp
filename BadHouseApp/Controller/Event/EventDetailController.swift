@@ -322,9 +322,10 @@ final class EventDetailController: UIViewController {
                                     switch result {
                                     case .success(let success):
                                      print(success)
-                                    case .failure:
+                                    case .failure(let error):
+                                        let message = self.setupFirestoreErrorMessage(error: error as! NSError)
                                         self.setupCDAlert(title: "参加申請に失敗しました",
-                                                          message: "",
+                                                          message: message,
                                                           action: "OK",
                                                           alertType: .warning)
                                     }
@@ -341,9 +342,10 @@ final class EventDetailController: UIViewController {
                                 switch result {
                                 case .success(let success):
                                     print(success)
-                                case .failure:
+                                case .failure(let error):
+                                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
                                     self.setupCDAlert(title: "参加申請に失敗しました",
-                                                      message: "",
+                                                      message: message,
                                                       action: "OK",
                                                       alertType: .warning)
                                 }

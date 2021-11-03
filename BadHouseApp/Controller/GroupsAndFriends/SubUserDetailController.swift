@@ -4,7 +4,7 @@ import SDWebImage
 import FacebookCore
 
 final class SubUserDetailController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     var user: User?
     var me: User?
     var ownTeam = [TeamModel]()
@@ -62,7 +62,7 @@ final class SubUserDetailController: UIViewController {
         button.toCorner(num: 15)
         return button
     }()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -78,7 +78,7 @@ final class SubUserDetailController: UIViewController {
                                                            target: nil,
                                                            action: nil)
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupUI() {
         view.addSubview(blockButton)
         blockButton.anchor(left: friendButton.rightAnchor,
@@ -156,7 +156,7 @@ final class SubUserDetailController: UIViewController {
             self.fetchData.fetchMyFriendData(idArray: friends)
         }
     }
-    // Mark #selector
+    // MARK: - selector
     @objc private func block() {
         print(#function)
         guard let me = self.me else { return }
@@ -165,7 +165,7 @@ final class SubUserDetailController: UIViewController {
         blockSheet.show()
     }
 }
-// Mark UserCollectionViewDelegate
+// MARK: - UserCollectionViewDelegate
 extension SubUserDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
@@ -191,7 +191,7 @@ extension SubUserDetailController: UICollectionViewDataSource {
         }
     }
 }
-// Mark CollectionDelegate
+// MARK: - CollectionDelegate
 extension SubUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
@@ -209,13 +209,13 @@ extension SubUserDetailController: UICollectionViewDelegate {
         }
     }
 }
-// Mark CollectionLayoutDeelegate
+// MARK: - CollectionLayoutDeelegate
 extension SubUserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
 }
-// Mark GetFriendDelegate
+// MARK: - GetFriendDelegate
 extension SubUserDetailController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
@@ -225,7 +225,7 @@ extension SubUserDetailController: FetchMyDataDelegate {
         }
     }
 }
-// Mark MyTeamDelegate
+// MARK: - MyTeamDelegate
 extension SubUserDetailController {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = []
@@ -235,7 +235,7 @@ extension SubUserDetailController {
         }
     }
 }
-// Mark blockDelegate
+// MARK: - blockDelegate
 extension SubUserDetailController: BlockDelegate {
     func blockSheet(option: BlockOptions) {
         switch option {

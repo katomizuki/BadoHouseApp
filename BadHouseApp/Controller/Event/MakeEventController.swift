@@ -100,7 +100,6 @@ final class MakeEventController: UIViewController {
             levelUISlider.rangeSelectedColor = Constants.AppColor.OriginalBlue
         }
     }
-    
     @IBOutlet private weak var notMoneyLabel: UILabel!
     @IBOutlet private weak var notTimeLabel: UILabel!
     @IBOutlet private weak var notTitleLabel: UILabel!
@@ -217,14 +216,12 @@ final class MakeEventController: UIViewController {
         detaiTextView.resignFirstResponder()
             notTitleLabel.isHidden = titleTextField.text?.isEmpty == true ? false : true
         notMoneyLabel.isHidden = moneyTextField.text?.isEmpty == true ? false : true
-        
         notPlaceLabel.isHidden = placeTextField.text?.isEmpty == true ? false : true
         if teamTime.isEmpty || eventStartTime.isEmpty || eventLastTime.isEmpty {
             notTimeLabel.isHidden = false
         } else {
             notTimeLabel.isHidden = true
         }
-        
     }
     @objc private func donePicker() {
         moneyTextField.endEditing(true)

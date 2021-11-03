@@ -52,7 +52,6 @@ final class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
         if !Network.shared.isOnline() {
-            print("ネットワークないよ！")
             self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }
         if Auth.auth().currentUser == nil {
@@ -315,8 +314,8 @@ extension HomeViewController: EventInfoCellDelegate {
                     self.eventArray.remove(at: indexPath[1])
                     self.collectionView.reloadData()
                 case .failure(let error):
-                    self.setupCDAlert(title: "通報に失敗しました", message: "", action: "OK", alertType: .warning)
-                    print(error)
+                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
+                    self.setupCDAlert(title: "通報に失敗しました", message: message, action: "OK", alertType: .warning)
                 }
             }
         }

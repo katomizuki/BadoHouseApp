@@ -3,7 +3,7 @@ import EmptyStateKit
 import CDAlertView
 
 final class GroupSearchController: UIViewController {
-    // Mark properties
+    // MARK: - properties
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Constants.AppColor.OriginalBlue
@@ -17,7 +17,7 @@ final class GroupSearchController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -34,7 +34,7 @@ final class GroupSearchController: UIViewController {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupTableView() {
         let nib = GroupCell.nib()
         tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
@@ -53,7 +53,7 @@ final class GroupSearchController: UIViewController {
         format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? .systemGray
         view.emptyState.format = format
     }
-    // Mark selector
+    // MARK: - SelectorMethod
     @objc private func didTapRightButtonItem() {
         let vc = SearchDetailGroupController()
         let nav = UINavigationController(rootViewController: vc)
@@ -61,7 +61,7 @@ final class GroupSearchController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
 }
-// Mark tableViewDataSource
+// MARK: - tableViewDataSource
 extension GroupSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
@@ -73,7 +73,7 @@ extension GroupSearchController: UITableViewDataSource {
         return cell
     }
 }
-// Mark uitableViewDelegate
+// MARK: - uitableViewDelegate
 extension GroupSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
@@ -85,7 +85,7 @@ extension GroupSearchController: UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-// Mark searchBarDelegate
+// MARK: - SearchBarDelegate
 extension GroupSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
@@ -115,7 +115,7 @@ extension GroupSearchController: UISearchBarDelegate {
         fetchData.searchGroupData(text: text, bool: true)
     }
 }
-// Mark getGroupDelegate
+// MARK: - getGroupDelegate
 extension GroupSearchController: FetchSearchDataDelegate {
     func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
         if bool == false {
@@ -146,7 +146,7 @@ extension GroupSearchController: FetchSearchDataDelegate {
        }
     }
 }
-// Mark EmptyStateDelegate
+// MARK: - EmptyStateDelegate
 extension GroupSearchController: EmptyStateDelegate {
     func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
         view.emptyState.hide()

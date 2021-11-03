@@ -4,7 +4,7 @@ protocol BlockDismissDelegate: AnyObject {
     func blockDismiss(vc: BlockController)
 }
 final class BlockController: UIViewController {
-    // Mark TextView
+    // MARK: - Properties
     let blockTextView = BlockTextView()
     weak var delegate: BlockDismissDelegate?
     private var user: User?
@@ -28,10 +28,12 @@ final class BlockController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+    // MARK: - Initialize
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
@@ -39,7 +41,7 @@ final class BlockController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupUI() {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         view.addSubview(blockTextView)
@@ -61,6 +63,7 @@ final class BlockController: UIViewController {
                          width: 35,
                          height: 35)
     }
+    // MARK: - Selector
     @objc private func handlerBlock() {
         print(#function)
         guard let text = blockTextView.text else { return }
@@ -68,7 +71,6 @@ final class BlockController: UIViewController {
         BlockService.sendBlockData(userId: user.uid, reason: text)
         self.delegate?.blockDismiss(vc: self)
     }
-    // Mark Selector
     @objc private func back() {
         self.delegate?.blockDismiss(vc: self)
     }

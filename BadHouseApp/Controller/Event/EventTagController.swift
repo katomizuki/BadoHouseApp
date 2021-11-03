@@ -52,8 +52,9 @@ final class EventTagController: UIViewController {
                 case .success:
                     EventServie.sendEventTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
                     self.navigationController?.popToRootViewController(animated: true)
-                case .failure:
-                    self.setupCDAlert(title: "イベント作成に失敗しました", message: "", action: "OK", alertType: .warning)
+                case .failure(let error):
+                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
+                    self.setupCDAlert(title: "イベント作成に失敗しました", message: message, action: "OK", alertType: .warning)
                 }
             }
         }

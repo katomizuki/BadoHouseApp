@@ -3,7 +3,7 @@ import Firebase
 import NVActivityIndicatorView
 
 final class InviteToTeamController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet private weak var friendTableView: UITableView! {
         didSet {
             friendTableView.separatorStyle = .none
@@ -42,7 +42,7 @@ final class InviteToTeamController: UIViewController {
             inviter.append(friend)
         }
     }
-    // Mark HelperMethod
+    // MARK: - HelperMethod
     func judgeInvite(userId: String) -> Int? {
         if inviter.isEmpty { return nil }
         for i in 0..<inviter.count {
@@ -51,13 +51,13 @@ final class InviteToTeamController: UIViewController {
         }
         return nil
     }
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupIndicator()
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupTableView() {
         friendTableView.delegate = self
         friendTableView.dataSource = self
@@ -71,7 +71,7 @@ final class InviteToTeamController: UIViewController {
                              width: 100,
                              height: 100)
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction func sendTeamData(_ sender: Any) {
         indicatorView.startAnimating()
         guard let teamImage = self.teamImage else { return }
@@ -105,7 +105,7 @@ final class InviteToTeamController: UIViewController {
         }
     }
 }
-// MARK: - TableviewExtension
+// MARK: - tableviewDataSource
 extension InviteToTeamController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count

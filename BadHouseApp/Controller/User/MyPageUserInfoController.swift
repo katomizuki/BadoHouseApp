@@ -207,7 +207,8 @@ final class MyPageUserInfoController: UIViewController {
                     UserService.updateUserData(dic: dic) { result in
                         switch result {
                         case .failure(let error):
-                            self.setupCDAlert(title: "ユーザー情報の保存に失敗しました", message: "", action: "OK", alertType: .warning)
+                            let message = self.setupFirestoreErrorMessage(error: error as NSError)
+                            self.setupCDAlert(title: "ユーザー情報の保存に失敗しました", message: message, action: "OK", alertType: .warning)
                             print("update UserInfo", error)
                         case .success:
                             self.setupCDAlert(title: "ユーザー情報を保存しました",

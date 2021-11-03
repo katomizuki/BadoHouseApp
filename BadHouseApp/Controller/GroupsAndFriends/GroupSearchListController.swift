@@ -16,7 +16,7 @@ final class GroupSearchListController: UIViewController {
     private let moneyArray = Constants.Data.moneyArray
     private let dayArray = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
     var judgeListKeyword: String?
-    weak var delegate:GroupSearchListDelegate?
+    weak var delegate: GroupSearchListDelegate?
     // MARK: - LifeCylcle
     override func viewDidLoad() {
         super.viewDidLoad()
