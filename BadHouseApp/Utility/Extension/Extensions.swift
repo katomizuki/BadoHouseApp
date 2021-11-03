@@ -47,6 +47,34 @@ extension UIViewController {
         }
         return message
     }
+    func setupFirestoreErrorMessage(error:NSError) -> String {
+        var message = ""
+        if let errCode = FirestoreErrorCode(rawValue: error.code) {
+            switch errCode {
+            case .cancelled:
+                message = "データの送信がキャンセルされました"
+            case .OK:
+                message = "データの送信に成功しました"
+            case .unknown:
+                message = "原因不明のエラーです"
+            case .invalidArgument:
+                message = "不正なデータが与えられました"
+            case .deadlineExceeded:
+                message = "サーバー側で問題が起きました。大変申し訳ございませんが再度送信をよろしくお願い致します"
+            case .notFound:
+                message = "不正なデータが送られまし"
+            case .permissionDenied:
+                message = "こちらの操作をするには認証が必要です。"
+            case .resourceExhausted:
+                message = "データの容量が超えてしまいました。"
+            case .unimplemented:
+                message = "何らかの理由で実行できませんでした。"
+            default:
+                message = "原因不明のエラーです。"
+            }
+        }
+        return message
+    }
     func setupNavAccessory() {
         let image = UIImage(named: Constants.ImageName.double)
         navigationController?.navigationBar.backIndicatorImage = image
