@@ -15,13 +15,14 @@ struct StorageService {
         }
     }
     // MARK: - ProfileImageStorage
-    static func addProfileImageToStorage(image: UIImage, dic: [String: Any], completion: @escaping() -> Void) {
+    static func addProfileImageToStorage(image: UIImage, dic: [String: Any], completion: @escaping(Result<String, Error>) -> Void) {
         guard let upLoadImage = image.jpegData(compressionQuality: 0.3) else { return }
         let fileName = NSUUID().uuidString
         let storageRef = Ref.StorageUserImageRef.child(fileName)
         storageRef.putData(upLoadImage, metadata: nil) { _, error in
             if let error = error {
                 print("Image Save Error", error)
+                completion(.failure(error))
                 return
             }
             print("Image Save Success")
@@ -32,10 +33,10 @@ struct StorageService {
                 UserService.updateUserData(dic: dicWithImage) { result in
                     switch result {
                     case .failure(let error):
-                        completion()
-                        print("upload Image Error",error)
+                        completion(.failure(error))
+                        print("upload Image Error", error)
                     case .success:
-                        completion()
+                        completion(.success("Success"))
                 }
             }
         }
@@ -106,5 +107,16 @@ struct StorageService {
                 }
             }
         }
+    }
+    static func setupStorageErrorMessage(error: NSError) -> String {
+        var message = ""
+        let storageError = StorageErrorCode(rawValue: error.code)
+        switch storageError {
+        case .cancelled: message = "何らかの理由でアップロードがキャンセルされました"
+        case .downloadSizeExceeded: message = "サイズが大きかったのでアップロードできませんでした"
+        case .retryLimitExceeded: message = "アップロードに時間がかかったのでキャンセルしました"
+        default: message = "原因不明のエラーでアップロードができませんでした"
+        }
+        return  message
     }
 }

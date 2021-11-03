@@ -12,7 +12,7 @@ import FacebookCore
 import FacebookLogin
 import AuthenticationServices
 import CryptoKit
-import SkeletonView
+
 
 final class RegisterViewController: UIViewController {
     // MARK: - Properties

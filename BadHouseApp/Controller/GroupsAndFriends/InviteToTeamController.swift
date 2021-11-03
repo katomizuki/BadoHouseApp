@@ -30,7 +30,7 @@ final class InviteToTeamController: UIViewController {
     var teamTagArray = [String]()
     var url: String?
     private let fetchData = FetchFirestoreData()
-    // Mark CustomDelegate
+    // MARK: - CustomDelegate
     func someMethodWantToCall(cell: UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)
         guard let index = indexPathTapped?[1] else { return }
@@ -105,7 +105,7 @@ final class InviteToTeamController: UIViewController {
         }
     }
 }
-// Mark TableviewExtension
+// MARK: - TableviewExtension
 extension InviteToTeamController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
@@ -125,7 +125,7 @@ extension InviteToTeamController: UITableViewDataSource {
         return cell
     }
 }
-// Mark tableViewDelegate
+// MARK: - tableViewDelegate
 extension InviteToTeamController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false

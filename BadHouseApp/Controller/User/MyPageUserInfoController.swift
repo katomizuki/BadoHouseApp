@@ -193,9 +193,15 @@ final class MyPageUserInfoController: UIViewController {
                 ]
                 if self.hasChangedImage {
                     guard let image = self.profileImageView.image else { return }
-                    StorageService.addProfileImageToStorage(image: image, dic: dic) {
-                        print("Image Save Success")
-                        self.hasChangedImage = false
+                    StorageService.addProfileImageToStorage(image: image, dic: dic) { result in
+                        switch result {
+                        case .success:
+                            self.hasChangedImage = false
+                            print("Image Save Success")
+                        case .failure(let error):
+                            let messaeg = StorageService.setupStorageErrorMessage(error: error as NSError)
+                            self.setupCDAlert(title: messaeg, message: "", action: "OK", alertType: .warning)
+                        }
                     }
                 } else {
                     UserService.updateUserData(dic: dic) { result in
