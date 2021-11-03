@@ -3,7 +3,7 @@ import UIKit
 import SkeletonView
 
 final class BlockCell: UITableViewCell {
-    // Mark Properties
+    // MARK: - Properties
     private let cancleLabel: UILabel = {
         let label = UILabel()
         label.text = " 閉じる "
@@ -33,7 +33,7 @@ final class BlockCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
-    // Mark Initialize
+    // MARK: - Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .white
@@ -41,7 +41,7 @@ final class BlockCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupUI(bool: Bool) {
         if bool {
             addSubview(cancleLabel)

@@ -4,7 +4,7 @@ protocol EventInfoCellDelegate: AnyObject {
     func didTapBlockButton(_ cell: EventInfoCell)
 }
 final class EventInfoCell: UICollectionViewCell {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 10)
@@ -35,11 +35,11 @@ final class EventInfoCell: UICollectionViewCell {
             configure()
         }
     }
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     func configure() {
         guard let event = event else { return }
         self.placeLabel.text = "at " + event.eventPlace
@@ -68,6 +68,7 @@ final class EventInfoCell: UICollectionViewCell {
         }
         self.teamImage.sd_setImage(with: url, completed: nil)
     }
+    // MARK: - IBAction
     @IBAction func didTapBlockButton(_ sender: Any) {
         self.delegate?.didTapBlockButton(self)
     }

@@ -1,7 +1,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
-// Mark InputProtocol
+// MARK: -  InputProtocol
 protocol MakeEventInputProtocol {
     var dateTextInput: AnyObserver<String> { get }
     var startTextInput: AnyObserver<String> { get }
@@ -9,17 +9,16 @@ protocol MakeEventInputProtocol {
     var titleTextInput: AnyObserver<String> { get }
     var moneyTextInput: AnyObserver<String> { get }
 }
-// Mark OutputProtocol
+// MARK: - OutputProtocol
 protocol MakeEventOutputProtocol {
     var dateTextOutput: PublishSubject<String> { get }
-//    var groupTextOutput: PublishSubject<String> { get }
     var startTextOutput: PublishSubject<String> { get }
     var finishTextOutput: PublishSubject<String> { get }
     var titleTextOutput: PublishSubject<String> { get }
     var moneyTextOutput: PublishSubject<String> { get }
 }
 final class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
-    // Mark Observable
+    // MARK: - Observable
     private let disposeBag = DisposeBag()
     var dateTextOutput = PublishSubject<String>()
     var titleTextOutput = PublishSubject<String>()
@@ -27,7 +26,7 @@ final class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
     var startTextOutput = PublishSubject<String>()
     var moneyTextOutput = PublishSubject<String>()
     var validMakeSubject = BehaviorSubject<Bool>(value: false)
-    // Mark Observer
+    // MARK: - Observer
     var dateTextInput: AnyObserver<String> {
         dateTextOutput.asObserver()
     }
@@ -44,7 +43,7 @@ final class MakeEventBindings: MakeEventInputProtocol, MakeEventOutputProtocol {
         moneyTextOutput.asObserver()
     }
     var valideMakeDriver: Driver<Bool> = Driver.never()
-    // Mark initialize
+    // MARK: - initialize
     init() {
         valideMakeDriver = validMakeSubject.asDriver(onErrorDriveWith: Driver.empty())
         let dateValid = dateTextOutput

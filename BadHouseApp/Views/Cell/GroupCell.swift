@@ -8,7 +8,7 @@ protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Event, cell: UITableViewCell)
 }
 final class GroupCell: UITableViewCell {
-    // Mark Properties
+    // MARK: - Properties
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var commentLabel: UILabel! {
@@ -46,7 +46,7 @@ final class GroupCell: UITableViewCell {
         button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor(named: Constants.AppColor.darkColor)
@@ -67,11 +67,11 @@ final class GroupCell: UITableViewCell {
                            height: 30)
         trashButton.addTarget(self, action: #selector(handleTrash), for: .touchUpInside)
     }
-    // Mark nibMethod
+    // MARK: - nibMethod
     static func nib() -> UINib {
         return UINib(nibName: Constants.Cell.GroupCell, bundle: nil)
     }
-    // Mark selector
+    // MARK: - selector
     @objc private func handleTrash() {
         print(#function)
         guard let event = event else {
@@ -79,7 +79,7 @@ final class GroupCell: UITableViewCell {
         }
         self.trashDelegate?.removeEvent(eventModel: event, cell: self)
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     private func eventConfigure() {
         label.text = event?.eventTitle
         if let dateString = event?.eventStartTime.prefix(16) {
@@ -92,7 +92,7 @@ final class GroupCell: UITableViewCell {
         accessoryType = .none
         trashButton.isHidden = false
     }
-    // Mark Configure
+    // MARK: - Configure
     private func configure() {
         guard let team = team else { return }
         self.label.text = team.teamName

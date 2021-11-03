@@ -8,7 +8,7 @@ protocol BlockDelegate: AnyObject {
     func blockSheet(option: BlockOptions)
 }
 final class BlockSheet: NSObject {
-    // Mark properties
+    // MARK: - Properties
     private var user: User?
     private let tableView = UITableView()
     weak var delegate: BlockDelegate?
@@ -36,7 +36,7 @@ final class BlockSheet: NSObject {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return view
     }()
-    // Mark Initialize
+    // MARK: - Initialize
     init(user: User) {
         self.user = user
         super.init()
@@ -45,7 +45,7 @@ final class BlockSheet: NSObject {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -56,7 +56,7 @@ final class BlockSheet: NSObject {
         tableView.register(BlockCell.self, forCellReuseIdentifier: "cellId")
         tableView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     func show() {
         print(#function)
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow
@@ -86,7 +86,7 @@ final class BlockSheet: NSObject {
         let y = show ? window.frame.height - height: window.frame.height
         tableView.frame.origin.y = y
     }
-    // Mark selector
+    // MARK: - Selector
     @objc private func handleDismiss() {
         print(#function)
         UIView.animate(withDuration: 0.3) {
@@ -95,7 +95,7 @@ final class BlockSheet: NSObject {
         }
     }
 }
-// Mark tableViewDelegate
+// MARK: - UITableViewDelegate
 extension BlockSheet: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return mainView
@@ -114,7 +114,7 @@ extension BlockSheet: UITableViewDelegate {
         }
     }
 }
-// Mark tableViewDatasource
+// MARK: - UITableViewDataSource
 extension BlockSheet: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2

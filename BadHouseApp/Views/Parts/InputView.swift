@@ -5,7 +5,7 @@ protocol InputDelegate: AnyObject {
     func inputView(inputView: CustomInputAccessoryView, message: String)
 }
 final class CustomInputAccessoryView: UIView {
-    // Mark Properties
+    // MARK: - Properties
     weak var delegate: InputDelegate?
     let messageInputTextView: UITextView = {
         let tv = UITextView()
@@ -34,7 +34,7 @@ final class CustomInputAccessoryView: UIView {
         label.text = "Aa"
         return label
     }()
-    // Mark initialize
+    // MARK: - Initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.shadowOpacity = 0.25
@@ -64,11 +64,11 @@ final class CustomInputAccessoryView: UIView {
                            centerY: messageInputTextView.centerYAnchor)
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: nil)
     }
-    // Mark intrinsticContentSize
+    // MARK: - intrinsticContentSize
     override var intrinsicContentSize: CGSize {
         return .zero
     }
-    // Mark selector
+    // MARK: - selector
     @objc func sendMessage() {
         print(#function)
         guard let text = messageInputTextView.text else { return }

@@ -3,7 +3,7 @@ import UIKit
 import FacebookCore
 
 final class PlusTeamPlayersCell: UITableViewCell {
-    // Mark Properties
+    // MARK: - Properties
     var linkInvite: PlusTeamPlayerController!
     var count = 0
     var button: UIButton = {
@@ -27,7 +27,7 @@ final class PlusTeamPlayersCell: UITableViewCell {
         let label = UILabel()
         return label
     }()
-    // Mark initialize
+    // MARK: - initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryView = button
@@ -50,7 +50,7 @@ final class PlusTeamPlayersCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    // Mark selector
+    // MARK: - selector
     @objc private func handleInvite() {
         button.tintColor = Constants.AppColor.OriginalBlue
         if count % 2 == 0 {

@@ -3,7 +3,7 @@ import UIKit
 import FacebookCore
 
 final class InfoCollectionViewCell: UICollectionViewCell {
-    // Mark Properties
+    // MARK: - Properties
     var user: User? {
         didSet {
             nameTextField.text = user?.name
@@ -17,7 +17,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     let nameTextField = ProfileTextField(placeholder: "名前")
     let emailTextField = ProfileTextField(placeholder: "メールアドレス")
     let introductionTextField = ProfileTextField(placeholder: "自己紹介")
-    // Mark Initialize
+    // MARK: - Initialize
     override init(frame: CGRect) {
         super.init(frame: .zero)
         let views = [[nameLabel, nameTextField], [emailLabel, emailTextField], [introductionLabel, introductionTextField]]

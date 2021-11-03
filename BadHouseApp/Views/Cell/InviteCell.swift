@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 final class InviteCell: UITableViewCell {
-    // Mark Properties
+    // MARK: - Properties
     var linkFriend: InviteToTeamController!
     var count = 0
     var button: UIButton = {
@@ -26,7 +26,7 @@ final class InviteCell: UITableViewCell {
         let label = UILabel()
         return label
     }()
-    // Mark initialize
+    // MARK: - initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor(named: Constants.AppColor.darkColor)
@@ -49,7 +49,7 @@ final class InviteCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    // Mark selector
+    // MARK: - selector
     @objc private func handleInvite() {
         button.tintColor = Constants.AppColor.OriginalBlue
         if count % 2 == 0 {

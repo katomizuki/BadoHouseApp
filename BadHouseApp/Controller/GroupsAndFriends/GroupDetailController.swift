@@ -7,7 +7,7 @@ import FacebookCore
 import SwiftUI
 
 final class GroupDetailController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     private let fetchData = FetchFirestoreData()
     var team: TeamModel?
     var friend: User?
@@ -65,7 +65,7 @@ final class GroupDetailController: UIViewController {
             inviteButton.customView?.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         }
     }
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIndicator()
@@ -87,7 +87,7 @@ final class GroupDetailController: UIViewController {
                                                            target: nil,
                                                            action: nil)
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupData() {
         guard let teamId = team?.teamId else { return }
         TeamService.getTeamTagData(teamId: teamId) {[weak self] tags in
@@ -221,7 +221,7 @@ final class GroupDetailController: UIViewController {
         }
         friendImageView.isUserInteractionEnabled = !flag
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.inviteVC) as! PlusTeamPlayerController
         vc.friends = self.friends
@@ -259,7 +259,7 @@ final class GroupDetailController: UIViewController {
         navigationController?.popViewController(animated: true
         )
     }
-    // Mark prepareMethod
+    // MARK: - prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.gotoInvite {
             let vc = segue.destination as! PlusTeamPlayerController
@@ -268,7 +268,7 @@ final class GroupDetailController: UIViewController {
         }
     }
 }
-// Mark ChatDelegate
+// MARK: - FetchChartsDataDelegate
 extension GroupDetailController: FetchChartsDataDelegate {
     func fetchGenderCount(countArray: [Int]) {
         self.genderArray = countArray
@@ -279,7 +279,7 @@ extension GroupDetailController: FetchChartsDataDelegate {
         self.setupGraph()
     }
 }
-// Mark detailSearchDelegate
+// MARK: - backDelegate
 extension GroupDetailController: backDelegate {
     func updateTeamData(vc: UpdateTeamController) {
         vc.dismiss(animated: true, completion: nil)
@@ -295,7 +295,7 @@ extension GroupDetailController: backDelegate {
         }
     }
 }
-// Mark CollectionViewDelegate,DataSource
+// MARK: - UICollectionViewDataSource
 extension GroupDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamPlayers.count
@@ -308,7 +308,7 @@ extension GroupDetailController: UICollectionViewDataSource {
         return cell
     }
 }
-// Mark GroupDetailViewController
+// MARK: - UICollectionViewDelegate
 extension GroupDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
@@ -317,7 +317,7 @@ extension GroupDetailController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-// Mark GroupDetailViewController
+// MARK: - UICollectionViewDelegateFlowLayout
 extension GroupDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)

@@ -1,14 +1,14 @@
 import Foundation
 import RxSwift
 import RxCocoa
-// Mark InputProtocol
+// MARK: - InputProtocol
 protocol TeamRegisterInput {
     var nameTextInput: AnyObserver<String> { get }
     var placeTextInput: AnyObserver<String> { get }
     var timeTextInput: AnyObserver<String> { get }
     var levelTextInput: AnyObserver<String> { get }
 }
-// Mark OutputProtocol
+// MARK: - OutputProtocol
 protocol TeamRegisterOutput {
     var nameTextOutPut: PublishSubject<String> { get }
     var placeTextOutput: PublishSubject<String> { get }
@@ -17,13 +17,13 @@ protocol TeamRegisterOutput {
 }
 final class TeamRegisterBindings: TeamRegisterInput, TeamRegisterOutput {
     private let disposeBag = DisposeBag()
-    // Mark Observable
+    // MARK: - Observable
     var nameTextOutPut = PublishSubject<String>()
     var placeTextOutput = PublishSubject<String>()
     var timeTextOutput = PublishSubject<String>()
     var levelTextOutput = PublishSubject<String>()
     var validRegisterSubject = BehaviorSubject<Bool>(value: false)
-    // Mark Observer
+    // MARK: - Observer
     var nameTextInput: AnyObserver<String> {
         nameTextOutPut.asObserver()
     }
@@ -40,7 +40,7 @@ final class TeamRegisterBindings: TeamRegisterInput, TeamRegisterOutput {
         levelTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
-    // Mark initialize
+    // MARK: - initialize
     init() {
         validRegisterDriver = validRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())

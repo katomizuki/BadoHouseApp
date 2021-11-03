@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 final class RegisterButton: UIButton {
-    // Mark initialize
+    // MARK: - initialize
     init(text: String) {
         super.init(frame: .zero)
         setTitle(text, for: .normal)

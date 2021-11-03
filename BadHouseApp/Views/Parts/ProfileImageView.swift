@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 final class ProfileImageView: UIImageView {
-    // Mark initialize
+    // MARK: - initialize
     init() {
         super.init(frame: .zero)
         self.image = UIImage(systemName: "person")

@@ -1,7 +1,7 @@
 import UIKit
 
 final class ChatCell: UITableViewCell {
-    // Mark properties
+    // MARK: - Properties
     var message: String? {
         didSet {
             guard let message = message else { return }
@@ -33,7 +33,7 @@ final class ChatCell: UITableViewCell {
         formatter.locale = Locale(identifier: "ja-JP")
         return formatter
     }()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.layer.cornerRadius = 30
@@ -48,15 +48,15 @@ final class ChatCell: UITableViewCell {
         self.mytextView.font = UIFont(name: "Kailasa", size: 14)
         self.textView.font = UIFont(name: "Kailasa", size: 14)
     }
-    // Mark nibMethod
+    // MARK: - nibMethod
     static func nib() -> UINib {
         return UINib(nibName: "ChatCell", bundle: nil)
     }
-    // Mark setSelectedOverride
+    // MARK: - setSelectedOverride
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     private func estimateFrameSize(text: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)

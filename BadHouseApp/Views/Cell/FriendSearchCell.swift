@@ -3,7 +3,7 @@ import UIKit
 import FacebookCore
 
 final class FriendSearchCell: UITableViewCell {
-    // Mark properties
+    // MARK: - properties
     var link: FriendSearchController!
     var count = 0
     private var button: UIButton = {
@@ -32,7 +32,7 @@ final class FriendSearchCell: UITableViewCell {
         let label = UILabel()
         return label
     }()
-    // Mark initialize
+    // MARK: - initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryView = button
@@ -54,7 +54,7 @@ final class FriendSearchCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // Mark selector
+    // MARK: - selector
     @objc func plusFriend() {
         print(#function)
         if count % 2 == 0 {

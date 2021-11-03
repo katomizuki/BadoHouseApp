@@ -10,7 +10,7 @@ protocol VideoCollectionCellDelegate: AnyObject {
     func didTapDeleteButton(_ cell: VideoCell)
 }
 final class VideoCell: UICollectionViewCell {
-    // Mark properties
+    // MARK: - properties
     var player: AVPlayer?
     static let identifier = Constants.CellId.videoCell
     var iv: UIImageView = {
@@ -49,7 +49,7 @@ final class VideoCell: UICollectionViewCell {
         return view
     }()
     weak var delegate: VideoCollectionCellDelegate?
-    // Mark initialize
+    // MARK: - initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.clipsToBounds = true
@@ -61,7 +61,7 @@ final class VideoCell: UICollectionViewCell {
         isSkeletonable = true
         containerView.showAnimatedSkeleton()
     }
-    // Mark layoutSubViews
+    // MARK: - layoutSubViews
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.frame = contentView.bounds
@@ -81,7 +81,7 @@ final class VideoCell: UICollectionViewCell {
                                     width: 35,
                                     height: 50)
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupLayout() {
         contentView.addSubview(containerView)
         contentView.addSubview(nextButton)
@@ -92,7 +92,7 @@ final class VideoCell: UICollectionViewCell {
         containerView.clipsToBounds = true
         contentView.sendSubviewToBack(containerView)
     }
-    // Mark selector
+    // MARK: - selector
     @objc private func handleNext() {
         print(#function)
         guard let video = video else {
@@ -110,7 +110,7 @@ final class VideoCell: UICollectionViewCell {
     @objc private func handleDelete() {
         self.delegate?.didTapDeleteButton(self)
     }
-    // Mark helperMethod
+    // MARK: - helperMethod
     func configure() {
         setupLayout()
         guard let videoUrl = video?.videoUrl else { return }

@@ -4,7 +4,7 @@ import NVActivityIndicatorView
 import FacebookCore
 
 final class MyPageController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     var user: User?
     var teamArray = [TeamModel]()
     var friendArray = [User]()
@@ -34,7 +34,7 @@ final class MyPageController: UIViewController {
         }
     }
     private let fetchData = FetchFirestoreData()
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIndicator()
@@ -95,7 +95,7 @@ final class MyPageController: UIViewController {
                              width: 100,
                              height: 100)
     }
-    // Mark IBAction
+    // MARK: - IBAction
     @IBAction private func user(_ sender: Any) {
         self.performSegue(withIdentifier: Constants.Segue.userProfile, sender: nil)
     }
@@ -122,7 +122,7 @@ final class MyPageController: UIViewController {
         }
     }
 }
-// Mark UItableViewDataSource
+// MARK: - UItableViewDataSource
 extension MyPageController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -151,7 +151,7 @@ extension MyPageController: UITableViewDataSource {
         return cell
     }
 }
-// Mark uitableViewdelegate
+// MARK: - UITableViewDelegate
 extension MyPageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -195,7 +195,7 @@ extension MyPageController: UITableViewDelegate {
         return indexPath.section != 0
     }
 }
-// Mark freindDelegate
+// MARK: - FetchMyDataDelegate
 extension MyPageController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.friendArray = []
@@ -204,9 +204,6 @@ extension MyPageController: FetchMyDataDelegate {
             self.groupTableView.reloadData()
         }
     }
-}
-// Mark myTeamDelegate
-extension MyPageController {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teamArray = []
         var array = teamArray

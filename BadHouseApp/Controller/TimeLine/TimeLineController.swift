@@ -5,13 +5,13 @@ import NVActivityIndicatorView
 import SkeletonView
 
 class TimeLineController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     private var collectionView: UICollectionView?
     private var videoArray = [VideoModel]()
     private let fetchData = FetchFirestoreData()
     private var player = AVPlayer()
     private var indicator: NVActivityIndicatorView!
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -27,7 +27,7 @@ class TimeLineController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView?.frame = view.bounds
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -37,7 +37,6 @@ class TimeLineController: UIViewController {
                                           collectionViewLayout: layout)
         collectionView?.isPagingEnabled = true
         collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
-        collectionView?.delegate = self
         collectionView?.dataSource = self
         view.addSubview(collectionView!)
         collectionView?.anchor(top: view.topAnchor,
@@ -58,8 +57,8 @@ class TimeLineController: UIViewController {
                          height: 100)
     }
 }
-// Mark collectionViewdelegate & skeletonViewdelegate
-extension TimeLineController: UICollectionViewDelegate, UICollectionViewDataSource {
+// MARK: - collectionViewdelegate
+extension TimeLineController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videoArray.count
     }
@@ -71,13 +70,13 @@ extension TimeLineController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
 }
-// Mark SkeletonDatasource
+// MARK: - SkeletonCollectionViewDataSource
 extension TimeLineController: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return VideoCell.identifier
     }
 }
-// Mark getVideoDelegate
+// MARK: - FetchVideoDataDelegate
 extension TimeLineController: FetchVideoDataDelegate {
     func fetchVideoData(videoArray: [VideoModel]) {
         self.videoArray = videoArray
@@ -86,7 +85,7 @@ extension TimeLineController: FetchVideoDataDelegate {
         }
     }
 }
-// Mark collectionCellDelegate
+// MARK: - VideoCollectionCellDelegate
 extension TimeLineController: VideoCollectionCellDelegate {
     func didTapDeleteButton(_ cell: VideoCell) {
         let indexPath = collectionView?.indexPath(for: cell)
@@ -128,13 +127,13 @@ extension TimeLineController: VideoCollectionCellDelegate {
         fetchData.fetchVideoData()
     }
 }
-// Mark popdelegate
+// MARK: - UIPopoverPresentationControllerDelegate
 extension TimeLineController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
-// Mark SearchVideoDelegate
+// MARK: - SearchVideoDelegate
 extension TimeLineController: SearchVideoDelegate {
     func getVideoData(videoArray: [VideoModel], vc: VideoPopoverController) {
         print(#function)

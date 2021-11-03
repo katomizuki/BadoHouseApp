@@ -4,15 +4,15 @@ import SDWebImage
 import FacebookCore
 
 final class TeammemberCell: UICollectionViewCell {
-    // Mark Properties
+    // MARK: - Properties
     var teamMember = [User]()
     @IBOutlet weak var teamMemberImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    // Mark nibMethod
+    // MARK: - nibMethod
     static func nib() -> UINib {
         return UINib(nibName: Constants.Cell.TeammemberCell, bundle: nil)
     }
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         teamMemberImage.layer.cornerRadius = 30
@@ -22,7 +22,7 @@ final class TeammemberCell: UICollectionViewCell {
         teamMemberImage.contentMode = .scaleAspectFill
         teamMemberImage.clipsToBounds = true
     }
-    // Mark HelperMethod
+    // MARK: - HelperMethod
     func configure(name: String, url: String) {
         nameLabel.text = name
         nameLabel.font = .boldSystemFont(ofSize: 11)

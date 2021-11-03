@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 final class DMChatController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     private let cellId = Constants.CellId.chatCellId
     @IBOutlet private weak var chatTableView: UITableView!
     private var messages = [Chat]()
@@ -28,14 +28,14 @@ final class DMChatController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         customInputView.messageInputTextView.resignFirstResponder()
     }
-    // Mark LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextView()
         setupData()
         navigationItem.title = you?.name
     }
-    // MarksetupMethod
+    // MARK: - SetupMethod
     private func setupData() {
         guard let myId = me?.uid else { return }
         guard let youId = you?.uid else { return }
@@ -51,7 +51,7 @@ final class DMChatController: UIViewController {
             }
         }
     }
-    // Mark updatechatTextView
+    // MARK: - updatechatTextView
     private func setupTextView() {
         chatTableView.delegate = self
         chatTableView.dataSource = self
@@ -60,7 +60,7 @@ final class DMChatController: UIViewController {
         fetchData.chatDelegate = self
     }
 }
-// Mark UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension DMChatController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -73,7 +73,7 @@ extension DMChatController: UITableViewDataSource {
         return cell
     }
 }
-// Mark uitableViewdelegate
+// MARK: - UITableViewDelegate
 extension DMChatController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.rowHeight = 100
@@ -84,7 +84,7 @@ extension DMChatController: UITableViewDelegate {
     }
 }
 
-// Mark GetChatDelegate
+// MARK: - FetchChatDataDelgate
 extension DMChatController: FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
         self.messages = []
@@ -96,7 +96,7 @@ extension DMChatController: FetchChatDataDelgate {
         }
     }
 }
-// Mark InputDelegate
+// MARK: - InputDelegate
 extension DMChatController: InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         print(#function)

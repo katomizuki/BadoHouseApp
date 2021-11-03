@@ -2,7 +2,7 @@ import UIKit
 import Foundation
 
 final class BlockTextView: UITextView {
-    // Mark properties
+    // MARK: - Properties
     var placeholder: UILabel = {
         let label = UILabel()
         label.text = "通報する理由を\nご記入してください。\n運営で適切に\n対処させていただきます。"
@@ -11,7 +11,7 @@ final class BlockTextView: UITextView {
         label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
-    // Mark initialize
+    // MARK: - Initialize
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         addSubview(placeholder)
@@ -32,6 +32,7 @@ final class BlockTextView: UITextView {
         layer.masksToBounds = true
         backgroundColor = UIColor(named: "TFColor")
     }
+    // MARK: - SelectorMethod
     @objc private func handleChangePlaceholder() {
         placeholder.isHidden = !text.isEmpty
     }

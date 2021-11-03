@@ -3,7 +3,7 @@ import Firebase
 import SDWebImage
 
 final class GroupChatController: UIViewController {
-    // Mark Properties
+    // MARK: - Properties
     var team: TeamModel?
     private var chatArray = [GroupChatModel]()
     @IBOutlet private weak var tableView: UITableView!
@@ -24,13 +24,13 @@ final class GroupChatController: UIViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupData()
     }
-    // Mark setupMethod
+    // MARK: - SetupMethod
     private func setupTableView() {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         tableView.delegate = self
@@ -49,7 +49,7 @@ final class GroupChatController: UIViewController {
         fetchData.myDataDelegate = self
     }
 }
-// Mark tableViewdelegate
+// MARK: - UITableViewDataSource
 extension GroupChatController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatArray.count
@@ -60,7 +60,7 @@ extension GroupChatController: UITableViewDataSource {
         return cell
     }
 }
-// Mark tableViewdelegate
+// MARK: - UITableViewDelegate
 extension GroupChatController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -69,7 +69,7 @@ extension GroupChatController: UITableViewDelegate {
         return false
     }
 }
-// Mark chatDelegate
+// MARK: - FetchMyDataDelegate
 extension GroupChatController: FetchMyDataDelegate {
     func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
         self.chatArray = []
@@ -80,7 +80,7 @@ extension GroupChatController: FetchMyDataDelegate {
         }
     }
 }
-// Mark InputDelegate
+// MARK: - InputDelegate
 extension GroupChatController: InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         guard let teamId = self.team?.teamId else { return }

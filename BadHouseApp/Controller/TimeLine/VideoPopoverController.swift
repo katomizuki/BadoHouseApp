@@ -4,7 +4,7 @@ protocol SearchVideoDelegate: AnyObject {
     func getVideoData(videoArray: [VideoModel], vc: VideoPopoverController)
 }
 class VideoPopoverController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     private lazy var tv: UITableView = {
         let tv = UITableView()
         tv.delegate = self
@@ -15,14 +15,14 @@ class VideoPopoverController: UIViewController {
     private let cellId = "cellId"
     private let fetchData = FetchFirestoreData()
     weak var searchDelegate: SearchVideoDelegate?
-    // Mark properties
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         fetchData.videoDelegate = self
         popoverPresentationController?.backgroundColor = UIColor.white
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupTableView() {
         view.addSubview(tv)
         tv.anchor(top: view.topAnchor,
@@ -35,7 +35,7 @@ class VideoPopoverController: UIViewController {
                   paddingLeft: 0)
     }
 }
-// Mark tableviewdatasource
+// MARK: - UITableViewDataSource
 extension VideoPopoverController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Badominton.allCases.count
@@ -48,7 +48,7 @@ extension VideoPopoverController: UITableViewDataSource {
         return cell
     }
 }
-// Extension UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension VideoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let option = Badominton(rawValue: indexPath.row) else { return }
@@ -56,7 +56,7 @@ extension VideoPopoverController: UITableViewDelegate {
         fetchData.searchVideoData(text: text)
     }
 }
-// Mark VideoDelegate
+// MARK: - FetchVideoDataDelegate
 extension VideoPopoverController: FetchVideoDataDelegate {
     func fetchVideoData(videoArray: [VideoModel]) {
         self.searchDelegate?.getVideoData(videoArray: videoArray, vc: self)

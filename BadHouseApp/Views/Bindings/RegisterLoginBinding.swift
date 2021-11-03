@@ -2,13 +2,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-// Mark Input Protocol
+// MARK: - Input Protocol
 protocol RegisterBindingInputs {
     var nameTextInput: AnyObserver<String> { get }
     var emailTextInput: AnyObserver<String> { get }
     var passwordTextInput: AnyObserver<String> { get }
 }
-// Mark OutputProtocol
+// MARK: - OutputProtocol
 protocol RegisterBindingsOutputs {
     var nameTextOutput: PublishSubject<String> { get }
     var emailTextOutput: PublishSubject<String> { get }
@@ -16,12 +16,12 @@ protocol RegisterBindingsOutputs {
 }
 final class RegisterBindings: RegisterBindingInputs, RegisterBindingsOutputs {
     private let disposeBag = DisposeBag()
-    // Mark Observable(状態を保持している監視対象）
+    // MARK: - Observable(状態を保持している監視対象）
     var nameTextOutput = PublishSubject<String>()
     var emailTextOutput = PublishSubject<String>()
     var passwordTextOutput = PublishSubject<String>()
     var valideRegisterSubject = BehaviorSubject<Bool>(value: false)
-    // Mark Observer(監視者)
+    // MARK: - Observer(監視者)
     var nameTextInput: AnyObserver<String> {
         nameTextOutput.asObserver()
     }
@@ -32,7 +32,7 @@ final class RegisterBindings: RegisterBindingInputs, RegisterBindingsOutputs {
         passwordTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
-    // Mark initialize
+    // MARK: - initialize
     init() {
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -60,23 +60,23 @@ final class RegisterBindings: RegisterBindingInputs, RegisterBindingsOutputs {
         .disposed(by: disposeBag)
     }
 }
-// Mark InputProtocol
+// MARK: - InputProtocol
 protocol LoginBindingInputs {
     var emailTextInput: AnyObserver<String> { get }
     var passwordTextInput: AnyObserver<String> { get }
 }
-// Mark OutputProtocol
+// MARK: - OutputProtocol
 protocol LoginBindingsOutputs {
     var emailTextOutput: PublishSubject<String> { get }
     var passwordTextOutput: PublishSubject<String> { get }
 }
 class LoginBindings: LoginBindingInputs, LoginBindingsOutputs {
     private let disposeBag = DisposeBag()
-    // Mark Observable(状態を保持している監視対象）
+    // MARK: - Observable(状態を保持している監視対象）
     var emailTextOutput = PublishSubject<String>()
     var passwordTextOutput = PublishSubject<String>()
     var valideRegisterSubject = BehaviorSubject<Bool>(value: false)
-    // Mark Observer(監視者)
+    // MARK: - Observer(監視者)
     var emailTextInput: AnyObserver<String> {
         emailTextOutput.asObserver()
     }
@@ -84,7 +84,7 @@ class LoginBindings: LoginBindingInputs, LoginBindingsOutputs {
         passwordTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
-    // Mark initialize
+    // MARK: - initialize
     init() {
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -99,7 +99,7 @@ class LoginBindings: LoginBindingInputs, LoginBindingsOutputs {
             .map { text -> Bool in
                 return text.count >= 6 && !text.contains(" ")
             }
-        // Mark combine
+        // MARK: - combine
         Observable.combineLatest(emailValid, passwordValid) { $0 && $1 }
         .subscribe { validAll in
             self.valideRegisterSubject.onNext(validAll)

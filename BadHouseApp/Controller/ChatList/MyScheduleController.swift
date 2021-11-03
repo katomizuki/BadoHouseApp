@@ -8,7 +8,7 @@ protocol MyScheduleDelegate: AnyObject {
     func dismissMyScheduleVC(vc: MyScheduleController)
 }
 final class MyScheduleController: UIViewController {
-    // Mark properties
+    // MARK: - Properties
     var me: User?
     private let cellId = Constants.CellId.CellGroupId
     private let fetchData = FetchFirestoreData()
@@ -30,14 +30,14 @@ final class MyScheduleController: UIViewController {
         return button
     }()
     weak var delegate: MyScheduleDelegate?
-    // Mark lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()
         setupCalendar()
         setupTableView()
     }
-    // Mark setupMethod
+    // MARK: - setupMethod
     private func setupData() {
         fetchData.myDataDelegate = self
         guard let meId = me?.uid else { return }
@@ -103,7 +103,7 @@ final class MyScheduleController: UIViewController {
         let nib = GroupCell.nib()
         tableview.register(nib, forCellReuseIdentifier: cellId)
     }
-    // Mark initialize
+    // MARK: - Initialize
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.me = user
@@ -111,12 +111,12 @@ final class MyScheduleController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // Mark Selector
+    // MARK: - Selector
     @objc private func back() {
         self.delegate?.dismissMyScheduleVC(vc: self)
     }
 }
-// Mark tableviewdelegate
+// MARK: - UITableViewDataSource
 extension MyScheduleController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventArray.count
@@ -129,7 +129,7 @@ extension MyScheduleController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-// Mark eventDelegate
+// MARK: - FetchMyDataDelegate
 extension MyScheduleController: FetchMyDataDelegate {
     func fetchMyEventData(eventArray: [Event]) {
         var array = eventArray
@@ -145,7 +145,7 @@ extension MyScheduleController: FetchMyDataDelegate {
         }
     }
 }
-// Mark FSCalendarDelegate
+// MARK: - FetchMyDataDelegate FetchMyDataDelegate FSCalendarDelegateAppearance
 extension MyScheduleController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let date = DateUtils.stringFromDate(date: date, format: "yyyy/MM/dd HH:mm:ss Z")
@@ -172,7 +172,7 @@ extension MyScheduleController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         return nil
     }
 }
-// Mark CalendarEventDelegate
+// MARK: - CalendarEventDelegate
 extension MyScheduleController: CalendarEventDelegate {
     func removeEvent(eventModel: Event, cell: UITableViewCell) {
         guard let tappedIndex = tableview.indexPath(for: cell)?[1] else { return }
