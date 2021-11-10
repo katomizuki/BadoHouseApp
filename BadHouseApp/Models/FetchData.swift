@@ -74,15 +74,16 @@ class FetchFirestoreData {
     // Mark fetchMyTeamData
     func fetchMyTeamData(idArray: [String]) {
         var teamArray = [TeamModel]()
-//        let group = DispatchGroup()
+        let group = DispatchGroup()
         idArray.forEach { id in
-//            group.enter()
+            group.enter()
             Ref.TeamRef.document(id).getDocument { snapShot, error in
                 if let error = error {
                     print(error)
                     return
                 }
-//                defer { group.leave() }
+                print(#function)
+                defer { group.leave() }
                 guard let data = snapShot?.data() else { return }
                 let team = TeamModel(dic: data)
                 if let team = team {
@@ -90,7 +91,8 @@ class FetchFirestoreData {
                 }
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
+        group.notify(queue: .main) {
             self.myDataDelegate?.fetchMyTeamData(teamArray: teamArray)
         }
     }
@@ -378,9 +380,12 @@ class FetchFirestoreData {
     // Mark searchEventDateData
     func searchEventDateData(dateString: String, text: String) {
         var eventArray = [Event]()
-        let startIndex = dateString.index(dateString.startIndex, offsetBy: 0)
-        let endIndex = dateString.index(dateString.startIndex, offsetBy: 10)
-        let keyDate = String(dateString[startIndex..<endIndex])
+        var keyDate = String()
+        if dateString != "" {
+            let startIndex = dateString.index(dateString.startIndex, offsetBy: 0)
+            let endIndex = dateString.index(dateString.startIndex, offsetBy: 10)
+            keyDate = String(dateString[startIndex..<endIndex])
+        }
         Ref.EventRef.getDocuments { snapShot, error in
             if let error = error {
                 print(error)
@@ -393,7 +398,14 @@ class FetchFirestoreData {
                 let firstIndex = eventStartTime.index(eventStartTime.startIndex, offsetBy: 0)
                 let lastIndex = eventStartTime.index(eventStartTime.startIndex, offsetBy: 10)
                 let startTimeString = String(eventStartTime[firstIndex..<lastIndex])
+                if keyDate != "" {
                 if startTimeString == keyDate {
+                    let event = Event(dic: safeData)
+                    if let event = event {
+                        eventArray.append(event)
+                    }
+                  }
+                } else {
                     let event = Event(dic: safeData)
                     if let event = event {
                         eventArray.append(event)

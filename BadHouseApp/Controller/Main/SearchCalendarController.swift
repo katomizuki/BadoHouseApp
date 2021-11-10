@@ -103,13 +103,6 @@ final class SearchCalendarController: UIViewController {
     }
     // MARK: - SelectorMethod
     @objc func search() {
-        if searchDateString.isEmpty {
-            self.setupCDAlert(title: "検索エラー",
-                              message: "日程を指定してください",
-                              action: "OK",
-                              alertType: CDAlertViewType.error)
-            return
-        }
         let text = textField.text ?? ""
         self.delegate?.didTapSearchButton(dateString: searchDateString, text: text, vc: self)
     }
