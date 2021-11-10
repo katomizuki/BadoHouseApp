@@ -74,15 +74,15 @@ class FetchFirestoreData {
     // Mark fetchMyTeamData
     func fetchMyTeamData(idArray: [String]) {
         var teamArray = [TeamModel]()
-        let group = DispatchGroup()
+//        let group = DispatchGroup()
         idArray.forEach { id in
-            group.enter()
+//            group.enter()
             Ref.TeamRef.document(id).getDocument { snapShot, error in
                 if let error = error {
                     print(error)
                     return
                 }
-                defer { group.leave() }
+//                defer { group.leave() }
                 guard let data = snapShot?.data() else { return }
                 let team = TeamModel(dic: data)
                 if let team = team {
@@ -90,7 +90,7 @@ class FetchFirestoreData {
                 }
             }
         }
-        group.notify(queue: .main) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.myDataDelegate?.fetchMyTeamData(teamArray: teamArray)
         }
     }
