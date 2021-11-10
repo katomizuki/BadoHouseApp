@@ -13,11 +13,6 @@ final class MyLevelController: UIViewController {
             backButton.addTarget(self, action: #selector(backtoUser), for: .touchUpInside)
         }
     }
-    @IBOutlet private weak var saveButton: UIButton! {
-        didSet {
-            saveButton.updateSaveButton()
-        }
-    }
     @IBOutlet private weak var textView: UITextView! {
         didSet {
             textView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)

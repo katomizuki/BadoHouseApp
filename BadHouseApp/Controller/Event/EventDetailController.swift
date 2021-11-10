@@ -390,7 +390,6 @@ final class EventDetailController: UIViewController {
     }
     @IBAction func didTapChatButton(_ sender: Any) {
     }
-    
 }
 // MARK: - FetchChartsDataDelegate
 extension EventDetailController: FetchChartsDataDelegate {
