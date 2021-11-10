@@ -129,8 +129,12 @@ final class UserDetailController: UIViewController {
         UserService.searchFriend(friend: user, myId: myId) { [weak self] result in
             guard let self = self else { return }
             if result {
+                self.friendsImageView.isUserInteractionEnabled = true
+                self.chatButton.isHidden = false
                 self.friendButton.plusFriendButton()
             } else {
+                self.friendsImageView.isUserInteractionEnabled = false
+                self.chatButton.isHidden = true
                 self.friendButton.removeFriendButton()
             }
         }

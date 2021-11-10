@@ -12,6 +12,7 @@ final class SubUserDetailController: UIViewController {
     private var blockSheet: BlockSheet!
     @IBOutlet private weak var friendCollectionView: UICollectionView!
     @IBOutlet private weak var belongCollectionView: UICollectionView!
+    @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var friendButton: UIButton! {
         didSet {
@@ -131,8 +132,12 @@ final class SubUserDetailController: UIViewController {
         UserService.searchFriend(friend: user, myId: myId) { [weak self] result in
             guard let self = self else { return }
             if result {
+                self.friendsImageView.isUserInteractionEnabled = true
+                self.chatButton.isHidden = false
                 self.friendButton.plusFriendButton()
             } else {
+                self.friendsImageView.isUserInteractionEnabled = false
+                self.chatButton.isHidden = true
                 self.friendButton.removeFriendButton()
             }
         }
