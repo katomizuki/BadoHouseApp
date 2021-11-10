@@ -71,7 +71,6 @@ final class LoginViewController: UIViewController {
                                                             passwordTextField,
                                                             loginButton,
                                                             googleView,
-                                                            fbButton,
                                                             appleButton])
         basicStackView.axis = .vertical
         basicStackView.distribution = .fillEqually

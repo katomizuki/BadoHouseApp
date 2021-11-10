@@ -106,7 +106,6 @@ final class RegisterViewController: UIViewController {
                                                        passwordTextField,
                                                        registerButton,
                                                        googleView,
-                                                       fbButton,
                                                        appleButton
                                                       ])
         stackView.axis = .vertical
