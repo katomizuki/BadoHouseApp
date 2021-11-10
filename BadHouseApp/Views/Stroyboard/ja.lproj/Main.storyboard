@@ -3748,6 +3748,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
+                                                    <action selector="plusFriend:" destination="N5Z-oj-ym1" eventType="touchUpInside" id="L6B-9k-W7m"/>
                                                     <action selector="plusFriend:" destination="oj7-Ug-OXr" eventType="touchUpInside" id="ktp-tb-7ai"/>
                                                 </connections>
                                             </button>

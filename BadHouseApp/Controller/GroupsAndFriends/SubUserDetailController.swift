@@ -17,6 +17,7 @@ final class SubUserDetailController: UIViewController {
     @IBOutlet private weak var friendButton: UIButton! {
         didSet {
             friendButton.updateFriendButton()
+            friendButton.isUserInteractionEnabled = true
         }
     }
     @IBOutlet private weak var friendLabel: UILabel! {
@@ -168,6 +169,19 @@ final class SubUserDetailController: UIViewController {
         blockSheet = BlockSheet(user: me)
         blockSheet.delegate = self
         blockSheet.show()
+    }
+    // MARK: - IBAction
+    @IBAction func plusFriend(_ sender: Any) {
+        guard let user = user else { return }
+        let myId = AuthService.getUserId()
+        if friendButton.backgroundColor == UIColor(named: Constants.AppColor.darkColor) {
+            friendButton.tapRemoveFriend()
+            UserService.friendAction(myId: myId, friend: user, bool: true)
+        } else {
+            friendButton.tapPlusFriend()
+            self.friendButton.setTitle(" バド友になる ", for: .normal)
+            UserService.friendAction(myId: myId, friend: user, bool: false)
+        }
     }
 }
 // MARK: - UserCollectionViewDelegate
