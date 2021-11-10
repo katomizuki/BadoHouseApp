@@ -2413,6 +2413,12 @@
                                                     <outletCollection property="gestureRecognizers" destination="qEx-Go-Mwi" appends="YES" id="8hw-Xd-mPC"/>
                                                 </connections>
                                             </imageView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属しているチームがないのでイベントを作成できません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqq-2z-TLW">
+                                                <rect key="frame" x="15" y="404" width="384" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rA7-AT-i7T">
                                                 <rect key="frame" x="20" y="830" width="374" height="410"/>
                                                 <subviews>
@@ -2569,13 +2575,6 @@
                                                     <constraint firstAttribute="height" constant="410" id="WSI-0P-6qc"/>
                                                 </constraints>
                                             </stackView>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="所属しているチームがないのでイベントを作成できません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqq-2z-TLW">
-                                                <rect key="frame" x="20" y="753" width="25" height="38"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                <color key="textColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vsG-ga-3BH">
                                                 <rect key="frame" x="20" y="423.99999999999994" width="374" height="240.33333333333331"/>
                                                 <subviews>
@@ -2683,12 +2682,15 @@
                                             <constraint firstAttribute="trailing" secondItem="iGU-fY-xrt" secondAttribute="trailing" constant="20" id="4LF-GF-B2y"/>
                                             <constraint firstItem="YZ2-z5-zD0" firstAttribute="top" secondItem="iGU-fY-xrt" secondAttribute="bottom" constant="-1174.5" id="AmP-yp-FOS"/>
                                             <constraint firstAttribute="trailing" secondItem="rA7-AT-i7T" secondAttribute="trailing" constant="20" id="Cuq-fJ-Nq6"/>
+                                            <constraint firstItem="vqq-2z-TLW" firstAttribute="leading" secondItem="A8C-Hl-RUy" secondAttribute="leading" constant="15" id="D2n-cw-VVW"/>
+                                            <constraint firstItem="vqq-2z-TLW" firstAttribute="top" secondItem="YZ2-z5-zD0" secondAttribute="bottom" id="ESK-Hb-kVd"/>
                                             <constraint firstItem="PWx-a5-O8c" firstAttribute="centerX" secondItem="A8C-Hl-RUy" secondAttribute="centerX" id="FEa-HN-rfr"/>
                                             <constraint firstAttribute="trailing" secondItem="vsG-ga-3BH" secondAttribute="trailing" constant="20" id="Gnq-ig-Xj9"/>
                                             <constraint firstItem="PWx-a5-O8c" firstAttribute="top" secondItem="vsG-ga-3BH" secondAttribute="bottom" constant="120" id="KDz-ZD-n8Y"/>
                                             <constraint firstItem="c1c-Eu-rQy" firstAttribute="centerX" secondItem="A8C-Hl-RUy" secondAttribute="centerX" id="KNQ-62-2Ir"/>
                                             <constraint firstItem="PWx-a5-O8c" firstAttribute="leading" secondItem="7Ks-57-5le" secondAttribute="trailing" id="N1U-9A-NWv"/>
                                             <constraint firstAttribute="height" constant="1583" id="Nsx-Pk-phI"/>
+                                            <constraint firstAttribute="trailing" secondItem="vqq-2z-TLW" secondAttribute="trailing" constant="15" id="PJg-1J-qn5"/>
                                             <constraint firstItem="rA7-AT-i7T" firstAttribute="centerX" secondItem="A8C-Hl-RUy" secondAttribute="centerX" id="Qyd-qY-QNa"/>
                                             <constraint firstItem="vsG-ga-3BH" firstAttribute="top" secondItem="YZ2-z5-zD0" secondAttribute="bottom" constant="20" id="Re1-6G-Ysx"/>
                                             <constraint firstItem="vsG-ga-3BH" firstAttribute="leading" secondItem="A8C-Hl-RUy" secondAttribute="leading" constant="20" id="TW6-Bo-qcQ"/>
@@ -2709,6 +2711,7 @@
                                             <constraint firstItem="iGU-fY-xrt" firstAttribute="top" secondItem="A8C-Hl-RUy" secondAttribute="top" constant="1248" id="k0E-G8-oca"/>
                                             <constraint firstAttribute="trailing" secondItem="2jY-nW-tG5" secondAttribute="trailing" constant="20" id="lEJ-4L-fUS"/>
                                             <constraint firstItem="p5q-ho-Vhm" firstAttribute="top" secondItem="ycT-gU-Ycd" secondAttribute="bottom" id="lXh-Q1-wAt"/>
+                                            <constraint firstItem="vsG-ga-3BH" firstAttribute="top" secondItem="vqq-2z-TLW" secondAttribute="bottom" id="mL9-yB-nJa"/>
                                             <constraint firstAttribute="trailing" secondItem="YZ2-z5-zD0" secondAttribute="trailing" constant="20" id="t9p-yU-jqV"/>
                                             <constraint firstItem="c1c-Eu-rQy" firstAttribute="top" secondItem="iGU-fY-xrt" secondAttribute="bottom" constant="29" id="tBy-Mw-ge9"/>
                                             <constraint firstItem="HXg-Pb-Yh2" firstAttribute="centerY" secondItem="7Ks-57-5le" secondAttribute="centerY" id="tgf-fI-ajV"/>
