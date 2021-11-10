@@ -2634,6 +2634,7 @@
                                                     <constraint firstAttribute="height" constant="35" id="GAD-yC-o8o"/>
                                                     <constraint firstAttribute="width" constant="35" id="Vqz-Sm-xBh"/>
                                                 </constraints>
+                                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle.fill" catalog="system" title=" ">
                                                     <color key="baseForegroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -3836,7 +3837,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="t41-KJ-vjm"/>
-        <segue reference="3Ng-cG-BBs"/>
+        <segue reference="VQy-IJ-T3o"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
         <segue reference="9Ym-mF-wrv"/>

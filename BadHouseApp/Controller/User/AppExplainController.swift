@@ -16,6 +16,8 @@ final class AppExplainController: UIViewController {
         textView.font = .systemFont(ofSize: 15)
         textView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         textView.textColor = .label
+        textView.isEditable = false
+        textView.isSelectable = false
         return textView
     }()
     private let accessLabel: UILabel = {
