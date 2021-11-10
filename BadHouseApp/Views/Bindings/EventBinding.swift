@@ -1,7 +1,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
-// MARK: -  InputProtocol
+// MARK: - InputProtocol
 protocol MakeEventInputProtocol {
     var dateTextInput: AnyObserver<String> { get }
     var startTextInput: AnyObserver<String> { get }

@@ -22,6 +22,13 @@ final class EventDetailController: UIViewController {
             groupImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         }
     }
+    @IBOutlet private weak var chatButton: UIButton! {
+        didSet {
+            chatButton.layer.cornerRadius = 15
+            chatButton.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+            chatButton.layer.borderWidth = 2
+        }
+    }
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var groupLabel: UILabel!
     @IBOutlet private weak var timeToLabel: UILabel!
@@ -381,6 +388,9 @@ final class EventDetailController: UIViewController {
         vc.flag = true
         navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func didTapChatButton(_ sender: Any) {
+    }
+    
 }
 // MARK: - FetchChartsDataDelegate
 extension EventDetailController: FetchChartsDataDelegate {

@@ -585,7 +585,7 @@
                                                 </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1T-Us-44o">
-                                                <rect key="frame" x="156" y="1854.5" width="102" height="31"/>
+                                                <rect key="frame" x="156" y="1849.5" width="102" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="db8-fj-U7O"/>
                                                 </constraints>
@@ -896,7 +896,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKr-6I-b5S">
-                                                <rect key="frame" x="30" y="1905.5" width="354" height="60"/>
+                                                <rect key="frame" x="30" y="1910.5" width="354" height="60"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="mTp-f7-AyH"/>
@@ -923,10 +923,25 @@
                                                     <segue destination="kaT-B6-Lhg" kind="presentation" id="3Ng-cG-BBs"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KD2-zp-gzw">
+                                                <rect key="frame" x="263" y="1850" width="90" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="Mct-MX-Fiy"/>
+                                                    <constraint firstAttribute="height" constant="30" id="n5m-yO-HSy"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="チャット"/>
+                                                <connections>
+                                                    <action selector="didTapChatButton:" destination="MhW-dQ-Hy9" eventType="touchUpInside" id="5Yo-M7-UnR"/>
+                                                    <segue destination="9tS-ME-tid" kind="show" identifier="gotoChat" id="4Cf-4g-fxl"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="backGroundColor"/>
                                         <constraints>
                                             <constraint firstItem="k8V-3r-mN0" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="20" id="1Fj-K7-sY3"/>
+                                            <constraint firstItem="KD2-zp-gzw" firstAttribute="centerY" secondItem="r1T-Us-44o" secondAttribute="centerY" id="1Lo-xD-vAo"/>
                                             <constraint firstItem="yRo-oL-G2R" firstAttribute="firstBaseline" secondItem="SGO-Gu-MeK" secondAttribute="centerY" id="2tA-jD-32d"/>
                                             <constraint firstItem="JSF-SR-OA7" firstAttribute="top" secondItem="vHb-D3-UUO" secondAttribute="bottom" constant="10" id="3Qe-uo-Bho"/>
                                             <constraint firstAttribute="trailing" secondItem="9AW-Ub-qNJ" secondAttribute="trailing" id="6Xi-Et-alW"/>
@@ -953,6 +968,7 @@
                                             <constraint firstItem="A2m-Hc-eps" firstAttribute="top" secondItem="ocm-Ji-ji8" secondAttribute="bottom" constant="20" id="PdW-VF-Cf7"/>
                                             <constraint firstAttribute="trailing" secondItem="ocm-Ji-ji8" secondAttribute="trailing" constant="20" id="QGO-Nn-cLz"/>
                                             <constraint firstAttribute="trailing" secondItem="A2m-Hc-eps" secondAttribute="trailing" constant="30" id="Qbn-DO-nlj"/>
+                                            <constraint firstItem="KD2-zp-gzw" firstAttribute="leading" secondItem="r1T-Us-44o" secondAttribute="trailing" constant="5" id="Qgw-4F-apJ"/>
                                             <constraint firstItem="eQQ-H2-oLB" firstAttribute="top" secondItem="Oyv-t6-5Rr" secondAttribute="bottom" constant="20" id="SJO-hL-OBy"/>
                                             <constraint firstItem="yRo-oL-G2R" firstAttribute="leading" secondItem="SGO-Gu-MeK" secondAttribute="trailing" constant="-25" id="UGT-kC-DUG"/>
                                             <constraint firstItem="vaC-IE-Svx" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="20" id="VMK-dI-srr"/>
@@ -983,11 +999,11 @@
                                             <constraint firstAttribute="trailing" secondItem="2g0-qe-Srs" secondAttribute="trailing" constant="50" id="pLg-i9-fTV"/>
                                             <constraint firstAttribute="trailing" secondItem="JSF-SR-OA7" secondAttribute="trailing" constant="10" id="qmf-Wf-7VW"/>
                                             <constraint firstItem="kKr-6I-b5S" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" constant="30" id="rLQ-Sx-hzI"/>
-                                            <constraint firstItem="kKr-6I-b5S" firstAttribute="top" secondItem="r1T-Us-44o" secondAttribute="bottom" constant="20" id="u2h-eQ-VAa"/>
+                                            <constraint firstItem="kKr-6I-b5S" firstAttribute="top" secondItem="r1T-Us-44o" secondAttribute="bottom" constant="30" id="u2h-eQ-VAa"/>
                                             <constraint firstAttribute="trailing" secondItem="cam-kV-vfw" secondAttribute="trailing" id="xJZ-dl-33s"/>
                                             <constraint firstItem="cam-kV-vfw" firstAttribute="leading" secondItem="XvP-Jd-KR4" secondAttribute="leading" id="xXY-4g-xQb"/>
                                             <constraint firstItem="2g0-qe-Srs" firstAttribute="centerX" secondItem="64F-ga-0J2" secondAttribute="centerX" constant="-10" id="zCJ-sR-LD7"/>
-                                            <constraint firstItem="r1T-Us-44o" firstAttribute="top" secondItem="eQQ-H2-oLB" secondAttribute="bottom" constant="10" id="zcl-zo-k8A"/>
+                                            <constraint firstItem="r1T-Us-44o" firstAttribute="top" secondItem="eQQ-H2-oLB" secondAttribute="bottom" constant="5" id="zcl-zo-k8A"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1017,6 +1033,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="barView" destination="l32-hf-7lp" id="uaq-61-15E"/>
+                        <outlet property="chatButton" destination="KD2-zp-gzw" id="KYG-WQ-WZu"/>
                         <outlet property="circleLabel" destination="QVg-bV-KzL" id="IzJ-hs-20P"/>
                         <outlet property="collectionView" destination="JSF-SR-OA7" id="sEg-Rj-hok"/>
                         <outlet property="courtLabel" destination="3Us-NW-THr" id="dvp-Nr-Mwd"/>
@@ -1056,18 +1073,18 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5144.8000000000002" y="914.392803598201"/>
+            <point key="canvasLocation" x="5112" y="860"/>
         </scene>
         <!-- -->
         <scene sceneID="0rZ-Fr-9a2">
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -1467,15 +1484,15 @@
             <objects>
                 <viewController storyboardIdentifier="inviteVC" id="rar-tT-NFD" customClass="PlusTeamPlayerController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gc-W9-5uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Xl-6xz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="626"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-ZI-Qtn">
-                                <rect key="frame" x="20" y="717" width="374" height="36"/>
+                                <rect key="frame" x="20" y="688" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="招待">
@@ -1537,7 +1554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fz0-43-Nsn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="1648"/>
+            <point key="canvasLocation" x="5199" y="1617"/>
         </scene>
         <!--User Detail Controller-->
         <scene sceneID="Qse-Oj-r1X">
@@ -3839,12 +3856,12 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="t41-KJ-vjm"/>
-        <segue reference="VQy-IJ-T3o"/>
+        <segue reference="3Ng-cG-BBs"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="BI6-59-EIl"/>
-        <segue reference="9Ym-mF-wrv"/>
+        <segue reference="4Cf-4g-fxl"/>
         <segue reference="3rr-Jc-WrJ"/>
-        <segue reference="xsh-lb-gGf"/>
+        <segue reference="u8k-iQ-9IU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="121"/>
