@@ -110,14 +110,7 @@ final class SearchCalendarController: UIViewController {
                               alertType: CDAlertViewType.error)
             return
         }
-        guard let text = textField.text else { return }
-        if text.isEmpty {
-            self.setupCDAlert(title: "検索エラー",
-                              message: "１文字以上入力してください",
-                              action: "OK",
-                              alertType: CDAlertViewType.error)
-            return
-        }
+        let text = textField.text ?? ""
         self.delegate?.didTapSearchButton(dateString: searchDateString, text: text, vc: self)
     }
     @objc private func back() {

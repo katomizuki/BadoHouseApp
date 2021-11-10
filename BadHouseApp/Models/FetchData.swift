@@ -400,7 +400,9 @@ class FetchFirestoreData {
                     }
                 }
             }
-            eventArray = eventArray.filter { $0.placeAddress.contains(text) || $0.eventPlace.contains(text) }
+            if text != "" {
+                eventArray = eventArray.filter { $0.placeAddress.contains(text) || $0.eventPlace.contains(text) }
+            }
             self.eventDelegate?.fetchEventTimeData(eventArray: eventArray)
         }
     }
