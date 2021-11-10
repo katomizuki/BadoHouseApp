@@ -96,33 +96,43 @@ final class MyLevelController: UIViewController {
         case "1":
             slider.value = 0.1
             textView.text = Constants.Data.levelSentence[0]
+            levelLabel.text = "レベル1"
         case "2":
             slider.value = 0.2
             textView.text = Constants.Data.levelSentence[1]
+            levelLabel.text = "レベル2"
         case "3":
             slider.value = 0.3
             textView.text = Constants.Data.levelSentence[2]
+            levelLabel.text = "レベル3"
         case "4":
             slider.value = 0.4
             textView.text = Constants.Data.levelSentence[3]
+            levelLabel.text = "レベル4"
         case "5":
             slider.value = 0.5
             textView.text = Constants.Data.levelSentence[4]
+            levelLabel.text = "レベル5"
         case "6":
             slider.value = 0.6
             textView.text = Constants.Data.levelSentence[5]
+            levelLabel.text = "レベル6"
         case "7":
             slider.value = 0.7
             textView.text = Constants.Data.levelSentence[6]
+            levelLabel.text = "レベル7"
         case "8":
             slider.value = 0.8
             textView.text = Constants.Data.levelSentence[7]
+            levelLabel.text = "レベル8"
         case "9":
             slider.value = 0.9
             textView.text = Constants.Data.levelSentence[8]
+            levelLabel.text = "レベル9"
         default:
             slider.value = 1.0
             textView.text = Constants.Data.levelSentence[9]
+            levelLabel.text = "レベル10"
         }
     }
 }

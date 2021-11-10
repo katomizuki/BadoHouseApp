@@ -173,6 +173,7 @@ final class MakeEventController: UIViewController {
             .drive { [weak self] text in
                 guard let self = self else { return }
                 self.moneyTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
+                self.notMoneyLabel.isHidden = text?.count != 0 ? true : false
                 self.moneyTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let text = text ?? ""
                 self.eventMoney = text
@@ -183,6 +184,7 @@ final class MakeEventController: UIViewController {
             .drive { [weak self] text in
                 guard let self = self else { return }
                 self.titleTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
+                self.notTitleLabel.isHidden = text?.count != 0 ? true : false
                 self.titleTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let title = text ?? ""
                 self.eventTitle = title
@@ -214,7 +216,7 @@ final class MakeEventController: UIViewController {
         titleTextField.resignFirstResponder()
         moneyTextField.resignFirstResponder()
         detaiTextView.resignFirstResponder()
-            notTitleLabel.isHidden = titleTextField.text?.isEmpty == true ? false : true
+        notTitleLabel.isHidden = titleTextField.text?.isEmpty == true ? false : true
         notMoneyLabel.isHidden = moneyTextField.text?.isEmpty == true ? false : true
         notPlaceLabel.isHidden = placeTextField.text?.isEmpty == true ? false : true
         if teamTime.isEmpty || eventStartTime.isEmpty || eventLastTime.isEmpty {
