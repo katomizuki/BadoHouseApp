@@ -203,7 +203,7 @@ final class MyPageUserInfoController: UIViewController {
                             self.setupCDAlert(title: messaeg, message: "", action: "OK", alertType: .warning)
                         }
                     }
-                } else {
+                }
                     UserService.updateUserData(dic: dic) { result in
                         switch result {
                         case .failure(let error):
@@ -217,7 +217,6 @@ final class MyPageUserInfoController: UIViewController {
                                               alertType: .success)
                         }
                     }
-                }
             }.disposed(by: diposeBag)
     }
     // MARK: - SelectorMethod
