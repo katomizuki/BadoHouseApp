@@ -16,6 +16,7 @@
 		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
 		D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290C27469F2100EC650C /* MakeGroup.storyboard */; };
 		D31D290F2746A06400EC650C /* MakeEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290E2746A06400EC650C /* MakeEvent.storyboard */; };
+		D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29142746A5DE00EC650C /* Chat.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
@@ -145,6 +146,7 @@
 		D31D290A27469EA800EC650C /* Invite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Invite.storyboard; path = BadHouseApp/Invite.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290C27469F2100EC650C /* MakeGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MakeGroup.storyboard; path = BadHouseApp/MakeGroup.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290E2746A06400EC650C /* MakeEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MakeEvent.storyboard; path = BadHouseApp/MakeEvent.storyboard; sourceTree = SOURCE_ROOT; };
+		D31D29142746A5DE00EC650C /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 		D3976EEF270337580016CEB2 /* Stroyboard */ = {
 			isa = PBXGroup;
 			children = (
+				D31D29142746A5DE00EC650C /* Chat.storyboard */,
 				D31D290E2746A06400EC650C /* MakeEvent.storyboard */,
 				D31D290C27469F2100EC650C /* MakeGroup.storyboard */,
 				D31D290A27469EA800EC650C /* Invite.storyboard */,
@@ -675,6 +678,7 @@
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
 				D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */,
+				D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */,
 				D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,

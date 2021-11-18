@@ -611,7 +611,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="チャット"/>
                                                 <connections>
                                                     <action selector="didTapChatButton:" destination="MhW-dQ-Hy9" eventType="touchUpInside" id="5Yo-M7-UnR"/>
-                                                    <segue destination="9tS-ME-tid" kind="show" identifier="gotoChat" id="4Cf-4g-fxl"/>
+                                                    <segue destination="d5l-wY-ULa" kind="show" identifier="gotoChat" id="4Cf-4g-fxl"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -746,7 +746,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKp-yd-OBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="zkl-Eu-EXP">
                     <connections>
-                        <segue destination="9tS-ME-tid" kind="show" identifier="gotoChat" id="9Ym-mF-wrv"/>
+                        <segue destination="d5l-wY-ULa" kind="show" identifier="gotoChat" id="9Ym-mF-wrv"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -757,11 +757,11 @@
             <objects>
                 <viewController storyboardIdentifier="GroupDetailVC" id="cza-8i-jCI" customClass="GroupDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TcV-Df-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-du-sXj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-LS-9Jv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -1128,6 +1128,7 @@
         <!--Group Chat Controller-->
         <scene sceneID="tpC-YF-15O">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="GroupChatViewController" id="r26-CP-u6r" customClass="GroupChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSU-UL-UDT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -1152,51 +1153,19 @@
                         <outlet property="tableView" destination="y1L-ua-dg9" id="6pa-wy-iMc"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="357" y="2509"/>
-        </scene>
-        <!--Chat Controller-->
-        <scene sceneID="Xt1-Xx-BKm">
-            <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="9tS-ME-tid" customClass="DMChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FKS-e1-8wm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-be-lQM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="564"/>
-                                <color key="backgroundColor" name="backGroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="8hA-I4-t5F"/>
-                        <color key="backgroundColor" name="backGroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="W7u-be-lQM" secondAttribute="trailing" id="LUm-zr-WbW"/>
-                            <constraint firstItem="W7u-be-lQM" firstAttribute="leading" secondItem="FKS-e1-8wm" secondAttribute="leading" id="V2R-kW-xjR"/>
-                            <constraint firstItem="W7u-be-lQM" firstAttribute="top" secondItem="8hA-I4-t5F" secondAttribute="top" id="pLF-q9-Mdh"/>
-                            <constraint firstItem="8hA-I4-t5F" firstAttribute="bottom" secondItem="W7u-be-lQM" secondAttribute="bottom" constant="30" id="uf1-Oc-Tpg"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="UwF-CL-gvP"/>
-                    <connections>
-                        <outlet property="chatTableView" destination="W7u-be-lQM" id="b4V-JM-ZxU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fz0-43-Nsn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3328" y="1673"/>
         </scene>
         <!--User Detail Controller-->
         <scene sceneID="Qse-Oj-r1X">
             <objects>
                 <viewController storyboardIdentifier="UserDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oj7-Ug-OXr" customClass="UserDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hnC-YX-yBO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6l-yA-b3k">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-Sm-peI">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
@@ -1269,7 +1238,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　所属チーム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfR-4w-34R">
-                                                <rect key="frame" x="0.0" y="250.33333333333337" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="250.33333333333331" width="414" height="30"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="CpP-bE-RQ9"/>
@@ -1478,7 +1447,7 @@
                         <outlet property="levelStackView" destination="QlL-4O-hGe" id="o3o-Ez-e69"/>
                         <outlet property="nameLabel" destination="igu-dh-wdf" id="Hqw-rC-PhY"/>
                         <outlet property="teamLabel" destination="xfR-4w-34R" id="tPe-v2-t4q"/>
-                        <segue destination="9tS-ME-tid" kind="show" id="fuc-E9-X1F"/>
+                        <segue destination="d5l-wY-ULa" kind="show" id="fuc-E9-X1F"/>
                         <segue destination="cza-8i-jCI" kind="show" id="PHY-qr-DAt"/>
                         <segue destination="N5Z-oj-ym1" kind="show" id="uMH-yM-k5X"/>
                     </connections>
@@ -1654,6 +1623,7 @@
         <!--Talk Controller-->
         <scene sceneID="Kob-48-JwL">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rVc-13-tnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="chatListVC" id="Ui5-h4-V0J" customClass="TalkController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ylQ-Kf-Lpx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -1678,12 +1648,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="jmi-8B-HbB" id="SCa-CZ-9Fx"/>
-                        <segue destination="9tS-ME-tid" kind="show" id="FQ5-8I-bax"/>
+                        <segue destination="d5l-wY-ULa" kind="show" id="FQ5-8I-bax"/>
                         <segue destination="r26-CP-u6r" kind="show" id="3rr-Jc-WrJ"/>
                         <segue destination="OoH-mh-7w3" kind="presentation" identifier="gotoNotification" id="eiH-Zf-iLl"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rVc-13-tnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="316" y="1673"/>
         </scene>
@@ -1824,11 +1793,11 @@
             <objects>
                 <viewController storyboardIdentifier="SubUserVC" id="N5Z-oj-ym1" customClass="SubUserDetailController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3LP-Us-KKw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2EJ-so-27V">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="643"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-Pr-Fy9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
@@ -1898,7 +1867,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　所属チーム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpO-Ki-VHq">
-                                                <rect key="frame" x="0.0" y="255.33333333333337" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="255.33333333333331" width="414" height="30"/>
                                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="B8T-y6-Gqw"/>
@@ -2230,13 +2199,23 @@
             </objects>
             <point key="canvasLocation" x="3067" y="65"/>
         </scene>
+        <!--ChatViewController-->
+        <scene sceneID="uuE-te-ZPs">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ChatViewController" storyboardName="Chat" referencedIdentifier="ChatViewController" id="d5l-wY-ULa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cIu-CL-Vph"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGm-eB-v6E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3674" y="1829"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="FQ5-8I-bax"/>
         <segue reference="2ie-jt-rR4"/>
         <segue reference="t41-KJ-vjm"/>
-        <segue reference="BI6-59-EIl"/>
-        <segue reference="FQ5-8I-bax"/>
-        <segue reference="3rr-Jc-WrJ"/>
+        <segue reference="SI4-MQ-GYb"/>
+        <segue reference="cdz-Ff-0Nv"/>
         <segue reference="xsh-lb-gGf"/>
     </inferredMetricsTieBreakers>
     <resources>
