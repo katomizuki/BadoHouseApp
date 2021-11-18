@@ -1112,7 +1112,7 @@
                         <outlet property="updateButton" destination="rmJ-8F-SO6" id="0AJ-0Y-ofG"/>
                         <outlet property="withdrawButton" destination="5sf-aC-88J" id="wWt-lh-3e5"/>
                         <segue destination="1Uh-qc-e7F" kind="show" identifier="goto" id="KCo-PJ-OZR"/>
-                        <segue destination="r26-CP-u6r" kind="show" id="cdz-Ff-0Nv"/>
+                        <segue destination="ds5-XJ-SRq" kind="show" id="cdz-Ff-0Nv"/>
                         <segue destination="d6n-xt-wn0" kind="show" id="HgF-52-Vqg"/>
                     </connections>
                 </viewController>
@@ -1123,38 +1123,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2629" y="1673"/>
-        </scene>
-        <!--Group Chat Controller-->
-        <scene sceneID="tpC-YF-15O">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EZN-tq-Oeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="GroupChatViewController" id="r26-CP-u6r" customClass="GroupChatController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aSU-UL-UDT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-ua-dg9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="594"/>
-                                <color key="backgroundColor" name="backGroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="IZg-uR-SFp"/>
-                        <color key="backgroundColor" name="backGroundColor"/>
-                        <constraints>
-                            <constraint firstItem="y1L-ua-dg9" firstAttribute="leading" secondItem="IZg-uR-SFp" secondAttribute="leading" id="5Ck-Kh-xnc"/>
-                            <constraint firstItem="IZg-uR-SFp" firstAttribute="bottom" secondItem="y1L-ua-dg9" secondAttribute="bottom" id="VLT-od-K7N"/>
-                            <constraint firstItem="y1L-ua-dg9" firstAttribute="trailing" secondItem="IZg-uR-SFp" secondAttribute="trailing" id="rdQ-oC-nGP"/>
-                            <constraint firstItem="y1L-ua-dg9" firstAttribute="top" secondItem="IZg-uR-SFp" secondAttribute="top" id="wLc-Mz-B7U"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="JkK-Cg-ohM"/>
-                    <connections>
-                        <outlet property="tableView" destination="y1L-ua-dg9" id="6pa-wy-iMc"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="357" y="2509"/>
+            <point key="canvasLocation" x="2652" y="1700"/>
         </scene>
         <!--User Detail Controller-->
         <scene sceneID="Qse-Oj-r1X">
@@ -1620,42 +1589,6 @@
             </objects>
             <point key="canvasLocation" x="2537" y="127"/>
         </scene>
-        <!--Talk Controller-->
-        <scene sceneID="Kob-48-JwL">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rVc-13-tnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="chatListVC" id="Ui5-h4-V0J" customClass="TalkController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ylQ-Kf-Lpx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-8B-HbB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="638"/>
-                                <color key="backgroundColor" name="backGroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="d67-Fy-J2X"/>
-                        <color key="backgroundColor" name="backGroundColor"/>
-                        <constraints>
-                            <constraint firstItem="jmi-8B-HbB" firstAttribute="trailing" secondItem="d67-Fy-J2X" secondAttribute="trailing" id="3B3-0p-PcU"/>
-                            <constraint firstItem="jmi-8B-HbB" firstAttribute="leading" secondItem="d67-Fy-J2X" secondAttribute="leading" id="Ol5-5p-9F2"/>
-                            <constraint firstItem="jmi-8B-HbB" firstAttribute="bottom" secondItem="d67-Fy-J2X" secondAttribute="bottom" id="cqm-q8-34L"/>
-                            <constraint firstItem="jmi-8B-HbB" firstAttribute="top" secondItem="ylQ-Kf-Lpx" secondAttribute="top" id="quW-X3-Snw"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="wus-MS-pob"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="tableView" destination="jmi-8B-HbB" id="SCa-CZ-9Fx"/>
-                        <segue destination="d5l-wY-ULa" kind="show" id="FQ5-8I-bax"/>
-                        <segue destination="r26-CP-u6r" kind="show" id="3rr-Jc-WrJ"/>
-                        <segue destination="OoH-mh-7w3" kind="presentation" identifier="gotoNotification" id="eiH-Zf-iLl"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="316" y="1673"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="On4-UJ-FeE">
             <objects>
@@ -1725,7 +1658,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ui5-h4-V0J" kind="relationship" relationship="rootViewController" id="wdy-Qa-sKm"/>
+                        <segue destination="1VZ-ly-Xe0" kind="relationship" relationship="rootViewController" id="wdy-Qa-sKm"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hug-2n-s9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1797,7 +1730,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2EJ-so-27V">
-                                <rect key="frame" x="0.0" y="44" width="414" height="643"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-Pr-Fy9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
@@ -2113,7 +2046,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTD-iW-cpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4276" y="164"/>
+            <point key="canvasLocation" x="4266" y="130"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="RDb-6S-bBi">
@@ -2122,14 +2055,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQQ-J5-M9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1951" y="1289"/>
-        </scene>
-        <!--PreVC-->
-        <scene sceneID="vd4-OX-7wz">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="PreVC" storyboardName="XLPager" referencedIdentifier="PreVC" id="OoH-mh-7w3" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cR0-34-vfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1147" y="1651"/>
         </scene>
         <!--TimeLine-->
         <scene sceneID="TdM-7q-sBc">
@@ -2167,7 +2092,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRc-k8-ivf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2545" y="-585"/>
+            <point key="canvasLocation" x="1701" y="-536"/>
         </scene>
         <!--inviteVC-->
         <scene sceneID="xNd-dq-b04">
@@ -2207,16 +2132,35 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGm-eB-v6E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3674" y="1829"/>
+            <point key="canvasLocation" x="3349" y="1289"/>
+        </scene>
+        <!--GroupChatViewController-->
+        <scene sceneID="fKc-TH-6j9">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="GroupChatViewController" storyboardName="GroupChat" referencedIdentifier="GroupChatViewController" id="ds5-XJ-SRq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="VwR-wy-XN1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ivk-zG-1g3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2883" y="2173"/>
+        </scene>
+        <!--chatListVC-->
+        <scene sceneID="KW7-6F-aWy">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="chatListVC" storyboardName="Talk" referencedIdentifier="chatListVC" id="1VZ-ly-Xe0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Hhp-cN-P46"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cpb-2h-Fnk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="1370"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FQ5-8I-bax"/>
+        <segue reference="fuc-E9-X1F"/>
         <segue reference="2ie-jt-rR4"/>
-        <segue reference="t41-KJ-vjm"/>
+        <segue reference="KCo-PJ-OZR"/>
         <segue reference="SI4-MQ-GYb"/>
-        <segue reference="cdz-Ff-0Nv"/>
-        <segue reference="xsh-lb-gGf"/>
+        <segue reference="PHY-qr-DAt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
