@@ -28,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzU-EL-ues" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2549" y="-633"/>
+            <point key="canvasLocation" x="2545" y="-585"/>
         </scene>
         <!--Video Camera Controller-->
         <scene sceneID="X8G-qx-wRW">
@@ -2691,9 +2691,8 @@
         <!--投稿-->
         <scene sceneID="bJe-Q8-aCV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d1w-Ch-DXR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ogt-bx-SBG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="投稿" image="tabBarItem:3Vn-ac-RR5:image" catalog="system" id="3Vn-ac-RR5"/>
+                    <tabBarItem key="tabBarItem" title="投稿" image="tabBarItem:3Vn-ac-RR5:image" id="3Vn-ac-RR5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nPb-UR-t7m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -2704,6 +2703,7 @@
                         <segue destination="0yB-Z1-h0j" kind="relationship" relationship="rootViewController" id="IGX-Dw-Kdm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d1w-Ch-DXR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1840.8" y="-618.44077961019491"/>
         </scene>
@@ -3135,7 +3135,7 @@
         <image name="purplechat.pnt" width="100" height="100"/>
         <image name="purplegear" width="96" height="96"/>
         <image name="scroll" width="48" height="48"/>
-        <image name="tabBarItem:3Vn-ac-RR5:image" catalog="system" width="128" height="82">
+        <image name="tabBarItem:3Vn-ac-RR5:image" width="128" height="82">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
 S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDBscIRkmKywzNjlDS0xQU1UkbnVsbNcNDg8QERITFBUW

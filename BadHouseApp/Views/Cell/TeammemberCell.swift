@@ -8,7 +8,7 @@ final class TeammemberCell: UICollectionViewCell {
     var teamMember = [User]()
     @IBOutlet weak var teamMemberImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    // MARK: - nibMethod
+    // MARK: - nib
     static func nib() -> UINib {
         return UINib(nibName: Constants.Cell.TeammemberCell, bundle: nil)
     }
