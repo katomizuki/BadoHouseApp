@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNotifications(on: application)
         UIApplication.shared.applicationIconBadgeNumber = 0
         Network.shared.setupNetPathMonitor()
-        
         return true
     }
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {

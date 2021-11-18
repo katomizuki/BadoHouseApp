@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ogp-MK-TpW">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="GKo-rt-F4f">
+            <objects>
+                <viewController id="ogp-MK-TpW" customClass="MapViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S1v-AZ-zhS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-Qm-xvu">
+                                <rect key="frame" x="0.0" y="50" width="414" height="666"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgl-jK-tE3">
+                                <rect key="frame" x="30" y="592" width="354" height="43"/>
+                                <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="cPf-gm-ek5"/>
+                                </constraints>
+                                <state key="normal" title="保存">
+                                    <color key="titleColor" systemColor="systemGray6Color"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButton:" destination="ogp-MK-TpW" eventType="touchUpInside" id="Rd8-rn-O19"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dXL-oW-Ylp">
+                                <rect key="frame" x="20" y="50" width="374" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                                <color key="tintColor" name="backGroundColor"/>
+                                <color key="barTintColor" name="backGroundColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tQ4-tq-97f"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tQ4-tq-97f" firstAttribute="bottom" secondItem="pgl-jK-tE3" secondAttribute="bottom" constant="81" id="1da-WB-MXE"/>
+                            <constraint firstItem="dXL-oW-Ylp" firstAttribute="top" secondItem="tQ4-tq-97f" secondAttribute="top" constant="50" id="4Ox-t5-bXY"/>
+                            <constraint firstItem="Cfu-Qm-xvu" firstAttribute="top" secondItem="dXL-oW-Ylp" secondAttribute="top" id="5aG-jI-MMv"/>
+                            <constraint firstItem="Cfu-Qm-xvu" firstAttribute="bottom" secondItem="tQ4-tq-97f" secondAttribute="bottom" id="AxW-rK-WLZ"/>
+                            <constraint firstItem="dXL-oW-Ylp" firstAttribute="leading" secondItem="tQ4-tq-97f" secondAttribute="leading" constant="20" id="EPf-fV-oUE"/>
+                            <constraint firstItem="Cfu-Qm-xvu" firstAttribute="trailing" secondItem="tQ4-tq-97f" secondAttribute="trailing" id="QkN-JT-gel"/>
+                            <constraint firstItem="dXL-oW-Ylp" firstAttribute="trailing" secondItem="tQ4-tq-97f" secondAttribute="trailing" constant="-20" id="bhP-Xk-shb"/>
+                            <constraint firstItem="Cfu-Qm-xvu" firstAttribute="leading" secondItem="tQ4-tq-97f" secondAttribute="leading" id="c5c-vs-tY7"/>
+                            <constraint firstItem="pgl-jK-tE3" firstAttribute="leading" secondItem="tQ4-tq-97f" secondAttribute="leading" constant="30" id="stD-Pn-Ry5"/>
+                            <constraint firstItem="pgl-jK-tE3" firstAttribute="centerX" secondItem="S1v-AZ-zhS" secondAttribute="centerX" id="yXA-He-AKF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Cfu-Qm-xvu" id="hQE-gI-mrh"/>
+                        <outlet property="saveButton" destination="pgl-jK-tE3" id="nLu-7x-i5U"/>
+                        <outlet property="searchBar" destination="dXL-oW-Ylp" id="zrN-Nx-hbz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aDM-oR-grn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6175" y="914"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backGroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

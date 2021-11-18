@@ -14,6 +14,12 @@
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
+		D33B018227466109004ED650 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018127466108004ED650 /* Calendar.storyboard */; };
+		D33B0184274661D2004ED650 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B0183274661D2004ED650 /* Map.storyboard */; };
+		D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018527466297004ED650 /* DetailSearch.storyboard */; };
+		D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018727466A98004ED650 /* LevelDetail.storyboard */; };
+		D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018927466CF0004ED650 /* Tornament.storyboard */; };
+		D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018B27467009004ED650 /* MyUserInfo.storyboard */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -129,6 +135,12 @@
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
+		D33B018127466108004ED650 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = BadHouseApp/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B0183274661D2004ED650 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = BadHouseApp/Map.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B018527466297004ED650 /* DetailSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailSearch.storyboard; path = BadHouseApp/DetailSearch.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B018727466A98004ED650 /* LevelDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LevelDetail.storyboard; sourceTree = "<group>"; };
+		D33B018927466CF0004ED650 /* Tornament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tornament.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -291,6 +303,12 @@
 		D3976EEF270337580016CEB2 /* Stroyboard */ = {
 			isa = PBXGroup;
 			children = (
+				D33B018B27467009004ED650 /* MyUserInfo.storyboard */,
+				D33B018927466CF0004ED650 /* Tornament.storyboard */,
+				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
+				D33B018527466297004ED650 /* DetailSearch.storyboard */,
+				D33B0183274661D2004ED650 /* Map.storyboard */,
+				D33B018127466108004ED650 /* Calendar.storyboard */,
 				D3BDB52D26E0525100C53780 /* Main.storyboard */,
 				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
 			);
@@ -623,12 +641,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33B018227466109004ED650 /* Calendar.storyboard in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
+				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
+				D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
+				D33B0184274661D2004ED650 /* Map.storyboard in Resources */,
+				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
+				D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);
