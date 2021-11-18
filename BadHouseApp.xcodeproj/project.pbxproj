@@ -20,6 +20,9 @@
 		D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018727466A98004ED650 /* LevelDetail.storyboard */; };
 		D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018927466CF0004ED650 /* Tornament.storyboard */; };
 		D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018B27467009004ED650 /* MyUserInfo.storyboard */; };
+		D33B019027467437004ED650 /* XLPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018F27467437004ED650 /* XLPager.storyboard */; };
+		D33B019227467836004ED650 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019127467836004ED650 /* TimeLine.storyboard */; };
+		D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019327467922004ED650 /* FriendSearch.storyboard */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -141,6 +144,9 @@
 		D33B018727466A98004ED650 /* LevelDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LevelDetail.storyboard; sourceTree = "<group>"; };
 		D33B018927466CF0004ED650 /* Tornament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tornament.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B018F27467437004ED650 /* XLPager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = XLPager.storyboard; path = BadHouseApp/XLPager.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B019127467836004ED650 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TimeLine.storyboard; path = BadHouseApp/TimeLine.storyboard; sourceTree = SOURCE_ROOT; };
+		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -303,6 +309,9 @@
 		D3976EEF270337580016CEB2 /* Stroyboard */ = {
 			isa = PBXGroup;
 			children = (
+				D33B019327467922004ED650 /* FriendSearch.storyboard */,
+				D33B019127467836004ED650 /* TimeLine.storyboard */,
+				D33B018F27467437004ED650 /* XLPager.storyboard */,
 				D33B018B27467009004ED650 /* MyUserInfo.storyboard */,
 				D33B018927466CF0004ED650 /* Tornament.storyboard */,
 				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
@@ -642,10 +651,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B018227466109004ED650 /* Calendar.storyboard in Resources */,
+				D33B019227467836004ED650 /* TimeLine.storyboard in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
+				D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */,
 				D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
@@ -653,6 +664,7 @@
 				D33B0184274661D2004ED650 /* Map.storyboard in Resources */,
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */,
+				D33B019027467437004ED650 /* XLPager.storyboard in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);

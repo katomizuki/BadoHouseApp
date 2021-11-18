@@ -177,7 +177,7 @@
                                     <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mvp-gp-CLF" kind="presentation" id="rnt-bf-ixT"/>
+                                    <segue destination="Heq-qa-yRZ" kind="presentation" id="rnt-bf-ixT"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -239,7 +239,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0h-dP-CSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3214" y="666"/>
+            <point key="canvasLocation" x="2968" y="805"/>
+        </scene>
+        <!--Friend Search Controller-->
+        <scene sceneID="DaT-1c-T7V">
+            <objects>
+                <viewController id="Heq-qa-yRZ" customClass="FriendSearchController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pdG-Cx-oOc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="ともだち名検索" translatesAutoresizingMaskIntoConstraints="NO" id="cO3-C4-xEi">
+                                <rect key="frame" x="30" y="60" width="354" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4V-vz-nbf">
+                                <rect key="frame" x="0.0" y="151" width="414" height="565"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o4b-x1-L90"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="O4V-vz-nbf" secondAttribute="bottom" id="1PE-mw-LxE"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="top" secondItem="o4b-x1-L90" secondAttribute="top" constant="60" id="D8T-WT-aXA"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="trailing" secondItem="o4b-x1-L90" secondAttribute="trailing" id="GzA-xS-Dxn"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="leading" secondItem="o4b-x1-L90" secondAttribute="leading" id="TkZ-ur-Z5n"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="leading" secondItem="o4b-x1-L90" secondAttribute="leading" constant="30" id="fE8-Y2-INp"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="trailing" secondItem="o4b-x1-L90" secondAttribute="trailing" constant="-30" id="g7d-kQ-CEH"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="top" secondItem="cO3-C4-xEi" secondAttribute="bottom" constant="40" id="j7U-3e-0Ma"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="cO3-C4-xEi" id="W2B-QL-gqX"/>
+                        <outlet property="tableView" destination="O4V-vz-nbf" id="VLC-eL-F7F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QiT-6C-gwT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2031.2" y="1616.9415292353824"/>
         </scene>
         <!--Event Detail Controller-->
         <scene sceneID="D0i-AW-P4S">
@@ -1621,7 +1660,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="oEj-9m-egr" kind="relationship" relationship="viewControllers" id="SBb-z8-Uvd"/>
-                        <segue destination="raS-3i-W24" kind="relationship" relationship="viewControllers" id="NSR-6W-Qyr"/>
+                        <segue destination="Cym-bj-dmW" kind="relationship" relationship="viewControllers" id="NSR-6W-Qyr"/>
                         <segue destination="Ogt-bx-SBG" kind="relationship" relationship="viewControllers" id="ID9-Rd-qEG"/>
                         <segue destination="DQ0-SU-0qk" kind="relationship" relationship="viewControllers" id="KDm-7J-eau"/>
                         <segue destination="AeY-oL-Fmn" kind="relationship" relationship="viewControllers" id="ygo-B2-DyN"/>
@@ -2559,7 +2598,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3652" y="1602"/>
+            <point key="canvasLocation" x="3486" y="904"/>
         </scene>
         <!--ホーム-->
         <scene sceneID="3Mi-Hy-YhS">
@@ -2611,6 +2650,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pgh-Cm-qjt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4356" y="914"/>
+        </scene>
+        <!--タイムライン-->
+        <scene sceneID="y9E-9F-eh8">
+            <objects>
+                <viewController id="Cym-bj-dmW" customClass="TimeLineController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HCc-3m-Iv8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="u4F-fN-BuO"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="タイムライン" image="clock.fill" catalog="system" id="gPy-Td-Q4o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hqm-7n-Pdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5054" y="2672"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="On4-UJ-FeE">
@@ -3077,7 +3132,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTD-iW-cpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4392" y="-633"/>
+            <point key="canvasLocation" x="3859" y="-1408"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="RDb-6S-bBi">
@@ -3095,24 +3150,6 @@
             </objects>
             <point key="canvasLocation" x="-1326" y="526"/>
         </scene>
-        <!--TimeLine-->
-        <scene sceneID="TdM-7q-sBc">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TimeLine" id="raS-3i-W24" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="bmA-Cn-JcH"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5oE-cD-I2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5054" y="2672"/>
-        </scene>
-        <!--FriendSearch-->
-        <scene sceneID="qwt-fL-fR3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FriendSearch" id="mvp-gp-CLF" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kiy-2g-vjA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1689" y="1442"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="3Ng-cG-BBs"/>
@@ -3121,9 +3158,10 @@
         <segue reference="BI6-59-EIl"/>
         <segue reference="FQ5-8I-bax"/>
         <segue reference="3rr-Jc-WrJ"/>
-        <segue reference="Llp-6l-iti"/>
+        <segue reference="XjJ-C8-ncf"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

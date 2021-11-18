@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Heq-qa-yRZ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Friend Search Controller-->
+        <scene sceneID="DaT-1c-T7V">
+            <objects>
+                <viewController id="Heq-qa-yRZ" customClass="FriendSearchController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pdG-Cx-oOc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="ともだち名検索" translatesAutoresizingMaskIntoConstraints="NO" id="cO3-C4-xEi">
+                                <rect key="frame" x="30" y="60" width="354" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4V-vz-nbf">
+                                <rect key="frame" x="0.0" y="151" width="414" height="565"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o4b-x1-L90"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="O4V-vz-nbf" secondAttribute="bottom" id="1PE-mw-LxE"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="top" secondItem="o4b-x1-L90" secondAttribute="top" constant="60" id="D8T-WT-aXA"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="trailing" secondItem="o4b-x1-L90" secondAttribute="trailing" id="GzA-xS-Dxn"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="leading" secondItem="o4b-x1-L90" secondAttribute="leading" id="TkZ-ur-Z5n"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="leading" secondItem="o4b-x1-L90" secondAttribute="leading" constant="30" id="fE8-Y2-INp"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="trailing" secondItem="o4b-x1-L90" secondAttribute="trailing" constant="-30" id="g7d-kQ-CEH"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="top" secondItem="cO3-C4-xEi" secondAttribute="bottom" constant="40" id="j7U-3e-0Ma"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="cO3-C4-xEi" id="W2B-QL-gqX"/>
+                        <outlet property="tableView" destination="O4V-vz-nbf" id="VLC-eL-F7F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QiT-6C-gwT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713" y="1653"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backGroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

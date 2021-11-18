@@ -177,7 +177,7 @@
                                     <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mvp-gp-CLF" kind="presentation" id="rnt-bf-ixT"/>
+                                    <segue destination="Heq-qa-yRZ" kind="presentation" id="rnt-bf-ixT"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -240,6 +240,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0h-dP-CSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3214" y="666"/>
+        </scene>
+        <!--Friend Search Controller-->
+        <scene sceneID="DaT-1c-T7V">
+            <objects>
+                <viewController id="Heq-qa-yRZ" customClass="FriendSearchController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pdG-Cx-oOc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="ともだち名検索" translatesAutoresizingMaskIntoConstraints="NO" id="cO3-C4-xEi">
+                                <rect key="frame" x="30" y="60" width="354" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4V-vz-nbf">
+                                <rect key="frame" x="0.0" y="151" width="414" height="565"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o4b-x1-L90"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="O4V-vz-nbf" secondAttribute="bottom" id="1PE-mw-LxE"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="top" secondItem="o4b-x1-L90" secondAttribute="top" constant="60" id="D8T-WT-aXA"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="trailing" secondItem="o4b-x1-L90" secondAttribute="trailing" id="GzA-xS-Dxn"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="leading" secondItem="o4b-x1-L90" secondAttribute="leading" id="TkZ-ur-Z5n"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="leading" secondItem="o4b-x1-L90" secondAttribute="leading" constant="30" id="fE8-Y2-INp"/>
+                            <constraint firstItem="cO3-C4-xEi" firstAttribute="trailing" secondItem="o4b-x1-L90" secondAttribute="trailing" constant="-30" id="g7d-kQ-CEH"/>
+                            <constraint firstItem="O4V-vz-nbf" firstAttribute="top" secondItem="cO3-C4-xEi" secondAttribute="bottom" constant="40" id="j7U-3e-0Ma"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="cO3-C4-xEi" id="W2B-QL-gqX"/>
+                        <outlet property="tableView" destination="O4V-vz-nbf" id="VLC-eL-F7F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QiT-6C-gwT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713" y="1653"/>
         </scene>
         <!--Event Detail Controller-->
         <scene sceneID="D0i-AW-P4S">
@@ -3104,14 +3143,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oE-cD-I2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5054" y="2672"/>
-        </scene>
-        <!--FriendSearch-->
-        <scene sceneID="qwt-fL-fR3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FriendSearch" id="mvp-gp-CLF" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kiy-2g-vjA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1689" y="1442"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

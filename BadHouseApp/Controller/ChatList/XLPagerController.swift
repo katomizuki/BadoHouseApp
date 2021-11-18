@@ -88,8 +88,8 @@ final class XLPagerController: ButtonBarPagerTabStripViewController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let firstVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! CheckPreJoinController
-        let secondVC = UIStoryboard(name: XLPager.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! CheckJoinController
+        let firstVC = UIStoryboard(name: "XLPager", bundle: nil).instantiateViewController(withIdentifier: XLPager.first.rawValue) as! CheckPreJoinController
+        let secondVC = UIStoryboard(name: "XLPager", bundle: nil).instantiateViewController(withIdentifier: XLPager.second.rawValue) as! CheckJoinController
         return [firstVC, secondVC]
     }
     // MARK: - SelectorMethod
