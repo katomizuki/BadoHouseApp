@@ -4,7 +4,7 @@ import UIKit
 struct Constants {
     static let appName = "バドハウス"
     struct AppColor {
-        static let OriginalBlue: UIColor = .rgb(red:124, green: 131, blue: 253, alpha: 1.0)
+        static let OriginalBlue: UIColor = .rgb(red: 124, green: 131, blue: 253, alpha: 1.0)
         static let darkColor = "backGroundColor"
     }
     struct Storyboard {

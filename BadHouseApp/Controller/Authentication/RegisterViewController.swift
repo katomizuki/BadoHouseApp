@@ -13,7 +13,6 @@ import FacebookLogin
 import AuthenticationServices
 import CryptoKit
 
-
 final class RegisterViewController: UIViewController {
     // MARK: - Properties
         private let nameTextField: UITextField = {
@@ -198,7 +197,10 @@ final class RegisterViewController: UIViewController {
         alreadyButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.LoginVC) as! LoginViewController
+                let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.LoginVC) as! LoginViewController
+                print(loginVC)
+                print(self?.navigationController)
                 self?.navigationController?.pushViewController(loginVC, animated: true)
             }
             .disposed(by: disposeBag)

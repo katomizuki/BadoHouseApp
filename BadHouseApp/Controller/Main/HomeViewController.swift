@@ -56,7 +56,11 @@ final class HomeViewController: UIViewController {
         }
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: Constants.Segue.gotoRegister, sender: nil)
+                print("sss")
+                let vc = RegisterViewController()
+                let nav = UINavigationController(rootViewController:  vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
             }
         }
     }

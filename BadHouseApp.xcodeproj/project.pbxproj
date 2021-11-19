@@ -19,6 +19,7 @@
 		D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29142746A5DE00EC650C /* Chat.storyboard */; };
 		D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29162746A6C000EC650C /* GroupChat.storyboard */; };
 		D31D29192746A74B00EC650C /* Talk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29182746A74B00EC650C /* Talk.storyboard */; };
+		D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D291C2747100800EC650C /*  SubUser.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
@@ -42,6 +43,12 @@
 		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
 		D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */; };
 		D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */; };
+		D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */; };
+		D3969DC927471FC70022AE24 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DC827471FC70022AE24 /* UserDetail.storyboard */; };
+		D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCA274724E40022AE24 /* EventDetail.storyboard */; };
+		D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */; };
+		D3969DCF274728760022AE24 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCE274728760022AE24 /* Home.storyboard */; };
+		D3969DD1274729880022AE24 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DD0274729880022AE24 /* User.storyboard */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D3977167270959A70025BE19 /* TornamentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentListController.swift */; };
 		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
@@ -151,6 +158,7 @@
 		D31D29142746A5DE00EC650C /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29162746A6C000EC650C /* GroupChat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupChat.storyboard; path = BadHouseApp/GroupChat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29182746A74B00EC650C /* Talk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Talk.storyboard; path = BadHouseApp/Talk.storyboard; sourceTree = SOURCE_ROOT; };
+		D31D291C2747100800EC650C /*  SubUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = " SubUser.storyboard"; path = "BadHouseApp/ SubUser.storyboard"; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
@@ -174,6 +182,12 @@
 		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
 		D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserDetailController.swift; sourceTree = "<group>"; };
 		D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
+		D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupDetail.storyboard; path = BadHouseApp/GroupDetail.storyboard; sourceTree = SOURCE_ROOT; };
+		D3969DC827471FC70022AE24 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = UserDetail.storyboard; path = BadHouseApp/UserDetail.storyboard; sourceTree = SOURCE_ROOT; };
+		D3969DCA274724E40022AE24 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EventDetail.storyboard; path = BadHouseApp/EventDetail.storyboard; sourceTree = SOURCE_ROOT; };
+		D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupSearch.storyboard; path = BadHouseApp/GroupSearch.storyboard; sourceTree = SOURCE_ROOT; };
+		D3969DCE274728760022AE24 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = BadHouseApp/Home.storyboard; sourceTree = SOURCE_ROOT; };
+		D3969DD0274729880022AE24 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = BadHouseApp/User.storyboard; sourceTree = SOURCE_ROOT; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D3977166270959A70025BE19 /* TornamentListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentListController.swift; sourceTree = "<group>"; };
 		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
@@ -325,6 +339,13 @@
 		D3976EEF270337580016CEB2 /* Stroyboard */ = {
 			isa = PBXGroup;
 			children = (
+				D3969DD0274729880022AE24 /* User.storyboard */,
+				D3969DCE274728760022AE24 /* Home.storyboard */,
+				D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */,
+				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
+				D3969DC827471FC70022AE24 /* UserDetail.storyboard */,
+				D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */,
+				D31D291C2747100800EC650C /*  SubUser.storyboard */,
 				D31D29182746A74B00EC650C /* Talk.storyboard */,
 				D31D29162746A6C000EC650C /* GroupChat.storyboard */,
 				D31D29142746A5DE00EC650C /* Chat.storyboard */,
@@ -676,22 +697,29 @@
 			files = (
 				D33B018227466109004ED650 /* Calendar.storyboard in Resources */,
 				D33B019227467836004ED650 /* TimeLine.storyboard in Resources */,
+				D3969DC927471FC70022AE24 /* UserDetail.storyboard in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
+				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
+				D3969DD1274729880022AE24 /* User.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
+				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
 				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
 				D31D290F2746A06400EC650C /* MakeEvent.storyboard in Resources */,
 				D31D290927469E0200EC650C /* PostVideo.storyboard in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
+				D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */,
 				D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */,
 				D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */,
 				D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
+				D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */,
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
 				D33B0184274661D2004ED650 /* Map.storyboard in Resources */,
 				D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */,
+				D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */,
 				D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */,
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
