@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JBq-DJ-Sc8">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="Msd-gQ-eet">
+            <objects>
+                <viewController storyboardIdentifier="rootVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tcQ-Ok-PMz" customClass="HomeViewController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ttv-wS-Eml">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar hidden="YES" contentMode="redraw" text="" placeholder="フリワード検索" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-lJ-H8V">
+                                <rect key="frame" x="30" y="98" width="354" height="51"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                                <color key="barTintColor" name="backGroundColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-Yh-lgT">
+                                <rect key="frame" x="20" y="185" width="374" height="628"/>
+                                <color key="backgroundColor" name="backGroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9yV-Kg-5aq">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="eventId" id="tLi-bL-9OJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fN8-M4-7Hg">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV6-mn-5x8">
+                                <rect key="frame" x="40" y="129" width="334" height="36"/>
+                                <color key="backgroundColor" red="0.49019607843137253" green="0.51372549019607838" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <state key="normal" title="日にちと場所で検索">
+                                    <color key="titleColor" systemColor="systemGray6Color"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mFn-tx-bxI" kind="presentation" identifier="gotoCalendar" id="478-Ah-jgm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jG-lw-2P6">
+                                <rect key="frame" x="334" y="748" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="IOt-fK-KeQ"/>
+                                    <constraint firstAttribute="width" constant="50" id="hCo-hG-uiN"/>
+                                </constraints>
+                                <color key="tintColor" red="0.49019607843137253" green="0.51372549019607838" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="scroll"/>
+                                <connections>
+                                    <action selector="scroll:" destination="tcQ-Ok-PMz" eventType="touchUpInside" id="jMa-JL-kGM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Iot-v5-aGu"/>
+                        <color key="backgroundColor" name="backGroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="20" id="5z3-ne-UaH"/>
+                            <constraint firstItem="BV6-mn-5x8" firstAttribute="top" secondItem="gf7-lJ-H8V" secondAttribute="bottom" constant="-20" id="6Wz-zo-c9q"/>
+                            <constraint firstItem="gf7-lJ-H8V" firstAttribute="top" secondItem="Iot-v5-aGu" secondAttribute="top" constant="10" id="Fna-Ya-Meb"/>
+                            <constraint firstItem="Iot-v5-aGu" firstAttribute="bottom" secondItem="3jG-lw-2P6" secondAttribute="bottom" constant="15" id="M30-0u-FyP"/>
+                            <constraint firstItem="BV6-mn-5x8" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="40" id="Qiz-av-HDt"/>
+                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="BV6-mn-5x8" secondAttribute="trailing" constant="40" id="VvH-MD-XW6"/>
+                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="3jG-lw-2P6" secondAttribute="trailing" constant="30" id="dT3-1U-o6m"/>
+                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="gf7-lJ-H8V" secondAttribute="trailing" constant="30" id="fiO-h1-9fE"/>
+                            <constraint firstItem="gf7-lJ-H8V" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="30" id="kuR-zf-lh9"/>
+                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="top" secondItem="BV6-mn-5x8" secondAttribute="bottom" constant="20" id="qwR-Y5-CYy"/>
+                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="Uu9-Yh-lgT" secondAttribute="trailing" constant="20" id="rkz-1E-uZS"/>
+                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="bottom" secondItem="Iot-v5-aGu" secondAttribute="bottom" id="vaF-bd-W33"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xn6-tE-X1b">
+                        <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="fNE-l8-KnE"/>
+                        <barButtonItem key="leftBarButtonItem" title="イベント" id="Dcw-Mc-Rc6">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cz4-bX-KXc">
+                                <rect key="frame" x="20" y="10" width="100" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="練習作成" image="plus" catalog="system">
+                                    <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="EgL-cs-2XH" kind="show" id="YUv-yd-FfO"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ld1-eh-08q">
+                            <rect key="frame" x="150" y="5" width="114" height="34.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system" title="大会検索"/>
+                            <connections>
+                                <segue destination="JSj-zU-DdE" kind="presentation" modalPresentationStyle="fullScreen" id="9VF-gm-LT4"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" title="検索" image="magnifyingglass" catalog="system" id="tSz-g6-eRh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
+                                <rect key="frame" x="291" y="10" width="103" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="練習検索" image="magnifyingglass" catalog="system">
+                                    <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Hun-8X-dQl" kind="presentation" identifier="gotoDetail" id="K5j-pk-Qub"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Uu9-Yh-lgT" id="86H-wa-3hl"/>
+                        <outlet property="searchBar" destination="gf7-lJ-H8V" id="2jE-Fd-IdV"/>
+                        <outlet property="timeButton" destination="BV6-mn-5x8" id="ldm-SH-YwA"/>
+                        <segue destination="iT6-NJ-FbN" kind="show" identifier="goto" id="AWO-mA-qp4"/>
+                        <segue destination="SdE-sB-WCG" kind="presentation" identifier="gotoRegister" modalPresentationStyle="fullScreen" id="CEC-OQ-CJW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bh5-QE-jzC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3481.1594202898555" y="129.91071428571428"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="H4z-Od-CgM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="mFn-tx-bxI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALq-cJ-Mu7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4228.2608695652179" y="123.21428571428571"/>
+        </scene>
+        <!--DetailSearch-->
+        <scene sceneID="Ig6-6O-WZL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DetailSearch" id="Hun-8X-dQl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ba-rx-kmw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4173.913043478261" y="-36.160714285714285"/>
+        </scene>
+        <!--Tornament-->
+        <scene sceneID="ODz-bf-xW5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tornament" id="JSj-zU-DdE" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ryF-aA-TNd"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTD-iW-cpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4235.507246376812" y="198.21428571428569"/>
+        </scene>
+        <!--RegisterVC-->
+        <scene sceneID="NB2-2A-ZTr">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="RegisterVC" storyboardName="Authentication" referencedIdentifier="RegisterVC" id="SdE-sB-WCG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="LMO-h2-jmd"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ehP-kj-gGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2516" y="615"/>
+        </scene>
+        <!--MakeEvent-->
+        <scene sceneID="ufi-KO-lCC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MakeEvent" id="EgL-cs-2XH" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="77G-U0-r72"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pgh-4r-QQA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4165.217391304348" y="-120.53571428571428"/>
+        </scene>
+        <!--EventDetailVC-->
+        <scene sceneID="apj-7h-dfM">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="EventDetailVC" storyboardName="EventDetail" referencedIdentifier="EventDetailVC" id="iT6-NJ-FbN" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="xfH-43-bxx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-zn-D2N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2815" y="615"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="y6d-AQ-8sC">
+            <objects>
+                <navigationController storyboardIdentifier="HomeNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JBq-DJ-Sc8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tBT-Dz-FpY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tcQ-Ok-PMz" kind="relationship" relationship="rootViewController" id="f3u-iy-gvK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJg-bK-GAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2571.0144927536235" y="129.91071428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="scroll" width="48" height="48"/>
+        <namedColor name="backGroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

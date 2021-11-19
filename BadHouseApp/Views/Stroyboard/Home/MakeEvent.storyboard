@@ -623,7 +623,7 @@
                 <viewControllerPlaceholder storyboardName="Map" id="Oam-CJ-IiV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQW-xm-VzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6175" y="914"/>
+            <point key="canvasLocation" x="4303" y="591"/>
         </scene>
         <!--LevelDetail-->
         <scene sceneID="j6Y-sn-m8x">
@@ -631,7 +631,7 @@
                 <viewControllerPlaceholder storyboardName="LevelDetail" id="sRW-5h-zyX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lPo-Hj-U4T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5124" y="1098"/>
+            <point key="canvasLocation" x="4457" y="591"/>
         </scene>
         <!--Event Tag Controller-->
         <scene sceneID="d9m-fC-ACO">

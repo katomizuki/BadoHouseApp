@@ -47,7 +47,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hiv-TT-QHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1906" y="130"/>
+            <point key="canvasLocation" x="1929" y="130"/>
         </scene>
         <!--TimeLine-->
         <scene sceneID="TdM-7q-sBc">
@@ -68,12 +68,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRc-k8-ivf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="-285"/>
+            <point key="canvasLocation" x="1658" y="580"/>
         </scene>
-        <!--chatListVC-->
+        <!--chatTabVC-->
         <scene sceneID="KW7-6F-aWy">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="chatListVC" storyboardName="Talk" referencedIdentifier="chatListVC" id="1VZ-ly-Xe0" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="chatTabVC" storyboardName="Talk" referencedIdentifier="chatTabVC" id="1VZ-ly-Xe0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Bcc-X5-yfo"/>
                     <navigationItem key="navigationItem" id="Hhp-cN-P46"/>
                 </viewControllerPlaceholder>
@@ -84,12 +84,12 @@
         <!--rootVC-->
         <scene sceneID="NGg-ew-zLS">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="rootVC" storyboardName="Home" referencedIdentifier="rootVC" id="R9R-NO-MzJ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="HomeNavVC" storyboardName="Home" referencedIdentifier="rootVC" id="R9R-NO-MzJ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="9Lp-gY-DAt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6M-aZ-wNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2671" y="130"/>
+            <point key="canvasLocation" x="1929" y="581"/>
         </scene>
         <!--User-->
         <scene sceneID="ptk-f9-URo">
