@@ -214,13 +214,15 @@ extension SubUserDetailController: UICollectionViewDataSource {
 extension SubUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
+            let storyboard = UIStoryboard(name: "GroupDetail", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
             vc.team = ownTeam[indexPath.row]
             vc.friends = userFriend
             vc.flag = true
             navigationController?.pushViewController(vc, animated: true)
         } else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
+            let storyboard = UIStoryboard(name: "UserDetail", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
             vc.user = userFriend[indexPath.row]
             vc.me = self.user
             vc.flag = true
