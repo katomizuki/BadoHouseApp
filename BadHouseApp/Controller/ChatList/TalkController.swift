@@ -120,7 +120,7 @@ final class TalkController: UIViewController {
     }
     // MARK: - SelectorMethod
     @objc private func handleNotification() {
-        performSegue(withIdentifier: Constants.Segue.gotoNotification, sender: nil)
+        performSegue(withIdentifier: Segue.gotoNotification.rawValue, sender: nil)
     }
     @objc private func handleSchedule() {
         print(#function)

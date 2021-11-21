@@ -276,7 +276,7 @@ final class MyPageUserInfoController: UIViewController {
     }
     // MARK: - PrepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.gotoLevel {
+        if segue.identifier == Segue.gotoLevel.rawValue {
             let vc = segue.destination as! MyLevelController
             vc.selectedLevel = self.level
             vc.delegate = self
@@ -310,7 +310,7 @@ extension MyPageUserInfoController: UINavigationControllerDelegate, UIImagePicke
 extension MyPageUserInfoController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == UserInfo.level {
-            performSegue(withIdentifier: Constants.Segue.gotoLevel, sender: nil)
+            performSegue(withIdentifier: Segue.gotoLevel.rawValue, sender: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return

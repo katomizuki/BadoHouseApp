@@ -11,12 +11,13 @@ final class MyPageController: UIViewController {
     private let cellId = "cellGroupId"
     private var userIdArray = [String]()
     private let sectionArray = ["所属チーム", "バド友"]
+    private var indicatorView: NVActivityIndicatorView!
+    private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var groupTableView: UITableView! {
         didSet {
             groupTableView.separatorColor = Constants.AppColor.OriginalBlue
         }
     }
-    private var indicatorView: NVActivityIndicatorView!
     @IBOutlet private weak var myImageView: UIImageView! {
         didSet {
             myImageView.toCorner(num: 40)
@@ -33,7 +34,6 @@ final class MyPageController: UIViewController {
             countLabel.textColor = .systemGray
         }
     }
-    private let fetchData = FetchFirestoreData()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +97,7 @@ final class MyPageController: UIViewController {
     }
     // MARK: - IBAction
     @IBAction private func user(_ sender: Any) {
-        self.performSegue(withIdentifier: Constants.Segue.userProfile, sender: nil)
+        self.performSegue(withIdentifier: Segue.userProfile.rawValue, sender: nil)
     }
     @IBAction private func gotoMakeGroup(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.MakeGroupVC) as! MakeGroupController
@@ -112,11 +112,11 @@ final class MyPageController: UIViewController {
     }
     // MARK: - PrepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier ==  Constants.Segue.userProfile {
+        if segue.identifier ==  Segue.userProfile.rawValue {
             let vc = segue.destination as! MyPageUserInfoController
             vc.user = self.user
             vc.delegate = self
-        } else if segue.identifier == Constants.Segue.gotoSearch {
+        } else if segue.identifier == Segue.gotoSearch.rawValue {
             let vc = segue.destination as! GroupSearchController
             vc.friends = self.friendArray
         }

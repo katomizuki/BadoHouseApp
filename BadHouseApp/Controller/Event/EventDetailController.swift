@@ -290,7 +290,7 @@ final class EventDetailController: UIViewController {
     }
     // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.gotoChat {
+        if segue.identifier == Segue.gotoChat.rawValue {
             let vc = segue.destination as! DMChatController
             guard let me = me else { return }
             guard let you = you else { return }
@@ -361,7 +361,7 @@ final class EventDetailController: UIViewController {
                         JoinService.sendPreJoinDataToEventAndUser(myId: meId,
                                                                   eventId: eventId,
                                                                   leaderId: leaderId)
-                        self.performSegue(withIdentifier: Constants.Segue.gotoChat, sender: nil)
+                        self.performSegue(withIdentifier: Segue.gotoChat.rawValue, sender: nil)
                         LocalNotificationManager.setNotification(2,
                                                                  of: .hours,
                                                                  repeats: false,

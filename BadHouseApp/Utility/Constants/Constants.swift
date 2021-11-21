@@ -21,21 +21,6 @@ public struct Constants {
         static let TornamentDetailVC = "TornamentDetailVC"
         static let FriendVC = "FriendVC"
     }
-    struct Segue {
-        static let gotoRegister = "gotoRegister"
-        static let gotoUser = "gotoUser"
-        static let gotoMakeGroup = "gotoMakeGroup"
-        static let gotoCalendar = "gotoCalendar"
-        static let gotoDetail = "gotoDetail"
-        static let gotoInvite = "gotoInvite"
-        static let gotoLevel = "gotoLevel"
-        static let gotoChat = "gotoChat"
-        static let goWalk = "goWalk"
-        static let gotoMap = "gotoMap"
-        static let userProfile = "userProfile"
-        static let gotoNotification = "gotoNotification"
-        static let gotoSearch = "gotoSearch"
-    }
 
     struct ImageName {
         static let logoImage = "logo"

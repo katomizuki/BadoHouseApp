@@ -261,7 +261,7 @@ final class GroupDetailController: UIViewController {
     }
     // MARK: - prepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.gotoInvite {
+        if segue.identifier == Segue.gotoInvite.rawValue {
             let vc = segue.destination as! PlusTeamPlayerController
             vc.friends = self.friends
             vc.team = self.team

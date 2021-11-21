@@ -294,7 +294,7 @@ final class MakeEventController: UIViewController {
     }
     @IBAction private func gotoMap(_ sender: Any) {
         print(#function)
-        performSegue(withIdentifier: Constants.Segue.gotoMap, sender: nil)
+        performSegue(withIdentifier: Segue.gotoMap.rawValue, sender: nil)
     }
     // MARK: - HelperMethod
     private func tfupdate(view: UIView) {
@@ -305,7 +305,7 @@ final class MakeEventController: UIViewController {
     }
     // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.gotoMap {
+        if segue.identifier == Segue.gotoMap.rawValue {
             let nextVC = segue.destination as! MapViewController
             nextVC.delegate = self
         }

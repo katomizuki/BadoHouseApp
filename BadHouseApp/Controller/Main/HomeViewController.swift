@@ -12,14 +12,14 @@ import FacebookCore
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties
-    private var user: User?
-    private var indicatorView: NVActivityIndicatorView!
-    @IBOutlet private weak var collectionView: UICollectionView!
     private var locationManager: CLLocationManager!
     private var fetchData = FetchFirestoreData()
     var (myLatitude, myLongitude) = (Double(), Double())
     private var eventArray = [Event]()
     private let cellId = "eventId"
+    private var user: User?
+    private var indicatorView: NVActivityIndicatorView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Constants.AppColor.OriginalBlue
@@ -120,15 +120,15 @@ final class HomeViewController: UIViewController {
     }
     // MARK: - prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier ==  Constants.Segue.gotoUser {
+        if segue.identifier ==  Segue.gotoUser.rawValue {
             let vc = segue.destination as! MyPageUserInfoController
             vc.user = self.user
         }
-        if segue.identifier == Constants.Segue.gotoCalendar {
+        if segue.identifier ==  Segue.gotoCalendar.rawValue {
             let vc = segue.destination as! SearchCalendarController
             vc.delegate = self
         }
-        if segue.identifier == Constants.Segue.gotoDetail {
+        if segue.identifier == Segue.gotoDetail.rawValue {
             let vc = segue.destination as! DetailSearchController
             vc.delegate = self
         }
