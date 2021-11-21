@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct Constants {
+public struct Constants {
     static let appName = "バドハウス"
     struct AppColor {
         static let OriginalBlue: UIColor = .rgb(red: 124, green: 131, blue: 253, alpha: 1.0)
@@ -88,107 +88,3 @@ struct Constants {
     }
 }
 // Mark Enum UserInfo
-struct UserInfo {
-    static let level = "レベル"
-    static let gender = "性別"
-    static let badmintonTime = "バドミントン歴"
-    static let place = "居住地"
-    static let age = "年代"
-}
-// Mark MoneyEnum
-enum Money: Int, CaseIterable {
-    case low
-    case middle
-    case high
-    var name: String {
-        switch self {
-        case .low:
-            return "500円~1000円"
-        case .middle:
-            return "1000円~2000円"
-        case .high:
-            return "2000円~"
-        }
-    }
-}
-// Mark Badominton
-enum Badominton: Int, CaseIterable {
-    case single
-    case double
-    case mix
-    var name: String {
-        switch self {
-        case .single:
-            return "シングルス"
-        case .double:
-            return "ダブルス"
-        case .mix:
-            return "ミックス"
-        }
-    }
-}
-// Mark BadmintonCircleEnum
-enum BadmintonCircle: Int, CaseIterable {
-    case student
-    case society
-    case other
-    var name: String {
-        switch self {
-        case .student:
-            return "学生サークル"
-        case .society:
-            return "社会人サークル"
-        case .other:
-            return "その他練習"
-        }
-    }
-}
-enum Gender: Int, CaseIterable {
-    case man
-    case woman
-    case other
-    var name: String {
-        switch self {
-        case .man:
-            return "男性"
-        case .woman:
-            return "女性"
-        case .other:
-            return "その他"
-        }
-    }
-    static let genderArray = ["男性", "女性", "その他"]
-}
-enum Place: Int, CaseIterable {
-    case kanagawa
-    case tokyo
-    case chiba
-    case saitama
-    var name: String {
-        switch self {
-        case .kanagawa:
-            return "神奈川県"
-        case .chiba:
-            return "千葉県"
-        case .saitama:
-            return "埼玉県"
-        case .tokyo:
-            return "東京都"
-        }
-    }
-    static let placeArray = ["東京都", "神奈川県", "千葉県", "埼玉県"]
-}
-// Mark BadmintonLevelEnum
-enum BadmintonLevel: String {
-    case one = "レベル1"
-    case two = "レベル2"
-    case three = "レベル3"
-    case four = "レベル4"
-    case five = "レベル5"
-    case six = "レベル6"
-    case seven = "レベル7"
-    case eight = "レベル8"
-    case nine = "レベル9"
-    case ten = "レベル10"
-    static let level = ["レベル1", "レベル2", "レベル3", "レベル4", "レベル5", "レベル6", "レベル7", "レベル8", "レベル9", "レベル10"]
-}

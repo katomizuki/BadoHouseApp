@@ -83,28 +83,4 @@ extension UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
     }
 }
-// Mark UIImageView Extension
-extension UIImageView {
-    func chageCircle() {
-        self.layer.cornerRadius = self.frame.width / 2
-        self.layer.masksToBounds = true
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 4
-        self.clipsToBounds = true
-        self.contentMode = .scaleAspectFill
-    }
-}
-// Mark UIColor-Extension
-extension UIColor {
-    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1) -> UIColor {
-        return .init(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
-    }
-}
-// Mark Array-Extension
-extension Array where Element: Equatable {
-    mutating func remove(value: Element) {
-        if let i = self.firstIndex(of: value) {
-            self.remove(at: i)
-        }
-    }
-}
+
