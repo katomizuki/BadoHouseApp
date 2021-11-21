@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RCY-mK-5G1">
-                                <rect key="frame" x="0.0" y="188" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="188" width="414" height="576"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-hh-1to">
@@ -77,7 +77,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-Xv-YG9">
-                                <rect key="frame" x="334" y="748" width="50" height="50"/>
+                                <rect key="frame" x="334" y="699" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="7G8-y5-a1A"/>
                                     <constraint firstAttribute="height" constant="50" id="CVS-eW-cGu"/>
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568.1159420289855" y="977.67857142857133"/>
+            <point key="canvasLocation" x="2566.666666666667" y="977.67857142857133"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="RDb-6S-bBi">
@@ -218,11 +218,13 @@
             </objects>
             <point key="canvasLocation" x="3394.9275362318845" y="985.71428571428567"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ユーザー-->
         <scene sceneID="ehK-Zx-1f3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pz4-h3-3CA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="ユーザー" image="person.fill" catalog="system" id="Hub-NH-bNC"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NnX-WS-cHA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -239,6 +241,7 @@
     </scenes>
     <resources>
         <image name="person.crop.circle.badge.plus.fill" catalog="system" width="128" height="113"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="purplegear" width="96" height="96"/>
         <image name="scroll" width="48" height="48"/>
         <namedColor name="backGroundColor">

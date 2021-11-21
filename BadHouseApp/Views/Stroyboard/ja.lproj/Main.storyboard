@@ -95,7 +95,7 @@
         <scene sceneID="ptk-f9-URo">
             <objects>
                 <viewControllerPlaceholder storyboardName="User" id="g8C-AB-Gos" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1t4-5w-0ea"/>
+                    <tabBarItem key="tabBarItem" title="ユーザー" image="person.fill" catalog="system" selectedImage="person.fill" id="1t4-5w-0ea"/>
                     <navigationItem key="navigationItem" id="4JX-Mv-Fl5"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPx-nE-j15" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -105,5 +105,6 @@
     </scenes>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
     </resources>
 </document>

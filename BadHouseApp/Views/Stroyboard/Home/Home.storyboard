@@ -151,7 +151,7 @@
                 <viewControllerPlaceholder storyboardName="Calendar" id="mFn-tx-bxI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALq-cJ-Mu7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4228.2608695652179" y="123.21428571428571"/>
+            <point key="canvasLocation" x="3131" y="623"/>
         </scene>
         <!--DetailSearch-->
         <scene sceneID="Ig6-6O-WZL">
@@ -179,7 +179,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehP-kj-gGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2516" y="615"/>
+            <point key="canvasLocation" x="3384" y="623"/>
         </scene>
         <!--MakeEvent-->
         <scene sceneID="ufi-KO-lCC">
@@ -199,7 +199,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-zn-D2N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2815" y="615"/>
+            <point key="canvasLocation" x="3999" y="623"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y6d-AQ-8sC">
