@@ -10,7 +10,7 @@ final class TeammemberCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     // MARK: - nib
     static func nib() -> UINib {
-        return UINib(nibName: Constants.Cell.TeammemberCell, bundle: nil)
+        return UINib(nibName: "TeammemberCell", bundle: nil)
     }
     // MARK: - LifeCycle
     override func awakeFromNib() {

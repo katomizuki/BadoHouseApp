@@ -69,7 +69,7 @@ final class GroupCell: UITableViewCell {
     }
     // MARK: - nibMethod
     static func nib() -> UINib {
-        return UINib(nibName: Constants.Cell.GroupCell, bundle: nil)
+        return UINib(nibName: "GroupCell", bundle: nil)
     }
     // MARK: - selector
     @objc private func handleTrash() {

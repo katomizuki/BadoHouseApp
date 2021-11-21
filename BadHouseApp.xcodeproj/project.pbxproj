@@ -76,6 +76,7 @@
 		D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CFA274A31BD00253933 /* CircleEnum.swift */; };
 		D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CFC274A320000253933 /* BadmintonLevel.swift */; };
 		D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CFE274A322700253933 /* UserInfoEnum.swift */; };
+		D3B72D01274A38C000253933 /* SegueEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72D00274A38C000253933 /* SegueEnum.swift */; };
 		D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52726E0525100C53780 /* AppDelegate.swift */; };
 		D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52926E0525100C53780 /* SceneDelegate.swift */; };
 		D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52B26E0525100C53780 /* HomeViewController.swift */; };
@@ -224,6 +225,7 @@
 		D3B72CFA274A31BD00253933 /* CircleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleEnum.swift; sourceTree = "<group>"; };
 		D3B72CFC274A320000253933 /* BadmintonLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadmintonLevel.swift; sourceTree = "<group>"; };
 		D3B72CFE274A322700253933 /* UserInfoEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEnum.swift; sourceTree = "<group>"; };
+		D3B72D00274A38C000253933 /* SegueEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueEnum.swift; sourceTree = "<group>"; };
 		D3BDB52426E0525100C53780 /* BadHouseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHouseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BDB52726E0525100C53780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3BDB52926E0525100C53780 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				D3B72CFA274A31BD00253933 /* CircleEnum.swift */,
 				D3B72CFC274A320000253933 /* BadmintonLevel.swift */,
 				D3B72CFE274A322700253933 /* UserInfoEnum.swift */,
+				D3B72D00274A38C000253933 /* SegueEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
+				D3B72D01274A38C000253933 /* SegueEnum.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */,
 				D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */,

@@ -8,6 +8,7 @@ final class CheckJoinController: UIViewController {
     private var eventArray = [Event]()
     private let fetchData = FetchFirestoreData()
     private var notificationArray = [[User]]()
+    private let cellId = "cellGroupId"
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ final class CheckJoinController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
     }
     private func setupData() {
         fetchData.myDataDelegate = self
@@ -81,7 +82,7 @@ extension CheckJoinController: UITableViewDataSource {
         return eventArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
         cell.label.text = notificationArray[indexPath.section][indexPath.row].name
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl
         if urlString == "" {

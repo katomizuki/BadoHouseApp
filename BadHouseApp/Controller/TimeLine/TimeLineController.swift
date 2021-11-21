@@ -36,7 +36,7 @@ class TimeLineController: UIViewController {
         collectionView = UICollectionView(frame: .zero,
                                           collectionViewLayout: layout)
         collectionView?.isPagingEnabled = true
-        collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
+        collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.id)
         collectionView?.dataSource = self
         view.addSubview(collectionView!)
         collectionView?.anchor(top: view.topAnchor,
@@ -63,7 +63,7 @@ extension TimeLineController: UICollectionViewDataSource {
         return videoArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCell.identifier, for: indexPath) as! VideoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCell.id, for: indexPath) as! VideoCell
         let video = videoArray[indexPath.row]
         cell.video = video
         cell.delegate = self
@@ -73,7 +73,7 @@ extension TimeLineController: UICollectionViewDataSource {
 // MARK: - SkeletonCollectionViewDataSource
 extension TimeLineController: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return VideoCell.identifier
+        return VideoCell.id
     }
 }
 // MARK: - FetchVideoDataDelegate

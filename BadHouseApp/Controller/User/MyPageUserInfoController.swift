@@ -12,7 +12,7 @@ protocol UserDismissDelegate: AnyObject {
 final class MyPageUserInfoController: UIViewController {
     // MARK: - Properties
     var user: User?
-    private let cellId = Constants.CellId.userCellId
+    private let cellId = "userCellId"
     private let diposeBag = DisposeBag()
     private var hasChangedImage = false
     private var name = ""
@@ -97,7 +97,7 @@ final class MyPageUserInfoController: UIViewController {
         tb.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return tb
     }()
-    var cellTitleArray = Constants.Data.userSection
+    var cellTitleArray = UserInfo.userSection
     @IBOutlet private weak var scrollView: UIView!
     // MARK: - Lifecycle
     override func viewDidLoad() {

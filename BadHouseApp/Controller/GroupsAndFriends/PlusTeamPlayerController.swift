@@ -14,7 +14,7 @@ final class PlusTeamPlayerController: UIViewController {
     var friends = [User]()
     var inviter = [User]()
     var team: TeamModel?
-    private var cellId = Constants.CellId.inviteCellId
+    private var cellId = "inviteCellId"
     // Mark CustomDelegate
     func someMethodWantToCall(cell: UITableViewCell) {
         print(#function)

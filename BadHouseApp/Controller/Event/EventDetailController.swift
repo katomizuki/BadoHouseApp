@@ -147,7 +147,7 @@ final class EventDetailController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
-        collectionView.register(nib, forCellWithReuseIdentifier: Constants.CellId.MemberCellId)
+        collectionView.register(nib, forCellWithReuseIdentifier: "memberCellId")
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -383,7 +383,7 @@ final class EventDetailController: UIViewController {
     // MARK: SelectorMethod
     @objc private func didTapGroupImage() {
         print(#function)
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
         vc.team = self.team
         vc.flag = true
         navigationController?.pushViewController(vc, animated: true)
@@ -408,7 +408,7 @@ extension EventDetailController: UICollectionViewDelegate {
         return teamArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "memberCellId", for: indexPath) as! TeammemberCell
         let memberName = teamArray[indexPath.row].name
         let urlString = teamArray[indexPath.row].profileImageUrl
         cell.configure(name: memberName, url: urlString)
@@ -419,7 +419,7 @@ extension EventDetailController: UICollectionViewDelegate {
 extension EventDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
         vc.user = teamArray[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }

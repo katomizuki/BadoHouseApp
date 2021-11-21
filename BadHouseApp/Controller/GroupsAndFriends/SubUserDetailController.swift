@@ -10,6 +10,7 @@ final class SubUserDetailController: UIViewController {
     var ownTeam = [TeamModel]()
     var userFriend = [User]()
     private var blockSheet: BlockSheet!
+    private let cellId = "friendCellId"
     @IBOutlet private weak var friendCollectionView: UICollectionView!
     @IBOutlet private weak var belongCollectionView: UICollectionView!
     @IBOutlet private weak var chatButton: UIButton!
@@ -115,9 +116,9 @@ final class SubUserDetailController: UIViewController {
     }
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
-        belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: Constants.CellId.MemberCellId)
+        belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: "memberCellId")
         let friendNib = TeammemberCell.nib()
-        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: Constants.CellId.friendCellId)
+        friendCollectionView.register(friendNib, forCellWithReuseIdentifier: cellId)
         let layout = UICollectionViewFlowLayout()
         let layout2 = UICollectionViewFlowLayout()
         layout2.scrollDirection = .horizontal
@@ -195,14 +196,14 @@ extension SubUserDetailController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.belongCollectionView && collectionView.tag == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MemberCellId, for: indexPath) as! TeammemberCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberCellId", for: indexPath) as! TeammemberCell
             let name = ownTeam[indexPath.row].teamName
             let urlString = ownTeam[indexPath.row].teamImageUrl
             cell.configure(name: name, url: urlString)
             cell.teamMemberImage.contentMode = .scaleAspectFill
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.friendCellId, for: indexPath) as! TeammemberCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TeammemberCell
             let name = userFriend[indexPath.row].name
             let urlString = userFriend[indexPath.row].profileImageUrl
             cell.configure(name: name, url: urlString)
@@ -215,14 +216,14 @@ extension SubUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
             let storyboard = UIStoryboard(name: "GroupDetail", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
             vc.team = ownTeam[indexPath.row]
             vc.friends = userFriend
             vc.flag = true
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let storyboard = UIStoryboard(name: "UserDetail", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
             vc.user = userFriend[indexPath.row]
             vc.me = self.user
             vc.flag = true

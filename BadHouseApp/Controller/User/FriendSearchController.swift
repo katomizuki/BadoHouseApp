@@ -18,7 +18,7 @@ final class FriendSearchController: UIViewController {
     }
     private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
-    private let cellId = Constants.CellId.searchCell
+    private let cellId = "searchCell"
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)

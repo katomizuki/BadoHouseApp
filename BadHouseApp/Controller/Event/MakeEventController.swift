@@ -269,7 +269,7 @@ final class MakeEventController: UIViewController {
                        "placeAddress": self.placeAddress,
                        "userId": userId] as [String: Any]
             guard let eventImage = self.noImageView.image else { return }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TagVC) as! EventTagController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.TagVC) as! EventTagController
             vc.dic = dic
             vc.teamId = teamId
             vc.eventId = eventId

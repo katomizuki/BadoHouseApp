@@ -17,6 +17,7 @@ final class GroupSearchController: UIViewController {
     private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
+    private let cellId = "cellGroupId"
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ final class GroupSearchController: UIViewController {
     // MARK: - setupMethod
     private func setupTableView() {
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -67,7 +68,7 @@ extension GroupSearchController: UITableViewDataSource {
         return groupArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
         let team = groupArray[indexPath.row]
         cell.team = team
         return cell
@@ -78,7 +79,7 @@ extension GroupSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let team = groupArray[indexPath.row]
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
         vc.team = team
         vc.friends = friends
         vc.flag = true

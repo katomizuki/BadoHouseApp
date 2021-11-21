@@ -10,7 +10,7 @@ protocol MyScheduleDelegate: AnyObject {
 final class MyScheduleController: UIViewController {
     // MARK: - Properties
     var me: User?
-    private let cellId = Constants.CellId.CellGroupId
+    private let cellId = "cellGroupId"
     private let fetchData = FetchFirestoreData()
     private var eventArray = [Event]()
     private let tableview: UITableView = {

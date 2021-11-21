@@ -198,7 +198,7 @@ final class RegisterViewController: UIViewController {
             .asDriver()
             .drive { [weak self] _ in
                 let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
-                let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.LoginVC) as! LoginViewController
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
                 print(loginVC)
                 print(self?.navigationController)
                 self?.navigationController?.pushViewController(loginVC, animated: true)

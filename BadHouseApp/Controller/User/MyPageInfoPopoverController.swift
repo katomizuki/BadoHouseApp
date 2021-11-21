@@ -6,7 +6,7 @@ protocol PopDismissDelegate: AnyObject {
 final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
     weak var delegate: PopDismissDelegate?
-    private let cellId = Constants.CellId.popCellId
+    private let cellId = "popCellId"
     var cellArray = Gender.genderArray
     var keyword = String()
     lazy var tableView: UITableView = {

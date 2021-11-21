@@ -408,7 +408,7 @@ final class MakeGroupController: UIViewController {
         let teamMoneyString = String(teamMoney)
         guard let teamImage = groupImageView.image else { return }
         guard let teamUrl = plusTextField.text else { return }
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.FriendVC) as! InviteToTeamController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.FriendVC) as! InviteToTeamController
         vc.friends = self.friends
         vc.teamName = teamName
         vc.teamTime = teamTime
@@ -430,7 +430,7 @@ final class MakeGroupController: UIViewController {
         return dayArray.contains(target)
     }
     private func judgePlace(_ target: String) -> Bool {
-        return Constants.Data.placeArray.contains(target)
+        return Place.placeArray.contains(target)
     }
     // MARK: - IBAction
     @IBAction func cameraTap(_ sender: Any) {

@@ -4,12 +4,7 @@ import NVActivityIndicatorView
 
 final class InviteToTeamController: UIViewController {
     // MARK: - Properties
-    @IBOutlet private weak var friendTableView: UITableView! {
-        didSet {
-            friendTableView.separatorStyle = .none
-        }
-    }
-    private var cellId = Constants.CellId.FriendCellId
+    private var cellId = "friendCellId"
     var friends = [User]()
     var inviter = [User]()
     var (teamName,
@@ -18,6 +13,15 @@ final class InviteToTeamController: UIViewController {
          teamLevel) = (String(), String(), String(), String())
     var teamImage: UIImage?
     var me: User?
+    private var indicatorView: NVActivityIndicatorView!
+    var teamTagArray = [String]()
+    var url: String?
+    private let fetchData = FetchFirestoreData()
+    @IBOutlet private weak var friendTableView: UITableView! {
+        didSet {
+            friendTableView.separatorStyle = .none
+        }
+    }
     @IBOutlet private weak var inviteButton: UIButton! {
         didSet {
             inviteButton.backgroundColor = Constants.AppColor.OriginalBlue
@@ -26,10 +30,7 @@ final class InviteToTeamController: UIViewController {
             inviteButton.layer.masksToBounds = true
         }
     }
-    private var indicatorView: NVActivityIndicatorView!
-    var teamTagArray = [String]()
-    var url: String?
-    private let fetchData = FetchFirestoreData()
+    
     // MARK: - CustomDelegate
     func someMethodWantToCall(cell: UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)

@@ -7,7 +7,7 @@ final class GroupChatController: UIViewController {
     var team: TeamModel?
     private var chatArray = [GroupChatModel]()
     @IBOutlet private weak var tableView: UITableView!
-    private let cellId = Constants.CellId.chatCellId
+    private let cellId = "chatCellId"
     private let fetchData = FetchFirestoreData()
     private var me: User?
     private lazy var customInputView: CustomInputAccessoryView = {

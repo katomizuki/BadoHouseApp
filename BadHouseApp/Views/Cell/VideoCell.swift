@@ -12,7 +12,7 @@ protocol VideoCollectionCellDelegate: AnyObject {
 final class VideoCell: UICollectionViewCell {
     // MARK: - properties
     var player: AVPlayer?
-    static let identifier = Constants.CellId.videoCell
+    static let id = "videoCell"
     var iv: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .cyan

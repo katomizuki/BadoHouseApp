@@ -3,7 +3,7 @@ import UIKit
 final class TornamentListController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
-    private let cellId = Constants.CellId.CellGroupId
+    private let cellId = "cellGroupId"
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ final class TornamentListController: UIViewController {
 // MARK: - UITableViewDelegate
 extension TornamentListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.TornamentDetailVC) as! TornamentDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.TornamentDetailVC) as! TornamentDetailController
         navigationController?.pushViewController(vc, animated: true)
  }
 }

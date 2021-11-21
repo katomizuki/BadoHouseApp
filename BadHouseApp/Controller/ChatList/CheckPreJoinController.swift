@@ -11,6 +11,7 @@ final class CheckPreJoinController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var notificationArray = [[User]]()
     private var indicatorView: NVActivityIndicatorView!
+    private let cellId = "cellGroupId"
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ final class CheckPreJoinController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
     }
     private func setupIndicator() {
         indicatorView = self.setupIndicatorView()
@@ -93,7 +94,7 @@ extension CheckPreJoinController: UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
         cell.label.text = "\(notificationArray[indexPath.section][indexPath.row].name)さんから参加承認がきています"
         cell.label.numberOfLines = 0
         let urlString = notificationArray[indexPath.section][indexPath.row].profileImageUrl

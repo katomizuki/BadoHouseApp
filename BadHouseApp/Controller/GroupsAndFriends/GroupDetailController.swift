@@ -36,7 +36,7 @@ final class GroupDetailController: UIViewController {
     @IBOutlet private weak var priceStackView: UIStackView!
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barChartView: BarChartView!
-    private let teamMemberCellId = Constants.CellId.MemberCellId
+    private let teamMemberCellId = "memberCellId"
     private var genderArray = [Int]()
     private var indicatorView: NVActivityIndicatorView!
     private var rawData: [Int] = []
@@ -223,7 +223,7 @@ final class GroupDetailController: UIViewController {
     }
     // MARK: - IBAction
     @IBAction private func gotoInvite(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.inviteVC) as! PlusTeamPlayerController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.inviteVC) as! PlusTeamPlayerController
         vc.friends = self.friends
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
@@ -236,12 +236,12 @@ final class GroupDetailController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     @IBAction private func gotoGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupChatVC) as! GroupChatController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction private func go(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupChatVC) as! GroupChatController
         vc.team = self.team
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -312,7 +312,7 @@ extension GroupDetailController: UICollectionViewDataSource {
 extension GroupDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "UserDetail", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
+        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
         vc.user = teamPlayers[indexPath.row]
         vc.me = self.me
         navigationController?.pushViewController(vc, animated: true)

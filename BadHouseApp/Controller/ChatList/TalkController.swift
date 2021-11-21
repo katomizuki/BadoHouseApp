@@ -31,6 +31,7 @@ final class TalkController: UIViewController {
         return view
     }()
     private var indicatorView: NVActivityIndicatorView!
+    private let cellId = "cellGroupId"
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +77,7 @@ final class TalkController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         let nib = GroupCell.nib()
-        tableView.register(nib, forCellReuseIdentifier: Constants.CellId.CellGroupId)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
         tableView.addSubview(refreshView)
     }
     private func setupNotification() {
@@ -150,7 +151,7 @@ extension TalkController: UITableViewDataSource {
         return self.section[section]
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellId.CellGroupId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
         // Mark GroupChatCell
         if indexPath.section == 0 {
             cell.commentLabel.isHidden = true
@@ -180,21 +181,21 @@ extension TalkController: UITableViewDelegate {
         if indexPath.section == 0 {
             let team = teams[indexPath.row]
             self.selectedTeam = team
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupChatVC) as! GroupChatController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupChatVC) as! GroupChatController
             vc.team = self.selectedTeam
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
             if AuthService.getUserId() == sortChatModelArray[indexPath.row].user {
                 me = sortUserArray[indexPath.row]
                 you = sortAnotherUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 me = sortAnotherUserArray[indexPath.row]
                 you = sortUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.ChatVC) as! DMChatController
+                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
                 vc.me = me
                 vc.you = you
                 navigationController?.pushViewController(vc, animated: true)

@@ -8,7 +8,7 @@ final class MyPageController: UIViewController {
     var user: User?
     var teamArray = [TeamModel]()
     var friendArray = [User]()
-    private let cellId = Constants.CellId.CellGroupId
+    private let cellId = "cellGroupId"
     private var userIdArray = [String]()
     private let sectionArray = ["所属チーム", "バド友"]
     @IBOutlet private weak var groupTableView: UITableView! {
@@ -100,7 +100,7 @@ final class MyPageController: UIViewController {
         self.performSegue(withIdentifier: Constants.Segue.userProfile, sender: nil)
     }
     @IBAction private func gotoMakeGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.MakeGroupVC) as! MakeGroupController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.MakeGroupVC) as! MakeGroupController
         vc.myData = user
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -155,13 +155,13 @@ extension MyPageController: UITableViewDataSource {
 extension MyPageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.GroupDetailVC) as! GroupDetailController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
             vc.team = teamArray[indexPath.row]
             vc.friends = friendArray
             vc.me = self.user
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.UserDetailVC) as! UserDetailController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
             vc.user = friendArray[indexPath.row]
             vc.me = self.user
             vc.flag = false

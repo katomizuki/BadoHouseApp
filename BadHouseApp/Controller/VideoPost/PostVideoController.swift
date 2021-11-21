@@ -74,15 +74,15 @@ final class PostVideoController: UIViewController {
         // do nothing
 #else
         if sender == singleButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.CameraVC) as! VideoCameraController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.CameraVC) as! VideoCameraController
             vc.keyWord = "シングルス"
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == doubleButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.CameraVC) as! VideoCameraController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.CameraVC) as! VideoCameraController
             vc.keyWord = "ダブルス"
             navigationController?.pushViewController(vc, animated: true)
         } else if sender == mixButton {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.CameraVC) as! VideoCameraController
+            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.CameraVC) as! VideoCameraController
             vc.keyWord = "ミックス"
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -19,6 +19,7 @@ final class HomeViewController: UIViewController {
     private var fetchData = FetchFirestoreData()
     var (myLatitude, myLongitude) = (Double(), Double())
     private var eventArray = [Event]()
+    private let cellId = "eventId"
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
             searchBar.tintColor = Constants.AppColor.OriginalBlue
@@ -101,9 +102,9 @@ final class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
-        let nib = UINib(nibName: Constants.Cell.CollectionViewCell,
+        let nib = UINib(nibName: "CollectionViewCell",
                         bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: Constants.CellId.eventId)
+        collectionView.register(nib, forCellWithReuseIdentifier: cellId)
     }
     private func setupLocationManager() {
         locationManager = CLLocationManager()
@@ -150,7 +151,7 @@ extension HomeViewController: UICollectionViewDataSource {
         return eventArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.eventId, for: indexPath) as! EventInfoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventInfoCell
         cell.delegate = self
         if eventArray.isEmpty {
             return cell
@@ -170,7 +171,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.EventDetailVC) as! EventDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.EventDetailVC) as! EventDetailController
         vc.event = eventArray[indexPath.row]
         let teamId = eventArray[indexPath.row].teamId
         TeamService.getTeamData(teamId: teamId) { team in

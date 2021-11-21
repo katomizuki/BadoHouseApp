@@ -27,7 +27,7 @@ final class SearchCalendarController: UIViewController {
     }()
     private let textField: UITextField = RegisterTextField(placeholder: "都道府県選択")
     private let placePicker = UIPickerView()
-    private let placeArray = Constants.Data.placeArray
+    private let placeArray = Place.placeArray
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

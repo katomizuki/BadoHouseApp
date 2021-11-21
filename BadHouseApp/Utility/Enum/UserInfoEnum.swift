@@ -6,4 +6,5 @@ struct UserInfo {
     static let badmintonTime = "バドミントン歴"
     static let place = "居住地"
     static let age = "年代"
+    static let userSection = ["居住地", "性別", "年代", "バドミントン歴", "レベル"]
 }

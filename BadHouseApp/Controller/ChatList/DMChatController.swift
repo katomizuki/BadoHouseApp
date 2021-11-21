@@ -3,7 +3,7 @@ import Firebase
 
 final class DMChatController: UIViewController {
     // MARK: - Properties
-    private let cellId = Constants.CellId.chatCellId
+    private let cellId = "chatCellId"
     @IBOutlet private weak var chatTableView: UITableView!
     private var messages = [Chat]()
     var me: User?
