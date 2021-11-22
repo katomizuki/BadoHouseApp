@@ -20,8 +20,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="oEj-9m-egr" kind="relationship" relationship="viewControllers" id="SBb-z8-Uvd"/>
-                        <segue destination="raS-3i-W24" kind="relationship" relationship="viewControllers" id="NSR-6W-Qyr"/>
-                        <segue destination="ECq-3N-hh0" kind="relationship" relationship="viewControllers" id="IuF-94-HjB"/>
                         <segue destination="1VZ-ly-Xe0" kind="relationship" relationship="viewControllers" id="F4E-ph-Crp"/>
                         <segue destination="g8C-AB-Gos" kind="relationship" relationship="viewControllers" id="9yj-ep-NkV"/>
                     </connections>
@@ -57,7 +55,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oE-cD-I2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="582"/>
+            <point key="canvasLocation" x="1198" y="709"/>
         </scene>
         <!--PostVideo-->
         <scene sceneID="Hu3-3D-Llh">
@@ -68,7 +66,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRc-k8-ivf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658" y="580"/>
+            <point key="canvasLocation" x="1386" y="720"/>
         </scene>
         <!--chatTabVC-->
         <scene sceneID="KW7-6F-aWy">
@@ -101,6 +99,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPx-nE-j15" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1014" y="581"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="oib-bn-din">
+            <objects>
+                <viewControllerPlaceholder id="KMO-I0-laG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OS3-L7-uld" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="592"/>
         </scene>
     </scenes>
     <resources>

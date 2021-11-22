@@ -96,10 +96,7 @@ final class MyPageController: UIViewController {
                              height: 100)
     }
     // MARK: - IBAction
-    @IBAction func tap(_ sender: Any) {
-        let controller = PostVideoController()
-        present(controller, animated: true, completion: nil)
-    }
+  
     @IBAction private func user(_ sender: Any) {
         self.performSegue(withIdentifier: Segue.userProfile.rawValue, sender: nil)
     }
