@@ -57,6 +57,7 @@ final class GroupDetailController: UIViewController {
                                         UIColor(named: Constants.AppColor.darkColor)!,
                                       titleColor: Constants.AppColor.OriginalBlue,
                                       fontSize: 14)
+            updateButton.setTitle("", for: .normal)
         }
     }
     @IBOutlet private weak var chatButton: UIButton!

@@ -53,3 +53,10 @@ public struct Constants {
         static let ageArray = ["10代以下", "10代", "20代", "30代", "40代", "50代", "60代", "70代以上"]
     }
 }
+
+//@resultBuilder
+//public struct ArrayBuilder<T> {
+//    public static func buildBlock(_ components: T...) -> [T] {
+//        components
+//    }
+//}
