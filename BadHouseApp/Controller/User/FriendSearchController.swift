@@ -3,6 +3,8 @@ import SDWebImage
 import Firebase
 import EmptyStateKit
 import CDAlertView
+import RxSwift
+import RxCocoa
 
 final class FriendSearchController: UIViewController {
     // MARK: - Properties
@@ -25,6 +27,7 @@ final class FriendSearchController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
+    private let disposeBag = DisposeBag()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,7 @@ final class FriendSearchController: UIViewController {
                          paddingLeft: 15,
                          width: 35,
                          height: 35)
+        setupBinding()
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
@@ -81,6 +85,15 @@ final class FriendSearchController: UIViewController {
     // MARK: - SelectorMethod
     @objc private func back() {
         dismiss(animated: true, completion: nil)
+    }
+    private func setupBinding() {
+        UserService().getUserData().subscribe { result in
+            switch result {
+            case .success(let users): print("user⚡️",users)
+            case .failure(let error): print(error)
+            }
+        }.disposed(by: disposeBag)
+
     }
 }
 // MARK: - TableViewDataSource
