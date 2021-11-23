@@ -1,5 +1,5 @@
 import UIKit
-import SkeletonView
+
 protocol EventInfoCellDelegate: AnyObject {
     func didTapBlockButton(_ cell: EventInfoCell)
 }

@@ -1,5 +1,4 @@
 import UIKit
-import SkeletonView
 
 final class AppExplainController: UIViewController {
 // MARK: - Properties

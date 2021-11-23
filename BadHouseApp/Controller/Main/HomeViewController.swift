@@ -8,7 +8,7 @@ import MapKit
 import EmptyStateKit
 import UserNotifications
 import CDAlertView
-import FacebookCore
+
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties

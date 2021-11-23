@@ -351,40 +351,6 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - CDAlertView (0.11.0)
   - EmptyStateKit (1.1.0)
-  - FacebookCore (0.9.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FacebookLogin (0.9.0):
-    - FacebookCore (~> 0.9.0)
-    - FBSDKCoreKit (~> 5.0)
-    - FBSDKLoginKit (~> 5.0)
-  - FacebookSDK (11.2.1):
-    - FacebookSDK/AEMKit (= 11.2.1)
-    - FacebookSDK/Basics (= 11.2.1)
-    - FacebookSDK/CoreKit (= 11.2.1)
-    - FacebookSDK/LoginKit (= 11.2.1)
-    - FacebookSDK/ShareKit (= 11.2.1)
-    - FacebookSDK/TVOSKit (= 11.2.1)
-  - FacebookSDK/AEMKit (11.2.1):
-    - FacebookSDK/Basics
-  - FacebookSDK/Basics (11.2.1)
-  - FacebookShare (0.9.0):
-    - FacebookCore (~> 0.9.0)
-    - FBSDKCoreKit (~> 5.0)
-    - FBSDKShareKit (~> 5.0)
-  - FBSDKCoreKit (5.15.1):
-    - FBSDKCoreKit/Basics (= 5.15.1)
-    - FBSDKCoreKit/Core (= 5.15.1)
-  - FBSDKCoreKit/Basics (5.15.1)
-  - FBSDKCoreKit/Core (5.15.1):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.15.1):
-    - FBSDKLoginKit/Login (= 5.15.1)
-  - FBSDKLoginKit/Login (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.15.1):
-    - FBSDKShareKit/Share (= 5.15.1)
-  - FBSDKShareKit/Share (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
   - Firebase (8.7.0):
     - Firebase/Core (= 8.7.0)
   - Firebase/Analytics (8.7.0):
@@ -548,17 +514,12 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
-  - SkeletonView (1.25.1)
   - TaggerKit (0.6.1)
   - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - CDAlertView
   - EmptyStateKit
-  - FacebookCore
-  - FacebookLogin
-  - FacebookSDK
-  - FacebookShare
   - Firebase
   - Firebase/Analytics
   - Firebase/Auth
@@ -572,7 +533,6 @@ DEPENDENCIES:
   - PKHUD
   - RangeUISlider (~> 3.0)
   - SDWebImage
-  - SkeletonView
   - TaggerKit
   - XLPagerTabStrip (~> 9.0)
 
@@ -583,13 +543,6 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - CDAlertView
     - EmptyStateKit
-    - FacebookCore
-    - FacebookLogin
-    - FacebookSDK
-    - FacebookShare
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -616,7 +569,6 @@ SPEC REPOS:
     - PromisesObjC
     - RangeUISlider
     - SDWebImage
-    - SkeletonView
     - TaggerKit
     - XLPagerTabStrip
 
@@ -626,13 +578,6 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CDAlertView: cd6624e857c85ad14560e2cd23d7eb25b983b590
   EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
-  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
-  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
-  FacebookSDK: b9c123df2ed622faadd8b546632ae8048d1f9b28
-  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
-  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
-  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
-  FBSDKShareKit: 259737eab3cc807087374553abdf588b3096ba55
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
   FirebaseAnalytics: 52768800c2add1d84b751420cb4caaf8195f2c41
   FirebaseAuth: 2e7d029977648c67a5d51a263d4cbab76d34cf12
@@ -659,10 +604,9 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RangeUISlider: 06bd968e640c1bfd390bb7abb32d54466295ff09
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
-  SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 22e6f65843c8be5d5a7eca4ea17a883c574752d1
+PODFILE CHECKSUM: 9d807bea734dcc03bf67ab349636502087889b82
 
 COCOAPODS: 1.11.2

@@ -1,5 +1,5 @@
 import UIKit
-import FacebookCore
+
 protocol PopDismissDelegate: AnyObject {
     func popDismiss(vc: MyPageInfoPopoverController)
 }

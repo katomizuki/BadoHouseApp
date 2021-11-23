@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 import SDWebImage
 import Firebase
-import FacebookCore
 import RxSwift
 protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Event, cell: UITableViewCell)

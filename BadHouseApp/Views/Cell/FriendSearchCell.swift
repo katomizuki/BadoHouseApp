@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import FacebookCore
 
 final class FriendSearchCell: UITableViewCell {
     // MARK: - properties

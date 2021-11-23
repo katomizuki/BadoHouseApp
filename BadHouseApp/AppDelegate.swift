@@ -3,7 +3,6 @@ import Firebase
 import IQKeyboardManagerSwift
 import UserNotifications
 import GoogleSignIn
-import FBSDKCoreKit
 import Network
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,8 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
-        GIDSignIn.sharedInstance()?.clientID = "517884035996-me558ijehkt7r7sjmgt57li9ddvjkq0e.apps.googleusercontent.com"
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        GIDSignIn.sharedInstance()?.clientID = "517884035996-me558ijehkt7r7sjmgt57li9ddvjkq0e.apps.googleusercontent.com"
+//        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         setupNotifications(on: application)
         UIApplication.shared.applicationIconBadgeNumber = 0
         Network.shared.setupNetPathMonitor()
@@ -21,14 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
-    //　追加
-    func application(_ application : UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    //　追加
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        AppEvents.activateApp()
-    }
+//    //　追加
+//    func application(_ application : UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+//    }
+//    //　追加
+//    func applicationDidBecomeActive(_ application: UIApplication) {
+//        AppEvents.activateApp()
+//    }
     // MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

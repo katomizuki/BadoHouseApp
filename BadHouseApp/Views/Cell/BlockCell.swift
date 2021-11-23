@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import SkeletonView
 
 final class BlockCell: UITableViewCell {
     // MARK: - Properties

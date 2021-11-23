@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 import SDWebImage
-import FacebookCore
 
 final class TeammemberCell: UICollectionViewCell {
     // MARK: - Properties

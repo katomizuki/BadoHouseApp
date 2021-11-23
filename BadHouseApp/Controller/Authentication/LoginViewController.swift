@@ -5,10 +5,6 @@ import RxCocoa
 import Firebase
 import NVActivityIndicatorView
 import GoogleSignIn
-import FBSDKCoreKit
-import FBSDKLoginKit
-import FacebookCore
-import FacebookLogin
 import AuthenticationServices
 import CryptoKit
 
@@ -17,7 +13,6 @@ final class LoginViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginBindings()
     private var indicatorView: NVActivityIndicatorView!
-    private let fbButton = FBLoginButton()
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
@@ -107,8 +102,8 @@ final class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        fbButton.delegate = self
-        fbButton.permissions = ["public_profile, email"]
+//        fbButton.delegate = self
+//        fbButton.permissions = ["public_profile, email"]
     }
     private func setupBinding() {
         emailTextField.rx.text
@@ -244,28 +239,28 @@ extension LoginViewController: GIDSignInDelegate {
         }
     }
 }
-// MARK: - FacebookDelegate
-extension LoginViewController: LoginButtonDelegate {
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        print("logout fb")
-    }
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if error == nil {
-            if result?.isCancelled == true {
-                return
-            }
-        }
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        Auth.auth().signIn(with: credential) { (_, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-}
+//// MARK: - FacebookDelegate
+//extension LoginViewController: LoginButtonDelegate {
+//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+//        print("logout fb")
+//    }
+//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+//        if error == nil {
+//            if result?.isCancelled == true {
+//                return
+//            }
+//        }
+//        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+//        Auth.auth().signIn(with: credential) { (_, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            } else {
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        }
+//    }
+//}
 // MARK: - TextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

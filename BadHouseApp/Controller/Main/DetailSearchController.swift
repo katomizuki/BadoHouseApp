@@ -1,6 +1,5 @@
 import UIKit
 import grpc
-import FacebookCore
 
 protocol DetailSearchDelegate: AnyObject {
     func didTapDetailSearchButton(title: String,

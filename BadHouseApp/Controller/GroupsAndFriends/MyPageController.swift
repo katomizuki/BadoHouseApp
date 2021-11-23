@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 import NVActivityIndicatorView
-import FacebookCore
+
 
 final class MyPageController: UIViewController {
     // MARK: - Properties

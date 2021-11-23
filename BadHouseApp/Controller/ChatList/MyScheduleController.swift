@@ -3,7 +3,7 @@ import FirebaseAuth
 import Firebase
 import SDWebImage
 import FSCalendar
-import FacebookCore
+
 protocol MyScheduleDelegate: AnyObject {
     func dismissMyScheduleVC(vc: MyScheduleController)
 }

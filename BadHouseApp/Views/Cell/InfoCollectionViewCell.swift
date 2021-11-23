@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-import FacebookCore
+
 
 final class InfoCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties

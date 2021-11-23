@@ -1,7 +1,6 @@
 import UIKit
 import Firebase
 import SDWebImage
-import FacebookCore
 
 final class UserDetailController: UIViewController {
     // MARK: - Properties

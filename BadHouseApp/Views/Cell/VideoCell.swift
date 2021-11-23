@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import SDWebImage
-import SkeletonView
+//import SkeletonView
 
 protocol VideoCollectionCellDelegate: AnyObject {
     func didTapSearchButton(video: VideoModel, button: UIButton)
@@ -54,12 +54,12 @@ final class VideoCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.clipsToBounds = true
         player?.automaticallyWaitsToMinimizeStalling = true
-        self.contentView.isSkeletonable = true
-        self.containerView.isSkeletonable = true
-        self.nextButton.isSkeletonable = true
-        self.searchButton.isSkeletonable = true
-        isSkeletonable = true
-        containerView.showAnimatedSkeleton()
+//        self.contentView.isSkeletonable = true
+//        self.containerView.isSkeletonable = true
+//        self.nextButton.isSkeletonable = true
+//        self.searchButton.isSkeletonable = true
+//        isSkeletonable = true
+//        containerView.showAnimatedSkeleton()
     }
     // MARK: - layoutSubViews
     override func layoutSubviews() {
@@ -121,7 +121,7 @@ final class VideoCell: UICollectionViewCell {
         playerView.frame = contentView.bounds
         containerView.layer.addSublayer(playerView)
         player?.play()
-        containerView.stopSkeletonAnimation()
+//        containerView.stopSkeletonAnimation()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

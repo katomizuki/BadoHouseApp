@@ -1,7 +1,6 @@
 import UIKit
 import SDWebImage
 import Firebase
-import FacebookCore
 import EmptyStateKit
 import CDAlertView
 

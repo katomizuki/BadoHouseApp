@@ -20,11 +20,11 @@ pod 'PKHUD'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
-pod 'FacebookSDK'
-pod 'FacebookCore'
-pod 'FacebookLogin'
-pod 'FacebookShare'
-pod "SkeletonView"
+#pod 'FacebookSDK'
+#pod 'FacebookCore'
+#pod 'FacebookLogin'
+#pod 'FacebookShare'
+#pod "SkeletonView"
 pod 'RangeUISlider', '~> 3.0'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'

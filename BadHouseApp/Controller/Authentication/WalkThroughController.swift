@@ -1,5 +1,4 @@
 import UIKit
-import FacebookCore
 
 final class WalkThroughController: UIPageViewController {
     // MARK: - FirstVC

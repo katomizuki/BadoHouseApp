@@ -100,14 +100,6 @@
             </objects>
             <point key="canvasLocation" x="1014" y="581"/>
         </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="oib-bn-din">
-            <objects>
-                <viewControllerPlaceholder id="KMO-I0-laG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OS3-L7-uld" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="767" y="592"/>
-        </scene>
     </scenes>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>

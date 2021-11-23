@@ -2,7 +2,7 @@ import UIKit
 import AVFoundation
 import AVKit
 import NVActivityIndicatorView
-import SkeletonView
+
 
 class TimeLineController: UIViewController {
     // MARK: - Properties
@@ -20,8 +20,8 @@ class TimeLineController: UIViewController {
         fetchData.videoDelegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
-        collectionView?.isSkeletonable = true
-        view.isSkeletonable = true
+//        collectionView?.isSkeletonable = true
+//        view.isSkeletonable = true
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -70,12 +70,12 @@ extension TimeLineController: UICollectionViewDataSource {
         return cell
     }
 }
-// MARK: - SkeletonCollectionViewDataSource
-extension TimeLineController: SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return VideoCell.id
-    }
-}
+//// MARK: - SkeletonCollectionViewDataSource
+//extension TimeLineController: SkeletonCollectionViewDataSource {
+//    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+//        return VideoCell.id
+//    }
+//}
 // MARK: - FetchVideoDataDelegate
 extension TimeLineController: FetchVideoDataDelegate {
     func fetchVideoData(videoArray: [VideoModel]) {

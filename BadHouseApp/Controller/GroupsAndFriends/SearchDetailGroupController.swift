@@ -1,5 +1,5 @@
 import UIKit
-import SkeletonView
+//import SkeletonView
 // MARK: - Protocol
 protocol SearchDetailGroupDelegate: AnyObject {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String)

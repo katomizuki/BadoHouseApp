@@ -5,7 +5,6 @@ import CoreLocation
 import Charts
 import Firebase
 import CDAlertView
-import FacebookCore
 
 final class EventDetailController: UIViewController {
     // MARK: - Properties

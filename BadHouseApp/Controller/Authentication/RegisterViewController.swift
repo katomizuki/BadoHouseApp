@@ -6,10 +6,6 @@ import NVActivityIndicatorView
 import RxCocoa
 import GoogleSignIn
 import Firebase
-import FBSDKCoreKit
-import FBSDKLoginKit
-import FacebookCore
-import FacebookLogin
 import AuthenticationServices
 import CryptoKit
 
@@ -57,7 +53,7 @@ final class RegisterViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let registerBinding = RegisterBindings()
     private var indicatorView: NVActivityIndicatorView!
-    private let fbButton = FBLoginButton()
+//    private let fbButton = FBLoginButton()
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
@@ -93,8 +89,8 @@ final class RegisterViewController: UIViewController {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        fbButton.delegate = self
-        fbButton.permissions = ["public_profile, email"]
+//        fbButton.delegate = self
+//        fbButton.permissions = ["public_profile, email"]
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -328,38 +324,38 @@ extension RegisterViewController: GIDSignInDelegate {
     }
 }
 // MARK: - LoginButtonDelegate
-extension RegisterViewController: LoginButtonDelegate {
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if error == nil {
-            if result?.isCancelled == true {
-                return
-            }
-        }
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        Auth.auth().signIn(with: credential) { (result, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            self.displayName = (result?.user.displayName)!
-            guard let name = result?.user.displayName else { return }
-            guard let email = result?.user.email else { return }
-            guard let id = result?.user.uid else { return }
-            UserService.setUserData(uid: id, password: "",
-                                    email: email,
-                                    name: name) { result in
-                if result == true {
-                    let bool = false
-                    UserDefaults.standard.set(bool, forKey: "MyId")
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-    }
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        print("logout fb")
-    }
-}
+//extension RegisterViewController: LoginButtonDelegate {
+//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+//        if error == nil {
+//            if result?.isCancelled == true {
+//                return
+//            }
+//        }
+//        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+//        Auth.auth().signIn(with: credential) { (result, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+//            self.displayName = (result?.user.displayName)!
+//            guard let name = result?.user.displayName else { return }
+//            guard let email = result?.user.email else { return }
+//            guard let id = result?.user.uid else { return }
+//            UserService.setUserData(uid: id, password: "",
+//                                    email: email,
+//                                    name: name) { result in
+//                if result == true {
+//                    let bool = false
+//                    UserDefaults.standard.set(bool, forKey: "MyId")
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//        }
+//    }
+//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+//        print("logout fb")
+//    }
+//}
 // MARK: - UITextFieldDelegate
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

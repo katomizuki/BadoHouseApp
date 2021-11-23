@@ -3,8 +3,6 @@ import SDWebImage
 import Firebase
 import NVActivityIndicatorView
 import Charts
-import FacebookCore
-import SwiftUI
 
 final class GroupDetailController: UIViewController {
     // MARK: - Properties
