@@ -39,6 +39,7 @@
 		D351FEF1275A331600AA518B /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEF0275A331600AA518B /* Differentiator */; };
 		D351FEF3275A331600AA518B /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEF2275A331600AA518B /* RxDataSources */; };
 		D351FEF6275A35E500AA518B /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEF5275A35E500AA518B /* RxGesture */; };
+		D351FEF8275A5A5000AA518B /* MakeEventSecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */; };
 		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
@@ -178,6 +179,7 @@
 		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/Views/Stroyboard/User/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
+		D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondController.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		D37FA52626EAFDAE00B8559F /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */,
 				D3FD195426E4CAC900B6740E /* EventTagController.swift */,
 				D3FD194E26E482C200B6740E /* MakeEventController.swift */,
 				D37FA52B26EB4AD900B8559F /* EventDetailController.swift */,
@@ -936,6 +939,7 @@
 				D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
+				D351FEF8275A5A5000AA518B /* MakeEventSecondController.swift in Sources */,
 				D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */,
 				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
