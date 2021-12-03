@@ -21,6 +21,8 @@
 		D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D291C2747100800EC650C /*  SubUser.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
+		D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */; };
+		D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8CA22759BC730036FA98 /* NotificationController.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
 		D33B018227466109004ED650 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018127466108004ED650 /* Calendar.storyboard */; };
@@ -166,6 +168,8 @@
 		D31D291C2747100800EC650C /*  SubUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = " SubUser.storyboard"; path = "BadHouseApp/Views/Stroyboard/User/ SubUser.storyboard"; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
+		D32B8CA22759BC730036FA98 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
 		D33B018127466108004ED650 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
@@ -313,6 +317,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D32B8C9E2759BC150036FA98 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		D32B8CA12759BC540036FA98 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D32B8CA22759BC730036FA98 /* NotificationController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		D353D8E426F16C2F00221B7D /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +421,7 @@
 		D3976EEF270337580016CEB2 /* Stroyboard */ = {
 			isa = PBXGroup;
 			children = (
+				D32B8C9E2759BC150036FA98 /* Notification */,
 				D3969DD7274733200022AE24 /* Talk */,
 				D3969DD6274732F30022AE24 /* Home */,
 				D3969DD4274732D00022AE24 /* User */,
@@ -537,6 +558,7 @@
 		D3BDB53D26E0541E00C53780 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D32B8CA12759BC540036FA98 /* Notification */,
 				D3A789D326F4396A0088E8BC /* ChatList */,
 				D3C4E94326E1A54D00C21E46 /* GroupsAndFriends */,
 				D37FA52626EAFDAE00B8559F /* Event */,
@@ -775,6 +797,7 @@
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
 				D33B0184274661D2004ED650 /* Map.storyboard in Resources */,
 				D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */,
+				D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */,
 				D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */,
 				D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */,
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
@@ -963,6 +986,7 @@
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
+				D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,

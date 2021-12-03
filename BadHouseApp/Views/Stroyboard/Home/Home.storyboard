@@ -155,16 +155,6 @@
             </objects>
             <point key="canvasLocation" x="4173.913043478261" y="-36.160714285714285"/>
         </scene>
-        <!--Tornament-->
-        <scene sceneID="ODz-bf-xW5">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Tornament" id="JSj-zU-DdE" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ryF-aA-TNd"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KTD-iW-cpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4235.507246376812" y="198.21428571428569"/>
-        </scene>
         <!--RegisterVC-->
         <scene sceneID="NB2-2A-ZTr">
             <objects>
