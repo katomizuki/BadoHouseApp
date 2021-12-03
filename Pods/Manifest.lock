@@ -513,7 +513,6 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
-  - TaggerKit (0.6.1)
 
 DEPENDENCIES:
   - CDAlertView
@@ -530,7 +529,6 @@ DEPENDENCIES:
   - PKHUD
   - RangeUISlider (~> 3.0)
   - SDWebImage
-  - TaggerKit
 
 SPEC REPOS:
   trunk:
@@ -564,7 +562,6 @@ SPEC REPOS:
     - PromisesObjC
     - RangeUISlider
     - SDWebImage
-    - TaggerKit
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -597,8 +594,7 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RangeUISlider: 06bd968e640c1bfd390bb7abb32d54466295ff09
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
-  TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
 
-PODFILE CHECKSUM: b05d2e9fb3f7f022fd10ca066944a4378883ec70
+PODFILE CHECKSUM: 4c0d766855df5fb7795766b08dc381af4f58ce28
 
 COCOAPODS: 1.11.2

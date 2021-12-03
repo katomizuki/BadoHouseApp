@@ -269,12 +269,12 @@ final class MakeEventController: UIViewController {
                        "placeAddress": self.placeAddress,
                        "userId": userId] as [String: Any]
             guard let eventImage = self.noImageView.image else { return }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.TagVC) as! EventTagController
-            vc.dic = dic
-            vc.teamId = teamId
-            vc.eventId = eventId
-            vc.eventImage = eventImage
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.TagVC) as! EventTagController
+//            vc.dic = dic
+//            vc.teamId = teamId
+//            vc.eventId = eventId
+//            vc.eventImage = eventImage
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     // MARK: IBAction
@@ -439,3 +439,20 @@ extension MakeEventController: SearchLocationProtocol {
         vc.dismiss(animated: true, completion: nil)
     }
 }
+
+//    @IBAction func finishAction(_ sender: Any) {
+//        guard let image = eventImage else { return }
+//        StorageService.addEventImage(image: image) { urlString in
+//            self.dic["urlEventString"] = urlString
+//            EventServie.sendEventData(teamId: self.teamId, event: self.dic, eventId: self.eventId) { result in
+//                switch result {
+//                case .success:
+//                    EventServie.sendEventTagData(eventId: self.eventId, tags: self.plusTagArray, teamId: self.teamId)
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                case .failure(let error):
+//                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
+//                    self.setupCDAlert(title: "イベント作成に失敗しました", message: message, action: "OK", alertType: .warning)
+//                }
+//            }
+//        }
+//    }

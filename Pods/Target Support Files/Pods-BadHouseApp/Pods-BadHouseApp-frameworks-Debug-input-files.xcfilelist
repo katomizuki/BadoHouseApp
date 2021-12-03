@@ -20,7 +20,6 @@ ${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/RangeUISlider/RangeUISlider.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
-${BUILT_PRODUCTS_DIR}/TaggerKit/TaggerKit.framework
 ${BUILT_PRODUCTS_DIR}/abseil/absl.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework
