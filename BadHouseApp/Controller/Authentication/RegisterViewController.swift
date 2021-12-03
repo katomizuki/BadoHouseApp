@@ -51,7 +51,7 @@ final class RegisterViewController: UIViewController {
         return iv
     }()
     private let disposeBag = DisposeBag()
-    private let registerBinding = RegisterBindings()
+    private let registerBinding = RegisterViewModel()
     private var indicatorView: NVActivityIndicatorView!
 //    private let fbButton = FBLoginButton()
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
@@ -195,8 +195,6 @@ final class RegisterViewController: UIViewController {
             .drive { [weak self] _ in
                 let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
                 let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-                print(loginVC)
-                print(self?.navigationController)
                 self?.navigationController?.pushViewController(loginVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -323,39 +321,6 @@ extension RegisterViewController: GIDSignInDelegate {
         print(error.localizedDescription)
     }
 }
-// MARK: - LoginButtonDelegate
-//extension RegisterViewController: LoginButtonDelegate {
-//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-//        if error == nil {
-//            if result?.isCancelled == true {
-//                return
-//            }
-//        }
-//        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-//        Auth.auth().signIn(with: credential) { (result, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-//            self.displayName = (result?.user.displayName)!
-//            guard let name = result?.user.displayName else { return }
-//            guard let email = result?.user.email else { return }
-//            guard let id = result?.user.uid else { return }
-//            UserService.setUserData(uid: id, password: "",
-//                                    email: email,
-//                                    name: name) { result in
-//                if result == true {
-//                    let bool = false
-//                    UserDefaults.standard.set(bool, forKey: "MyId")
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-//            }
-//        }
-//    }
-//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-//        print("logout fb")
-//    }
-//}
 // MARK: - UITextFieldDelegate
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -11,7 +11,7 @@ import CryptoKit
 final class LoginViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let loginBinding = LoginBindings()
+    private let loginBinding = LoginViewModel()
     private var indicatorView: NVActivityIndicatorView!
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()

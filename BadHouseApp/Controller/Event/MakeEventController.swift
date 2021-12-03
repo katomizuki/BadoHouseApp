@@ -50,7 +50,7 @@ final class MakeEventController: UIViewController {
             tfupdate(view: placeTextField)
         }
     }
-    private let eventBinding = MakeEventBindings()
+    private let eventBinding = MakeEventViewModel()
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var makeEventButton: UIButton! {
         didSet {

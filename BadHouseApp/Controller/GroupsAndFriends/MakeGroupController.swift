@@ -9,7 +9,7 @@ import FirebaseAuth
 final class MakeGroupController: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let teamBinding = TeamRegisterBindings()
+    private let teamBinding = TeamRegisterViewModel()
     var friends = [User]()
     var myData: User?
     @IBOutlet private weak var groupImageView: UIImageView! {

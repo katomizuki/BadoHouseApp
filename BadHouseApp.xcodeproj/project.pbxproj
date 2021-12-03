@@ -12,7 +12,6 @@
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
-		D31D290927469E0200EC650C /* PostVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290827469E0200EC650C /* PostVideo.storyboard */; };
 		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
 		D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290C27469F2100EC650C /* MakeGroup.storyboard */; };
 		D31D290F2746A06400EC650C /* MakeEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290E2746A06400EC650C /* MakeEvent.storyboard */; };
@@ -21,6 +20,7 @@
 		D31D29192746A74B00EC650C /* Talk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29182746A74B00EC650C /* Talk.storyboard */; };
 		D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D291C2747100800EC650C /*  SubUser.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
+		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
 		D33B018227466109004ED650 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018127466108004ED650 /* Calendar.storyboard */; };
@@ -30,7 +30,6 @@
 		D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018927466CF0004ED650 /* Tornament.storyboard */; };
 		D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018B27467009004ED650 /* MyUserInfo.storyboard */; };
 		D33B019027467437004ED650 /* XLPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018F27467437004ED650 /* XLPager.storyboard */; };
-		D33B019227467836004ED650 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019127467836004ED650 /* TimeLine.storyboard */; };
 		D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019327467922004ED650 /* FriendSearch.storyboard */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
@@ -56,7 +55,6 @@
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
 		D3A789D526F439A40088E8BC /* TalkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* TalkController.swift */; };
-		D3A82BA527040C8100DDB4FC /* VideoCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */; };
@@ -106,16 +104,13 @@
 		D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93D26E19E1800C21E46 /* MyPageController.swift */; };
 		D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */; };
 		D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */; };
-		D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamBinding.swift */; };
+		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
 		D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */; };
 		D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94E26E2F78400C21E46 /* InviteCell.swift */; };
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
-		D3CECEE126F2FFDA00B1C498 /* TimeLineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE026F2FFDA00B1C498 /* TimeLineController.swift */; };
-		D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE226F3019700B1C498 /* VideoCell.swift */; };
-		D3CECEE626F3061700B1C498 /* PostVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CECEE526F3061700B1C498 /* PostVideoController.swift */; };
 		D3CF6D1126F8AE60007C4DF3 /* CheckPreJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */; };
 		D3CF6D1326F8AE6C007C4DF3 /* CheckJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */; };
 		D3D3D37B2721733200E2853A /* BlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37A2721733200E2853A /* BlockController.swift */; };
@@ -134,7 +129,7 @@
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
 		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
-		D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* EventBinding.swift */; };
+		D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */; };
 		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
 		D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195426E4CAC900B6740E /* EventTagController.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
@@ -145,7 +140,6 @@
 		D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */; };
 		D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */; };
 		D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* Join-Service.swift */; };
-		D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */; };
 		D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */; };
 		D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33F2720252E00DE54ED /* BlockSheet.swift */; };
 		D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD34127203FD900DE54ED /* BlockCell.swift */; };
@@ -163,7 +157,6 @@
 		D31C163B272B64CE00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
 		D31D290627469D4D00EC650C /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Authentication.storyboard; path = BadHouseApp/Views/Stroyboard/Authenticaton/Authentication.storyboard; sourceTree = SOURCE_ROOT; };
-		D31D290827469E0200EC650C /* PostVideo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PostVideo.storyboard; path = BadHouseApp/Views/Stroyboard/PostVideo/PostVideo.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290A27469EA800EC650C /* Invite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Invite.storyboard; path = BadHouseApp/Views/Stroyboard/User/Invite.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290C27469F2100EC650C /* MakeGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MakeGroup.storyboard; path = BadHouseApp/Views/Stroyboard/User/MakeGroup.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290E2746A06400EC650C /* MakeEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MakeEvent.storyboard; path = BadHouseApp/Views/Stroyboard/Home/MakeEvent.storyboard; sourceTree = SOURCE_ROOT; };
@@ -172,6 +165,7 @@
 		D31D29182746A74B00EC650C /* Talk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Talk.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Talk.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D291C2747100800EC650C /*  SubUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = " SubUser.storyboard"; path = "BadHouseApp/Views/Stroyboard/User/ SubUser.storyboard"; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
+		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
 		D33B018127466108004ED650 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
@@ -181,7 +175,6 @@
 		D33B018927466CF0004ED650 /* Tornament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tornament.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Tornament.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/Views/Stroyboard/User/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018F27467437004ED650 /* XLPager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = XLPager.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/XLPager.storyboard; sourceTree = SOURCE_ROOT; };
-		D33B019127467836004ED650 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TimeLine.storyboard; path = BadHouseApp/Views/Stroyboard/TimeLine/TimeLine.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
@@ -207,7 +200,6 @@
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* TalkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkController.swift; sourceTree = "<group>"; };
-		D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchController.swift; sourceTree = "<group>"; };
 		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -254,16 +246,13 @@
 		D3C4E93D26E19E1800C21E46 /* MyPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageController.swift; sourceTree = "<group>"; };
 		D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailController.swift; sourceTree = "<group>"; };
 		D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroupController.swift; sourceTree = "<group>"; };
-		D3C4E94426E1ACBC00C21E46 /* TeamBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBinding.swift; sourceTree = "<group>"; };
+		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToTeamController.swift; sourceTree = "<group>"; };
 		D3C4E94E26E2F78400C21E46 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
-		D3CECEE026F2FFDA00B1C498 /* TimeLineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineController.swift; sourceTree = "<group>"; };
-		D3CECEE226F3019700B1C498 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
-		D3CECEE526F3061700B1C498 /* PostVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVideoController.swift; sourceTree = "<group>"; };
 		D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPreJoinController.swift; sourceTree = "<group>"; };
 		D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckJoinController.swift; sourceTree = "<group>"; };
 		D3D3D37A2721733200E2853A /* BlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockController.swift; sourceTree = "<group>"; };
@@ -283,7 +272,7 @@
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
-		D3FD195026E4993A00B6740E /* EventBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBinding.swift; sourceTree = "<group>"; };
+		D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewModel.swift; sourceTree = "<group>"; };
 		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		D3FD195426E4CAC900B6740E /* EventTagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTagController.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
@@ -294,7 +283,6 @@
 		D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRoom-Service.swift"; sourceTree = "<group>"; };
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
 		D3FFD333271EDCC300DE54ED /* Join-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Join-Service.swift"; sourceTree = "<group>"; };
-		D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPopoverController.swift; sourceTree = "<group>"; };
 		D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTeamController.swift; sourceTree = "<group>"; };
 		D3FFD33F2720252E00DE54ED /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
 		D3FFD34127203FD900DE54ED /* BlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCell.swift; sourceTree = "<group>"; };
@@ -368,14 +356,6 @@
 			path = Authenticaton;
 			sourceTree = "<group>";
 		};
-		D3969DD3274732CD0022AE24 /* TimeLine */ = {
-			isa = PBXGroup;
-			children = (
-				D33B019127467836004ED650 /* TimeLine.storyboard */,
-			);
-			path = TimeLine;
-			sourceTree = "<group>";
-		};
 		D3969DD4274732D00022AE24 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,14 +370,6 @@
 				D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		D3969DD5274732E90022AE24 /* PostVideo */ = {
-			isa = PBXGroup;
-			children = (
-				D31D290827469E0200EC650C /* PostVideo.storyboard */,
-			);
-			path = PostVideo;
 			sourceTree = "<group>";
 		};
 		D3969DD6274732F30022AE24 /* Home */ = {
@@ -431,9 +403,7 @@
 			children = (
 				D3969DD7274733200022AE24 /* Talk */,
 				D3969DD6274732F30022AE24 /* Home */,
-				D3969DD5274732E90022AE24 /* PostVideo */,
 				D3969DD4274732D00022AE24 /* User */,
-				D3969DD3274732CD0022AE24 /* TimeLine */,
 				D3969DD2274732C90022AE24 /* Authenticaton */,
 				D3BDB52D26E0525100C53780 /* Main.storyboard */,
 				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
@@ -568,8 +538,6 @@
 			isa = PBXGroup;
 			children = (
 				D3A789D326F4396A0088E8BC /* ChatList */,
-				D3CECEE426F3060500B1C498 /* VideoPost */,
-				D3CECEDF26F2FFBC00B1C498 /* TimeLine */,
 				D3C4E94326E1A54D00C21E46 /* GroupsAndFriends */,
 				D37FA52626EAFDAE00B8559F /* Event */,
 				D37FA52526EAFD5700B8559F /* User */,
@@ -618,9 +586,10 @@
 			isa = PBXGroup;
 			children = (
 				D3BDB55B26E0965200C53780 /* RegisterLoginBinding.swift */,
-				D3C4E94426E1ACBC00C21E46 /* TeamBinding.swift */,
-				D3FD195026E4993A00B6740E /* EventBinding.swift */,
+				D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */,
+				D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */,
 				D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */,
+				D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -662,7 +631,6 @@
 				D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */,
 				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D353D8E026F1621F00221B7D /* ChatCell.swift */,
-				D3CECEE226F3019700B1C498 /* VideoCell.swift */,
 				D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */,
 				D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */,
 				D3FFD34127203FD900DE54ED /* BlockCell.swift */,
@@ -687,24 +655,6 @@
 				D3F860772727AF7E00085ABD /* GroupSearchListController.swift */,
 			);
 			path = GroupsAndFriends;
-			sourceTree = "<group>";
-		};
-		D3CECEDF26F2FFBC00B1C498 /* TimeLine */ = {
-			isa = PBXGroup;
-			children = (
-				D3CECEE026F2FFDA00B1C498 /* TimeLineController.swift */,
-				D3FFD339271F9B9F00DE54ED /* VideoPopoverController.swift */,
-			);
-			path = TimeLine;
-			sourceTree = "<group>";
-		};
-		D3CECEE426F3060500B1C498 /* VideoPost */ = {
-			isa = PBXGroup;
-			children = (
-				D3CECEE526F3061700B1C498 /* PostVideoController.swift */,
-				D3A82BA427040C8100DDB4FC /* VideoCameraController.swift */,
-			);
-			path = VideoPost;
 			sourceTree = "<group>";
 		};
 		D3FFD326271EBBD100DE54ED /* API-Service */ = {
@@ -804,7 +754,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B018227466109004ED650 /* Calendar.storyboard in Resources */,
-				D33B019227467836004ED650 /* TimeLine.storyboard in Resources */,
 				D3969DC927471FC70022AE24 /* UserDetail.storyboard in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
@@ -814,7 +763,6 @@
 				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
 				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
 				D31D290F2746A06400EC650C /* MakeEvent.storyboard in Resources */,
-				D31D290927469E0200EC650C /* PostVideo.storyboard in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
 				D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */,
@@ -949,6 +897,7 @@
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
 				D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
+				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */,
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
@@ -958,9 +907,8 @@
 				D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */,
 				D3B72CF1274A2EAA00253933 /* UIImageView+Extenstion.swift in Sources */,
 				D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */,
-				D3CECEE326F3019700B1C498 /* VideoCell.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
-				D3C4E94526E1ACBC00C21E46 /* TeamBinding.swift in Sources */,
+				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
 				D3B72D01274A38C000253933 /* SegueEnum.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */,
@@ -979,9 +927,7 @@
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
 				D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
-				D3CECEE626F3061700B1C498 /* PostVideoController.swift in Sources */,
 				D3D3D37B2721733200E2853A /* BlockController.swift in Sources */,
-				D3A82BA527040C8100DDB4FC /* VideoCameraController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
@@ -992,7 +938,6 @@
 				D3CF6D1126F8AE60007C4DF3 /* CheckPreJoinController.swift in Sources */,
 				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
-				D3FFD33A271F9B9F00DE54ED /* VideoPopoverController.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
 				D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
@@ -1003,7 +948,7 @@
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */,
 				D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */,
-				D3FD195126E4993A00B6740E /* EventBinding.swift in Sources */,
+				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */,
@@ -1016,7 +961,6 @@
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
-				D3CECEE126F2FFDA00B1C498 /* TimeLineController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
