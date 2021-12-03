@@ -1,7 +1,5 @@
 import UIKit
 import Firebase
-import NVActivityIndicatorView
-
 
 final class MyPageController: UIViewController {
     // MARK: - Properties
@@ -11,7 +9,6 @@ final class MyPageController: UIViewController {
     private let cellId = "cellGroupId"
     private var userIdArray = [String]()
     private let sectionArray = ["所属チーム", "バド友"]
-    private var indicatorView: NVActivityIndicatorView!
     private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var groupTableView: UITableView! {
         didSet {
@@ -37,8 +34,6 @@ final class MyPageController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupIndicator()
-        indicatorView.startAnimating()
         setupTableView()
         setupData()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
@@ -86,14 +81,6 @@ final class MyPageController: UIViewController {
         groupTableView.dataSource = self
         let nib = GroupCell.nib()
         groupTableView.register(nib, forCellReuseIdentifier: cellId)
-    }
-    private func setupIndicator() {
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
     }
     // MARK: - IBAction
   
@@ -214,7 +201,6 @@ extension MyPageController: FetchMyDataDelegate {
         self.teamArray = array
         self.countLabel.text = "お友達 \(self.friendArray.count)人  所属サークル \(self.teamArray.count)グループ"
         DispatchQueue.main.async {
-            self.indicatorView.stopAnimating()
             self.groupTableView.reloadData()
         }
     }

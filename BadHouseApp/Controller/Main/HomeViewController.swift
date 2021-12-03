@@ -1,6 +1,5 @@
 import UIKit
 import Firebase
-import NVActivityIndicatorView
 import RxCocoa
 import RxSwift
 import CoreLocation
@@ -17,7 +16,6 @@ final class HomeViewController: UIViewController {
     private var eventArray = [Event]()
     private let cellId = "eventId"
     private var user: User?
-    private var indicatorView: NVActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
@@ -38,8 +36,6 @@ final class HomeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupIndicator()
-        indicatorView.startAnimating()
         setupLocationManager()
         setupDelegate()
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
@@ -55,7 +51,6 @@ final class HomeViewController: UIViewController {
         }
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                print("sss")
                 let vc = RegisterViewController()
                 let nav = UINavigationController(rootViewController:  vc)
                 nav.modalPresentationStyle = .fullScreen
@@ -76,14 +71,7 @@ final class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    private func setupIndicator() {
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
-    }
+
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -217,7 +205,6 @@ extension HomeViewController: FetchEventDataDelegate {
     func fetchEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
-        self.indicatorView.stopAnimating()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

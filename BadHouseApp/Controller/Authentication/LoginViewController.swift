@@ -3,7 +3,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Firebase
-import NVActivityIndicatorView
 import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
@@ -12,7 +11,6 @@ final class LoginViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginViewModel()
-    private var indicatorView: NVActivityIndicatorView!
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
@@ -90,20 +88,12 @@ final class LoginViewController: UIViewController {
                               paddingTop: 20,
                               centerX: view.centerXAnchor)
         dontHaveButton.addTarget(self, action: #selector(moveAlready), for: UIControl.Event.touchUpInside)
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
     }
     private func setupDelegate() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-//        fbButton.delegate = self
-//        fbButton.permissions = ["public_profile, email"]
     }
     private func setupBinding() {
         emailTextField.rx.text
@@ -198,12 +188,10 @@ final class LoginViewController: UIViewController {
     // MARK: - Login
     private func login() {
         print(#function)
-        indicatorView.stopAnimating()
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         AuthService.loginFirebaseAuth(email: email, password: password) { result, error in
             if result {
-                self.indicatorView.stopAnimating()
                 self.dismiss(animated: true, completion: nil)
             } else {
                 if let error = error as NSError? {
@@ -217,7 +205,6 @@ final class LoginViewController: UIViewController {
         print(#function)
         let message = setupErrorMessage(error: error)
         self.setupCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
-        indicatorView.stopAnimating()
     }
 }
 // MARK: - GoogleSigninDelegate

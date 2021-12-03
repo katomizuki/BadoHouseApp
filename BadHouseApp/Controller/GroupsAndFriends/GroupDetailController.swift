@@ -1,7 +1,6 @@
 import UIKit
 import SDWebImage
 import Firebase
-import NVActivityIndicatorView
 import Charts
 
 final class GroupDetailController: UIViewController {
@@ -36,7 +35,6 @@ final class GroupDetailController: UIViewController {
     @IBOutlet private weak var barChartView: BarChartView!
     private let teamMemberCellId = "memberCellId"
     private var genderArray = [Int]()
-    private var indicatorView: NVActivityIndicatorView!
     private var rawData: [Int] = []
     @IBOutlet weak var withdrawButton: UIButton! {
         didSet {
@@ -67,9 +65,7 @@ final class GroupDetailController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupIndicator()
         setupDelegate()
-        indicatorView.startAnimating()
         setupData()
         setUpTeamStatus()
         setUpTeamPlayer()
@@ -126,7 +122,6 @@ final class GroupDetailController: UIViewController {
             group.notify(queue: .main) {
                 self.fetchData.fetchGenderCountData(teamPlayers: self.teamPlayers)
                 self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamPlayers)
-                self.indicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }
         }
@@ -136,14 +131,7 @@ final class GroupDetailController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    private func setupIndicator() {
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
-    }
+ 
     private func setUpTeamStatus() {
         print(#function)
         let nib = TeammemberCell.nib()

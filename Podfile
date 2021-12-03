@@ -12,7 +12,7 @@ pod 'Firebase'
 pod 'FirebaseStorage'
 pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
-pod 'NVActivityIndicatorView'
+#pod 'NVActivityIndicatorView'
 pod 'FSCalendar'
 pod 'PKHUD'
 pod "CDAlertView"

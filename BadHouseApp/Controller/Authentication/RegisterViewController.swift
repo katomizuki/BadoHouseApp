@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import RxSwift
-import NVActivityIndicatorView
 import RxCocoa
 import GoogleSignIn
 import Firebase
@@ -52,8 +51,6 @@ final class RegisterViewController: UIViewController {
     }()
     private let disposeBag = DisposeBag()
     private let registerBinding = RegisterViewModel()
-    private var indicatorView: NVActivityIndicatorView!
-//    private let fbButton = FBLoginButton()
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
@@ -89,8 +86,6 @@ final class RegisterViewController: UIViewController {
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-//        fbButton.delegate = self
-//        fbButton.permissions = ["public_profile, email"]
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -131,12 +126,6 @@ final class RegisterViewController: UIViewController {
                           paddingTop: 10,
                           centerX: view.centerXAnchor,
                           width: 100)
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
     }
     private func setupBinding() {
         nameTextField.rx.text
@@ -201,14 +190,12 @@ final class RegisterViewController: UIViewController {
     }
     // MARK: - HelperMethod
     private func createUser() {
-        indicatorView.startAnimating()
         print(#function)
         let name = nameTextField.text ?? ""
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         AuthService.register(name: name, email: email, password: password) { result, error in
             if result {
-                self.indicatorView.stopAnimating()
                 let bool = false
                 UserDefaults.standard.set(bool, forKey: "MyId")
                 print("Create User Success")
@@ -262,7 +249,6 @@ final class RegisterViewController: UIViewController {
                           message: message,
                           action: "OK",
                           alertType: .error)
-        indicatorView.stopAnimating()
     }
     // MARK: - SelectorMethod
     @objc private func appleRegister() {

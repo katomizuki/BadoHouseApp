@@ -1,6 +1,5 @@
 import UIKit
 import Firebase
-import NVActivityIndicatorView
 
 final class InviteToTeamController: UIViewController {
     // MARK: - Properties
@@ -13,7 +12,6 @@ final class InviteToTeamController: UIViewController {
          teamLevel) = (String(), String(), String(), String())
     var teamImage: UIImage?
     var me: User?
-    private var indicatorView: NVActivityIndicatorView!
     var teamTagArray = [String]()
     var url: String?
     private let fetchData = FetchFirestoreData()
@@ -56,7 +54,6 @@ final class InviteToTeamController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupIndicator()
     }
     // MARK: - setupMethod
     private func setupTableView() {
@@ -64,17 +61,8 @@ final class InviteToTeamController: UIViewController {
         friendTableView.dataSource = self
         friendTableView.register(InviteCell.self, forCellReuseIdentifier: cellId)
     }
-    private func setupIndicator() {
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
-    }
     // MARK: - IBAction
     @IBAction func sendTeamData(_ sender: Any) {
-        indicatorView.startAnimating()
         guard let teamImage = self.teamImage else { return }
         let teamName = self.teamName
         let teamPlace = self.teamPlace
@@ -93,14 +81,12 @@ final class InviteToTeamController: UIViewController {
                                        friends: self.inviter,
                                        teamUrl: teamUrl,
                                        tagArray: self.teamTagArray) { result in
-                self.indicatorView.stopAnimating()
                 switch result {
                 case .success:
                     self.navigationController?.popToRootViewController(animated: true)
                 case .failure(let error):
                     print(error)
                     self.setupCDAlert(title: "チーム作成に失敗しました。", message: "", action: "OK", alertType: .warning)
-                    self.indicatorView.stopAnimating()
                 }
             }
         }

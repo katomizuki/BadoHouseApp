@@ -1,20 +1,10 @@
 import Foundation
 import UIKit
 import Firebase
-import NVActivityIndicatorView
 import CDAlertView
 // Mark UIViewcontroller-Extension
 extension UIViewController {
-    func setupIndicatorView() -> NVActivityIndicatorView {
-        let frame = CGRect(x: view.frame.width / 2,
-                           y: view.frame.height / 2,
-                           width: 100,
-                           height: 100)
-        return  NVActivityIndicatorView(frame: frame,
-                                        type: NVActivityIndicatorType.ballSpinFadeLoader,
-                                        color: Constants.AppColor.OriginalBlue,
-                                        padding: 0)
-    }
+   
     func setupCDAlert(title: String, message: String, action: String, alertType: CDAlertViewType) {
         let alert = CDAlertView(title: title, message: message, type: alertType)
         let alertAction = CDAlertViewAction(title: action, font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
@@ -76,9 +66,7 @@ extension UIViewController {
         return message
     }
     func setupNavAccessory() {
-        let image = UIImage(named: Constants.ImageName.double)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
     }

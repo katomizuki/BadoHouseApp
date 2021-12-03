@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 import SDWebImage
 import CDAlertView
-import NVActivityIndicatorView
 
 final class TalkController: UIViewController {
     // MARK: - Properties
@@ -30,7 +29,6 @@ final class TalkController: UIViewController {
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return view
     }()
-    private var indicatorView: NVActivityIndicatorView!
     private let cellId = "cellGroupId"
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -39,8 +37,6 @@ final class TalkController: UIViewController {
         setupOwnTeamData()
         setupNotification()
         setupNav()
-        setupIndicator()
-        indicatorView.startAnimating()
         fetchData.myDataDelegate = self
         EventServie.getmyEventId { [weak self] event in
             guard let self = self else { return }
@@ -64,14 +60,7 @@ final class TalkController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    private func setupIndicator() {
-        indicatorView = self.setupIndicatorView()
-        view.addSubview(indicatorView)
-        indicatorView.anchor(centerX: view.centerXAnchor,
-                             centerY: view.centerYAnchor,
-                             width: 100,
-                             height: 100)
-    }
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -225,7 +214,6 @@ extension TalkController: FetchChatDataDelgate {
         let sortArray = self.sortArray()
         makeSortArray(sortArray: sortArray)
         DispatchQueue.main.async {
-            self.indicatorView.stopAnimating()
             self.tableView.reloadData()
         }
     }
