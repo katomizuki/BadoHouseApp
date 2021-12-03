@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -85,8 +85,6 @@
 		D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54326E0547300C53780 /* LoginViewController.swift */; };
 		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
 		D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB54726E0590800C53780 /* GoogleService-Info.plist */; };
-		D3BDB54B26E0598C00C53780 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D3BDB54A26E0598C00C53780 /* RxCocoa */; };
-		D3BDB54D26E0598C00C53780 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3BDB54C26E0598C00C53780 /* RxSwift */; };
 		D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */; };
 		D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */; };
 		D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55426E062E700C53780 /* RegisterTextField.swift */; };
@@ -96,7 +94,6 @@
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* UserModel.swift */; };
 		D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C02CEE26E8A5C800995517 /* Tag.swift */; };
-		D3C02CF226E8B24A00995517 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = D3C02CF126E8B24A00995517 /* Charts */; };
 		D3C4E93226E0F0BD00C21E46 /* MyPageUserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93126E0F0BD00C21E46 /* MyPageUserInfoController.swift */; };
 		D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93426E0F1BE00C21E46 /* ProfileLabel.swift */; };
 		D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */; };
@@ -289,10 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3BDB54D26E0598C00C53780 /* RxSwift in Frameworks */,
-				D3BDB54B26E0598C00C53780 /* RxCocoa in Frameworks */,
 				2F43C7F339CC617506877AF3 /* Pods_BadHouseApp.framework in Frameworks */,
-				D3C02CF226E8B24A00995517 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,9 +705,6 @@
 			);
 			name = BadHouseApp;
 			packageProductDependencies = (
-				D3BDB54A26E0598C00C53780 /* RxCocoa */,
-				D3BDB54C26E0598C00C53780 /* RxSwift */,
-				D3C02CF126E8B24A00995517 /* Charts */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -743,8 +734,6 @@
 			);
 			mainGroup = D3BDB51B26E0525100C53780;
 			packageReferences = (
-				D3BDB54926E0598C00C53780 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				D3C02CF026E8B24A00995517 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1208,43 +1197,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D3BDB54926E0598C00C53780 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.0;
-			};
-		};
-		D3C02CF026E8B24A00995517 /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D3BDB54A26E0598C00C53780 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3BDB54926E0598C00C53780 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		D3BDB54C26E0598C00C53780 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3BDB54926E0598C00C53780 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		D3C02CF126E8B24A00995517 /* Charts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3C02CF026E8B24A00995517 /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = Charts;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D3BDB51C26E0525100C53780 /* Project object */;
 }
