@@ -49,7 +49,7 @@ final class MakeEventController: UIViewController {
             guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventSecondController") as? MakeEventSecondController else { return }
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
-        
+
         noImageView.rx.tapGesture()
             .when(.recognized)
             .subscribe { [weak self]_ in

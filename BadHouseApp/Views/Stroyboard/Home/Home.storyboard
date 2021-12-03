@@ -91,9 +91,9 @@
                     <navigationItem key="navigationItem" id="xn6-tE-X1b">
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="fNE-l8-KnE"/>
-                        <barButtonItem key="leftBarButtonItem" title="イベント" id="Dcw-Mc-Rc6">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cz4-bX-KXc">
-                                <rect key="frame" x="20" y="10" width="100" height="24"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="9YY-1J-xLV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EC8-Uu-czh">
+                                <rect key="frame" x="20" y="0.0" width="61" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -102,29 +102,33 @@
                                     <color key="titleShadowColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
                                 </state>
-                                <connections>
-                                    <segue destination="EgL-cs-2XH" kind="show" id="YUv-yd-FfO"/>
-                                </connections>
                             </button>
-                            <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="検索" id="tSz-g6-eRh">
-                            <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EJc-bs-ynB" userLabel="詳細検索">
-                                <rect key="frame" x="291" y="10" width="103" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Hun-8X-dQl" kind="presentation" identifier="gotoDetail" id="K5j-pk-Qub"/>
-                                </connections>
-                            </button>
-                            <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="C8G-dF-Z9p">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4DE-RN-vUZ" userLabel="詳細検索">
+                                    <rect key="frame" x="347" y="1.5" width="47" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal">
+                                        <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
+                                    </state>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="IIP-gB-XGf">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="nCB-dy-luD">
+                                    <rect key="frame" x="290" y="5" width="49" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title=" ">
+                                        <imageReference key="image" image="mappin.circle.fill" catalog="system" symbolScale="large"/>
+                                    </buttonConfiguration>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -133,6 +137,8 @@
                         <outlet property="timeButton" destination="BV6-mn-5x8" id="ldm-SH-YwA"/>
                         <segue destination="iT6-NJ-FbN" kind="show" identifier="goto" id="AWO-mA-qp4"/>
                         <segue destination="SdE-sB-WCG" kind="presentation" identifier="gotoRegister" modalPresentationStyle="fullScreen" id="CEC-OQ-CJW"/>
+                        <segue destination="EgL-cs-2XH" kind="show" id="rJF-Cm-tQX"/>
+                        <segue destination="Hun-8X-dQl" kind="presentation" modalPresentationStyle="fullScreen" id="OAn-3I-e1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bh5-QE-jzC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -153,7 +159,7 @@
                 <viewControllerPlaceholder storyboardName="DetailSearch" id="Hun-8X-dQl" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ba-rx-kmw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4173.913043478261" y="-36.160714285714285"/>
+            <point key="canvasLocation" x="4226" y="143"/>
         </scene>
         <!--RegisterVC-->
         <scene sceneID="NB2-2A-ZTr">
@@ -173,7 +179,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgh-4r-QQA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4165.217391304348" y="-120.53571428571428"/>
+            <point key="canvasLocation" x="4216" y="110"/>
         </scene>
         <!--EventDetailVC-->
         <scene sceneID="apj-7h-dfM">
@@ -206,6 +212,7 @@
     </scenes>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
         <image name="scroll" width="48" height="48"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <namedColor name="backGroundColor">
