@@ -5,7 +5,6 @@ import RxCocoa
 import RxSwift
 import CoreLocation
 import MapKit
-import EmptyStateKit
 import UserNotifications
 import CDAlertView
 
@@ -45,7 +44,6 @@ final class HomeViewController: UIViewController {
         setupDelegate()
         fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         setupCollectionView()
-        setupEmptyState()
         EventServie.deleteEvent()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
@@ -71,19 +69,7 @@ final class HomeViewController: UIViewController {
         print(#function)
         searchBar.resignFirstResponder()
     }
-    // MARK: - setupMethod
-    private func setupEmptyState() {
-        view.emptyState.delegate = self
-        var format = EmptyStateFormat()
-        format.buttonColor = Constants.AppColor.OriginalBlue
-        format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
-        format.descriptionAttributes = [.strokeWidth: -5, .foregroundColor: UIColor.darkGray]
-        format.animation = EmptyStateAnimation.scale(0.3, 2.0)
-        format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? UIColor.systemGray
-        view.emptyState.format = format
-    }
+   
     private func setupDelegate() {
         fetchData.eventDelegate = self
         searchBar.delegate = self
@@ -239,7 +225,7 @@ extension HomeViewController: FetchEventDataDelegate {
     func fetchEventTimeData(eventArray: [Event]) {
         print(#function)
         if eventArray.isEmpty {
-            view.emptyState.show(State.noSearch)
+            
         } else {
             self.eventArray = eventArray
             DispatchQueue.main.async {
@@ -263,7 +249,7 @@ extension HomeViewController: FetchEventDataDelegate {
             }
         } else if bool == true {
             if eventArray.isEmpty {
-                view.emptyState.show(State.noSearch)
+                
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -297,13 +283,7 @@ extension HomeViewController: SearchCalendarDelegate {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-// MARK: - EmptyStateDelegate
-extension HomeViewController: EmptyStateDelegate {
-    func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
-        fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
-        view.emptyState.hide()
-    }
-}
+
 // MARK: - EventInfoCellDelegate
 extension HomeViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell) {

@@ -1,5 +1,4 @@
 import UIKit
-import EmptyStateKit
 import CDAlertView
 
 final class GroupSearchController: UIViewController {
@@ -24,7 +23,6 @@ final class GroupSearchController: UIViewController {
         setupTableView()
         searchBar.delegate = self
         fetchData.searchDelegate = self
-        setupEmptyState()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,18 +40,7 @@ final class GroupSearchController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    private func setupEmptyState() {
-        view.emptyState.delegate = self
-        var format = EmptyStateFormat()
-        format.buttonColor = Constants.AppColor.OriginalBlue
-        format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
-        format.descriptionAttributes = [.strokeWidth: -5, .foregroundColor: UIColor.darkGray]
-        format.animation = EmptyStateAnimation.scale(0.3, 2.0)
-        format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? .systemGray
-        view.emptyState.format = format
-    }
+
     // MARK: - SelectorMethod
     @objc private func didTapRightButtonItem() {
         let vc = SearchDetailGroupController()
@@ -126,7 +113,6 @@ extension GroupSearchController: FetchSearchDataDelegate {
             }
         } else if bool == true {
             if groupArray.isEmpty {
-                view.emptyState.show(State.noSearch)
             } else {
                 self.groupArray = groupArray
                 DispatchQueue.main.async {
@@ -139,7 +125,6 @@ extension GroupSearchController: FetchSearchDataDelegate {
         print(#function)
         self.groupArray = groupArray
         if self.groupArray.isEmpty {
-            view.emptyState.show(State.noSearch)
         } else {
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -147,12 +132,7 @@ extension GroupSearchController: FetchSearchDataDelegate {
        }
     }
 }
-// MARK: - EmptyStateDelegate
-extension GroupSearchController: EmptyStateDelegate {
-    func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
-        view.emptyState.hide()
-    }
-}
+
 extension GroupSearchController: SearchDetailGroupDelegate {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
         vc.dismiss(animated: true, completion: nil)

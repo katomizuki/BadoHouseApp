@@ -38,20 +38,11 @@
                         <outlet property="tableView" destination="jmi-8B-HbB" id="SCa-CZ-9Fx"/>
                         <segue destination="d5l-wY-ULa" kind="show" id="FQ5-8I-bax"/>
                         <segue destination="ds5-XJ-SRq" kind="show" id="3rr-Jc-WrJ"/>
-                        <segue destination="OoH-mh-7w3" kind="presentation" identifier="gotoNotification" id="eiH-Zf-iLl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVc-13-tnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1226.0869565217392" y="1672.7678571428571"/>
-        </scene>
-        <!--PreVC-->
-        <scene sceneID="vd4-OX-7wz">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="PreVC" storyboardName="XLPager" referencedIdentifier="PreVC" id="OoH-mh-7w3" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cR0-34-vfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2055.7971014492755" y="1650.6696428571429"/>
         </scene>
         <!--ChatViewController-->
         <scene sceneID="uuE-te-ZPs">

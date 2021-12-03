@@ -61,7 +61,6 @@ final class TalkController: UIViewController {
         navigationItem.title = "トーク"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
         navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: UIBarButtonItem.Style.done, target: self, action: #selector(handleNotification))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -118,10 +117,7 @@ final class TalkController: UIViewController {
         self.sortLastCommentArray = []
         self.sortChatModelArray = []
     }
-    // MARK: - SelectorMethod
-    @objc private func handleNotification() {
-        performSegue(withIdentifier: Segue.gotoNotification.rawValue, sender: nil)
-    }
+
     @objc private func handleSchedule() {
         print(#function)
         UserService.getUserData(uid: AuthService.getUserId()) { user in

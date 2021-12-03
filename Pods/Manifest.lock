@@ -350,7 +350,6 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - CDAlertView (0.11.0)
-  - EmptyStateKit (1.1.0)
   - Firebase (8.7.0):
     - Firebase/Core (= 8.7.0)
   - Firebase/Analytics (8.7.0):
@@ -515,11 +514,9 @@ PODS:
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
   - TaggerKit (0.6.1)
-  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - CDAlertView
-  - EmptyStateKit
   - Firebase
   - Firebase/Analytics
   - Firebase/Auth
@@ -534,7 +531,6 @@ DEPENDENCIES:
   - RangeUISlider (~> 3.0)
   - SDWebImage
   - TaggerKit
-  - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
   trunk:
@@ -542,7 +538,6 @@ SPEC REPOS:
     - AppAuth
     - BoringSSL-GRPC
     - CDAlertView
-    - EmptyStateKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -570,14 +565,12 @@ SPEC REPOS:
     - RangeUISlider
     - SDWebImage
     - TaggerKit
-    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CDAlertView: cd6624e857c85ad14560e2cd23d7eb25b983b590
-  EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
   FirebaseAnalytics: 52768800c2add1d84b751420cb4caaf8195f2c41
   FirebaseAuth: 2e7d029977648c67a5d51a263d4cbab76d34cf12
@@ -605,8 +598,7 @@ SPEC CHECKSUMS:
   RangeUISlider: 06bd968e640c1bfd390bb7abb32d54466295ff09
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   TaggerKit: e88422048a006b409a37b37f24785dfcca69b5b2
-  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 9d807bea734dcc03bf67ab349636502087889b82
+PODFILE CHECKSUM: b05d2e9fb3f7f022fd10ca066944a4378883ec70
 
 COCOAPODS: 1.11.2

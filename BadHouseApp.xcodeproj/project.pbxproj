@@ -31,7 +31,6 @@
 		D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018727466A98004ED650 /* LevelDetail.storyboard */; };
 		D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018927466CF0004ED650 /* Tornament.storyboard */; };
 		D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018B27467009004ED650 /* MyUserInfo.storyboard */; };
-		D33B019027467437004ED650 /* XLPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018F27467437004ED650 /* XLPager.storyboard */; };
 		D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019327467922004ED650 /* FriendSearch.storyboard */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
@@ -93,7 +92,7 @@
 		D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55426E062E700C53780 /* RegisterTextField.swift */; };
 		D3BDB55726E0644E00C53780 /* UIButton+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55626E0644E00C53780 /* UIButton+Factory.swift */; };
 		D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55826E066CF00C53780 /* RegisterButton.swift */; };
-		D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterLoginBinding.swift */; };
+		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* UserModel.swift */; };
 		D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C02CEE26E8A5C800995517 /* Tag.swift */; };
@@ -113,18 +112,14 @@
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
-		D3CF6D1126F8AE60007C4DF3 /* CheckPreJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */; };
-		D3CF6D1326F8AE6C007C4DF3 /* CheckJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */; };
 		D3D3D37B2721733200E2853A /* BlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37A2721733200E2853A /* BlockController.swift */; };
 		D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37C2721753A00E2853A /* BlockTextView.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
-		D3DA98BA26F6D8C200DFF8B1 /* EmptyStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98B926F6D8C200DFF8B1 /* EmptyStateEnum.swift */; };
 		D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */; };
 		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
 		D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
-		D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */; };
 		D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860202725064300085ABD /* SearchDetailGroupController.swift */; };
 		D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860772727AF7E00085ABD /* GroupSearchListController.swift */; };
 		D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */; };
@@ -178,7 +173,6 @@
 		D33B018727466A98004ED650 /* LevelDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LevelDetail.storyboard; sourceTree = "<group>"; };
 		D33B018927466CF0004ED650 /* Tornament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tornament.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Tornament.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/Views/Stroyboard/User/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
-		D33B018F27467437004ED650 /* XLPager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = XLPager.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/XLPager.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
@@ -238,7 +232,7 @@
 		D3BDB55426E062E700C53780 /* RegisterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTextField.swift; sourceTree = "<group>"; };
 		D3BDB55626E0644E00C53780 /* UIButton+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Factory.swift"; sourceTree = "<group>"; };
 		D3BDB55826E066CF00C53780 /* RegisterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButton.swift; sourceTree = "<group>"; };
-		D3BDB55B26E0965200C53780 /* RegisterLoginBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLoginBinding.swift; sourceTree = "<group>"; };
+		D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		D3BDB56326E0B05D00C53780 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D3C02CEE26E8A5C800995517 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -257,19 +251,15 @@
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
-		D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPreJoinController.swift; sourceTree = "<group>"; };
-		D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckJoinController.swift; sourceTree = "<group>"; };
 		D3D3D37A2721733200E2853A /* BlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockController.swift; sourceTree = "<group>"; };
 		D3D3D37C2721753A00E2853A /* BlockTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTextView.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
-		D3DA98B926F6D8C200DFF8B1 /* EmptyStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateEnum.swift; sourceTree = "<group>"; };
 		D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchController.swift; sourceTree = "<group>"; };
 		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatController.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
-		D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPagerController.swift; sourceTree = "<group>"; };
 		D3F860202725064300085ABD /* SearchDetailGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailGroupController.swift; sourceTree = "<group>"; };
 		D3F860772727AF7E00085ABD /* GroupSearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchListController.swift; sourceTree = "<group>"; };
 		D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseErrorEnum.swift; sourceTree = "<group>"; };
@@ -410,7 +400,6 @@
 		D3969DD7274733200022AE24 /* Talk */ = {
 			isa = PBXGroup;
 			children = (
-				D33B018F27467437004ED650 /* XLPager.storyboard */,
 				D31D29182746A74B00EC650C /* Talk.storyboard */,
 				D31D29162746A6C000EC650C /* GroupChat.storyboard */,
 				D31D29142746A5DE00EC650C /* Chat.storyboard */,
@@ -435,10 +424,7 @@
 		D3A789D326F4396A0088E8BC /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				D3CF6D1026F8AE60007C4DF3 /* CheckPreJoinController.swift */,
-				D3CF6D1226F8AE6C007C4DF3 /* CheckJoinController.swift */,
 				D3A789D426F439A40088E8BC /* TalkController.swift */,
-				D3DA98C326F80A0100DFF8B1 /* XLPagerController.swift */,
 				D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */,
 				D353D8D926F05B9600221B7D /* DMChatController.swift */,
 				D39771712709D1D40025BE19 /* MyScheduleController.swift */,
@@ -457,7 +443,6 @@
 		D3B72CE7274A2DC100253933 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				D3DA98B926F6D8C200DFF8B1 /* EmptyStateEnum.swift */,
 				D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */,
 				D3B72CF2274A308500253933 /* GenderEnum.swift */,
 				D3B72CF4274A30C700253933 /* MondeyEnum.swift */,
@@ -607,7 +592,7 @@
 		D3BDB55A26E0964200C53780 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D3BDB55B26E0965200C53780 /* RegisterLoginBinding.swift */,
+				D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */,
 				D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */,
 				D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */,
 				D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */,
@@ -803,7 +788,6 @@
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
 				D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */,
-				D33B019027467437004ED650 /* XLPager.storyboard in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);
@@ -918,7 +902,6 @@
 				D3A789D526F439A40088E8BC /* TalkController.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
-				D3DA98C426F80A0100DFF8B1 /* XLPagerController.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
@@ -926,7 +909,7 @@
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
 				D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */,
 				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
-				D3BDB55C26E0965200C53780 /* RegisterLoginBinding.swift in Sources */,
+				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */,
 				D3B72CF1274A2EAA00253933 /* UIImageView+Extenstion.swift in Sources */,
 				D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */,
@@ -958,7 +941,6 @@
 				D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */,
 				D330032826E7013900208525 /* MyLevelController.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
-				D3CF6D1126F8AE60007C4DF3 /* CheckPreJoinController.swift in Sources */,
 				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
@@ -990,7 +972,6 @@
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
-				D3CF6D1326F8AE6C007C4DF3 /* CheckJoinController.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
@@ -1014,7 +995,6 @@
 				D37FA52C26EB4AD900B8559F /* EventDetailController.swift in Sources */,
 				D3976EF1270337F40016CEB2 /* InputView.swift in Sources */,
 				D3C4E93C26E0F57700C21E46 /* InfoCollectionViewCell.swift in Sources */,
-				D3DA98BA26F6D8C200DFF8B1 /* EmptyStateEnum.swift in Sources */,
 				D3B72CF3274A308500253933 /* GenderEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

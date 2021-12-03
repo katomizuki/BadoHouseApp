@@ -15,9 +15,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'TaggerKit'
 pod 'NVActivityIndicatorView'
 pod 'FSCalendar'
-pod 'EmptyStateKit'
 pod 'PKHUD'
-pod 'XLPagerTabStrip', '~> 9.0'
 pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
 

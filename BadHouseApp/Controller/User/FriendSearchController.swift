@@ -1,7 +1,6 @@
 import UIKit
 import SDWebImage
 import Firebase
-import EmptyStateKit
 import CDAlertView
 import RxSwift
 import RxCocoa
@@ -33,7 +32,6 @@ final class FriendSearchController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupDelegate()
-        setupEmptyState()
         view.addSubview(backButton)
         backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                          left: view.leftAnchor,
@@ -58,18 +56,7 @@ final class FriendSearchController: UIViewController {
         tableView.register(FriendSearchCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
-    private func setupEmptyState() {
-        view.emptyState.delegate = self
-        var format = EmptyStateFormat()
-        format.buttonColor = Constants.AppColor.OriginalBlue
-        format.buttonWidth = 200
-        format.titleAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
-        format.descriptionAttributes = [.strokeWidth: -5, .foregroundColor: UIColor.darkGray]
-        format.animation = EmptyStateAnimation.scale(0.3, 2.0)
-        format.imageSize = CGSize(width: 200, height: 200)
-        format.backgroundColor = UIColor(named: Constants.AppColor.darkColor) ?? UIColor.systemGray
-        view.emptyState.format = format
-    }
+    
     // MARK: - CustomDelegate
     func plusFriend(cell: UITableViewCell) {
         print(#function)
@@ -166,7 +153,6 @@ extension FriendSearchController: FetchSearchDataDelegate {
             }
         } else if bool == true {
             if userArray.isEmpty {
-                self.view.emptyState.show(State.noSearch)
             } else {
                 self.friendList = userArray
                 DispatchQueue.main.async {
@@ -174,11 +160,5 @@ extension FriendSearchController: FetchSearchDataDelegate {
                 }
             }
         }
-    }
-}
-// MARK: - EmptyStateDelegate
-extension FriendSearchController: EmptyStateDelegate {
-    func emptyState(emptyState: EmptyState, didPressButton button: UIButton) {
-        view.emptyState.hide()
     }
 }
