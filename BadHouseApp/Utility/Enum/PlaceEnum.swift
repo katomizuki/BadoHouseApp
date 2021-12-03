@@ -1,10 +1,10 @@
 
 import Foundation
 enum Place: Int, CaseIterable {
-    case kanagawa
-    case tokyo
-    case chiba
-    case saitama
+    case kanagawa, tokyo, chiba, saitama
+//    case tokyo
+//    case chiba
+//    case saitama
     var name: String {
         switch self {
         case .kanagawa:

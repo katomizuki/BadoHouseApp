@@ -509,15 +509,6 @@ PODS:
   - nanopb/encode (2.30908.0)
   - PKHUD (5.3.0)
   - PromisesObjC (2.0.0)
-  - RxCocoa (6.2.0):
-    - RxRelay (= 6.2.0)
-    - RxSwift (= 6.2.0)
-  - RxGesture (4.0.2):
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - RxRelay (6.2.0):
-    - RxSwift (= 6.2.0)
-  - RxSwift (6.2.0)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
@@ -535,9 +526,6 @@ DEPENDENCIES:
   - GoogleSignIn (~> 5.0.0)
   - IQKeyboardManagerSwift
   - PKHUD
-  - RxCocoa (= 6.2.0)
-  - RxGesture
-  - RxSwift (= 6.2.0)
   - SDWebImage
 
 SPEC REPOS:
@@ -570,10 +558,6 @@ SPEC REPOS:
     - nanopb
     - PKHUD
     - PromisesObjC
-    - RxCocoa
-    - RxGesture
-    - RxRelay
-    - RxSwift
     - SDWebImage
 
 SPEC CHECKSUMS:
@@ -605,12 +589,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxGesture: f059f2aeef966fb17dad56ee440e76410f10e55f
-  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: 6521c9343b83a0c996e7b74a64134be5a08b421c
+PODFILE CHECKSUM: 521de2b5cd271184c36277bc932cc92197a3180b
 
 COCOAPODS: 1.11.2

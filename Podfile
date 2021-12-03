@@ -18,8 +18,9 @@ pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
-pod "RxGesture"
+#pod "RxGesture"
 pod 'Charts'
-pod 'RxSwift', '6.2.0'
-pod 'RxCocoa', '6.2.0'
+#pod 'RxSwift', '6.2.0'
+#pod 'RxCocoa', '6.2.0'
+#pod 'RxDataSources', '~> 5.0'
 end

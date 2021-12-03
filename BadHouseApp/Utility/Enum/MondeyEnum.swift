@@ -1,9 +1,7 @@
 
 import Foundation
 enum Money: Int, CaseIterable {
-    case low
-    case middle
-    case high
+    case low, middle, high
     var name: String {
         switch self {
         case .low:

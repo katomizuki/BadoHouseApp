@@ -1,9 +1,7 @@
-
 import Foundation
+
 enum BadmintonCircle: Int, CaseIterable {
-    case student
-    case society
-    case other
+    case student, society, other
     var name: String {
         switch self {
         case .student:

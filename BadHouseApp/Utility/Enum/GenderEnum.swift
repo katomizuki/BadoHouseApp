@@ -2,9 +2,7 @@
 
 import Foundation
 enum Gender: Int, CaseIterable {
-    case man
-    case woman
-    case other
+    case man, woman, other
     var name: String {
         switch self {
         case .man:
