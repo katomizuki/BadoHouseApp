@@ -2,7 +2,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Firebase
-import RangeUISlider
 
 final class MakeEventController: UIViewController {
     // MARK: - Properties
@@ -93,13 +92,6 @@ final class MakeEventController: UIViewController {
     private var (placeLatitude, placeLongitude) = (Double(), Double())
     private var dic = [String: Any]()
     private var team: TeamModel?
-    @IBOutlet private weak var levelUISlider: RangeUISlider! {
-        didSet {
-            levelUISlider.leftKnobColor = Constants.AppColor.OriginalBlue
-            levelUISlider.rightKnobColor = Constants.AppColor.OriginalBlue
-            levelUISlider.rangeSelectedColor = Constants.AppColor.OriginalBlue
-        }
-    }
     @IBOutlet private weak var notMoneyLabel: UILabel!
     @IBOutlet private weak var notTimeLabel: UILabel!
     @IBOutlet private weak var notTitleLabel: UILabel!
@@ -121,7 +113,7 @@ final class MakeEventController: UIViewController {
     }
     // MARK: - SetupMethod
     private func setupDelegate() {
-        levelUISlider.delegate = self
+//        levelUISlider.delegate = self
         teamPickerView.delegate = self
         teamPickerView.dataSource = self
         moneyPickerView.delegate = self
@@ -269,12 +261,7 @@ final class MakeEventController: UIViewController {
                        "placeAddress": self.placeAddress,
                        "userId": userId] as [String: Any]
             guard let eventImage = self.noImageView.image else { return }
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.TagVC) as! EventTagController
-//            vc.dic = dic
-//            vc.teamId = teamId
-//            vc.eventId = eventId
-//            vc.eventImage = eventImage
-//            self.navigationController?.pushViewController(vc, animated: true)
+
         }
     }
     // MARK: IBAction
@@ -342,61 +329,7 @@ extension MakeEventController: UIPickerViewDelegate {
         }
     }
 }
-// MARK: - RangeUISliderDelegate
-extension MakeEventController: RangeUISliderDelegate {
-    func rangeChangeFinished(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
-    }
-    func rangeIsChanging(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
-        switch minValueSelected {
-        case 0..<1:
-            minLevelLabel.text = BadmintonLevel.one.rawValue
-        case 1..<2:
-            minLevelLabel.text = BadmintonLevel.two.rawValue
-        case 2..<3:
-            minLevelLabel.text = BadmintonLevel.three.rawValue
-        case 3..<4:
-            minLevelLabel.text = BadmintonLevel.four.rawValue
-        case 4..<5:
-            minLevelLabel.text = BadmintonLevel.five.rawValue
-        case 5..<6:
-            minLevelLabel.text = BadmintonLevel.six.rawValue
-        case 6..<7:
-            minLevelLabel.text = BadmintonLevel.seven.rawValue
-        case 7..<8:
-            minLevelLabel.text = BadmintonLevel.eight.rawValue
-        case 8..<9:
-            minLevelLabel.text = BadmintonLevel.nine.rawValue
-        case 9..<10:
-            minLevelLabel.text = BadmintonLevel.ten.rawValue
-        default:
-            break
-        }
-        switch maxValueSelected {
-        case 0..<1:
-            maxLevelLabel.text = BadmintonLevel.one.rawValue
-        case 1..<2:
-            maxLevelLabel.text = BadmintonLevel.two.rawValue
-        case 2..<3:
-            maxLevelLabel.text = BadmintonLevel.three.rawValue
-        case 3..<4:
-            maxLevelLabel.text = BadmintonLevel.four.rawValue
-        case 4..<5:
-            maxLevelLabel.text = BadmintonLevel.five.rawValue
-        case 5..<6:
-            maxLevelLabel.text = BadmintonLevel.six.rawValue
-        case 6..<7:
-            maxLevelLabel.text = BadmintonLevel.seven.rawValue
-        case 7..<8:
-            maxLevelLabel.text = BadmintonLevel.eight.rawValue
-        case 8..<9:
-            maxLevelLabel.text = BadmintonLevel.nine.rawValue
-        case 9..<10:
-            maxLevelLabel.text = BadmintonLevel.ten.rawValue
-        default:
-            break
-        }
-    }
-}
+
 // MARK: - UInavigationDelegate
 extension MakeEventController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -454,5 +387,56 @@ extension MakeEventController: SearchLocationProtocol {
 //                    self.setupCDAlert(title: "イベント作成に失敗しました", message: message, action: "OK", alertType: .warning)
 //                }
 //            }
+//        }
+//    }
+
+//    func rangeIsChanging(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
+//        switch minValueSelected {
+//        case 0..<1:
+//            minLevelLabel.text = BadmintonLevel.one.rawValue
+//        case 1..<2:
+//            minLevelLabel.text = BadmintonLevel.two.rawValue
+//        case 2..<3:
+//            minLevelLabel.text = BadmintonLevel.three.rawValue
+//        case 3..<4:
+//            minLevelLabel.text = BadmintonLevel.four.rawValue
+//        case 4..<5:
+//            minLevelLabel.text = BadmintonLevel.five.rawValue
+//        case 5..<6:
+//            minLevelLabel.text = BadmintonLevel.six.rawValue
+//        case 6..<7:
+//            minLevelLabel.text = BadmintonLevel.seven.rawValue
+//        case 7..<8:
+//            minLevelLabel.text = BadmintonLevel.eight.rawValue
+//        case 8..<9:
+//            minLevelLabel.text = BadmintonLevel.nine.rawValue
+//        case 9..<10:
+//            minLevelLabel.text = BadmintonLevel.ten.rawValue
+//        default:
+//            break
+//        }
+//        switch maxValueSelected {
+//        case 0..<1:
+//            maxLevelLabel.text = BadmintonLevel.one.rawValue
+//        case 1..<2:
+//            maxLevelLabel.text = BadmintonLevel.two.rawValue
+//        case 2..<3:
+//            maxLevelLabel.text = BadmintonLevel.three.rawValue
+//        case 3..<4:
+//            maxLevelLabel.text = BadmintonLevel.four.rawValue
+//        case 4..<5:
+//            maxLevelLabel.text = BadmintonLevel.five.rawValue
+//        case 5..<6:
+//            maxLevelLabel.text = BadmintonLevel.six.rawValue
+//        case 6..<7:
+//            maxLevelLabel.text = BadmintonLevel.seven.rawValue
+//        case 7..<8:
+//            maxLevelLabel.text = BadmintonLevel.eight.rawValue
+//        case 8..<9:
+//            maxLevelLabel.text = BadmintonLevel.nine.rawValue
+//        case 9..<10:
+//            maxLevelLabel.text = BadmintonLevel.ten.rawValue
+//        default:
+//            break
 //        }
 //    }

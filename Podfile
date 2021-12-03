@@ -12,13 +12,10 @@ pod 'Firebase'
 pod 'FirebaseStorage'
 pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
-#pod 'NVActivityIndicatorView'
 pod 'FSCalendar'
 pod 'PKHUD'
 pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
-
-pod 'RangeUISlider', '~> 3.0'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
 end
