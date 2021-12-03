@@ -74,7 +74,6 @@ final class MakeEventController: UIViewController {
         moneyPickerView.delegate = self
         moneyPickerView.dataSource = self
         titleTextField.delegate = self
-        fetchData.myDataDelegate = self
     }
     private func setupToolBar() {
         moneyTextField.inputView = moneyPickerView
@@ -88,7 +87,6 @@ final class MakeEventController: UIViewController {
         toolBar.setItems([flexibleButton, doneButtonItem], animated: true)
         moneyTextField.inputAccessoryView = toolBar
     }
-    
     private func setupBinding() {
         datePicker.rx.value.changed
             .asObservable()
@@ -276,19 +274,7 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
         self.dismiss(animated: true, completion: nil)
     }
 }
-// MARK: - getmyTeamDelegate
-//extension MakeEventController: FetchMyDataDelegate {
-//    func fetchMyTeamData(teamArray: [TeamModel]) {
-//        pickerArray = teamArray
-//        if teamArray.isEmpty {
-//            warningLabel.isHidden = false
-//        }
-//        if pickerArray.count == 1 {
-//            self.selectedTeam = pickerArray[0]
-//        }
-////        teamPickerView.reloadAllComponents()
-//    }
-//}
+
 // MARK: - textFieldDelegate
 extension MakeEventController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

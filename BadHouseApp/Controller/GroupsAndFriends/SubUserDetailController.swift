@@ -4,12 +4,6 @@ import SDWebImage
 
 final class SubUserDetailController: UIViewController {
     // MARK: - Properties
-    var user: User?
-    var me: User?
-    var ownTeam = [TeamModel]()
-    var userFriend = [User]()
-    private var blockSheet: BlockSheet!
-    private let cellId = "friendCellId"
     @IBOutlet private weak var friendCollectionView: UICollectionView!
     @IBOutlet private weak var belongCollectionView: UICollectionView!
     @IBOutlet private weak var chatButton: UIButton!
@@ -34,7 +28,6 @@ final class SubUserDetailController: UIViewController {
     @IBOutlet private weak var genderStackView: UIStackView!
     @IBOutlet private weak var badmintonTimeStackView: UIStackView!
     @IBOutlet private weak var levelStackView: UIStackView!
-    private let fetchData = FetchFirestoreData()
     @IBOutlet private weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 20)
@@ -64,6 +57,13 @@ final class SubUserDetailController: UIViewController {
         button.toCorner(num: 15)
         return button
     }()
+    var user: User?
+    var me: User?
+    var ownTeam = [TeamModel]()
+    var userFriend = [User]()
+    private var blockSheet: BlockSheet!
+    private let cellId = "friendCellId"
+    private let fetchData = FetchFirestoreData()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
