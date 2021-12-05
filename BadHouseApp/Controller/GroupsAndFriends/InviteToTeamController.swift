@@ -28,7 +28,6 @@ final class InviteToTeamController: UIViewController {
             inviteButton.layer.masksToBounds = true
         }
     }
-    
     // MARK: - CustomDelegate
     func someMethodWantToCall(cell: UITableViewCell) {
         let indexPathTapped = friendTableView.indexPath(for: cell)

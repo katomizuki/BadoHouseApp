@@ -15,6 +15,8 @@ final class HomeViewController: UIViewController {
     private var eventArray = [Event]()
     private let cellId = "eventId"
     private var user: User?
+    private let disposeBag = DisposeBag()
+    @IBOutlet private weak var makeEventButton: UIButton!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var mapButton: UIButton!
     // MARK: - LifeCycle
@@ -26,6 +28,7 @@ final class HomeViewController: UIViewController {
         setupCollectionView()
         EventServie.deleteEvent()
         UIApplication.shared.applicationIconBadgeNumber = 0
+        setupBinding()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +44,15 @@ final class HomeViewController: UIViewController {
                 self.present(nav, animated: true, completion: nil)
             }
         }
+    }
+    private func setupBinding() {
+        makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventController") as? MakeEventController else { return }
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }).disposed(by: disposeBag)
+
+
     }
 
     private func setupDelegate() {
@@ -83,10 +95,6 @@ final class HomeViewController: UIViewController {
             let vc = segue.destination as! DetailSearchController
             vc.delegate = self
         }
-    }
-    // MARK: HelperMethod
-    func showAlert() {
-        self.setupCDAlert(title: "位置情報取得許可されていません", message: "設定アプリの「プライバシー>位置情報サービス」から変更してください", action: "OK", alertType: CDAlertViewType.warning)
     }
     // MARK: IBAction
     @IBAction private func scroll(_ sender: Any) {

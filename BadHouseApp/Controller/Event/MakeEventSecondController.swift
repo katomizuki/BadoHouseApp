@@ -1,29 +1,20 @@
-//
-//  MakeEventSecondController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/03.
-//
-
 import UIKit
-
+import RxSwift
+import RxCocoa
 class MakeEventSecondController: UIViewController {
-
+    private let disposeBag = DisposeBag()
+    @IBOutlet private weak var nextButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupBinding()
+        setupNavAccessory()
     }
-    
+    private func setupBinding() {
+        nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventThirdController") as? MakeEventThirdController else { return }
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }).disposed(by: disposeBag)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
 }

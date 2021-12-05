@@ -109,6 +109,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Uu9-Yh-lgT" id="86H-wa-3hl"/>
+                        <outlet property="makeEventButton" destination="EC8-Uu-czh" id="tAC-m8-qFG"/>
                         <outlet property="mapButton" destination="nCB-dy-luD" id="Dck-UD-C1l"/>
                         <segue destination="iT6-NJ-FbN" kind="show" identifier="goto" id="AWO-mA-qp4"/>
                         <segue destination="SdE-sB-WCG" kind="presentation" identifier="gotoRegister" modalPresentationStyle="fullScreen" id="CEC-OQ-CJW"/>

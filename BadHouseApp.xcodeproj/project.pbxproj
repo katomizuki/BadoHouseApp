@@ -71,6 +71,8 @@
 		D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
+		D3B3C9AC275CD96000B2CD2C /* MakeEventThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */; };
+		D3B3C9AE275CD9F300B2CD2C /* MakeEventLastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */; };
 		D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEA274A2E4100253933 /* ViewController+Extenstion.swift */; };
 		D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEC274A2E6B00253933 /* UIColor+Extension.swift */; };
 		D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEE274A2E7700253933 /* Array+Extenstion.swift */; };
@@ -210,6 +212,8 @@
 		D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
+		D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdController.swift; sourceTree = "<group>"; };
+		D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventLastController.swift; sourceTree = "<group>"; };
 		D3B72CEA274A2E4100253933 /* ViewController+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extenstion.swift"; sourceTree = "<group>"; };
 		D3B72CEC274A2E6B00253933 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D3B72CEE274A2E7700253933 /* Array+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
@@ -357,12 +361,14 @@
 		D37FA52626EAFDAE00B8559F /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */,
-				D3FD195426E4CAC900B6740E /* EventTagController.swift */,
-				D3FD194E26E482C200B6740E /* MakeEventController.swift */,
 				D37FA52B26EB4AD900B8559F /* EventDetailController.swift */,
-				D3AC05E626EB82E300F40A51 /* MapViewController.swift */,
+				D3FD195426E4CAC900B6740E /* EventTagController.swift */,
 				D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */,
+				D3FD194E26E482C200B6740E /* MakeEventController.swift */,
+				D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */,
+				D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */,
+				D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */,
+				D3AC05E626EB82E300F40A51 /* MapViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -915,6 +921,7 @@
 				D3A789D526F439A40088E8BC /* TalkController.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
+				D3B3C9AC275CD96000B2CD2C /* MakeEventThirdController.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
@@ -993,6 +1000,7 @@
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
 				D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */,
+				D3B3C9AE275CD9F300B2CD2C /* MakeEventLastController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,
 				D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */,

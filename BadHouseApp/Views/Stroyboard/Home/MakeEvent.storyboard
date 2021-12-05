@@ -13,7 +13,7 @@
         <!--練習作成-->
         <scene sceneID="XPt-gx-oPm">
             <objects>
-                <viewController id="uvZ-IK-hUs" customClass="MakeEventController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeEventController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uvZ-IK-hUs" customClass="MakeEventController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4SG-aj-dnV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -307,6 +307,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="L1A-zv-akm"/>
                     <connections>
+                        <outlet property="nextButton" destination="mwu-HB-0Fg" id="cB2-qU-RNR"/>
                         <segue destination="rD8-xv-qco" kind="show" id="FPi-tO-bT7"/>
                     </connections>
                 </viewController>
@@ -314,10 +315,10 @@
             </objects>
             <point key="canvasLocation" x="5058.3999999999996" y="129.98500749625188"/>
         </scene>
-        <!--View Controller-->
+        <!--Make Event Third Controller-->
         <scene sceneID="AG0-7V-Ac2">
             <objects>
-                <viewController id="rD8-xv-qco" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeEventThirdController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rD8-xv-qco" customClass="MakeEventThirdController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dHN-Pd-rhJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -521,6 +522,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="e6n-s0-lep"/>
                     <connections>
+                        <outlet property="nextButton" destination="sax-p6-THu" id="vrd-no-lrg"/>
                         <segue destination="Hqd-Q5-BHf" kind="show" id="R1Q-mX-QQ4"/>
                         <segue destination="Oam-CJ-IiV" kind="presentation" identifier="gotoMap" modalPresentationStyle="fullScreen" id="7iL-r4-yFi"/>
                     </connections>
@@ -529,10 +531,10 @@
             </objects>
             <point key="canvasLocation" x="5830" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Make Event Last Controller-->
         <scene sceneID="ucm-rf-Ury">
             <objects>
-                <viewController id="Hqd-Q5-BHf" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeEventLastController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hqd-Q5-BHf" customClass="MakeEventLastController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pv1-UF-Vwc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -563,7 +565,7 @@
                                     <constraint firstAttribute="height" constant="60" id="vI0-jT-dUg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="次へ">
+                                <state key="normal" title="イベントを作成する">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -598,6 +600,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rtc-4j-O0k"/>
+                    <connections>
+                        <outlet property="makeEventButton" destination="QGh-om-5QN" id="GiJ-FG-Ejm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXA-a9-ui6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
