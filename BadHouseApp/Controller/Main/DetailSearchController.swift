@@ -18,7 +18,7 @@ final class DetailSearchController: UIViewController {
     @IBOutlet private weak var levelStackView: UIStackView!
     @IBOutlet private weak var cityStackView: UIStackView!
     @IBOutlet private weak var moneyStackView: UIStackView!
-    @IBOutlet weak var scrollView: UIScrollView! {
+    @IBOutlet private weak var scrollView: UIScrollView! {
         didSet {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
             scrollView.addGestureRecognizer(gesture)

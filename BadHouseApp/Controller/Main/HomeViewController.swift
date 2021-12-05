@@ -19,6 +19,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet private weak var makeEventButton: UIButton!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var mapButton: UIButton!
+    @IBOutlet private weak var detailSearchButton: UIButton!
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ final class HomeViewController: UIViewController {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let vc = RegisterViewController()
-                let nav = UINavigationController(rootViewController:  vc)
+                let nav = UINavigationController(rootViewController:   vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
@@ -51,7 +52,14 @@ final class HomeViewController: UIViewController {
             guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventController") as? MakeEventController else { return }
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
-
+        detailSearchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.performSegue(withIdentifier: "DetailSearchController", sender: nil)
+        }).disposed(by: disposeBag)
+        mapButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let storyboard = UIStoryboard(name: "MapList", bundle: nil)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: "MapController") as? MapController else { return }
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }).disposed(by: disposeBag)
 
     }
 

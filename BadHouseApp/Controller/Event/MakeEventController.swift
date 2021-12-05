@@ -15,8 +15,6 @@ final class MakeEventController: UIViewController {
     }
     @IBOutlet private weak var noImageView: UIImageView!
     @IBOutlet private weak var notTitleLabel: UILabel!
-    private let fetchData = FetchFirestoreData()
-    private let eventBinding = MakeEventViewModel()
     private let disposeBag = DisposeBag()
     private var selectedTeam: TeamModel?
     private var eventTitle = String()
@@ -41,9 +39,8 @@ final class MakeEventController: UIViewController {
                 self.titleTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
                 let title = text ?? ""
                 self.eventTitle = title
-                self.eventBinding.titleTextInput.onNext(title)
             }.disposed(by: disposeBag)
-        
+    
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
             guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventSecondController") as? MakeEventSecondController else { return }

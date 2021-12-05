@@ -73,6 +73,14 @@
 		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
 		D3B3C9AC275CD96000B2CD2C /* MakeEventThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */; };
 		D3B3C9AE275CD9F300B2CD2C /* MakeEventLastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */; };
+		D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AF275CE0D800B2CD2C /* MapController.swift */; };
+		D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */; };
+		D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */; };
+		D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */; };
+		D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */; };
+		D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B9275CE64E00B2CD2C /* NotificationViewModel.swift */; };
+		D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9BB275CE6F400B2CD2C /* UserViewModel.swift */; };
+		D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9BD275CE78600B2CD2C /* TalkViewModel.swift */; };
 		D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEA274A2E4100253933 /* ViewController+Extenstion.swift */; };
 		D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEC274A2E6B00253933 /* UIColor+Extension.swift */; };
 		D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEE274A2E7700253933 /* Array+Extenstion.swift */; };
@@ -214,6 +222,14 @@
 		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdController.swift; sourceTree = "<group>"; };
 		D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventLastController.swift; sourceTree = "<group>"; };
+		D3B3C9AF275CE0D800B2CD2C /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapList.storyboard; sourceTree = "<group>"; };
+		D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondViewModel.swift; sourceTree = "<group>"; };
+		D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdViewModel.swift; sourceTree = "<group>"; };
+		D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D3B3C9B9275CE64E00B2CD2C /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		D3B3C9BB275CE6F400B2CD2C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		D3B3C9BD275CE78600B2CD2C /* TalkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewModel.swift; sourceTree = "<group>"; };
 		D3B72CEA274A2E4100253933 /* ViewController+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extenstion.swift"; sourceTree = "<group>"; };
 		D3B72CEC274A2E6B00253933 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D3B72CEE274A2E7700253933 /* Array+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
@@ -408,6 +424,7 @@
 				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D31D290E2746A06400EC650C /* MakeEvent.storyboard */,
 				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
+				D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -612,6 +629,12 @@
 				D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */,
 				D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */,
 				D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */,
+				D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */,
+				D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */,
+				D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */,
+				D3B3C9B9275CE64E00B2CD2C /* NotificationViewModel.swift */,
+				D3B3C9BB275CE6F400B2CD2C /* UserViewModel.swift */,
+				D3B3C9BD275CE78600B2CD2C /* TalkViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -624,6 +647,7 @@
 				D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */,
 				D3977168270961E40025BE19 /* TornamentDetailController.swift */,
 				D3977166270959A70025BE19 /* TornamentListController.swift */,
+				D3B3C9AF275CE0D800B2CD2C /* MapController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -806,6 +830,7 @@
 				D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */,
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
+				D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */,
 				D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
@@ -920,8 +945,10 @@
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D3A789D526F439A40088E8BC /* TalkController.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
+				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
 				D3B3C9AC275CD96000B2CD2C /* MakeEventThirdController.swift in Sources */,
+				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
@@ -955,6 +982,7 @@
 				D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3D3D37B2721733200E2853A /* BlockController.swift in Sources */,
+				D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
@@ -963,6 +991,7 @@
 				D330032826E7013900208525 /* MyLevelController.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
+				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
 				D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */,
@@ -971,6 +1000,7 @@
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
+				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */,
 				D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */,
@@ -983,12 +1013,14 @@
 				D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
 				D3BDB55726E0644E00C53780 /* UIButton+Factory.swift in Sources */,
+				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
+				D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */,
 				D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
