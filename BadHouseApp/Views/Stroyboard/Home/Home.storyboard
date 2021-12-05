@@ -7,7 +7,6 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar hidden="YES" contentMode="redraw" text="" placeholder="フリワード検索" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-lJ-H8V">
-                                <rect key="frame" x="30" y="98" width="354" height="51"/>
-                                <color key="backgroundColor" name="backGroundColor"/>
-                                <color key="barTintColor" name="backGroundColor"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-Yh-lgT">
-                                <rect key="frame" x="20" y="185" width="374" height="628"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" name="backGroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9yV-Kg-5aq">
                                     <size key="itemSize" width="128" height="128"/>
@@ -46,17 +39,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV6-mn-5x8">
-                                <rect key="frame" x="40" y="129" width="334" height="36"/>
-                                <color key="backgroundColor" red="0.49019607843137253" green="0.51372549019607838" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <state key="normal" title="日にちと場所で検索">
-                                    <color key="titleColor" systemColor="systemGray6Color"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mFn-tx-bxI" kind="presentation" identifier="gotoCalendar" id="478-Ah-jgm"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jG-lw-2P6">
                                 <rect key="frame" x="334" y="748" width="50" height="50"/>
                                 <constraints>
@@ -73,17 +55,11 @@
                         <viewLayoutGuide key="safeArea" id="Iot-v5-aGu"/>
                         <color key="backgroundColor" name="backGroundColor"/>
                         <constraints>
-                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="20" id="5z3-ne-UaH"/>
-                            <constraint firstItem="BV6-mn-5x8" firstAttribute="top" secondItem="gf7-lJ-H8V" secondAttribute="bottom" constant="-20" id="6Wz-zo-c9q"/>
-                            <constraint firstItem="gf7-lJ-H8V" firstAttribute="top" secondItem="Iot-v5-aGu" secondAttribute="top" constant="10" id="Fna-Ya-Meb"/>
+                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" id="5z3-ne-UaH"/>
                             <constraint firstItem="Iot-v5-aGu" firstAttribute="bottom" secondItem="3jG-lw-2P6" secondAttribute="bottom" constant="15" id="M30-0u-FyP"/>
-                            <constraint firstItem="BV6-mn-5x8" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="40" id="Qiz-av-HDt"/>
-                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="BV6-mn-5x8" secondAttribute="trailing" constant="40" id="VvH-MD-XW6"/>
                             <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="3jG-lw-2P6" secondAttribute="trailing" constant="30" id="dT3-1U-o6m"/>
-                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="gf7-lJ-H8V" secondAttribute="trailing" constant="30" id="fiO-h1-9fE"/>
-                            <constraint firstItem="gf7-lJ-H8V" firstAttribute="leading" secondItem="Iot-v5-aGu" secondAttribute="leading" constant="30" id="kuR-zf-lh9"/>
-                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="top" secondItem="BV6-mn-5x8" secondAttribute="bottom" constant="20" id="qwR-Y5-CYy"/>
-                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="Uu9-Yh-lgT" secondAttribute="trailing" constant="20" id="rkz-1E-uZS"/>
+                            <constraint firstItem="Iot-v5-aGu" firstAttribute="trailing" secondItem="Uu9-Yh-lgT" secondAttribute="trailing" id="rkz-1E-uZS"/>
+                            <constraint firstItem="Uu9-Yh-lgT" firstAttribute="top" secondItem="Iot-v5-aGu" secondAttribute="top" id="vPh-04-qmr"/>
                             <constraint firstItem="Uu9-Yh-lgT" firstAttribute="bottom" secondItem="Iot-v5-aGu" secondAttribute="bottom" id="vaF-bd-W33"/>
                         </constraints>
                     </view>
@@ -92,7 +68,7 @@
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="fNE-l8-KnE"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="9YY-1J-xLV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EC8-Uu-czh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EC8-Uu-czh">
                                 <rect key="frame" x="20" y="0.0" width="61" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -118,8 +94,8 @@
                                 </button>
                             </barButtonItem>
                             <barButtonItem style="plain" id="IIP-gB-XGf">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="nCB-dy-luD">
-                                    <rect key="frame" x="290" y="5" width="49" height="34"/>
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="nCB-dy-luD">
+                                    <rect key="frame" x="285.5" y="5" width="53.5" height="34.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="Button"/>
@@ -133,8 +109,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Uu9-Yh-lgT" id="86H-wa-3hl"/>
-                        <outlet property="searchBar" destination="gf7-lJ-H8V" id="2jE-Fd-IdV"/>
-                        <outlet property="timeButton" destination="BV6-mn-5x8" id="ldm-SH-YwA"/>
+                        <outlet property="mapButton" destination="nCB-dy-luD" id="Dck-UD-C1l"/>
                         <segue destination="iT6-NJ-FbN" kind="show" identifier="goto" id="AWO-mA-qp4"/>
                         <segue destination="SdE-sB-WCG" kind="presentation" identifier="gotoRegister" modalPresentationStyle="fullScreen" id="CEC-OQ-CJW"/>
                         <segue destination="EgL-cs-2XH" kind="show" id="rJF-Cm-tQX"/>
@@ -143,15 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bh5-QE-jzC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3481.1594202898555" y="129.91071428571428"/>
-        </scene>
-        <!--Calendar-->
-        <scene sceneID="H4z-Od-CgM">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Calendar" id="mFn-tx-bxI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ALq-cJ-Mu7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3131" y="623"/>
+            <point key="canvasLocation" x="3529" y="119"/>
         </scene>
         <!--DetailSearch-->
         <scene sceneID="Ig6-6O-WZL">
@@ -218,8 +185,5 @@
         <namedColor name="backGroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

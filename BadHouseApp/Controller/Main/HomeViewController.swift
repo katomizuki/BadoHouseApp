@@ -7,7 +7,6 @@ import MapKit
 import UserNotifications
 import CDAlertView
 
-
 final class HomeViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
@@ -17,22 +16,7 @@ final class HomeViewController: UIViewController {
     private let cellId = "eventId"
     private var user: User?
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.tintColor = Constants.AppColor.OriginalBlue
-            searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
-            searchBar.autocapitalizationType = .none
-        }
-    }
-    @IBOutlet weak var tornmentSearchButton: UIButton! {
-        didSet { tornmentSearchButton.setTitle("大会検索", for: .normal)}
-    }
-    @IBOutlet weak var timeButton: UIButton! {
-        didSet {
-            timeButton.toCorner(num: 15)
-        }
-    }
+    @IBOutlet private weak var mapButton: UIButton!
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,15 +43,8 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    // MARK: - touchesBegan
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
-        searchBar.resignFirstResponder()
-    }
-   
     private func setupDelegate() {
         fetchData.eventDelegate = self
-        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -212,7 +189,6 @@ extension HomeViewController: FetchEventDataDelegate {
     func fetchEventTimeData(eventArray: [Event]) {
         print(#function)
         if eventArray.isEmpty {
-            
         } else {
             self.eventArray = eventArray
             DispatchQueue.main.async {
@@ -236,7 +212,6 @@ extension HomeViewController: FetchEventDataDelegate {
             }
         } else if bool == true {
             if eventArray.isEmpty {
-                
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
