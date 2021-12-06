@@ -20,10 +20,13 @@ final class MakeEventController: UIViewController {
     private var eventTitle = String()
     private var kindCircle = BadmintonCircle(rawValue: 0)?.name
     private var team: TeamModel?
+    private let pickerView = UIImagePickerController()
+    private let viewModel = MakeEventFirstViewModel()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        pickerView.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,16 +34,10 @@ final class MakeEventController: UIViewController {
     }
 
     private func setupBinding() {
-        titleTextField.rx.text.asDriver()
-            .drive { [weak self] text in
-                guard let self = self else { return }
-                self.titleTextField.layer.borderColor = text?.count == 0 ? UIColor.lightGray.cgColor : Constants.AppColor.OriginalBlue.cgColor
-                self.notTitleLabel.isHidden = text?.count != 0 ? true : false
-                self.titleTextField.layer.borderWidth = text?.count == 0 ? 2 : 3
-                let title = text ?? ""
-                self.eventTitle = title
-            }.disposed(by: disposeBag)
-    
+        titleTextField.rx.text.asDriver().drive(onNext: { [weak self] text in
+            self?.viewModel.inputs.titleTextInputs.onNext(text ?? "")
+        }).disposed(by: disposeBag)
+
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
             guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventSecondController") as? MakeEventSecondController else { return }
@@ -50,9 +47,8 @@ final class MakeEventController: UIViewController {
         noImageView.rx.tapGesture()
             .when(.recognized)
             .subscribe { [weak self]_ in
-                let pickerView = UIImagePickerController()
-                pickerView.delegate = self
-                self?.present(pickerView, animated: true, completion: nil)
+                guard let self = self else { return }
+                self.present(self.pickerView, animated: true, completion: nil)
             }.disposed(by: disposeBag)
 
     }
@@ -67,7 +63,9 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             noImageView.image = image.withRenderingMode(.alwaysOriginal)
+            viewModel.inputs.hasImage.accept(true)
         }
+        
         self.dismiss(animated: true, completion: nil)
     }
 }
