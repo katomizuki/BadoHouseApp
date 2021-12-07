@@ -9,7 +9,6 @@ final class LevelDetailViewController: UIViewController {
     }
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
-            backButton.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
             backButton.tintColor = Constants.AppColor.OriginalBlue
         }
     }

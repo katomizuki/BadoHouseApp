@@ -421,8 +421,8 @@
 				D33B0183274661D2004ED650 /* Map.storyboard */,
 				D33B018527466297004ED650 /* DetailSearch.storyboard */,
 				D33B018127466108004ED650 /* Calendar.storyboard */,
-				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D31D290E2746A06400EC650C /* MakeEvent.storyboard */,
+				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
 				D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */,
 			);

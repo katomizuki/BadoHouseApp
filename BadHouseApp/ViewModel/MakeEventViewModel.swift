@@ -44,8 +44,9 @@ final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstV
             self.isTitle.accept(isTitle)
         }).disposed(by: disposeBag)
 
+
         titleTextOutputs.subscribe(onNext: { text in
-            let isButtonValid = text.count >= 1 && self.hasImage.value
+            let isButtonValid = text.count >= 1
             self.isButtonValid.accept(isButtonValid)
         }).disposed(by: disposeBag)
 

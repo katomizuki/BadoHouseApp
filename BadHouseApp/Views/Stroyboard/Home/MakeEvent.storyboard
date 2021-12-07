@@ -229,14 +229,20 @@
                                     </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-52-Lw8">
                                         <rect key="frame" x="-2" y="48" width="319" height="31"/>
+                                        <connections>
+                                            <action selector="minLevelSliderChanged:" destination="WRp-Zc-NYT" eventType="valueChanged" id="o3W-pU-CDZ"/>
+                                        </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ibo-Mi-NGK">
                                         <rect key="frame" x="-2" y="78" width="319" height="31"/>
+                                        <connections>
+                                            <action selector="maxLevelSliderChanged:" destination="WRp-Zc-NYT" eventType="valueChanged" id="sGR-UK-VCk"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レベル1からレベル10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWx-a5-O8c">
-                                <rect key="frame" x="30" y="178" width="197" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レベル1から" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWx-a5-O8c">
+                                <rect key="frame" x="30" y="178" width="112.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -283,6 +289,12 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レベル10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPd-FV-tHY">
+                                <rect key="frame" x="142.5" y="178" width="85" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HJy-Og-KEt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -290,6 +302,8 @@
                             <constraint firstItem="LlX-oc-RsL" firstAttribute="top" secondItem="PWx-a5-O8c" secondAttribute="bottom" constant="20" id="AVQ-wG-36r"/>
                             <constraint firstItem="HJy-Og-KEt" firstAttribute="trailing" secondItem="HXg-Pb-Yh2" secondAttribute="trailing" constant="30" id="Hx2-1a-5kK"/>
                             <constraint firstItem="mwu-HB-0Fg" firstAttribute="top" secondItem="4hd-Ir-iI7" secondAttribute="bottom" constant="20" id="IX3-0t-Qn2"/>
+                            <constraint firstItem="OPd-FV-tHY" firstAttribute="top" secondItem="PWx-a5-O8c" secondAttribute="top" id="L8l-Bc-kWz"/>
+                            <constraint firstItem="OPd-FV-tHY" firstAttribute="leading" secondItem="PWx-a5-O8c" secondAttribute="trailing" id="RK0-Le-0Un"/>
                             <constraint firstAttribute="trailing" secondItem="b3U-77-3Bf" secondAttribute="trailing" constant="30" id="Seh-Gv-EhL"/>
                             <constraint firstItem="PWx-a5-O8c" firstAttribute="top" secondItem="b3U-77-3Bf" secondAttribute="bottom" constant="20" id="WvF-lT-uZg"/>
                             <constraint firstItem="PWx-a5-O8c" firstAttribute="leading" secondItem="HJy-Og-KEt" secondAttribute="leading" constant="30" id="Zmv-vv-siR"/>
@@ -307,6 +321,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="L1A-zv-akm"/>
                     <connections>
+                        <outlet property="maxLabel" destination="OPd-FV-tHY" id="bB8-AJ-buU"/>
+                        <outlet property="maxSlider" destination="Ibo-Mi-NGK" id="g8C-Cy-EJ3"/>
+                        <outlet property="minLabel" destination="PWx-a5-O8c" id="vDZ-qx-5IV"/>
+                        <outlet property="minSlider" destination="6cQ-52-Lw8" id="QNP-w4-n4s"/>
                         <outlet property="nextButton" destination="mwu-HB-0Fg" id="cB2-qU-RNR"/>
                         <segue destination="rD8-xv-qco" kind="show" id="FPi-tO-bT7"/>
                     </connections>
