@@ -531,6 +531,7 @@
 				D3D3D380272194D100E2853A /* BadHouseApp.entitlements */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
+				D3BDB55A26E0964200C53780 /* ViewModel */,
 				D3BDB53E26E0542900C53780 /* Views */,
 				D3BDB53D26E0541E00C53780 /* Controller */,
 				D3BDB53C26E0541100C53780 /* Utility */,
@@ -589,7 +590,6 @@
 		D3BDB53E26E0542900C53780 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D3BDB55A26E0964200C53780 /* ViewModel */,
 				D3976EEF270337580016CEB2 /* Stroyboard */,
 				D353D8E426F16C2F00221B7D /* Xib */,
 				D3C4E93A26E0F56900C21E46 /* Cell */,

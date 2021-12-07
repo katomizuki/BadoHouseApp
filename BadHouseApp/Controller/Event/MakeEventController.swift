@@ -50,7 +50,7 @@ final class MakeEventController: UIViewController {
                 guard let self = self else { return }
                 self.present(self.pickerView, animated: true, completion: nil)
             }.disposed(by: disposeBag)
-            
+        
         viewModel.outputs.isButtonValid.subscribe(onNext: {[weak self] isValid in
             self?.nextButton.isEnabled = isValid
             self?.nextButton.backgroundColor = self?.viewModel.outputs.buttonColor
