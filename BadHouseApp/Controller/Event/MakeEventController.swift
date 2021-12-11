@@ -69,7 +69,6 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
             noImageView.image = image.withRenderingMode(.alwaysOriginal)
             viewModel.inputs.hasImage.accept(true)
         }
-        
         self.dismiss(animated: true, completion: nil)
     }
 }
