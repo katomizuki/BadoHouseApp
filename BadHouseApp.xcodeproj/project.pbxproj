@@ -10,6 +10,8 @@
 		2F43C7F339CC617506877AF3 /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
 		D30B7939270090EA0086456E /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B7938270090EA0086456E /* ChatRoom.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
+		D31606EC27657CF0005FF41D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* TestViewController.swift */; };
+		D31606ED27657CF0005FF41D /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* TestViewController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
 		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
@@ -162,6 +164,8 @@
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30B7938270090EA0086456E /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
+		D31606EA27657CF0005FF41D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		D31606EB27657CF0005FF41D /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		D31C1633272B5E0800A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		D31C1634272B5E0A00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -335,6 +339,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D31606E827657BF7005FF41D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D31606E927657C02005FF41D /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		D32B8C9E2759BC150036FA98 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +443,8 @@
 				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
 				D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */,
+				D31606EA27657CF0005FF41D /* TestViewController.swift */,
+				D31606EB27657CF0005FF41D /* TestViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -531,6 +551,8 @@
 				D3D3D380272194D100E2853A /* BadHouseApp.entitlements */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
+				D31606E927657C02005FF41D /* DataSource */,
+				D31606E827657BF7005FF41D /* Coordinator */,
 				D3BDB55A26E0964200C53780 /* ViewModel */,
 				D3BDB53E26E0542900C53780 /* Views */,
 				D3BDB53D26E0541E00C53780 /* Controller */,
@@ -809,6 +831,7 @@
 				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
 				D3969DD1274729880022AE24 /* User.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
+				D31606ED27657CF0005FF41D /* TestViewController.xib in Resources */,
 				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
 				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
 				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
@@ -983,6 +1006,7 @@
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3D3D37B2721733200E2853A /* BlockController.swift in Sources */,
 				D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */,
+				D31606EC27657CF0005FF41D /* TestViewController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
