@@ -54,9 +54,3 @@ public struct Constants {
     }
 }
 
-//@resultBuilder
-//public struct ArrayBuilder<T> {
-//    public static func buildBlock(_ components: T...) -> [T] {
-//        components
-//    }
-//}

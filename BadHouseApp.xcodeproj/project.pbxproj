@@ -10,8 +10,12 @@
 		2F43C7F339CC617506877AF3 /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
 		D30B7939270090EA0086456E /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B7938270090EA0086456E /* ChatRoom.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
-		D31606EC27657CF0005FF41D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* TestViewController.swift */; };
-		D31606ED27657CF0005FF41D /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* TestViewController.xib */; };
+		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
+		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
+		D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EE27657FAC005FF41D /* LevelDetailController.swift */; };
+		D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EF27657FAC005FF41D /* LevelDetailController.xib */; };
+		D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */; };
+		D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
 		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
@@ -28,7 +32,6 @@
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
 		D33B018227466109004ED650 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018127466108004ED650 /* Calendar.storyboard */; };
-		D33B0184274661D2004ED650 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B0183274661D2004ED650 /* Map.storyboard */; };
 		D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018527466297004ED650 /* DetailSearch.storyboard */; };
 		D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018727466A98004ED650 /* LevelDetail.storyboard */; };
 		D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018927466CF0004ED650 /* Tornament.storyboard */; };
@@ -68,7 +71,6 @@
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */; };
-		D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E626EB82E300F40A51 /* MapViewController.swift */; };
 		D3AC05E926ED763000F40A51 /* SearchCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */; };
 		D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
@@ -164,8 +166,12 @@
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30B7938270090EA0086456E /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
-		D31606EA27657CF0005FF41D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		D31606EB27657CF0005FF41D /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
+		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
+		D31606EE27657FAC005FF41D /* LevelDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailController.swift; sourceTree = "<group>"; };
+		D31606EF27657FAC005FF41D /* LevelDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelDetailController.xib; sourceTree = "<group>"; };
+		D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsController.swift; sourceTree = "<group>"; };
+		D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventAdditionlItemsController.xib; sourceTree = "<group>"; };
 		D31C1633272B5E0800A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		D31C1634272B5E0A00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -186,7 +192,6 @@
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
 		D33B018127466108004ED650 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
-		D33B0183274661D2004ED650 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Map.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018527466297004ED650 /* DetailSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailSearch.storyboard; path = BadHouseApp/Views/Stroyboard/Home/DetailSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018727466A98004ED650 /* LevelDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LevelDetail.storyboard; sourceTree = "<group>"; };
 		D33B018927466CF0004ED650 /* Tornament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tornament.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Tornament.storyboard; sourceTree = SOURCE_ROOT; };
@@ -219,7 +224,6 @@
 		D3A789D426F439A40088E8BC /* TalkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchController.swift; sourceTree = "<group>"; };
-		D3AC05E626EB82E300F40A51 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCalendarController.swift; sourceTree = "<group>"; };
 		D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
@@ -402,7 +406,6 @@
 				D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */,
 				D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */,
 				D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */,
-				D3AC05E626EB82E300F40A51 /* MapViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -436,15 +439,18 @@
 			children = (
 				D3969DCE274728760022AE24 /* Home.storyboard */,
 				D33B018927466CF0004ED650 /* Tornament.storyboard */,
-				D33B0183274661D2004ED650 /* Map.storyboard */,
 				D33B018527466297004ED650 /* DetailSearch.storyboard */,
 				D33B018127466108004ED650 /* Calendar.storyboard */,
 				D31D290E2746A06400EC650C /* MakeEvent.storyboard */,
 				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
 				D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */,
-				D31606EA27657CF0005FF41D /* TestViewController.swift */,
-				D31606EB27657CF0005FF41D /* TestViewController.xib */,
+				D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */,
+				D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */,
+				D31606EE27657FAC005FF41D /* LevelDetailController.swift */,
+				D31606EF27657FAC005FF41D /* LevelDetailController.xib */,
+				D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */,
+				D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -831,7 +837,7 @@
 				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
 				D3969DD1274729880022AE24 /* User.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
-				D31606ED27657CF0005FF41D /* TestViewController.xib in Resources */,
+				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
 				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
 				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
 				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
@@ -846,11 +852,12 @@
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */,
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
-				D33B0184274661D2004ED650 /* Map.storyboard in Resources */,
 				D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */,
 				D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */,
+				D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */,
 				D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */,
 				D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */,
+				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
 				D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */,
@@ -1006,15 +1013,15 @@
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3D3D37B2721733200E2853A /* BlockController.swift in Sources */,
 				D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */,
-				D31606EC27657CF0005FF41D /* TestViewController.swift in Sources */,
+				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
+				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */,
 				D330032826E7013900208525 /* MyLevelController.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
-				D3AC05E726EB82E300F40A51 /* MapViewController.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
@@ -1041,6 +1048,7 @@
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
+				D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,

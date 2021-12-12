@@ -258,7 +258,7 @@
                                     <color key="baseForegroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="sRW-5h-zyX" kind="presentation" id="VQy-IJ-T3o"/>
+                                    <action selector="didTapLevelDetailButton:" destination="WRp-Zc-NYT" eventType="touchUpInside" id="nZl-Of-jUC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主催チーム選択" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LlX-oc-RsL">
@@ -588,8 +588,6 @@
                         <outlet property="nextButton" destination="sax-p6-THu" id="vrd-no-lrg"/>
                         <outlet property="placeButton" destination="zsL-IF-KdC" id="zQD-mn-gOZ"/>
                         <outlet property="startDatePicker" destination="l6L-K6-nGv" id="VJy-YO-eIO"/>
-                        <segue destination="Hqd-Q5-BHf" kind="show" id="R1Q-mX-QQ4"/>
-                        <segue destination="Oam-CJ-IiV" kind="show" id="wpe-Ty-rY5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15g-y5-yPg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -601,11 +599,11 @@
             <objects>
                 <viewController storyboardIdentifier="MakeEventLastController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hqd-Q5-BHf" customClass="MakeEventLastController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pv1-UF-Vwc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L5D-Gx-Efu">
-                                <rect key="frame" x="30" y="104" width="315" height="363"/>
+                                <rect key="frame" x="30" y="104" width="315" height="383"/>
                                 <color key="backgroundColor" name="TFColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -624,7 +622,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGh-om-5QN">
-                                <rect key="frame" x="30" y="497" width="315" height="60"/>
+                                <rect key="frame" x="30" y="517" width="315" height="60"/>
                                 <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="vI0-jT-dUg"/>
@@ -673,24 +671,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXA-a9-ui6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6576.8000000000002" y="133.5832083958021"/>
-        </scene>
-        <!--MapViewController-->
-        <scene sceneID="SqH-Yt-bcF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapViewController" id="Oam-CJ-IiV" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4E4-lJ-mOn"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qQW-xm-VzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5963" y="-318"/>
-        </scene>
-        <!--LevelDetail-->
-        <scene sceneID="j6Y-sn-m8x">
-            <objects>
-                <viewControllerPlaceholder storyboardName="LevelDetail" id="sRW-5h-zyX" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lPo-Hj-U4T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5058" y="607"/>
         </scene>
     </scenes>
     <resources>

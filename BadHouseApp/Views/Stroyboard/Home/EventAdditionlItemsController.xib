@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventAdditionlItemsController" customModule="BadHouseApp" customModuleProvider="target">
+            <connections>
+                <outlet property="makeEventButton" destination="8ma-LP-o2k" id="rip-NA-5kf"/>
+                <outlet property="textView" destination="jDr-0f-Yys" id="nbC-A6-Y31"/>
+                <outlet property="view" destination="lnc-hk-poT" id="pZe-kt-J9r"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="lnc-hk-poT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jDr-0f-Yys">
+                    <rect key="frame" x="30" y="148" width="354" height="534"/>
+                    <color key="backgroundColor" name="TFColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds = true" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-LP-o2k">
+                    <rect key="frame" x="30" y="712" width="354" height="60"/>
+                    <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="c0w-I7-UAR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="イベントを作成する">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="追加項目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLU-u3-eOX">
+                    <rect key="frame" x="30" y="94" width="82" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                    <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VgN-aw-j9y"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="pLU-u3-eOX" firstAttribute="leading" secondItem="VgN-aw-j9y" secondAttribute="leading" constant="30" id="3g9-OV-EQ2"/>
+                <constraint firstItem="pLU-u3-eOX" firstAttribute="top" secondItem="VgN-aw-j9y" secondAttribute="top" constant="50" id="5Pc-xx-BUu"/>
+                <constraint firstAttribute="trailing" secondItem="jDr-0f-Yys" secondAttribute="trailing" constant="30" id="Fhw-dJ-rea"/>
+                <constraint firstItem="jDr-0f-Yys" firstAttribute="top" secondItem="pLU-u3-eOX" secondAttribute="bottom" constant="30" id="IzA-Gt-Kil"/>
+                <constraint firstItem="jDr-0f-Yys" firstAttribute="leading" secondItem="VgN-aw-j9y" secondAttribute="leading" constant="30" id="Usf-1L-cPA"/>
+                <constraint firstItem="jDr-0f-Yys" firstAttribute="top" secondItem="pLU-u3-eOX" secondAttribute="bottom" constant="30" id="UwZ-89-A6a"/>
+                <constraint firstItem="8ma-LP-o2k" firstAttribute="top" secondItem="jDr-0f-Yys" secondAttribute="bottom" constant="30" id="aEE-jl-2w1"/>
+                <constraint firstItem="VgN-aw-j9y" firstAttribute="trailing" secondItem="8ma-LP-o2k" secondAttribute="trailing" constant="30" id="lS0-vT-lE8"/>
+                <constraint firstItem="VgN-aw-j9y" firstAttribute="bottom" secondItem="8ma-LP-o2k" secondAttribute="bottom" constant="90" id="mcQ-E7-n45"/>
+                <constraint firstItem="jDr-0f-Yys" firstAttribute="leading" secondItem="VgN-aw-j9y" secondAttribute="leading" constant="30" id="ohh-Ea-OIV"/>
+                <constraint firstAttribute="trailing" secondItem="jDr-0f-Yys" secondAttribute="trailing" constant="30" id="p4y-dc-nRo"/>
+                <constraint firstItem="8ma-LP-o2k" firstAttribute="leading" secondItem="VgN-aw-j9y" secondAttribute="leading" constant="30" id="u9P-KE-hck"/>
+            </constraints>
+            <point key="canvasLocation" x="75" y="72"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="TFColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

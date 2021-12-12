@@ -20,15 +20,14 @@ final class MakeEventThirdController: UIViewController {
         setPicker(pickerView: moneyPicker, textField: moneyTextField)
     }
     private func setupBinding() {
-        nextButton.rx.tap.asDriver().drive(onNext: { _  in
-            let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventLastController") as? MakeEventLastController else { return }
+        nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
+            guard let self = self else { return }
+            let controller = EventAdditionlItemsController.init(nibName: "EventAdditionlItemsController", bundle: nil)
             self.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
         placeButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
-            let storyboard = UIStoryboard(name: "Map", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+            let controller = AddtionalPlaceController.init(nibName: "AddtionalPlaceController", bundle: nil)
             self.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
     }

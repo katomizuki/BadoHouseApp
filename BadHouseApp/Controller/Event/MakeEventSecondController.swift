@@ -38,4 +38,9 @@ class MakeEventSecondController: UIViewController {
     @IBAction private func maxLevelSliderChanged(_ sender: UISlider) {
         viewModel.inputs.maxLevel.onNext(sender.value)
     }
+    @IBAction func didTapLevelDetailButton(_ sender: Any) {
+        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
+        present(controller, animated: true)
+    }
+    
 }
