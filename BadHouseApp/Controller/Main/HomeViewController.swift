@@ -20,6 +20,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var mapButton: UIButton!
     @IBOutlet private weak var detailSearchButton: UIButton!
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ final class HomeViewController: UIViewController {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let vc = RegisterViewController()
-                let nav = UINavigationController(rootViewController:vc)
+                let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
@@ -52,14 +53,13 @@ final class HomeViewController: UIViewController {
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
         detailSearchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            self?.performSegue(withIdentifier: "DetailSearchController", sender: nil)
+            let controller = EventSearchController.init(nibName: "EventSearchController", bundle: nil)
+            self?.present(controller, animated: true)
         }).disposed(by: disposeBag)
         mapButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let storyboard = UIStoryboard(name: "MapList", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "MapController") as? MapController else { return }
+            let controller = MapListController.init(nibName: "MapListController", bundle: nil)
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
-
     }
 
     private func setupDelegate() {
@@ -94,14 +94,7 @@ final class HomeViewController: UIViewController {
             let vc = segue.destination as! MyPageUserInfoController
             vc.user = self.user
         }
-        if segue.identifier ==  Segue.gotoCalendar.rawValue {
-            let vc = segue.destination as! SearchCalendarController
-            vc.delegate = self
-        }
-        if segue.identifier == Segue.gotoDetail.rawValue {
-            let vc = segue.destination as! DetailSearchController
-            vc.delegate = self
-        }
+
     }
     // MARK: IBAction
     @IBAction private func scroll(_ sender: Any) {
@@ -235,31 +228,6 @@ extension HomeViewController: FetchEventDataDelegate {
     }
 }
 
-// MARK: - DetailSearchDelegate
-extension HomeViewController: DetailSearchDelegate {
-    func didTapDetailSearchButton(title: String, circle: String, level: String, placeAddressString: String, money: String, time: String, vc: DetailSearchController) {
-        fetchData.searchEventDetailData(title: title,
-                                        circle: circle,
-                                        level: level,
-                                        placeAddressString: placeAddressString,
-                                        money: money,
-                                        time: time)
-        vc.dismiss(animated: true, completion: nil)
-    }
-    func dismissDetailSearchVC(vc: DetailSearchController) {
-        vc.dismiss(animated: true, completion: nil)
-    }
-}
-// MARK: - SearchCalendarDelegate
-extension HomeViewController: SearchCalendarDelegate {
-    func didTapSearchButton(dateString: String, text: String, vc: SearchCalendarController) {
-        fetchData.searchEventDateData(dateString: dateString, text: text)
-        vc.dismiss(animated: true, completion: nil)
-    }
-    func dismissCalendarVC(vc: SearchCalendarController) {
-        vc.dismiss(animated: true, completion: nil)
-    }
-}
 
 // MARK: - EventInfoCellDelegate
 extension HomeViewController: EventInfoCellDelegate {

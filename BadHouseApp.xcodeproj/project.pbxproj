@@ -24,6 +24,8 @@
 		D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */; };
 		D316072E276764F9005FF41D /* MapListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316072C276764F9005FF41D /* MapListController.swift */; };
 		D316072F276764F9005FF41D /* MapListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316072D276764F9005FF41D /* MapListController.xib */; };
+		D316073627676BF5005FF41D /* EventSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316073427676BF5005FF41D /* EventSearchController.swift */; };
+		D316073727676BF5005FF41D /* EventSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* EventSearchController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
 		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
@@ -38,10 +40,6 @@
 		D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8CA22759BC730036FA98 /* NotificationController.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D330032826E7013900208525 /* MyLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032726E7013900208525 /* MyLevelController.swift */; };
-		D33B018227466109004ED650 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018127466108004ED650 /* Calendar.storyboard */; };
-		D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018527466297004ED650 /* DetailSearch.storyboard */; };
-		D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018727466A98004ED650 /* LevelDetail.storyboard */; };
-		D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018927466CF0004ED650 /* Tornament.storyboard */; };
 		D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B018B27467009004ED650 /* MyUserInfo.storyboard */; };
 		D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019327467922004ED650 /* FriendSearch.storyboard */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
@@ -67,8 +65,6 @@
 		D3969DCF274728760022AE24 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCE274728760022AE24 /* Home.storyboard */; };
 		D3969DD1274729880022AE24 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DD0274729880022AE24 /* User.storyboard */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
-		D3977167270959A70025BE19 /* TornamentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977166270959A70025BE19 /* TornamentListController.swift */; };
-		D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3977168270961E40025BE19 /* TornamentDetailController.swift */; };
 		D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* MyScheduleController.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
@@ -76,12 +72,8 @@
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */; };
-		D3AC05E926ED763000F40A51 /* SearchCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */; };
-		D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
-		D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AF275CE0D800B2CD2C /* MapController.swift */; };
-		D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */; };
 		D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */; };
 		D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */; };
 		D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */; };
@@ -181,6 +173,8 @@
 		D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalEventTitleController.xib; sourceTree = "<group>"; };
 		D316072C276764F9005FF41D /* MapListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListController.swift; sourceTree = "<group>"; };
 		D316072D276764F9005FF41D /* MapListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapListController.xib; sourceTree = "<group>"; };
+		D316073427676BF5005FF41D /* EventSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchController.swift; sourceTree = "<group>"; };
+		D316073527676BF5005FF41D /* EventSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSearchController.xib; sourceTree = "<group>"; };
 		D31C1633272B5E0800A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		D31C1634272B5E0A00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -199,10 +193,6 @@
 		D32B8CA22759BC730036FA98 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D330032726E7013900208525 /* MyLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelController.swift; sourceTree = "<group>"; };
-		D33B018127466108004ED650 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
-		D33B018527466297004ED650 /* DetailSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailSearch.storyboard; path = BadHouseApp/Views/Stroyboard/Home/DetailSearch.storyboard; sourceTree = SOURCE_ROOT; };
-		D33B018727466A98004ED650 /* LevelDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LevelDetail.storyboard; sourceTree = "<group>"; };
-		D33B018927466CF0004ED650 /* Tornament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tornament.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Tornament.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/Views/Stroyboard/User/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
@@ -222,20 +212,14 @@
 		D3969DCE274728760022AE24 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
 		D3969DD0274729880022AE24 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = BadHouseApp/Views/Stroyboard/User/User.storyboard; sourceTree = SOURCE_ROOT; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		D3977166270959A70025BE19 /* TornamentListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentListController.swift; sourceTree = "<group>"; };
-		D3977168270961E40025BE19 /* TornamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TornamentDetailController.swift; sourceTree = "<group>"; };
 		D39771712709D1D40025BE19 /* MyScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A789D426F439A40088E8BC /* TalkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchController.swift; sourceTree = "<group>"; };
-		D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCalendarController.swift; sourceTree = "<group>"; };
-		D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
-		D3B3C9AF275CE0D800B2CD2C /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
-		D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapList.storyboard; sourceTree = "<group>"; };
 		D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -434,12 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				D3969DCE274728760022AE24 /* Home.storyboard */,
-				D33B018927466CF0004ED650 /* Tornament.storyboard */,
-				D33B018527466297004ED650 /* DetailSearch.storyboard */,
-				D33B018127466108004ED650 /* Calendar.storyboard */,
-				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
-				D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */,
 				D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */,
 				D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */,
 				D31606EE27657FAC005FF41D /* LevelDetailController.swift */,
@@ -454,6 +433,8 @@
 				D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */,
 				D316072C276764F9005FF41D /* MapListController.swift */,
 				D316072D276764F9005FF41D /* MapListController.xib */,
+				D316073427676BF5005FF41D /* EventSearchController.swift */,
+				D316073527676BF5005FF41D /* EventSearchController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -674,11 +655,6 @@
 			isa = PBXGroup;
 			children = (
 				D3BDB52B26E0525100C53780 /* HomeViewController.swift */,
-				D3AC05E826ED763000F40A51 /* SearchCalendarController.swift */,
-				D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */,
-				D3977168270961E40025BE19 /* TornamentDetailController.swift */,
-				D3977166270959A70025BE19 /* TornamentListController.swift */,
-				D3B3C9AF275CE0D800B2CD2C /* MapController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -834,24 +810,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B018227466109004ED650 /* Calendar.storyboard in Resources */,
 				D3969DC927471FC70022AE24 /* UserDetail.storyboard in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
 				D3969DD1274729880022AE24 /* User.storyboard in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
+				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
 				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
-				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
 				D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */,
 				D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */,
-				D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
@@ -863,10 +837,8 @@
 				D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */,
 				D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */,
 				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
-				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
-				D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */,
 				D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
@@ -988,11 +960,11 @@
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
-				D3977169270961E40025BE19 /* TornamentDetailController.swift in Sources */,
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
 				D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */,
 				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
+				D316073627676BF5005FF41D /* EventSearchController.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */,
 				D3B72CF1274A2EAA00253933 /* UIImageView+Extenstion.swift in Sources */,
 				D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */,
@@ -1005,7 +977,6 @@
 				D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
-				D3977167270959A70025BE19 /* TornamentListController.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
@@ -1016,7 +987,6 @@
 				D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3D3D37B2721733200E2853A /* BlockController.swift in Sources */,
-				D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
@@ -1043,7 +1013,6 @@
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3A82BB02707357900DDB4FC /* GroupSearchController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
-				D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */,
@@ -1076,7 +1045,6 @@
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,
-				D3AC05E926ED763000F40A51 /* SearchCalendarController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
 				D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */,
