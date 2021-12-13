@@ -16,11 +16,18 @@
 		D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EF27657FAC005FF41D /* LevelDetailController.xib */; };
 		D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */; };
 		D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */; };
+		D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316072027675C31005FF41D /* AdditionalEventElementController.swift */; };
+		D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316072127675C31005FF41D /* AdditionalEventElementController.xib */; };
+		D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316072427675E98005FF41D /* AddtionalEventLevelController.swift */; };
+		D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316072527675E98005FF41D /* AddtionalEventLevelController.xib */; };
+		D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3160728276761EE005FF41D /* AdditionalEventTitleController.swift */; };
+		D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */; };
+		D316072E276764F9005FF41D /* MapListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316072C276764F9005FF41D /* MapListController.swift */; };
+		D316072F276764F9005FF41D /* MapListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316072D276764F9005FF41D /* MapListController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
 		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
 		D31D290D27469F2100EC650C /* MakeGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290C27469F2100EC650C /* MakeGroup.storyboard */; };
-		D31D290F2746A06400EC650C /* MakeEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290E2746A06400EC650C /* MakeEvent.storyboard */; };
 		D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29142746A5DE00EC650C /* Chat.storyboard */; };
 		D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29162746A6C000EC650C /* GroupChat.storyboard */; };
 		D31D29192746A74B00EC650C /* Talk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29182746A74B00EC650C /* Talk.storyboard */; };
@@ -44,7 +51,6 @@
 		D351FEF1275A331600AA518B /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEF0275A331600AA518B /* Differentiator */; };
 		D351FEF3275A331600AA518B /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEF2275A331600AA518B /* RxDataSources */; };
 		D351FEF6275A35E500AA518B /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEF5275A35E500AA518B /* RxGesture */; };
-		D351FEF8275A5A5000AA518B /* MakeEventSecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */; };
 		D353D8DA26F05B9600221B7D /* DMChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8D926F05B9600221B7D /* DMChatController.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
@@ -52,7 +58,6 @@
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailController.swift */; };
-		D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */; };
 		D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */; };
 		D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */; };
 		D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */; };
@@ -75,8 +80,6 @@
 		D3AC05EB26ED9C8800F40A51 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
-		D3B3C9AC275CD96000B2CD2C /* MakeEventThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */; };
-		D3B3C9AE275CD9F300B2CD2C /* MakeEventLastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */; };
 		D3B3C9B0275CE0D800B2CD2C /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9AF275CE0D800B2CD2C /* MapController.swift */; };
 		D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */; };
 		D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */; };
@@ -143,10 +146,8 @@
 		D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */; };
 		D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194226E3A26700B6740E /* UserDetailController.swift */; };
 		D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* GroupCell.xib */; };
-		D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD194E26E482C200B6740E /* MakeEventController.swift */; };
 		D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */; };
 		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
-		D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195426E4CAC900B6740E /* EventTagController.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -172,6 +173,14 @@
 		D31606EF27657FAC005FF41D /* LevelDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelDetailController.xib; sourceTree = "<group>"; };
 		D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsController.swift; sourceTree = "<group>"; };
 		D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventAdditionlItemsController.xib; sourceTree = "<group>"; };
+		D316072027675C31005FF41D /* AdditionalEventElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalEventElementController.swift; sourceTree = "<group>"; };
+		D316072127675C31005FF41D /* AdditionalEventElementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalEventElementController.xib; sourceTree = "<group>"; };
+		D316072427675E98005FF41D /* AddtionalEventLevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelController.swift; sourceTree = "<group>"; };
+		D316072527675E98005FF41D /* AddtionalEventLevelController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalEventLevelController.xib; sourceTree = "<group>"; };
+		D3160728276761EE005FF41D /* AdditionalEventTitleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalEventTitleController.swift; sourceTree = "<group>"; };
+		D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalEventTitleController.xib; sourceTree = "<group>"; };
+		D316072C276764F9005FF41D /* MapListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListController.swift; sourceTree = "<group>"; };
+		D316072D276764F9005FF41D /* MapListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapListController.xib; sourceTree = "<group>"; };
 		D31C1633272B5E0800A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		D31C1634272B5E0A00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -180,7 +189,6 @@
 		D31D290627469D4D00EC650C /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Authentication.storyboard; path = BadHouseApp/Views/Stroyboard/Authenticaton/Authentication.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290A27469EA800EC650C /* Invite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Invite.storyboard; path = BadHouseApp/Views/Stroyboard/User/Invite.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D290C27469F2100EC650C /* MakeGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MakeGroup.storyboard; path = BadHouseApp/Views/Stroyboard/User/MakeGroup.storyboard; sourceTree = SOURCE_ROOT; };
-		D31D290E2746A06400EC650C /* MakeEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MakeEvent.storyboard; path = BadHouseApp/Views/Stroyboard/Home/MakeEvent.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29142746A5DE00EC650C /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Chat.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Chat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29162746A6C000EC650C /* GroupChat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupChat.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/GroupChat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29182746A74B00EC650C /* Talk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Talk.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Talk.storyboard; sourceTree = SOURCE_ROOT; };
@@ -198,7 +206,6 @@
 		D33B018B27467009004ED650 /* MyUserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyUserInfo.storyboard; path = BadHouseApp/Views/Stroyboard/User/MyUserInfo.storyboard; sourceTree = SOURCE_ROOT; };
 		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
-		D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondController.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -206,7 +213,6 @@
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
-		D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailViewController.swift; sourceTree = "<group>"; };
 		D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserDetailController.swift; sourceTree = "<group>"; };
 		D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupDetail.storyboard; path = BadHouseApp/Views/Stroyboard/User/GroupDetail.storyboard; sourceTree = SOURCE_ROOT; };
@@ -228,8 +234,6 @@
 		D3AC05EA26ED9C8800F40A51 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
-		D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdController.swift; sourceTree = "<group>"; };
-		D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventLastController.swift; sourceTree = "<group>"; };
 		D3B3C9AF275CE0D800B2CD2C /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapList.storyboard; sourceTree = "<group>"; };
 		D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondViewModel.swift; sourceTree = "<group>"; };
@@ -298,10 +302,8 @@
 		D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseErrorEnum.swift; sourceTree = "<group>"; };
 		D3FD194226E3A26700B6740E /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
-		D3FD194E26E482C200B6740E /* MakeEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventController.swift; sourceTree = "<group>"; };
 		D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewModel.swift; sourceTree = "<group>"; };
 		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
-		D3FD195426E4CAC900B6740E /* EventTagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTagController.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -400,12 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				D37FA52B26EB4AD900B8559F /* EventDetailController.swift */,
-				D3FD195426E4CAC900B6740E /* EventTagController.swift */,
-				D38807D126FF149000D3AB7F /* LevelDetailViewController.swift */,
-				D3FD194E26E482C200B6740E /* MakeEventController.swift */,
-				D3B3C9AD275CD9F300B2CD2C /* MakeEventLastController.swift */,
-				D351FEF7275A5A5000AA518B /* MakeEventSecondController.swift */,
-				D3B3C9AB275CD96000B2CD2C /* MakeEventThirdController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -441,7 +437,6 @@
 				D33B018927466CF0004ED650 /* Tornament.storyboard */,
 				D33B018527466297004ED650 /* DetailSearch.storyboard */,
 				D33B018127466108004ED650 /* Calendar.storyboard */,
-				D31D290E2746A06400EC650C /* MakeEvent.storyboard */,
 				D33B018727466A98004ED650 /* LevelDetail.storyboard */,
 				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
 				D3B3C9B1275CE10500B2CD2C /* MapList.storyboard */,
@@ -451,6 +446,14 @@
 				D31606EF27657FAC005FF41D /* LevelDetailController.xib */,
 				D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */,
 				D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */,
+				D316072027675C31005FF41D /* AdditionalEventElementController.swift */,
+				D316072127675C31005FF41D /* AdditionalEventElementController.xib */,
+				D316072427675E98005FF41D /* AddtionalEventLevelController.swift */,
+				D316072527675E98005FF41D /* AddtionalEventLevelController.xib */,
+				D3160728276761EE005FF41D /* AdditionalEventTitleController.swift */,
+				D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */,
+				D316072C276764F9005FF41D /* MapListController.swift */,
+				D316072D276764F9005FF41D /* MapListController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -839,17 +842,19 @@
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
 				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
+				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
 				D33B018A27466CF0004ED650 /* Tornament.storyboard in Resources */,
-				D31D290F2746A06400EC650C /* MakeEvent.storyboard in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
 				D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */,
+				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */,
 				D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */,
 				D33B018827466A98004ED650 /* LevelDetail.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
+				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
 				D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */,
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
 				D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */,
@@ -860,6 +865,7 @@
 				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
 				D33B018627466297004ED650 /* DetailSearch.storyboard in Resources */,
 				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
+				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
 				D3B3C9B2275CE10500B2CD2C /* MapList.storyboard in Resources */,
 				D33B018C27467009004ED650 /* MyUserInfo.storyboard in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
@@ -974,10 +980,10 @@
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D3A789D526F439A40088E8BC /* TalkController.swift in Sources */,
+				D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
-				D3B3C9AC275CD96000B2CD2C /* MakeEventThirdController.swift in Sources */,
 				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
@@ -1003,9 +1009,7 @@
 				D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
-				D351FEF8275A5A5000AA518B /* MakeEventSecondController.swift in Sources */,
 				D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */,
-				D38807D226FF149000D3AB7F /* LevelDetailViewController.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
@@ -1017,6 +1021,7 @@
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
+				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3FD194326E3A26700B6740E /* UserDetailController.swift in Sources */,
@@ -1045,6 +1050,7 @@
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
 				D3BDB55726E0644E00C53780 /* UIButton+Factory.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
+				D316072E276764F9005FF41D /* MapListController.swift in Sources */,
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
@@ -1063,15 +1069,13 @@
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
-				D3FD194F26E482C200B6740E /* MakeEventController.swift in Sources */,
-				D3B3C9AE275CD9F300B2CD2C /* MakeEventLastController.swift in Sources */,
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,
-				D3FD195526E4CAC900B6740E /* EventTagController.swift in Sources */,
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
+				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,
 				D3AC05E926ED763000F40A51 /* SearchCalendarController.swift in Sources */,
 				D3C4E94026E19EDE00C21E46 /* GroupDetailController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,

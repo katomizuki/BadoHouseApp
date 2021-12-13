@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let vc = RegisterViewController()
-                let nav = UINavigationController(rootViewController:   vc)
+                let nav = UINavigationController(rootViewController:vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
@@ -48,8 +48,7 @@ final class HomeViewController: UIViewController {
     }
     private func setupBinding() {
         makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventController") as? MakeEventController else { return }
+            let controller = AdditionalEventTitleController.init(nibName: "AdditionalEventTitleController", bundle: nil)
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
         detailSearchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in

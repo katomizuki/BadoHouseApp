@@ -1,7 +1,14 @@
+//
+//  AddtionalEventLevelController.swift
+//  BadHouseApp
+//
+//  Created by ミズキ on 2021/12/13.
+//
+
 import UIKit
 import RxSwift
 import RxCocoa
-class MakeEventSecondController: UIViewController {
+class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var maxLabel: UILabel!
@@ -18,8 +25,7 @@ class MakeEventSecondController: UIViewController {
     }
     private func setupBinding() {
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventThirdController") as? MakeEventThirdController else { return }
+            let controller = AdditionalEventElementController.init(nibName: "AdditionalEventElementController", bundle: nil)
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
@@ -38,7 +44,7 @@ class MakeEventSecondController: UIViewController {
     @IBAction private func maxLevelSliderChanged(_ sender: UISlider) {
         viewModel.inputs.maxLevel.onNext(sender.value)
     }
-    @IBAction func didTapLevelDetailButton(_ sender: Any) {
+    @IBAction private func didTapLevelDetailButton(_ sender: Any) {
         let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
         present(controller, animated: true)
     }

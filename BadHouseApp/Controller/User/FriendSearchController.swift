@@ -56,7 +56,6 @@ final class FriendSearchController: UIViewController {
         tableView.register(FriendSearchCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
     }
-    
     // MARK: - CustomDelegate
     func plusFriend(cell: UITableViewCell) {
         print(#function)
@@ -76,7 +75,7 @@ final class FriendSearchController: UIViewController {
     private func setupBinding() {
         UserService().getUserData().subscribe { result in
             switch result {
-            case .success(let users): print("user⚡️",users)
+            case .success(let users): print(users)
             case .failure(let error): print(error)
             }
         }.disposed(by: disposeBag)

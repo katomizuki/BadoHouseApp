@@ -114,7 +114,6 @@
                         <outlet property="mapButton" destination="nCB-dy-luD" id="Dck-UD-C1l"/>
                         <segue destination="iT6-NJ-FbN" kind="show" identifier="goto" id="AWO-mA-qp4"/>
                         <segue destination="SdE-sB-WCG" kind="presentation" identifier="gotoRegister" modalPresentationStyle="fullScreen" id="CEC-OQ-CJW"/>
-                        <segue destination="EgL-cs-2XH" kind="show" id="rJF-Cm-tQX"/>
                         <segue destination="Hun-8X-dQl" kind="presentation" identifier="DetailSearchController" modalPresentationStyle="fullScreen" id="OAn-3I-e1V"/>
                     </connections>
                 </viewController>
@@ -139,16 +138,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehP-kj-gGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3384" y="623"/>
-        </scene>
-        <!--MakeEvent-->
-        <scene sceneID="ufi-KO-lCC">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MakeEvent" id="EgL-cs-2XH" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="77G-U0-r72"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pgh-4r-QQA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4216" y="110"/>
         </scene>
         <!--EventDetailVC-->
         <scene sceneID="apj-7h-dfM">

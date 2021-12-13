@@ -1,10 +1,15 @@
+//
+//  AdditionalEventTitleController.swift
+//  BadHouseApp
+//
+//  Created by ミズキ on 2021/12/13.
+//
+
 import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
-import Firebase
-
-final class MakeEventController: UIViewController {
+class AdditionalEventTitleController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var nextButton: UIButton!
@@ -39,8 +44,7 @@ final class MakeEventController: UIViewController {
         }).disposed(by: disposeBag)
 
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let storyboard = UIStoryboard(name: "MakeEvent", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "MakeEventSecondController") as? MakeEventSecondController else { return }
+            let controller = AddtionalEventLevelController.init(nibName: "AddtionalEventLevelController", bundle: nil)
             self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
 
@@ -63,7 +67,7 @@ final class MakeEventController: UIViewController {
     }
 }
 // MARK: - UInavigationDelegate
-extension MakeEventController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension AdditionalEventTitleController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             noImageView.image = image.withRenderingMode(.alwaysOriginal)
@@ -72,4 +76,3 @@ extension MakeEventController: UINavigationControllerDelegate, UIImagePickerCont
         self.dismiss(animated: true, completion: nil)
     }
 }
-

@@ -1,8 +1,9 @@
 import UIKit
-import RxCocoa
 import RxSwift
-import RxGesture
-final class MakeEventThirdController: UIViewController {
+import RxCocoa
+
+final class AdditionalEventElementController: UIViewController {
+
     @IBOutlet private weak var moneyTextField: UITextField!
     @IBOutlet private weak var courtCountLabel: UILabel!
     @IBOutlet private weak var gatherCountLabel: UILabel!
@@ -31,10 +32,12 @@ final class MakeEventThirdController: UIViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
     }
-    @IBAction func courtStepper(_ sender: UIStepper) {
+    
+    @IBAction private func courtStepper(_ sender: UIStepper) {
         courtCountLabel.text =  String(Int(sender.value))
     }
-    @IBAction func gatherStepper(_ sender: UIStepper) {
+    
+    @IBAction private func gatherStepper(_ sender: UIStepper) {
         gatherCountLabel.text = String(Int(sender.value))
     }
     private func setPicker(pickerView: UIPickerView, textField: UITextField) {
@@ -59,7 +62,7 @@ final class MakeEventThirdController: UIViewController {
     }
 }
 // MARK: - UIPickerViewDelegate
-extension MakeEventThirdController: UIPickerViewDelegate {
+extension AdditionalEventElementController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         moneyTextField.text = Constants.Data.moneyArray[row]
     }
@@ -68,7 +71,7 @@ extension MakeEventThirdController: UIPickerViewDelegate {
     }
 }
 // MARK: - UIPickerViewDataSource
-extension MakeEventThirdController: UIPickerViewDataSource {
+extension AdditionalEventElementController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
