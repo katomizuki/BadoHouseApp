@@ -56,6 +56,8 @@
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D37FA52C26EB4AD900B8559F /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52B26EB4AD900B8559F /* EventDetailController.swift */; };
+		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
+		D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863E62768B49700FC4F07 /* InviteToCircleController.xib */; };
 		D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */; };
 		D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */; };
 		D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */; };
@@ -203,6 +205,8 @@
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D37FA52B26EB4AD900B8559F /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
+		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
+		D38863E62768B49700FC4F07 /* InviteToCircleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteToCircleController.xib; sourceTree = "<group>"; };
 		D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserDetailController.swift; sourceTree = "<group>"; };
 		D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupDetail.storyboard; path = BadHouseApp/Views/Stroyboard/User/GroupDetail.storyboard; sourceTree = SOURCE_ROOT; };
@@ -410,6 +414,8 @@
 				D3969DC827471FC70022AE24 /* UserDetail.storyboard */,
 				D33B019327467922004ED650 /* FriendSearch.storyboard */,
 				D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */,
+				D38863E52768B49700FC4F07 /* InviteToCircleController.swift */,
+				D38863E62768B49700FC4F07 /* InviteToCircleController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */,
 				D3969DC927471FC70022AE24 /* UserDetail.storyboard in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
@@ -1004,6 +1011,7 @@
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
 				D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */,
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */,
+				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
