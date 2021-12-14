@@ -1,7 +1,6 @@
 import UIKit
 import CDAlertView
-
-final class GroupSearchController: UIViewController {
+final class CircleSearchController: UIViewController {
     // MARK: - properties
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
@@ -50,7 +49,7 @@ final class GroupSearchController: UIViewController {
     }
 }
 // MARK: - tableViewDataSource
-extension GroupSearchController: UITableViewDataSource {
+extension CircleSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
@@ -62,7 +61,7 @@ extension GroupSearchController: UITableViewDataSource {
     }
 }
 // MARK: - uitableViewDelegate
-extension GroupSearchController: UITableViewDelegate {
+extension CircleSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let team = groupArray[indexPath.row]
@@ -74,7 +73,7 @@ extension GroupSearchController: UITableViewDelegate {
     }
 }
 // MARK: - SearchBarDelegate
-extension GroupSearchController: UISearchBarDelegate {
+extension CircleSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
         fetchData.searchGroupData(text: text, bool: false)
@@ -104,7 +103,7 @@ extension GroupSearchController: UISearchBarDelegate {
     }
 }
 // MARK: - getGroupDelegate
-extension GroupSearchController: FetchSearchDataDelegate {
+extension CircleSearchController: FetchSearchDataDelegate {
     func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
         if bool == false {
             self.groupArray = groupArray
@@ -133,7 +132,7 @@ extension GroupSearchController: FetchSearchDataDelegate {
     }
 }
 
-extension GroupSearchController: SearchDetailGroupDelegate {
+extension CircleSearchController: SearchDetailGroupDelegate {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
         vc.dismiss(animated: true, completion: nil)
         fetchData.searchDetailGroup(day: time, money: money, place: place)

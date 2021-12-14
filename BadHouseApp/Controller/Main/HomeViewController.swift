@@ -91,7 +91,7 @@ final class HomeViewController: UIViewController {
     // MARK: - prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Segue.gotoUser.rawValue {
-            let vc = segue.destination as! MyPageUserInfoController
+            let vc = segue.destination as! UserPageController
             vc.user = self.user
         }
 

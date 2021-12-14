@@ -1,15 +1,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import FirebaseFirestore
-import FirebaseStorage
-import SDWebImage
 import FirebaseAuth
-import CDAlertView
 protocol UserDismissDelegate: AnyObject {
-    func userVCdismiss(vc: MyPageUserInfoController)
+    func userVCdismiss(vc: UserPageController)
 }
-final class MyPageUserInfoController: UIViewController {
+class UserPageController: UIViewController {
     // MARK: - Properties
     var user: User?
     private let cellId = "userCellId"
@@ -277,14 +273,14 @@ final class MyPageUserInfoController: UIViewController {
     // MARK: - PrepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Segue.gotoLevel.rawValue {
-            let vc = segue.destination as! MyLevelController
+            let vc = segue.destination as! UserLevelController
             vc.selectedLevel = self.level
             vc.delegate = self
         }
     }
 }
 // MARK: - collectionViewDatasource
-extension MyPageUserInfoController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension UserPageController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -296,7 +292,7 @@ extension MyPageUserInfoController: UICollectionViewDataSource, UICollectionView
     }
 }
 // MARK: - ImagePickerDelegate
-extension MyPageUserInfoController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension UserPageController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         print(#function)
         if let image = info[.originalImage] as? UIImage {
@@ -307,10 +303,12 @@ extension MyPageUserInfoController: UINavigationControllerDelegate, UIImagePicke
     }
 }
 // MARK: UITableViewDelegate
-extension MyPageUserInfoController: UITableViewDelegate {
+extension UserPageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellTitleArray[indexPath.row] == UserInfo.level {
-            performSegue(withIdentifier: Segue.gotoLevel.rawValue, sender: nil)
+            let controller = UserLevelController.init(nibName: "UserLevelController", bundle: nil)
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true, completion: nil)
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return
@@ -330,14 +328,14 @@ extension MyPageUserInfoController: UITableViewDelegate {
     }
 }
 // MARK: - UIPopoverPresentationControllerDelegate
-extension MyPageUserInfoController: UIPopoverPresentationControllerDelegate {
+extension UserPageController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController,
                                    traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
 // MARK: - UITableViewDatasource
-extension MyPageUserInfoController: UITableViewDataSource {
+extension UserPageController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTitleArray.count
     }
@@ -368,14 +366,15 @@ extension MyPageUserInfoController: UITableViewDataSource {
     }
 }
 // MARK: - LevelDismissDelegate
-extension MyPageUserInfoController: LevelDismissDelegate {
-    func levelDismiss(vc: MyLevelController) {
+extension UserPageController: LevelDismissDelegate {
+    func levelDismiss(vc: UserLevelController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
 // MARK: - PopDismissDelegate
-extension MyPageUserInfoController: PopDismissDelegate {
+extension UserPageController: PopDismissDelegate {
     func popDismiss(vc: MyPageInfoPopoverController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
+

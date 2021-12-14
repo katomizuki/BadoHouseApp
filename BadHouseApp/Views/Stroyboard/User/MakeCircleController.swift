@@ -1,12 +1,9 @@
+
 import UIKit
 import RxSwift
 import RxCocoa
-import FirebaseFirestore
-import FirebaseStorage
-import SDWebImage
-import FirebaseAuth
+class MakeCircleController: UIViewController {
 
-final class MakeGroupController: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let teamBinding = TeamRegisterViewModel()
@@ -441,7 +438,7 @@ final class MakeGroupController: UIViewController {
     }
 }
 // MARK: - UIPickerDelegate,UINavigationControllerDelegate
-extension MakeGroupController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension MakeCircleController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         print(#function)
@@ -452,7 +449,7 @@ extension MakeGroupController: UINavigationControllerDelegate, UIImagePickerCont
     }
 }
 // MARK: - UIPickerViewDataSource
-extension MakeGroupController: UIPickerViewDataSource {
+extension MakeCircleController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -467,7 +464,7 @@ extension MakeGroupController: UIPickerViewDataSource {
     }
 }
 // MARK: - UIPickerViewDelegate
-extension MakeGroupController: UIPickerViewDelegate {
+extension MakeCircleController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.placePickerView {
             guard let text = Place(rawValue: row)?.name else { return }
@@ -490,13 +487,13 @@ extension MakeGroupController: UIPickerViewDelegate {
     }
 }
 // MARK: - getFriendDelegate
-extension MakeGroupController: FetchMyDataDelegate {
+extension MakeCircleController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.friends = friendArray
     }
 }
 // MARK: - uitextFieldDelegate
-extension MakeGroupController: UITextFieldDelegate {
+extension MakeCircleController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if textField.tag == 0 {
@@ -511,3 +508,5 @@ extension MakeGroupController: UITextFieldDelegate {
         return true
     }
 }
+
+

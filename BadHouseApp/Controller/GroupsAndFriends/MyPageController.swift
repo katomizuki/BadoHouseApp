@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
-
+import RxSwift
+import RxCocoa
 final class MyPageController: UIViewController {
     // MARK: - Properties
     var user: User?
@@ -31,6 +32,8 @@ final class MyPageController: UIViewController {
             countLabel.textColor = .systemGray
         }
     }
+    @IBOutlet private weak var searchCircleButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,14 @@ final class MyPageController: UIViewController {
                                                            style: .plain,
                                                            target: nil,
                                                            action: nil)
+        searchCircleButton.rx.tap.asDriver().drive { [weak self] _ in
+            guard let self = self else { return }
+            let controller = CircleSearchController.init(nibName: "CircleSearchController", bundle: nil)
+            controller.modalPresentationStyle = .fullScreen
+            controller.friends = self.friendArray
+            self.present(controller, animated: true)
+        }.disposed(by: disposeBag)
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -83,14 +94,13 @@ final class MyPageController: UIViewController {
         groupTableView.register(nib, forCellReuseIdentifier: cellId)
     }
     // MARK: - IBAction
-  
     @IBAction private func user(_ sender: Any) {
         self.performSegue(withIdentifier: Segue.userProfile.rawValue, sender: nil)
     }
     @IBAction private func gotoMakeGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.MakeGroupVC) as! MakeGroupController
-        vc.myData = user
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = MakeCircleController.init(nibName: "MakeCircleController", bundle: nil)
+        controller.myData = user
+        navigationController?.pushViewController(controller, animated: true)
     }
     @IBAction private func scroll(_ sender: Any) {
         if teamArray.count != 0 && friendArray.count != 0 {
@@ -101,13 +111,10 @@ final class MyPageController: UIViewController {
     // MARK: - PrepareMethod
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  Segue.userProfile.rawValue {
-            let vc = segue.destination as! MyPageUserInfoController
+            let vc = segue.destination as! UserPageController
             vc.user = self.user
             vc.delegate = self
-        } else if segue.identifier == Segue.gotoSearch.rawValue {
-            let vc = segue.destination as! GroupSearchController
-            vc.friends = self.friendArray
-        }
+        } 
     }
 }
 // MARK: - UItableViewDataSource
@@ -207,7 +214,7 @@ extension MyPageController: FetchMyDataDelegate {
 }
 // MARK: - UserDismissDelegate
 extension MyPageController: UserDismissDelegate {
-    func userVCdismiss(vc: MyPageUserInfoController) {
+    func userVCdismiss(vc: UserPageController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }

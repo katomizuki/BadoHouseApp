@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MakeCircleController" customModule="BadHouseApp" customModuleProvider="target">
+            <connections>
+                <outlet property="groupImageView" destination="egS-fL-Gzg" id="Guj-5J-QaN"/>
+                <outlet property="scrollView" destination="yp9-7j-Xv2" id="Wfu-4K-9bn"/>
+                <outlet property="view" destination="Mdn-fb-SYP" id="Qj5-x3-Pjd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Mdn-fb-SYP">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yp9-7j-Xv2">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dz3-Q2-4Uy">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImages" translatesAutoresizingMaskIntoConstraints="NO" id="egS-fL-Gzg">
+                                    <rect key="frame" x="157" y="10" width="100" height="100"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="63R-dP-f8Q"/>
+                                        <constraint firstAttribute="width" constant="100" id="aZ7-ga-uRC"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" name="backGroundColor"/>
+                            <constraints>
+                                <constraint firstItem="egS-fL-Gzg" firstAttribute="top" secondItem="dz3-Q2-4Uy" secondAttribute="top" constant="10" id="WbG-0I-fSx"/>
+                                <constraint firstItem="egS-fL-Gzg" firstAttribute="centerX" secondItem="dz3-Q2-4Uy" secondAttribute="centerX" id="ZXx-68-Mdg"/>
+                                <constraint firstAttribute="height" constant="800" id="nDi-kE-yIp"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="dz3-Q2-4Uy" firstAttribute="width" secondItem="2CJ-VR-COe" secondAttribute="width" id="1uo-0U-CZn"/>
+                        <constraint firstItem="dz3-Q2-4Uy" firstAttribute="bottom" secondItem="owY-HN-vDV" secondAttribute="bottom" id="2U2-mu-PHu"/>
+                        <constraint firstItem="dz3-Q2-4Uy" firstAttribute="top" secondItem="owY-HN-vDV" secondAttribute="top" id="EX5-oK-E8k"/>
+                        <constraint firstItem="dz3-Q2-4Uy" firstAttribute="leading" secondItem="owY-HN-vDV" secondAttribute="leading" id="RIE-Vc-J7P"/>
+                        <constraint firstItem="dz3-Q2-4Uy" firstAttribute="trailing" secondItem="owY-HN-vDV" secondAttribute="trailing" id="kJA-la-f6T"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="owY-HN-vDV"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="2CJ-VR-COe"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="2ER-Vd-u06"/>
+            <color key="backgroundColor" name="backGroundColor"/>
+            <constraints>
+                <constraint firstItem="yp9-7j-Xv2" firstAttribute="top" secondItem="2ER-Vd-u06" secondAttribute="top" id="0jM-4B-He3"/>
+                <constraint firstItem="yp9-7j-Xv2" firstAttribute="leading" secondItem="2ER-Vd-u06" secondAttribute="leading" id="DcD-T8-dcT"/>
+                <constraint firstAttribute="bottom" secondItem="yp9-7j-Xv2" secondAttribute="bottom" id="E0b-4j-QMB"/>
+                <constraint firstItem="yp9-7j-Xv2" firstAttribute="trailing" secondItem="2ER-Vd-u06" secondAttribute="trailing" id="evE-ox-hyz"/>
+            </constraints>
+            <point key="canvasLocation" x="172" y="-151"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="noImages" width="340" height="340"/>
+        <namedColor name="backGroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

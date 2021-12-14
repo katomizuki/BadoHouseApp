@@ -62,7 +62,7 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
 // MARK: - TableViewDelegate
 extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.presentingViewController as! MyPageUserInfoController
+        let vc = self.presentingViewController as! UserPageController
         switch keyword {
         case UserInfo.gender:
             gender = cellArray[indexPath.row]

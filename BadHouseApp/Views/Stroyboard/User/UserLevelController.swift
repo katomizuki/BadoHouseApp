@@ -1,9 +1,8 @@
 import UIKit
-import Foundation
 protocol LevelDismissDelegate: AnyObject {
-    func levelDismiss(vc: MyLevelController)
+    func levelDismiss(vc: UserLevelController)
 }
-final class MyLevelController: UIViewController {
+final class UserLevelController: UIViewController {
     // MARK: - Properties
     weak var delegate: LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
@@ -38,7 +37,7 @@ final class MyLevelController: UIViewController {
     // MARK: SelectorMethod
     @objc private func backtoUser() {
         selectedLevel = levelLabel.text ?? "1"
-        let vc = self.presentingViewController as! MyPageUserInfoController
+        let vc = self.presentingViewController as! UserPageController
         vc.level = selectedLevel
         self.delegate?.levelDismiss(vc: self)
     }
