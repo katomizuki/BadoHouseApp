@@ -153,33 +153,11 @@
                         <outlet property="searchCircleButton" destination="wq4-4A-eHZ" id="TLq-rs-N8m"/>
                         <outlet property="searchFriendButton" destination="QBM-3w-HCi" id="cEt-Em-gbW"/>
                         <outlet property="userPageButton" destination="yzd-AU-WQb" id="wgo-On-8tT"/>
-                        <segue destination="GEo-Ns-T9W" kind="show" identifier="gotoGroup" id="XjJ-C8-ncf"/>
-                        <segue destination="yMv-gt-tf9" kind="show" id="fFC-75-lIt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2707" y="959"/>
-        </scene>
-        <!--GroupDetailVC-->
-        <scene sceneID="8fi-Se-3Xf">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="GroupDetailVC" storyboardName="GroupDetail" referencedIdentifier="GroupDetailVC" id="GEo-Ns-T9W" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tdc-oL-bJ6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3nK-5Q-h4Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2813" y="1576"/>
-        </scene>
-        <!--UserDetailVC-->
-        <scene sceneID="NhJ-MK-llZ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UserDetailVC" storyboardName="UserDetail" referencedIdentifier="UserDetailVC" id="yMv-gt-tf9" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4Xp-il-MPT"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0OM-nL-CcJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2573" y="1569"/>
         </scene>
         <!--ユーザー-->
         <scene sceneID="ehK-Zx-1f3">

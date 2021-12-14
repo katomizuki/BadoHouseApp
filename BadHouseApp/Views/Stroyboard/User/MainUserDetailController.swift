@@ -1,8 +1,7 @@
-import UIKit
-import Firebase
-import SDWebImage
 
-final class UserDetailController: UIViewController {
+import UIKit
+
+class MainUserDetailController: UIViewController {
     // MARK: - Properties
     var user: User?
     var me: User?
@@ -191,15 +190,9 @@ final class UserDetailController: UIViewController {
         vc.you = user
         navigationController?.pushViewController(vc, animated: true)
     }
-    @IBAction func gotoDM(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
-        vc.me = me
-        vc.you = user
-        navigationController?.pushViewController(vc, animated: true)
-    }
 }
 // MARK: - UserCollectionViewDelegate
-extension UserDetailController: UICollectionViewDataSource {
+extension MainUserDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == belongCollectionView && collectionView.tag == 0 {
             return ownTeam.count
@@ -225,14 +218,14 @@ extension UserDetailController: UICollectionViewDataSource {
     }
 }
 // MARK: - CollectionViewDelegate
-extension UserDetailController: UICollectionViewDelegate {
+extension MainUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == belongCollectionView {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
-            vc.team = ownTeam[indexPath.row]
-            vc.friends = userFriend
-            vc.flag = true
-            navigationController?.pushViewController(vc, animated: true)
+            let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
+            controller.team = ownTeam[indexPath.row]
+            controller.friends = userFriend
+            controller.flag = true
+            navigationController?.pushViewController(controller, animated: true)
         } else {
             let controller = SubUserDetailController.init(nibName: "SubUserDetailController", bundle: nil)
             controller.user = userFriend[indexPath.row]
@@ -242,13 +235,13 @@ extension UserDetailController: UICollectionViewDelegate {
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
-extension UserDetailController: UICollectionViewDelegateFlowLayout {
+extension MainUserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
 }
 // MARK: - FetchMyDataDelegate
-extension UserDetailController: FetchMyDataDelegate {
+extension MainUserDetailController: FetchMyDataDelegate {
     func fetchMyFriendData(friendArray: [User]) {
         self.userFriend = []
         self.userFriend = friendArray
@@ -258,7 +251,7 @@ extension UserDetailController: FetchMyDataDelegate {
     }
 }
 // MARK: - MyTeamDelegate
-extension UserDetailController {
+extension MainUserDetailController {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.ownTeam = teamArray
         DispatchQueue.main.async {
@@ -267,7 +260,7 @@ extension UserDetailController {
     }
 }
 // MARK: - BlockDelegate
-extension UserDetailController: BlockDelegate {
+extension MainUserDetailController: BlockDelegate {
     func blockSheet(option: BlockOptions) {
         switch option {
         case .dismiss:
@@ -282,8 +275,9 @@ extension UserDetailController: BlockDelegate {
     }
 }
 // MARK: - BlockDismissDelegate
-extension UserDetailController: BlockDismissDelegate {
+extension MainUserDetailController: BlockDismissDelegate {
     func blockDismiss(vc: BlockController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
+

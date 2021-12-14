@@ -65,11 +65,11 @@ extension CircleSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let team = groupArray[indexPath.row]
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
-        vc.team = team
-        vc.friends = friends
-        vc.flag = true
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
+        controller.team = team
+        controller.friends = friends
+        controller.flag = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 // MARK: - SearchBarDelegate

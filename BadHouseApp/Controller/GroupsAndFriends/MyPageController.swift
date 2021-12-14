@@ -162,17 +162,17 @@ extension MyPageController: UITableViewDataSource {
 extension MyPageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
-            vc.team = teamArray[indexPath.row]
-            vc.friends = friendArray
-            vc.me = self.user
-            navigationController?.pushViewController(vc, animated: true)
+            let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
+            controller.team = teamArray[indexPath.row]
+            controller.friends = friendArray
+            controller.me = self.user
+            navigationController?.pushViewController(controller, animated: true)
         } else if indexPath.section == 1 {
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
-            vc.user = friendArray[indexPath.row]
-            vc.me = self.user
-            vc.flag = false
-            navigationController?.pushViewController(vc, animated: true)
+            let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+            controller.user = friendArray[indexPath.row]
+            controller.me = self.user
+            controller.flag = false
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

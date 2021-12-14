@@ -280,11 +280,10 @@ extension CircleDetailController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension CircleDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "UserDetail", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
-        vc.user = teamPlayers[indexPath.row]
-        vc.me = self.me
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+        controller.user = teamPlayers[indexPath.row]
+        controller.me = self.me
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout

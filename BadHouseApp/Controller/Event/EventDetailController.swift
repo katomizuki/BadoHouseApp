@@ -382,10 +382,10 @@ final class EventDetailController: UIViewController {
     // MARK: SelectorMethod
     @objc private func didTapGroupImage() {
         print(#function)
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
-        vc.team = self.team
-        vc.flag = true
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
+        controller.team = self.team
+        controller.flag = true
+        navigationController?.pushViewController(controller, animated: true)
     }
     @IBAction func didTapChatButton(_ sender: Any) {
     }
@@ -418,9 +418,9 @@ extension EventDetailController: UICollectionViewDelegate {
 extension EventDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
-        vc.user = teamArray[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+        controller.user = teamArray[indexPath.row]
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 // MARK: - ColletionViewDelegateFlowLayout

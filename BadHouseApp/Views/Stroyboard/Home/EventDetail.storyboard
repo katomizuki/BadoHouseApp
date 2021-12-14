@@ -541,8 +541,6 @@
                         <outlet property="timeLabel" destination="yRo-oL-G2R" id="gTJ-N3-kV0"/>
                         <outlet property="timeToLabel" destination="ocm-Ji-ji8" id="mjf-TO-3Rj"/>
                         <outlet property="titleLabel" destination="fTQ-0S-pls" id="79r-D2-lAx"/>
-                        <segue destination="GEo-Ns-T9W" kind="show" id="u8k-iQ-9IU"/>
-                        <segue destination="yMv-gt-tf9" kind="show" id="Wv8-ci-u05"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKp-yd-OBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -562,27 +560,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGm-eB-v6E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2996" y="1402"/>
-        </scene>
-        <!--GroupDetailVC-->
-        <scene sceneID="8fi-Se-3Xf">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="GroupDetailVC" storyboardName="GroupDetail" referencedIdentifier="GroupDetailVC" id="GEo-Ns-T9W" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tdc-oL-bJ6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3nK-5Q-h4Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3343" y="1402"/>
-        </scene>
-        <!--UserDetailVC-->
-        <scene sceneID="NhJ-MK-llZ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UserDetailVC" storyboardName="UserDetail" referencedIdentifier="UserDetailVC" id="yMv-gt-tf9" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4Xp-il-MPT"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0OM-nL-CcJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2517" y="1427"/>
+            <point key="canvasLocation" x="3085" y="1351"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

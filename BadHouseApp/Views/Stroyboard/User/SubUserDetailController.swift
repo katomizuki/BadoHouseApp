@@ -214,19 +214,17 @@ extension SubUserDetailController: UICollectionViewDataSource {
 extension SubUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == circleCollectionView {
-            let storyboard = UIStoryboard(name: "GroupDetail", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
-            vc.team = ownTeam[indexPath.row]
-            vc.friends = userFriend
-            vc.flag = true
-            navigationController?.pushViewController(vc, animated: true)
+            let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
+            controller.team = ownTeam[indexPath.row]
+            controller.friends = userFriend
+            controller.flag = true
+            navigationController?.pushViewController(controller, animated: true)
         } else {
-            let storyboard = UIStoryboard(name: "UserDetail", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.UserDetailVC) as! UserDetailController
-            vc.user = userFriend[indexPath.row]
-            vc.me = self.user
-            vc.flag = true
-            navigationController?.pushViewController(vc, animated: true)
+            let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+            controller.user = userFriend[indexPath.row]
+            controller.me = self.user
+            controller.flag = true
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
