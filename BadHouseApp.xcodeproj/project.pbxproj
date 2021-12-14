@@ -28,17 +28,14 @@
 		D316073727676BF5005FF41D /* EventSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* EventSearchController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
-		D31D290B27469EA800EC650C /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290A27469EA800EC650C /* Invite.storyboard */; };
 		D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29142746A5DE00EC650C /* Chat.storyboard */; };
 		D31D29172746A6C000EC650C /* GroupChat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29162746A6C000EC650C /* GroupChat.storyboard */; };
 		D31D29192746A74B00EC650C /* Talk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29182746A74B00EC650C /* Talk.storyboard */; };
-		D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D291C2747100800EC650C /*  SubUser.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */; };
 		D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8CA22759BC730036FA98 /* NotificationController.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
-		D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B019327467922004ED650 /* FriendSearch.storyboard */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D351FEEA275A318100AA518B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEE9275A318100AA518B /* RxCocoa */; };
 		D351FEEC275A318100AA518B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEEB275A318100AA518B /* RxRelay */; };
@@ -63,12 +60,16 @@
 		D38863F42768BE0E00FC4F07 /* UserPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863F22768BE0D00FC4F07 /* UserPageController.xib */; };
 		D38863F72768C06D00FC4F07 /* CircleSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863F52768C06D00FC4F07 /* CircleSearchController.swift */; };
 		D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863F62768C06D00FC4F07 /* CircleSearchController.xib */; };
-		D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */; };
+		D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863F92768C51300FC4F07 /* AccountSearchController.swift */; };
+		D38863FC2768C51300FC4F07 /* AccountSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863FA2768C51300FC4F07 /* AccountSearchController.xib */; };
+		D38863FF2768CB3100FC4F07 /* SubUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */; };
+		D38864002768CB3100FC4F07 /* SubUserDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */; };
+		D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38864012768D41A00FC4F07 /* CircleDetailController.swift */; };
+		D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38864022768D41A00FC4F07 /* CircleDetailController.xib */; };
 		D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */; };
 		D3969DC727471E5F0022AE24 /* GroupDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */; };
 		D3969DC927471FC70022AE24 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DC827471FC70022AE24 /* UserDetail.storyboard */; };
 		D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCA274724E40022AE24 /* EventDetail.storyboard */; };
-		D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */; };
 		D3969DCF274728760022AE24 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCE274728760022AE24 /* Home.storyboard */; };
 		D3969DD1274729880022AE24 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DD0274729880022AE24 /* User.storyboard */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
@@ -132,7 +133,6 @@
 		D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37C2721753A00E2853A /* BlockTextView.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
-		D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */; };
 		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
 		D3DA98C026F7357100DFF8B1 /* GroupChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
@@ -184,17 +184,14 @@
 		D31C163B272B64CE00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
 		D31D290627469D4D00EC650C /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Authentication.storyboard; path = BadHouseApp/Views/Stroyboard/Authenticaton/Authentication.storyboard; sourceTree = SOURCE_ROOT; };
-		D31D290A27469EA800EC650C /* Invite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Invite.storyboard; path = BadHouseApp/Views/Stroyboard/User/Invite.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29142746A5DE00EC650C /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Chat.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Chat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29162746A6C000EC650C /* GroupChat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupChat.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/GroupChat.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29182746A74B00EC650C /* Talk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Talk.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Talk.storyboard; sourceTree = SOURCE_ROOT; };
-		D31D291C2747100800EC650C /*  SubUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = " SubUser.storyboard"; path = "BadHouseApp/Views/Stroyboard/User/ SubUser.storyboard"; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		D32B8CA22759BC730036FA98 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
-		D33B019327467922004ED650 /* FriendSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FriendSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/FriendSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8D926F05B9600221B7D /* DMChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatController.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -213,12 +210,16 @@
 		D38863F22768BE0D00FC4F07 /* UserPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPageController.xib; sourceTree = "<group>"; };
 		D38863F52768C06D00FC4F07 /* CircleSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSearchController.swift; sourceTree = "<group>"; };
 		D38863F62768C06D00FC4F07 /* CircleSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleSearchController.xib; sourceTree = "<group>"; };
-		D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserDetailController.swift; sourceTree = "<group>"; };
+		D38863F92768C51300FC4F07 /* AccountSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchController.swift; sourceTree = "<group>"; };
+		D38863FA2768C51300FC4F07 /* AccountSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSearchController.xib; sourceTree = "<group>"; };
+		D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserDetailController.swift; sourceTree = "<group>"; };
+		D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubUserDetailController.xib; sourceTree = "<group>"; };
+		D38864012768D41A00FC4F07 /* CircleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailController.swift; sourceTree = "<group>"; };
+		D38864022768D41A00FC4F07 /* CircleDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleDetailController.xib; sourceTree = "<group>"; };
 		D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
 		D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupDetail.storyboard; path = BadHouseApp/Views/Stroyboard/User/GroupDetail.storyboard; sourceTree = SOURCE_ROOT; };
 		D3969DC827471FC70022AE24 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = UserDetail.storyboard; path = BadHouseApp/Views/Stroyboard/User/UserDetail.storyboard; sourceTree = SOURCE_ROOT; };
 		D3969DCA274724E40022AE24 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EventDetail.storyboard; path = BadHouseApp/Views/Stroyboard/Home/EventDetail.storyboard; sourceTree = SOURCE_ROOT; };
-		D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupSearch.storyboard; path = BadHouseApp/Views/Stroyboard/User/GroupSearch.storyboard; sourceTree = SOURCE_ROOT; };
 		D3969DCE274728760022AE24 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
 		D3969DD0274729880022AE24 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = BadHouseApp/Views/Stroyboard/User/User.storyboard; sourceTree = SOURCE_ROOT; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -283,7 +284,6 @@
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
-		D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchController.swift; sourceTree = "<group>"; };
 		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		D3DA98BF26F7357100DFF8B1 /* GroupChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatController.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
@@ -380,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */,
-				D3DA98BB26F6E6BA00DFF8B1 /* FriendSearchController.swift */,
 				D3D3D37E2721873A00E2853A /* AppExplainController.swift */,
 			);
 			path = User;
@@ -407,11 +406,7 @@
 			children = (
 				D3969DD0274729880022AE24 /* User.storyboard */,
 				D3969DC627471E5F0022AE24 /* GroupDetail.storyboard */,
-				D31D291C2747100800EC650C /*  SubUser.storyboard */,
-				D31D290A27469EA800EC650C /* Invite.storyboard */,
 				D3969DC827471FC70022AE24 /* UserDetail.storyboard */,
-				D33B019327467922004ED650 /* FriendSearch.storyboard */,
-				D3969DCC274727EC0022AE24 /* GroupSearch.storyboard */,
 				D38863E52768B49700FC4F07 /* InviteToCircleController.swift */,
 				D38863E62768B49700FC4F07 /* InviteToCircleController.xib */,
 				D38863E92768B80D00FC4F07 /* MakeCircleController.swift */,
@@ -422,6 +417,12 @@
 				D38863F22768BE0D00FC4F07 /* UserPageController.xib */,
 				D38863F52768C06D00FC4F07 /* CircleSearchController.swift */,
 				D38863F62768C06D00FC4F07 /* CircleSearchController.xib */,
+				D38863F92768C51300FC4F07 /* AccountSearchController.swift */,
+				D38863FA2768C51300FC4F07 /* AccountSearchController.xib */,
+				D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */,
+				D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */,
+				D38864012768D41A00FC4F07 /* CircleDetailController.swift */,
+				D38864022768D41A00FC4F07 /* CircleDetailController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -710,7 +711,6 @@
 				D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */,
 				D3FD194226E3A26700B6740E /* UserDetailController.swift */,
 				D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */,
-				D388F0EF27105AF900ACA6B8 /* SubUserDetailController.swift */,
 				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
 				D3D3D37A2721733200E2853A /* BlockController.swift */,
 				D3F860202725064300085ABD /* SearchDetailGroupController.swift */,
@@ -829,12 +829,11 @@
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
 				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
-				D31D291D2747100800EC650C /*  SubUser.storyboard in Resources */,
+				D38864002768CB3100FC4F07 /* SubUserDetailController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
 				D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
-				D33B019427467922004ED650 /* FriendSearch.storyboard in Resources */,
 				D31D29152746A5DE00EC650C /* Chat.storyboard in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
@@ -846,10 +845,10 @@
 				D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */,
 				D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */,
 				D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */,
-				D3969DCD274727EC0022AE24 /* GroupSearch.storyboard in Resources */,
+				D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */,
 				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
 				D38863F42768BE0E00FC4F07 /* UserPageController.xib in Resources */,
-				D31D290B27469EA800EC650C /* Invite.storyboard in Resources */,
+				D38863FC2768C51300FC4F07 /* AccountSearchController.xib in Resources */,
 				D38863F02768BA3200FC4F07 /* UserLevelController.xib in Resources */,
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
@@ -984,7 +983,6 @@
 				D3B72D01274A38C000253933 /* SegueEnum.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */,
-				D388F0F027105AFA00ACA6B8 /* SubUserDetailController.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
 				D3C4E93E26E19E1800C21E46 /* MyPageController.swift in Sources */,
@@ -1009,9 +1007,9 @@
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
+				D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
 				D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */,
-				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
@@ -1051,6 +1049,8 @@
 				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,
 				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
+				D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */,
+				D38863FF2768CB3100FC4F07 /* SubUserDetailController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,

@@ -370,8 +370,6 @@
                         <outlet property="timeStackView" destination="b29-gA-CfK" id="7bf-hf-o9k"/>
                         <outlet property="updateButton" destination="rmJ-8F-SO6" id="0AJ-0Y-ofG"/>
                         <outlet property="withdrawButton" destination="5sf-aC-88J" id="wWt-lh-3e5"/>
-                        <segue destination="ds5-XJ-SRq" kind="show" id="cdz-Ff-0Nv"/>
-                        <segue destination="d6n-xt-wn0" kind="show" id="HgF-52-Vqg"/>
                         <segue destination="LFP-Vy-dDW" kind="show" id="hnz-6H-tOK"/>
                     </connections>
                 </viewController>
@@ -384,16 +382,6 @@
             </objects>
             <point key="canvasLocation" x="4478" y="1704"/>
         </scene>
-        <!--inviteVC-->
-        <scene sceneID="xNd-dq-b04">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="inviteVC" storyboardName="Invite" referencedIdentifier="inviteVC" id="d6n-xt-wn0" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="pui-CU-C5A"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vQy-Qa-WGn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5165" y="1606"/>
-        </scene>
         <!--UserDetailVC-->
         <scene sceneID="2ZN-jU-t53">
             <objects>
@@ -403,16 +391,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANz-q0-hh6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5150" y="1709"/>
-        </scene>
-        <!--GroupChatViewController-->
-        <scene sceneID="fKc-TH-6j9">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="GroupChatViewController" storyboardName="GroupChat" referencedIdentifier="GroupChatViewController" id="ds5-XJ-SRq" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="VwR-wy-XN1"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ivk-zG-1g3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5165" y="1559"/>
         </scene>
     </scenes>
     <resources>

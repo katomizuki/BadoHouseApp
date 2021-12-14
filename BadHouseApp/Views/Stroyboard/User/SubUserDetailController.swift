@@ -1,11 +1,11 @@
-import UIKit
-import Firebase
-import SDWebImage
 
-final class SubUserDetailController: UIViewController {
+import UIKit
+
+class SubUserDetailController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var friendCollectionView: UICollectionView!
-    @IBOutlet private weak var belongCollectionView: UICollectionView!
+    @IBOutlet weak var circleCollectionView: UICollectionView!
+    
     @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var friendButton: UIButton! {
@@ -22,20 +22,20 @@ final class SubUserDetailController: UIViewController {
     }
     @IBOutlet private weak var ageLabel: UILabel!
     @IBOutlet private weak var genderLabel: UILabel!
-    @IBOutlet private weak var badmintoTimeLabel: UILabel!
+    @IBOutlet private weak var badmintonTimeLabel: UILabel!
     @IBOutlet private weak var levelLabel: UILabel!
     @IBOutlet private weak var ageStackView: UIStackView!
     @IBOutlet private weak var genderStackView: UIStackView!
     @IBOutlet private weak var badmintonTimeStackView: UIStackView!
-    @IBOutlet private weak var levelStackView: UIStackView!
-    @IBOutlet private weak var teamLabel: UILabel! {
+    @IBOutlet private weak var levleStackView: UIStackView!
+    @IBOutlet weak var teamLabel: UILabel! {
         didSet {
             teamLabel.font = .boldSystemFont(ofSize: 20)
         }
     }
-    @IBOutlet weak var chatImage: UIButton! {
+    @IBOutlet weak var chatImageView: UIButton! {
         didSet {
-            chatImage.isHidden = false
+            chatImageView.isHidden = false
         }
     }
     @IBOutlet private weak var friendsImageView: UIImageView! {
@@ -92,7 +92,7 @@ final class SubUserDetailController: UIViewController {
         ageLabel.text = user?.age == "" || user?.age == nil || user?.age == "未設定" ? "未設定":user?.age
         genderLabel.text = user?.gender == "" || user?.gender == nil || user?.gender == "未設定" ? "未設定":user?.gender
         levelLabel.text = user?.level == "" || user?.level == nil || user?.level == "未設定" ? "未設定":user?.level
-        badmintoTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
+        badmintonTimeLabel.text = user?.badmintonTime == "" || user?.badmintonTime == nil || user?.badmintonTime == "未設定" ? "未設定":user?.badmintonTime
         if user?.uid == me?.uid {
             friendButton.isHidden = true
         }
@@ -107,15 +107,15 @@ final class SubUserDetailController: UIViewController {
         view.layer.addSublayer(border)
     }
     private func setupDelegate() {
-        belongCollectionView.delegate = self
-        belongCollectionView.dataSource = self
+        circleCollectionView.delegate = self
+        circleCollectionView.dataSource = self
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
         fetchData.myDataDelegate = self
     }
     private func setupCollection() {
         let belongsNib = TeammemberCell.nib()
-        belongCollectionView.register(belongsNib, forCellWithReuseIdentifier: "memberCellId")
+        circleCollectionView.register(belongsNib, forCellWithReuseIdentifier: "memberCellId")
         let friendNib = TeammemberCell.nib()
         friendCollectionView.register(friendNib, forCellWithReuseIdentifier: cellId)
         let layout = UICollectionViewFlowLayout()
@@ -123,7 +123,7 @@ final class SubUserDetailController: UIViewController {
         layout2.scrollDirection = .horizontal
         layout.scrollDirection = .horizontal
         friendCollectionView.collectionViewLayout = layout2
-        belongCollectionView.collectionViewLayout = layout
+        circleCollectionView.collectionViewLayout = layout
         setupDelegate()
         setupNeededMethod()
     }
@@ -187,14 +187,14 @@ final class SubUserDetailController: UIViewController {
 // MARK: - UserCollectionViewDelegate
 extension SubUserDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == belongCollectionView && collectionView.tag == 0 {
+        if collectionView == circleCollectionView && collectionView.tag == 0 {
             return ownTeam.count
         } else {
             return userFriend.count
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.belongCollectionView && collectionView.tag == 0 {
+        if collectionView == self.circleCollectionView && collectionView.tag == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberCellId", for: indexPath) as! TeammemberCell
             let name = ownTeam[indexPath.row].teamName
             let urlString = ownTeam[indexPath.row].teamImageUrl
@@ -213,7 +213,7 @@ extension SubUserDetailController: UICollectionViewDataSource {
 // MARK: - CollectionDelegate
 extension SubUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == belongCollectionView {
+        if collectionView == circleCollectionView {
             let storyboard = UIStoryboard(name: "GroupDetail", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupDetailVC) as! GroupDetailController
             vc.team = ownTeam[indexPath.row]
@@ -252,7 +252,7 @@ extension SubUserDetailController {
         self.ownTeam = []
         self.ownTeam = teamArray
         DispatchQueue.main.async {
-            self.belongCollectionView.reloadData()
+            self.circleCollectionView.reloadData()
         }
     }
 }

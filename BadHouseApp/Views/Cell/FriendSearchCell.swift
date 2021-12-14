@@ -3,7 +3,7 @@ import UIKit
 
 final class FriendSearchCell: UITableViewCell {
     // MARK: - properties
-    var link: FriendSearchController!
+    var link: AccountSearchController!
     var count = 0
     private var button: UIButton = {
         let button = UIButton(type: .system)

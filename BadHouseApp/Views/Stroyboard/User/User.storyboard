@@ -129,9 +129,6 @@
                                         <color key="titleColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
                                     </state>
-                                    <connections>
-                                        <action selector="user:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Abl-JZ-gpA"/>
-                                    </connections>
                                 </button>
                             </barButtonItem>
                             <barButtonItem title="Item" id="Iuc-oV-TUo">
@@ -143,9 +140,6 @@
                                         <color key="titleColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <imageReference key="image" image="person.crop.circle.badge.plus.fill" catalog="system" symbolScale="large"/>
                                     </state>
-                                    <connections>
-                                        <segue destination="mvp-gp-CLF" kind="presentation" id="rnt-bf-ixT"/>
-                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -157,21 +151,15 @@
                         <outlet property="myImageView" destination="DP9-TM-NSa" id="hOK-IA-Iwd"/>
                         <outlet property="myName" destination="eL5-pV-Qaq" id="3Sz-Un-AA7"/>
                         <outlet property="searchCircleButton" destination="wq4-4A-eHZ" id="TLq-rs-N8m"/>
+                        <outlet property="searchFriendButton" destination="QBM-3w-HCi" id="cEt-Em-gbW"/>
+                        <outlet property="userPageButton" destination="yzd-AU-WQb" id="wgo-On-8tT"/>
                         <segue destination="GEo-Ns-T9W" kind="show" identifier="gotoGroup" id="XjJ-C8-ncf"/>
                         <segue destination="yMv-gt-tf9" kind="show" id="fFC-75-lIt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566.666666666667" y="977.67857142857133"/>
-        </scene>
-        <!--FriendSearch-->
-        <scene sceneID="qwt-fL-fR3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FriendSearch" id="mvp-gp-CLF" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kiy-2g-vjA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1901" y="1569"/>
+            <point key="canvasLocation" x="2707" y="959"/>
         </scene>
         <!--GroupDetailVC-->
         <scene sceneID="8fi-Se-3Xf">
@@ -211,7 +199,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0i-hB-05x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657.9710144927537" y="977.67857142857133"/>
+            <point key="canvasLocation" x="1726" y="975"/>
         </scene>
     </scenes>
     <resources>

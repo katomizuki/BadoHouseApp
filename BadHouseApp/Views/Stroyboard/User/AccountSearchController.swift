@@ -5,7 +5,7 @@ import CDAlertView
 import RxSwift
 import RxCocoa
 
-final class FriendSearchController: UIViewController {
+final class AccountSearchController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar! {
@@ -83,7 +83,7 @@ final class FriendSearchController: UIViewController {
     }
 }
 // MARK: - TableViewDataSource
-extension FriendSearchController: UITableViewDataSource {
+extension AccountSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendList.count
     }
@@ -104,13 +104,13 @@ extension FriendSearchController: UITableViewDataSource {
     }
 }
 // MARK: - TableViewDelegate
-extension FriendSearchController: UITableViewDelegate {
+extension AccountSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.height / 10
     }
 }
 // MARK: SearchBarDelegate
-extension FriendSearchController: UISearchBarDelegate {
+extension AccountSearchController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
         guard let text = searchBar.text else { return }
@@ -142,7 +142,7 @@ extension FriendSearchController: UISearchBarDelegate {
     }
 }
 // MARK: FetchSearchDelegate
-extension FriendSearchController: FetchSearchDataDelegate {
+extension AccountSearchController: FetchSearchDataDelegate {
     func fetchSearchUser(userArray: [User], bool: Bool) {
         print(#function)
         if bool == false {
@@ -161,3 +161,4 @@ extension FriendSearchController: FetchSearchDataDelegate {
         }
     }
 }
+

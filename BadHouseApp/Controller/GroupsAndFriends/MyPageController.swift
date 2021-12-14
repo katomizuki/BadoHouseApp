@@ -33,23 +33,35 @@ final class MyPageController: UIViewController {
         }
     }
     @IBOutlet private weak var searchCircleButton: UIBarButtonItem!
+    @IBOutlet private weak var searchFriendButton: UIButton!
+    @IBOutlet weak var userPageButton: UIButton!
     private let disposeBag = DisposeBag()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupData()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: nil)
+        
         searchCircleButton.rx.tap.asDriver().drive { [weak self] _ in
             guard let self = self else { return }
             let controller = CircleSearchController.init(nibName: "CircleSearchController", bundle: nil)
-            controller.modalPresentationStyle = .fullScreen
             controller.friends = self.friendArray
-            self.present(controller, animated: true)
+            self.navigationController?.pushViewController(controller, animated: true)
         }.disposed(by: disposeBag)
+        
+        searchFriendButton.rx.tap.asDriver().drive { [weak self] _ in
+            guard let self = self else { return }
+            let controller = AccountSearchController.init(nibName: "AccountSearchController", bundle: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }.disposed(by: disposeBag)
+        
+        userPageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let controller = UserPageController.init(nibName: "UserPageController", bundle: nil)
+            controller.modalPresentationStyle = .fullScreen
+            self.present(controller, animated: true)
+        }).disposed(by: disposeBag)
+
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -114,7 +126,7 @@ final class MyPageController: UIViewController {
             let vc = segue.destination as! UserPageController
             vc.user = self.user
             vc.delegate = self
-        } 
+    }
     }
 }
 // MARK: - UItableViewDataSource

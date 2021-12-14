@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserPageController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="scrollView" destination="uR7-W7-zSa" id="DWc-ti-qtN"/>
                 <outlet property="view" destination="j1C-jz-s4P" id="Cwd-vr-C9W"/>
             </connections>
         </placeholder>
