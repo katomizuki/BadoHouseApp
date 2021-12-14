@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -70,7 +69,6 @@
                     <connections>
                         <outlet property="groupImageView" destination="OdU-RR-NZR" id="SXF-Xi-WWs"/>
                         <outlet property="scrollView" destination="KcV-H6-CHF" id="pRU-ex-Xvy"/>
-                        <segue destination="YZ3-Ca-5CZ" kind="show" id="GuM-7z-TkX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0CH-uB-aNR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -82,65 +80,11 @@
             </objects>
             <point key="canvasLocation" x="3812" y="1699"/>
         </scene>
-        <!--ホーム-->
-        <scene sceneID="0Lx-fw-6fR">
-            <objects>
-                <viewController storyboardIdentifier="FriendVC" title="ホーム" id="YZ3-Ca-5CZ" customClass="InviteToTeamController" customModule="BadHouseApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5B7-ii-eiZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnT-Pe-hy3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                                <color key="backgroundColor" name="backGroundColor"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZk-6s-djB">
-                                <rect key="frame" x="20" y="743" width="374" height="55"/>
-                                <color key="backgroundColor" red="0.49019607840000001" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="hvs-6d-Frp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
-                                <state key="normal" title="招待">
-                                    <color key="titleColor" systemColor="systemGray6Color"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendTeamData:" destination="YZ3-Ca-5CZ" eventType="touchUpInside" id="jZF-dO-099"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="UnA-yc-4i6"/>
-                        <color key="backgroundColor" name="backGroundColor"/>
-                        <constraints>
-                            <constraint firstItem="UnA-yc-4i6" firstAttribute="bottom" secondItem="PnT-Pe-hy3" secondAttribute="bottom" id="8gh-2E-RUV"/>
-                            <constraint firstItem="UnA-yc-4i6" firstAttribute="bottom" secondItem="XZk-6s-djB" secondAttribute="bottom" constant="10" id="Fdk-p8-QX4"/>
-                            <constraint firstItem="PnT-Pe-hy3" firstAttribute="leading" secondItem="UnA-yc-4i6" secondAttribute="leading" id="KlO-uq-tU0"/>
-                            <constraint firstItem="UnA-yc-4i6" firstAttribute="trailing" secondItem="XZk-6s-djB" secondAttribute="trailing" constant="20" id="QpT-dW-8kJ"/>
-                            <constraint firstItem="PnT-Pe-hy3" firstAttribute="top" secondItem="UnA-yc-4i6" secondAttribute="top" id="mXO-0X-kUg"/>
-                            <constraint firstItem="XZk-6s-djB" firstAttribute="leading" secondItem="UnA-yc-4i6" secondAttribute="leading" constant="20" id="uLu-p5-Td6"/>
-                            <constraint firstItem="UnA-yc-4i6" firstAttribute="trailing" secondItem="PnT-Pe-hy3" secondAttribute="trailing" id="x0G-0e-swq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="招待" id="Ieq-8p-8yD">
-                        <barButtonItem key="backBarButtonItem" title=" " id="OeL-mx-na6"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="friendTableView" destination="PnT-Pe-hy3" id="lQ1-Uy-tBe"/>
-                        <outlet property="inviteButton" destination="XZk-6s-djB" id="ATm-9q-g5F"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Zl-lS-RCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4617" y="1699"/>
-        </scene>
     </scenes>
     <resources>
         <image name="noImages" width="340" height="340"/>
         <namedColor name="backGroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

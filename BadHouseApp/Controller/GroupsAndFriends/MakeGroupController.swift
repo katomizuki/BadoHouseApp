@@ -408,17 +408,17 @@ final class MakeGroupController: UIViewController {
         let teamMoneyString = String(teamMoney)
         guard let teamImage = groupImageView.image else { return }
         guard let teamUrl = plusTextField.text else { return }
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.FriendVC) as! InviteToTeamController
-        vc.friends = self.friends
-        vc.teamName = teamName
-        vc.teamTime = teamTime
-        vc.teamPlace = teamPlace
-        vc.teamImage = teamImage
-        vc.teamLevel = teamMoneyString
-        vc.me = myData
-        vc.url = teamUrl
-        vc.teamTagArray = self.tagArray
-        self.navigationController?.pushViewController(vc, animated: true)
+        let controller = InviteToCircleController.init(nibName: "InviteToCircleController", bundle: nil)
+        controller.friends = self.friends
+        controller.teamName = teamName
+        controller.teamTime = teamTime
+        controller.teamPlace = teamPlace
+        controller.teamImage = teamImage
+        controller.teamLevel = teamMoneyString
+        controller.me = myData
+        controller.url = teamUrl
+        controller.teamTagArray = self.tagArray
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     private func changeInt(_ target: String?) -> Int? {
         guard let target = target else {

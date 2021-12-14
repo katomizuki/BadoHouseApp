@@ -122,7 +122,6 @@
 		D3C4E94226E1A54000C21E46 /* MakeGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
-		D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */; };
 		D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94E26E2F78400C21E46 /* InviteCell.swift */; };
 		D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* GroupCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
@@ -271,7 +270,6 @@
 		D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroupController.swift; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
-		D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToTeamController.swift; sourceTree = "<group>"; };
 		D3C4E94E26E2F78400C21E46 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
@@ -703,7 +701,6 @@
 				D3C4E93D26E19E1800C21E46 /* MyPageController.swift */,
 				D3C4E93F26E19EDE00C21E46 /* GroupDetailController.swift */,
 				D3C4E94126E1A54000C21E46 /* MakeGroupController.swift */,
-				D3C4E94C26E1E9BB00C21E46 /* InviteToTeamController.swift */,
 				D3FD194226E3A26700B6740E /* UserDetailController.swift */,
 				D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */,
 				D3A82BAF2707357800DDB4FC /* GroupSearchController.swift */,
@@ -1007,7 +1004,6 @@
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
-				D3C4E94D26E1E9BB00C21E46 /* InviteToTeamController.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
 				D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */,
 				D3DA98BC26F6E6BA00DFF8B1 /* FriendSearchController.swift in Sources */,

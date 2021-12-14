@@ -3,7 +3,7 @@ import UIKit
 
 final class InviteCell: UITableViewCell {
     // MARK: - Properties
-    var linkFriend: InviteToTeamController!
+    var linkFriend: InviteToCircleController!
     var count = 0
     var button: UIButton = {
         let button = UIButton(type: .system)
