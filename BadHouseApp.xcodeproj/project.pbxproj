@@ -27,11 +27,8 @@
 		D316073627676BF5005FF41D /* EventSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316073427676BF5005FF41D /* EventSearchController.swift */; };
 		D316073727676BF5005FF41D /* EventSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* EventSearchController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
-		D31D29192746A74B00EC650C /* Talk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29182746A74B00EC650C /* Talk.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
-		D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */; };
-		D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8CA22759BC730036FA98 /* NotificationController.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D351FEEA275A318100AA518B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D351FEE9275A318100AA518B /* RxCocoa */; };
@@ -71,12 +68,9 @@
 		D3886418276A059100FC4F07 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886416276A059100FC4F07 /* LoginController.xib */; };
 		D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886419276A05AF00FC4F07 /* RegisterController.swift */; };
 		D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388641A276A05AF00FC4F07 /* RegisterController.xib */; };
-		D388641F276A0A4E00FC4F07 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388641D276A0A4E00FC4F07 /* TestController.swift */; };
-		D3886420276A0A4E00FC4F07 /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388641E276A0A4E00FC4F07 /* TestController.xib */; };
 		D3886422276A0A6900FC4F07 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886421276A0A6900FC4F07 /* Coordinator.swift */; };
 		D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886423276A0AC000FC4F07 /* AppCoordinator.swift */; };
 		D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886427276A0C8400FC4F07 /* TabBarController.swift */; };
-		D388642A276A0DB000FC4F07 /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886429276A0DB000FC4F07 /* TestCoordinator.swift */; };
 		D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388642B276A185800FC4F07 /* CheckNotificationController.swift */; };
 		D388642E276A185800FC4F07 /* CheckNotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388642C276A185800FC4F07 /* CheckNotificationController.xib */; };
 		D3886430276A191500FC4F07 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388642F276A191500FC4F07 /* NotificationCoordinator.swift */; };
@@ -85,13 +79,14 @@
 		D3886436276A1A7E00FC4F07 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886435276A1A7E00FC4F07 /* HomeCoordinator.swift */; };
 		D3886439276A1B5300FC4F07 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886437276A1B5300FC4F07 /* UserController.swift */; };
 		D388643A276A1B5300FC4F07 /* UserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886438276A1B5300FC4F07 /* UserController.xib */; };
-		D3969DCF274728760022AE24 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCE274728760022AE24 /* Home.storyboard */; };
-		D3969DD1274729880022AE24 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DD0274729880022AE24 /* User.storyboard */; };
+		D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388643B276A1F8000FC4F07 /* TalkViewController.swift */; };
+		D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388643C276A1F8000FC4F07 /* TalkViewController.xib */; };
+		D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886443276A214B00FC4F07 /* MainViewController.swift */; };
+		D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* MainViewController.xib */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* MyScheduleController.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
-		D3A789D526F439A40088E8BC /* TalkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D426F439A40088E8BC /* TalkController.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
@@ -116,9 +111,6 @@
 		D3B72D01274A38C000253933 /* SegueEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72D00274A38C000253933 /* SegueEnum.swift */; };
 		D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52726E0525100C53780 /* AppDelegate.swift */; };
 		D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52926E0525100C53780 /* SceneDelegate.swift */; };
-		D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52B26E0525100C53780 /* HomeViewController.swift */; };
-		D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB52D26E0525100C53780 /* Main.storyboard */; };
-		D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */; };
 		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
 		D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB54726E0590800C53780 /* GoogleService-Info.plist */; };
 		D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */; };
@@ -187,16 +179,9 @@
 		D316072D276764F9005FF41D /* MapListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapListController.xib; sourceTree = "<group>"; };
 		D316073427676BF5005FF41D /* EventSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchController.swift; sourceTree = "<group>"; };
 		D316073527676BF5005FF41D /* EventSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSearchController.xib; sourceTree = "<group>"; };
-		D31C1633272B5E0800A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		D31C1634272B5E0A00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D31C163B272B64CE00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
-		D31D29182746A74B00EC650C /* Talk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Talk.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Talk.storyboard; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
-		D32B8CA22759BC730036FA98 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -230,12 +215,9 @@
 		D3886416276A059100FC4F07 /* LoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		D3886419276A05AF00FC4F07 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D388641A276A05AF00FC4F07 /* RegisterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
-		D388641D276A0A4E00FC4F07 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
-		D388641E276A0A4E00FC4F07 /* TestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
 		D3886421276A0A6900FC4F07 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D3886423276A0AC000FC4F07 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D3886427276A0C8400FC4F07 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D3886429276A0DB000FC4F07 /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
 		D388642B276A185800FC4F07 /* CheckNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNotificationController.swift; sourceTree = "<group>"; };
 		D388642C276A185800FC4F07 /* CheckNotificationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckNotificationController.xib; sourceTree = "<group>"; };
 		D388642F276A191500FC4F07 /* NotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
@@ -244,13 +226,14 @@
 		D3886435276A1A7E00FC4F07 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		D3886437276A1B5300FC4F07 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		D3886438276A1B5300FC4F07 /* UserController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserController.xib; sourceTree = "<group>"; };
-		D3969DCE274728760022AE24 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
-		D3969DD0274729880022AE24 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = BadHouseApp/Views/Stroyboard/User/User.storyboard; sourceTree = SOURCE_ROOT; };
+		D388643B276A1F8000FC4F07 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
+		D388643C276A1F8000FC4F07 /* TalkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkViewController.xib; sourceTree = "<group>"; };
+		D3886443276A214B00FC4F07 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D3886444276A214B00FC4F07 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D39771712709D1D40025BE19 /* MyScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleController.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
-		D3A789D426F439A40088E8BC /* TalkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkController.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
@@ -275,7 +258,6 @@
 		D3BDB52426E0525100C53780 /* BadHouseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHouseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BDB52726E0525100C53780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3BDB52926E0525100C53780 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D3BDB52B26E0525100C53780 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D3BDB53026E0525200C53780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3BDB53526E0525200C53780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3BDB54526E055C900C53780 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -358,7 +340,6 @@
 			children = (
 				D3886421276A0A6900FC4F07 /* Coordinator.swift */,
 				D3886423276A0AC000FC4F07 /* AppCoordinator.swift */,
-				D3886429276A0DB000FC4F07 /* TestCoordinator.swift */,
 				D388642F276A191500FC4F07 /* NotificationCoordinator.swift */,
 				D3886431276A1A5F00FC4F07 /* UserCoordinator.swift */,
 				D3886433276A1A7000FC4F07 /* TalkCoordinator.swift */,
@@ -377,17 +358,8 @@
 		D32B8C9E2759BC150036FA98 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				D32B8C9F2759BC2C0036FA98 /* Notification.storyboard */,
 				D388642B276A185800FC4F07 /* CheckNotificationController.swift */,
 				D388642C276A185800FC4F07 /* CheckNotificationController.xib */,
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
-		D32B8CA12759BC540036FA98 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				D32B8CA22759BC730036FA98 /* NotificationController.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -403,13 +375,36 @@
 			path = Xib;
 			sourceTree = "<group>";
 		};
-		D37FA52526EAFD5700B8559F /* User */ = {
+		D3886447276A274300FC4F07 /* AdditionalEvent */ = {
 			isa = PBXGroup;
 			children = (
-				D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */,
-				D3D3D37E2721873A00E2853A /* AppExplainController.swift */,
+				D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */,
+				D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */,
+				D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */,
+				D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */,
+				D316072027675C31005FF41D /* AdditionalEventElementController.swift */,
+				D316072127675C31005FF41D /* AdditionalEventElementController.xib */,
+				D316072427675E98005FF41D /* AddtionalEventLevelController.swift */,
+				D316072527675E98005FF41D /* AddtionalEventLevelController.xib */,
+				D3160728276761EE005FF41D /* AdditionalEventTitleController.swift */,
+				D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */,
 			);
-			path = User;
+			path = AdditionalEvent;
+			sourceTree = "<group>";
+		};
+		D3886449276A27AB00FC4F07 /* Circle */ = {
+			isa = PBXGroup;
+			children = (
+				D38864012768D41A00FC4F07 /* CircleDetailController.swift */,
+				D38864022768D41A00FC4F07 /* CircleDetailController.xib */,
+				D38863E52768B49700FC4F07 /* InviteToCircleController.swift */,
+				D38863E62768B49700FC4F07 /* InviteToCircleController.xib */,
+				D38863E92768B80D00FC4F07 /* MakeCircleController.swift */,
+				D38863EA2768B80D00FC4F07 /* MakeCircleController.xib */,
+				D38863F52768C06D00FC4F07 /* CircleSearchController.swift */,
+				D38863F62768C06D00FC4F07 /* CircleSearchController.xib */,
+			);
+			path = Circle;
 			sourceTree = "<group>";
 		};
 		D3969DD2274732C90022AE24 /* Authenticaton */ = {
@@ -419,6 +414,7 @@
 				D3886416276A059100FC4F07 /* LoginController.xib */,
 				D3886419276A05AF00FC4F07 /* RegisterController.swift */,
 				D388641A276A05AF00FC4F07 /* RegisterController.xib */,
+				D31C163C272B78AA00A94FC6 /* RuleController.swift */,
 			);
 			path = Authenticaton;
 			sourceTree = "<group>";
@@ -426,27 +422,20 @@
 		D3969DD4274732D00022AE24 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D3969DD0274729880022AE24 /* User.storyboard */,
-				D38863E52768B49700FC4F07 /* InviteToCircleController.swift */,
-				D38863E62768B49700FC4F07 /* InviteToCircleController.xib */,
-				D38863E92768B80D00FC4F07 /* MakeCircleController.swift */,
-				D38863EA2768B80D00FC4F07 /* MakeCircleController.xib */,
 				D38863ED2768BA3200FC4F07 /* UserLevelController.swift */,
 				D38863EE2768BA3200FC4F07 /* UserLevelController.xib */,
 				D38863F12768BE0D00FC4F07 /* UserPageController.swift */,
 				D38863F22768BE0D00FC4F07 /* UserPageController.xib */,
-				D38863F52768C06D00FC4F07 /* CircleSearchController.swift */,
-				D38863F62768C06D00FC4F07 /* CircleSearchController.xib */,
 				D38863F92768C51300FC4F07 /* AccountSearchController.swift */,
 				D38863FA2768C51300FC4F07 /* AccountSearchController.xib */,
 				D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */,
 				D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */,
-				D38864012768D41A00FC4F07 /* CircleDetailController.swift */,
-				D38864022768D41A00FC4F07 /* CircleDetailController.xib */,
 				D38864052768DA9200FC4F07 /* MainUserDetailController.swift */,
 				D38864062768DA9200FC4F07 /* MainUserDetailController.xib */,
 				D3886437276A1B5300FC4F07 /* UserController.swift */,
 				D3886438276A1B5300FC4F07 /* UserController.xib */,
+				D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */,
+				D3D3D37E2721873A00E2853A /* AppExplainController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -454,27 +443,16 @@
 		D3969DD6274732F30022AE24 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				D3969DCE274728760022AE24 /* Home.storyboard */,
-				D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */,
-				D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */,
 				D31606EE27657FAC005FF41D /* LevelDetailController.swift */,
 				D31606EF27657FAC005FF41D /* LevelDetailController.xib */,
-				D31606F22765822A005FF41D /* EventAdditionlItemsController.swift */,
-				D31606F32765822A005FF41D /* EventAdditionlItemsController.xib */,
-				D316072027675C31005FF41D /* AdditionalEventElementController.swift */,
-				D316072127675C31005FF41D /* AdditionalEventElementController.xib */,
-				D316072427675E98005FF41D /* AddtionalEventLevelController.swift */,
-				D316072527675E98005FF41D /* AddtionalEventLevelController.xib */,
-				D3160728276761EE005FF41D /* AdditionalEventTitleController.swift */,
-				D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */,
 				D316072C276764F9005FF41D /* MapListController.swift */,
 				D316072D276764F9005FF41D /* MapListController.xib */,
 				D316073427676BF5005FF41D /* EventSearchController.swift */,
 				D316073527676BF5005FF41D /* EventSearchController.xib */,
 				D3886411276A03E000FC4F07 /* PracticeDetailController.swift */,
 				D3886412276A03E000FC4F07 /* PracticeDetailController.xib */,
-				D388641D276A0A4E00FC4F07 /* TestController.swift */,
-				D388641E276A0A4E00FC4F07 /* TestController.xib */,
+				D3886443276A214B00FC4F07 /* MainViewController.swift */,
+				D3886444276A214B00FC4F07 /* MainViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -482,34 +460,28 @@
 		D3969DD7274733200022AE24 /* Talk */ = {
 			isa = PBXGroup;
 			children = (
-				D31D29182746A74B00EC650C /* Talk.storyboard */,
 				D38864092769FE7E00FC4F07 /* CircleChatController.swift */,
 				D388640A2769FE7E00FC4F07 /* CircleChatController.xib */,
+				D388643B276A1F8000FC4F07 /* TalkViewController.swift */,
+				D388643C276A1F8000FC4F07 /* TalkViewController.xib */,
+				D39771712709D1D40025BE19 /* MyScheduleController.swift */,
 			);
 			path = Talk;
 			sourceTree = "<group>";
 		};
-		D3976EEF270337580016CEB2 /* Stroyboard */ = {
+		D3976EEF270337580016CEB2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D3886449276A27AB00FC4F07 /* Circle */,
+				D3886447276A274300FC4F07 /* AdditionalEvent */,
 				D32B8C9E2759BC150036FA98 /* Notification */,
 				D3969DD7274733200022AE24 /* Talk */,
 				D3969DD6274732F30022AE24 /* Home */,
 				D3969DD4274732D00022AE24 /* User */,
 				D3969DD2274732C90022AE24 /* Authenticaton */,
-				D3BDB52D26E0525100C53780 /* Main.storyboard */,
-				D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */,
+				D3BDB53D26E0541E00C53780 /* Controller */,
 			);
-			path = Stroyboard;
-			sourceTree = "<group>";
-		};
-		D3A789D326F4396A0088E8BC /* ChatList */ = {
-			isa = PBXGroup;
-			children = (
-				D3A789D426F439A40088E8BC /* TalkController.swift */,
-				D39771712709D1D40025BE19 /* MyScheduleController.swift */,
-			);
-			path = ChatList;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D3B72CE6274A2DB700253933 /* Factory */ = {
@@ -583,7 +555,6 @@
 				D31606E827657BF7005FF41D /* Coordinator */,
 				D3BDB55A26E0964200C53780 /* ViewModel */,
 				D3BDB53E26E0542900C53780 /* Views */,
-				D3BDB53D26E0541E00C53780 /* Controller */,
 				D3BDB53C26E0541100C53780 /* Utility */,
 				D3BDB53B26E0540C00C53780 /* Models */,
 				D3BDB53026E0525200C53780 /* Assets.xcassets */,
@@ -626,12 +597,11 @@
 		D3BDB53D26E0541E00C53780 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D32B8CA12759BC540036FA98 /* Notification */,
-				D3A789D326F4396A0088E8BC /* ChatList */,
-				D3C4E94326E1A54D00C21E46 /* GroupsAndFriends */,
-				D37FA52526EAFD5700B8559F /* User */,
-				D3BDB56126E0B02100C53780 /* Main */,
-				D3BDB53F26E0543700C53780 /* Authentication */,
+				D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */,
+				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
+				D3D3D37A2721733200E2853A /* BlockController.swift */,
+				D3F860202725064300085ABD /* SearchDetailGroupController.swift */,
+				D3F860772727AF7E00085ABD /* GroupSearchListController.swift */,
 				D3886427276A0C8400FC4F07 /* TabBarController.swift */,
 			);
 			path = Controller;
@@ -640,20 +610,12 @@
 		D3BDB53E26E0542900C53780 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D3976EEF270337580016CEB2 /* Stroyboard */,
+				D3976EEF270337580016CEB2 /* ViewControllers */,
 				D353D8E426F16C2F00221B7D /* Xib */,
 				D3C4E93A26E0F56900C21E46 /* Cell */,
 				D3C4E93326E0F1AC00C21E46 /* Parts */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D3BDB53F26E0543700C53780 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				D31C163C272B78AA00A94FC6 /* RuleController.swift */,
-			);
-			path = Authentication;
 			sourceTree = "<group>";
 		};
 		D3BDB54E26E05D9500C53780 /* Extension */ = {
@@ -686,14 +648,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		D3BDB56126E0B02100C53780 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				D3BDB52B26E0525100C53780 /* HomeViewController.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
 		D3C4E93326E0F1AC00C21E46 /* Parts */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,18 +678,6 @@
 				D3FFD34127203FD900DE54ED /* BlockCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		D3C4E94326E1A54D00C21E46 /* GroupsAndFriends */ = {
-			isa = PBXGroup;
-			children = (
-				D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */,
-				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
-				D3D3D37A2721733200E2853A /* BlockController.swift */,
-				D3F860202725064300085ABD /* SearchDetailGroupController.swift */,
-				D3F860772727AF7E00085ABD /* GroupSearchListController.swift */,
-			);
-			path = GroupsAndFriends;
 			sourceTree = "<group>";
 		};
 		D3FFD326271EBBD100DE54ED /* API-Service */ = {
@@ -840,14 +782,11 @@
 			files = (
 				D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */,
 				D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */,
-				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
-				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
-				D3969DD1274729880022AE24 /* User.storyboard in Resources */,
+				D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */,
 				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
 				D38864082768DA9200FC4F07 /* MainUserDetailController.xib in Resources */,
-				D31D29192746A74B00EC650C /* Talk.storyboard in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D38864002768CB3100FC4F07 /* SubUserDetailController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
@@ -855,9 +794,7 @@
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
-				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
 				D38863EC2768B80D00FC4F07 /* MakeCircleController.xib in Resources */,
-				D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */,
 				D3886418276A059100FC4F07 /* LoginController.xib in Resources */,
 				D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */,
 				D388643A276A1B5300FC4F07 /* UserController.xib in Resources */,
@@ -869,9 +806,9 @@
 				D388640C2769FE7E00FC4F07 /* CircleChatController.xib in Resources */,
 				D388642E276A185800FC4F07 /* CheckNotificationController.xib in Resources */,
 				D3886414276A03E000FC4F07 /* PracticeDetailController.xib in Resources */,
+				D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */,
 				D38863F02768BA3200FC4F07 /* UserLevelController.xib in Resources */,
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
-				D3886420276A0A4E00FC4F07 /* TestController.xib in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);
@@ -983,7 +920,6 @@
 				D3886422276A0A6900FC4F07 /* Coordinator.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
-				D3A789D526F439A40088E8BC /* TalkController.swift in Sources */,
 				D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
@@ -1011,7 +947,6 @@
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,
-				D388642A276A0DB000FC4F07 /* TestCoordinator.swift in Sources */,
 				D3886436276A1A7E00FC4F07 /* HomeCoordinator.swift in Sources */,
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
@@ -1035,21 +970,21 @@
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
 				D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
-				D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
-				D388641F276A0A4E00FC4F07 /* TestController.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
+				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3C02CEF26E8A5C800995517 /* Tag.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
+				D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */,
 				D3BDB55726E0644E00C53780 /* UIButton+Factory.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D316072E276764F9005FF41D /* MapListController.swift in Sources */,
@@ -1065,7 +1000,6 @@
 				D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */,
 				D38863F72768C06D00FC4F07 /* CircleSearchController.swift in Sources */,
 				D3886430276A191500FC4F07 /* NotificationCoordinator.swift in Sources */,
-				D32B8CA32759BC730036FA98 /* NotificationController.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,
@@ -1098,27 +1032,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		D3BDB52D26E0525100C53780 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D31C1633272B5E0800A94FC6 /* ja */,
-				D31C163B272B64CE00A94FC6 /* ja */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D31C1634272B5E0A00A94FC6 /* ja */,
-				D31C163A272B64CA00A94FC6 /* ja */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D3BDB53626E0525200C53780 /* Debug */ = {

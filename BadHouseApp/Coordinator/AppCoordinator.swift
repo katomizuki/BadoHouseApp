@@ -9,24 +9,30 @@ class AppCoordinator: Coordinator {
         let tabBarController = TabBarController()
         window.rootViewController = tabBarController
         tabBarController.coordinator = self
-        let testNavigationController = UINavigationController()
         let notificationNavigationController = UINavigationController()
         let userNavigationController = UINavigationController()
-        
-        testNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
+        let talkNavigationController = UINavigationController()
+        let mainNavigationController = UINavigationController()
+
         notificationNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 1)
-        
         userNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
+        talkNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 3)
+        mainNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
         
         let notificationCoordinator = NotificationCoordinator(navigationController: notificationNavigationController)
-        let testCoordinator = TestCoordinator(navigationController: testNavigationController)
         let userCoordinator = UserCoordinator(navigationController: userNavigationController)
-    
-        tabBarController.viewControllers = [testNavigationController,notificationNavigationController,userNavigationController]
+        let talkCoordinator = TalkCoordinator(navigationController: talkNavigationController)
+        let mainCoordinator = HomeCoordinator(navigationController: mainNavigationController)
+        
+        tabBarController.viewControllers = [mainNavigationController,
+                                            notificationNavigationController,
+                                            talkNavigationController,
+                                            userNavigationController]
     
         coordinator(to: notificationCoordinator)
-        coordinator(to: testCoordinator)
+        coordinator(to: mainCoordinator)
         coordinator(to: userCoordinator)
+        coordinator(to: talkCoordinator)
         window.makeKeyAndVisible()
     }
 }

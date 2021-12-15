@@ -1,11 +1,10 @@
 import UIKit
-import Firebase
-import SDWebImage
 import CDAlertView
 
-final class TalkController: UIViewController {
+final class TalkViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
+    var coordinator:TalkCoordinator?
     private let fetchData = FetchFirestoreData()
     private var chatArray = [[Chat]]()
     private var chatModelArray = [ChatRoom]()
@@ -125,7 +124,7 @@ final class TalkController: UIViewController {
     }
 }
 // MARK: - tableViewdatasource
-extension TalkController: UITableViewDataSource {
+extension TalkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? teams.count : chatModelArray.count
     }
@@ -160,7 +159,7 @@ extension TalkController: UITableViewDataSource {
     }
 }
 // MARK: - UITableViewDelegate
-extension TalkController: UITableViewDelegate {
+extension TalkViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         if indexPath.section == 0 {
@@ -195,7 +194,7 @@ extension TalkController: UITableViewDelegate {
     }
 }
 // MARK: - getchatDelegate
-extension TalkController: FetchChatDataDelgate {
+extension TalkViewController: FetchChatDataDelgate {
     func fetchMyChatData(chatArray: [Chat]) {
         self.chatArray.append(chatArray)
     }
@@ -236,7 +235,7 @@ extension TalkController: FetchChatDataDelgate {
     }
 }
 // MARK: - GetmyTeamDelegate
-extension TalkController: FetchMyDataDelegate {
+extension TalkViewController: FetchMyDataDelegate {
     func fetchMyTeamData(teamArray: [TeamModel]) {
         self.teams = teamArray
         for i in 0..<teams.count {
@@ -250,8 +249,9 @@ extension TalkController: FetchMyDataDelegate {
     }
 }
 // MARK: - ScheduleDelegate
-extension TalkController: MyScheduleDelegate {
+extension TalkViewController: MyScheduleDelegate {
     func dismissMyScheduleVC(vc: MyScheduleController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
+

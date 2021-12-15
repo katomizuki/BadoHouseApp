@@ -6,8 +6,7 @@ import CoreLocation
 import MapKit
 import UserNotifications
 import CDAlertView
-
-final class HomeViewController: UIViewController {
+class MainViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
     private var fetchData = FetchFirestoreData()
@@ -16,11 +15,8 @@ final class HomeViewController: UIViewController {
     private let cellId = "eventId"
     private var user: User?
     private let disposeBag = DisposeBag()
-    @IBOutlet private weak var makeEventButton: UIButton!
+    var coordinator:HomeCoordinator?
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var mapButton: UIButton!
-    @IBOutlet private weak var detailSearchButton: UIButton!
-    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +44,18 @@ final class HomeViewController: UIViewController {
         }
     }
     private func setupBinding() {
-        makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let controller = AdditionalEventTitleController.init(nibName: "AdditionalEventTitleController", bundle: nil)
-            self?.navigationController?.pushViewController(controller, animated: true)
-        }).disposed(by: disposeBag)
-        detailSearchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let controller = EventSearchController.init(nibName: "EventSearchController", bundle: nil)
-            self?.present(controller, animated: true)
-        }).disposed(by: disposeBag)
-        mapButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let controller = MapListController.init(nibName: "MapListController", bundle: nil)
-            self?.navigationController?.pushViewController(controller, animated: true)
-        }).disposed(by: disposeBag)
+//        makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+//            let controller = AdditionalEventTitleController.init(nibName: "AdditionalEventTitleController", bundle: nil)
+//            self?.navigationController?.pushViewController(controller, animated: true)
+//        }).disposed(by: disposeBag)
+//        detailSearchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+//            let controller = EventSearchController.init(nibName: "EventSearchController", bundle: nil)
+//            self?.present(controller, animated: true)
+//        }).disposed(by: disposeBag)
+//        mapButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+//            let controller = MapListController.init(nibName: "MapListController", bundle: nil)
+//            self?.navigationController?.pushViewController(controller, animated: true)
+//        }).disposed(by: disposeBag)
     }
 
     private func setupDelegate() {
@@ -96,16 +92,9 @@ final class HomeViewController: UIViewController {
         }
 
     }
-    // MARK: IBAction
-    @IBAction private func scroll(_ sender: Any) {
-        print(#function)
-        if eventArray.count != 0 {
-            collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.top, animated: true)
-        }
-    }
 }
 // MARK: UICollectionViewDataSource
-extension HomeViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return eventArray.count
     }
@@ -122,13 +111,13 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 // MARK: UICollectionViewDelegateFlowLayout
-extension HomeViewController: UICollectionViewDelegateFlowLayout {
+extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.width - 50)
     }
 }
 // MARK: UICollectionViewDelegate
-extension HomeViewController: UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = PracticeDetailController.init(nibName: "PracticeDetailController", bundle: nil)
         controller.event = eventArray[indexPath.row]
@@ -140,7 +129,7 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 // MARK: - CLLOcationManagerDelegate
-extension HomeViewController: CLLocationManagerDelegate {
+extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         guard let latitude = location?.coordinate.latitude else { return }
@@ -151,7 +140,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
 }
 // MARK: UISearchBarDelegate
-extension HomeViewController: UISearchBarDelegate {
+extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
@@ -186,7 +175,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 // MARK: - FetchEventDataDelegate
-extension HomeViewController: FetchEventDataDelegate {
+extension MainViewController: FetchEventDataDelegate {
     func fetchEventData(eventArray: [Event]) {
         print(#function)
         self.eventArray = eventArray
@@ -230,7 +219,7 @@ extension HomeViewController: FetchEventDataDelegate {
 
 
 // MARK: - EventInfoCellDelegate
-extension HomeViewController: EventInfoCellDelegate {
+extension MainViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell) {
         guard let eventId = cell.event?.eventId else { return }
         let alertVC = UIAlertController(title: "コンテンツに不正な内容を発見した場合は通報またはブロックしてください", message: "", preferredStyle: .actionSheet)
@@ -255,3 +244,4 @@ extension HomeViewController: EventInfoCellDelegate {
         present(alertVC, animated: true, completion: nil)
     }
 }
+
