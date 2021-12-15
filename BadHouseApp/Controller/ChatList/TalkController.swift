@@ -166,24 +166,24 @@ extension TalkController: UITableViewDelegate {
         if indexPath.section == 0 {
             let team = teams[indexPath.row]
             self.selectedTeam = team
-            let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupChatVC) as! GroupChatController
-            vc.team = self.selectedTeam
-            navigationController?.pushViewController(vc, animated: true)
+            let controller = CircleChatController.init(nibName: "CircleChatController", bundle: nil)
+            controller.team = self.selectedTeam
+            navigationController?.pushViewController(controller, animated: true)
         } else if indexPath.section == 1 {
             if AuthService.getUserId() == sortChatModelArray[indexPath.row].user {
-                me = sortUserArray[indexPath.row]
-                you = sortAnotherUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
-                vc.me = me
-                vc.you = you
-                navigationController?.pushViewController(vc, animated: true)
+//                me = sortUserArray[indexPath.row]
+//                you = sortAnotherUserArray[indexPath.row]
+//                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
+//                vc.me = me
+//                vc.you = you
+//                navigationController?.pushViewController(vc, animated: true)
             } else {
-                me = sortAnotherUserArray[indexPath.row]
-                you = sortUserArray[indexPath.row]
-                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
-                vc.me = me
-                vc.you = you
-                navigationController?.pushViewController(vc, animated: true)
+//                me = sortAnotherUserArray[indexPath.row]
+//                you = sortUserArray[indexPath.row]
+//                let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
+//                vc.me = me
+//                vc.you = you
+//                navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

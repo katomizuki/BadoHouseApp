@@ -185,10 +185,8 @@ class MainUserDetailController: UIViewController {
         }
     }
     @IBAction func gotoChat(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.ChatVC) as! DMChatController
-        vc.me = me
-        vc.you = user
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = CircleChatController.init(nibName: "CircleChatController", bundle: nil)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 // MARK: - UserCollectionViewDelegate

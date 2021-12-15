@@ -130,12 +130,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.EventDetailVC) as! EventDetailController
-        vc.event = eventArray[indexPath.row]
+        let controller = PracticeDetailController.init(nibName: "PracticeDetailController", bundle: nil)
+        controller.event = eventArray[indexPath.row]
         let teamId = eventArray[indexPath.row].teamId
         TeamService.getTeamData(teamId: teamId) { team in
-            vc.team = team
-            self.navigationController?.pushViewController(vc, animated: true)
+            controller.team = team
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

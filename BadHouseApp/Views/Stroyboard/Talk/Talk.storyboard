@@ -36,33 +36,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="jmi-8B-HbB" id="SCa-CZ-9Fx"/>
-                        <segue destination="d5l-wY-ULa" kind="show" id="FQ5-8I-bax"/>
-                        <segue destination="ds5-XJ-SRq" kind="show" id="3rr-Jc-WrJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVc-13-tnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1226.0869565217392" y="1672.7678571428571"/>
-        </scene>
-        <!--ChatViewController-->
-        <scene sceneID="uuE-te-ZPs">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ChatViewController" storyboardName="Chat" referencedIdentifier="ChatViewController" id="d5l-wY-ULa" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="cIu-CL-Vph"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eGm-eB-v6E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2079" y="1700"/>
-        </scene>
-        <!--GroupChatViewController-->
-        <scene sceneID="fKc-TH-6j9">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="GroupChatViewController" storyboardName="GroupChat" referencedIdentifier="GroupChatViewController" id="ds5-XJ-SRq" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="VwR-wy-XN1"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ivk-zG-1g3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2078" y="1752"/>
         </scene>
         <!--トーク-->
         <scene sceneID="wPH-FQ-BQc">

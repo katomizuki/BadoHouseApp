@@ -205,14 +205,14 @@ class CircleDetailController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     @IBAction private func gotoGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupChatVC) as! GroupChatController
-        vc.team = self.team
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = CircleChatController.init(nibName: "CircleChatController", bundle: nil)
+        controller.team = self.team
+        navigationController?.pushViewController(controller, animated: true)
     }
     @IBAction private func go(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.GroupChatVC) as! GroupChatController
-        vc.team = self.team
-        navigationController?.pushViewController(vc, animated: true)
+        let controller = CircleChatController.init(nibName: "CircleChatController", bundle: nil)
+        controller.team = self.team
+        navigationController?.pushViewController(controller, animated: true)
     }
     @IBAction private func withdraw(_ sender: Any) {
         print(#function)

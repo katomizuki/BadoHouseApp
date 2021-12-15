@@ -413,7 +413,6 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="チャット"/>
                                                 <connections>
                                                     <action selector="didTapChatButton:" destination="MhW-dQ-Hy9" eventType="touchUpInside" id="5Yo-M7-UnR"/>
-                                                    <segue destination="d5l-wY-ULa" kind="show" identifier="gotoChat" id="4Cf-4g-fxl"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -544,28 +543,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKp-yd-OBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="zkl-Eu-EXP">
-                    <connections>
-                        <segue destination="d5l-wY-ULa" kind="show" identifier="gotoChat" id="9Ym-mF-wrv"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="zkl-Eu-EXP"/>
             </objects>
             <point key="canvasLocation" x="3186" y="792"/>
         </scene>
-        <!--ChatViewController-->
-        <scene sceneID="uuE-te-ZPs">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ChatViewController" storyboardName="Chat" referencedIdentifier="ChatViewController" id="d5l-wY-ULa" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="cIu-CL-Vph"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eGm-eB-v6E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3085" y="1351"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="4Cf-4g-fxl"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="text.bubble.fill.rtl" catalog="system" width="128" height="110"/>
