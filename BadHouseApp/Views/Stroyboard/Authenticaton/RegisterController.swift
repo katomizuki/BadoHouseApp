@@ -1,14 +1,13 @@
 import Foundation
 import UIKit
-import FirebaseAuth
 import RxSwift
 import RxCocoa
-import GoogleSignIn
 import Firebase
+import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
 
-final class RegisterViewController: UIViewController {
+class RegisterController: UIViewController {
     // MARK: - Properties
         private let nameTextField: UITextField = {
         let tf = RegisterTextField(placeholder: "名前")
@@ -74,11 +73,6 @@ final class RegisterViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        // UserDefaultで条件分岐をする
-        if UserDefaults.standard.object(forKey: "MyId") == nil && Auth.auth().currentUser == nil {
-            let vc = WalkThroughController()
-            present(vc, animated: true, completion: nil)
-        }
         navigationController?.isNavigationBarHidden = true
     }
     // MARK: - SetupMethod
@@ -182,9 +176,8 @@ final class RegisterViewController: UIViewController {
         alreadyButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
-                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-                self?.navigationController?.pushViewController(loginVC, animated: true)
+                let controller = LoginController.init(nibName: "LoginController", bundle: nil)
+                self?.navigationController?.pushViewController(controller, animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -272,7 +265,7 @@ final class RegisterViewController: UIViewController {
     }
 }
 // MARK: - GIDSignInDelegate
-extension RegisterViewController: GIDSignInDelegate {
+extension RegisterController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
@@ -308,7 +301,7 @@ extension RegisterViewController: GIDSignInDelegate {
     }
 }
 // MARK: - UITextFieldDelegate
-extension RegisterViewController: UITextFieldDelegate {
+extension RegisterController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         switch textField.tag {
@@ -320,7 +313,7 @@ extension RegisterViewController: UITextFieldDelegate {
     }
 }
 // MARK: - ASAuthorizationControllerDelegate
-extension RegisterViewController: ASAuthorizationControllerDelegate {
+extension RegisterController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let name = appleCredential.fullName?.givenName else {
@@ -359,14 +352,15 @@ extension RegisterViewController: ASAuthorizationControllerDelegate {
     }
 }
 // MARK: - ASAuthorizationControllerPresentationContextProviding
-extension RegisterViewController: ASAuthorizationControllerPresentationContextProviding {
+extension RegisterController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
 }
 // MARK: - RuleControllerDelegate
-extension RegisterViewController: RuleControllerDelegate {
+extension RegisterController: RuleControllerDelegate {
     func didTapBackButton(_ vc: RuleController) {
         vc.dismiss(animated: true, completion: nil)
     }
 }
+

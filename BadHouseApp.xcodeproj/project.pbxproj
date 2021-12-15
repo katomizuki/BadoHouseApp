@@ -27,7 +27,6 @@
 		D316073627676BF5005FF41D /* EventSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316073427676BF5005FF41D /* EventSearchController.swift */; };
 		D316073727676BF5005FF41D /* EventSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* EventSearchController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
-		D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D290627469D4D00EC650C /* Authentication.storyboard */; };
 		D31D29192746A74B00EC650C /* Talk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31D29182746A74B00EC650C /* Talk.storyboard */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
@@ -69,8 +68,10 @@
 		D388640C2769FE7E00FC4F07 /* CircleChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388640A2769FE7E00FC4F07 /* CircleChatController.xib */; };
 		D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886411276A03E000FC4F07 /* PracticeDetailController.swift */; };
 		D3886414276A03E000FC4F07 /* PracticeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886412276A03E000FC4F07 /* PracticeDetailController.xib */; };
-		D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */; };
-		D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCA274724E40022AE24 /* EventDetail.storyboard */; };
+		D3886417276A059100FC4F07 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886415276A059100FC4F07 /* LoginController.swift */; };
+		D3886418276A059100FC4F07 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886416276A059100FC4F07 /* LoginController.xib */; };
+		D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886419276A05AF00FC4F07 /* RegisterController.swift */; };
+		D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388641A276A05AF00FC4F07 /* RegisterController.xib */; };
 		D3969DCF274728760022AE24 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DCE274728760022AE24 /* Home.storyboard */; };
 		D3969DD1274729880022AE24 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3969DD0274729880022AE24 /* User.storyboard */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
@@ -105,8 +106,6 @@
 		D3BDB52C26E0525100C53780 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52B26E0525100C53780 /* HomeViewController.swift */; };
 		D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB52D26E0525100C53780 /* Main.storyboard */; };
 		D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53226E0525200C53780 /* LaunchScreen.storyboard */; };
-		D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54026E0546000C53780 /* RegisterViewController.swift */; };
-		D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54326E0547300C53780 /* LoginViewController.swift */; };
 		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
 		D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB54726E0590800C53780 /* GoogleService-Info.plist */; };
 		D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */; };
@@ -181,7 +180,6 @@
 		D31C163A272B64CA00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D31C163B272B64CE00A94FC6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
-		D31D290627469D4D00EC650C /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Authentication.storyboard; path = BadHouseApp/Views/Stroyboard/Authenticaton/Authentication.storyboard; sourceTree = SOURCE_ROOT; };
 		D31D29182746A74B00EC650C /* Talk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Talk.storyboard; path = BadHouseApp/Views/Stroyboard/Talk/Talk.storyboard; sourceTree = SOURCE_ROOT; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -217,8 +215,10 @@
 		D388640A2769FE7E00FC4F07 /* CircleChatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleChatController.xib; sourceTree = "<group>"; };
 		D3886411276A03E000FC4F07 /* PracticeDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailController.swift; sourceTree = "<group>"; };
 		D3886412276A03E000FC4F07 /* PracticeDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeDetailController.xib; sourceTree = "<group>"; };
-		D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughController.swift; sourceTree = "<group>"; };
-		D3969DCA274724E40022AE24 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EventDetail.storyboard; path = BadHouseApp/Views/Stroyboard/Home/EventDetail.storyboard; sourceTree = SOURCE_ROOT; };
+		D3886415276A059100FC4F07 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		D3886416276A059100FC4F07 /* LoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		D3886419276A05AF00FC4F07 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		D388641A276A05AF00FC4F07 /* RegisterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		D3969DCE274728760022AE24 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = BadHouseApp/Views/Stroyboard/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
 		D3969DD0274729880022AE24 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = BadHouseApp/Views/Stroyboard/User/User.storyboard; sourceTree = SOURCE_ROOT; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -253,8 +253,6 @@
 		D3BDB52B26E0525100C53780 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D3BDB53026E0525200C53780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3BDB53526E0525200C53780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3BDB54026E0546000C53780 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		D3BDB54326E0547300C53780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D3BDB54526E055C900C53780 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3BDB54726E0590800C53780 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTitleLabel.swift; sourceTree = "<group>"; };
@@ -392,7 +390,10 @@
 		D3969DD2274732C90022AE24 /* Authenticaton */ = {
 			isa = PBXGroup;
 			children = (
-				D31D290627469D4D00EC650C /* Authentication.storyboard */,
+				D3886415276A059100FC4F07 /* LoginController.swift */,
+				D3886416276A059100FC4F07 /* LoginController.xib */,
+				D3886419276A05AF00FC4F07 /* RegisterController.swift */,
+				D388641A276A05AF00FC4F07 /* RegisterController.xib */,
 			);
 			path = Authenticaton;
 			sourceTree = "<group>";
@@ -427,7 +428,6 @@
 			isa = PBXGroup;
 			children = (
 				D3969DCE274728760022AE24 /* Home.storyboard */,
-				D3969DCA274724E40022AE24 /* EventDetail.storyboard */,
 				D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */,
 				D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */,
 				D31606EE27657FAC005FF41D /* LevelDetailController.swift */,
@@ -622,9 +622,6 @@
 		D3BDB53F26E0543700C53780 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				D3BDB54026E0546000C53780 /* RegisterViewController.swift */,
-				D3BDB54326E0547300C53780 /* LoginViewController.swift */,
-				D388F0F127107A2A00ACA6B8 /* WalkThroughController.swift */,
 				D31C163C272B78AA00A94FC6 /* RuleController.swift */,
 			);
 			path = Authentication;
@@ -814,6 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */,
+				D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */,
 				D3BDB53426E0525200C53780 /* LaunchScreen.storyboard in Resources */,
 				D3969DCF274728760022AE24 /* Home.storyboard in Resources */,
 				D3969DD1274729880022AE24 /* User.storyboard in Resources */,
@@ -825,8 +823,6 @@
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D38864002768CB3100FC4F07 /* SubUserDetailController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
-				D31D290727469D4D00EC650C /* Authentication.storyboard in Resources */,
-				D3969DCB274724E40022AE24 /* EventDetail.storyboard in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
@@ -834,6 +830,7 @@
 				D3BDB52F26E0525100C53780 /* Main.storyboard in Resources */,
 				D38863EC2768B80D00FC4F07 /* MakeCircleController.xib in Resources */,
 				D32B8CA02759BC2C0036FA98 /* Notification.storyboard in Resources */,
+				D3886418276A059100FC4F07 /* LoginController.xib in Resources */,
 				D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */,
 				D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */,
 				D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */,
@@ -1021,6 +1018,7 @@
 				D388640B2769FE7E00FC4F07 /* CircleChatController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
+				D3886417276A059100FC4F07 /* LoginController.swift in Sources */,
 				D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */,
@@ -1031,6 +1029,7 @@
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,
+				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
@@ -1038,9 +1037,7 @@
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
-				D3BDB54426E0547300C53780 /* LoginViewController.swift in Sources */,
 				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,
-				D3BDB54126E0546000C53780 /* RegisterViewController.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */,
 				D38863FF2768CB3100FC4F07 /* SubUserDetailController.swift in Sources */,
@@ -1050,7 +1047,6 @@
 				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,
 				D38863EB2768B80D00FC4F07 /* MakeCircleController.swift in Sources */,
 				D3BDB55526E062E700C53780 /* RegisterTextField.swift in Sources */,
-				D388F0F227107A2A00ACA6B8 /* WalkThroughController.swift in Sources */,
 				D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */,
 				D38863EF2768BA3200FC4F07 /* UserLevelController.swift in Sources */,
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,

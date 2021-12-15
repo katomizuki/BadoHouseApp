@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
         }
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                let vc = RegisterViewController()
+                let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
                 let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)

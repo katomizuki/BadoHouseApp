@@ -1,13 +1,15 @@
+import UIKit
 import Foundation
 import UIKit
+import FirebaseAuth
 import RxSwift
 import RxCocoa
-import Firebase
 import GoogleSignIn
+import Firebase
 import AuthenticationServices
 import CryptoKit
 
-final class LoginViewController: UIViewController {
+class LoginController: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let loginBinding = LoginViewModel()
@@ -208,7 +210,7 @@ final class LoginViewController: UIViewController {
     }
 }
 // MARK: - GoogleSigninDelegate
-extension LoginViewController: GIDSignInDelegate {
+extension LoginController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("\(error.localizedDescription)")
@@ -226,30 +228,8 @@ extension LoginViewController: GIDSignInDelegate {
         }
     }
 }
-//// MARK: - FacebookDelegate
-//extension LoginViewController: LoginButtonDelegate {
-//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-//        print("logout fb")
-//    }
-//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-//        if error == nil {
-//            if result?.isCancelled == true {
-//                return
-//            }
-//        }
-//        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-//        Auth.auth().signIn(with: credential) { (_, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            } else {
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
-//    }
-//}
 // MARK: - TextFieldDelegate
-extension LoginViewController: UITextFieldDelegate {
+extension LoginController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if textField.tag == 0 {
@@ -259,7 +239,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 // MARK: - ASAuthorizationControllerDelegate
-extension LoginViewController: ASAuthorizationControllerDelegate {
+extension LoginController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
             if let appleCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 guard let idToken = appleCredential.identityToken else { return }
@@ -284,3 +264,4 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         print(error.localizedDescription)
     }
 }
+
