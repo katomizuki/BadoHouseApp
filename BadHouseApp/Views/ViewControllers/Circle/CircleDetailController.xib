@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -41,8 +41,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guK-Jr-U8E">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LQr-Sb-Dlm">
-                                    <rect key="frame" x="132" y="10" width="150" height="150"/>
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LQr-Sb-Dlm">
+                                    <rect key="frame" x="132" y="10" width="150" height="148.5"/>
                                     <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <gestureRecognizers/>
                                     <constraints>
@@ -319,11 +319,12 @@
                 <constraint firstItem="eoG-j7-7Um" firstAttribute="trailing" secondItem="aFa-F7-8wR" secondAttribute="trailing" id="sVV-T9-867"/>
                 <constraint firstItem="eoG-j7-7Um" firstAttribute="leading" secondItem="aFa-F7-8wR" secondAttribute="leading" id="xJE-H7-33w"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="16"/>
+            <point key="canvasLocation" x="137.68115942028987" y="15.401785714285714"/>
         </view>
     </objects>
     <resources>
         <image name="purplechat.pnt" width="100" height="100"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <namedColor name="backGroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

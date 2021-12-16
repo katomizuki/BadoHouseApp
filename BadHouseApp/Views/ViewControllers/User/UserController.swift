@@ -2,7 +2,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 import FirebaseAuth
-class UserController: UIViewController {
+protocol UserFlow:AnyObject {
+    func toSearchCircle()
+    func toMyPage(_ vc:UIViewController)
+    func toSearchUser()
+    func toDetailUser()
+    func toDetailCircle()
+    func toMakeCircle()
+}
+final class UserController: UIViewController {
     // MARK: - Properties
     var user: User?
     var teamArray = [TeamModel]()
@@ -11,7 +19,7 @@ class UserController: UIViewController {
     private var userIdArray = [String]()
     private let sectionArray = ["所属チーム", "バド友"]
     private let fetchData = FetchFirestoreData()
-    var coordinator: UserCoordinator?
+    var coordinator: UserFlow?
     @IBOutlet private weak var groupTableView: UITableView! {
         didSet {
             groupTableView.separatorColor = Constants.AppColor.OriginalBlue
@@ -39,28 +47,6 @@ class UserController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupData()
-        
-//        searchCircleButton.rx.tap.asDriver().drive { [weak self] _ in
-//            guard let self = self else { return }
-//            let controller = CircleSearchController.init(nibName: "CircleSearchController", bundle: nil)
-//            controller.friends = self.friendArray
-//            self.navigationController?.pushViewController(controller, animated: true)
-//        }.disposed(by: disposeBag)
-//
-//        searchFriendButton.rx.tap.asDriver().drive { [weak self] _ in
-//            guard let self = self else { return }
-//            let controller = AccountSearchController.init(nibName: "AccountSearchController", bundle: nil)
-//            self.navigationController?.pushViewController(controller, animated: true)
-//        }.disposed(by: disposeBag)
-//
-//        userPageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-//            guard let self = self else { return }
-//            let controller = UserPageController.init(nibName: "UserPageController", bundle: nil)
-//            controller.modalPresentationStyle = .fullScreen
-//            self.present(controller, animated: true)
-//        }).disposed(by: disposeBag)
-
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

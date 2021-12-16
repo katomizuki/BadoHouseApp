@@ -353,6 +353,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - Differentiator (5.0.0)
   - Firebase (8.7.0):
     - Firebase/Core (= 8.7.0)
   - Firebase/Analytics (8.7.0):
@@ -509,6 +510,19 @@ PODS:
   - nanopb/encode (2.30908.0)
   - PKHUD (5.3.0)
   - PromisesObjC (2.0.0)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxGesture (4.0.2):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
@@ -526,6 +540,10 @@ DEPENDENCIES:
   - GoogleSignIn (~> 5.0.0)
   - IQKeyboardManagerSwift
   - PKHUD
+  - RxCocoa (= 6.2.0)
+  - RxDataSources (~> 5.0)
+  - RxGesture
+  - RxSwift (= 6.2.0)
   - SDWebImage
 
 SPEC REPOS:
@@ -535,6 +553,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - CDAlertView
     - Charts
+    - Differentiator
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -558,6 +577,11 @@ SPEC REPOS:
     - nanopb
     - PKHUD
     - PromisesObjC
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxRelay
+    - RxSwift
     - SDWebImage
 
 SPEC CHECKSUMS:
@@ -566,6 +590,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CDAlertView: cd6624e857c85ad14560e2cd23d7eb25b983b590
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
   FirebaseAnalytics: 52768800c2add1d84b751420cb4caaf8195f2c41
   FirebaseAuth: 2e7d029977648c67a5d51a263d4cbab76d34cf12
@@ -589,8 +614,13 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxGesture: f059f2aeef966fb17dad56ee440e76410f10e55f
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: 521de2b5cd271184c36277bc932cc92197a3180b
+PODFILE CHECKSUM: 1c1013174ba4c22b17665b013955767cda70f489
 
 COCOAPODS: 1.11.2

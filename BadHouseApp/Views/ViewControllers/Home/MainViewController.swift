@@ -6,6 +6,11 @@ import CoreLocation
 import MapKit
 import UserNotifications
 import CDAlertView
+protocol MainFlow: AnyObject {
+    func toMap()
+    func toMakeEvent()
+    func toDetailSearch(_ vc:UIViewController)
+}
 class MainViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
@@ -15,7 +20,7 @@ class MainViewController: UIViewController {
     private let cellId = "eventId"
     private var user: User?
     private let disposeBag = DisposeBag()
-    var coordinator:HomeCoordinator?
+    var coordinator: MainFlow?
     @IBOutlet private weak var collectionView: UICollectionView!
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -27,6 +32,7 @@ class MainViewController: UIViewController {
         EventServie.deleteEvent()
         UIApplication.shared.applicationIconBadgeNumber = 0
         setupBinding()
+        setupNavBarButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,28 +40,42 @@ class MainViewController: UIViewController {
         if !Network.shared.isOnline() {
             self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }
-        if Auth.auth().currentUser == nil {
-            DispatchQueue.main.async {
-                let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
-                let nav = UINavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
-            }
-        }
+//        if Auth.auth().currentUser == nil {
+//            DispatchQueue.main.async {
+//                let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
+//                let nav = UINavigationController(rootViewController: vc)
+//                nav.modalPresentationStyle = .fullScreen
+//                self.present(nav, animated: true, completion: nil)
+//            }
+//        }
+    }
+    private func setupNavBarButton() {
+        let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(didTapMapButton))
+        let detailSearchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle.fill"),
+                                                 style: .plain,
+                                                 target: self,
+                                                 action: #selector(didTapDetailSearchButton))
+        let makeEventButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"),
+                                              style: .plain,
+                                              target: self,
+                                              action: #selector(didTapMakeEventButton))
+        navigationItem.rightBarButtonItems = [detailSearchButton, mapButton]
+        navigationItem.leftBarButtonItem = makeEventButton
+    }
+    @objc private func didTapMapButton() {
+        coordinator?.toMap()
+    }
+    @objc private func didTapDetailSearchButton() {
+        coordinator?.toDetailSearch(self)
+    }
+    @objc private func didTapMakeEventButton() {
+        print(#function)
+        coordinator?.toMakeEvent()
     }
     private func setupBinding() {
-//        makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-//            let controller = AdditionalEventTitleController.init(nibName: "AdditionalEventTitleController", bundle: nil)
-//            self?.navigationController?.pushViewController(controller, animated: true)
-//        }).disposed(by: disposeBag)
-//        detailSearchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-//            let controller = EventSearchController.init(nibName: "EventSearchController", bundle: nil)
-//            self?.present(controller, animated: true)
-//        }).disposed(by: disposeBag)
-//        mapButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-//            let controller = MapListController.init(nibName: "MapListController", bundle: nil)
-//            self?.navigationController?.pushViewController(controller, animated: true)
-//        }).disposed(by: disposeBag)
     }
 
     private func setupDelegate() {
@@ -83,14 +103,6 @@ class MainViewController: UIViewController {
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
-    }
-    // MARK: - prepare
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier ==  Segue.gotoUser.rawValue {
-            let vc = segue.destination as! UserPageController
-            vc.user = self.user
-        }
-
     }
 }
 // MARK: UICollectionViewDataSource
@@ -216,8 +228,6 @@ extension MainViewController: FetchEventDataDelegate {
         }
     }
 }
-
-
 // MARK: - EventInfoCellDelegate
 extension MainViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell) {
@@ -244,4 +254,3 @@ extension MainViewController: EventInfoCellDelegate {
         present(alertVC, animated: true, completion: nil)
     }
 }
-
