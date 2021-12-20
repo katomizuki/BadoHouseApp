@@ -33,19 +33,20 @@ final class TalkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupOwnTeamData()
-        setupNotification()
+//        setupOwnTeamData()
+//        setupNotification()
         setupNav()
         fetchData.myDataDelegate = self
-        EventServie.getmyEventId { [weak self] event in
-            guard let self = self else { return }
-            self.eventArray = event
-            self.fetchData.fetchEventJoinData(eventArray: event)
-        }
+//        EventServie.getmyEventId { [weak self] event in
+//            guard let self = self else { return }
+//            self.eventArray = event
+//            self.fetchData.fetchEventJoinData(eventArray: event)
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
-        setupData()
-        setupOwnTeamData()
+        super.viewWillAppear(animated)
+//        setupData()
+//        setupOwnTeamData()
         let image = UIImage(named: Constants.ImageName.double)
         self.navigationController?.navigationBar.backIndicatorImage = image
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image

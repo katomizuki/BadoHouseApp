@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -41,22 +41,11 @@
                         </collectionViewCell>
                     </cells>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnD-SK-Jlc">
-                    <rect key="frame" x="334" y="797" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="7dX-QG-qy3"/>
-                        <constraint firstAttribute="width" constant="50" id="wth-cR-YId"/>
-                    </constraints>
-                    <color key="tintColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <state key="normal" image="scroll"/>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ubr-Id-HuZ"/>
             <color key="backgroundColor" name="backGroundColor"/>
             <constraints>
                 <constraint firstItem="ki1-Oi-sGq" firstAttribute="bottom" secondItem="ubr-Id-HuZ" secondAttribute="bottom" id="5tA-DO-aKf"/>
-                <constraint firstItem="ubr-Id-HuZ" firstAttribute="bottom" secondItem="EnD-SK-Jlc" secondAttribute="bottom" constant="15" id="H1A-lx-JwW"/>
-                <constraint firstItem="ubr-Id-HuZ" firstAttribute="trailing" secondItem="EnD-SK-Jlc" secondAttribute="trailing" constant="30" id="NGo-ZM-3QM"/>
                 <constraint firstItem="ki1-Oi-sGq" firstAttribute="top" secondItem="ubr-Id-HuZ" secondAttribute="top" id="arA-ef-buz"/>
                 <constraint firstItem="ubr-Id-HuZ" firstAttribute="trailing" secondItem="ki1-Oi-sGq" secondAttribute="trailing" id="mvQ-hP-Lb7"/>
                 <constraint firstItem="ki1-Oi-sGq" firstAttribute="leading" secondItem="ubr-Id-HuZ" secondAttribute="leading" id="y0a-PN-8Ur"/>
@@ -65,7 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="scroll" width="48" height="48"/>
         <namedColor name="backGroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

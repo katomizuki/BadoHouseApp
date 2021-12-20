@@ -46,42 +46,54 @@ final class UserController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupData()
+        setupNavigationItem()
+//        setupData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if Auth.auth().currentUser == nil {
-            let vc = tabBarController?.viewControllers?[0]
-            tabBarController?.selectedViewController = vc
-        } else {
-            setupData()
-        }
+//        if Auth.auth().currentUser == nil {
+//            let vc = tabBarController?.viewControllers?[0]
+//            tabBarController?.selectedViewController = vc
+//        } else {
+////            setupData()
+//        }
     }
     // MARK: - setupMethod
     private func setupData() {
-        fetchData.myDataDelegate = self
-        let uid = AuthService.getUserId()
-        UserService.getUserData(uid: uid) { [weak self] user in
-            guard let self = self else { return }
-            guard let user = user else { return }
-            self.user = user
-            let urlString = user.profileImageUrl
-            if urlString == "" {
-                self.myImageView.image = UIImage(named: Constants.ImageName.noImages)
-            } else {
-                let url = URL(string: urlString)
-                self.myImageView.sd_setImage(with: url, completed: nil)
-            }
-            self.myName.text = user.name
-        }
-        UserService.getOwnTeam(uid: uid) { [weak self] teamId in
-            guard let self = self else { return }
-            self.fetchData.fetchMyTeamData(idArray: teamId)
-        }
-        UserService.getFriendData(uid: uid) { [weak self] usersId in
-            guard let self = self else { return }
-            self.fetchData.fetchMyFriendData(idArray: usersId)
-        }
+//        fetchData.myDataDelegate = self
+//        let uid = AuthService.getUserId()
+//        UserService.getUserData(uid: uid) { [weak self] user in
+//            guard let self = self else { return }
+//            guard let user = user else { return }
+//            self.user = user
+//            let urlString = user.profileImageUrl
+//            if urlString == "" {
+//                self.myImageView.image = UIImage(named: Constants.ImageName.noImages)
+//            } else {
+//                let url = URL(string: urlString)
+//                self.myImageView.sd_setImage(with: url, completed: nil)
+//            }
+//            self.myName.text = user.name
+//        }
+//        UserService.getOwnTeam(uid: uid) { [weak self] teamId in
+//            guard let self = self else { return }
+//            self.fetchData.fetchMyTeamData(idArray: teamId)
+//        }
+//        UserService.getFriendData(uid: uid) { [weak self] usersId in
+//            guard let self = self else { return }
+//            self.fetchData.fetchMyFriendData(idArray: usersId)
+//        }
+    }
+    
+    private func setupNavigationItem() {
+        let image = UIImage(systemName: "gearshape.fill")
+        let settingButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapSettingButton))
+        
+        navigationItem.rightBarButtonItem = settingButton
+//        navigationItem.leftBarButtonItem
+    }
+    @objc private func didTapSettingButton() {
+        print(#function)
     }
     private func setupTableView() {
         groupTableView.delegate = self

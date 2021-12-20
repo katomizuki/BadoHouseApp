@@ -2,7 +2,6 @@
 import UIKit
 
 class HomeCoordinator: Coordinator,MainFlow {
-    
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -24,6 +23,13 @@ class HomeCoordinator: Coordinator,MainFlow {
         vc.present(controller, animated: true)
     }
     func toPracticeDetail() {
-//        coordinator(to: <#T##Coordinator#>)
+        coordinator(to: PracticeDetailCoordinator(navigationController: self.navigationController))
     }
+    func toAuthentication(_ vc:UIViewController) {
+        let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        vc.present(nav, animated: true, completion: nil)
+    }
+    
 }

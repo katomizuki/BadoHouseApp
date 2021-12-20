@@ -102,6 +102,7 @@
 		D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */; };
 		D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */; };
 		D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */; };
+		D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
@@ -272,6 +273,7 @@
 		D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalPlaceCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailCoordinator.swift; sourceTree = "<group>"; };
+		D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */,
 				D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */,
 				D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */,
+				D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* GroupCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
+				D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */,

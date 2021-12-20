@@ -7,7 +7,7 @@ class NotificationCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = CheckNotificationController()
+        let controller = CheckNotificationController.init(nibName: "CheckNotificationController", bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

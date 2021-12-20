@@ -11,6 +11,7 @@ protocol MainFlow: AnyObject {
     func toMakeEvent()
     func toDetailSearch(_ vc:UIViewController)
     func toPracticeDetail()
+    func toAuthentication(_ vc:UIViewController)
 }
 class MainViewController: UIViewController {
     // MARK: - Properties
@@ -47,6 +48,7 @@ class MainViewController: UIViewController {
 //                let nav = UINavigationController(rootViewController: vc)
 //                nav.modalPresentationStyle = .fullScreen
 //                self.present(nav, animated: true, completion: nil)
+    
 //            }
 //        }
     }

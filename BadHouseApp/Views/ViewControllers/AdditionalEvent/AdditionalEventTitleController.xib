@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,11 +22,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="vZx-Pu-Xg2">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7UC-Ae-mDi">
-                    <rect key="frame" x="30" y="144" width="354" height="32"/>
+                    <rect key="frame" x="30" y="70" width="315" height="32"/>
                     <segments>
                         <segment title="社会人サークル"/>
                         <segment title="学生サークル"/>
@@ -36,13 +36,13 @@
                     <color key="selectedSegmentTintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="サークル種別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egt-cZ-9nm">
-                    <rect key="frame" x="30" y="100" width="123" height="24"/>
+                    <rect key="frame" x="30" y="26" width="123" height="24"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                     <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル名記入 (必須)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dle-2k-8fI">
-                    <rect key="frame" x="30" y="239" width="354" height="50"/>
+                    <rect key="frame" x="30" y="165" width="315" height="50"/>
                     <color key="backgroundColor" name="TFColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="T1Z-L1-NDF"/>
@@ -63,20 +63,20 @@
                     </userDefinedRuntimeAttributes>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル                                      " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xY2-qS-oDR">
-                    <rect key="frame" x="30" y="195" width="242" height="24"/>
+                    <rect key="frame" x="30" y="121" width="242" height="24"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                     <color key="textColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImages" translatesAutoresizingMaskIntoConstraints="NO" id="h5N-G9-P0Q">
-                    <rect key="frame" x="30" y="319" width="354" height="236"/>
+                    <rect key="frame" x="30" y="245" width="315" height="210"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="h5N-G9-P0Q" secondAttribute="height" multiplier="60:40" id="PuP-6H-IBB"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="947-H0-qiL">
-                    <rect key="frame" x="30" y="712" width="354" height="60"/>
+                    <rect key="frame" x="30" y="475" width="315" height="60"/>
                     <color key="backgroundColor" red="0.49019607840000001" green="0.51372549020000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="M7o-Ea-EvN"/>
@@ -93,7 +93,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトルが入力されていません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wI-yW-q4d">
-                    <rect key="frame" x="184" y="199" width="200" height="17"/>
+                    <rect key="frame" x="145" y="125" width="200" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" systemColor="systemPinkColor"/>
                     <nil key="highlightedColor"/>
@@ -106,13 +106,13 @@
                 <constraint firstItem="R5l-dC-vmG" firstAttribute="trailing" secondItem="h5N-G9-P0Q" secondAttribute="trailing" constant="30" id="75l-iV-Dci"/>
                 <constraint firstItem="7UC-Ae-mDi" firstAttribute="top" secondItem="egt-cZ-9nm" secondAttribute="bottom" constant="20" id="KzZ-fd-V9N"/>
                 <constraint firstItem="dle-2k-8fI" firstAttribute="top" secondItem="xY2-qS-oDR" secondAttribute="bottom" constant="20" id="NkE-zW-qEJ"/>
-                <constraint firstItem="7UC-Ae-mDi" firstAttribute="top" secondItem="R5l-dC-vmG" secondAttribute="top" constant="100" id="OEO-s0-ahr"/>
+                <constraint firstItem="7UC-Ae-mDi" firstAttribute="top" secondItem="R5l-dC-vmG" secondAttribute="top" constant="70" id="OEO-s0-ahr"/>
                 <constraint firstItem="dle-2k-8fI" firstAttribute="leading" secondItem="R5l-dC-vmG" secondAttribute="leading" constant="30" id="Ood-G4-4hO"/>
                 <constraint firstItem="h5N-G9-P0Q" firstAttribute="leading" secondItem="R5l-dC-vmG" secondAttribute="leading" constant="30" id="Ovo-rD-kMd"/>
                 <constraint firstItem="R5l-dC-vmG" firstAttribute="trailing" secondItem="947-H0-qiL" secondAttribute="trailing" constant="30" id="SwC-Hu-97X"/>
+                <constraint firstItem="947-H0-qiL" firstAttribute="top" secondItem="h5N-G9-P0Q" secondAttribute="bottom" constant="20" id="TUh-ww-b6p"/>
                 <constraint firstItem="7wI-yW-q4d" firstAttribute="firstBaseline" secondItem="xY2-qS-oDR" secondAttribute="firstBaseline" constant="-1.5" id="Via-GN-L0Q"/>
                 <constraint firstItem="R5l-dC-vmG" firstAttribute="trailing" secondItem="dle-2k-8fI" secondAttribute="trailing" constant="30" id="ZaL-rK-3G9"/>
-                <constraint firstItem="R5l-dC-vmG" firstAttribute="bottom" secondItem="947-H0-qiL" secondAttribute="bottom" constant="90" id="iho-Pf-JqG"/>
                 <constraint firstItem="h5N-G9-P0Q" firstAttribute="centerX" secondItem="vZx-Pu-Xg2" secondAttribute="centerX" id="iur-Kr-3EG"/>
                 <constraint firstItem="xY2-qS-oDR" firstAttribute="top" secondItem="7UC-Ae-mDi" secondAttribute="bottom" constant="20" id="kK4-vZ-hjy"/>
                 <constraint firstItem="xY2-qS-oDR" firstAttribute="leading" secondItem="7UC-Ae-mDi" secondAttribute="leading" id="mW1-JN-UJa"/>
