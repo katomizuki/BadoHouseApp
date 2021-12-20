@@ -96,6 +96,9 @@
 		D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* MainViewController.xib */; };
 		D3976EF1270337F40016CEB2 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3976EF0270337F40016CEB2 /* InputView.swift */; };
 		D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* MyScheduleController.swift */; };
+		D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */; };
+		D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */; };
+		D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
@@ -260,6 +263,9 @@
 		D3886444276A214B00FC4F07 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		D3976EF0270337F40016CEB2 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D39771712709D1D40025BE19 /* MyScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleController.swift; sourceTree = "<group>"; };
+		D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelCoordinator.swift; sourceTree = "<group>"; };
+		D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementCoordinator.swift; sourceTree = "<group>"; };
+		D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -377,6 +383,9 @@
 				D3629FAC276F5EB70052B820 /* InviteCoordinator.swift */,
 				D3629FB0276F5F800052B820 /* SearchFriendCoordinator.swift */,
 				D3629FB2276F5F8E0052B820 /* SearchCircleCoordinator.swift */,
+				D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */,
+				D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */,
+				D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -956,6 +965,7 @@
 				D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
+				D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */,
 				D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */,
 				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
@@ -964,6 +974,7 @@
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,
+				D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */,
 				D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */,
 				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
@@ -1051,6 +1062,7 @@
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
+				D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3BDB55126E05DD100C53780 /* RegisterTitleLabel.swift in Sources */,
 				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,

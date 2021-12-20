@@ -1,9 +1,9 @@
 
 import UIKit
 
-class HomeCoordinator:Coordinator,MainFlow {
-    let navigationController:UINavigationController
-    init(navigationController:UINavigationController) {
+class HomeCoordinator: Coordinator,MainFlow {
+    let navigationController: UINavigationController
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     func start() {
@@ -16,8 +16,9 @@ class HomeCoordinator:Coordinator,MainFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toMakeEvent() {
-        let controller = AdditionalEventTitleController.init(nibName: "AdditionalEventTitleController", bundle: nil)
-        navigationController.pushViewController(controller, animated: true)
+      
+        
+        coordinator(to: MakePracticeCoordinator(navigationController: self.navigationController))
     }
     func toDetailSearch(_ vc:UIViewController) {
         let controller = EventSearchController.init(nibName: "EventSearchController", bundle: nil)

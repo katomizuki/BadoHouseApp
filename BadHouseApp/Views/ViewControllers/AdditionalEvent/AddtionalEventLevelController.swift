@@ -8,6 +8,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
+protocol AddtionalEventLevelFlow {
+    func toNext()
+    func toLevel()
+}
 class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var nextButton: UIButton!
@@ -16,6 +20,7 @@ class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var minLabel: UILabel!
     @IBOutlet private weak var minSlider: UISlider!
     private let viewModel = MakeEventSecondViewModel()
+    var coordinator:AddtionalEventLevelFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
@@ -25,8 +30,10 @@ class AddtionalEventLevelController: UIViewController {
     }
     private func setupBinding() {
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let controller = AdditionalEventElementController.init(nibName: "AdditionalEventElementController", bundle: nil)
-            self?.navigationController?.pushViewController(controller, animated: true)
+            guard let self = self else { return }
+            self.coordinator?.toNext()
+//            let controller = AdditionalEventElementController.init(nibName: "AdditionalEventElementController", bundle: nil)
+//            self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
@@ -45,8 +52,9 @@ class AddtionalEventLevelController: UIViewController {
         viewModel.inputs.maxLevel.onNext(sender.value)
     }
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
-        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
-        present(controller, animated: true)
+        coordinator?.toLevel()
+//        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
+//        present(controller, animated: true)
     }
     
 }

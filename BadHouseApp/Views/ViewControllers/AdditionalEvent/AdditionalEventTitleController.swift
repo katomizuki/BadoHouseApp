@@ -9,7 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
-class AdditionalEventTitleController: UIViewController {
+protocol AdditionalEventTitleFlow {
+    func toNext()
+}
+final class AdditionalEventTitleController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var nextButton: UIButton!
@@ -27,6 +30,7 @@ class AdditionalEventTitleController: UIViewController {
     private var team: TeamModel?
     private let pickerView = UIImagePickerController()
     private let viewModel = MakeEventFirstViewModel()
+    var coordinator: AdditionalEventTitleFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +48,8 @@ class AdditionalEventTitleController: UIViewController {
         }).disposed(by: disposeBag)
 
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let controller = AddtionalEventLevelController.init(nibName: "AddtionalEventLevelController", bundle: nil)
-            self?.navigationController?.pushViewController(controller, animated: true)
+            guard let self = self else { return }
+            self.coordinator?.toNext()
         }).disposed(by: disposeBag)
 
         noImageView.rx.tapGesture()
