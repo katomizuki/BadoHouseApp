@@ -10,6 +10,9 @@ import CDAlertView
 import Charts
 import CoreLocation
 import MapKit
+protocol PracticeDetailFlow {
+    
+}
 class PracticeDetailController: UIViewController {
     // MARK: - Properties
     var event: Event?
@@ -92,6 +95,7 @@ class PracticeDetailController: UIViewController {
     @IBOutlet private weak var moneyStackView: UIStackView!
     @IBOutlet private weak var placeStackView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
+    var coordinator:PracticeDetailFlow?
     private var chatId: String?
     // MARK: - Lifecycle
     override func viewDidLoad() {

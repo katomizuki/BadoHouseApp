@@ -10,6 +10,7 @@ protocol MainFlow: AnyObject {
     func toMap()
     func toMakeEvent()
     func toDetailSearch(_ vc:UIViewController)
+    func toPracticeDetail()
 }
 class MainViewController: UIViewController {
     // MARK: - Properties
@@ -64,6 +65,12 @@ class MainViewController: UIViewController {
                                               action: #selector(didTapMakeEventButton))
         navigationItem.rightBarButtonItems = [detailSearchButton, mapButton]
         navigationItem.leftBarButtonItem = makeEventButton
+        if #available(iOS 15.0, *) {
+            navigationItem.leftBarButtonItem?.tintColor = .tintColor
+        }
+        if #available(iOS 15.0, *) {
+            navigationItem.rightBarButtonItem?.tintColor = .tintColor
+        }
     }
     @objc private func didTapMapButton() {
         coordinator?.toMap()
@@ -133,10 +140,12 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = PracticeDetailController.init(nibName: "PracticeDetailController", bundle: nil)
         controller.event = eventArray[indexPath.row]
+        
         let teamId = eventArray[indexPath.row].teamId
         TeamService.getTeamData(teamId: teamId) { team in
             controller.team = team
             self.navigationController?.pushViewController(controller, animated: true)
+            self.coordinator?.toPracticeDetail()
         }
     }
 }

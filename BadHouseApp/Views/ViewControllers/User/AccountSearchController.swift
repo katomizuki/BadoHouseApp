@@ -79,7 +79,6 @@ final class AccountSearchController: UIViewController {
             case .failure(let error): print(error)
             }
         }.disposed(by: disposeBag)
-
     }
 }
 // MARK: - TableViewDataSource

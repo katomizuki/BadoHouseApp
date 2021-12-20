@@ -101,6 +101,7 @@
 		D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */; };
 		D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */; };
 		D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */; };
+		D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
@@ -270,6 +271,7 @@
 		D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalPlaceCoordinator.swift; sourceTree = "<group>"; };
+		D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */,
 				D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */,
 				D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */,
+				D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */,
+				D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */,
 				D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */,
 				D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */,
 				D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */,
