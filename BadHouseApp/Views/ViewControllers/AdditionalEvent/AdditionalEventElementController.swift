@@ -1,7 +1,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
+protocol AddtionalPracticeElementFlow {
+    func toNext()
+    func toAddtionalPlace()
+}
 final class AdditionalEventElementController: UIViewController {
 
     @IBOutlet private weak var moneyTextField: UITextField!
@@ -14,6 +17,7 @@ final class AdditionalEventElementController: UIViewController {
     @IBOutlet private weak var placeButton: UIButton!
     private let moneyPicker = UIPickerView()
     private let disposeBag = DisposeBag()
+    var coordinator: AddtionalPracticeElementFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
@@ -23,20 +27,16 @@ final class AdditionalEventElementController: UIViewController {
     private func setupBinding() {
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
-            let controller = EventAdditionlItemsController.init(nibName: "EventAdditionlItemsController", bundle: nil)
-            self.navigationController?.pushViewController(controller, animated: true)
+            self.coordinator?.toNext()
         }).disposed(by: disposeBag)
         placeButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
-            let controller = AddtionalPlaceController.init(nibName: "AddtionalPlaceController", bundle: nil)
-            self.navigationController?.pushViewController(controller, animated: true)
+            self.coordinator?.toAddtionalPlace()
         }).disposed(by: disposeBag)
     }
-    
     @IBAction private func courtStepper(_ sender: UIStepper) {
         courtCountLabel.text =  String(Int(sender.value))
     }
-    
     @IBAction private func gatherStepper(_ sender: UIStepper) {
         gatherCountLabel.text = String(Int(sender.value))
     }

@@ -1,9 +1,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
+protocol EventAdditionlItemsFlow {
+    func popToRoot()
+}
 final class EventAdditionlItemsController: UIViewController {
     private let disposeBag = DisposeBag()
+    var coordinator:EventAdditionlItemsFlow?
     @IBOutlet private weak var textView: UITextView! {
         didSet {
             textView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
@@ -18,9 +21,8 @@ final class EventAdditionlItemsController: UIViewController {
     }
     private func setupBinding() {
         makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            guard let self = self else { return }
+            self.coordinator?.popToRoot()
         }).disposed(by: disposeBag)
     }
-
-
 }

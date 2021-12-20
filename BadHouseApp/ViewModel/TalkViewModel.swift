@@ -13,6 +13,5 @@ protocol TalkViewModelType {
 final class TalkViewModel:TalkViewModelType,TalkViewModelInputs,TalkViewModelOutputs {
     var inputs: TalkViewModelInputs { return self }
     var outputs: TalkViewModelOutputs { return self }
-    
-    
+ 
 }

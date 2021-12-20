@@ -32,8 +32,6 @@ class AddtionalEventLevelController: UIViewController {
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.coordinator?.toNext()
-//            let controller = AdditionalEventElementController.init(nibName: "AdditionalEventElementController", bundle: nil)
-//            self?.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
@@ -53,8 +51,5 @@ class AddtionalEventLevelController: UIViewController {
     }
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
         coordinator?.toLevel()
-//        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
-//        present(controller, animated: true)
     }
-    
 }
