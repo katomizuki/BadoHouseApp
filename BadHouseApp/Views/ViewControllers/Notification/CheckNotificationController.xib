@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,18 +19,24 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-U7-RQg">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aV7-kY-TCM">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ksR-NI-e9l">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="aMy-Vi-K9k"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="LUf-U7-RQg" firstAttribute="leading" secondItem="aMy-Vi-K9k" secondAttribute="leading" id="Kog-0J-i9Z"/>
-                <constraint firstItem="LUf-U7-RQg" firstAttribute="top" secondItem="mfb-0e-IA5" secondAttribute="top" id="bmC-ma-gE9"/>
-                <constraint firstItem="aMy-Vi-K9k" firstAttribute="bottom" secondItem="LUf-U7-RQg" secondAttribute="bottom" id="f50-qF-D9b"/>
-                <constraint firstItem="LUf-U7-RQg" firstAttribute="trailing" secondItem="aMy-Vi-K9k" secondAttribute="trailing" id="nmD-4n-mAp"/>
+                <constraint firstItem="aV7-kY-TCM" firstAttribute="leading" secondItem="aMy-Vi-K9k" secondAttribute="leading" id="GJU-2h-Rdo"/>
+                <constraint firstItem="aMy-Vi-K9k" firstAttribute="bottom" secondItem="aV7-kY-TCM" secondAttribute="bottom" id="TQc-JV-qvk"/>
+                <constraint firstItem="aV7-kY-TCM" firstAttribute="top" secondItem="aMy-Vi-K9k" secondAttribute="top" id="ZL1-Ub-RZM"/>
+                <constraint firstItem="aMy-Vi-K9k" firstAttribute="trailing" secondItem="aV7-kY-TCM" secondAttribute="trailing" id="tLC-rJ-ijR"/>
             </constraints>
             <point key="canvasLocation" x="130" y="5"/>
         </view>

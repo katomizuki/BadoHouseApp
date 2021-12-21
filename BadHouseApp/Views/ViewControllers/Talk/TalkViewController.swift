@@ -54,10 +54,7 @@ final class TalkViewController: UIViewController {
     }
     // MARK: - SetupMethod
     private func setupNav() {
-        navigationItem.title = "トーク"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
-        navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(handleSchedule))
+       
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 

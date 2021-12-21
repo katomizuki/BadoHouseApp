@@ -103,6 +103,8 @@
 		D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */; };
 		D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */; };
 		D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */; };
+		D39F0AA2277151EE00580708 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0AA0277151EE00580708 /* NotificationCell.swift */; };
+		D39F0AA3277151EE00580708 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D39F0AA1277151EE00580708 /* NotificationCell.xib */; };
 		D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */; };
 		D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */; };
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
@@ -274,6 +276,8 @@
 		D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalPlaceCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		D39F0AA0277151EE00580708 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		D39F0AA1277151EE00580708 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayerController.swift; sourceTree = "<group>"; };
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -429,6 +433,8 @@
 				D3FD194C26E4791500B6740E /* GroupCell.xib */,
 				D353D8E126F1621F00221B7D /* ChatCell.xib */,
 				D37FA52826EB091300B8559F /* CollectionViewCell.xib */,
+				D39F0AA0277151EE00580708 /* NotificationCell.swift */,
+				D39F0AA1277151EE00580708 /* NotificationCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				D3A789CB26F3F8710088E8BC /* Run SwiftLint */,
 				4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */,
 				D33D29392722F87B000453B5 /* Run FirebaseCrash */,
+				D39F0AA42771536800580708 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -844,6 +851,7 @@
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
+				D39F0AA3277151EE00580708 /* NotificationCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
 				D38863EC2768B80D00FC4F07 /* MakeCircleController.xib in Resources */,
@@ -922,6 +930,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
+		D39F0AA42771536800580708 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		D3A789CB26F3F8710088E8BC /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -985,6 +1012,7 @@
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
+				D39F0AA2277151EE00580708 /* NotificationCell.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,
 				D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */,
 				D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */,
