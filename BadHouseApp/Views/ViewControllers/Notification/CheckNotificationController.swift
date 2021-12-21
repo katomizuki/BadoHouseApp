@@ -1,32 +1,34 @@
 import UIKit
 
 final class CheckNotificationController: UIViewController {
-    @IBOutlet private weak var notificationTableView: UITableView!
+    
+    @IBOutlet weak var notificationCollectionView: UICollectionView!
     var coordinator: NotificationCoordinator?
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setupCollectionView()
     }
-    
-    
-    private func setupTableView() {
-        notificationTableView.delegate = self
-        notificationTableView.dataSource = self
-        notificationTableView.register(NotificationCell.nib(), forCellReuseIdentifier: NotificationCell.id)
+    private func setupCollectionView() {
+        notificationCollectionView.delegate = self
+        notificationCollectionView.dataSource = self
+        notificationCollectionView.register(NotificationCell.nib(), forCellWithReuseIdentifier: NotificationCell.id)
+        let configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        notificationCollectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
     }
 
 }
-extension CheckNotificationController:UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension CheckNotificationController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
     }
 }
-extension CheckNotificationController:UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension CheckNotificationController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationCell.id,for: indexPath) as?  NotificationCell else { fatalError() }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationCell.id, for: indexPath) as? NotificationCell else { fatalError() }
         return cell
     }
 }
+

@@ -51,8 +51,8 @@
 		D3629FB1276F5F800052B820 /* SearchFriendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB0276F5F800052B820 /* SearchFriendCoordinator.swift */; };
 		D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB2276F5F8E0052B820 /* SearchCircleCoordinator.swift */; };
 		D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */; };
-		D3698EF02771CCDD004FA773 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EEE2771CCDD004FA773 /* NotificationCell.swift */; };
-		D3698EF12771CCDD004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EEF2771CCDD004FA773 /* NotificationCell.xib */; };
+		D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EF22771E0FE004FA773 /* NotificationCell.swift */; };
+		D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EF32771E0FE004FA773 /* NotificationCell.xib */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -224,8 +224,8 @@
 		D3629FB0276F5F800052B820 /* SearchFriendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendCoordinator.swift; sourceTree = "<group>"; };
 		D3629FB2276F5F8E0052B820 /* SearchCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCircleCoordinator.swift; sourceTree = "<group>"; };
 		D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCircleViewModel.swift; sourceTree = "<group>"; };
-		D3698EEE2771CCDD004FA773 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		D3698EEF2771CCDD004FA773 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		D3698EF22771E0FE004FA773 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		D3698EF32771E0FE004FA773 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -433,8 +433,8 @@
 				D3FD194C26E4791500B6740E /* GroupCell.xib */,
 				D353D8E126F1621F00221B7D /* ChatCell.xib */,
 				D37FA52826EB091300B8559F /* CollectionViewCell.xib */,
-				D3698EEE2771CCDD004FA773 /* NotificationCell.swift */,
-				D3698EEF2771CCDD004FA773 /* NotificationCell.xib */,
+				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
+				D3698EF32771E0FE004FA773 /* NotificationCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -851,7 +851,7 @@
 				D3FD194D26E4791500B6740E /* GroupCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
-				D3698EF12771CCDD004FA773 /* NotificationCell.xib in Resources */,
+				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
 				D38863EC2768B80D00FC4F07 /* MakeCircleController.xib in Resources */,
@@ -1012,7 +1012,7 @@
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
-				D3698EF02771CCDD004FA773 /* NotificationCell.swift in Sources */,
+				D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,
 				D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */,
 				D3A789D026F414310088E8BC /* PlusTeamPlayerController.swift in Sources */,

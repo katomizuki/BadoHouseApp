@@ -11,33 +11,37 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="107" id="KGk-i7-Jjw" customClass="NotificationCell" customModule="BadHouseApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
-                <autoresizingMask key="autoresizingMask"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NotificationCell" customModule="BadHouseApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="289" height="77"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="289" height="77"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZMy-V9-UBa">
-                        <rect key="frame" x="20" y="23.5" width="60" height="60"/>
-                        <color key="backgroundColor" systemColor="tintColor"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="81t-VR-Lx2">
+                        <rect key="frame" x="20" y="18.5" width="40" height="40"/>
+                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="roe-cJ-3P0"/>
-                            <constraint firstAttribute="width" constant="60" id="urA-Bd-tBA"/>
+                            <constraint firstAttribute="height" constant="40" id="9MX-Z1-NpO"/>
+                            <constraint firstAttribute="width" constant="40" id="xIQ-K4-72U"/>
                         </constraints>
                     </imageView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="ZMy-V9-UBa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Caf-Kd-1dT"/>
-                    <constraint firstItem="ZMy-V9-UBa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ghg-BH-1qt"/>
-                </constraints>
-            </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="131.8840579710145" y="31.808035714285712"/>
-        </tableViewCell>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="81t-VR-Lx2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="4Vd-0M-Kn8"/>
+                <constraint firstItem="81t-VR-Lx2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="aqu-Cc-eBn"/>
+            </constraints>
+            <size key="customSize" width="289" height="77"/>
+            <connections>
+                <outlet property="notificationImageView" destination="81t-VR-Lx2" id="5dp-hU-ldp"/>
+            </connections>
+            <point key="canvasLocation" x="303.62318840579712" y="19.754464285714285"/>
+        </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="tintColor">
+        <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
