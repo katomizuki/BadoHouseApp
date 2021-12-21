@@ -66,6 +66,7 @@ final class UserController: UIViewController {
     
     @objc private func didTapUpdateProfileButton() {
         print(#function)
+        coordinator?.toMyPage(self)
     }
     private func setupTableView() {
         groupTableView.delegate = self
