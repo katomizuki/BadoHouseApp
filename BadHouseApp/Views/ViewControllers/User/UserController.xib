@@ -16,6 +16,7 @@
                 <outlet property="groupTableView" destination="TII-Ua-Duj" id="8ie-jy-y18"/>
                 <outlet property="myImageView" destination="R6k-XV-6pf" id="Zqo-3S-XGJ"/>
                 <outlet property="myName" destination="GqB-Eq-NvN" id="GAZ-O3-l2p"/>
+                <outlet property="updateProfileButton" destination="j6y-RM-RQI" id="pmw-R2-cj6"/>
                 <outlet property="updateUserProfileButton" destination="j6y-RM-RQI" id="lTT-oJ-ii8"/>
                 <outlet property="view" destination="0oI-jk-Vn2" id="nd1-LS-rpy"/>
             </connections>
@@ -50,11 +51,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I13-YM-Ttl">
-                            <rect key="frame" x="105" y="70" width="35.5" height="20"/>
+                            <rect key="frame" x="105" y="70" width="37.5" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="aAg-Ml-f8E"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <color key="textColor" systemColor="systemGray2Color"/>
                             <nil key="highlightedColor"/>
                         </label>

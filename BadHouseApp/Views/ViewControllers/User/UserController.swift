@@ -2,9 +2,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 import FirebaseAuth
-protocol UserFlow:AnyObject {
+
+protocol UserFlow: AnyObject {
     func toSearchCircle()
-    func toMyPage(_ vc:UIViewController)
+    func toMyPage(_ vc: UIViewController)
     func toSearchUser()
     func toDetailUser()
     func toDetailCircle()
@@ -12,14 +13,8 @@ protocol UserFlow:AnyObject {
 }
 final class UserController: UIViewController {
     // MARK: - Properties
-    private let sectionArray = ["所属チーム", "バド友"]
-    var coordinator: UserFlow?
-    @IBOutlet private weak var groupTableView: UITableView! {
-        didSet {
-            groupTableView.separatorColor = Constants.AppColor.OriginalBlue
-        }
-    }
-    @IBOutlet weak var updateUserProfileButton: UIButton! {
+    @IBOutlet private weak var groupTableView: UITableView!
+    @IBOutlet private weak var updateUserProfileButton: UIButton! {
         didSet {
             updateUserProfileButton.layer.cornerRadius = 5
             updateUserProfileButton.layer.borderColor = UIColor.systemBlue.cgColor
@@ -32,30 +27,27 @@ final class UserController: UIViewController {
             myImageView.toCorner(num: 35)
         }
     }
-    @IBOutlet private weak var myName: UILabel! {
+    @IBOutlet private weak var myName: UILabel!
+    @IBOutlet private weak var countLabel: UILabel!
+    @IBOutlet private weak var updateProfileButton: UIButton! {
         didSet {
-            myName.text = Constants.appName
-        }
-    }
-    @IBOutlet private weak var countLabel: UILabel! {
-        didSet {
-            countLabel.font = .boldSystemFont(ofSize: 14)
-            countLabel.textColor = .systemGray
+            updateProfileButton.addTarget(self, action: #selector(didTapUpdateProfileButton), for: .touchUpInside)
         }
     }
     private let disposeBag = DisposeBag()
+    var coordinator: UserFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavigationItem()
+        setupBinding()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    // MARK: - setupMethod
-    private func setupData() {
-       
+    private func setupBinding() {
+        
     }
     
     private func setupNavigationItem() {
@@ -67,23 +59,26 @@ final class UserController: UIViewController {
         print(#function)
         
     }
+    
     @objc private func didTapScheduleButton() {
+        print(#function)
+    }
+    
+    @objc private func didTapUpdateProfileButton() {
         print(#function)
     }
     private func setupTableView() {
         groupTableView.delegate = self
         groupTableView.dataSource = self
-        let nib = TalkCell.nib()
-        groupTableView.register(nib, forCellReuseIdentifier:TalkCell.id)
+        groupTableView.register(TalkCell.nib(), forCellReuseIdentifier: TalkCell.id)
+        let nib = UserProfileHeaderView.self
+        groupTableView.register(nib, forHeaderFooterViewReuseIdentifier: UserProfileHeaderView.id)
     }
 }
 // MARK: - UItableViewDataSource
 extension UserController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionArray[section]
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -107,11 +102,17 @@ extension UserController: UITableViewDelegate {
             coordinator?.toDetailUser()
         }
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: UserProfileHeaderView.id) as? UserProfileHeaderView else { fatalError() }
+        header.configure(section)
+        header.delegate = self
+        return header
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = .systemBlue
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .systemGray6
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        view.tintColor = .clear
     }
     
 }
@@ -122,4 +123,8 @@ extension UserController: UserDismissDelegate {
         vc.dismiss(animated: true, completion: nil)
     }
 }
-
+extension UserController:UserProfileHeaderViewDelegate {
+    func userProfileHeaderView(_ view: UserProfileHeaderView, section: Int, option: UserProfileSelection) {
+        
+    }
+}

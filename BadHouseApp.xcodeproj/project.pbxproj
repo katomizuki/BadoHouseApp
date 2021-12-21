@@ -53,6 +53,7 @@
 		D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */; };
 		D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EF22771E0FE004FA773 /* NotificationCell.swift */; };
 		D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EF32771E0FE004FA773 /* NotificationCell.xib */; };
+		D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -226,6 +227,7 @@
 		D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCircleViewModel.swift; sourceTree = "<group>"; };
 		D3698EF22771E0FE004FA773 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		D3698EF32771E0FE004FA773 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				D37FA52826EB091300B8559F /* CollectionViewCell.xib */,
 				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
 				D3698EF32771E0FE004FA773 /* NotificationCell.xib */,
+				D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -1009,6 +1012,7 @@
 				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */,
+				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */,
