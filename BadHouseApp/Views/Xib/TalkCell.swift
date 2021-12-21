@@ -6,8 +6,9 @@ import RxSwift
 protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Event, cell: UITableViewCell)
 }
-final class GroupCell: UITableViewCell {
+final class TalkCell: UITableViewCell {
     // MARK: - Properties
+    static let id = String(describing: self)
     @IBOutlet weak var cellImagevView: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var commentLabel: UILabel! {
@@ -49,7 +50,7 @@ final class GroupCell: UITableViewCell {
     override  func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor(named: Constants.AppColor.darkColor)
-        self.cellImagevView.layer.cornerRadius = 30
+        self.cellImagevView.layer.cornerRadius = 25
         self.cellImagevView.layer.masksToBounds = true
         self.cellImagevView.contentMode = .scaleAspectFill
         self.accessoryType = .disclosureIndicator
@@ -68,7 +69,7 @@ final class GroupCell: UITableViewCell {
     }
     // MARK: - nibMethod
     static func nib() -> UINib {
-        return UINib(nibName: "GroupCell", bundle: nil)
+        return UINib(nibName: String(describing: self), bundle: nil)
     }
     // MARK: - selector
     @objc private func handleTrash() {

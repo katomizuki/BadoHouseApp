@@ -34,7 +34,7 @@ final class CircleSearchController: UIViewController {
     }
     // MARK: - setupMethod
     private func setupTableView() {
-        let nib = GroupCell.nib()
+        let nib = TalkCell.nib()
         tableView.register(nib, forCellReuseIdentifier: cellId)
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,7 +54,7 @@ extension CircleSearchController: UITableViewDataSource {
         return groupArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TalkCell
         let team = groupArray[indexPath.row]
         cell.team = team
         return cell
