@@ -63,22 +63,22 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
 extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.presentingViewController as! UserPageController
-        switch keyword {
-        case UserInfo.gender:
-            gender = cellArray[indexPath.row]
-            vc.gender = self.gender
-        case UserInfo.badmintonTime:
-            badmintonTime = cellArray[indexPath.row]
-            vc.badmintonTime = self.badmintonTime
-        case UserInfo.place:
-            place = cellArray[indexPath.row]
-            vc.place = self.place
-        case UserInfo.age:
-            age = cellArray[indexPath.row]
-            vc.age = self.age
-        default:
-            break
-        }
+//        switch keyword {
+//        case UserInfo.gender:
+//            gender = cellArray[indexPath.row]
+//            vc.gender = self.gender
+//        case UserInfo.badmintonTime:
+//            badmintonTime = cellArray[indexPath.row]
+//            vc.badmintonTime = self.badmintonTime
+//        case UserInfo.place:
+//            place = cellArray[indexPath.row]
+//            vc.place = self.place
+//        case UserInfo.age:
+//            age = cellArray[indexPath.row]
+//            vc.age = self.age
+//        default:
+//            break
+//        }
         self.delegate?.popDismiss(vc: self)
     }
 }
