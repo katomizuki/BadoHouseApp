@@ -54,6 +54,8 @@
 		D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EF22771E0FE004FA773 /* NotificationCell.swift */; };
 		D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EF32771E0FE004FA773 /* NotificationCell.xib */; };
 		D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */; };
+		D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */; };
+		D3698F0127728DB8004FA773 /* UserLevelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -228,6 +230,8 @@
 		D3698EF22771E0FE004FA773 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		D3698EF32771E0FE004FA773 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
+		D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewModel.swift; sourceTree = "<group>"; };
+		D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLevelViewModel.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 				D3B3C9BD275CE78600B2CD2C /* TalkViewModel.swift */,
 				D3629FAE276F5ED40052B820 /* InviteViewModel.swift */,
 				D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */,
+				D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */,
+				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1039,6 +1045,7 @@
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,
 				D3886436276A1A7E00FC4F07 /* HomeCoordinator.swift in Sources */,
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
+				D3698F0127728DB8004FA773 /* UserLevelViewModel.swift in Sources */,
 				D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */,
 				D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */,
 				D3629FAD276F5EB70052B820 /* InviteCoordinator.swift in Sources */,
@@ -1059,6 +1066,7 @@
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
+				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */,
