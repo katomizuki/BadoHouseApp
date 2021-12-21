@@ -6,7 +6,7 @@ protocol EventAdditionlItemsFlow {
 }
 final class EventAdditionlItemsController: UIViewController {
     private let disposeBag = DisposeBag()
-    var coordinator:EventAdditionlItemsFlow?
+    var coordinator: EventAdditionlItemsFlow?
     @IBOutlet private weak var textView: UITextView! {
         didSet {
             textView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor

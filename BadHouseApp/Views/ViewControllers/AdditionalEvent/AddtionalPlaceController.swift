@@ -3,7 +3,7 @@ protocol AddtionalPlaceFlow {
     func dismiss()
 }
 class AddtionalPlaceController: UIViewController {
-    var coordinator:AddtionalPlaceFlow?
+    var coordinator: AddtionalPlaceFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
 

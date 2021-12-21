@@ -1,14 +1,14 @@
 
 # 変数名に関する制約
-identifier_name:
-  allowed_symbols: "_"
-  min_length: 2
-  excluded:
-    - i
-    - j
-    - n
-    - x
-    - y
+#identifier_name:
+#  allowed_symbols: "_"
+#  min_length: 1
+#  excluded:
+#    - i
+#    - j
+#    - n
+#    - x
+#    - y
 line_length: 200
 function_body_length: 200
 disabled_rules:
@@ -20,9 +20,9 @@ disabled_rules:
 - force_cast
 - force_try
 - cyclomatic_complexity
-
-
-
+- trailing_whitespace
+- identifier_name
+- type_name
 
 excluded:
 - Pods/

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckNotificationController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="notificationTableView" destination="lqU-dV-yt2" id="mkY-HG-oBY"/>
                 <outlet property="view" destination="mfb-0e-IA5" id="Uk1-39-tTi"/>
             </connections>
         </placeholder>
@@ -19,24 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aV7-kY-TCM">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lqU-dV-yt2">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ksR-NI-e9l">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="aMy-Vi-K9k"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="aV7-kY-TCM" firstAttribute="leading" secondItem="aMy-Vi-K9k" secondAttribute="leading" id="GJU-2h-Rdo"/>
-                <constraint firstItem="aMy-Vi-K9k" firstAttribute="bottom" secondItem="aV7-kY-TCM" secondAttribute="bottom" id="TQc-JV-qvk"/>
-                <constraint firstItem="aV7-kY-TCM" firstAttribute="top" secondItem="aMy-Vi-K9k" secondAttribute="top" id="ZL1-Ub-RZM"/>
-                <constraint firstItem="aMy-Vi-K9k" firstAttribute="trailing" secondItem="aV7-kY-TCM" secondAttribute="trailing" id="tLC-rJ-ijR"/>
+                <constraint firstItem="lqU-dV-yt2" firstAttribute="top" secondItem="aMy-Vi-K9k" secondAttribute="top" id="Gea-QP-Kfb"/>
+                <constraint firstItem="aMy-Vi-K9k" firstAttribute="trailing" secondItem="lqU-dV-yt2" secondAttribute="trailing" id="azZ-6h-iTs"/>
+                <constraint firstItem="lqU-dV-yt2" firstAttribute="leading" secondItem="aMy-Vi-K9k" secondAttribute="leading" id="ssu-uv-Co3"/>
+                <constraint firstItem="aMy-Vi-K9k" firstAttribute="bottom" secondItem="lqU-dV-yt2" secondAttribute="bottom" id="u6h-yk-A8j"/>
             </constraints>
             <point key="canvasLocation" x="130" y="5"/>
         </view>
