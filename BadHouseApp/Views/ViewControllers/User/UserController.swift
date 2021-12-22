@@ -118,12 +118,6 @@ extension UserController: UITableViewDelegate {
     
 }
 
-// MARK: - UserDismissDelegate
-extension UserController: UserDismissDelegate {
-    func userVCdismiss(vc: UserPageController) {
-        vc.dismiss(animated: true, completion: nil)
-    }
-}
 extension UserController:UserProfileHeaderViewDelegate {
     func userProfileHeaderView(_ view: UserProfileHeaderView, section: Int, option: UserProfileSelection) {
         

@@ -55,8 +55,7 @@ class CircleDetailController: UIViewController {
         setUpTeamPlayer()
         setupGraph()
         changeUI()
-        navigationController?.navigationBar.barTintColor = UIColor(named: Constants.AppColor.darkColor)
-        navigationController?.navigationBar.tintColor = UIColor(named: Constants.AppColor.darkColor)
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -29,8 +29,9 @@ class UserCoordinator: Coordinator,UserFlow {
     }
     func toMyPage(_ vc:UIViewController) {
         let controller = UserPageController.init(nibName: "UserPageController", bundle: nil)
-        controller.modalPresentationStyle = .fullScreen
-        vc.present(controller, animated: true)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        vc.present(nav, animated: true)
     }
     func toMakeCircle() {
         
