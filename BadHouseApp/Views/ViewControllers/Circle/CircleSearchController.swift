@@ -68,7 +68,6 @@ extension CircleSearchController: UITableViewDelegate {
         let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
         controller.team = team
         controller.friends = friends
-        controller.flag = true
         navigationController?.pushViewController(controller, animated: true)
     }
 }

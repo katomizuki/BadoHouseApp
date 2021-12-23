@@ -384,7 +384,6 @@ class PracticeDetailController: UIViewController {
         print(#function)
         let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
         controller.team = self.team
-        controller.flag = true
         navigationController?.pushViewController(controller, animated: true)
     }
     @IBAction func didTapChatButton(_ sender: Any) {

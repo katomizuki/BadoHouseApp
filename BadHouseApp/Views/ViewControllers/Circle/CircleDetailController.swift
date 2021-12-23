@@ -3,7 +3,7 @@ import SDWebImage
 import Firebase
 import Charts
 
-class CircleDetailController: UIViewController {
+final class CircleDetailController: UIViewController {
     // MARK: - Properties
     private let fetchData = FetchFirestoreData()
     var team: TeamModel?
@@ -12,115 +12,26 @@ class CircleDetailController: UIViewController {
     var friends = [User]()
     var me: User?
     @IBOutlet private weak var friendImageView: UIImageView!
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var teamNameLabel: UILabel! {
-        didSet {
-            teamNameLabel.font = .boldSystemFont(ofSize: 20)
-        }
-    }
-    @IBOutlet private weak var placeLabel: UILabel!
-    @IBOutlet private weak var timeLabel: UILabel!
-    @IBOutlet private weak var teamTagStackView: UIStackView! {
-        didSet {
-            teamTagStackView.distribution = .fillEqually
-            teamTagStackView.axis = .horizontal
-            teamTagStackView.spacing = 5
-        }
-    }
-    @IBOutlet private weak var priceLabel: UILabel!
-    @IBOutlet private weak var placeStackView: UIStackView!
-    @IBOutlet private weak var timeStackView: UIStackView!
-    @IBOutlet private weak var priceStackView: UIStackView!
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barChartView: BarChartView!
-    private let teamMemberCellId = "memberCellId"
     private var genderArray = [Int]()
     private var rawData: [Int] = []
-    @IBOutlet weak var withdrawButton: UIButton! {
-        didSet {
-            withdrawButton.updateButton(radius: 15,
-                                        backColor: Constants.AppColor.OriginalBlue,
-                                        titleColor: .systemGray6,
-                                        fontSize: 14)
-        }
-    }
-    var flag = false
-    @IBOutlet private weak var chatButton: UIButton!
+    @IBOutlet private weak var teamMemberTableView: UITableView!
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegate()
-        setupData()
         setUpTeamStatus()
-        setUpTeamPlayer()
         setupGraph()
-        changeUI()
-
+        setupTableView()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.setupNavAccessory()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: nil)
-    }
-    // MARK: - setupMethod
-    private func setupData() {
-        guard let teamId = team?.teamId else { return }
-        TeamService.getTeamTagData(teamId: teamId) {[weak self] tags in
-            guard let self = self else { return }
-            if tags.count <= 1 {
-                let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
-                let button2 = UIButton(type: .system).cretaTagButton(text: "仲良く")
-                button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-                button2.titleLabel?.font = .boldSystemFont(ofSize: 14)
-                self.teamTagStackView.addArrangedSubview(button)
-                self.teamTagStackView.addArrangedSubview(button2)
-            }
-            for i in 0..<tags.count {
-                let title = tags[i].tag
-                let button = UIButton(type: .system).cretaTagButton(text: title)
-                button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-                if i == 4 { return }
-                self.teamTagStackView.addArrangedSubview(button)
-            }
-        }
-    }
-    private func setUpTeamPlayer() {
-        print(#function)
-        let group = DispatchGroup()
-        guard let teamId = team?.teamId else { return }
-        TeamService.getTeamPlayerData(teamId: teamId) { membersId in
-            self.teamPlayers = []
-            for i in 0..<membersId.count {
-                group.enter()
-                let teamPlayerId = membersId[i]
-                UserService.getUserData(uid: teamPlayerId) { teamPlayer in
-                    defer { group.leave() }
-                    guard let teamPlayer = teamPlayer else { return }
-                    self.teamPlayers.append(teamPlayer)
-                }
-            }
-            group.notify(queue: .main) {
-                self.fetchData.fetchGenderCountData(teamPlayers: self.teamPlayers)
-                self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamPlayers)
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    private func setupDelegate() {
-        fetchData.chartsDelegate = self
-        collectionView.delegate = self
-        collectionView.dataSource = self
+    private func setupTableView() {
+        teamMemberTableView.delegate = self
+        teamMemberTableView.dataSource = self
+        teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
     }
     private func setUpTeamStatus() {
         print(#function)
-        let nib = TeammemberCell.nib()
-        collectionView.register(nib, forCellWithReuseIdentifier: teamMemberCellId)
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        collectionView.collectionViewLayout = layout
         guard let urlString = team?.teamImageUrl else { return }
         guard let url = URL(string: urlString) else { return }
         friendImageView.sd_setImage(with: url, completed: nil)
@@ -129,10 +40,6 @@ class CircleDetailController: UIViewController {
         friendImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         friendImageView.layer.borderWidth = 2
         friendImageView.layer.masksToBounds = true
-        teamNameLabel.text = team?.teamName
-        timeLabel.text = team?.teamTime
-        placeLabel.text = team?.teamPlace
-        priceLabel.text = "\(team?.teamLevel ?? "")/月"
     }
     private func setupPieChart() {
         var entry = [ChartDataEntry]()
@@ -181,60 +88,6 @@ class CircleDetailController: UIViewController {
         barChartView.legend.enabled = false
         dataSet.colors = [.lightGray]
     }
-    private func changeUI() {
-        withdrawButton.isHidden = flag
-        chatButton.isHidden = flag
-        if flag == true {
-            navigationItem.setRightBarButton(nil, animated: true)
-        }
-        friendImageView.isUserInteractionEnabled = !flag
-    }
-    // MARK: - IBAction
-    @IBAction private func gotoInvite(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllerID.inviteVC) as! PlusTeamPlayerController
-        vc.friends = self.friends
-        vc.team = self.team
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    @IBAction private func updateTeamInfo(_ sender: Any) {
-        print(#function)
-        guard let team = self.team else { return }
-        let vc = UpdateTeamController(team: team)
-        vc.delegate = self
-        present(vc, animated: true, completion: nil)
-    }
-    @IBAction private func gotoGroup(_ sender: Any) {
-        let controller = CircleChatController.init(nibName: "CircleChatController", bundle: nil)
-        controller.team = self.team
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    @IBAction private func go(_ sender: Any) {
-        let controller = CircleChatController.init(nibName: "CircleChatController", bundle: nil)
-        controller.team = self.team
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    @IBAction private func withdraw(_ sender: Any) {
-        print(#function)
-        guard let teamId = team?.teamId else { return }
-        DeleteService.deleteSubCollectionData(collecionName: "Users",
-                                              documentId: AuthService.getUserId(),
-                                              subCollectionName: "OwnTeam",
-                                              subId: teamId)
-        DeleteService.deleteSubCollectionData(collecionName: "Teams",
-                                              documentId: teamId,
-                                              subCollectionName: "TeamPlayer",
-                                              subId: AuthService.getUserId())
-        navigationController?.popViewController(animated: true
-        )
-    }
-    // MARK: - prepareMethod
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Segue.gotoInvite.rawValue {
-            let vc = segue.destination as! PlusTeamPlayerController
-            vc.friends = self.friends
-            vc.team = self.team
-        }
-    }
 }
 // MARK: - FetchChartsDataDelegate
 extension CircleDetailController: FetchChartsDataDelegate {
@@ -247,48 +100,18 @@ extension CircleDetailController: FetchChartsDataDelegate {
         self.setupGraph()
     }
 }
-// MARK: - backDelegate
-extension CircleDetailController: backDelegate {
-    func updateTeamData(vc: UpdateTeamController) {
-        vc.dismiss(animated: true, completion: nil)
-        guard let id = team?.teamId else { return }
-        TeamService.getTeamData(teamId: id) { team in
-            self.team = team
-            self.placeLabel.text = team.teamPlace
-            self.timeLabel.text = team.teamTime
-            self.priceLabel.text = team.teamLevel
-            let urlString = team.teamImageUrl
-            let url = URL(string: urlString)
-            self.friendImageView.sd_setImage(with: url)
-        }
+extension CircleDetailController:UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
     }
 }
-// MARK: - UICollectionViewDataSource
-extension CircleDetailController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teamPlayers.count
+extension CircleDetailController:UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: teamMemberCellId, for: indexPath) as! TeammemberCell
-        let memberName = teamPlayers[indexPath.row].name
-        let urlString = teamPlayers[indexPath.row].profileImageUrl
-        cell.configure(name: memberName, url: urlString)
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberCell.id,for: indexPath) as? MemberCell else { fatalError() }
         return cell
     }
 }
-// MARK: - UICollectionViewDelegate
-extension CircleDetailController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
-        controller.user = teamPlayers[indexPath.row]
-        controller.me = self.me
-        navigationController?.pushViewController(controller, animated: true)
-    }
-}
-// MARK: - UICollectionViewDelegateFlowLayout
-extension CircleDetailController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-    }
-}
-

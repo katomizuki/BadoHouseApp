@@ -29,6 +29,8 @@
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
+		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
+		D32E598C2774519600C59548 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E598A2774519600C59548 /* MemberCell.xib */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -120,6 +122,8 @@
 		D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B9275CE64E00B2CD2C /* NotificationViewModel.swift */; };
 		D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9BB275CE6F400B2CD2C /* UserViewModel.swift */; };
 		D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9BD275CE78600B2CD2C /* TalkViewModel.swift */; };
+		D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B41DAC277345C10051FFB5 /* UserSettingsController.swift */; };
+		D3B41DAF277345C10051FFB5 /* UserSettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B41DAD277345C10051FFB5 /* UserSettingsController.xib */; };
 		D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEA274A2E4100253933 /* ViewController+Extenstion.swift */; };
 		D3B72CED274A2E6B00253933 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEC274A2E6B00253933 /* UIColor+Extension.swift */; };
 		D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CEE274A2E7700253933 /* Array+Extenstion.swift */; };
@@ -148,7 +152,6 @@
 		D3C4E93526E0F1BE00C21E46 /* ProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93426E0F1BE00C21E46 /* ProfileLabel.swift */; };
 		D3C4E93726E0F20400C21E46 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */; };
 		D3C4E93926E0F29300C21E46 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */; };
-		D3C4E93C26E0F57700C21E46 /* InfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E93B26E0F57700C21E46 /* InfoCollectionViewCell.swift */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
 		D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94E26E2F78400C21E46 /* InviteCell.swift */; };
@@ -205,6 +208,8 @@
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		D32E598A2774519600C59548 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -295,6 +300,8 @@
 		D3B3C9B9275CE64E00B2CD2C /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9BB275CE6F400B2CD2C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9BD275CE78600B2CD2C /* TalkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewModel.swift; sourceTree = "<group>"; };
+		D3B41DAC277345C10051FFB5 /* UserSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsController.swift; sourceTree = "<group>"; };
+		D3B41DAD277345C10051FFB5 /* UserSettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserSettingsController.xib; sourceTree = "<group>"; };
 		D3B72CEA274A2E4100253933 /* ViewController+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extenstion.swift"; sourceTree = "<group>"; };
 		D3B72CEC274A2E6B00253933 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D3B72CEE274A2E7700253933 /* Array+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
@@ -326,7 +333,6 @@
 		D3C4E93426E0F1BE00C21E46 /* ProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLabel.swift; sourceTree = "<group>"; };
 		D3C4E93626E0F20400C21E46 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		D3C4E93826E0F29300C21E46 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
-		D3C4E93B26E0F57700C21E46 /* InfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		D3C4E94E26E2F78400C21E46 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
@@ -443,6 +449,8 @@
 				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
 				D3698EF32771E0FE004FA773 /* NotificationCell.xib */,
 				D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */,
+				D32E59892774519600C59548 /* MemberCell.swift */,
+				D32E598A2774519600C59548 /* MemberCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -508,6 +516,8 @@
 				D3886438276A1B5300FC4F07 /* UserController.xib */,
 				D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */,
 				D3D3D37E2721873A00E2853A /* AppExplainController.swift */,
+				D3B41DAC277345C10051FFB5 /* UserSettingsController.swift */,
+				D3B41DAD277345C10051FFB5 /* UserSettingsController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -743,7 +753,6 @@
 		D3C4E93A26E0F56900C21E46 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D3C4E93B26E0F57700C21E46 /* InfoCollectionViewCell.swift */,
 				D3C4E94E26E2F78400C21E46 /* InviteCell.swift */,
 				D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */,
 				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
@@ -867,6 +876,7 @@
 				D3886418276A059100FC4F07 /* LoginController.xib in Resources */,
 				D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */,
 				D388643A276A1B5300FC4F07 /* UserController.xib in Resources */,
+				D32E598C2774519600C59548 /* MemberCell.xib in Resources */,
 				D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */,
 				D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */,
 				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
@@ -874,6 +884,7 @@
 				D38863FC2768C51300FC4F07 /* AccountSearchController.xib in Resources */,
 				D388640C2769FE7E00FC4F07 /* CircleChatController.xib in Resources */,
 				D388642E276A185800FC4F07 /* CheckNotificationController.xib in Resources */,
+				D3B41DAF277345C10051FFB5 /* UserSettingsController.xib in Resources */,
 				D3886414276A03E000FC4F07 /* PracticeDetailController.xib in Resources */,
 				D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */,
 				D38863F02768BA3200FC4F07 /* UserLevelController.xib in Resources */,
@@ -1084,6 +1095,7 @@
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
+				D32E598B2774519600C59548 /* MemberCell.swift in Sources */,
 				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
@@ -1116,6 +1128,7 @@
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
 				D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
+				D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
 				D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */,
@@ -1142,7 +1155,6 @@
 				D38863EF2768BA3200FC4F07 /* UserLevelController.swift in Sources */,
 				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,
 				D3976EF1270337F40016CEB2 /* InputView.swift in Sources */,
-				D3C4E93C26E0F57700C21E46 /* InfoCollectionViewCell.swift in Sources */,
 				D3B72CF3274A308500253933 /* GenderEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1276,7 +1288,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BadHouseApp/BadHouseApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = LSUSGUW6L4;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1299,6 +1311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BadHouseApp/BadHouseApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = LSUSGUW6L4;
 				INFOPLIST_FILE = BadHouseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

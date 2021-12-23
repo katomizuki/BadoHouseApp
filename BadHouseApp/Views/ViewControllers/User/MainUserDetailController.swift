@@ -222,7 +222,6 @@ extension MainUserDetailController: UICollectionViewDelegate {
             let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
             controller.team = ownTeam[indexPath.row]
             controller.friends = userFriend
-            controller.flag = true
             navigationController?.pushViewController(controller, animated: true)
         } else {
             let controller = SubUserDetailController.init(nibName: "SubUserDetailController", bundle: nil)
