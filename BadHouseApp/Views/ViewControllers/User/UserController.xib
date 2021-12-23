@@ -18,6 +18,7 @@
                 <outlet property="myName" destination="GqB-Eq-NvN" id="GAZ-O3-l2p"/>
                 <outlet property="updateProfileButton" destination="j6y-RM-RQI" id="pmw-R2-cj6"/>
                 <outlet property="updateUserProfileButton" destination="j6y-RM-RQI" id="lTT-oJ-ii8"/>
+                <outlet property="userImageView" destination="R6k-XV-6pf" id="0Nu-oe-fvV"/>
                 <outlet property="view" destination="0oI-jk-Vn2" id="nd1-LS-rpy"/>
             </connections>
         </placeholder>

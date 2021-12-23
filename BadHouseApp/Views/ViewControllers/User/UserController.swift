@@ -14,6 +14,13 @@ protocol UserFlow: AnyObject {
 final class UserController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var groupTableView: UITableView!
+    @IBOutlet weak var userImageView: UIImageView! {
+        didSet {
+            userImageView.layer.cornerRadius = 35
+            userImageView.layer.masksToBounds = true
+            
+        }
+    }
     @IBOutlet private weak var updateUserProfileButton: UIButton! {
         didSet {
             updateUserProfileButton.layer.cornerRadius = 5

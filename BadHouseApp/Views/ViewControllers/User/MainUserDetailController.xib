@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="applyFriendButton" destination="WkZ-5x-zs2" id="NGa-rf-0CQ"/>
                 <outlet property="circleCollectionView" destination="mwB-gA-7db" id="nkW-W7-87d"/>
-                <outlet property="userImageView" destination="A3h-4r-n5z" id="Bb4-vz-Per"/>
+                <outlet property="userImageView" destination="A3h-4r-n5z" id="UEW-ru-335"/>
                 <outlet property="view" destination="mMd-xb-obr" id="Lmw-X4-swZ"/>
             </connections>
         </placeholder>

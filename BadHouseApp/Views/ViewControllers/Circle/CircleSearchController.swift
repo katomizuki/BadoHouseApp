@@ -33,6 +33,7 @@ final class CircleSearchController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: cellId)
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
 
     // MARK: - SelectorMethod

@@ -44,7 +44,7 @@ import UIKit
      }
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {
-         let controller = FriendsListController.init(nibName: "FriendsListController", bundle: nil)
+         let controller = FriendsListController.init(nibName: R.nib.friendsListController.name, bundle: nil)
          navigationController?.pushViewController(controller, animated: true)
      }
      
@@ -52,6 +52,8 @@ import UIKit
 extension MainUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
+        let controller = CircleDetailController.init(nibName: R.nib.circleDetailController.name, bundle: nil)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
