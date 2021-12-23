@@ -24,7 +24,6 @@ class AddtionalEventLevelController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        setupNavAccessory()
         minSlider.value = 0.0
         maxSlider.value = 1.0
     }

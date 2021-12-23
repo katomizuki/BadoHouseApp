@@ -110,7 +110,6 @@ class PracticeDetailController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupNavAccessory()
     }
     // MARK: SetupMethod
     private func setupNav() {

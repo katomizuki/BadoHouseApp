@@ -149,7 +149,6 @@ class MakeCircleController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupNavAccessory()
         navigationItem.title = "サークル登録"
         nameTextField.becomeFirstResponder()
     }

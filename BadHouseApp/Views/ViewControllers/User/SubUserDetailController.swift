@@ -73,7 +73,6 @@ class SubUserDetailController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupNavAccessory()
         navigationItem.title = user?.name
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
                                                            style: .plain,

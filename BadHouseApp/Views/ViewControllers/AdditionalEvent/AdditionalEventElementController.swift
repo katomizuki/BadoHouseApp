@@ -21,7 +21,6 @@ final class AdditionalEventElementController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        setupNavAccessory()
         setPicker(pickerView: moneyPicker, textField: moneyTextField)
     }
     private func setupBinding() {

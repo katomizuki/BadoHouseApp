@@ -17,7 +17,6 @@ final class EventAdditionlItemsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        setupNavAccessory()
     }
     private func setupBinding() {
         makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] in

@@ -16,6 +16,12 @@ final class CircleDetailController: UIViewController {
     @IBOutlet private weak var barChartView: BarChartView!
     private var genderArray = [Int]()
     private var rawData: [Int] = []
+    @IBOutlet private weak var teamImageView: UIImageView! {
+        didSet {
+            teamImageView.layer.cornerRadius = 30
+            teamImageView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet private weak var teamMemberTableView: UITableView!
     
     // MARK: - LifeCycle

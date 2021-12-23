@@ -11,7 +11,6 @@ final class MapListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavAccessory()
 
     }
 }

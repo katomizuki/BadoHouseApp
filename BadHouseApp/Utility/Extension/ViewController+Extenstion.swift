@@ -65,12 +65,4 @@ extension UIViewController {
         }
         return message
     }
-    func setupNavAccessory() {
-        navigationItem.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Constants.AppColor.OriginalBlue]
-    }
-    func performSegue(segue: Segue,sender:AnyObject?) {
-        performSegue(withIdentifier: segue.rawValue, sender: sender)
-    }
 }

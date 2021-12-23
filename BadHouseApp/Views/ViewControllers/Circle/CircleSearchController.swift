@@ -25,7 +25,6 @@ final class CircleSearchController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupNavAccessory()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapRightButtonItem))
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
