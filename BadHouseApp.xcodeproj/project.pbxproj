@@ -63,7 +63,7 @@
 		D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */; };
 		D3698F0127728DB8004FA773 /* UserLevelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
-		D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* CollectionViewCell.xib */; };
+		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
 		D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863E62768B49700FC4F07 /* InviteToCircleController.xib */; };
 		D38863EB2768B80D00FC4F07 /* MakeCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E92768B80D00FC4F07 /* MakeCircleController.swift */; };
@@ -76,8 +76,6 @@
 		D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863F62768C06D00FC4F07 /* CircleSearchController.xib */; };
 		D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863F92768C51300FC4F07 /* AccountSearchController.swift */; };
 		D38863FC2768C51300FC4F07 /* AccountSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863FA2768C51300FC4F07 /* AccountSearchController.xib */; };
-		D38863FF2768CB3100FC4F07 /* SubUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */; };
-		D38864002768CB3100FC4F07 /* SubUserDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */; };
 		D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38864012768D41A00FC4F07 /* CircleDetailController.swift */; };
 		D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38864022768D41A00FC4F07 /* CircleDetailController.xib */; };
 		D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38864052768DA9200FC4F07 /* MainUserDetailController.swift */; };
@@ -119,7 +117,6 @@
 		D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A82BA62704136E00DDB4FC /* VideoModel.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
-		D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EF26EE284F00F40A51 /* FetchData.swift */; };
 		D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */; };
 		D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */; };
 		D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */; };
@@ -162,8 +159,6 @@
 		D3C4E95726E33A5700C21E46 /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* TalkCell.swift */; };
 		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
 		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
-		D3D3D37B2721733200E2853A /* BlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37A2721733200E2853A /* BlockController.swift */; };
-		D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37C2721753A00E2853A /* BlockTextView.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
 		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
@@ -183,8 +178,6 @@
 		D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */; };
 		D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* Join-Service.swift */; };
 		D3FFD33C271F9FB400DE54ED /* UpdateTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */; };
-		D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD33F2720252E00DE54ED /* BlockSheet.swift */; };
-		D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD34127203FD900DE54ED /* BlockCell.swift */; };
 		D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD3432721043800DE54ED /* Block-Service.swift */; };
 /* End PBXBuildFile section */
 
@@ -246,7 +239,7 @@
 		D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewModel.swift; sourceTree = "<group>"; };
 		D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLevelViewModel.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
-		D37FA52826EB091300B8559F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
 		D38863E62768B49700FC4F07 /* InviteToCircleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteToCircleController.xib; sourceTree = "<group>"; };
 		D38863E92768B80D00FC4F07 /* MakeCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleController.swift; sourceTree = "<group>"; };
@@ -259,8 +252,6 @@
 		D38863F62768C06D00FC4F07 /* CircleSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleSearchController.xib; sourceTree = "<group>"; };
 		D38863F92768C51300FC4F07 /* AccountSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchController.swift; sourceTree = "<group>"; };
 		D38863FA2768C51300FC4F07 /* AccountSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSearchController.xib; sourceTree = "<group>"; };
-		D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUserDetailController.swift; sourceTree = "<group>"; };
-		D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubUserDetailController.xib; sourceTree = "<group>"; };
 		D38864012768D41A00FC4F07 /* CircleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailController.swift; sourceTree = "<group>"; };
 		D38864022768D41A00FC4F07 /* CircleDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleDetailController.xib; sourceTree = "<group>"; };
 		D38864052768DA9200FC4F07 /* MainUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserDetailController.swift; sourceTree = "<group>"; };
@@ -301,7 +292,6 @@
 		D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTeamPlayersCell.swift; sourceTree = "<group>"; };
 		D3A82BA62704136E00DDB4FC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
-		D3AC05EF26EE284F00F40A51 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -347,8 +337,6 @@
 		D3C4E95626E33A5700C21E46 /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
 		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
 		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
-		D3D3D37A2721733200E2853A /* BlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockController.swift; sourceTree = "<group>"; };
-		D3D3D37C2721753A00E2853A /* BlockTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTextView.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
@@ -369,8 +357,6 @@
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
 		D3FFD333271EDCC300DE54ED /* Join-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Join-Service.swift"; sourceTree = "<group>"; };
 		D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTeamController.swift; sourceTree = "<group>"; };
-		D3FFD33F2720252E00DE54ED /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
-		D3FFD34127203FD900DE54ED /* BlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCell.swift; sourceTree = "<group>"; };
 		D3FFD3432721043800DE54ED /* Block-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Block-Service.swift"; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -453,7 +439,8 @@
 				D3FD194C26E4791500B6740E /* TalkCell.xib */,
 				D353D8E126F1621F00221B7D /* ChatCell.xib */,
 				D3C4E95626E33A5700C21E46 /* TalkCell.swift */,
-				D37FA52826EB091300B8559F /* CollectionViewCell.xib */,
+				D37FA52826EB091300B8559F /* EventInfoCell.xib */,
+				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
 				D3698EF32771E0FE004FA773 /* NotificationCell.xib */,
 				D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */,
@@ -518,8 +505,6 @@
 				D38863F22768BE0D00FC4F07 /* UserPageController.xib */,
 				D38863F92768C51300FC4F07 /* AccountSearchController.swift */,
 				D38863FA2768C51300FC4F07 /* AccountSearchController.xib */,
-				D38863FD2768CB3100FC4F07 /* SubUserDetailController.swift */,
-				D38863FE2768CB3100FC4F07 /* SubUserDetailController.xib */,
 				D38864052768DA9200FC4F07 /* MainUserDetailController.swift */,
 				D38864062768DA9200FC4F07 /* MainUserDetailController.xib */,
 				D3886437276A1B5300FC4F07 /* UserController.swift */,
@@ -667,7 +652,6 @@
 				D3C4E94626E1C2B400C21E46 /* TeamModel.swift */,
 				D3FD195226E4C32C00B6740E /* EventModel.swift */,
 				D3C02CEE26E8A5C800995517 /* Tag.swift */,
-				D3AC05EF26EE284F00F40A51 /* FetchData.swift */,
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
 				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 				D30B7938270090EA0086456E /* ChatRoom.swift */,
@@ -693,7 +677,6 @@
 			children = (
 				D3A789CF26F414310088E8BC /* PlusTeamPlayerController.swift */,
 				D3FFD33B271F9FB400DE54ED /* UpdateTeamController.swift */,
-				D3D3D37A2721733200E2853A /* BlockController.swift */,
 				D3F860202725064300085ABD /* SearchDetailGroupController.swift */,
 				D3F860772727AF7E00085ABD /* GroupSearchListController.swift */,
 				D3886427276A0C8400FC4F07 /* TabBarController.swift */,
@@ -756,8 +739,6 @@
 				D3BDB55026E05DD100C53780 /* RegisterTitleLabel.swift */,
 				D3BDB55426E062E700C53780 /* RegisterTextField.swift */,
 				D3BDB55826E066CF00C53780 /* RegisterButton.swift */,
-				D3FFD33F2720252E00DE54ED /* BlockSheet.swift */,
-				D3D3D37C2721753A00E2853A /* BlockTextView.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -767,11 +748,9 @@
 			children = (
 				D3C4E94E26E2F78400C21E46 /* InviteCell.swift */,
 				D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */,
-				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D353D8E026F1621F00221B7D /* ChatCell.swift */,
 				D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */,
 				D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */,
-				D3FFD34127203FD900DE54ED /* BlockCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -872,12 +851,11 @@
 				D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */,
 				D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */,
 				D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */,
-				D37FA52A26EB091300B8559F /* CollectionViewCell.xib in Resources */,
+				D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
 				D38864082768DA9200FC4F07 /* MainUserDetailController.xib in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
-				D38864002768CB3100FC4F07 /* SubUserDetailController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* TalkCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
@@ -1062,7 +1040,6 @@
 				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
 				D3B72D01274A38C000253933 /* SegueEnum.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
-				D3FFD3402720253100DE54ED /* BlockSheet.swift in Sources */,
 				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
 				D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */,
 				D30B7939270090EA0086456E /* ChatRoom.swift in Sources */,
@@ -1080,18 +1057,14 @@
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
-				D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
-				D3D3D37B2721733200E2853A /* BlockController.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
 				D3A82BA72704136E00DDB4FC /* VideoModel.swift in Sources */,
 				D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */,
-				D3D3D37D2721753A00E2853A /* BlockTextView.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
-				D3AC05F026EE284F00F40A51 /* FetchData.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
@@ -1157,7 +1130,6 @@
 				D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */,
-				D38863FF2768CB3100FC4F07 /* SubUserDetailController.swift in Sources */,
 				D3BDB55926E066CF00C53780 /* RegisterButton.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,

@@ -11,7 +11,6 @@ final class MyScheduleController: UIViewController {
     // MARK: - Properties
     var me: User?
     private let cellId = "cellGroupId"
-    private let fetchData = FetchFirestoreData()
     private var eventArray = [Event]()
     private let tableview: UITableView = {
         let tv = UITableView()
@@ -33,19 +32,10 @@ final class MyScheduleController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupData()
         setupCalendar()
         setupTableView()
     }
-    // MARK: - setupMethod
-    private func setupData() {
-        fetchData.myDataDelegate = self
-        guard let meId = me?.uid else { return }
-        EventServie.getmyEventIdArray(uid: meId) { [weak self] idArray in
-            guard let self = self else { return }
-            self.fetchData.fetchMyEventData(idArray: idArray)
-        }
-    }
+  
     private func setupCalendar() {
         view.addSubview(backButton)
         view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
@@ -129,22 +119,7 @@ extension MyScheduleController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-// MARK: - FetchMyDataDelegate
-extension MyScheduleController: FetchMyDataDelegate {
-    func fetchMyEventData(eventArray: [Event]) {
-        var array = eventArray
-        array = eventArray.sorted { element, nextElement in
-            guard let time = DateUtils.dateFromString(string: element.eventStartTime, format: "yyyy/MM/dd HH:mm:ss Z") else { return false}
-            guard let nextTime = DateUtils.dateFromString(string: nextElement.eventStartTime, format: "yyyy/MM/dd HH:mm:ss Z") else { return false }
-            return time < nextTime
-        }
-        self.eventArray = array
-        DispatchQueue.main.async {
-            self.tableview.reloadData()
-            self.calendar.reloadData()
-        }
-    }
-}
+
 // MARK: - FetchMyDataDelegate FetchMyDataDelegate FSCalendarDelegateAppearance
 extension MyScheduleController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {

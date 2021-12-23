@@ -43,15 +43,19 @@ import UIKit
          
      }
     // MARK: - IBAction
-   
+     @IBAction private func didTapBadmintonFriend(_ sender: Any) {
+         let controller = FriendsListController.init(nibName: "FriendsListController", bundle: nil)
+         navigationController?.pushViewController(controller, animated: true)
+     }
+     
 }
-extension MainUserDetailController:UICollectionViewDelegate {
+extension MainUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
     }
     
 }
-extension MainUserDetailController:UICollectionViewDataSource {
+extension MainUserDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCircleCell.id, for: indexPath) as? UserCircleCell else { fatalError() }
         return cell
@@ -60,7 +64,7 @@ extension MainUserDetailController:UICollectionViewDataSource {
         return 5
     }
 }
-extension MainUserDetailController:UICollectionViewDelegateFlowLayout {
+extension MainUserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 80)
     }

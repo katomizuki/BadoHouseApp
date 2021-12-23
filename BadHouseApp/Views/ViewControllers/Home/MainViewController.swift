@@ -16,7 +16,6 @@ protocol MainFlow: AnyObject {
 class MainViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
-    private var fetchData = FetchFirestoreData()
     var (myLatitude, myLongitude) = (Double(), Double())
     private var eventArray = [Event]()
     private let cellId = "eventId"
@@ -29,7 +28,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupLocationManager()
         setupDelegate()
-        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         setupCollectionView()
         EventServie.deleteEvent()
         UIApplication.shared.applicationIconBadgeNumber = 0
@@ -42,15 +40,15 @@ class MainViewController: UIViewController {
         if !Network.shared.isOnline() {
             self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }
-//        if Auth.auth().currentUser == nil {
-//            DispatchQueue.main.async {
-//                let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
-//                let nav = UINavigationController(rootViewController: vc)
-//                nav.modalPresentationStyle = .fullScreen
-//                self.present(nav, animated: true, completion: nil)
-    
-//            }
-//        }
+        //        if Auth.auth().currentUser == nil {
+        //            DispatchQueue.main.async {
+        //                let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
+        //                let nav = UINavigationController(rootViewController: vc)
+        //                nav.modalPresentationStyle = .fullScreen
+        //                self.present(nav, animated: true, completion: nil)
+        
+        //            }
+        //        }
     }
     private func setupNavBarButton() {
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
@@ -86,20 +84,17 @@ class MainViewController: UIViewController {
     }
     private func setupBinding() {
     }
-
+    
     private func setupDelegate() {
-        fetchData.eventDelegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
+    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
-        let nib = UINib(nibName: "CollectionViewCell",
-                        bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: cellId)
+        collectionView.register(EventInfoCell.nib(), forCellWithReuseIdentifier: EventInfoCell.id)
     }
     private func setupLocationManager() {
         locationManager = CLLocationManager()
@@ -117,18 +112,12 @@ class MainViewController: UIViewController {
 // MARK: UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventArray.count
+        return 10
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventInfoCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventInfoCell.id, for: indexPath) as? EventInfoCell else { fatalError() }
         cell.delegate = self
-        if eventArray.isEmpty {
-            return cell
-        } else {
-            let event = eventArray[indexPath.row]
-            cell.event = event
-            return cell
-        }
+        return cell
     }
 }
 // MARK: UICollectionViewDelegateFlowLayout
@@ -141,14 +130,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = PracticeDetailController.init(nibName: "PracticeDetailController", bundle: nil)
-        controller.event = eventArray[indexPath.row]
-        
-        let teamId = eventArray[indexPath.row].teamId
-        TeamService.getTeamData(teamId: teamId) { team in
-            controller.team = team
             self.navigationController?.pushViewController(controller, animated: true)
             self.coordinator?.toPracticeDetail()
-        }
     }
 }
 // MARK: - CLLOcationManagerDelegate
@@ -159,7 +142,6 @@ extension MainViewController: CLLocationManagerDelegate {
         guard let longitude = location?.coordinate.longitude else { return }
         myLatitude = latitude
         myLongitude = longitude
-        fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
     }
 }
 // MARK: UISearchBarDelegate
@@ -167,13 +149,12 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
-                setupCDAlert(title: "検索エラー",
-                              message: "１文字以上入力してください",
-                              action: "OK",
-                              alertType: CDAlertViewType.error)
+            setupCDAlert(title: "検索エラー",
+                         message: "１文字以上入力してください",
+                         action: "OK",
+                         alertType: CDAlertViewType.error)
             return
         }
-        fetchData.searchEventTextData(text: searchText, bool: true)
         searchBar.resignFirstResponder()
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -182,63 +163,15 @@ extension MainViewController: UISearchBarDelegate {
         return true
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        fetchData.fetchEventData(latitude: self.myLatitude, longitude: self.myLongitude)
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(#function)
         guard let text = searchBar.text else { return }
-        if searchBar.text == "" {
-            fetchData.fetchEventData(latitude: myLatitude, longitude: myLongitude)
-            searchBar.resignFirstResponder()
-        } else {
-            fetchData.searchEventTextData(text: text, bool: false)
-        }
     }
 }
-// MARK: - FetchEventDataDelegate
-extension MainViewController: FetchEventDataDelegate {
-    func fetchEventData(eventArray: [Event]) {
-        print(#function)
-        self.eventArray = eventArray
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
-    func fetchEventTimeData(eventArray: [Event]) {
-        print(#function)
-        if eventArray.isEmpty {
-        } else {
-            self.eventArray = eventArray
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    func fetchDetailData(eventArray: [Event]) {
-        print(#function)
-        self.eventArray = eventArray
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
-    func fetchEventSearchData(eventArray: [Event], bool: Bool) {
-        print(#function)
-        self.eventArray = eventArray
-        if bool == false {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        } else if bool == true {
-            if eventArray.isEmpty {
-            }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
-}
+
 // MARK: - EventInfoCellDelegate
 extension MainViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell) {

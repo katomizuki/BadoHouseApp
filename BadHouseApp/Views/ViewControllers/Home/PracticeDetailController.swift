@@ -64,7 +64,6 @@ class PracticeDetailController: UIViewController {
     @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
     private var rawData: [Int] = []
-    private var fetchData = FetchFirestoreData()
     private var teamArray = [User]()
     private var defaultRegion: MKCoordinateRegion {
         let x =  event?.latitude ?? 0.0
@@ -130,7 +129,6 @@ class PracticeDetailController: UIViewController {
             guard let self = self else { return }
             self.me = user
         }
-        fetchData.chartsDelegate = self
         guard let teamId = team?.teamId else { return }
         TeamService.getTeamPlayerData(teamId: teamId) { teamPlayers in
             for i in 0..<teamPlayers.count {
@@ -140,11 +138,6 @@ class PracticeDetailController: UIViewController {
                     guard let member = teamPlayer else { return }
                     self.teamArray.append(member)
                 }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.fetchData.fetchGenderCountData(teamPlayers: self.teamArray)
-                self.fetchData.searchTeamPlayerLevelCount(teamPlayers: self.teamArray)
-                self.collectionView.reloadData()
             }
         }
     }
@@ -297,108 +290,14 @@ class PracticeDetailController: UIViewController {
     // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
-    // MARK: - IBAction
-    @IBAction func join(_ sender: Any) {
-        print(#function)
-        guard let leaderId = event?.userId else { return }
-        guard let eventId = event?.eventId else { return }
-        JoinService.searchPreJoinData(myId: AuthService.getUserId(), eventId: eventId) { bool in
-            if bool == false {
-                // alerだしてOKだったら申請をだして、チャットで自分のステタースを飛ばすその後、画面繊維させる。
-                let alert = UIAlertController(title: "参加申請をしますか？", message: "チャットで主催者に自動で連絡がいきます。", preferredStyle: .alert)
-                let cancleAction = UIAlertAction(title: "キャンセル", style: .default) { _ in
-                    self.navigationController?.popViewController(animated: true)
-                }
-                let alertAction = UIAlertAction(title: "OK", style: .default) { _ in
-                    guard let name = self.me?.name else { return }
-                    guard let meId = self.me?.uid else { return }
-                    ChatRoomService.getChatData(meId: AuthService.getUserId(), youId: leaderId) { [weak self] chatId in
-                        guard let self = self else { return }
-                        print(chatId)
-                        if chatId.isEmpty {
-                            // チャットルームを作った後に申請を出す。
-                            ChatRoomService.sendChatroom(myId: AuthService.getUserId(), youId: leaderId) { id in
-                                self.chatId = id
-                                guard let chatId = self.chatId else { return }
-                                ChatRoomService.sendDMChat(chatroomId: chatId,
-                                                           senderId: meId,
-                                                           text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。",
-                                                           reciverId: leaderId) { result in
-                                    switch result {
-                                    case .success(let success):
-                                     print(success)
-                                    case .failure(let error):
-                                        let message = self.setupFirestoreErrorMessage(error: error as! NSError)
-                                        self.setupCDAlert(title: "参加申請に失敗しました",
-                                                          message: message,
-                                                          action: "OK",
-                                                          alertType: .warning)
-                                    }
-                                }
-                            }
-                        } else {
-                            // 既に存在していればそのまま出す。
-                            self.chatId = chatId
-                            guard let chatId = self.chatId else { return }
-                            ChatRoomService.sendDMChat(chatroomId: chatId,
-                                                       senderId: meId,
-                                                       text: "\(name)さんから参加申請がおこなわれました。ご確認の上ご返信ください。",
-                                                       reciverId: leaderId) { result in
-                                switch result {
-                                case .success(let success):
-                                    print(success)
-                                case .failure(let error):
-                                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
-                                    self.setupCDAlert(title: "参加申請に失敗しました",
-                                                      message: message,
-                                                      action: "OK",
-                                                      alertType: .warning)
-                                }
-                            }
-                        }
-                        JoinService.sendPreJoinDataToEventAndUser(myId: meId,
-                                                                  eventId: eventId,
-                                                                  leaderId: leaderId)
-                        self.performSegue(withIdentifier: Segue.gotoChat.rawValue, sender: nil)
-                        LocalNotificationManager.setNotification(2,
-                                                                 of: .hours,
-                                                                 repeats: false,
-                                                                 title: "申し込んだ練習から返信がありましたか？",
-                                                                 body: "ぜひ確認しましょう!")
-                    }
-                }
-                alert.addAction(alertAction)
-                alert.addAction(cancleAction)
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                self.setupCDAlert(title: "既に申請しております",
-                                  message: "主催者からの承認をお待ち下さい",
-                                  action: "OK",
-                                  alertType: CDAlertViewType.notification)
-            }
-        }
-    }
     // MARK: SelectorMethod
     @objc private func didTapGroupImage() {
         print(#function)
         let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
-        controller.team = self.team
         navigationController?.pushViewController(controller, animated: true)
     }
-    @IBAction func didTapChatButton(_ sender: Any) {
-    }
 }
-// MARK: - FetchChartsDataDelegate
-extension PracticeDetailController: FetchChartsDataDelegate {
-    func fetchGenderCount(countArray: [Int]) {
-        self.genderArray = countArray
-        self.setupPieChart()
-    }
-    func fetchBarData(countArray: [Int]) {
-        self.rawData = countArray
-        self.setupBarChart()
-    }
-}
+
 // MARK: - CollectionViewDelegate
 extension PracticeDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

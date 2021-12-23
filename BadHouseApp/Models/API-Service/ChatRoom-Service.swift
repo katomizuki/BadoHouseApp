@@ -87,26 +87,5 @@ struct ChatRoomService {
             guard let lastComment = textArray.last else { return }
             completion(lastComment)
         }
-    }
-    static func getChatData(meId: String, youId: String, completion: @escaping(String) -> Void) {
-        print(#function)
-        var string = ""
-        Ref.ChatroomRef.getDocuments { snapShot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let document = snapShot?.documents else { return }
-            document.forEach { doc in
-                let data = doc.data()
-                let userId = data["user"] as? String ?? ""
-                let userId2 = data["user2"] as? String ?? ""
-                let chatRoomId = data["chatRoomId"] as? String ?? ""
-                if (userId == meId && youId == userId2) || (userId == youId && meId == userId2) {
-                    string = chatRoomId
-                }
-            }
-            completion(string)
-        }
-    }
+    } 
 }

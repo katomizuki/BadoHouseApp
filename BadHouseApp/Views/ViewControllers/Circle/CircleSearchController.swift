@@ -12,7 +12,6 @@ final class CircleSearchController: UIViewController {
         }
     }
     @IBOutlet private weak var tableView: UITableView!
-    private let fetchData = FetchFirestoreData()
     private var groupArray = [TeamModel]()
     var friends = [User]()
     private let cellId = "cellGroupId"
@@ -21,7 +20,6 @@ final class CircleSearchController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         searchBar.delegate = self
-        fetchData.searchDelegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,8 +63,6 @@ extension CircleSearchController: UITableViewDelegate {
         print(#function)
         let team = groupArray[indexPath.row]
         let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
-        controller.team = team
-        controller.friends = friends
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -74,7 +70,6 @@ extension CircleSearchController: UITableViewDelegate {
 extension CircleSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
-        fetchData.searchGroupData(text: text, bool: false)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
@@ -97,43 +92,13 @@ extension CircleSearchController: UISearchBarDelegate {
             return
         }
         searchBar.text = ""
-        fetchData.searchGroupData(text: text, bool: true)
     }
 }
-// MARK: - getGroupDelegate
-extension CircleSearchController: FetchSearchDataDelegate {
-    func fetchSearchGroup(groupArray: [TeamModel], bool: Bool) {
-        if bool == false {
-            self.groupArray = groupArray
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        } else if bool == true {
-            if groupArray.isEmpty {
-            } else {
-                self.groupArray = groupArray
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-    func fetchSearchDetailGroup(groupArray: [TeamModel]) {
-        print(#function)
-        self.groupArray = groupArray
-        if self.groupArray.isEmpty {
-        } else {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-       }
-    }
-}
+
 
 extension CircleSearchController: SearchDetailGroupDelegate {
     func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
         vc.dismiss(animated: true, completion: nil)
-        fetchData.searchDetailGroup(day: time, money: money, place: place)
     }
     func dismissGroupVC(vc: SearchDetailGroupController) {
         vc.dismiss(animated: true, completion: nil)

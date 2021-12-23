@@ -7,23 +7,34 @@
 
 import UIKit
 
-class FriendsListController: UIViewController {
+final class FriendsListController: UIViewController {
 
+    @IBOutlet private weak var friendListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupTableView()
+        navigationItem.backButtonDisplayMode = .minimal
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupTableView() {
+        friendListTableView.delegate = self
+        friendListTableView.dataSource = self
+        friendListTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
     }
-    */
-
+}
+extension FriendsListController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+extension FriendsListController:UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberCell.id, for: indexPath) as? MemberCell else { fatalError() }
+        return cell
+    }
 }

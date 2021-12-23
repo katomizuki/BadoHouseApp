@@ -8,7 +8,6 @@ final class CircleChatController: UIViewController {
     private var chatArray = [GroupChatModel]()
     @IBOutlet private weak var tableView: UITableView!
     private let cellId = "chatCellId"
-    private let fetchData = FetchFirestoreData()
     private var me: User?
     private lazy var customInputView: CustomInputAccessoryView = {
         let ci = CustomInputAccessoryView(frame: CGRect(x: 0,
@@ -45,8 +44,6 @@ final class CircleChatController: UIViewController {
             self.me = me
         }
         guard let teamId = team?.teamId else { return }
-        fetchData.fetchGroupChatData(teamId: teamId)
-        fetchData.myDataDelegate = self
     }
 }
 // MARK: - UITableViewDataSource
@@ -69,17 +66,7 @@ extension CircleChatController: UITableViewDelegate {
         return false
     }
 }
-// MARK: - FetchMyDataDelegate
-extension CircleChatController: FetchMyDataDelegate {
-    func fetchMyGroupChatData(groupChatModelArray: [GroupChatModel]) {
-        self.chatArray = []
-        self.chatArray = groupChatModelArray
-        self.tableView.reloadData()
-        if groupChatModelArray.count != 0 {
-            tableView.scrollToRow(at: IndexPath(row: groupChatModelArray.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
-        }
-    }
-}
+
 // MARK: - InputDelegate
 extension CircleChatController: InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {

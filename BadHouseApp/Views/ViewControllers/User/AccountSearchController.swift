@@ -16,7 +16,6 @@ final class AccountSearchController: UIViewController {
             searchBar.autocapitalizationType = .none
         }
     }
-    private let fetchData = FetchFirestoreData()
     private var friendList = [User]()
     private let cellId = "searchCell"
     private lazy var backButton: UIButton = {
@@ -48,7 +47,6 @@ final class AccountSearchController: UIViewController {
     // MARK: - SetupMethod
     private func setupDelegate() {
         searchBar.delegate = self
-        fetchData.searchDelegate = self
     }
     private func setupTableView() {
         tableView.delegate = self
@@ -120,13 +118,11 @@ extension AccountSearchController: UISearchBarDelegate {
                               alertType: CDAlertViewType.error)
             return
         }
-        fetchData.searchFriends(text: text, bool: true)
         searchBar.resignFirstResponder()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(#function)
         guard let text = searchBar.text else { return }
-        fetchData.searchFriends(text: text, bool: false)
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         print(#function)
@@ -140,24 +136,5 @@ extension AccountSearchController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-// MARK: FetchSearchDelegate
-extension AccountSearchController: FetchSearchDataDelegate {
-    func fetchSearchUser(userArray: [User], bool: Bool) {
-        print(#function)
-        if bool == false {
-            self.friendList = userArray
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        } else if bool == true {
-            if userArray.isEmpty {
-            } else {
-                self.friendList = userArray
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-}
+
 

@@ -47,17 +47,20 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WkZ-5x-zs2">
-                                            <rect key="frame" x="245.5" y="49.5" width="138.5" height="31"/>
+                                            <rect key="frame" x="288.5" y="49.5" width="95.5" height="31"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="バド友申請をする"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="バド友申請"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vch-fy-ZIW">
-                                            <rect key="frame" x="90" y="99" width="67" height="31"/>
+                                            <rect key="frame" x="90" y="99" width="117.5" height="31"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brA-bS-WCx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="67" height="31"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="117.5" height="31"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="バド友"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="バド友  〇〇人"/>
+                                                    <connections>
+                                                        <action selector="didTapBadmintonFriend:" destination="-1" eventType="touchUpInside" id="JkF-CH-CnR"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>

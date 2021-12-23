@@ -133,7 +133,6 @@ class MakeCircleController: UIViewController {
         }
     }
     private var tagArray = [String]()
-    private let fetchData = FetchFirestoreData()
     private let moneyPickerView = UIPickerView()
     private let placePickerView = UIPickerView()
     private let dayPickerView = UIPickerView()
@@ -144,7 +143,6 @@ class MakeCircleController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupBinding()
-        setupData()
         setupPickerView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -152,16 +150,7 @@ class MakeCircleController: UIViewController {
         navigationItem.title = "サークル登録"
         nameTextField.becomeFirstResponder()
     }
-    // MARK: - SetupMethod
-    private func setupData() {
-        fetchData.myDataDelegate = self
-        guard let me = myData else { return }
-        let meId = me.uid
-        UserService.getFriendData(uid: meId) { [weak self] ids in
-            guard let self = self else { return }
-            self.fetchData.fetchMyFriendData(idArray: ids)
-        }
-    }
+
     private func setupPickerView() {
         setPicker(pickerView: moneyPickerView, textField: levelTextField)
         setPicker(pickerView: placePickerView, textField: placeTextField)
@@ -485,12 +474,7 @@ extension MakeCircleController: UIPickerViewDelegate {
         }
     }
 }
-// MARK: - getFriendDelegate
-extension MakeCircleController: FetchMyDataDelegate {
-    func fetchMyFriendData(friendArray: [User]) {
-        self.friends = friendArray
-    }
-}
+
 // MARK: - uitextFieldDelegate
 extension MakeCircleController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

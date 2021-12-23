@@ -5,12 +5,7 @@ import Charts
 
 final class CircleDetailController: UIViewController {
     // MARK: - Properties
-    private let fetchData = FetchFirestoreData()
-    var team: TeamModel?
-    var friend: User?
-    var teamPlayers = [User]()
-    var friends = [User]()
-    var me: User?
+
     @IBOutlet private weak var friendImageView: UIImageView!
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barChartView: BarChartView!
@@ -27,26 +22,16 @@ final class CircleDetailController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTeamStatus()
         setupGraph()
         setupTableView()
+        navigationItem.backButtonDisplayMode = .minimal
     }
     private func setupTableView() {
         teamMemberTableView.delegate = self
         teamMemberTableView.dataSource = self
         teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
     }
-    private func setUpTeamStatus() {
-        print(#function)
-        guard let urlString = team?.teamImageUrl else { return }
-        guard let url = URL(string: urlString) else { return }
-        friendImageView.sd_setImage(with: url, completed: nil)
-        friendImageView.contentMode = .scaleAspectFill
-        friendImageView.chageCircle()
-        friendImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        friendImageView.layer.borderWidth = 2
-        friendImageView.layer.masksToBounds = true
-    }
+    
     private func setupPieChart() {
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
@@ -95,20 +80,12 @@ final class CircleDetailController: UIViewController {
         dataSet.colors = [.lightGray]
     }
 }
-// MARK: - FetchChartsDataDelegate
-extension CircleDetailController: FetchChartsDataDelegate {
-    func fetchGenderCount(countArray: [Int]) {
-        self.genderArray = countArray
-        self.setupPieChart()
-    }
-    func fetchBarData(countArray: [Int]) {
-        self.rawData = countArray
-        self.setupGraph()
-    }
-}
+
 extension CircleDetailController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 extension CircleDetailController:UITableViewDataSource {
