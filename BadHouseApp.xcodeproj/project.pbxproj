@@ -34,6 +34,7 @@
 		D32E59902774859D00C59548 /* UserCircleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E598E2774859D00C59548 /* UserCircleCell.xib */; };
 		D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E599127748C0C00C59548 /* FriendsListController.swift */; };
 		D32E599427748C0C00C59548 /* FriendsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E599227748C0C00C59548 /* FriendsListController.xib */; };
+		D32E59962774AC5A00C59548 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59952774AC5A00C59548 /* R.generated.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -198,6 +199,7 @@
 		D32E598E2774859D00C59548 /* UserCircleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCircleCell.xib; sourceTree = "<group>"; };
 		D32E599127748C0C00C59548 /* FriendsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		D32E599227748C0C00C59548 /* FriendsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListController.xib; sourceTree = "<group>"; };
+		D32E59952774AC5A00C59548 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				D3D3D380272194D100E2853A /* BadHouseApp.entitlements */,
+				D32E59952774AC5A00C59548 /* R.generated.swift */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
 				D31606E927657C02005FF41D /* DataSource */,
@@ -898,16 +901,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-
-";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n\n";
 		};
 		D3A789CB26F3F8710088E8BC /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -958,6 +961,7 @@
 			files = (
 				D3629F99276F5D790052B820 /* TalkDataSource.swift in Sources */,
 				D3886422276A0A6900FC4F07 /* Coordinator.swift in Sources */,
+				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
