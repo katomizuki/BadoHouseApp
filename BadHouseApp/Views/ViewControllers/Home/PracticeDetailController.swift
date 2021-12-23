@@ -22,19 +22,8 @@ class PracticeDetailController: UIViewController {
             eventImageView.contentMode = .scaleAspectFill
         }
     }
-    @IBOutlet private weak var groupImageView: UIImageView! {
-        didSet {
-            groupImageView.chageCircle()
-            groupImageView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-        }
-    }
-    @IBOutlet private weak var chatButton: UIButton! {
-        didSet {
-            chatButton.layer.cornerRadius = 15
-            chatButton.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-            chatButton.layer.borderWidth = 2
-        }
-    }
+    @IBOutlet private weak var groupImageView: UIImageView!
+    @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var groupLabel: UILabel!
     @IBOutlet private weak var timeToLabel: UILabel!
@@ -47,19 +36,9 @@ class PracticeDetailController: UIViewController {
     @IBOutlet private weak var moneyLabel: UILabel!
     @IBOutlet private weak var placeLabel: UILabel!
     @IBOutlet private weak var leaderLabel: UILabel!
-    @IBOutlet private weak var leaderImageView: UIImageView! {
-        didSet {
-            leaderImageView.chageCircle()
-            leaderImageView.backgroundColor = Constants.AppColor.OriginalBlue
-        }
-    }
+    @IBOutlet private weak var leaderImageView: UIImageView!
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet private weak var joinButton: UIButton! {
-        didSet {
-            joinButton.toCorner(num: 15)
-            joinButton.backgroundColor = Constants.AppColor.OriginalBlue
-        }
-    }
+    @IBOutlet private weak var joinButton: UIButton!
     @IBOutlet private weak var pieView: PieChartView!
     @IBOutlet private weak var barView: BarChartView!
     private var genderArray = [Int]()
@@ -81,11 +60,7 @@ class PracticeDetailController: UIViewController {
     private var me: User?
     private var you: User?
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var stackView: UIStackView! {
-        didSet {
-            stackView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
-        }
-    }
+    @IBOutlet private weak var stackView: UIStackView! 
     @IBOutlet private weak var lastTimeStackView: UIStackView!
     @IBOutlet private weak var gatherStackView: UIStackView!
     @IBOutlet private weak var courtStackView: UIStackView!
@@ -102,7 +77,6 @@ class PracticeDetailController: UIViewController {
         setupUI()
         setupData()
         setupCell()
-        setupTag()
         setupUser()
         setupNav()
         setupGesture()
@@ -113,7 +87,6 @@ class PracticeDetailController: UIViewController {
     // MARK: SetupMethod
     private func setupNav() {
         self.navigationItem.backButtonDisplayMode = .minimal
-        self.navigationController?.navigationBar.tintColor = Constants.AppColor.OriginalBlue
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
                                                                 style: UIBarButtonItem.Style.plain,
                                                                 target: nil,
@@ -142,11 +115,10 @@ class PracticeDetailController: UIViewController {
         }
     }
     private func setupCell() {
-        let nib = TeammemberCell.nib()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
-        collectionView.register(nib, forCellWithReuseIdentifier: "memberCellId")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "memberCellId")
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -181,28 +153,28 @@ class PracticeDetailController: UIViewController {
         mapView.addAnnotation(pin)
     }
     private func setupPieChart() {
-        var entry = [ChartDataEntry]()
-        for i in 0..<genderArray.count {
-            guard let gender = Gender(rawValue: i)?.name else { return }
-            entry.append(PieChartDataEntry(value: Double(genderArray[i]),
-                                           label: gender,
-                                           data: genderArray[i]))
-        }
-        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
-        pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
-        pieChartDataSet.drawValuesEnabled = false
-        pieView.legend.enabled = false
-        pieView.data = PieChartData(dataSet: pieChartDataSet)
-        let stringAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.systemGray,
-            .font: UIFont.boldSystemFont(ofSize: 16.0)
-        ]
-        let string = NSAttributedString(string: "男女比",
-                                        attributes: stringAttributes)
-        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
-        pieView.centerAttributedText = string
-        let colors = [UIColor.blue, .red, Constants.AppColor.OriginalBlue]
-        pieChartDataSet.colors = colors
+//        var entry = [ChartDataEntry]()
+//        for i in 0..<genderArray.count {
+//            guard let gender = Gender(rawValue: i)?.name else { return }
+//            entry.append(PieChartDataEntry(value: Double(genderArray[i]),
+//                                           label: gender,
+//                                           data: genderArray[i]))
+//        }
+//        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
+//        pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
+//        pieChartDataSet.drawValuesEnabled = false
+//        pieView.legend.enabled = false
+//        pieView.data = PieChartData(dataSet: pieChartDataSet)
+//        let stringAttributes: [NSAttributedString.Key: Any] = [
+//            .foregroundColor: UIColor.systemGray,
+//            .font: UIFont.boldSystemFont(ofSize: 16.0)
+//        ]
+//        let string = NSAttributedString(string: "男女比",
+//                                        attributes: stringAttributes)
+//        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
+//        pieView.centerAttributedText = string
+//        let colors = [UIColor.blue, .red, Constants.AppColor.OriginalBlue]
+//        pieChartDataSet.colors = colors
     }
     private func setupBarChart() {
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
@@ -224,29 +196,11 @@ class PracticeDetailController: UIViewController {
         barView.legend.enabled = false
         dataSet.colors = [.lightGray]
     }
-    private func setupTag() {
-        guard let eventId = event?.eventId else { return }
-        EventServie.getEventTagData(eventId: eventId) { [weak self] tags in
-            guard let self = self else { return }
-            if tags.count <= 1 {
-                let button = UIButton(type: .system).cretaTagButton(text: "バド好き歓迎")
-                let button2 = UIButton(type: .system).cretaTagButton(text: "仲良く")
-                self.stackView.addArrangedSubview(button)
-                self.stackView.addArrangedSubview(button2)
-            }
-            for i in 0..<tags.count {
-                let tag = tags[i].tag
-                let button = UIButton(type: .system).cretaTagButton(text: " \(tag) ")
-                button.tagButton()
-                if i == 5 { return }
-                self.stackView.addArrangedSubview(button)
-            }
-        }
-    }
+   
     private func setupUnderLayer(view: UIView) {
         let bottomBorder = CALayer()
         bottomBorder.frame = self.getCGrect(view: view)
-        bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
+//        bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
         view.layer.addSublayer(bottomBorder)
     }
     private func setupUser() {
@@ -304,10 +258,7 @@ extension PracticeDetailController: UICollectionViewDelegate {
         return teamArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "memberCellId", for: indexPath) as! TeammemberCell
-        let memberName = teamArray[indexPath.row].name
-        let urlString = teamArray[indexPath.row].profileImageUrl
-        cell.configure(name: memberName, url: urlString)
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "memberCellId", for: indexPath)
         return cell
     }
 }

@@ -8,20 +8,12 @@ import RxCocoa
 final class AccountSearchController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.tintColor = Constants.AppColor.OriginalBlue
-            searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
-            searchBar.autocapitalizationType = .none
-        }
-    }
+    @IBOutlet private weak var searchBar: UISearchBar!
     private var friendList = [User]()
     private let cellId = "searchCell"
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
-        button.tintColor = Constants.AppColor.OriginalBlue
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()

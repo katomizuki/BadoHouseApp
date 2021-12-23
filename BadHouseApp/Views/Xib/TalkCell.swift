@@ -43,18 +43,18 @@ final class TalkCell: UITableViewCell {
     let trashButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash"), for: UIControl.State.normal)
-        button.tintColor = Constants.AppColor.OriginalBlue
+//        button.tintColor = Constants.AppColor.OriginalBlue
         return button
     }()
     // MARK: - LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+//        backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         self.cellImagevView.layer.cornerRadius = 25
         self.cellImagevView.layer.masksToBounds = true
         self.cellImagevView.contentMode = .scaleAspectFill
         self.accessoryType = .disclosureIndicator
-        self.accessoryView?.tintColor = UIColor(named: Constants.AppColor.darkColor)
+//        self.accessoryView?.tintColor = UIColor(named: Constants.AppColor.darkColor)
         self.label.font = UIFont.boldSystemFont(ofSize: 16)
         self.selectionStyle = .none
         addSubview(trashButton)

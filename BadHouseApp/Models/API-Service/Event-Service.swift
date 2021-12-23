@@ -79,32 +79,3 @@ struct EventServie {
         }
     }
 }
-// MARK: - EventTag-Extension
-extension EventServie {
-    static func getEventTagData(eventId: String, completion: @escaping([Tag]) -> Void) {
-        var tagArray = [Tag]()
-        Ref.EventRef.document(eventId).collection("Tag").getDocuments { snapShot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let documents = snapShot?.documents else { return }
-            documents.forEach { document in
-                let data = document.data()
-                let tag = Tag(dic: data)
-                if let tag = tag {
-                    tagArray.append(tag)
-                }
-            }
-            completion(tagArray)
-        }
-    }
-    static func sendEventTagData(eventId: String, tags: [String], teamId: String) {
-        for i in 0..<tags.count {
-            let tag = tags[i]
-            let tagId = "\(Ref.EventRef.document(eventId).documentID + String(i))"
-            let dic = ["tag": tag, "teamId": teamId, "tagId": tagId]
-            Ref.EventRef.document(eventId).collection("Tag").document(tagId).setData(dic)
-        }
-    }
-}

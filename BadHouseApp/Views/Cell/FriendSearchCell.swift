@@ -12,11 +12,8 @@ final class FriendSearchCell: UITableViewCell {
                               width: 120,
                               height: 50)
         button.setTitle( "　ともだちになる　", for: .normal)
-        button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
-        button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
-        button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
         button.layer.borderWidth = 3
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         return button
@@ -55,19 +52,18 @@ final class FriendSearchCell: UITableViewCell {
     }
     // MARK: - selector
     @objc func plusFriend() {
-        print(#function)
-        if count % 2 == 0 {
-            button.backgroundColor = Constants.AppColor.OriginalBlue
-            button.setTitleColor(.white, for: .normal)
-            button.setTitle("　友だち追加済　", for: .normal)
-        } else {
-            button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
-            button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
-            button.layer.borderWidth = 3
-            button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-            button.setTitle("　友だちになる　", for: .normal)
-        }
-        count += 1
-        link?.plusFriend(cell: self)
+//        print(#function)
+//        if count % 2 == 0 {
+//            button.setTitleColor(.white, for: .normal)
+//            button.setTitle("　友だち追加済　", for: .normal)
+//        } else {
+////            button.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
+//            button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
+//            button.layer.borderWidth = 3
+////            button.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+//            button.setTitle("　友だちになる　", for: .normal)
+//        }
+//        count += 1
+//        link?.plusFriend(cell: self)
     }
 }

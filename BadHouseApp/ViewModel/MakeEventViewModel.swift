@@ -32,7 +32,7 @@ final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstV
         return titleTextOutputs.asObserver()
     }
     var buttonColor: UIColor {
-        return isButtonValid.value ? Constants.AppColor.OriginalBlue : .darkGray
+        return isButtonValid.value ? .systemBlue : .darkGray
     }
     var isTitle = BehaviorRelay<Bool>(value: false)
     private let disposeBag = DisposeBag()

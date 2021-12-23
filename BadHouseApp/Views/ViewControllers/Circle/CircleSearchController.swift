@@ -4,9 +4,7 @@ final class CircleSearchController: UIViewController {
     // MARK: - properties
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
-            searchBar.tintColor = Constants.AppColor.OriginalBlue
             searchBar.showsCancelButton = true
-            searchBar.backgroundColor = Constants.AppColor.OriginalBlue
             searchBar.autocapitalizationType = .none
             searchBar.placeholder = "場所名,サークル名等,検索"
         }
@@ -39,10 +37,10 @@ final class CircleSearchController: UIViewController {
 
     // MARK: - SelectorMethod
     @objc private func didTapRightButtonItem() {
-        let vc = SearchDetailGroupController()
-        let nav = UINavigationController(rootViewController: vc)
-        vc.delegate = self
-        present(nav, animated: true, completion: nil)
+//        let vc = SearchDetailGroupController()
+//        let nav = UINavigationController(rootViewController: vc)
+//        vc.delegate = self
+//        present(nav, animated: true, completion: nil)
     }
 }
 // MARK: - tableViewDataSource
@@ -96,11 +94,11 @@ extension CircleSearchController: UISearchBarDelegate {
 }
 
 
-extension CircleSearchController: SearchDetailGroupDelegate {
-    func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
-        vc.dismiss(animated: true, completion: nil)
-    }
-    func dismissGroupVC(vc: SearchDetailGroupController) {
-        vc.dismiss(animated: true, completion: nil)
-    }
-}
+//extension CircleSearchController: SearchDetailGroupDelegate {
+//    func seachDetailGroup(vc: SearchDetailGroupController, time: String, money: String, place: String) {
+//        vc.dismiss(animated: true, completion: nil)
+//    }
+//    func dismissGroupVC(vc: SearchDetailGroupController) {
+//        vc.dismiss(animated: true, completion: nil)
+//    }
+//}

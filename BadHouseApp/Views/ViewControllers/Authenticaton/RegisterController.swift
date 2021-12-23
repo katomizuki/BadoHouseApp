@@ -9,33 +9,7 @@ import CryptoKit
 
 class RegisterController: UIViewController {
     // MARK: - Properties
-        private let nameTextField: UITextField = {
-        let tf = RegisterTextField(placeholder: "名前")
-        tf.keyboardType = .default
-        tf.returnKeyType = .next
-        tf.tag = 0
-        return tf
-    }()
-    private let emailTextField: UITextField = {
-        let tf = RegisterTextField(placeholder: "メールアドレス")
-        tf.returnKeyType = .next
-        tf.keyboardType = .emailAddress
-        tf.tag = 1
-        return tf
-    }()
-    private let passwordTextField: UITextField = {
-        let tf = RegisterTextField(placeholder: "パスワード")
-        tf.returnKeyType = .done
-        tf.tag = 2
-        tf.isSecureTextEntry = true
-        return tf
-    }()
-    private let registerButton: UIButton = {
-        let button = RegisterButton(text: "新規登録")
-        button.titleLabel?.font = .systemFont(ofSize: 25, weight: .bold)
-        return button
-    }()
-    private let alreadyButton: UIButton = UIButton(type: .system).createAuthButton(text: "既にアカウントを持っている方はこちらへ")
+  
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
@@ -58,7 +32,6 @@ class RegisterController: UIViewController {
     private lazy var ruleButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("利用規約", for: .normal)
-        button.setTitleColor(Constants.AppColor.OriginalBlue, for: .normal)
         button.addTarget(self, action: #selector(handleRuleButton), for: .touchUpInside)
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         return button
@@ -77,129 +50,125 @@ class RegisterController: UIViewController {
     }
     // MARK: - SetupMethod
     private func setupDelegate() {
-        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        nameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
     }
     private func setupLayout() {
-        let stackView = UIStackView(arrangedSubviews: [nameTextField,
-                                                       emailTextField,
-                                                       passwordTextField,
-                                                       registerButton,
-                                                       googleView,
-                                                       appleButton
-                                                      ])
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 20
-        view.addSubview(stackView)
-        view.addSubview(alreadyButton)
-        view.addSubview(iv)
-        view.addSubview(ruleButton)
-        nameTextField.anchor(height: 45)
-        stackView.anchor(top: iv.bottomAnchor,
-                         left: view.leftAnchor,
-                         right: view.rightAnchor,
-                         paddingTop: 20,
-                         paddingRight: 20,
-                         paddingLeft: 20,
-                         centerX: view.centerXAnchor,
-                         height: 430)
-        iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                  paddingTop: 30,
-                  centerX: view.centerXAnchor,
-                  width: 100,
-                  height: 100)
-        alreadyButton.anchor(top: stackView.bottomAnchor,
-                             paddingTop: 20,
-                             centerX: view.centerXAnchor)
-        ruleButton.anchor(top: alreadyButton.bottomAnchor,
-                          paddingTop: 10,
-                          centerX: view.centerXAnchor,
-                          width: 100)
+//        let stackView = UIStackView(arrangedSubviews: [nameTextField,
+//                                                       emailTextField,
+//                                                       passwordTextField,
+//                                                       registerButton,
+//                                                       googleView,
+//                                                       appleButton
+//                                                      ])
+//        stackView.axis = .vertical
+//        stackView.distribution = .fillEqually
+//        stackView.spacing = 20
+//        view.addSubview(stackView)
+//        view.addSubview(alreadyButton)
+//        view.addSubview(iv)
+//        view.addSubview(ruleButton)
+//        nameTextField.anchor(height: 45)
+//        stackView.anchor(top: iv.bottomAnchor,
+//                         left: view.leftAnchor,
+//                         right: view.rightAnchor,
+//                         paddingTop: 20,
+//                         paddingRight: 20,
+//                         paddingLeft: 20,
+//                         centerX: view.centerXAnchor,
+//                         height: 430)
+//        iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+//                  paddingTop: 30,
+//                  centerX: view.centerXAnchor,
+//                  width: 100,
+//                  height: 100)
+//        alreadyButton.anchor(top: stackView.bottomAnchor,
+//                             paddingTop: 20,
+//                             centerX: view.centerXAnchor)
+//        ruleButton.anchor(top: alreadyButton.bottomAnchor,
+//                          paddingTop: 10,
+//                          centerX: view.centerXAnchor,
+//                          width: 100)
     }
     private func setupBinding() {
-        nameTextField.rx.text
-            .asDriver()
-            .drive { [weak self] text in
-                if text?.count != 0 {
-                    self?.nameTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.nameTextField.layer.borderWidth = 3
-                } else {
-                    self?.nameTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.nameTextField.layer.borderWidth = 2
-                }
-                self?.registerBinding.nameTextInput.onNext(text ?? "")
-            }
-            .disposed(by: disposeBag)
-        emailTextField.rx.text
-            .asDriver()
-            .drive { [weak self] text in
-                if text?.count != 0 {
-                    self?.emailTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.emailTextField.layer.borderWidth = 3
-                } else {
-                    self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.emailTextField.layer.borderWidth = 2
-                }
-                self?.registerBinding.emailTextInput.onNext(text ?? "")
-            }
-            .disposed(by: disposeBag)
-        passwordTextField.rx.text
-            .asDriver()
-            .drive { [weak self] text in
-                if text?.count != 0 {
-                    self?.passwordTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-                    self?.passwordTextField.layer.borderWidth = 3
-                } else {
-                    self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
-                    self?.passwordTextField.layer.borderWidth = 2
-                }
-                self?.registerBinding.passwordTextInput.onNext(text ?? "")
-            }
-            .disposed(by: disposeBag)
-        registerButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                self?.createUser()
-            }
-            .disposed(by: disposeBag)
-        registerBinding.validRegisterDriver
-            .drive { validAll in
-                self.registerButton.isEnabled = validAll
-                self.registerButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
-            }
-            .disposed(by: disposeBag)
-        alreadyButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                let controller = LoginController.init(nibName: "LoginController", bundle: nil)
-                self?.navigationController?.pushViewController(controller, animated: true)
-            }
-            .disposed(by: disposeBag)
+//        nameTextField.rx.text
+//            .asDriver()
+//            .drive { [weak self] text in
+//                if text?.count != 0 {
+//                    self?.nameTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+//                    self?.nameTextField.layer.borderWidth = 3
+//                } else {
+//                    self?.nameTextField.layer.borderColor = UIColor.darkGray.cgColor
+//                    self?.nameTextField.layer.borderWidth = 2
+//                }
+//                self?.registerBinding.nameTextInput.onNext(text ?? "")
+//            }
+//            .disposed(by: disposeBag)
+//        emailTextField.rx.text
+//            .asDriver()
+//            .drive { [weak self] text in
+//                if text?.count != 0 {
+//                    self?.emailTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+//                    self?.emailTextField.layer.borderWidth = 3
+//                } else {
+//                    self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
+//                    self?.emailTextField.layer.borderWidth = 2
+//                }
+//                self?.registerBinding.emailTextInput.onNext(text ?? "")
+//            }
+//            .disposed(by: disposeBag)
+//        passwordTextField.rx.text
+//            .asDriver()
+//            .drive { [weak self] text in
+//                if text?.count != 0 {
+//                    self?.passwordTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+//                    self?.passwordTextField.layer.borderWidth = 3
+//                } else {
+//                    self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
+//                    self?.passwordTextField.layer.borderWidth = 2
+//                }
+//                self?.registerBinding.passwordTextInput.onNext(text ?? "")
+//            }
+//            .disposed(by: disposeBag)
+//        registerButton.rx.tap
+//            .asDriver()
+//            .drive { [weak self] _ in
+//                self?.createUser()
+//            }
+//            .disposed(by: disposeBag)
+//        registerBinding.validRegisterDriver
+//            .drive { validAll in
+//                self.registerButton.isEnabled = validAll
+//                self.registerButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
+//            }
+//            .disposed(by: disposeBag)
+//        alreadyButton.rx.tap
+//            .asDriver()
+//            .drive { [weak self] _ in
+//                let controller = LoginController.init(nibName: "LoginController", bundle: nil)
+//                self?.navigationController?.pushViewController(controller, animated: true)
+//            }
+//            .disposed(by: disposeBag)
     }
     // MARK: - HelperMethod
     private func createUser() {
         print(#function)
-        let name = nameTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
-        AuthService.register(name: name, email: email, password: password) { result, error in
-            if result {
-                let bool = false
-                UserDefaults.standard.set(bool, forKey: "MyId")
-                print("Create User Success")
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                if let error = error as NSError? {
-                    print("Register Error")
-                    self.signUpErrAlert(error)
-                }
-            }
-        }
+//        let name = nameTextField.text ?? ""
+//        let email = emailTextField.text ?? ""
+//        let password = passwordTextField.text ?? ""
+//        AuthService.register(name: name, email: email, password: password) { result, error in
+//            if result {
+//                let bool = false
+//                UserDefaults.standard.set(bool, forKey: "MyId")
+//                print("Create User Success")
+//                self.dismiss(animated: true, completion: nil)
+//            } else {
+//                if let error = error as NSError? {
+//                    print("Register Error")
+//                    self.signUpErrAlert(error)
+//                }
+//            }
+//        }
     }
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
@@ -300,18 +269,7 @@ extension RegisterController: GIDSignInDelegate {
         print(error.localizedDescription)
     }
 }
-// MARK: - UITextFieldDelegate
-extension RegisterController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        switch textField.tag {
-        case 0: emailTextField.becomeFirstResponder()
-        case 1: passwordTextField.becomeFirstResponder()
-        default: break
-        }
-        return true
-    }
-}
+
 // MARK: - ASAuthorizationControllerDelegate
 extension RegisterController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {

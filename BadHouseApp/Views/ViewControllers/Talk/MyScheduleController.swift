@@ -14,7 +14,6 @@ final class MyScheduleController: UIViewController {
     private var eventArray = [Event]()
     private let tableview: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         return tv
     }()
     private let calendar: FSCalendar = {
@@ -24,7 +23,6 @@ final class MyScheduleController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
-        button.tintColor = Constants.AppColor.OriginalBlue
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
@@ -38,7 +36,6 @@ final class MyScheduleController: UIViewController {
   
     private func setupCalendar() {
         view.addSubview(backButton)
-        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         calendar.delegate = self
         calendar.dataSource = self
         view.addSubview(calendar)
@@ -49,12 +46,9 @@ final class MyScheduleController: UIViewController {
                         paddingRight: 20,
                         paddingLeft: 20,
                         height: 350)
-        calendar.appearance.weekdayTextColor = Constants.AppColor.OriginalBlue
-        calendar.appearance.headerTitleColor = Constants.AppColor.OriginalBlue
         calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
         calendar.appearance.titleDefaultColor = .systemGray3
         calendar.appearance.headerDateFormat = "yyyy年MM月"
-        calendar.appearance.selectionColor = Constants.AppColor.OriginalBlue
         calendar.appearance.todayColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
         calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
@@ -138,7 +132,7 @@ extension MyScheduleController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         if eventArray.isEmpty == false {
             for i in 0..<eventArray.count {
                 if eventArray[i].eventStartTime.prefix(10) == dateString {
-                    return Constants.AppColor.OriginalBlue
+                    return .systemBlue
                 }
             }
         } else {

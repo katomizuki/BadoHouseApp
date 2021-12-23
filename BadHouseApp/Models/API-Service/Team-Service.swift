@@ -45,7 +45,6 @@ struct TeamService {
             print("TeamData Create Success")
         }
         TeamService.sendTeamPlayerData(teamDic: dic, teamplayer: friends)
-        TeamService.sendTeamTagData(teamId: teamId, tagArray: tagArray)
     }
     static func updateTeamData(team: TeamModel, completion: @escaping(Result<String, Error>) -> Void) {
         let id = team.teamId
@@ -125,34 +124,6 @@ extension TeamService {
             let id = element.uid
             Ref.TeamRef.document(teamId).collection("TeamPlayer").document(id).setData(["uid": id])
             Ref.UsersRef.document(id).collection("OwnTeam").document(teamId).setData(dic)
-        }
-    }
-}
-// MARK: - TeamTag-Extension
-extension TeamService {
-    static func sendTeamTagData(teamId: String, tagArray: [String]) {
-        let tagId =  Ref.TeamRef.document(teamId).collection("TeamTag").document().documentID
-        for i in 0..<tagArray.count {
-            Ref.TeamRef.document(teamId).collection("TeamTag").document("\(tagId + String(i))").setData(["tagId": tagId, "tag": tagArray[i]])
-        }
-    }
-    static func getTeamTagData(teamId: String, completion: @escaping ([Tag]) -> Void) {
-        Ref.TeamRef.document(teamId).collection("TeamTag").getDocuments { snapShot, error in
-            var teamTag = [Tag]()
-            if let error = error {
-                print("TeamTag Error", error.localizedDescription)
-                return
-            }
-            guard let data = snapShot?.documents else { return }
-            data.forEach { doc in
-                let safeData = doc.data()
-                let tag = Tag(dic: safeData)
-                if let tag = tag {
-                    teamTag.append(tag)
-                }
-            }
-            print("TeamTag Success")
-            completion(teamTag)
         }
     }
 }

@@ -20,7 +20,6 @@ final class GroupSearchListController: UIViewController {
     // MARK: - LifeCylcle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         view.addSubview(tableView)
         tableView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                          bottom: view.bottomAnchor,

@@ -8,15 +8,10 @@ final class UserLevelController: UIViewController {
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
             backButton.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
-            backButton.tintColor = Constants.AppColor.OriginalBlue
             backButton.addTarget(self, action: #selector(backtoUser), for: .touchUpInside)
         }
     }
-    @IBOutlet private weak var textView: UITextView! {
-        didSet {
-            textView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
-        }
-    }
+    @IBOutlet private weak var textView: UITextView! 
     @IBOutlet private weak var slider: UISlider! {
         didSet {
             slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)

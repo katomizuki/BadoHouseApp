@@ -33,30 +33,30 @@ final class CircleDetailController: UIViewController {
     }
     
     private func setupPieChart() {
-        var entry = [ChartDataEntry]()
-        for i in 0..<genderArray.count {
-            guard let gender = Gender(rawValue: i)?.name else { return }
-            entry.append(PieChartDataEntry(value: Double(genderArray[i]),
-                                           label: gender,
-                                           data: genderArray[i]))
-        }
-        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
-        pieChartDataSet.entryLabelFont = .boldSystemFont(ofSize: 12)
-        pieChartDataSet.drawValuesEnabled = false
-        let stringAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.systemGray,
-            .font: UIFont.boldSystemFont(ofSize: 16.0)
-        ]
-        let string = NSAttributedString(string: "男女比",
-                                        attributes: stringAttributes)
-        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
-        pieView.centerAttributedText = string
-        pieView.legend.textColor = .label
-        pieChartDataSet.valueTextColor = .label
-        pieView.legend.enabled = false
-        pieView.data = PieChartData(dataSet: pieChartDataSet)
-        let colors = [.blue, .red, Constants.AppColor.OriginalBlue]
-        pieChartDataSet.colors = colors
+//        var entry = [ChartDataEntry]()
+//        for i in 0..<genderArray.count {
+//            guard let gender = Gender(rawValue: i)?.name else { return }
+//            entry.append(PieChartDataEntry(value: Double(genderArray[i]),
+//                                           label: gender,
+//                                           data: genderArray[i]))
+//        }
+//        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
+//        pieChartDataSet.entryLabelFont = .boldSystemFont(ofSize: 12)
+//        pieChartDataSet.drawValuesEnabled = false
+//        let stringAttributes: [NSAttributedString.Key: Any] = [
+//            .foregroundColor: UIColor.systemGray,
+//            .font: UIFont.boldSystemFont(ofSize: 16.0)
+//        ]
+//        let string = NSAttributedString(string: "男女比",
+//                                        attributes: stringAttributes)
+////        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
+//        pieView.centerAttributedText = string
+//        pieView.legend.textColor = .label
+//        pieChartDataSet.valueTextColor = .label
+//        pieView.legend.enabled = false
+//        pieView.data = PieChartData(dataSet: pieChartDataSet)
+//        let colors = [.blue, .red, Constants.AppColor.OriginalBlue]
+//        pieChartDataSet.colors = colors
     }
     private func setupGraph() {
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1),

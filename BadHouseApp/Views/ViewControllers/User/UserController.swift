@@ -22,11 +22,7 @@ final class UserController: UIViewController {
             updateUserProfileButton.layer.masksToBounds = true
         }
     }
-    @IBOutlet private weak var myImageView: UIImageView! {
-        didSet {
-            myImageView.toCorner(num: 35)
-        }
-    }
+    @IBOutlet private weak var myImageView: UIImageView! 
     @IBOutlet private weak var myName: UILabel!
     @IBOutlet private weak var countLabel: UILabel!
     @IBOutlet private weak var updateProfileButton: UIButton! {

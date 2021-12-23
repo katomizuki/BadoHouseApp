@@ -9,11 +9,7 @@ final class LevelDetailController: UIViewController {
             levelLabel.text = BadmintonLevel.ten.rawValue
         }
     }
-    @IBOutlet private weak var backButton: UIButton! {
-        didSet {
-            backButton.tintColor = Constants.AppColor.OriginalBlue
-        }
-    }
+    @IBOutlet private weak var backButton: UIButton! 
     @IBOutlet private weak var slider: UISlider! {
         didSet {
             slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
