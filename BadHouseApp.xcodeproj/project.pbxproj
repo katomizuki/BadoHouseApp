@@ -31,6 +31,10 @@
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
 		D32E598C2774519600C59548 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E598A2774519600C59548 /* MemberCell.xib */; };
+		D32E598F2774859D00C59548 /* UserCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E598D2774859D00C59548 /* UserCircleCell.swift */; };
+		D32E59902774859D00C59548 /* UserCircleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E598E2774859D00C59548 /* UserCircleCell.xib */; };
+		D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E599127748C0C00C59548 /* FriendsListController.swift */; };
+		D32E599427748C0C00C59548 /* FriendsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E599227748C0C00C59548 /* FriendsListController.xib */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
@@ -210,6 +214,10 @@
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		D32E598A2774519600C59548 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
+		D32E598D2774859D00C59548 /* UserCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCircleCell.swift; sourceTree = "<group>"; };
+		D32E598E2774859D00C59548 /* UserCircleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCircleCell.xib; sourceTree = "<group>"; };
+		D32E599127748C0C00C59548 /* FriendsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
+		D32E599227748C0C00C59548 /* FriendsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListController.xib; sourceTree = "<group>"; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -451,6 +459,8 @@
 				D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */,
 				D32E59892774519600C59548 /* MemberCell.swift */,
 				D32E598A2774519600C59548 /* MemberCell.xib */,
+				D32E598D2774859D00C59548 /* UserCircleCell.swift */,
+				D32E598E2774859D00C59548 /* UserCircleCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -518,6 +528,8 @@
 				D3D3D37E2721873A00E2853A /* AppExplainController.swift */,
 				D3B41DAC277345C10051FFB5 /* UserSettingsController.swift */,
 				D3B41DAD277345C10051FFB5 /* UserSettingsController.xib */,
+				D32E599127748C0C00C59548 /* FriendsListController.swift */,
+				D32E599227748C0C00C59548 /* FriendsListController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -886,10 +898,12 @@
 				D388642E276A185800FC4F07 /* CheckNotificationController.xib in Resources */,
 				D3B41DAF277345C10051FFB5 /* UserSettingsController.xib in Resources */,
 				D3886414276A03E000FC4F07 /* PracticeDetailController.xib in Resources */,
+				D32E599427748C0C00C59548 /* FriendsListController.xib in Resources */,
 				D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */,
 				D38863F02768BA3200FC4F07 /* UserLevelController.xib in Resources */,
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
+				D32E59902774859D00C59548 /* UserCircleCell.xib in Resources */,
 				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1065,6 +1079,7 @@
 				D3629FA3276F5E0A0052B820 /* FriendsCoordinator.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
+				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
 				D3FFD34227203FD900DE54ED /* BlockCell.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
@@ -1127,6 +1142,7 @@
 				D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */,
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
 				D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */,
+				D32E598F2774859D00C59548 /* UserCircleCell.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
 				D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,

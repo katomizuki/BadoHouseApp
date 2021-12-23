@@ -417,7 +417,6 @@ extension PracticeDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
         let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
-        controller.user = teamArray[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
 }

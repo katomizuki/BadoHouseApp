@@ -219,9 +219,6 @@ extension SubUserDetailController: UICollectionViewDelegate {
             navigationController?.pushViewController(controller, animated: true)
         } else {
             let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
-            controller.user = userFriend[indexPath.row]
-            controller.me = self.user
-            controller.flag = true
             navigationController?.pushViewController(controller, animated: true)
         }
     }
