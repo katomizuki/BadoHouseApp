@@ -138,7 +138,6 @@
 		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
 		D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB54726E0590800C53780 /* GoogleService-Info.plist */; };
 		D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */; };
-		D3BDB55726E0644E00C53780 /* UIButton+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55626E0644E00C53780 /* UIButton+Factory.swift */; };
 		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* UserModel.swift */; };
@@ -305,7 +304,6 @@
 		D3BDB54526E055C900C53780 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3BDB54726E0590800C53780 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anchor+Extension.swift"; sourceTree = "<group>"; };
-		D3BDB55626E0644E00C53780 /* UIButton+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Factory.swift"; sourceTree = "<group>"; };
 		D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		D3BDB56326E0B05D00C53780 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -541,14 +539,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		D3B72CE6274A2DB700253933 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				D3BDB55626E0644E00C53780 /* UIButton+Factory.swift */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
 		D3B72CE7274A2DC100253933 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,7 +630,6 @@
 				D3B72CE9274A2DD900253933 /* Util */,
 				D3B72CE8274A2DD000253933 /* Constants */,
 				D3B72CE7274A2DC100253933 /* Enum */,
-				D3B72CE6274A2DB700253933 /* Factory */,
 				D3BDB54E26E05D9500C53780 /* Extension */,
 			);
 			path = Utility;
@@ -1046,7 +1035,6 @@
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
 				D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */,
 				D3629FB1276F5F800052B820 /* SearchFriendCoordinator.swift in Sources */,
-				D3BDB55726E0644E00C53780 /* UIButton+Factory.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
 				D316072E276764F9005FF41D /* MapListController.swift in Sources */,

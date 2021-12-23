@@ -19,7 +19,6 @@ class RegisterController: UIViewController {
     private var pictureURL = String()
     private let iv: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: Constants.ImageName.logoImage)
         return iv
     }()
     private let disposeBag = DisposeBag()

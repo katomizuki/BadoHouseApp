@@ -210,7 +210,6 @@ class PracticeDetailController: UIViewController {
             self.you = user
             guard let urlString = user?.profileImageUrl else { return }
             if urlString == "" {
-                self.leaderImageView.image = UIImage(named: Constants.ImageName.noImages)
             } else {
                 let url = URL(string: urlString)
                 self.leaderImageView.sd_setImage(with: url, completed: nil)

@@ -1,4 +1,4 @@
-import Foundation
+
 
 enum BadmintonCircle: Int, CaseIterable {
     case student, society, other

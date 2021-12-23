@@ -1,6 +1,4 @@
 
-
-import Foundation
 enum Gender: Int, CaseIterable {
     case man, woman, other
     var name: String {

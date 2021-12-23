@@ -13,7 +13,6 @@ final class AccountSearchController: UIViewController {
     private let cellId = "searchCell"
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
@@ -83,7 +82,6 @@ extension AccountSearchController: UITableViewDataSource {
         cell.nameLabel.text = friendList[indexPath.row].name
         let urlString = friendList[indexPath.row].profileImageUrl
         if urlString == "" {
-            cell.iv.image = UIImage(named: Constants.ImageName.noImages)
         } else {
             if let url = URL(string: urlString) {
                 cell.iv.sd_setImage(with: url, completed: nil)

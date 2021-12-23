@@ -107,7 +107,7 @@ final class TalkCell: UITableViewCell {
         self.label.text = user.name
         let url = URL(string: user.profileImageUrl)
         if user.profileImageUrl == "" {
-            self.cellImagevView.image = UIImage(named: Constants.ImageName.noImages)
+    
         } else {
             self.cellImagevView.sd_setImage(with: url, completed: nil)
         }

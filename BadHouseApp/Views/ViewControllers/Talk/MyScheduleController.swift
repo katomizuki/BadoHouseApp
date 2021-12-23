@@ -22,7 +22,6 @@ final class MyScheduleController: UIViewController {
     }()
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()

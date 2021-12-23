@@ -1,5 +1,4 @@
 
-import Foundation
 enum BadmintonLevel: String {
     case one = "レベル1"
     case two = "レベル2"

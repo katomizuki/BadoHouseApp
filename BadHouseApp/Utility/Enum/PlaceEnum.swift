@@ -1,5 +1,4 @@
 
-import Foundation
 enum Place: Int, CaseIterable {
     case kanagawa, tokyo, chiba, saitama
     var name: String {

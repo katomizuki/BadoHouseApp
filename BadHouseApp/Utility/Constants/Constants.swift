@@ -3,31 +3,7 @@ import UIKit
 
 public struct Constants {
     static let appName = "バドハウス"
-   
-    struct ViewControllerID {
-        static let LoginVC = "LoginVC"
-        static let GroupDetailVC = "GroupDetailVC"
-        static let UserDetailVC = "UserDetailVC"
-        static let TagVC = "TagVC"
-        static let EventDetailVC = "EventDetailVC"
-        static let GroupChatVC = "GroupChatViewController"
-        static let ChatVC = "ChatViewController"
-        static let CameraVC = "CameraVC"
-        static let inviteVC = "inviteVC"
-        static let MakeGroupVC = "MakeGroupVC"
-        static let TornamentDetailVC = "TornamentDetailVC"
-        static let FriendVC = "FriendVC"
-    }
 
-    struct ImageName {
-        static let logoImage = "logo"
-        static let double = "double"
-        static let circle = "circle"
-        static let check = "check"
-        static let noImages = "noImages"
-        static let reload = "reload"
-        static let search = "search"
-    }
     struct Data {
         static let tagArray = [
             "#急募","#複数人OK", "#ガチミントン", "#シングルス", "#ダブルス", "#ミックス", "#年齢不問",

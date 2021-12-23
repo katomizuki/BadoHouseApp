@@ -1,4 +1,3 @@
-import Foundation
 
 struct UserInfo {
     static let level = "レベル"

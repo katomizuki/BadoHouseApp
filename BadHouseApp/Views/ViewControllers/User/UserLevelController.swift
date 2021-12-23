@@ -7,7 +7,6 @@ final class UserLevelController: UIViewController {
     weak var delegate: LevelDismissDelegate?
     @IBOutlet private weak var backButton: UIButton! {
         didSet {
-            backButton.setImage(UIImage(named: Constants.ImageName.double), for: .normal)
             backButton.addTarget(self, action: #selector(backtoUser), for: .touchUpInside)
         }
     }
