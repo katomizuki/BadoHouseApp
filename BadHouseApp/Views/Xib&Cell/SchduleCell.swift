@@ -17,7 +17,7 @@ final class SchduleCell: UITableViewCell {
         }
     }
     static let id = String(describing: self)
-    weak var delegate:SchduleCellDelegate?
+    weak var delegate: SchduleCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

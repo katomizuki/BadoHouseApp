@@ -43,8 +43,9 @@ class UserCoordinator: Coordinator, UserFlow {
         vc.present(nav,animated: true)
     }
     func toSchedule(_ vc: UIViewController) {
-        let controller = ScheduleController.init(nibName:"ScheduleController", bundle: nil)
-        controller.modalPresentationStyle = .fullScreen
-        vc.present(controller, animated: true, completion: nil)
+        let controller = ScheduleController.init(nibName: "ScheduleController", bundle: nil)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        vc.present(nav, animated: true, completion: nil)
     }
 }

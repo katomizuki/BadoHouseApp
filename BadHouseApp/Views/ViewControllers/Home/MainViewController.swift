@@ -86,15 +86,17 @@ class MainViewController: UIViewController {
     }
     
     private func setupDelegate() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        
     }
     
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
         collectionView.register(EventInfoCell.nib(), forCellWithReuseIdentifier: EventInfoCell.id)
+        collectionView.showsVerticalScrollIndicator = false
     }
     private func setupLocationManager() {
         locationManager = CLLocationManager()
@@ -129,7 +131,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = PracticeDetailController.init(nibName: "PracticeDetailController", bundle: nil)
+        let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
             self.navigationController?.pushViewController(controller, animated: true)
             self.coordinator?.toPracticeDetail()
     }

@@ -85,8 +85,8 @@ final class UserController: UIViewController {
         groupTableView.delegate = self
         groupTableView.dataSource = self
         groupTableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
-        let nib = UserProfileHeaderView.self
-        groupTableView.register(nib, forHeaderFooterViewReuseIdentifier: UserProfileHeaderView.id)
+        groupTableView.register(UserProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: UserProfileHeaderView.id)
+        groupTableView.showsVerticalScrollIndicator = false
     }
 }
 // MARK: - UItableViewDataSource
