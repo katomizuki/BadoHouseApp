@@ -4,8 +4,8 @@ import UIKit
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
-                left: NSLayoutXAxisAnchor? = nil,
-                right: NSLayoutXAxisAnchor? = nil,
+                leading: NSLayoutXAxisAnchor? = nil,
+                trailing: NSLayoutXAxisAnchor? = nil,
                 paddingTop: CGFloat = 0,
                 paddingBottom: CGFloat = 0,
                 paddingRight: CGFloat = 0,
@@ -21,11 +21,11 @@ extension UIView {
         if let bottom = bottom {
             self.bottomAnchor.constraint(equalTo: bottom, constant: -paddingBottom).isActive = true
         }
-        if let right = right {
-            self.rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
+        if let trailing = trailing {
+            self.trailingAnchor.constraint(equalTo: trailing, constant: -paddingRight).isActive = true
         }
-        if let left = left {
-            self.leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
+        if let leading = leading {
+            self.leadingAnchor.constraint(equalTo: leading, constant: paddingLeft).isActive = true
         }
         if let centerX = centerX {
             self.centerXAnchor.constraint(equalTo: centerX).isActive = true

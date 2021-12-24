@@ -45,13 +45,13 @@ final class UserProfileHeaderView:UITableViewHeaderFooterView {
         contentView.addSubview(headerLabel)
         contentView.addSubview(searchButton)
         contentView.addSubview(plusButton)
-        headerLabel.anchor(left: contentView.leftAnchor,
+        headerLabel.anchor(leading: contentView.leadingAnchor,
                            paddingLeft: 10,
                            centerY: contentView.centerYAnchor)
-        searchButton.anchor(left: headerLabel.rightAnchor,
+        searchButton.anchor(leading: headerLabel.trailingAnchor,
                             paddingLeft: 10,
                             centerY: contentView.centerYAnchor)
-        plusButton.anchor(left: searchButton.rightAnchor,
+        plusButton.anchor(leading: searchButton.leadingAnchor,
                           paddingLeft: 10,
                           centerY: contentView.centerYAnchor)
         let searchAction = UIAction { _ in

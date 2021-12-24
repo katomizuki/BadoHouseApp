@@ -39,8 +39,8 @@ final class MyScheduleController: UIViewController {
         calendar.dataSource = self
         view.addSubview(calendar)
         calendar.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                        left: view.leftAnchor,
-                        right: view.rightAnchor,
+                        leading: view.leadingAnchor,
+                        trailing: view.trailingAnchor,
                         paddingTop: 60,
                         paddingRight: 20,
                         paddingLeft: 20,
@@ -65,7 +65,7 @@ final class MyScheduleController: UIViewController {
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue
         backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                         left: view.leftAnchor,
+                         leading: view.leadingAnchor,
                          paddingTop: 15,
                          paddingLeft: 15,
                          width: 35,
@@ -75,8 +75,8 @@ final class MyScheduleController: UIViewController {
         view.addSubview(tableview)
         tableview.anchor(top: calendar.bottomAnchor,
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                         left: view.leftAnchor,
-                         right: view.rightAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor,
                          paddingTop: 40,
                          paddingBottom: 20,
                          paddingRight: 0,

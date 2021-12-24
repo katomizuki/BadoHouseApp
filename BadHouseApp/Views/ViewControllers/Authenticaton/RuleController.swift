@@ -24,15 +24,15 @@ final class RuleController: UIViewController {
         view.addSubview(textview)
         view.addSubview(backButton)
         backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                         left: view.leftAnchor,
+                         leading: view.leadingAnchor,
                          paddingTop: 15,
                          paddingLeft: 15,
                          width: 35,
                          height: 35)
         textview.anchor(top: backButton.bottomAnchor,
                         bottom: view.bottomAnchor,
-                        left: view.leftAnchor,
-                        right: view.rightAnchor,
+                        leading: view.leadingAnchor,
+                        trailing: view.trailingAnchor,
                         paddingTop: 20,
                         paddingBottom: 20,
                         paddingRight: 20,

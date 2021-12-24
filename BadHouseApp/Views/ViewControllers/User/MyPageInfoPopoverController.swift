@@ -31,8 +31,8 @@ final class MyPageInfoPopoverController: UIViewController {
         self.view.addSubview(tableView)
         tableView.anchor(top: view.topAnchor,
                          bottom: view.bottomAnchor,
-                         left: view.leftAnchor,
-                         right: view.rightAnchor)
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor)
         switch keyword {
         case UserInfo.gender:
             cellArray = Gender.genderArray
@@ -62,7 +62,7 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
 // MARK: - TableViewDelegate
 extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UserPageController.init(nibName: "UserPageController", bundle: nil)
+        let vc = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
 //        switch keyword {
 //        case UserInfo.gender:
 //            gender = cellArray[indexPath.row]

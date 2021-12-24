@@ -13,7 +13,6 @@ final class AppExplainController: UIViewController {
         let textView = UITextView()
         textView.text = "このアプリはB版となります。\n もし,ご質問、不適切な投稿が確認できた場合は、下記のTwitterアカウントにご連絡ください。\n また、このアプリは現在地から近い順に練習を表示させるために位置情報を使用させていただいております。"
         textView.font = .systemFont(ofSize: 15)
-//        textView.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         textView.textColor = .label
         textView.isEditable = false
         textView.isSelectable = false
@@ -33,7 +32,6 @@ final class AppExplainController: UIViewController {
     }
     // MARK: - SetupMethod
     private func setupUI() {
-//        view.backgroundColor = UIColor(named: Constants.AppColor.darkColor)
         let stackView = UIStackView(arrangedSubviews: [explainLabel,
                                                        textView,
                                                        accessLabel])
@@ -42,8 +40,8 @@ final class AppExplainController: UIViewController {
         view.addSubview(stackView)
         stackView.anchor(top: view.topAnchor,
                          bottom: view.bottomAnchor,
-                         left: view.leftAnchor,
-                         right: view.rightAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor,
                          paddingTop: 40,
                          paddingBottom: 10,
                          paddingRight: 10,
