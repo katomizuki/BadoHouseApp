@@ -2,19 +2,38 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
+
 final class MakeCircleController: UIViewController {
 
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let teamBinding = TeamRegisterViewModel()
+    private let imagePicker = UIImagePickerController()
     @IBOutlet private weak var groupImageView: UIImageView! {
         didSet {
-            groupImageView.isUserInteractionEnabled = true
-            groupImageView.contentMode = .scaleAspectFill
+            groupImageView.layer.cornerRadius = 30
+            groupImageView.layer.masksToBounds = true
+            groupImageView.layer.borderWidth = 1
+            groupImageView.layer.borderColor = UIColor.systemBlue.cgColor
         }
     }
     @IBOutlet private weak var scrollView: UIView!
    
+    @IBOutlet private weak var makeCircleButton: UIButton! {
+        didSet {
+            makeCircleButton.layer.cornerRadius = 8
+            makeCircleButton.layer.borderColor = UIColor.systemBlue.cgColor
+            makeCircleButton.layer.borderWidth = 1
+            makeCircleButton.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet private weak var inviteFriendButton: UIButton! {
+        didSet {
+            inviteFriendButton.layer.cornerRadius = 8
+            inviteFriendButton.layer.masksToBounds = true
+        }
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +41,22 @@ final class MakeCircleController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "サークル登録"
+        navigationController?.toolbar.tintColor = .systemBlue
+        let rightButton = UIBarButtonItem(title: "サークル作成", style: .done, target: self, action: #selector(didTapNavBarRightButton))
+        navigationItem.rightBarButtonItem = rightButton
+    }
+    @objc private func didTapNavBarRightButton() {
+        print(#function)
     }
 
-  
     private func setupBinding() {
+        groupImageView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.present(self.imagePicker, animated: true)
+            }).disposed(by: disposeBag)
+
 //        nameTextField.rx.text
 //            .asDriver()
 //            .drive { [weak self] text in
