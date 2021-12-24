@@ -14,7 +14,7 @@ protocol UserFlow: AnyObject {
 final class UserController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var groupTableView: UITableView!
-    @IBOutlet weak var userImageView: UIImageView! {
+    @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
             userImageView.layer.cornerRadius = 35
             userImageView.layer.masksToBounds = true
@@ -46,9 +46,7 @@ final class UserController: UIViewController {
         setupNavigationItem()
         setupBinding()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+
     private func setupBinding() {
         
     }
@@ -121,8 +119,17 @@ extension UserController: UITableViewDelegate {
     
 }
 
-extension UserController:UserProfileHeaderViewDelegate {
-    func userProfileHeaderView(_ view: UserProfileHeaderView, section: Int, option: UserProfileSelection) {
-        
+extension UserController: UserProfileHeaderViewDelegate {
+    func didTapSearchButton(option: UserProfileSelection) {
+        switch option {
+        case .circle:
+            coordinator?.toSearchCircle()
+        case .user:
+            coordinator?.toSearchUser()
+        }
+    }
+    
+    func didTapPlusTeamButton() {
+        coordinator?.toMakeCircle()
     }
 }

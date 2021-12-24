@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchUserController" customModule="BadHouseApp" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="VgV-Xh-IKm" id="VIf-6Z-TaV"/>
+                <outlet property="userTableView" destination="l0l-ST-QCK" id="GUE-Bs-ch8"/>
+                <outlet property="view" destination="zLQ-Tt-5ic" id="beI-Sh-C18"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zLQ-Tt-5ic">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="VgV-Xh-IKm">
+                    <rect key="frame" x="30" y="54" width="354" height="51"/>
+                    <color key="backgroundColor" name="backGroundColor"/>
+                    <color key="barTintColor" name="backGroundColor"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-ST-QCK">
+                    <rect key="frame" x="0.0" y="120" width="414" height="742"/>
+                    <color key="backgroundColor" name="backGroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="imE-LJ-Wud"/>
+            <color key="backgroundColor" name="backGroundColor"/>
+            <constraints>
+                <constraint firstItem="l0l-ST-QCK" firstAttribute="trailing" secondItem="imE-LJ-Wud" secondAttribute="trailing" id="7JB-aq-GEf"/>
+                <constraint firstItem="l0l-ST-QCK" firstAttribute="leading" secondItem="imE-LJ-Wud" secondAttribute="leading" id="a5y-3k-POR"/>
+                <constraint firstItem="VgV-Xh-IKm" firstAttribute="leading" secondItem="imE-LJ-Wud" secondAttribute="leading" constant="30" id="bZA-Ws-9hu"/>
+                <constraint firstItem="imE-LJ-Wud" firstAttribute="bottom" secondItem="l0l-ST-QCK" secondAttribute="bottom" id="gdO-OI-2Eb"/>
+                <constraint firstItem="VgV-Xh-IKm" firstAttribute="trailing" secondItem="imE-LJ-Wud" secondAttribute="trailing" constant="-30" id="hJP-W2-SDY"/>
+                <constraint firstItem="l0l-ST-QCK" firstAttribute="top" secondItem="VgV-Xh-IKm" secondAttribute="bottom" constant="15" id="jEA-qS-46l"/>
+                <constraint firstItem="VgV-Xh-IKm" firstAttribute="top" secondItem="imE-LJ-Wud" secondAttribute="top" constant="10" id="rvO-Bz-WuV"/>
+            </constraints>
+            <point key="canvasLocation" x="128" y="-69"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="backGroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

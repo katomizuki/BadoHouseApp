@@ -1,39 +1,39 @@
-
 import UIKit
 
-class UserCoordinator: Coordinator,UserFlow {
+class UserCoordinator: Coordinator, UserFlow {
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = UserController.init(nibName: "UserController", bundle: nil)
+        let controller = UserController.init(nibName: R.nib.userController.name, bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
     func toSearchUser() {
-        let controller = AccountSearchController.init(nibName: "AccountSearchController", bundle: nil)
+        let controller = SearchUserController.init(nibName: "SearchUserController", bundle: nil)
         navigationController.pushViewController(controller, animated: true)
     }
     func toDetailUser() {
-        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
+        let controller = MainUserDetailController.init(nibName: R.nib.mainUserDetailController.name, bundle: nil)
         navigationController.pushViewController(controller, animated: true)
     }
     func toDetailCircle() {
-        let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
+        let controller = CircleDetailController.init(nibName: R.nib.circleDetailController.name, bundle: nil)
         navigationController.pushViewController(controller, animated: true)
     }
     func toSearchCircle() {
-        let controller = CircleSearchController.init(nibName: "CircleSearchController", bundle: nil)
+        let controller = CircleSearchController.init(nibName: R.nib.circleSearchController.name, bundle: nil)
         navigationController.pushViewController(controller, animated: true)
     }
-    func toMyPage(_ vc:UIViewController) {
-        let controller = UserPageController.init(nibName: "UserPageController", bundle: nil)
+    func toMyPage(_ vc: UIViewController) {
+        let controller = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }
     func toMakeCircle() {
-        
+        let controller = MakeCircleController.init(nibName: R.nib.makeCircleController.name, bundle: nil)
+        navigationController.pushViewController(controller, animated: true)
     }
 }

@@ -8,13 +8,12 @@
 import Foundation
 import UIKit
 enum UserProfileSelection {
-    case search
-    case plus
+    case circle
+    case user
 }
-protocol UserProfileHeaderViewDelegate:AnyObject {
-    func userProfileHeaderView(_ view: UserProfileHeaderView,
-                               section: Int,
-                               option: UserProfileSelection)
+protocol UserProfileHeaderViewDelegate: AnyObject {
+    func didTapSearchButton(option:UserProfileSelection)
+   func didTapPlusTeamButton()
 }
 final class UserProfileHeaderView:UITableViewHeaderFooterView {
     static let id = String(describing: self)
@@ -56,10 +55,10 @@ final class UserProfileHeaderView:UITableViewHeaderFooterView {
                           paddingLeft: 10,
                           centerY: contentView.centerYAnchor)
         let searchAction = UIAction { _ in
-//            self.delegate?.userProfileHeaderView(self, section: <#T##Int#>, option: <#T##UserProfileSelection#>)
+            self.delegate?.didTapSearchButton(option: self.headerLabel.text == "バド友" ? .user : .circle)
         }
         let plusAction = UIAction { _ in
-            
+            self.delegate?.didTapPlusTeamButton()
         }
         searchButton.addAction(searchAction, for: .primaryActionTriggered)
         plusButton.addAction(plusAction, for: .primaryActionTriggered)

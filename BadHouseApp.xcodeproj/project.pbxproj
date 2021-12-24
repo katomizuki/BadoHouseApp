@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -74,8 +74,6 @@
 		D38863F42768BE0E00FC4F07 /* UserPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863F22768BE0D00FC4F07 /* UserPageController.xib */; };
 		D38863F72768C06D00FC4F07 /* CircleSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863F52768C06D00FC4F07 /* CircleSearchController.swift */; };
 		D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863F62768C06D00FC4F07 /* CircleSearchController.xib */; };
-		D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863F92768C51300FC4F07 /* AccountSearchController.swift */; };
-		D38863FC2768C51300FC4F07 /* AccountSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38863FA2768C51300FC4F07 /* AccountSearchController.xib */; };
 		D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38864012768D41A00FC4F07 /* CircleDetailController.swift */; };
 		D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38864022768D41A00FC4F07 /* CircleDetailController.xib */; };
 		D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38864052768DA9200FC4F07 /* MainUserDetailController.swift */; };
@@ -142,15 +140,16 @@
 		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* UserModel.swift */; };
+		D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFED27753BE700C6C761 /* SearchUserController.swift */; };
+		D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */; };
+		D3C1BFF3277542E400C6C761 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */; };
+		D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFF2277542E400C6C761 /* SearchUserCell.xib */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
 		D3C4E94F26E2F78400C21E46 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94E26E2F78400C21E46 /* InviteCell.swift */; };
 		D3C4E95726E33A5700C21E46 /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* TalkCell.swift */; };
-		D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */; };
-		D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
-		D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3F860212725064300085ABD /* SearchDetailGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860202725064300085ABD /* SearchDetailGroupController.swift */; };
 		D3F860782727AF7F00085ABD /* GroupSearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860772727AF7E00085ABD /* GroupSearchListController.swift */; };
@@ -239,8 +238,6 @@
 		D38863F22768BE0D00FC4F07 /* UserPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPageController.xib; sourceTree = "<group>"; };
 		D38863F52768C06D00FC4F07 /* CircleSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSearchController.swift; sourceTree = "<group>"; };
 		D38863F62768C06D00FC4F07 /* CircleSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleSearchController.xib; sourceTree = "<group>"; };
-		D38863F92768C51300FC4F07 /* AccountSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchController.swift; sourceTree = "<group>"; };
-		D38863FA2768C51300FC4F07 /* AccountSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSearchController.xib; sourceTree = "<group>"; };
 		D38864012768D41A00FC4F07 /* CircleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailController.swift; sourceTree = "<group>"; };
 		D38864022768D41A00FC4F07 /* CircleDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircleDetailController.xib; sourceTree = "<group>"; };
 		D38864052768DA9200FC4F07 /* MainUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserDetailController.swift; sourceTree = "<group>"; };
@@ -309,16 +306,17 @@
 		D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		D3BDB56326E0B05D00C53780 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D3C1BFED27753BE700C6C761 /* SearchUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserController.swift; sourceTree = "<group>"; };
+		D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserController.xib; sourceTree = "<group>"; };
+		D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
+		D3C1BFF2277542E400C6C761 /* SearchUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserCell.xib; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		D3C4E94E26E2F78400C21E46 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
-		D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammemberCell.swift; sourceTree = "<group>"; };
-		D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeammemberCell.xib; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
-		D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3F860202725064300085ABD /* SearchDetailGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailGroupController.swift; sourceTree = "<group>"; };
 		D3F860772727AF7E00085ABD /* GroupSearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchListController.swift; sourceTree = "<group>"; };
@@ -413,10 +411,9 @@
 		D353D8E426F16C2F00221B7D /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				D3C4E95D26E3907600C21E46 /* TeammemberCell.xib */,
 				D3FD194C26E4791500B6740E /* TalkCell.xib */,
-				D353D8E126F1621F00221B7D /* ChatCell.xib */,
 				D3C4E95626E33A5700C21E46 /* TalkCell.swift */,
+				D353D8E126F1621F00221B7D /* ChatCell.xib */,
 				D37FA52826EB091300B8559F /* EventInfoCell.xib */,
 				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
@@ -426,6 +423,8 @@
 				D32E598A2774519600C59548 /* MemberCell.xib */,
 				D32E598D2774859D00C59548 /* UserCircleCell.swift */,
 				D32E598E2774859D00C59548 /* UserCircleCell.xib */,
+				D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */,
+				D3C1BFF2277542E400C6C761 /* SearchUserCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -481,8 +480,6 @@
 				D38863EE2768BA3200FC4F07 /* UserLevelController.xib */,
 				D38863F12768BE0D00FC4F07 /* UserPageController.swift */,
 				D38863F22768BE0D00FC4F07 /* UserPageController.xib */,
-				D38863F92768C51300FC4F07 /* AccountSearchController.swift */,
-				D38863FA2768C51300FC4F07 /* AccountSearchController.xib */,
 				D38864052768DA9200FC4F07 /* MainUserDetailController.swift */,
 				D38864062768DA9200FC4F07 /* MainUserDetailController.xib */,
 				D3886437276A1B5300FC4F07 /* UserController.swift */,
@@ -493,6 +490,8 @@
 				D3B41DAD277345C10051FFB5 /* UserSettingsController.xib */,
 				D32E599127748C0C00C59548 /* FriendsListController.swift */,
 				D32E599227748C0C00C59548 /* FriendsListController.xib */,
+				D3C1BFED27753BE700C6C761 /* SearchUserController.swift */,
+				D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -698,10 +697,8 @@
 			isa = PBXGroup;
 			children = (
 				D3C4E94E26E2F78400C21E46 /* InviteCell.swift */,
-				D3C4E95B26E38B5500C21E46 /* TeammemberCell.swift */,
 				D353D8E026F1621F00221B7D /* ChatCell.swift */,
 				D3A789D126F416E10088E8BC /* PlusTeamPlayersCell.swift */,
-				D3DA98BD26F6EAE500DFF8B1 /* FriendSearchCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -805,11 +802,12 @@
 				D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
+				D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */,
 				D38864082768DA9200FC4F07 /* MainUserDetailController.xib in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* TalkCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
-				D3C4E95E26E3907600C21E46 /* TeammemberCell.xib in Resources */,
+				D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */,
 				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
@@ -822,7 +820,6 @@
 				D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */,
 				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
 				D38863F42768BE0E00FC4F07 /* UserPageController.xib in Resources */,
-				D38863FC2768C51300FC4F07 /* AccountSearchController.xib in Resources */,
 				D388640C2769FE7E00FC4F07 /* CircleChatController.xib in Resources */,
 				D388642E276A185800FC4F07 /* CheckNotificationController.xib in Resources */,
 				D3B41DAF277345C10051FFB5 /* UserSettingsController.xib in Resources */,
@@ -895,7 +892,6 @@
 		};
 		D39F0AA42771536800580708 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 8;
 			files = (
 			);
@@ -911,7 +907,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"PODS_ROOT/R.swift/rswift\"\n";
+			shellScript = "\"PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		D3A789CB26F3F8710088E8BC /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1014,6 +1010,7 @@
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
+				D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
@@ -1067,13 +1064,11 @@
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
 				D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
-				D3DA98BE26F6EAE500DFF8B1 /* FriendSearchCell.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
 				D3A789D226F416E10088E8BC /* PlusTeamPlayersCell.swift in Sources */,
 				D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
-				D38863FB2768C51300FC4F07 /* AccountSearchController.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA7276F5E600052B820 /* SearchDetailCoordinator.swift in Sources */,
@@ -1081,9 +1076,9 @@
 				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,
 				D38863EB2768B80D00FC4F07 /* MakeCircleController.swift in Sources */,
 				D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */,
+				D3C1BFF3277542E400C6C761 /* SearchUserCell.swift in Sources */,
 				D3629FAF276F5ED40052B820 /* InviteViewModel.swift in Sources */,
 				D38863EF2768BA3200FC4F07 /* UserLevelController.swift in Sources */,
-				D3C4E95C26E38B5500C21E46 /* TeammemberCell.swift in Sources */,
 				D3B72CF3274A308500253933 /* GenderEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
