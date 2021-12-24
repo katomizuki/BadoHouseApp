@@ -15,29 +15,40 @@ final class UserPageController: UIViewController {
     var coordinator: UserPageFlow?
     @IBOutlet private weak var userInfoTableView: UITableView!
     @IBOutlet private weak var scrollView: UIView!
+    @IBOutlet weak var racketView: UIView! {
+        didSet {
+            racketView.changeCorner(num: 8)
+        }
+    }
+    @IBOutlet weak var playerView: UIView! {
+        didSet {
+            playerView.changeCorner(num: 8)
+        }
+    }
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
-            userImageView.layer.cornerRadius = 45
-            userImageView.layer.masksToBounds = true
+            userImageView.changeCorner(num: 45)
         }
     }
     private let imagePicker = UIImagePickerController()
+    @IBOutlet private weak var racketTextField: UITextField!
+    @IBOutlet private weak var playerTextField: UITextField!
     @IBOutlet private weak var userIntroductionTextView: UITextView! {
         didSet {
-            userIntroductionTextView.layer.cornerRadius = 5
-            userIntroductionTextView.layer.masksToBounds = true
-            userIntroductionTextView.layer.borderColor = UIColor.systemBlue.cgColor
-            userIntroductionTextView.layer.borderWidth = 1
+            userIntroductionTextView.changeCorner(num: 8)
         }
     }
-    
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         setupTableView()
         setupNavigationBarItem()
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerTextField.setUnderLine(width: playerView.frame.width)
+        racketTextField.setUnderLine(width: racketView.frame.width)
     }
     private func setupNavigationBarItem() {
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
@@ -111,7 +122,7 @@ extension UserPageController: UITableViewDataSource {
     }
 }
 // MARK: - PopDismissDelegate
-extension UserPageController:PopDismissDelegate {
+extension UserPageController: PopDismissDelegate {
     func popDismiss(vc: MyPageInfoPopoverController) {
         vc.dismiss(animated: true, completion: nil)
     }
@@ -122,4 +133,3 @@ extension UserPageController:UIPopoverPresentationControllerDelegate {
         return .none
     }
 }
-

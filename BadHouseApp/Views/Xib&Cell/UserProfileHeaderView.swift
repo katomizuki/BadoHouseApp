@@ -12,12 +12,12 @@ enum UserProfileSelection {
     case user
 }
 protocol UserProfileHeaderViewDelegate: AnyObject {
-    func didTapSearchButton(option:UserProfileSelection)
+    func didTapSearchButton(option: UserProfileSelection)
    func didTapPlusTeamButton()
 }
-final class UserProfileHeaderView:UITableViewHeaderFooterView {
+final class UserProfileHeaderView: UITableViewHeaderFooterView {
     static let id = String(describing: self)
-    private let headerLabel:UILabel = {
+    private let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "所属サークル"
         label.textColor = .systemBlue
@@ -51,7 +51,7 @@ final class UserProfileHeaderView:UITableViewHeaderFooterView {
         searchButton.anchor(leading: headerLabel.trailingAnchor,
                             paddingLeft: 10,
                             centerY: contentView.centerYAnchor)
-        plusButton.anchor(leading: searchButton.leadingAnchor,
+        plusButton.anchor(leading: searchButton.trailingAnchor,
                           paddingLeft: 10,
                           centerY: contentView.centerYAnchor)
         let searchAction = UIAction { _ in

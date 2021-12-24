@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MakeCircleController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="backGroundImageView" destination="wSH-CC-nm4" id="zMd-kW-f0m"/>
                 <outlet property="groupImageView" destination="egS-fL-Gzg" id="Guj-5J-QaN"/>
                 <outlet property="inviteFriendButton" destination="qGT-qp-ATe" id="8mC-8o-llF"/>
                 <outlet property="makeCircleButton" destination="9iK-bl-TGA" id="zA8-wb-Wzf"/>

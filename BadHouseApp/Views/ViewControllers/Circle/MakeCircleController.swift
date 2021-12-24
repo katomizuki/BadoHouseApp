@@ -19,7 +19,6 @@ final class MakeCircleController: UIViewController {
         }
     }
     @IBOutlet private weak var scrollView: UIView!
-   
     @IBOutlet private weak var makeCircleButton: UIButton! {
         didSet {
             makeCircleButton.layer.cornerRadius = 8
@@ -34,6 +33,7 @@ final class MakeCircleController: UIViewController {
             inviteFriendButton.layer.masksToBounds = true
         }
     }
+    @IBOutlet private weak var backGroundImageView: UIImageView!
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +56,28 @@ final class MakeCircleController: UIViewController {
                 guard let self = self else { return }
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposeBag)
+        
+        groupImageView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.present(self.imagePicker, animated: true)
+            }).disposed(by: disposeBag)
+        
+        makeCircleButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.createTeam()
+        }).disposed(by: disposeBag)
+        
+        inviteFriendButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let controller = InviteToCircleController.init(nibName: R.nib.inviteToCircleController.name, bundle: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }).disposed(by: disposeBag)
+
+
+
+        
 
 //        nameTextField.rx.text
 //            .asDriver()
