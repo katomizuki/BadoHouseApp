@@ -32,7 +32,6 @@ final class UserLevelController: UIViewController {
     @objc private func backtoUser() {
         selectedLevel = levelLabel.text ?? "1"
         let vc = self.presentingViewController as! UserPageController
-//        vc.level = selectedLevel
         self.delegate?.levelDismiss(vc: self)
     }
     @objc private func changeLevel(sender: UISlider) {

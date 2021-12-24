@@ -133,7 +133,7 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
             self.navigationController?.pushViewController(controller, animated: true)
-            self.coordinator?.toPracticeDetail()
+//            self.coordinator?.toPracticeDetail()
     }
 }
 // MARK: - CLLOcationManagerDelegate
@@ -144,33 +144,6 @@ extension MainViewController: CLLocationManagerDelegate {
         guard let longitude = location?.coordinate.longitude else { return }
         myLatitude = latitude
         myLongitude = longitude
-    }
-}
-// MARK: UISearchBarDelegate
-extension MainViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text else { return }
-        if searchText.isEmpty {
-            showCDAlert(title: "検索エラー",
-                         message: "１文字以上入力してください",
-                         action: "OK",
-                         alertType: CDAlertViewType.error)
-            return
-        }
-        searchBar.resignFirstResponder()
-    }
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-        return true
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(#function)
-        guard let text = searchBar.text else { return }
     }
 }
 

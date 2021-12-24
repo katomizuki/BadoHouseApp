@@ -15,12 +15,12 @@ final class UserPageController: UIViewController {
     var coordinator: UserPageFlow?
     @IBOutlet private weak var userInfoTableView: UITableView!
     @IBOutlet private weak var scrollView: UIView!
-    @IBOutlet weak var racketView: UIView! {
+    @IBOutlet private weak var racketView: UIView! {
         didSet {
             racketView.changeCorner(num: 8)
         }
     }
-    @IBOutlet weak var playerView: UIView! {
+    @IBOutlet private weak var playerView: UIView! {
         didSet {
             playerView.changeCorner(num: 8)
         }
@@ -128,7 +128,7 @@ extension UserPageController: PopDismissDelegate {
     }
 }
 // MARK: - UIPopoverPresentationControllerDelegate
-extension UserPageController:UIPopoverPresentationControllerDelegate {
+extension UserPageController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }

@@ -13,40 +13,15 @@ import MapKit
 protocol PracticeDetailFlow {
     
 }
-class PracticeDetailController: UIViewController {
+final class PracticeDetailController: UIViewController {
     // MARK: - Properties
-    var event: Event?
-    var team: TeamModel?
-    @IBOutlet private weak var eventImageView: UIImageView! {
-        didSet {
-            eventImageView.contentMode = .scaleAspectFill
-        }
-    }
+    @IBOutlet private weak var eventImageView: UIImageView!
     @IBOutlet private weak var groupImageView: UIImageView!
-    @IBOutlet private weak var chatButton: UIButton!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var groupLabel: UILabel!
-    @IBOutlet private weak var timeToLabel: UILabel!
-    @IBOutlet private weak var timeLabel: UILabel!
-    @IBOutlet private weak var endTimeLabel: UILabel!
-    @IBOutlet private weak var gatherCountLabel: UILabel!
-    @IBOutlet private weak var courtLabel: UILabel!
-    @IBOutlet private weak var circleLabel: UILabel!
-    @IBOutlet private weak var levelLabel: UILabel!
-    @IBOutlet private weak var moneyLabel: UILabel!
-    @IBOutlet private weak var placeLabel: UILabel!
-    @IBOutlet private weak var leaderLabel: UILabel!
     @IBOutlet private weak var leaderImageView: UIImageView!
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet private weak var joinButton: UIButton!
-    @IBOutlet private weak var pieView: PieChartView!
-    @IBOutlet private weak var barView: BarChartView!
-    private var genderArray = [Int]()
-    private var rawData: [Int] = []
-    private var teamArray = [User]()
     private var defaultRegion: MKCoordinateRegion {
-        let x =  event?.latitude ?? 0.0
-        let y = event?.longitude ?? 0.0
+        let x =  0.0
+        let y = 0.0
         let coordinate = CLLocationCoordinate2D(
             latitude: x,
             longitude: y
@@ -57,222 +32,13 @@ class PracticeDetailController: UIViewController {
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    private var me: User?
-    private var you: User?
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var stackView: UIStackView! 
-    @IBOutlet private weak var lastTimeStackView: UIStackView!
-    @IBOutlet private weak var gatherStackView: UIStackView!
-    @IBOutlet private weak var courtStackView: UIStackView!
-    @IBOutlet private weak var kindStackView: UIStackView!
-    @IBOutlet private weak var levelStackView: UIStackView!
-    @IBOutlet private weak var moneyStackView: UIStackView!
-    @IBOutlet private weak var placeStackView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
-    var coordinator:PracticeDetailFlow?
+    var coordinator: PracticeDetailFlow?
     private var chatId: String?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupData()
-        setupCell()
-        setupUser()
-        setupNav()
-        setupGesture()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    // MARK: SetupMethod
-    private func setupNav() {
-        self.navigationItem.backButtonDisplayMode = .minimal
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                                style: UIBarButtonItem.Style.plain,
-                                                                target: nil,
-                                                                action: nil)
-    }
-    private func setupGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapGroupImage))
-        groupImageView.addGestureRecognizer(tap)
-        groupImageView.isUserInteractionEnabled = true
-    }
-    private func setupData() {
-        UserService.getUserData(uid: AuthService.getUserId()) { [weak self] user in
-            guard let self = self else { return }
-            self.me = user
-        }
-        guard let teamId = team?.teamId else { return }
-        TeamService.getTeamPlayerData(teamId: teamId) { teamPlayers in
-            for i in 0..<teamPlayers.count {
-                let id = teamPlayers[i]
-                UserService.getUserData(uid: id) { [weak self] teamPlayer in
-                    guard let self = self else { return }
-                    guard let member = teamPlayer else { return }
-                    self.teamArray.append(member)
-                }
-            }
-        }
-    }
-    private func setupCell() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        collectionView.collectionViewLayout = layout
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "memberCellId")
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    private func setupUI() {
-        guard let urlString = event?.eventUrl else { return }
-        let url = URL(string: urlString)
-        eventImageView.sd_setImage(with: url, completed: nil)
-        guard let groupUrlString = event?.teamImageUrl else { return }
-        let groupUrl = URL(string: groupUrlString)
-        groupImageView.sd_setImage(with: groupUrl, completed: nil)
-        titleLabel.text = "\(event?.eventTitle ?? "")"
-        groupLabel.text = "主催チーム \(event?.teamName ?? "")"
-        var start = event?.eventStartTime ?? ""
-        var last = event?.eventFinishTime ?? ""
-        start = changeString(string: start)
-        last = changeString(string: last)
-        timeLabel.text = "\(start)分~"
-        timeToLabel.text = "\(last)分"
-        gatherCountLabel.text = "\(event?.eventGatherCount ?? "") 人"
-        courtLabel.text = "\(event?.eventCourtCount ?? "") 面"
-        placeLabel.text = event?.eventPlace
-        circleLabel.text = event?.kindCircle
-        moneyLabel.text = "\(event?.money ?? "") 円"
-        levelLabel.text = event?.eventLevel
-        let time = event?.eventTime ?? ""
-        endTimeLabel.text = "\(changeString(string: time))分"
-        mapView.setRegion(defaultRegion, animated: false)
-        let pin = MKPointAnnotation()
-        let x =  event?.latitude ?? 0.0
-        let y = event?.longitude ?? 0.0
-        pin.coordinate = CLLocationCoordinate2D(latitude: x, longitude: y)
-        mapView.addAnnotation(pin)
-    }
-    private func setupPieChart() {
-//        var entry = [ChartDataEntry]()
-//        for i in 0..<genderArray.count {
-//            guard let gender = Gender(rawValue: i)?.name else { return }
-//            entry.append(PieChartDataEntry(value: Double(genderArray[i]),
-//                                           label: gender,
-//                                           data: genderArray[i]))
-//        }
-//        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
-//        pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 12)
-//        pieChartDataSet.drawValuesEnabled = false
-//        pieView.legend.enabled = false
-//        pieView.data = PieChartData(dataSet: pieChartDataSet)
-//        let stringAttributes: [NSAttributedString.Key: Any] = [
-//            .foregroundColor: UIColor.systemGray,
-//            .font: UIFont.boldSystemFont(ofSize: 16.0)
-//        ]
-//        let string = NSAttributedString(string: "男女比",
-//                                        attributes: stringAttributes)
-//        pieView.holeColor = UIColor(named: Constants.AppColor.darkColor)
-//        pieView.centerAttributedText = string
-//        let colors = [UIColor.blue, .red, Constants.AppColor.OriginalBlue]
-//        pieChartDataSet.colors = colors
-    }
-    private func setupBarChart() {
-        let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset + 1), y: Double($0.element)) }
-        barView.scaleXEnabled = false
-        barView.scaleYEnabled = false
-        let dataSet = BarChartDataSet(entries: entries)
-        dataSet.drawValuesEnabled = false
-        let data = BarChartData(dataSet: dataSet)
-        barView.data = data
-        barView.rightAxis.enabled = false
-        barView.xAxis.labelPosition = .bottom
-        barView.xAxis.labelCount = rawData.count
-        barView.leftAxis.labelCount = 10
-        barView.xAxis.labelTextColor = .darkGray
-        barView.xAxis.drawGridLinesEnabled = false
-        barView.xAxis.drawAxisLineEnabled = false
-        barView.leftAxis.axisMinimum = 0
-        barView.leftAxis.axisMaximum = 10
-        barView.legend.enabled = false
-        dataSet.colors = [.lightGray]
-    }
-   
-    private func setupUnderLayer(view: UIView) {
-        let bottomBorder = CALayer()
-        bottomBorder.frame = self.getCGrect(view: view)
-//        bottomBorder.backgroundColor = Constants.AppColor.OriginalBlue.cgColor
-        view.layer.addSublayer(bottomBorder)
-    }
-    private func setupUser() {
-        guard let userId = event?.userId else { return }
-        UserService.getUserData(uid: userId) { [weak self] user in
-            guard let self = self else { return }
-            self.you = user
-            guard let urlString = user?.profileImageUrl else { return }
-            if urlString == "" {
-            } else {
-                let url = URL(string: urlString)
-                self.leaderImageView.sd_setImage(with: url, completed: nil)
-            }
-            let name = user?.name
-            self.leaderLabel.text = name
-        }
-    }
-    // MARK: - HelperMethod
-    private func changeString(string: String) -> String {
-        var text = string
-        let from = text.index(text.startIndex, offsetBy: 5)
-        let to = text.index(text.startIndex, offsetBy: 15)
-        text = String(text[from...to])
-        let index = text.index(text.startIndex, offsetBy: 5)
-        text.insert("日", at: index)
-        if text.prefix(1) == "0" {
-            let index = text.index(text.startIndex, offsetBy: 0)
-            text.remove(at: index)
-        }
-        text = text.replacingOccurrences(of: "/", with: "月")
-        text = text.replacingOccurrences(of: ":", with: "時")
-        return text
-    }
-    private func getCGrect(view: UIView) -> CGRect {
-        return CGRect(x: 0,
-                      y: view.frame.height,
-                      width: view.frame.width,
-                      height: 1.0)
-    }
-    // MARK: - Prepare
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
-    // MARK: SelectorMethod
-    @objc private func didTapGroupImage() {
-        print(#function)
-        let controller = CircleDetailController.init(nibName: "CircleDetailController", bundle: nil)
-        navigationController?.pushViewController(controller, animated: true)
-    }
-}
 
-// MARK: - CollectionViewDelegate
-extension PracticeDetailController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teamArray.count
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "memberCellId", for: indexPath)
-        return cell
-    }
-}
-// MARK: - CollectionViewDataSource
-extension PracticeDetailController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
-        navigationController?.pushViewController(controller, animated: true)
-    }
-}
-// MARK: - ColletionViewDelegateFlowLayout
-extension PracticeDetailController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
     }
 }
 
