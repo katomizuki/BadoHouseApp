@@ -40,7 +40,7 @@ final class EventInfoCell: UICollectionViewCell {
     // MARK: - LifeCycle
     static let id = String(describing: self)
     
-    static func nib()->UINib {
+    static func nib()-> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     override func awakeFromNib() {

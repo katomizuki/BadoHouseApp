@@ -10,6 +10,8 @@ protocol UserFlow: AnyObject {
     func toDetailUser()
     func toDetailCircle()
     func toMakeCircle()
+    func toSettings(_ vc:UIViewController)
+    func toSchedule(_ vc:UIViewController)
 }
 final class UserController: UIViewController {
     // MARK: - Properties
@@ -18,7 +20,6 @@ final class UserController: UIViewController {
         didSet {
             userImageView.layer.cornerRadius = 35
             userImageView.layer.masksToBounds = true
-            
         }
     }
     @IBOutlet private weak var updateUserProfileButton: UIButton! {
@@ -55,14 +56,25 @@ final class UserController: UIViewController {
         navigationController?.navigationBar.tintColor = .systemBlue
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(didTapScheduleButton))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .done, target: self, action: #selector(didTapSettingButton))
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.white
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        let tabAppearance = UITabBarAppearance()
+        tabAppearance.backgroundColor = UIColor.white
+        tabBarItem.standardAppearance = tabAppearance
+      
     }
     @objc private func didTapSettingButton() {
         print(#function)
+        coordinator?.toSettings(self)
         
     }
     
     @objc private func didTapScheduleButton() {
         print(#function)
+        coordinator?.toSchedule(self)
     }
     
     @objc private func didTapUpdateProfileButton() {
@@ -87,11 +99,6 @@ extension UserController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
-        if indexPath.section == 0 {
-       
-        } else if indexPath.section == 1 {
-           
-        }
         return cell
     }
 }

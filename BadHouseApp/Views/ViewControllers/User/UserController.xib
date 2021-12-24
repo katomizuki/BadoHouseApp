@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TII-Ua-Duj">
-                    <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                    <rect key="frame" x="0.0" y="159" width="414" height="703"/>
                     <color key="backgroundColor" name="backGroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mva-si-c2U">
@@ -83,23 +83,33 @@
                         <constraint firstItem="I13-YM-Ttl" firstAttribute="leading" secondItem="GqB-Eq-NvN" secondAttribute="leading" id="Jlb-Vj-4bB"/>
                         <constraint firstItem="R6k-XV-6pf" firstAttribute="centerY" secondItem="Mva-si-c2U" secondAttribute="centerY" id="KyY-1A-9PR"/>
                         <constraint firstItem="GqB-Eq-NvN" firstAttribute="leading" secondItem="R6k-XV-6pf" secondAttribute="trailing" constant="15" id="LI7-4m-QbQ"/>
+                        <constraint firstAttribute="height" constant="100" id="Oaj-za-mSc"/>
                         <constraint firstItem="R6k-XV-6pf" firstAttribute="leading" secondItem="Mva-si-c2U" secondAttribute="leading" constant="20" id="b6L-DC-8DM"/>
                         <constraint firstAttribute="trailing" secondItem="j6y-RM-RQI" secondAttribute="trailing" constant="20" id="ks3-t0-wzC"/>
                         <constraint firstItem="I13-YM-Ttl" firstAttribute="top" secondItem="Mva-si-c2U" secondAttribute="top" constant="70" id="uxR-PG-rW7"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1mY-Lm-tSm">
+                    <rect key="frame" x="0.0" y="144" width="414" height="15"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="dIx-CP-IuR"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="al2-3h-zCA"/>
-            <color key="backgroundColor" name="backGroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="1mY-Lm-tSm" firstAttribute="top" secondItem="Mva-si-c2U" secondAttribute="bottom" id="7b4-OV-WTt"/>
                 <constraint firstItem="Mva-si-c2U" firstAttribute="trailing" secondItem="al2-3h-zCA" secondAttribute="trailing" id="Ekm-ij-yy7"/>
                 <constraint firstItem="Mva-si-c2U" firstAttribute="leading" secondItem="al2-3h-zCA" secondAttribute="leading" id="HQS-Fe-08t"/>
                 <constraint firstItem="TII-Ua-Duj" firstAttribute="trailing" secondItem="al2-3h-zCA" secondAttribute="trailing" id="QcA-CQ-GAA"/>
                 <constraint firstItem="Mva-si-c2U" firstAttribute="top" secondItem="al2-3h-zCA" secondAttribute="top" id="RJ6-GA-5ve"/>
-                <constraint firstItem="TII-Ua-Duj" firstAttribute="top" secondItem="Mva-si-c2U" secondAttribute="bottom" id="Shk-x9-6mr"/>
-                <constraint firstItem="TII-Ua-Duj" firstAttribute="top" secondItem="al2-3h-zCA" secondAttribute="top" constant="100" id="adi-6r-vRa"/>
+                <constraint firstItem="al2-3h-zCA" firstAttribute="trailing" secondItem="1mY-Lm-tSm" secondAttribute="trailing" id="hIb-dn-p8u"/>
                 <constraint firstItem="al2-3h-zCA" firstAttribute="bottom" secondItem="TII-Ua-Duj" secondAttribute="bottom" id="klr-1L-yG6"/>
+                <constraint firstItem="1mY-Lm-tSm" firstAttribute="leading" secondItem="0oI-jk-Vn2" secondAttribute="leading" id="nmV-zA-pHj"/>
                 <constraint firstItem="TII-Ua-Duj" firstAttribute="leading" secondItem="al2-3h-zCA" secondAttribute="leading" id="rVR-Kl-80d"/>
+                <constraint firstItem="TII-Ua-Duj" firstAttribute="top" secondItem="1mY-Lm-tSm" secondAttribute="bottom" id="tL4-EM-iyw"/>
                 <constraint firstItem="TII-Ua-Duj" firstAttribute="leading" secondItem="al2-3h-zCA" secondAttribute="leading" id="uwT-4E-3AB"/>
                 <constraint firstItem="al2-3h-zCA" firstAttribute="trailing" secondItem="TII-Ua-Duj" secondAttribute="trailing" id="v0f-HZ-xMQ"/>
                 <constraint firstItem="TII-Ua-Duj" firstAttribute="bottom" secondItem="al2-3h-zCA" secondAttribute="bottom" id="xdD-t1-NIg"/>
@@ -113,6 +123,9 @@
         </namedColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

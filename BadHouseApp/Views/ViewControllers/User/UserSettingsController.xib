@@ -21,17 +21,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="juZ-EW-bXP">
-                    <rect key="frame" x="20" y="100" width="335" height="250"/>
+                    <rect key="frame" x="20" y="183.5" width="335" height="300"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="250" id="OgO-L3-OdR"/>
+                        <constraint firstAttribute="height" constant="300" id="OgO-L3-OdR"/>
                     </constraints>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemGray5Color"/>
             <constraints>
-                <constraint firstItem="juZ-EW-bXP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="EBd-3j-J8B"/>
+                <constraint firstItem="juZ-EW-bXP" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="0yw-B3-rb0"/>
+                <constraint firstItem="juZ-EW-bXP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Pwv-OO-LdB"/>
                 <constraint firstItem="juZ-EW-bXP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bkg-r7-wf9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="juZ-EW-bXP" secondAttribute="trailing" constant="20" id="enI-c1-3H2"/>
             </constraints>
@@ -41,6 +42,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
