@@ -5,7 +5,7 @@ import CDAlertView
 // Mark UIViewcontroller-Extension
 extension UIViewController {
    
-    func setupCDAlert(title: String, message: String, action: String, alertType: CDAlertViewType) {
+    func showCDAlert(title: String, message: String, action: String, alertType: CDAlertViewType) {
         let alert = CDAlertView(title: title, message: message, type: alertType)
         let alertAction = CDAlertViewAction(title: action, font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
         alert.add(action: alertAction)

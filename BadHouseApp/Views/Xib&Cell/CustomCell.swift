@@ -6,7 +6,7 @@ import RxSwift
 protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Event, cell: UITableViewCell)
 }
-final class TalkCell: UITableViewCell {
+final class CustomCell: UITableViewCell {
     // MARK: - Properties
     static let id = String(describing: self)
     @IBOutlet weak var cellImagevView: UIImageView!

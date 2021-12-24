@@ -25,7 +25,7 @@ final class TalkViewController: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(TalkCell.nib(), forCellReuseIdentifier: TalkCell.id)
+        tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
         tableView.addSubview(refreshView)
     }
   
@@ -48,7 +48,7 @@ extension TalkViewController: UITableViewDataSource {
         return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TalkCell.id, for: indexPath) as? TalkCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
         return cell
     }
 }

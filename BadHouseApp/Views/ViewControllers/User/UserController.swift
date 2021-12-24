@@ -72,7 +72,7 @@ final class UserController: UIViewController {
     private func setupTableView() {
         groupTableView.delegate = self
         groupTableView.dataSource = self
-        groupTableView.register(TalkCell.nib(), forCellReuseIdentifier: TalkCell.id)
+        groupTableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
         let nib = UserProfileHeaderView.self
         groupTableView.register(nib, forHeaderFooterViewReuseIdentifier: UserProfileHeaderView.id)
     }
@@ -86,7 +86,7 @@ extension UserController: UITableViewDataSource {
         return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TalkCell.id, for: indexPath) as? TalkCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
         if indexPath.section == 0 {
        
         } else if indexPath.section == 1 {

@@ -144,12 +144,12 @@
 		D3C1BFF62775A41400C6C761 /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF52775A41400C6C761 /* AlertProvider.swift */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
-		D3C4E95726E33A5700C21E46 /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* TalkCell.swift */; };
+		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */; };
-		D3FD194D26E4791500B6740E /* TalkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* TalkCell.xib */; };
+		D3FD194D26E4791500B6740E /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* CustomCell.xib */; };
 		D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */; };
 		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
@@ -304,13 +304,13 @@
 		D3C1BFF52775A41400C6C761 /* AlertProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProvider.swift; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
-		D3C4E95626E33A5700C21E46 /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
+		D3C4E95626E33A5700C21E46 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseErrorEnum.swift; sourceTree = "<group>"; };
-		D3FD194C26E4791500B6740E /* TalkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkCell.xib; sourceTree = "<group>"; };
+		D3FD194C26E4791500B6740E /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewModel.swift; sourceTree = "<group>"; };
 		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
@@ -399,9 +399,10 @@
 		D353D8E426F16C2F00221B7D /* Xib&Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D3FD194C26E4791500B6740E /* TalkCell.xib */,
-				D3C4E95626E33A5700C21E46 /* TalkCell.swift */,
+				D3FD194C26E4791500B6740E /* CustomCell.xib */,
+				D3C4E95626E33A5700C21E46 /* CustomCell.swift */,
 				D353D8E126F1621F00221B7D /* ChatCell.xib */,
+				D353D8E026F1621F00221B7D /* ChatCell.swift */,
 				D37FA52826EB091300B8559F /* EventInfoCell.xib */,
 				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
@@ -639,7 +640,6 @@
 			children = (
 				D3976EEF270337580016CEB2 /* ViewControllers */,
 				D353D8E426F16C2F00221B7D /* Xib&Cell */,
-				D3C4E93A26E0F56900C21E46 /* Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -675,14 +675,6 @@
 				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D3C4E93A26E0F56900C21E46 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				D353D8E026F1621F00221B7D /* ChatCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		D3FFD326271EBBD100DE54ED /* API-Service */ = {
@@ -787,7 +779,7 @@
 				D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */,
 				D38864082768DA9200FC4F07 /* MainUserDetailController.xib in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
-				D3FD194D26E4791500B6740E /* TalkCell.xib in Resources */,
+				D3FD194D26E4791500B6740E /* CustomCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */,
 				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
@@ -998,7 +990,7 @@
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
-				D3C4E95726E33A5700C21E46 /* TalkCell.swift in Sources */,
+				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
 				D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,

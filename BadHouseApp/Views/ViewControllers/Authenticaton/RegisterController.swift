@@ -206,7 +206,7 @@ class RegisterController: UIViewController {
     }
     func signUpErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
-        self.setupCDAlert(title: "登録できません",
+        self.showCDAlert(title: "登録できません",
                           message: message,
                           action: "OK",
                           alertType: .error)

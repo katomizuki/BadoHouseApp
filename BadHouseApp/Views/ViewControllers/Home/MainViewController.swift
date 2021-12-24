@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
         if !Network.shared.isOnline() {
-            self.setupCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
+            self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }
         //        if Auth.auth().currentUser == nil {
         //            DispatchQueue.main.async {
@@ -149,7 +149,7 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         if searchText.isEmpty {
-            setupCDAlert(title: "検索エラー",
+            showCDAlert(title: "検索エラー",
                          message: "１文字以上入力してください",
                          action: "OK",
                          alertType: CDAlertViewType.error)
@@ -182,13 +182,13 @@ extension MainViewController: EventInfoCellDelegate {
             BlockService.sendBlockEventData(eventId: eventId) { result in
                 switch result {
                 case .success:
-                    self.setupCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
+                    self.showCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
                     guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
                     self.eventArray.remove(at: indexPath[1])
                     self.collectionView.reloadData()
                 case .failure(let error):
                     let message = self.setupFirestoreErrorMessage(error: error as! NSError)
-                    self.setupCDAlert(title: "通報に失敗しました", message: message, action: "OK", alertType: .warning)
+                    self.showCDAlert(title: "通報に失敗しました", message: message, action: "OK", alertType: .warning)
                 }
             }
         }

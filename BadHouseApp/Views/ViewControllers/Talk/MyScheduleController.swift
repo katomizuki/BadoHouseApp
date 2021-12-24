@@ -83,7 +83,7 @@ final class MyScheduleController: UIViewController {
                          paddingLeft: 0)
         tableview.delegate = self
         tableview.dataSource = self
-        let nib = TalkCell.nib()
+        let nib = CustomCell.nib()
         tableview.register(nib, forCellReuseIdentifier: cellId)
     }
     // MARK: - Initialize
@@ -105,7 +105,7 @@ extension MyScheduleController: UITableViewDelegate, UITableViewDataSource {
         return eventArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TalkCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CustomCell
         let event = eventArray[indexPath.row]
         cell.event = event
         cell.trashDelegate = self
