@@ -151,6 +151,10 @@
 		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
 		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
 		D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */; };
+		D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617E2776B8E7004381E4 /* SearchSelection.swift */; };
+		D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761802776BDFB004381E4 /* UISlider+Extension.swift */; };
+		D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761822776C231004381E4 /* RegisterCoordinator.swift */; };
+		D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761842776C23C004381E4 /* LoginCoordinator.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */; };
@@ -330,6 +334,10 @@
 		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
 		D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCoordinator.swift; sourceTree = "<group>"; };
+		D3D7617E2776B8E7004381E4 /* SearchSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelection.swift; sourceTree = "<group>"; };
+		D3D761802776BDFB004381E4 /* UISlider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISlider+Extension.swift"; sourceTree = "<group>"; };
+		D3D761822776C231004381E4 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
+		D3D761842776C23C004381E4 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
@@ -410,6 +418,8 @@
 				D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */,
 				D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */,
 				D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */,
+				D3D761822776C231004381E4 /* RegisterCoordinator.swift */,
+				D3D761842776C23C004381E4 /* LoginCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -591,6 +601,7 @@
 				D3B72CFC274A320000253933 /* BadmintonLevel.swift */,
 				D3B72CFE274A322700253933 /* UserInfoEnum.swift */,
 				D3F2458E2775EA270030DA1B /* SettingsSelection.swift */,
+				D3D7617E2776B8E7004381E4 /* SearchSelection.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -704,6 +715,7 @@
 				D3B72CF0274A2EAA00253933 /* UIImageView+Extenstion.swift */,
 				D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */,
 				D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */,
+				D3D761802776BDFB004381E4 /* UISlider+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1042,6 +1054,7 @@
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
+				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
@@ -1049,6 +1062,7 @@
 				D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
+				D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
@@ -1064,6 +1078,7 @@
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
+				D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */,
 				D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */,
 				D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
@@ -1109,6 +1124,7 @@
 				D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */,
 				D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
+				D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
 				D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,

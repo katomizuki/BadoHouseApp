@@ -40,25 +40,25 @@ final class MakeEventSecondViewModel:MakeEventSecondViewModelType,MakeEventSecon
         var message = String()
         switch num * 10 {
         case 0..<1:
-            message = BadmintonLevel.one.rawValue
+            message = BadmintonLevel(rawValue: 0)!.description
         case 1..<2:
-            message = BadmintonLevel.two.rawValue
+            message = BadmintonLevel(rawValue: 1)!.description
         case 2..<3:
-            message = BadmintonLevel.three.rawValue
+            message = BadmintonLevel(rawValue: 2)!.description
         case 3..<4:
-            message = BadmintonLevel.four.rawValue
+            message = BadmintonLevel(rawValue: 3)!.description
         case 4..<5:
-            message = BadmintonLevel.five.rawValue
+            message = BadmintonLevel(rawValue: 4)!.description
         case 5..<6:
-            message = BadmintonLevel.six.rawValue
+            message = BadmintonLevel(rawValue: 5)!.description
         case 6..<7:
-            message = BadmintonLevel.seven.rawValue
+            message = BadmintonLevel(rawValue: 6)!.description
         case 7..<8:
-            message = BadmintonLevel.eight.rawValue
+            message = BadmintonLevel(rawValue: 7)!.description
         case 8..<9:
-            message = BadmintonLevel.nine.rawValue
+            message = BadmintonLevel(rawValue: 8)!.description
         case 9...10:
-            message = BadmintonLevel.ten.rawValue
+            message = BadmintonLevel(rawValue: 9)!.description
         default:
             break
         }

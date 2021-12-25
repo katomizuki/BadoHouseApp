@@ -6,21 +6,17 @@ import Firebase
 import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
-
-class RegisterController: UIViewController {
+protocol RegisterFlow:AnyObject {
+    func toLogin()
+}
+final class RegisterController: UIViewController {
     // MARK: - Properties
-  
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
         return button
     }()
-    private var displayName = String()
-    private var pictureURL = String()
-    private let iv: UIImageView = {
-        let iv = UIImageView()
-        return iv
-    }()
+   
     private let disposeBag = DisposeBag()
     private let registerBinding = RegisterViewModel()
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
@@ -28,66 +24,23 @@ class RegisterController: UIViewController {
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
         return button
     }()
-    private lazy var ruleButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("利用規約", for: .normal)
-        button.addTarget(self, action: #selector(handleRuleButton), for: .touchUpInside)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        return button
-    }()
+   
     private var currentNonce: String?
+    var coordinator:RegisterFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLayout()
         setupBinding()
-        setupDelegate()
+        setupGoogleLogin()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
     }
     // MARK: - SetupMethod
-    private func setupDelegate() {
+    private func setupGoogleLogin() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-    }
-    private func setupLayout() {
-//        let stackView = UIStackView(arrangedSubviews: [nameTextField,
-//                                                       emailTextField,
-//                                                       passwordTextField,
-//                                                       registerButton,
-//                                                       googleView,
-//                                                       appleButton
-//                                                      ])
-//        stackView.axis = .vertical
-//        stackView.distribution = .fillEqually
-//        stackView.spacing = 20
-//        view.addSubview(stackView)
-//        view.addSubview(alreadyButton)
-//        view.addSubview(iv)
-//        view.addSubview(ruleButton)
-//        nameTextField.anchor(height: 45)
-//        stackView.anchor(top: iv.bottomAnchor,
-//                         left: view.leftAnchor,
-//                         right: view.rightAnchor,
-//                         paddingTop: 20,
-//                         paddingRight: 20,
-//                         paddingLeft: 20,
-//                         centerX: view.centerXAnchor,
-//                         height: 430)
-//        iv.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-//                  paddingTop: 30,
-//                  centerX: view.centerXAnchor,
-//                  width: 100,
-//                  height: 100)
-//        alreadyButton.anchor(top: stackView.bottomAnchor,
-//                             paddingTop: 20,
-//                             centerX: view.centerXAnchor)
-//        ruleButton.anchor(top: alreadyButton.bottomAnchor,
-//                          paddingTop: 10,
-//                          centerX: view.centerXAnchor,
-//                          width: 100)
     }
     private func setupBinding() {
 //        nameTextField.rx.text
@@ -224,12 +177,6 @@ class RegisterController: UIViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-    }
-    @objc private func handleRuleButton() {
-        print(#function)
-        let vc = RuleController()
-        vc.delegate = self
-        present(vc, animated: true, completion: nil)
     }
 }
 // MARK: - GIDSignInDelegate

@@ -26,10 +26,9 @@ class HomeCoordinator: Coordinator,MainFlow {
         coordinator(to: PracticeDetailCoordinator(navigationController: self.navigationController))
     }
     func toAuthentication(_ vc: UIViewController) {
-        let vc = RegisterController.init(nibName: R.nib.registerController.name, bundle: nil)
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        vc.present(nav, animated: true, completion: nil)
+        coordinator(to: RegisterCoordinator(navigationController: navigationController,
+                                            viewController: vc))
+       
     }
     
 }

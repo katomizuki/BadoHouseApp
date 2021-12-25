@@ -88,7 +88,7 @@ extension UserPageController: UINavigationControllerDelegate, UIImagePickerContr
 // MARK: UITableViewDelegate
 extension UserPageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if UserInfo.userSection[indexPath.row] == UserInfo.level {
+        if UserInfoSelection(rawValue: indexPath.row) == .level {
             coordinator?.toMyLevel()
         }
         guard let cell = tableView.cellForRow(at: indexPath) else {
@@ -103,7 +103,7 @@ extension UserPageController: UITableViewDelegate {
         presentationController?.permittedArrowDirections = .up
         presentationController?.sourceView = cell
         presentationController?.sourceRect = cell.bounds
-        viewController.keyword = UserInfo.userSection[indexPath.row]
+        viewController.keyword = UserInfoSelection(rawValue: indexPath.row) ?? .level
         viewController.presentationController?.delegate = self
         present(viewController, animated: true, completion: nil)
     }
@@ -112,11 +112,11 @@ extension UserPageController: UITableViewDelegate {
 // MARK: - UITableViewDatasource
 extension UserPageController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserInfo.userSection.count
+        return UserInfoSelection.allCases.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: cellId)
-        cell.textLabel?.text = UserInfo.userSection[indexPath.row]
+        cell.textLabel?.text = UserInfoSelection(rawValue: indexPath.row)?.description
         cell.selectionStyle = .none
         return cell
     }

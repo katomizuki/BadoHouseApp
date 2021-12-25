@@ -8,7 +8,7 @@ final class MyPageInfoPopoverController: UIViewController {
     weak var delegate: PopDismissDelegate?
     private let cellId = "popCellId"
     var cellArray = Gender.genderArray
-    var keyword = String()
+    var keyword:UserInfoSelection = .level
     lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.delegate = self
@@ -34,13 +34,13 @@ final class MyPageInfoPopoverController: UIViewController {
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor)
         switch keyword {
-        case UserInfo.gender:
+        case UserInfoSelection.gender:
             cellArray = Gender.genderArray
-        case UserInfo.badmintonTime:
+        case UserInfoSelection.badmintonTime:
             cellArray = Constants.Data.yearArray
-        case UserInfo.place:
+        case UserInfoSelection.place:
             cellArray = Place.placeArray
-        case UserInfo.age:
+        case UserInfoSelection.age:
             cellArray = Constants.Data.ageArray
         default:
             break

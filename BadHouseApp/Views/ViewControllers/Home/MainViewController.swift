@@ -34,6 +34,7 @@ final class MainViewController: UIViewController {
         if !Network.shared.isOnline() {
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }
+        coordinator?.toAuthentication(self)
     }
     private func setupNavBarButton() {
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
