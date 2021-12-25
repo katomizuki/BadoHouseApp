@@ -50,18 +50,25 @@ final class UserController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.willAppear()
+        viewModel.inputs.willAppear()
     }
 
     private func setupBinding() {
-        viewModel.outputs.userName
-            .bind(to: myName.rx.text)
-            .disposed(by: disposeBag)
-        
+        viewModel.outputs.userName.subscribe(onNext: {[weak self] userName in
+            guard let self = self else { return }
+            self.myName.text = userName
+        }).disposed(by: disposeBag)
+
         viewModel.outputs.userUrl.subscribe(onNext: { [weak self] url in
             guard let self = self else { return }
             self.myImageView.sd_setImage(with: url)
         }).disposed(by: disposeBag)
+        
+        viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            print("エラー")
+        }).disposed(by: disposeBag)
+
 
 
     
