@@ -131,9 +131,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
-            self.navigationController?.pushViewController(controller, animated: true)
-//            self.coordinator?.toPracticeDetail()
+        coordinator?.toPracticeDetail()
     }
 }
 // MARK: - CLLOcationManagerDelegate

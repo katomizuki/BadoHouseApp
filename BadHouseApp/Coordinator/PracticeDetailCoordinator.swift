@@ -12,8 +12,19 @@ class PracticeDetailCoordinator:Coordinator,PracticeDetailFlow {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = PracticeDetailController.init(nibName: "PracticeDetailController", bundle: nil)
+        print(#function,"ssss")
+        let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
+    }
+    func toUserDetail() {
+        print(#function)
+//        coordinator(to: User)
+    }
+    func toChat() {
+        
+    }
+    func toCircleDetail() {
+        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController))
     }
 }

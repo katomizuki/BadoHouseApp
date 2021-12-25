@@ -2,8 +2,10 @@ import UIKit
 import SDWebImage
 import Firebase
 import Charts
-
-final class CircleDetailController: UIViewController {
+protocol CircleDetailFlow {
+    
+}
+final class CircleDetailController: UIViewController,CircleDetailFlow {
     // MARK: - Properties
 
     @IBOutlet private weak var friendImageView: UIImageView!
@@ -18,7 +20,7 @@ final class CircleDetailController: UIViewController {
         }
     }
     @IBOutlet private weak var teamMemberTableView: UITableView!
-    
+    var coordinator:CircleDetailFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

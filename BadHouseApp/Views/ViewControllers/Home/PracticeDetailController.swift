@@ -11,13 +11,19 @@ import Charts
 import CoreLocation
 import MapKit
 protocol PracticeDetailFlow {
-    
+    func toCircleDetail()
+    func toUserDetail()
+    func toChat()
 }
 final class PracticeDetailController: UIViewController {
     // MARK: - Properties
-    @IBOutlet private weak var eventImageView: UIImageView!
-    @IBOutlet private weak var groupImageView: UIImageView!
-    @IBOutlet private weak var leaderImageView: UIImageView!
+    @IBOutlet private weak var practiceImageView: UIImageView!
+    @IBOutlet private weak var userImageView: UIImageView! {
+        didSet { userImageView.changeCorner(num: 30) }
+    }
+    @IBOutlet private weak var circleImageView: UIImageView! {
+        didSet { circleImageView.changeCorner(num: 30) }
+    }
     @IBOutlet private weak var mapView: MKMapView!
     private var defaultRegion: MKCoordinateRegion {
         let x =  0.0
@@ -32,13 +38,23 @@ final class PracticeDetailController: UIViewController {
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    @IBOutlet private weak var scrollView: UIScrollView!
     var coordinator: PracticeDetailFlow?
-    private var chatId: String?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    @IBAction private func didTapChatButton(_ sender: Any) {
+    }
+    @IBAction private func didTapCircleDetailButton(_ sender: Any) {
+        print(#function)
+        coordinator?.toCircleDetail()
+    }
+    @IBAction private func didTapUserButton(_ sender: Any) {
+//        coordinator?.toUserDetail()
+        let controller = MainUserDetailController.init(nibName: R.nib.mainUserDetailController.name, bundle: nil)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
