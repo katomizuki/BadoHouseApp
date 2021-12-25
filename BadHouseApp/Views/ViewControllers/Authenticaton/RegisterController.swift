@@ -11,6 +11,7 @@ protocol RegisterFlow:AnyObject {
 }
 final class RegisterController: UIViewController {
     // MARK: - Properties
+    @IBOutlet private weak var stackView: UIStackView!
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
@@ -41,6 +42,10 @@ final class RegisterController: UIViewController {
     private func setupGoogleLogin() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        stackView.addArrangedSubview(googleView)
+        stackView.addArrangedSubview(appleButton)
+        googleView.anchor(height:40)
+        appleButton.anchor(height:40)
     }
     private func setupBinding() {
 //        nameTextField.rx.text

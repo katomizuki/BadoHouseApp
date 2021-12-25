@@ -1,6 +1,4 @@
 import UIKit
-import Foundation
-import UIKit
 import FirebaseAuth
 import RxSwift
 import RxCocoa
