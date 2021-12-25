@@ -12,12 +12,12 @@ class LevelDetailCoordinator: Coordinator ,LevelDetailFlow{
         self.viewController = viewController
     }
     func start() {
-        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
+        let controller = LevelDetailController.init(nibName: R.nib.levelDetailController.name, bundle: nil)
         controller.coordinator = self
         viewController.present(controller, animated: true)
     }
     func dismiss() {
-        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
+        let controller = LevelDetailController.init(nibName: R.nib.levelDetailController.name, bundle: nil)
         controller.coordinator = self
         controller.dismiss(animated: true, completion: nil)
     }

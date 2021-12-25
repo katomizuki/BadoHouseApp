@@ -12,7 +12,7 @@ class EventAdditionlItemsCoordinator:Coordinator,EventAdditionlItemsFlow {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = EventAdditionlItemsController.init(nibName: "EventAdditionlItemsController", bundle: nil)
+        let controller = EventAdditionlItemsController.init(nibName: R.nib.eventAdditionlItemsController.name, bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

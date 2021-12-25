@@ -7,7 +7,7 @@
 
 
 
- class SearchFriendCoordinator:Coordinator {
+ class SearchFriendCoordinator: Coordinator {
     func start() {
         
     }

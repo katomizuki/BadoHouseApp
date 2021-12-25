@@ -13,13 +13,13 @@ class AdditionalPlaceCoordinator: Coordinator,AddtionalPlaceFlow {
         self.viewController = viewController
     }
     func start() {
-        let controller = AddtionalPlaceController.init(nibName: "AddtionalPlaceController", bundle: nil)
+        let controller = AddtionalPlaceController.init(nibName: R.nib.addtionalPlaceController.name, bundle: nil)
         controller.modalPresentationStyle = .fullScreen
         controller.coordinator = self
         viewController.present(controller, animated: true, completion: nil)
     }
     func dismiss() {
-        let controller = AddtionalPlaceController.init(nibName: "AddtionalPlaceController", bundle: nil)
+        let controller = AddtionalPlaceController.init(nibName: R.nib.addtionalPlaceController.name, bundle: nil)
         controller.dismiss(animated: true, completion: nil)
     }
 }

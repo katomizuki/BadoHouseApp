@@ -13,7 +13,7 @@ class AddtionalEventLevelCoordinator:Coordinator,AddtionalEventLevelFlow {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = AddtionalEventLevelController.init(nibName: "AddtionalEventLevelController", bundle: nil)
+        let controller = AddtionalEventLevelController.init(nibName: R.nib.addtionalEventLevelController.name, bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

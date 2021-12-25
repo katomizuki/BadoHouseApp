@@ -15,7 +15,7 @@ class MakePracticeCoordinator:Coordinator,AdditionalEventTitleFlow {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = AdditionalEventTitleController.init(nibName: "AdditionalEventTitleController", bundle: nil)
+        let controller = AdditionalEventTitleController.init(nibName: R.nib.additionalEventTitleController.name, bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

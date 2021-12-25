@@ -15,7 +15,7 @@ class AddtionalPracticeElementCoordinator:Coordinator,AddtionalPracticeElementFl
         self.navigationController = navigationController
     }
     func start() {
-        let controller = AdditionalEventElementController.init(nibName: "AdditionalEventElementController", bundle: nil)
+        let controller = AdditionalEventElementController.init(nibName: R.nib.additionalEventElementController.name, bundle: nil)
         self.viewController = controller
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
