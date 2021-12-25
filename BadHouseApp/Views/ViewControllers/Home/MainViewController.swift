@@ -19,10 +19,12 @@ final class MainViewController: UIViewController {
     var (myLatitude, myLongitude) = (Double(), Double())
     private let disposeBag = DisposeBag()
     var coordinator: MainFlow?
+    private let viewModel = HomeViewModel()
     @IBOutlet private weak var collectionView: UICollectionView!
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.didLoad()
         setupLocationManager()
         setupCollectionView()
         setupBinding()
@@ -30,11 +32,7 @@ final class MainViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      
-        if !Network.shared.isOnline() {
-            self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
-        }
-        coordinator?.toAuthentication(self)
+        viewModel.willAppear()
     }
     private func setupNavBarButton() {
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
@@ -71,6 +69,16 @@ final class MainViewController: UIViewController {
         coordinator?.toMakeEvent()
     }
     private func setupBinding() {
+        viewModel.outputs.isAuth.bind { [weak self] _ in
+            guard let self = self else { return }
+            self.coordinator?.toAuthentication(self)
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.isNetWorkError.bind { [weak self] _ in
+            guard let self = self else { return }
+            self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
+        }.disposed(by: disposeBag)
+
     }
     
    

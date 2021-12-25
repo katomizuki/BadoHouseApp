@@ -11,20 +11,29 @@ protocol LoginFlow:AnyObject {
 }
 final class LoginController: UIViewController {
     // MARK: - Properties
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var notRegisterButton: UIButton!
+    @IBOutlet private weak var emailTextField: UITextField!
+    var coordinator: LoginFlow?
+    private var currentNonce: String?
     private let disposeBag = DisposeBag()
-    private let loginBinding = LoginViewModel()
+    private let viewModel = LoginViewModel(authAPI: AuthService(), userAPI: UserService())
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
         return button
     }()
-    private var currentNonce: String?
-    var coordinator:LoginFlow?
+    private lazy var appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleLogin), for: .touchUpInside)
+        return button
+    }()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         setupBinding()
         setupGoogleLogin()
-        view.backgroundColor = .blue
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -33,45 +42,41 @@ final class LoginController: UIViewController {
     private func setupGoogleLogin() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        stackView.addArrangedSubview(googleView)
+        stackView.addArrangedSubview(appleButton)
+        appleButton.anchor(height: 40)
     }
     private func setupBinding() {
-//        emailTextField.rx.text
-//            .asDriver()
-//            .drive { [weak self] text in
-//                if text?.count != 0 {
-//                    self?.emailTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-//                    self?.emailTextField.layer.borderWidth = 3
-//                } else {
-//                    self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
-//                    self?.emailTextField.layer.borderWidth = 2
-//                }
-//                self?.loginBinding.emailTextInput.onNext(text ?? "")
-//            }
-//            .disposed(by: disposeBag)
-//        passwordTextField.rx.text
-//            .asDriver()
-//            .drive { [weak self] text in
-//                if text?.count != 0 {
-//                    self?.passwordTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-//                    self?.passwordTextField.layer.borderWidth = 3
-//                } else {
-//                    self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
-//                    self?.passwordTextField.layer.borderWidth = 2
-//                }
-//                self?.loginBinding.passwordTextInput.onNext(text ?? "")
-//            }
-//            .disposed(by: disposeBag)
-//        loginButton.rx.tap
-//            .asDriver()
-//            .drive { [weak self] _ in
-//                self?.login()
-//            }
-//            .disposed(by: disposeBag)
-//        loginBinding.validRegisterDriver
-//            .drive { validAll in
-//
-//            }
-//            .disposed(by: disposeBag)
+        
+        emailTextField.rx.text
+            .asDriver()
+            .drive { [weak self] text in
+                self?.viewModel.emailTextInput.onNext(text ?? "")
+            }.disposed(by: disposeBag)
+        
+        passwordTextField.rx.text
+            .asDriver()
+            .drive { [weak self] text in
+                self?.viewModel.passwordTextInput.onNext(text ?? "")
+            }.disposed(by: disposeBag)
+        
+        loginButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.login()
+            }.disposed(by: disposeBag)
+        
+        viewModel.validRegisterDriver
+            .drive { [weak self] validAll in
+                guard let self = self else { return }
+                self.loginButton.isEnabled = validAll
+            }.disposed(by: disposeBag)
+        
+        notRegisterButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.coordinator?.toRegister()
+        }).disposed(by: disposeBag)
+
     }
     // MARK: - HelperMethod
     private func sha256(input: String) -> String {
@@ -106,12 +111,7 @@ final class LoginController: UIViewController {
             }
             return result
     }
-    // MARK: - SelectorMethod
-    @objc private func moveAlready() {
-        coordinator?.toRegister()
-    }
     @objc private func appleLogin() {
-        print(#function)
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()
         let nonce = randomNonceString()

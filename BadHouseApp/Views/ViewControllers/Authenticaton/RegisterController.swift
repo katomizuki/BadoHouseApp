@@ -8,24 +8,28 @@ import AuthenticationServices
 import CryptoKit
 protocol RegisterFlow:AnyObject {
     func toLogin()
+    func toMain()
 }
 final class RegisterController: UIViewController {
     // MARK: - Properties
+    @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var alreadyButton: UIButton!
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
         return button
     }()
-   
     private let disposeBag = DisposeBag()
-    private let registerBinding = RegisterViewModel()
+    private let viewModel = RegisterViewModel(authAPI: AuthService(), userAPI: UserService())
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
         return button
     }()
-   
     private var currentNonce: String?
     var coordinator:RegisterFlow?
     // MARK: - LifeCycle
@@ -44,89 +48,61 @@ final class RegisterController: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         stackView.addArrangedSubview(googleView)
         stackView.addArrangedSubview(appleButton)
-        googleView.anchor(height:40)
-        appleButton.anchor(height:40)
+        googleView.anchor(height: 40)
+        appleButton.anchor(height: 40)
     }
     private func setupBinding() {
-//        nameTextField.rx.text
-//            .asDriver()
-//            .drive { [weak self] text in
-//                if text?.count != 0 {
-//                    self?.nameTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-//                    self?.nameTextField.layer.borderWidth = 3
-//                } else {
-//                    self?.nameTextField.layer.borderColor = UIColor.darkGray.cgColor
-//                    self?.nameTextField.layer.borderWidth = 2
-//                }
-//                self?.registerBinding.nameTextInput.onNext(text ?? "")
-//            }
-//            .disposed(by: disposeBag)
-//        emailTextField.rx.text
-//            .asDriver()
-//            .drive { [weak self] text in
-//                if text?.count != 0 {
-//                    self?.emailTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-//                    self?.emailTextField.layer.borderWidth = 3
-//                } else {
-//                    self?.emailTextField.layer.borderColor = UIColor.darkGray.cgColor
-//                    self?.emailTextField.layer.borderWidth = 2
-//                }
-//                self?.registerBinding.emailTextInput.onNext(text ?? "")
-//            }
-//            .disposed(by: disposeBag)
-//        passwordTextField.rx.text
-//            .asDriver()
-//            .drive { [weak self] text in
-//                if text?.count != 0 {
-//                    self?.passwordTextField.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
-//                    self?.passwordTextField.layer.borderWidth = 3
-//                } else {
-//                    self?.passwordTextField.layer.borderColor = UIColor.darkGray.cgColor
-//                    self?.passwordTextField.layer.borderWidth = 2
-//                }
-//                self?.registerBinding.passwordTextInput.onNext(text ?? "")
-//            }
-//            .disposed(by: disposeBag)
-//        registerButton.rx.tap
-//            .asDriver()
-//            .drive { [weak self] _ in
-//                self?.createUser()
-//            }
-//            .disposed(by: disposeBag)
-//        registerBinding.validRegisterDriver
-//            .drive { validAll in
-//                self.registerButton.isEnabled = validAll
-//                self.registerButton.backgroundColor = validAll ? Constants.AppColor.OriginalBlue : .darkGray
-//            }
-//            .disposed(by: disposeBag)
-//        alreadyButton.rx.tap
-//            .asDriver()
-//            .drive { [weak self] _ in
-//                let controller = LoginController.init(nibName: "LoginController", bundle: nil)
-//                self?.navigationController?.pushViewController(controller, animated: true)
-//            }
-//            .disposed(by: disposeBag)
+        
+        nameTextField.rx.text
+            .asDriver()
+            .drive { [weak self] text in
+                self?.viewModel.nameTextInput.onNext(text ?? "")
+            }.disposed(by: disposeBag)
+        
+        emailTextField.rx.text
+            .asDriver()
+            .drive { [weak self] text in
+                self?.viewModel.emailTextInput.onNext(text ?? "")
+            }.disposed(by: disposeBag)
+        
+        passwordTextField.rx.text
+            .asDriver()
+            .drive { [weak self] text in
+                self?.viewModel.passwordTextInput.onNext(text ?? "")
+            }.disposed(by: disposeBag)
+        
+        registerButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                guard let self  = self else { return }
+                self.viewModel.didTapRegisterButton()
+            }.disposed(by: disposeBag)
+        
+        viewModel.validRegisterDriver
+            .drive { validAll in
+                print(validAll)
+                self.registerButton.isEnabled = validAll
+            }.disposed(by: disposeBag)
+        
+        alreadyButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                guard let self = self else { return }
+                self.coordinator?.toLogin()
+            }.disposed(by: disposeBag)
+        
+        viewModel.errorHandling.subscribe { [weak self] value in
+            guard let self = self else { return }
+            self.signUpErrAlert(value.error! as NSError)
+        }.disposed(by: disposeBag)
+        
+        viewModel.isCompleted.subscribe { [weak self] _ in
+            guard let self = self else { return }
+            self.coordinator?.toMain()
+        }.disposed(by: disposeBag)
+
     }
-    // MARK: - HelperMethod
-    private func createUser() {
-        print(#function)
-//        let name = nameTextField.text ?? ""
-//        let email = emailTextField.text ?? ""
-//        let password = passwordTextField.text ?? ""
-//        AuthService.register(name: name, email: email, password: password) { result, error in
-//            if result {
-//                let bool = false
-//                UserDefaults.standard.set(bool, forKey: "MyId")
-//                print("Create User Success")
-//                self.dismiss(animated: true, completion: nil)
-//            } else {
-//                if let error = error as NSError? {
-//                    print("Register Error")
-//                    self.signUpErrAlert(error)
-//                }
-//            }
-//        }
-    }
+
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
@@ -162,6 +138,7 @@ final class RegisterController: UIViewController {
         }
         return result
     }
+    
     func signUpErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
         self.showCDAlert(title: "登録できません",
@@ -266,10 +243,5 @@ extension RegisterController: ASAuthorizationControllerPresentationContextProvid
         return self.view.window!
     }
 }
-// MARK: - RuleControllerDelegate
-extension RegisterController: RuleControllerDelegate {
-    func didTapBackButton(_ vc: RuleController) {
-        vc.dismiss(animated: true, completion: nil)
-    }
-}
+
 

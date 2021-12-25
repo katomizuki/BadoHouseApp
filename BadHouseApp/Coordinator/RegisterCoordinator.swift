@@ -17,12 +17,15 @@ final class RegisterCoordinator:Coordinator,RegisterFlow {
     }
     func start() {
         let controller = RegisterController.init(nibName: R.nib.registerController.name, bundle: nil)
-        let nav = UINavigationController(rootViewController: controller)
+        self.navigationController.setViewControllers([controller], animated: true)
         controller.coordinator = self
-        nav.modalPresentationStyle = .fullScreen
-        viewController.present(nav, animated: true, completion: nil)
+        navigationController.modalPresentationStyle = .fullScreen
+        viewController.present(navigationController, animated: true, completion: nil)
     }
     func toLogin() {
-        
+        coordinator(to: LoginCoordinator(navigationController: navigationController))
+    }
+    func toMain() {
+        viewController.dismiss(animated: true)
     }
 }

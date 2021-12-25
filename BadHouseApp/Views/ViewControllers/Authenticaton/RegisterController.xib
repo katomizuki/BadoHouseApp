@@ -11,6 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="alreadyButton" destination="XGz-eM-3zI" id="XQ2-ou-vuB"/>
+                <outlet property="emailTextField" destination="Hgg-Hb-UaX" id="cAO-ux-EFQ"/>
+                <outlet property="nameTextField" destination="sW8-YM-T9a" id="nvX-bt-Iah"/>
+                <outlet property="passwordTextField" destination="yY7-en-nnT" id="1dh-nk-lFt"/>
+                <outlet property="registerButton" destination="K0v-lr-itV" id="Ut4-hr-Kkk"/>
                 <outlet property="stackView" destination="08T-Rl-0OL" id="G4Q-ms-nqX"/>
                 <outlet property="view" destination="hhR-gK-FFF" id="i2d-J6-egS"/>
             </connections>
@@ -23,30 +28,27 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="08T-Rl-0OL">
                     <rect key="frame" x="30" y="223.5" width="315" height="220"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="名前" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sW8-YM-T9a">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="名前" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sW8-YM-T9a">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="hx1-fo-g9c"/>
                             </constraints>
-                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="メールアドレス" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgg-Hb-UaX">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgg-Hb-UaX">
                             <rect key="frame" x="0.0" y="60" width="315" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="fLk-ZW-47P"/>
                             </constraints>
-                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="パスワード" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yY7-en-nnT">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yY7-en-nnT">
                             <rect key="frame" x="0.0" y="120" width="315" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="WbW-eo-Z89"/>
                             </constraints>
-                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -61,13 +63,20 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGz-eM-3zI">
+                    <rect key="frame" x="97" y="611" width="181.5" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="gray" title="登録済みの方はこちらへ"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Hnt-4d-qZw"/>
             <color key="backgroundColor" systemColor="systemGray5Color"/>
             <constraints>
                 <constraint firstItem="08T-Rl-0OL" firstAttribute="centerY" secondItem="hhR-gK-FFF" secondAttribute="centerY" id="4TG-GW-Pju"/>
                 <constraint firstItem="08T-Rl-0OL" firstAttribute="leading" secondItem="Hnt-4d-qZw" secondAttribute="leading" constant="30" id="UZl-nf-0MM"/>
+                <constraint firstItem="Hnt-4d-qZw" firstAttribute="bottom" secondItem="XGz-eM-3zI" secondAttribute="bottom" constant="25" id="doP-pA-S9N"/>
                 <constraint firstItem="08T-Rl-0OL" firstAttribute="centerX" secondItem="hhR-gK-FFF" secondAttribute="centerX" id="g99-Sr-yvW"/>
+                <constraint firstItem="XGz-eM-3zI" firstAttribute="centerX" secondItem="hhR-gK-FFF" secondAttribute="centerX" id="hSf-jx-AWC"/>
                 <constraint firstItem="Hnt-4d-qZw" firstAttribute="trailing" secondItem="08T-Rl-0OL" secondAttribute="trailing" constant="30" id="jjL-Hw-1LQ"/>
             </constraints>
             <point key="canvasLocation" x="265" y="7"/>

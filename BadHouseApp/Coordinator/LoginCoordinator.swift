@@ -6,7 +6,7 @@
 //
 
 import UIKit
-final class LoginCoordinator:Coordinator,LoginFlow {
+final class LoginCoordinator: Coordinator, LoginFlow {
     let navigationController:UINavigationController
     init(navigationController:UINavigationController) {
         self.navigationController = navigationController

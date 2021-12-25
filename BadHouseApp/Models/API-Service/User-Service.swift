@@ -1,10 +1,20 @@
 import Foundation
 import Firebase
 import RxSwift
-protocol UserServiceAPIProtocol {
-    func getUserData() -> Single<Any?>
+protocol UserServiceProtocol {
+    func postUser(uid: String, dic: [String : Any],completion:@escaping (Result<Void, Error>) -> Void)
 }
-struct UserService {
+struct UserService: UserServiceProtocol {
+    func postUser(uid: String, dic: [String : Any], completion:@escaping (Result<Void, Error>) -> Void) {
+        Ref.UsersRef.document(uid).setData(dic) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            completion(.success(()))
+        }
+    }
+    
     static func setUserData(uid: String,
                             password: String,
                             email: String,
@@ -122,23 +132,4 @@ extension UserService {
         }
     }
 }
-extension UserService: UserServiceAPIProtocol {
-    func getUserData() -> Single<Any?> {
-        return Single<Any?>.create { (observer) -> Disposable in
-            Ref.UsersRef.getDocuments(){ (querySnapshot, err) in
-                        if let error = err {
-                            observer(.failure(error))
-                            return
-                        }
-                        if let snapShot = querySnapshot {
-                            // Firestoreからデータ取得成功
-                            let data = snapShot.documents
-                            let users = data.map({ User(dic: $0.data()) })
-                            observer(.success(users))
-                            return
-                        }
-                    }
-                    return Disposables.create()
-                }
-        }
-}
+

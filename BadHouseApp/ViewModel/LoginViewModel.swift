@@ -25,8 +25,12 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
         passwordTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
+    var authAPI: AuthServiceProtocol
+    var userAPI: UserServiceProtocol
     // MARK: - initialize
-    init() {
+    init(authAPI:AuthServiceProtocol,userAPI:UserServiceProtocol) {
+        self.authAPI = authAPI
+        self.userAPI = userAPI
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
         let emailValid = emailTextOutput

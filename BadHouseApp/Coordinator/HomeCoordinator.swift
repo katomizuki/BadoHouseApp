@@ -26,7 +26,7 @@ class HomeCoordinator: Coordinator,MainFlow {
         coordinator(to: PracticeDetailCoordinator(navigationController: self.navigationController))
     }
     func toAuthentication(_ vc: UIViewController) {
-        coordinator(to: RegisterCoordinator(navigationController: navigationController,
+        coordinator(to: RegisterCoordinator(navigationController: UINavigationController(),
                                             viewController: vc))
        
     }
