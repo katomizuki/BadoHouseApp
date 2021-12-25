@@ -78,6 +78,8 @@ final class MainViewController: UIViewController {
             guard let self = self else { return }
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
+        
+        
 
     }
     
@@ -111,6 +113,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventInfoCell.id, for: indexPath) as? EventInfoCell else { fatalError() }
+        cell.delegate = self
         return cell
     }
 }
@@ -136,4 +139,8 @@ extension MainViewController: CLLocationManagerDelegate {
         myLongitude = longitude
     }
 }
-
+extension MainViewController: EventInfoCellDelegate {
+    func didTapBlockButton(_ cell: EventInfoCell) {
+        present(AlertProvider.postAlertVC(), animated: true)
+    }
+}

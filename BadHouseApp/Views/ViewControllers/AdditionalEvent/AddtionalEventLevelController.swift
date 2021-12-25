@@ -18,20 +18,29 @@ class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var maxLabel: UILabel!
     @IBOutlet private weak var maxSlider: UISlider!
     @IBOutlet private weak var minLabel: UILabel!
+    @IBOutlet private weak var circleTableView: UITableView!
     @IBOutlet private weak var minSlider: UISlider!
     private let viewModel = MakeEventSecondViewModel()
-    var coordinator:AddtionalEventLevelFlow?
+    var coordinator: AddtionalEventLevelFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         minSlider.value = 0.0
         maxSlider.value = 1.0
+        setupTableView()
+    }
+    private func setupTableView() {
+        circleTableView.delegate = self
+        circleTableView.dataSource = self
+        circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     private func setupBinding() {
+        
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.coordinator?.toNext()
         }).disposed(by: disposeBag)
+        
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             self.minLabel.text = "\(text)から"
@@ -50,5 +59,22 @@ class AddtionalEventLevelController: UIViewController {
     }
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
         coordinator?.toLevel()
+    }
+}
+extension AddtionalEventLevelController:UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+extension AddtionalEventLevelController:UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = "サークル名"
+        cell.contentConfiguration = configuration
+        return cell
     }
 }

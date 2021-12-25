@@ -9,7 +9,7 @@ final class EventAdditionlItemsController: UIViewController {
     var coordinator: EventAdditionlItemsFlow?
     @IBOutlet private weak var textView: UITextView! {
         didSet {
-//            textView.layer.borderColor = Constants.AppColor.OriginalBlue.cgColor
+            textView.layer.borderColor = UIColor.systemBlue.cgColor
             textView.layer.borderWidth = 1
         }
     }

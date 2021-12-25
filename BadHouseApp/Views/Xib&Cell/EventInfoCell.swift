@@ -49,4 +49,7 @@ final class EventInfoCell: UICollectionViewCell {
     // MARK: - helperMethod
     func configure() {
     }
+    @IBAction private func didTapAlertButton(_ sender: Any) {
+        self.delegate?.didTapBlockButton(self)
+    }
 }

@@ -44,7 +44,7 @@ protocol MainUserDetailFlow: AnyObject {
   
     // MARK: - Selector
      @objc private func didTapExpandedMenu() {
-         
+         present(AlertProvider.makeAlertVC(), animated: true)
      }
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {

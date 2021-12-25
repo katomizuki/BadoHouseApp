@@ -65,13 +65,26 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3N-pe-bRW">
+                                <rect key="frame" x="413" y="-10" width="55" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="Ebs-e9-pY2"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="..."/>
+                                <connections>
+                                    <action selector="didTapAlertButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="9Yv-oF-ewc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Kxz-Qh-5U0" firstAttribute="leading" secondItem="S6S-pU-e3I" secondAttribute="trailing" constant="20" id="E2I-Hv-mrN"/>
+                            <constraint firstAttribute="trailing" secondItem="C3N-pe-bRW" secondAttribute="trailing" constant="-10" id="F9B-kG-8i1"/>
                             <constraint firstItem="z3l-mi-KRV" firstAttribute="leading" secondItem="S6S-pU-e3I" secondAttribute="leading" id="Hmp-0B-gKq"/>
                             <constraint firstItem="S6S-pU-e3I" firstAttribute="top" secondItem="BMA-mu-hE0" secondAttribute="bottom" constant="10" id="JEH-mj-LcW"/>
                             <constraint firstItem="BMA-mu-hE0" firstAttribute="top" secondItem="fjc-5g-MNo" secondAttribute="top" constant="10" id="Lf6-zV-xcu"/>
+                            <constraint firstItem="C3N-pe-bRW" firstAttribute="top" secondItem="fjc-5g-MNo" secondAttribute="top" constant="-10" id="RLy-EX-awq"/>
                             <constraint firstItem="z3l-mi-KRV" firstAttribute="trailing" secondItem="S6S-pU-e3I" secondAttribute="trailing" id="Wnc-ZF-2cI"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="z3l-mi-KRV" secondAttribute="bottom" id="Z8S-Wh-Czr"/>
                             <constraint firstItem="S6S-pU-e3I" firstAttribute="leading" secondItem="BMA-mu-hE0" secondAttribute="leading" id="bbY-rH-LZ4"/>
@@ -81,6 +94,7 @@
                             <constraint firstAttribute="trailing" secondItem="BMA-mu-hE0" secondAttribute="trailing" constant="10" id="fII-4C-IGD"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kxz-Qh-5U0" secondAttribute="trailing" constant="20" id="iHn-O8-QGj"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Kxz-Qh-5U0" secondAttribute="bottom" id="iby-sM-Grf"/>
+                            <constraint firstItem="BMA-mu-hE0" firstAttribute="top" secondItem="C3N-pe-bRW" secondAttribute="bottom" id="pa9-03-4yZ"/>
                         </constraints>
                     </view>
                 </subviews>
