@@ -1,15 +1,17 @@
 import UIKit
 import CDAlertView
-
+protocol TalkFlow:AnyObject {
+    func toChat()
+}
 final class TalkViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
-    var coordinator:TalkCoordinator?
     private lazy var refreshView: UIRefreshControl = {
         let view = UIRefreshControl()
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return view
     }()
+    var coordinator:TalkFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,5 +58,6 @@ extension TalkViewController: UITableViewDataSource {
 extension TalkViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+        coordinator?.toChat()
     }
 }

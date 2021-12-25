@@ -13,13 +13,10 @@ protocol MainFlow: AnyObject {
     func toPracticeDetail()
     func toAuthentication(_ vc:UIViewController)
 }
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
     var (myLatitude, myLongitude) = (Double(), Double())
-    private var eventArray = [Event]()
-    private let cellId = "eventId"
-    private var user: User?
     private let disposeBag = DisposeBag()
     var coordinator: MainFlow?
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -27,28 +24,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationManager()
-        setupDelegate()
         setupCollectionView()
-        EventServie.deleteEvent()
-        UIApplication.shared.applicationIconBadgeNumber = 0
         setupBinding()
         setupNavBarButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
+      
         if !Network.shared.isOnline() {
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }
-        //        if Auth.auth().currentUser == nil {
-        //            DispatchQueue.main.async {
-        //                let vc = RegisterController.init(nibName: "RegisterController", bundle: nil)
-        //                let nav = UINavigationController(rootViewController: vc)
-        //                nav.modalPresentationStyle = .fullScreen
-        //                self.present(nav, animated: true, completion: nil)
-        
-        //            }
-        //        }
     }
     private func setupNavBarButton() {
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
@@ -71,6 +56,8 @@ class MainViewController: UIViewController {
         if #available(iOS 15.0, *) {
             navigationItem.rightBarButtonItem?.tintColor = .tintColor
         }
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.backButtonDisplayMode = .minimal
     }
     @objc private func didTapMapButton() {
         coordinator?.toMap()
@@ -85,10 +72,7 @@ class MainViewController: UIViewController {
     private func setupBinding() {
     }
     
-    private func setupDelegate() {
-        
-    }
-    
+   
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -118,7 +102,6 @@ extension MainViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventInfoCell.id, for: indexPath) as? EventInfoCell else { fatalError() }
-        cell.delegate = self
         return cell
     }
 }
@@ -145,29 +128,3 @@ extension MainViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: - EventInfoCellDelegate
-extension MainViewController: EventInfoCellDelegate {
-    func didTapBlockButton(_ cell: EventInfoCell) {
-        guard let eventId = cell.event?.eventId else { return }
-        let alertVC = UIAlertController(title: "コンテンツに不正な内容を発見した場合は通報またはブロックしてください", message: "", preferredStyle: .actionSheet)
-        let alertAction = UIAlertAction(title: "通報する", style: .default) { _ in
-            print("通報")
-            BlockService.sendBlockEventData(eventId: eventId) { result in
-                switch result {
-                case .success:
-                    self.showCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
-                    guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
-                    self.eventArray.remove(at: indexPath[1])
-                    self.collectionView.reloadData()
-                case .failure(let error):
-                    let message = self.setupFirestoreErrorMessage(error: error as! NSError)
-                    self.showCDAlert(title: "通報に失敗しました", message: message, action: "OK", alertType: .warning)
-                }
-            }
-        }
-        let cancleAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        alertVC.addAction(alertAction)
-        alertVC.addAction(cancleAction)
-        present(alertVC, animated: true, completion: nil)
-    }
-}

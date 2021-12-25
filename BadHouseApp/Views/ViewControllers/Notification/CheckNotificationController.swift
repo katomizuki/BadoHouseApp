@@ -1,9 +1,13 @@
 import UIKit
-
+protocol CheckNotificationFlow: AnyObject {
+    func toUserDetail()
+    func toCircleDetail()
+    func toChat()
+}
 final class CheckNotificationController: UIViewController {
     
     @IBOutlet private weak var notificationCollectionView: UICollectionView!
-    var coordinator: NotificationCoordinator?
+    var coordinator: CheckNotificationFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -19,7 +23,7 @@ final class CheckNotificationController: UIViewController {
 }
 extension CheckNotificationController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        coordinator?.toChat()
     }
 }
 extension CheckNotificationController: UICollectionViewDataSource {

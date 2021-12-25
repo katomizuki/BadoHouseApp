@@ -1,6 +1,9 @@
 
 import UIKit
-
+protocol MainUserDetailFlow: AnyObject {
+    func toCircleDetail()
+    func toFriendList()
+}
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
      @IBOutlet private weak var applyFriendButton: UIButton! {
@@ -18,6 +21,7 @@ import UIKit
          }
      }
      @IBOutlet private weak var circleCollectionView: UICollectionView!
+     var coordinator:MainUserDetailFlow?
      // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +48,7 @@ import UIKit
      }
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {
+         coordinator?.toFriendList()
          let controller = FriendsListController.init(nibName: R.nib.friendsListController.name, bundle: nil)
          navigationController?.pushViewController(controller, animated: true)
      }
@@ -52,6 +57,7 @@ import UIKit
 extension MainUserDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
+        coordinator?.toCircleDetail()
         let controller = CircleDetailController.init(nibName: R.nib.circleDetailController.name, bundle: nil)
         navigationController?.pushViewController(controller, animated: true)
     }

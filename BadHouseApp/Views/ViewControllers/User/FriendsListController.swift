@@ -6,10 +6,13 @@
 //
 
 import UIKit
-
+protocol FriendListFlow:AnyObject {
+    func toUserDetail()
+}
 final class FriendsListController: UIViewController {
 
     @IBOutlet private weak var friendListTableView: UITableView!
+    var coordinator:FriendListFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -24,8 +27,7 @@ final class FriendsListController: UIViewController {
 extension FriendsListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
-        navigationController?.pushViewController(controller, animated: true)
+        coordinator?.toUserDetail()
     }
 }
 extension FriendsListController:UITableViewDataSource {

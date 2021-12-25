@@ -47,7 +47,6 @@
 		D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */; };
 		D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */; };
 		D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */; };
-		D3629FA3276F5E0A0052B820 /* FriendsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA2276F5E0A0052B820 /* FriendsCoordinator.swift */; };
 		D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */; };
 		D3629FA7276F5E600052B820 /* SearchDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA6276F5E600052B820 /* SearchDetailCoordinator.swift */; };
 		D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA8276F5E680052B820 /* MapCoordinator.swift */; };
@@ -149,6 +148,9 @@
 		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
+		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
+		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
+		D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
 		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */; };
@@ -221,7 +223,6 @@
 		D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailCoordinator.swift; sourceTree = "<group>"; };
-		D3629FA2276F5E0A0052B820 /* FriendsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA6276F5E600052B820 /* SearchDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA8276F5E680052B820 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
@@ -326,6 +327,9 @@
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
+		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
+		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
+		D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCoordinator.swift; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
 		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
@@ -389,7 +393,6 @@
 				D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */,
 				D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */,
 				D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */,
-				D3629FA2276F5E0A0052B820 /* FriendsCoordinator.swift */,
 				D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */,
 				D3629FA6276F5E600052B820 /* SearchDetailCoordinator.swift */,
 				D3629FA8276F5E680052B820 /* MapCoordinator.swift */,
@@ -405,6 +408,8 @@
 				D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */,
 				D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */,
 				D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */,
+				D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */,
+				D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -440,7 +445,6 @@
 				D37FA52726EB091300B8559F /* EventInfoCell.swift */,
 				D3698EF22771E0FE004FA773 /* NotificationCell.swift */,
 				D3698EF32771E0FE004FA773 /* NotificationCell.xib */,
-				D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */,
 				D32E59892774519600C59548 /* MemberCell.swift */,
 				D32E598A2774519600C59548 /* MemberCell.xib */,
 				D32E598D2774859D00C59548 /* UserCircleCell.swift */,
@@ -569,6 +573,7 @@
 				D3969DD6274732F30022AE24 /* Home */,
 				D3969DD4274732D00022AE24 /* User */,
 				D3969DD2274732C90022AE24 /* Authenticaton */,
+				D3D761772776AA2C004381E4 /* CustomView */,
 				D3BDB53D26E0541E00C53780 /* TabController */,
 			);
 			path = ViewControllers;
@@ -723,6 +728,15 @@
 				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D3D761772776AA2C004381E4 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */,
+				D3D761782776AA7D004381E4 /* CustomInputView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		D3FFD326271EBBD100DE54ED /* API-Service */ = {
@@ -1026,7 +1040,6 @@
 				D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */,
 				D3629FAD276F5EB70052B820 /* InviteCoordinator.swift in Sources */,
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,
-				D3629FA3276F5E0A0052B820 /* FriendsCoordinator.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
@@ -1045,7 +1058,9 @@
 				D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */,
 				D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
+				D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
+				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
@@ -1099,6 +1114,7 @@
 				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
+				D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */,
 				D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
