@@ -20,7 +20,8 @@ class HomeCoordinator: Coordinator,MainFlow {
     }
     func toDetailSearch(_ vc: UIViewController) {
         let controller = EventSearchController.init(nibName: R.nib.eventSearchController.name, bundle: nil)
-        vc.present(controller, animated: true)
+        let nav = UINavigationController(rootViewController: controller)
+        vc.present(nav, animated: true)
     }
     func toPracticeDetail() {
         coordinator(to: PracticeDetailCoordinator(navigationController: self.navigationController))

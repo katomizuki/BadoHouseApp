@@ -30,15 +30,15 @@ struct StorageService {
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
-                UserService.updateUserData(dic: dicWithImage) { result in
-                    switch result {
-                    case .failure(let error):
-                        completion(.failure(error))
-                        print("upload Image Error", error)
-                    case .success:
-                        completion(.success("Success"))
-                }
-            }
+//                UserService.updateUserData(dic: dicWithImage) { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        completion(.failure(error))
+//                        print("upload Image Error", error)
+//                    case .success:
+//                        completion(.success("Success"))
+//                }
+//            }
         }
     }
  }
@@ -74,40 +74,7 @@ struct StorageService {
                 completion(urlString)
             }
         }
-    }
-    // MARK: - sendVideoData
-    static func sendVideoData(videoUrl: URL, senderId: String, keyWord: String) {
-        let id = UUID().uuidString
-        let videoRef = Ref.StorageVideoRef.child(id)
-        let metadata = StorageMetadata()
-        metadata.contentType = "video/quickTime"
-        if let videoData = NSData(contentsOf: videoUrl) as Data? {
-            videoRef.putData(videoData, metadata: metadata) { _, error in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                videoRef.downloadURL { url, error in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                    guard let urlString = url?.absoluteString else { return }
-                    let videoId = Ref.VideoRef.document().documentID
-                    let dic = ["id": videoId,
-                               "keyWord": keyWord,
-                               "senderId": senderId,
-                               "videoUrl": urlString] as [String: Any]
-                    Ref.VideoRef.document(videoId).setData(dic) { error in
-                        if let error = error {
-                            print(error)
-                            return
-                        }
-                    }
-                }
-            }
-        }
-    }
+    } 
     static func setupStorageErrorMessage(error: NSError) -> String {
         var message = ""
         let storageError = StorageErrorCode(rawValue: error.code)

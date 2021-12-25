@@ -39,6 +39,7 @@ final class UserController: UIViewController {
         }
     }
     private let disposeBag = DisposeBag()
+    private let viewModel = UserViewModel(userAPI: UserService())
     var coordinator: UserFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -47,9 +48,23 @@ final class UserController: UIViewController {
         setupNavigationItem()
         setupBinding()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear()
+    }
 
     private func setupBinding() {
+        viewModel.outputs.userName
+            .bind(to: myName.rx.text)
+            .disposed(by: disposeBag)
         
+        viewModel.outputs.userUrl.subscribe(onNext: { [weak self] url in
+            guard let self = self else { return }
+            self.myImageView.sd_setImage(with: url)
+        }).disposed(by: disposeBag)
+
+
+    
     }
     
     private func setupNavigationItem() {

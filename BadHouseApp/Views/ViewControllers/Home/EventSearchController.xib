@@ -30,7 +30,7 @@
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemGray5Color"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="cQL-XH-Oi2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7x0-ga-STI"/>
                 <constraint firstItem="cQL-XH-Oi2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Ho7-tP-PKQ"/>
@@ -41,9 +41,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

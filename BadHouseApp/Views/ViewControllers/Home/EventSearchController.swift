@@ -17,14 +17,19 @@ final class EventSearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupNavigationBar()
+    }
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
+    }
+    @objc private func didTapCloseButton() {
+        dismiss(animated: true)
     }
     private func setupTableView() {
         searchSelectionTableView.delegate = self
         searchSelectionTableView.dataSource = self
         searchSelectionTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
     }
-
-
 }
 extension EventSearchController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

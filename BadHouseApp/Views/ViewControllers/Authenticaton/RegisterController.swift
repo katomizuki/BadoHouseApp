@@ -179,15 +179,15 @@ extension RegisterController: GIDSignInDelegate {
                     guard let id = result?.user.uid else { return }
                     guard let email = email else { return }
                     guard let name = fullName else { return }
-                    UserService.setUserData(uid: id, password: "",
-                                            email: email,
-                                            name: name) { result in
-                        if result == true {
-                            let bool = false
-                            UserDefaults.standard.set(bool, forKey: "MyId")
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
+//                    UserService.setUserData(uid: id, password: "",
+//                                            email: email,
+//                                            name: name) { result in
+//                        if result == true {
+//                            let bool = false
+//                            UserDefaults.standard.set(bool, forKey: "MyId")
+//                            self.dismiss(animated: true, completion: nil)
+//                        }
+//                    }
                 }
             }
         }
@@ -219,16 +219,16 @@ extension RegisterController: ASAuthorizationControllerDelegate {
                 } else {
                     guard let email = result?.user.email else { return }
                     guard let uid = result?.user.uid else { return }
-                    UserService.setUserData(uid: uid,
-                                            password: "",
-                                            email: email,
-                                            name: name) { result in
-                        if result == true {
-                            let bool = false
-                            UserDefaults.standard.set(bool, forKey: "MyId")
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
+//                    UserService.setUserData(uid: uid,
+//                                            password: "",
+//                                            email: email,
+//                                            name: name) { result in
+//                        if result == true {
+//                            let bool = false
+//                            UserDefaults.standard.set(bool, forKey: "MyId")
+//                            self.dismiss(animated: true, completion: nil)
+//                        }
+//                    }
                 }
             }
         }
