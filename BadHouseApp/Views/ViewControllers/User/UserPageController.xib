@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserPageController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="nameTextField" destination="l3s-BW-zff" id="nO5-mL-XPf"/>
                 <outlet property="playerTextField" destination="g83-iH-lb2" id="uIR-i2-0kV"/>
                 <outlet property="playerView" destination="nZT-zI-lvD" id="jSp-bE-Wqh"/>
                 <outlet property="racketTextField" destination="EGV-s3-hzl" id="HhT-no-bz2"/>
@@ -49,15 +50,6 @@
                                         <constraint firstAttribute="height" constant="300" id="Gvw-Wt-JeM"/>
                                     </constraints>
                                 </tableView>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="名前" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l3s-BW-zff">
-                                    <rect key="frame" x="130" y="55" width="215" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="aYA-X4-55c"/>
-                                    </constraints>
-                                    <color key="textColor" systemColor="systemGray2Color"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="バドミントン〇〇年してました。よろしくお願いします！" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DdB-1n-PMQ">
                                     <rect key="frame" x="30" y="629" width="315" height="141"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -65,6 +57,14 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="名前" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l3s-BW-zff">
+                                    <rect key="frame" x="130" y="55" width="215" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="aYA-X4-55c"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tiD-bh-ZdW">
                                     <rect key="frame" x="30" y="472" width="315" height="50"/>
                                     <subviews>

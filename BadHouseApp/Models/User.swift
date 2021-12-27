@@ -14,6 +14,8 @@ struct User {
     var place: String
     var badmintonTime: String
     var age: String
+    var racket: String
+    var player: String
     init?(dic: [String: Any]) {
         guard let email = dic["email"] as? String,
               let name = dic["name"] as? String,
@@ -32,5 +34,7 @@ struct User {
         self.place = dic["place"] as? String ?? "未設定"
         self.badmintonTime = dic["badmintonTime"] as? String ?? "未設定"
         self.age = dic["age"] as? String ?? "未設定"
+        self.racket = dic["racket"] as? String ?? "未設定"
+        self.player = dic["player"] as? String ?? "未設定"
     }
 }

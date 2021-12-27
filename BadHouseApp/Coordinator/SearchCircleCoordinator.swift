@@ -15,6 +15,7 @@ class SearchCircleCoordinator:Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        
+        let controller = CircleSearchController.init(nibName: R.nib.circleSearchController.name, bundle: nil)
+        navigationController.pushViewController(controller, animated: true)
     }
 }

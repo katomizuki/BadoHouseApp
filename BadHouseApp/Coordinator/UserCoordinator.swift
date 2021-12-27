@@ -15,18 +15,17 @@ class UserCoordinator: Coordinator, UserFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toDetailUser() {
-        let controller = MainUserDetailController.init(nibName: R.nib.mainUserDetailController.name, bundle: nil)
-        navigationController.pushViewController(controller, animated: true)
+        coordinator(to: UserCoordinator(navigationController: navigationController))
+        
     }
     func toDetailCircle() {
-        let controller = CircleDetailController.init(nibName: R.nib.circleDetailController.name, bundle: nil)
-        navigationController.pushViewController(controller, animated: true)
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
     }
     func toSearchCircle() {
-        let controller = CircleSearchController.init(nibName: R.nib.circleSearchController.name, bundle: nil)
-        navigationController.pushViewController(controller, animated: true)
+        coordinator(to: SearchCircleCoordinator(navigationController: navigationController))
     }
     func toMyPage(_ vc: UIViewController) {
+//        coordinator(to: MyPageDetailCoordinator(na))
         let controller = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen

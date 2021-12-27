@@ -38,6 +38,8 @@ final class UserPageController: UIViewController {
             userIntroductionTextView.changeCorner(num: 8)
         }
     }
+    @IBOutlet private weak var nameTextField: UITextField!
+    private let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +47,16 @@ final class UserPageController: UIViewController {
         setupTableView()
         setupNavigationBarItem()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         playerTextField.setUnderLine(width: playerView.frame.width)
         racketTextField.setUnderLine(width: racketView.frame.width)
     }
+    
     private func setupNavigationBarItem() {
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
         navigationItem.leftBarButtonItem = dismissButton
@@ -65,7 +72,6 @@ final class UserPageController: UIViewController {
         imagePicker.delegate = self
     }
     private func setupBinding() {
-        print(#function)
         userImageView.rx
             .tapGesture()
             .when(.recognized)
@@ -73,6 +79,17 @@ final class UserPageController: UIViewController {
                 guard let self = self else { return }
                 self.present(self.imagePicker, animated: true)
             }.disposed(by: disposeBag)
+        
+        viewModel.outputs.isError.subscribe { [weak self] _ in
+            self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.userSubject.subscribe(onNext: { [weak self] user in
+            self?.nameTextField.text = user.name
+            self?.racketTextField.text = user.racket
+            self?.playerTextField.text = user.player
+            self?.userIntroductionTextView.text = user.introduction
+        }).disposed(by: disposeBag)
     }
 }
 // MARK: - ImagePickerDelegate
@@ -116,7 +133,10 @@ extension UserPageController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: cellId)
-        cell.textLabel?.text = UserInfoSelection(rawValue: indexPath.row)?.description
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = UserInfoSelection(rawValue: indexPath.row)?.description
+        configuration.secondaryText = viewModel.getUserData(UserInfoSelection(rawValue: indexPath.row)!)
+        cell.contentConfiguration = configuration
         cell.selectionStyle = .none
         return cell
     }
