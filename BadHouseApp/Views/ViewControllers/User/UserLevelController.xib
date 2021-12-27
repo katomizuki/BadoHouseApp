@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserLevelController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
-                <outlet property="backButton" destination="8mG-Jh-vj4" id="BIs-1p-t6i"/>
                 <outlet property="levelLabel" destination="WlX-cZ-7Q7" id="V42-4L-gnW"/>
                 <outlet property="slider" destination="G5T-UK-x1U" id="SLd-JF-ase"/>
                 <outlet property="textView" destination="Jhb-Zg-BV6" id="qTc-PJ-BEo"/>
@@ -32,11 +31,11 @@
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-UK-x1U">
                     <rect key="frame" x="55" y="480.5" width="304" height="31"/>
-                    <color key="tintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" systemColor="systemBlueColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="xxx-XA-9dg"/>
                     </constraints>
-                    <color key="thumbTintColor" red="0.48862642049999999" green="0.51488065719999998" blue="0.95690721270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="thumbTintColor" systemColor="systemBlueColor"/>
                 </slider>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-Zg-BV6">
                     <rect key="frame" x="67" y="156" width="280" height="300"/>
@@ -117,16 +116,6 @@
                         <constraint firstAttribute="width" constant="300" id="xL5-kF-EdN"/>
                     </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mG-Jh-vj4">
-                    <rect key="frame" x="15" y="59" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="00N-Hz-ThF"/>
-                        <constraint firstAttribute="width" constant="35" id="HTo-TD-TNf"/>
-                    </constraints>
-                    <state key="normal">
-                        <color key="titleColor" systemColor="systemGray6Color"/>
-                    </state>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="JHs-Ry-aIn"/>
             <color key="backgroundColor" name="backGroundColor"/>
@@ -139,8 +128,6 @@
                 <constraint firstItem="Jhb-Zg-BV6" firstAttribute="top" secondItem="WlX-cZ-7Q7" secondAttribute="bottom" constant="8" symbolic="YES" id="CYP-HW-ejS"/>
                 <constraint firstItem="Jhb-Zg-BV6" firstAttribute="leading" secondItem="WlX-cZ-7Q7" secondAttribute="leading" id="NUl-gX-bhn"/>
                 <constraint firstItem="G5T-UK-x1U" firstAttribute="top" secondItem="Jhb-Zg-BV6" secondAttribute="bottom" constant="24.5" id="REO-oY-g8Z"/>
-                <constraint firstItem="8mG-Jh-vj4" firstAttribute="leading" secondItem="JHs-Ry-aIn" secondAttribute="leading" constant="15" id="TVA-ea-shM"/>
-                <constraint firstItem="8mG-Jh-vj4" firstAttribute="top" secondItem="JHs-Ry-aIn" secondAttribute="top" constant="15" id="WMm-ux-ETu"/>
                 <constraint firstItem="urY-8I-Ikl" firstAttribute="centerX" secondItem="z9c-Fd-sJT" secondAttribute="centerX" id="Y4n-kq-FKI"/>
                 <constraint firstItem="urY-8I-Ikl" firstAttribute="top" secondItem="Jhb-Zg-BV6" secondAttribute="bottom" constant="10" id="YLR-69-J5z"/>
                 <constraint firstItem="Jhb-Zg-BV6" firstAttribute="leading" secondItem="JHs-Ry-aIn" secondAttribute="leading" constant="67" id="jt8-n8-jmf"/>
@@ -160,8 +147,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

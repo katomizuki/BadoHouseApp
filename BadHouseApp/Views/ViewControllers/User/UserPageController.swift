@@ -3,6 +3,7 @@ import RxSwift
 import RxCocoa
 import FirebaseAuth
 import RxGesture
+import SDWebImage
 protocol UserPageFlow {
     func toMyLevel()
     func toDismiss()
@@ -47,10 +48,7 @@ final class UserPageController: UIViewController {
         setupTableView()
         setupNavigationBarItem()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.willAppear()
-    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         playerTextField.setUnderLine(width: playerView.frame.width)
@@ -65,8 +63,7 @@ final class UserPageController: UIViewController {
         self.dismiss(animated: true)
     }
     @objc private func didTapSaveButton() {
-        
-        self.dismiss(animated: true)
+        viewModel.inputs.saveUser()
     }
     // MARK: - SetupMethod
     private func setupTableView() {
@@ -93,12 +90,32 @@ final class UserPageController: UIViewController {
             self?.racketTextField.text = user.racket
             self?.playerTextField.text = user.player
             self?.userIntroductionTextView.text = user.introduction
+            self?.userImageView.sd_setImage(with: user.profileImageUrl)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe { [weak self] _ in
             self?.userInfoTableView.reloadData()
         }.disposed(by: disposeBag)
-
+        
+        userIntroductionTextView.rx.text.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.textViewInputs.onNext(text ?? "")
+        }.disposed(by: disposeBag)
+        
+        nameTextField.rx.text.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.nameTextFieldInputs.onNext(text ?? "")
+        }.disposed(by: disposeBag)
+        
+        racketTextField.rx.text.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.racketTextFieldInputs.onNext(text ?? "")
+        }.disposed(by: disposeBag)
+        
+        playerTextField.rx.text.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.playerTextFieldInputs.onNext(text ?? "")
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.isCompleted.subscribe { [weak self] _ in
+            self?.dismiss(animated: true)
+        }.disposed(by: disposeBag)
     }
 }
 // MARK: - ImagePickerDelegate
@@ -107,6 +124,8 @@ extension UserPageController: UINavigationControllerDelegate, UIImagePickerContr
         print(#function)
         if let image = info[.originalImage] as? UIImage {
             userImageView.image = image
+            viewModel.userImage = image
+            viewModel.isChangeImage = true
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -114,26 +133,29 @@ extension UserPageController: UINavigationControllerDelegate, UIImagePickerContr
 // MARK: UITableViewDelegate
 extension UserPageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if UserInfoSelection(rawValue: indexPath.row) == .level {
-            coordinator?.toMyLevel()
+            let controller = BadHouseApp.UserLevelController.init(user: viewModel.user!)
+            controller.delegate = self
+            navigationController?.pushViewController(controller, animated: true)
+        } else {
+            guard let cell = tableView.cellForRow(at: indexPath) else {
+                return }
+                let viewController = MyPageInfoPopoverController()
+                viewController.modalPresentationStyle = .popover
+                viewController.preferredContentSize = CGSize(width: 200, height: 150)
+                viewController.delegate = self
+                let presentationController = viewController.popoverPresentationController
+                presentationController?.delegate = self
+                presentationController?.permittedArrowDirections = .up
+                presentationController?.sourceView = cell
+                presentationController?.sourceRect = cell.bounds
+                viewController.keyword = UserInfoSelection(rawValue: indexPath.row) ?? .level
+                viewController.presentationController?.delegate = self
+                present(viewController, animated: true, completion: nil)
+            }
         }
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return
-        }
-        let viewController = MyPageInfoPopoverController()
-        viewController.modalPresentationStyle = .popover
-        viewController.preferredContentSize = CGSize(width: 200, height: 150)
-        viewController.delegate = self
-        let presentationController = viewController.popoverPresentationController
-        presentationController?.delegate = self
-        presentationController?.permittedArrowDirections = .up
-        presentationController?.sourceView = cell
-        presentationController?.sourceRect = cell.bounds
-        viewController.keyword = UserInfoSelection(rawValue: indexPath.row) ?? .level
-        viewController.presentationController?.delegate = self
-        present(viewController, animated: true, completion: nil)
     }
-}
 
 // MARK: - UITableViewDatasource
 extension UserPageController: UITableViewDataSource {
@@ -163,6 +185,13 @@ extension UserPageController: PopDismissDelegate {
 extension UserPageController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
+    }
+}
+// MARK: - UserLevelDelegate
+extension UserPageController: UserLevelDelegate {
+    func UserLevelController(vc: UserLevelController, text: String) {
+        viewModel.changeUser(.level, text: text)
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -25,7 +25,6 @@ class UserCoordinator: Coordinator, UserFlow {
         coordinator(to: SearchCircleCoordinator(navigationController: navigationController))
     }
     func toMyPage(_ vc: UIViewController) {
-//        coordinator(to: MyPageDetailCoordinator(na))
         let controller = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen

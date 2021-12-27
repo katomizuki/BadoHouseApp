@@ -66,7 +66,10 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
 // MARK: - TableViewDelegate
 extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
-        self.delegate?.popDismiss(vc: self,userInfoSelection: keyword,text: cellArray[indexPath.row])
+        let vc = UserPageController.init(nibName: R.nib.userPageController.name,
+                                         bundle: nil)
+        self.delegate?.popDismiss(vc: self,
+                                  userInfoSelection: keyword,
+                                  text: cellArray[indexPath.row])
     }
 }

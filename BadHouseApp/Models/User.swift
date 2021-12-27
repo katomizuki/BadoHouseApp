@@ -1,5 +1,6 @@
 
 import Firebase
+import Foundation
 
 struct User {
     var uid: String
@@ -8,7 +9,7 @@ struct User {
     var createdAt: Timestamp
     var updatedAt: Timestamp
     var introduction: String
-    var profileImageUrl: String
+    var profileImageUrlString: String
     var level: String
     var gender: String
     var place: String
@@ -16,6 +17,13 @@ struct User {
     var age: String
     var racket: String
     var player: String
+    var profileImageUrl:URL? {
+        if let url = URL(string: profileImageUrlString) {
+            return url
+        } else {
+            return nil
+        }
+    }
     init?(dic: [String: Any]) {
         guard let email = dic["email"] as? String,
               let name = dic["name"] as? String,
@@ -28,7 +36,7 @@ struct User {
         self.level = dic["level"] as? String ?? "レベル1"
         self.updatedAt = updateAt
         self.introduction = dic["introduction"] as? String ?? "未設定"
-        self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
+        self.profileImageUrlString = dic["profileImageUrl"] as? String ?? ""
         self.uid = uid
         self.gender = dic["gender"] as? String ?? "未設定"
         self.place = dic["place"] as? String ?? "未設定"

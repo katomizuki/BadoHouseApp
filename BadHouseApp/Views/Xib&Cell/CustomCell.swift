@@ -102,8 +102,8 @@ final class CustomCell: UITableViewCell {
     private func userconfigure() {
         guard let user = user else { return }
         self.label.text = user.name
-        let url = URL(string: user.profileImageUrl)
-        if user.profileImageUrl == "" {
+        let url = URL(string: user.profileImageUrlString)
+        if user.profileImageUrlString == "" {
     
         } else {
             self.cellImagevView.sd_setImage(with: url, completed: nil)

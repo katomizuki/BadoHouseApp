@@ -32,7 +32,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
                 guard let self = self else { return }
                 self.userName.accept(user.name)
-                if let url = URL(string: user.profileImageUrl) {
+                if let url = URL(string: user.profileImageUrlString) {
                     self.userUrl.accept(url)
                 } else {
                     self.userUrl.accept(nil)
