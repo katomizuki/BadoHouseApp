@@ -68,10 +68,6 @@ final class UserController: UIViewController {
             guard let self = self else { return }
             print("エラーだよん")
         }).disposed(by: disposeBag)
-
-
-
-    
     }
     
     private func setupNavigationItem() {

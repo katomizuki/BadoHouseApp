@@ -10,7 +10,7 @@ protocol MakeEventFirstViewModelInputs {
 protocol MakeEventFirstViewModelOutputs {
     var titleTextOutputs: PublishSubject<String> { get }
     var isButtonValid: BehaviorRelay<Bool> { get }
-    var buttonColor:UIColor { get }
+    var buttonColor: UIColor { get }
     var isTitle: BehaviorRelay<Bool> { get }
     var buttonTextColor: UIColor { get }
 }
@@ -43,8 +43,7 @@ final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstV
         isTitleValid.subscribe(onNext: { isTitle in
             self.isTitle.accept(isTitle)
         }).disposed(by: disposeBag)
-
-
+        
         titleTextOutputs.subscribe(onNext: { text in
             let isButtonValid = text.count >= 1
             self.isButtonValid.accept(isButtonValid)

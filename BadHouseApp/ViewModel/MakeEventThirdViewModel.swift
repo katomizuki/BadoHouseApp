@@ -12,8 +12,5 @@ protocol MakeEventThirdViewModelType {
 }
 final class MakeEventThirdViewModel:MakeEventThirdViewModelInputs,MakeEventThirdViewModelOutputs,MakeEventThirdViewModelType {
     var inputs: MakeEventThirdViewModelInputs { return self }
-    
     var outputs: MakeEventThirdViewModelOutputs { return self }
-    
-    
 }

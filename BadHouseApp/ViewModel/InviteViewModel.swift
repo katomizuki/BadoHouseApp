@@ -16,7 +16,9 @@ protocol InviteViewModelType {
     var inputs:InviteViewModelInputs { get  }
     var outputs:InviteViewModelOutputs { get }
 }
-final class InviteViewModel:InviteViewModelType,InviteViewModelInputs,InviteViewModelOutputs {
+final class InviteViewModel:InviteViewModelType,
+                                InviteViewModelInputs,
+                                InviteViewModelOutputs {
     var inputs: InviteViewModelInputs { return self }
     var outputs: InviteViewModelOutputs { return self }
 }

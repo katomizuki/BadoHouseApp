@@ -26,6 +26,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
         if let uid = Auth.auth().currentUser?.uid {
+            print(uid)
             userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
                 guard let self = self else { return }
                 self.userName.accept(user.name)

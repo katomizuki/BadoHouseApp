@@ -8,7 +8,9 @@ protocol UserServiceProtocol {
     func getUser(uid: String)->Single<User>
 }
 struct UserService: UserServiceProtocol {
-    func postUser(uid: String, dic: [String : Any], completion:@escaping (Result<Void, Error>) -> Void) {
+    func postUser(uid: String,
+                  dic: [String : Any],
+                  completion:@escaping (Result<Void, Error>) -> Void) {
         Ref.UsersRef.document(uid).setData(dic) { error in
             if let error = error {
                 completion(.failure(error))
@@ -36,7 +38,7 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
-    static func getUid()->String? {
+    static func getUid() -> String? {
         return Auth.auth().currentUser?.uid
     }
 }

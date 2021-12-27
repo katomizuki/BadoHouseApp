@@ -1,11 +1,8 @@
-import Foundation
 import RxSwift
 import RxCocoa
 
 
-class SearchFriendViewModel {
-    
-    
+final class SearchFriendViewModel {
     
     init(firebaseAPI: UserService) {
         

@@ -20,24 +20,13 @@ struct StorageService {
         let storageRef = Ref.StorageUserImageRef.child(fileName)
         storageRef.putData(upLoadImage, metadata: nil) { _, error in
             if let error = error {
-                print("Image Save Error", error)
                 completion(.failure(error))
                 return
             }
-            print("Image Save Success")
             StorageService.downloadStorage(userIconRef: storageRef) { url in
                 let urlString = url.absoluteString
                 var dicWithImage = dic
                 dicWithImage["profileImageUrl"] = urlString
-//                UserService.updateUserData(dic: dicWithImage) { result in
-//                    switch result {
-//                    case .failure(let error):
-//                        completion(.failure(error))
-//                        print("upload Image Error", error)
-//                    case .success:
-//                        completion(.success("Success"))
-//                }
-//            }
         }
     }
  }
@@ -48,10 +37,8 @@ struct StorageService {
         let storageRef = Ref.StorageTeamImageRef.child(fileName)
         storageRef.putData(upLoadImage, metadata: nil) { _, error in
             if let error = error {
-                print("Image Save Error", error)
                 return
             }
-            print("Image Save Succees")
             StorageService.downloadStorage(userIconRef: storageRef) { url in
                 let urlString = url.absoluteString
                 completion(urlString)
@@ -65,7 +52,6 @@ struct StorageService {
         let storageRef = Ref.StorageEventImageRef.child(fileName)
         storageRef.putData(upLoadImage, metadata: nil) { _, error in
             if let error = error {
-                print("Image Save Error", error)
                 return
             }
             StorageService.downloadStorage(userIconRef: storageRef) { url in

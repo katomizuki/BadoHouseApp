@@ -13,7 +13,7 @@ protocol MakeEventSecondViewModelType {
     var inputs: MakeEventSecondViewModelInputs { get }
     var outputs: MakeEventSecondViewModelOutputs { get }
 }
-final class MakeEventSecondViewModel:MakeEventSecondViewModelType,MakeEventSecondViewModelOutputs,MakeEventSecondViewModelInputs {
+final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSecondViewModelOutputs, MakeEventSecondViewModelInputs {
     var minLevel = PublishSubject<Float>()
     var maxLevel = PublishSubject<Float>()
     var inputs: MakeEventSecondViewModelInputs { return self }
@@ -36,7 +36,7 @@ final class MakeEventSecondViewModel:MakeEventSecondViewModelType,MakeEventSecon
         }).disposed(by: disposeBag)
     }
     // MARK: - Helper
-    func changeNumber(num: Float)-> String {
+    func changeNumber(num: Float) -> String {
         var message = String()
         switch num * 10 {
         case 0..<1:
