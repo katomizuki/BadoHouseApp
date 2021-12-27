@@ -20,7 +20,7 @@ final class CircleDetailController: UIViewController,CircleDetailFlow {
         }
     }
     @IBOutlet private weak var teamMemberTableView: UITableView!
-    var coordinator:CircleDetailFlow?
+    var coordinator: CircleDetailFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

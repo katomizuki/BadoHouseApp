@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate protocol CDAlertViewActionDelegate: AnyObject {
+fileprivate protocol CDAlertViewActionDelegate: class {
     func didTap(action: CDAlertViewAction)
 }
 

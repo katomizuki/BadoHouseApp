@@ -16,12 +16,10 @@ pod 'FSCalendar'
 pod 'PKHUD'
 pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
-pod 'Firebase/Crashlytics'
-pod 'Firebase/Analytics'
-pod "RxGesture"
-pod 'Charts'
 pod 'RxSwift', '6.2.0'
 pod 'RxCocoa', '6.2.0'
-pod 'RxDataSources', '~> 5.0'
 pod 'R.swift'
+pod 'RxGesture'
+pod 'Charts'
+pod 'Firebase/Crashlytics'
 end

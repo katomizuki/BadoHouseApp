@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,6 +40,7 @@
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
+		D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */; };
 		D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */; };
 		D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F96276F5D680052B820 /* PracticeDataSource.swift */; };
 		D3629F99276F5D790052B820 /* TalkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F98276F5D790052B820 /* TalkDataSource.swift */; };
@@ -131,7 +132,6 @@
 		D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52726E0525100C53780 /* AppDelegate.swift */; };
 		D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52926E0525100C53780 /* SceneDelegate.swift */; };
 		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
-		D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB54726E0590800C53780 /* GoogleService-Info.plist */; };
 		D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */; };
 		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
@@ -221,6 +221,7 @@
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataSource.swift; sourceTree = "<group>"; };
 		D3629F96276F5D680052B820 /* PracticeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDataSource.swift; sourceTree = "<group>"; };
 		D3629F98276F5D790052B820 /* TalkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkDataSource.swift; sourceTree = "<group>"; };
@@ -314,7 +315,6 @@
 		D3BDB53026E0525200C53780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3BDB53526E0525200C53780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3BDB54526E055C900C53780 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D3BDB54726E0590800C53780 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anchor+Extension.swift"; sourceTree = "<group>"; };
 		D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
@@ -661,7 +661,7 @@
 				D3BDB53B26E0540C00C53780 /* Models */,
 				D3BDB53026E0525200C53780 /* Assets.xcassets */,
 				D3BDB53526E0525200C53780 /* Info.plist */,
-				D3BDB54726E0590800C53780 /* GoogleService-Info.plist */,
+				D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */,
 			);
 			path = BadHouseApp;
 			sourceTree = "<group>";
@@ -829,9 +829,6 @@
 			);
 			mainGroup = D3BDB51B26E0525100C53780;
 			packageReferences = (
-				D351FEE8275A318100AA518B /* XCRemoteSwiftPackageReference "RxSwift" */,
-				D351FEEF275A331600AA518B /* XCRemoteSwiftPackageReference "RxDataSources" */,
-				D351FEF4275A35E500AA518B /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -886,8 +883,8 @@
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
 				D3F245932775EC730030DA1B /* PasswordSettingController.xib in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
+				D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */,
 				D32E59902774859D00C59548 /* UserCircleCell.xib in Resources */,
-				D3BDB54826E0590800C53780 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,33 +1337,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D351FEE8275A318100AA518B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
-		D351FEEF275A331600AA518B /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		D351FEF4275A35E500AA518B /* XCRemoteSwiftPackageReference "RxGesture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = D3BDB51C26E0525100C53780 /* Project object */;
 }

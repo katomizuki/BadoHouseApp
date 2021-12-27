@@ -66,7 +66,7 @@ final class UserController: UIViewController {
         
         viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            print("エラー")
+            print("エラーだよん")
         }).disposed(by: disposeBag)
 
 

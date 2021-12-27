@@ -13,7 +13,7 @@ protocol HomeViewModelType {
     var inputs: HomeViewModelInputs { get }
     var outputs: HomeViewModelOutputs { get }
 }
-final class HomeViewModel:HomeViewModelInputs,HomeViewModelOutputs,HomeViewModelType {
+final class HomeViewModel:HomeViewModelInputs, HomeViewModelOutputs, HomeViewModelType {
     var isNetWorkError: PublishSubject<Void> = PublishSubject<Void>()
     var isAuth: PublishSubject<Void> = PublishSubject<Void>()
     var inputs: HomeViewModelInputs { return self }

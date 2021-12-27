@@ -25,11 +25,9 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     private let disposeBag = DisposeBag()
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
-        print("🌂")
         if let uid = Auth.auth().currentUser?.uid {
             userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
                 guard let self = self else { return }
-                print(user)
                 self.userName.accept(user.name)
                 if let url = URL(string: user.profileImageUrl) {
                     self.userUrl.accept(url)
@@ -39,15 +37,10 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             }, onFailure: {[weak self] _ in
                 guard let self = self else { return }
                 self.isError.onNext(true)
-                print("fafafa")
             }).disposed(by: disposeBag)
-
-        } else {
-            print("ffaa")
         }
     }
     func willAppear() {
-        print("⚡️")
        
     }
 }
