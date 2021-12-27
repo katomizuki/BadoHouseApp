@@ -66,8 +66,9 @@ final class UserController: UIViewController {
         
         viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            print("エラーだよん")
+            self.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
         }).disposed(by: disposeBag)
+        
     }
     
     private func setupNavigationItem() {

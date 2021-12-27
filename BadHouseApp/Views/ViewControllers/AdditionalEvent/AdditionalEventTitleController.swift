@@ -24,10 +24,10 @@ final class AdditionalEventTitleController: UIViewController {
     @IBOutlet private weak var noImageView: UIImageView!
     @IBOutlet private weak var notTitleLabel: UILabel!
     private let disposeBag = DisposeBag()
-    private var selectedTeam: TeamModel?
+    private var selectedTeam: Circle?
     private var eventTitle = String()
     private var kindCircle = BadmintonCircle(rawValue: 0)?.name
-    private var team: TeamModel?
+    private var team: Circle?
     private let pickerView = UIImagePickerController()
     private let viewModel = MakeEventFirstViewModel()
     var coordinator: AdditionalEventTitleFlow?

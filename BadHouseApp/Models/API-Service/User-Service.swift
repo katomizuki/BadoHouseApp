@@ -8,6 +8,7 @@ protocol UserServiceProtocol {
     func getUser(uid: String)->Single<User>
 }
 struct UserService: UserServiceProtocol {
+    
     func postUser(uid: String,
                   dic: [String : Any],
                   completion:@escaping (Result<Void, Error>) -> Void) {
@@ -29,6 +30,7 @@ struct UserService: UserServiceProtocol {
                 }
                 if let snapShot = snapShot {
                     guard let dic = snapShot.data() else { return }
+                    
                     let user = User(dic: dic)
                     if let user = user {
                         singleEvent(.success(user))

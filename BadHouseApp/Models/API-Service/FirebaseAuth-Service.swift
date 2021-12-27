@@ -18,6 +18,8 @@ struct AuthService: AuthServiceProtocol {
             let dic:[String: Any] = ["uid": uid,
                                     "email": credential.email,
                                      "name": credential.name,
+                                     "createdAt": Timestamp(),
+                                     "updatedAt": Timestamp(),
                                     "password": credential.password]
             completion(.success(dic))
         }

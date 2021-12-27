@@ -1,7 +1,7 @@
 
 import Firebase
 
-struct TeamModel {
+struct Circle {
     var teamId: String
     var teamName: String
     var teamPlace: String

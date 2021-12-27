@@ -41,6 +41,7 @@
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
 		D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */; };
+		D357BB16277963EF00DC8A79 /* Firebase-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357BB15277963EF00DC8A79 /* Firebase-Service.swift */; };
 		D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */; };
 		D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F96276F5D680052B820 /* PracticeDataSource.swift */; };
 		D3629F99276F5D790052B820 /* TalkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F98276F5D790052B820 /* TalkDataSource.swift */; };
@@ -135,7 +136,7 @@
 		D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */; };
 		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
-		D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* UserModel.swift */; };
+		D3BDB56426E0B05D00C53780 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* User.swift */; };
 		D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFED27753BE700C6C761 /* SearchUserController.swift */; };
 		D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */; };
 		D3C1BFF3277542E400C6C761 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */; };
@@ -144,7 +145,7 @@
 		D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF72775DA9B00C6C761 /* InviteCell.swift */; };
 		D3C1BFFA2775DA9B00C6C761 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
-		D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* TeamModel.swift */; };
+		D3C4E94726E1C2B400C21E46 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* Team.swift */; };
 		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
@@ -174,7 +175,8 @@
 		D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */; };
 		D3FD194D26E4791500B6740E /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* CustomCell.xib */; };
 		D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */; };
-		D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* EventModel.swift */; };
+		D3FD195326E4C32C00B6740E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* Event.swift */; };
+		D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A6277988BE006355EF /* CircleFeatures.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -222,6 +224,7 @@
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D357BB15277963EF00DC8A79 /* Firebase-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase-Service.swift"; sourceTree = "<group>"; };
 		D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataSource.swift; sourceTree = "<group>"; };
 		D3629F96276F5D680052B820 /* PracticeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDataSource.swift; sourceTree = "<group>"; };
 		D3629F98276F5D790052B820 /* TalkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkDataSource.swift; sourceTree = "<group>"; };
@@ -318,7 +321,7 @@
 		D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anchor+Extension.swift"; sourceTree = "<group>"; };
 		D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
-		D3BDB56326E0B05D00C53780 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D3BDB56326E0B05D00C53780 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3C1BFED27753BE700C6C761 /* SearchUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserController.swift; sourceTree = "<group>"; };
 		D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserController.xib; sourceTree = "<group>"; };
 		D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
@@ -327,7 +330,7 @@
 		D3C1BFF72775DA9B00C6C761 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
-		D3C4E94626E1C2B400C21E46 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		D3C4E94626E1C2B400C21E46 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
@@ -358,7 +361,8 @@
 		D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseErrorEnum.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewModel.swift; sourceTree = "<group>"; };
-		D3FD195226E4C32C00B6740E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		D3FD195226E4C32C00B6740E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D3FF15A6277988BE006355EF /* CircleFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFeatures.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -604,6 +608,7 @@
 				D3B72CFE274A322700253933 /* UserInfoEnum.swift */,
 				D3F2458E2775EA270030DA1B /* SettingsSelection.swift */,
 				D3D7617E2776B8E7004381E4 /* SearchSelection.swift */,
+				D3FF15A6277988BE006355EF /* CircleFeatures.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -671,9 +676,9 @@
 			children = (
 				D3FFD326271EBBD100DE54ED /* API-Service */,
 				D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */,
-				D3BDB56326E0B05D00C53780 /* UserModel.swift */,
-				D3C4E94626E1C2B400C21E46 /* TeamModel.swift */,
-				D3FD195226E4C32C00B6740E /* EventModel.swift */,
+				D3BDB56326E0B05D00C53780 /* User.swift */,
+				D3C4E94626E1C2B400C21E46 /* Team.swift */,
+				D3FD195226E4C32C00B6740E /* Event.swift */,
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
 				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 				D3D761882776D38D004381E4 /* AuthCredential.swift */,
@@ -766,6 +771,7 @@
 				D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */,
 				D3FFD333271EDCC300DE54ED /* Join-Service.swift */,
 				D3FFD3432721043800DE54ED /* Block-Service.swift */,
+				D357BB15277963EF00DC8A79 /* Firebase-Service.swift */,
 			);
 			path = "API-Service";
 			sourceTree = "<group>";
@@ -1018,6 +1024,7 @@
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */,
+				D357BB16277963EF00DC8A79 /* Firebase-Service.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
 				D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */,
@@ -1043,7 +1050,7 @@
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
-				D3FD195326E4C32C00B6740E /* EventModel.swift in Sources */,
+				D3FD195326E4C32C00B6740E /* Event.swift in Sources */,
 				D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,
@@ -1128,13 +1135,14 @@
 				D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
 				D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */,
-				D3C4E94726E1C2B400C21E46 /* TeamModel.swift in Sources */,
+				D3C4E94726E1C2B400C21E46 /* Team.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
 				D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */,
 				D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
-				D3BDB56426E0B05D00C53780 /* UserModel.swift in Sources */,
+				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,
+				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA7276F5E600052B820 /* SearchDetailCoordinator.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,

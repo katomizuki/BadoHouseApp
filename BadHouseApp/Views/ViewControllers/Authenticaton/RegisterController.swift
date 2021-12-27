@@ -24,7 +24,8 @@ final class RegisterController: UIViewController {
         return button
     }()
     private let disposeBag = DisposeBag()
-    private let viewModel = RegisterViewModel(authAPI: AuthService(), userAPI: UserService())
+    private let viewModel = RegisterViewModel(authAPI: AuthService(),
+                                              firebaseAPI: FirebaseService())
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
@@ -80,7 +81,6 @@ final class RegisterController: UIViewController {
         
         viewModel.validRegisterDriver
             .drive { validAll in
-                print(validAll)
                 self.registerButton.isEnabled = validAll
             }.disposed(by: disposeBag)
         

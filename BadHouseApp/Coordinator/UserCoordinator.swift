@@ -33,8 +33,7 @@ class UserCoordinator: Coordinator, UserFlow {
         vc.present(nav, animated: true)
     }
     func toMakeCircle() {
-        let controller = MakeCircleController.init(nibName: R.nib.makeCircleController.name, bundle: nil)
-        navigationController.pushViewController(controller, animated: true)
+        coordinator(to: MakeCicleCoordinator(navigationController: self.navigationController))
     }
     func toSettings(_ vc: UIViewController) {
         let controller = UserSettingsController.init(nibName: R.nib.userSettingsController.name, bundle: nil)

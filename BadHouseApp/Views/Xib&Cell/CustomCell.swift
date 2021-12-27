@@ -18,7 +18,7 @@ final class CustomCell: UITableViewCell {
     }
     @IBOutlet weak var timeLabel: UILabel!
     weak var trashDelegate: CalendarEventDelegate?
-    var team: TeamModel? {
+    var team: Circle? {
         didSet {
             configure()
         }

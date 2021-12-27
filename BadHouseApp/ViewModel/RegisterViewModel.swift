@@ -1,4 +1,3 @@
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -42,11 +41,11 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     var email: String = String()
     var password: String = String()
     var authAPI: AuthServiceProtocol
-    var userAPI: UserServiceProtocol
+    var firebaseAPI:FirebaseServiceProtocol
     // MARK: - initialize
-    init(authAPI:AuthServiceProtocol, userAPI:UserServiceProtocol) {
+    init(authAPI:AuthServiceProtocol,firebaseAPI:FirebaseServiceProtocol) {
         self.authAPI = authAPI
-        self.userAPI = userAPI
+        self.firebaseAPI = firebaseAPI
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
         let nameValid = nameTextOutput
@@ -80,14 +79,14 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         authAPI.register(credential: credential) { [weak self] result in
             switch result {
             case .success(let dic):
-                self?.userAPI.postUser(uid: dic["uid"] as! String, dic: dic) { result in
+                self?.firebaseAPI.postData(id: dic["uid"] as! String, dic: dic, ref: Ref.UsersRef, completion: { result in
                     switch result {
                     case .success:
                         self?.isCompleted.onNext(true)
                     case .failure(let error):
                         self?.errorHandling.onNext(error)
                     }
-                }
+                })
             case .failure(let error):
                 self?.errorHandling.onNext(error)
             }

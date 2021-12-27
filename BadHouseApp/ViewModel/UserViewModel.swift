@@ -25,8 +25,10 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     private let disposeBag = DisposeBag()
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
+      
+    }
+    func willAppear() {
         if let uid = Auth.auth().currentUser?.uid {
-            print(uid)
             userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
                 guard let self = self else { return }
                 self.userName.accept(user.name)
@@ -40,8 +42,5 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 self.isError.onNext(true)
             }).disposed(by: disposeBag)
         }
-    }
-    func willAppear() {
-       
     }
 }

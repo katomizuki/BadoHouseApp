@@ -78,9 +78,6 @@ final class MainViewController: UIViewController {
             guard let self = self else { return }
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
-        
-        
-
     }
     
    
