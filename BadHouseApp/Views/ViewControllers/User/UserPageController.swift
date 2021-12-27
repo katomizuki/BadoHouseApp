@@ -39,7 +39,7 @@ final class UserPageController: UIViewController {
         }
     }
     @IBOutlet private weak var nameTextField: UITextField!
-    private let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
+    let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +58,15 @@ final class UserPageController: UIViewController {
     }
     
     private func setupNavigationBarItem() {
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
-        navigationItem.leftBarButtonItem = dismissButton
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
     }
     @objc private func didTapDismissButton() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
+    }
+    @objc private func didTapSaveButton() {
+        
+        self.dismiss(animated: true)
     }
     // MARK: - SetupMethod
     private func setupTableView() {
@@ -90,6 +94,11 @@ final class UserPageController: UIViewController {
             self?.playerTextField.text = user.player
             self?.userIntroductionTextView.text = user.introduction
         }).disposed(by: disposeBag)
+        
+        viewModel.outputs.reload.subscribe { [weak self] _ in
+            self?.userInfoTableView.reloadData()
+        }.disposed(by: disposeBag)
+
     }
 }
 // MARK: - ImagePickerDelegate
@@ -143,7 +152,10 @@ extension UserPageController: UITableViewDataSource {
 }
 // MARK: - PopDismissDelegate
 extension UserPageController: PopDismissDelegate {
-    func popDismiss(vc: MyPageInfoPopoverController) {
+    func popDismiss(vc: MyPageInfoPopoverController,
+                    userInfoSelection: UserInfoSelection,
+                    text: String) {
+        viewModel.changeUser(userInfoSelection, text: text)
         vc.dismiss(animated: true, completion: nil)
     }
 }
@@ -153,3 +165,4 @@ extension UserPageController: UIPopoverPresentationControllerDelegate {
         return .none
     }
 }
+

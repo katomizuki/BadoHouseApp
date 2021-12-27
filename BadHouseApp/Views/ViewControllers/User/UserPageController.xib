@@ -50,10 +50,10 @@
                                         <constraint firstAttribute="height" constant="300" id="Gvw-Wt-JeM"/>
                                     </constraints>
                                 </tableView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="バドミントン〇〇年してました。よろしくお願いします！" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DdB-1n-PMQ">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="バドミントン〇〇年やってました" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DdB-1n-PMQ">
                                     <rect key="frame" x="30" y="629" width="315" height="141"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                    <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
@@ -70,7 +70,6 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Yonexの〇〇" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EGV-s3-hzl">
                                             <rect key="frame" x="8" y="8" width="299" height="34"/>
-                                            <color key="textColor" systemColor="systemGray2Color"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -95,7 +94,6 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="〇〇選手" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g83-iH-lb2">
                                             <rect key="frame" x="8" y="8" width="299" height="34"/>
-                                            <color key="textColor" systemColor="systemGray2Color"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -171,11 +169,11 @@
         <namedColor name="backGroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

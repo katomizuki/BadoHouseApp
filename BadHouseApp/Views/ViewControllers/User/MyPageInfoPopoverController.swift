@@ -1,15 +1,17 @@
 import UIKit
-
+import RxSwift
 protocol PopDismissDelegate: AnyObject {
-    func popDismiss(vc: MyPageInfoPopoverController)
+    func popDismiss(vc: MyPageInfoPopoverController,
+                    userInfoSelection:UserInfoSelection,
+                    text: String)
 }
 final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
     weak var delegate: PopDismissDelegate?
     private let cellId = "popCellId"
-    var cellArray = Gender.genderArray
-    var keyword:UserInfoSelection = .level
-    lazy var tableView: UITableView = {
+    private var cellArray = [String]()
+    var keyword: UserInfoSelection = .level
+    private lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.delegate = self
         tb.dataSource = self
@@ -55,7 +57,9 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = cellArray[indexPath.row]
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = cellArray[indexPath.row]
+        cell.contentConfiguration = configuration
         return cell
     }
 }
@@ -63,22 +67,6 @@ extension MyPageInfoPopoverController: UITableViewDataSource {
 extension MyPageInfoPopoverController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
-//        switch keyword {
-//        case UserInfo.gender:
-//            gender = cellArray[indexPath.row]
-//            vc.gender = self.gender
-//        case UserInfo.badmintonTime:
-//            badmintonTime = cellArray[indexPath.row]
-//            vc.badmintonTime = self.badmintonTime
-//        case UserInfo.place:
-//            place = cellArray[indexPath.row]
-//            vc.place = self.place
-//        case UserInfo.age:
-//            age = cellArray[indexPath.row]
-//            vc.age = self.age
-//        default:
-//            break
-//        }
-        self.delegate?.popDismiss(vc: self)
+        self.delegate?.popDismiss(vc: self,userInfoSelection: keyword,text: cellArray[indexPath.row])
     }
 }

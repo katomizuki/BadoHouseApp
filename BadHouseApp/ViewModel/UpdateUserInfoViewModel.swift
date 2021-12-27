@@ -12,6 +12,12 @@ protocol UpdateUserInfoViewModelInputs {
 protocol UpdateUserInfoViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var userSubject: PublishSubject<User> { get }
+    var genderSubject: PublishSubject<String> { get }
+    var badmintonTimeSubject: PublishSubject<String> { get }
+    var placeSubject: PublishSubject<String> { get }
+    var ageSubject: PublishSubject<String> { get }
+    var levelSubject: PublishSubject<String> { get }
+    var reload:PublishSubject<Void> { get }
 }
 protocol UpdateUserInfoViewModelType {
     var inputs: UpdateUserInfoViewModelInputs { get }
@@ -24,9 +30,15 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     var inputs: UpdateUserInfoViewModelInputs { return self }
     var outputs: UpdateUserInfoViewModelOutputs { return self }
     private let disposeBag = DisposeBag()
-    var user:User?
+    var user: User?
     var isError = PublishSubject<Bool>()
     var userSubject = PublishSubject<User>()
+    var genderSubject = PublishSubject<String>()
+    var badmintonTimeSubject = PublishSubject<String>()
+    var levelSubject = PublishSubject<String>()
+    var ageSubject = PublishSubject<String>()
+    var placeSubject = PublishSubject<String>()
+    var reload =  PublishSubject<Void>()
     let userAPI: UserServiceProtocol
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
@@ -59,6 +71,22 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         case .age:
             return user.age
         }
+    }
+    func changeUser(_ userInfoSelecition:UserInfoSelection,text:String) {
+        switch userInfoSelecition {
+        case .level:
+            user?.level = text
+        case .gender:
+            user?.gender = text
+        case .badmintonTime:
+            user?.badmintonTime = text
+        case .place:
+            user?.place = text
+        case .age:
+            user?.age = text
+        }
+        print(user)
+        self.reload.onNext(())
     }
     
 }
