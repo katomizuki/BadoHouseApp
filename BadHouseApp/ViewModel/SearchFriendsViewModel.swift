@@ -23,6 +23,7 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
         return searchTextOutputs.asObserver()
     }
     private let disposeBag = DisposeBag()
+    
     init(userAPI: UserServiceProtocol) {
         searchTextOutputs.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
@@ -33,7 +34,8 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
             }.disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
     }
-    func applyFriend(_ user: User,myData:User) {
+    
+    func applyFriend(_ user: User, myData: User) {
         ApplyService.postApply(user: myData, toUser: user) { result in
             switch result {
             case .success:
@@ -42,7 +44,9 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
                 self.isError.onNext(true)
             }
         }
-
+    }
+    func notApplyFriend(_ user: User, myData: User) {
+        ApplyService.notApplyFriend(uid: myData.uid, toUserId: user.uid)
     }
     
 }

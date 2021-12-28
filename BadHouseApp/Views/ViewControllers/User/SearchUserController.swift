@@ -54,7 +54,10 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
 
 }
 extension SearchUserController: SearchUserCellDelegate {
-    func searchUserCell(_ user: User, cell: SearchUserCell) {
+    func searchUserCellNotApply(_ user: User, cell: SearchUserCell) {
+        viewModel.notApplyFriend(user, myData: self.user)
+    }
+    func searchUserCellApply(_ user: User, cell: SearchUserCell) {
         viewModel.applyFriend(user,myData: self.user)
     }
 }

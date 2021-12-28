@@ -47,4 +47,11 @@ class UserCoordinator: Coordinator, UserFlow {
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true, completion: nil)
     }
+    func toApplyUser(user: User?) {
+        let controller = ApplyFriendController.init(nibName: "ApplyFriendController", bundle: nil)
+        if let user = user {
+            controller.viewModel = ApplyFriendsViewModel(user: user, userAPI: UserService())
+        }
+        navigationController.pushViewController(controller, animated: true)
+    }
 }

@@ -7,6 +7,7 @@ protocol UserServiceProtocol {
                   completion:@escaping (Result<Void, Error>) -> Void)
     func getUser(uid: String)->Single<User>
     func searchUser(text:String)->Single<[User]>
+    func getApplyUser(user:User)->Single<[Apply]>
 }
 struct UserService: UserServiceProtocol {
     
@@ -61,6 +62,25 @@ struct UserService: UserServiceProtocol {
                         }
                     }
                     singleEvent(.success(users))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    func getApplyUser(user: User) -> Single<[Apply]> {
+        var applies = [Apply]()
+        return Single.create { singleEvent -> Disposable in
+            Ref.ApplyRef.getDocuments() { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                if let snapShot = snapShot {
+                    snapShot.documents.forEach {
+                        let apply = Apply(dic: $0.data())
+                        applies.append(apply)
+                    }
+                    singleEvent(.success(applies))
                 }
             }
             return Disposables.create()

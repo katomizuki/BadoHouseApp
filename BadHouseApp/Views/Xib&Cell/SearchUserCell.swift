@@ -8,7 +8,9 @@
 import UIKit
 import SDWebImage
 protocol SearchUserCellDelegate:AnyObject {
-    func searchUserCell(_ user: User,cell: SearchUserCell)
+    func searchUserCellApply(_ user: User,cell: SearchUserCell)
+    func searchUserCellNotApply(_ user:User, cell:SearchUserCell)
+
 }
 final class SearchUserCell: UITableViewCell {
     static let id = String(describing: self)
@@ -42,13 +44,25 @@ final class SearchUserCell: UITableViewCell {
         guard let user = user else {
             return
         }
-        applyFriendButton.setTitle("申請済み", for: .normal)
-        self.delegate?.searchUserCell(user,cell: self)
+        if judgeButtonAction(applyFriendButton.currentTitle) {
+            self.delegate?.searchUserCellNotApply(user, cell: self)
+        } else {
+            self.delegate?.searchUserCellApply(user, cell: self)
+        }
+        applyFriendButton.setTitle(changeButtonTitle(applyFriendButton.currentTitle), for: .normal)
+      
     }
     func configure(_ user: User) {
         self.user = user
         userImageView.sd_setImage(with: user.profileImageUrl)
         nameLabel.text = user.name
+    }
+    
+    private func changeButtonTitle(_ text: String?) -> String {
+        return text == "申請済み" ? "バド友申請" : "申請済み"
+    }
+    private func judgeButtonAction(_ text: String?) -> Bool {
+        return text == "申請済み"
     }
     
 }

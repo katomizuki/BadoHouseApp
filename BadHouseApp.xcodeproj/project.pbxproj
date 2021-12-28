@@ -179,6 +179,12 @@
 		D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A6277988BE006355EF /* CircleFeatures.swift */; };
 		D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */; };
 		D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15AA277AA9CE006355EF /* Apply-Service.swift */; };
+		D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15AC277ACB48006355EF /* ApplyFriendController.swift */; };
+		D3FF15AF277ACB49006355EF /* ApplyFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15AD277ACB48006355EF /* ApplyFriendController.xib */; };
+		D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15B0277ACBF8006355EF /* ApplyFriendsViewModel.swift */; };
+		D3FF15B3277ACEF5006355EF /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15B2277ACEF5006355EF /* Apply.swift */; };
+		D3FF15B6277AD558006355EF /* ApplyUserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15B4277AD558006355EF /* ApplyUserListCell.swift */; };
+		D3FF15B7277AD558006355EF /* ApplyUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -367,6 +373,12 @@
 		D3FF15A6277988BE006355EF /* CircleFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFeatures.swift; sourceTree = "<group>"; };
 		D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		D3FF15AA277AA9CE006355EF /* Apply-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apply-Service.swift"; sourceTree = "<group>"; };
+		D3FF15AC277ACB48006355EF /* ApplyFriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyFriendController.swift; sourceTree = "<group>"; };
+		D3FF15AD277ACB48006355EF /* ApplyFriendController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyFriendController.xib; sourceTree = "<group>"; };
+		D3FF15B0277ACBF8006355EF /* ApplyFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyFriendsViewModel.swift; sourceTree = "<group>"; };
+		D3FF15B2277ACEF5006355EF /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
+		D3FF15B4277AD558006355EF /* ApplyUserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyUserListCell.swift; sourceTree = "<group>"; };
+		D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyUserListCell.xib; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -476,6 +488,8 @@
 				D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */,
 				D3F245A02775F58B0030DA1B /* SchduleCell.swift */,
 				D3F245A12775F58B0030DA1B /* SchduleCell.xib */,
+				D3FF15B4277AD558006355EF /* ApplyUserListCell.swift */,
+				D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */,
 			);
 			path = "Xib&Cell";
 			sourceTree = "<group>";
@@ -551,6 +565,8 @@
 				D3F245992775EEA30030DA1B /* ProblemController.xib */,
 				D3F2459C2775F4140030DA1B /* ScheduleController.swift */,
 				D3F2459D2775F4140030DA1B /* ScheduleController.xib */,
+				D3FF15AC277ACB48006355EF /* ApplyFriendController.swift */,
+				D3FF15AD277ACB48006355EF /* ApplyFriendController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -687,6 +703,7 @@
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
 				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 				D3D761882776D38D004381E4 /* AuthCredential.swift */,
+				D3FF15B2277ACEF5006355EF /* Apply.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -752,6 +769,7 @@
 				D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */,
 				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
 				D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */,
+				D3FF15B0277ACBF8006355EF /* ApplyFriendsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -866,10 +884,12 @@
 				D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */,
 				D3F2459F2775F4140030DA1B /* ScheduleController.xib in Resources */,
 				D38864082768DA9200FC4F07 /* MainUserDetailController.xib in Resources */,
+				D3FF15AF277ACB49006355EF /* ApplyFriendController.xib in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* CustomCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */,
+				D3FF15B7277AD558006355EF /* ApplyUserListCell.xib in Resources */,
 				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
@@ -1028,6 +1048,7 @@
 				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
+				D3FF15B3277ACEF5006355EF /* Apply.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */,
 				D357BB16277963EF00DC8A79 /* Firebase-Service.swift in Sources */,
@@ -1076,6 +1097,7 @@
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
 				D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
+				D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
@@ -1090,10 +1112,12 @@
 				D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
+				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
+				D3FF15B6277AD558006355EF /* ApplyUserListCell.swift in Sources */,
 				D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */,
 				D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */,
 				D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */,
