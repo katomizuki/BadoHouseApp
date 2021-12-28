@@ -10,9 +10,11 @@ class UserCoordinator: Coordinator, UserFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toSearchUser() {
-        let controller = SearchUserController.init(nibName: "SearchUserController", bundle: nil)
-        navigationController.pushViewController(controller, animated: true)
+    func toSearchUser(user:User?) {
+        if let user = user {
+            let controller = SearchUserController.init(user: user)
+            navigationController.pushViewController(controller, animated: true)
+        }
     }
     func toDetailUser() {
         coordinator(to: UserCoordinator(navigationController: navigationController))

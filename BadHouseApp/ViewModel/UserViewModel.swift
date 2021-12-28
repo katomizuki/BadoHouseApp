@@ -22,6 +22,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
     var userAPI: UserServiceProtocol
+    var user:User?
     private let disposeBag = DisposeBag()
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
@@ -32,6 +33,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
                 guard let self = self else { return }
                 self.userName.accept(user.name)
+                self.user = user
                 if let url = URL(string: user.profileImageUrlString) {
                     self.userUrl.accept(url)
                 } else {

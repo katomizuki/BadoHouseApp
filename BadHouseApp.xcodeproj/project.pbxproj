@@ -177,6 +177,8 @@
 		D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */; };
 		D3FD195326E4C32C00B6740E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* Event.swift */; };
 		D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A6277988BE006355EF /* CircleFeatures.swift */; };
+		D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */; };
+		D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15AA277AA9CE006355EF /* Apply-Service.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -363,6 +365,8 @@
 		D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewModel.swift; sourceTree = "<group>"; };
 		D3FD195226E4C32C00B6740E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D3FF15A6277988BE006355EF /* CircleFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFeatures.swift; sourceTree = "<group>"; };
+		D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
+		D3FF15AA277AA9CE006355EF /* Apply-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apply-Service.swift"; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -467,6 +471,7 @@
 				D32E598E2774859D00C59548 /* UserCircleCell.xib */,
 				D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */,
 				D3C1BFF2277542E400C6C761 /* SearchUserCell.xib */,
+				D3FF15AA277AA9CE006355EF /* Apply-Service.swift */,
 				D3C1BFF72775DA9B00C6C761 /* InviteCell.swift */,
 				D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */,
 				D3F245A02775F58B0030DA1B /* SchduleCell.swift */,
@@ -746,6 +751,7 @@
 				D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */,
 				D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */,
 				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
+				D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1064,6 +1070,7 @@
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
 				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
+				D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
@@ -1083,6 +1090,7 @@
 				D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
+				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,

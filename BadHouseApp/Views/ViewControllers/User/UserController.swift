@@ -6,7 +6,7 @@ import FirebaseAuth
 protocol UserFlow: AnyObject {
     func toSearchCircle()
     func toMyPage(_ vc: UIViewController)
-    func toSearchUser()
+    func toSearchUser(user:User?)
     func toDetailUser()
     func toDetailCircle()
     func toMakeCircle()
@@ -88,7 +88,6 @@ final class UserController: UIViewController {
     @objc private func didTapSettingButton() {
         print(#function)
         coordinator?.toSettings(self)
-        
     }
     
     @objc private func didTapScheduleButton() {
@@ -151,7 +150,7 @@ extension UserController: UserProfileHeaderViewDelegate {
         case .circle:
             coordinator?.toSearchCircle()
         case .user:
-            coordinator?.toSearchUser()
+            coordinator?.toSearchUser(user: viewModel.user)
         }
     }
     

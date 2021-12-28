@@ -30,7 +30,6 @@ final class UserLevelController: UIViewController {
     }
     // MARK: SelectorMethod
     @objc private func didTapDismissButton() {
-        print("sfaaaf")
         self.delegate?.UserLevelController(vc: self,text: levelLabel.text ?? "レベル1")
     }
     @objc private func changeLevel(sender: UISlider) {

@@ -91,10 +91,10 @@ final class RegisterController: UIViewController {
                 self.coordinator?.toLogin()
             }.disposed(by: disposeBag)
         
-        viewModel.errorHandling.subscribe { [weak self] value in
+        viewModel.errorHandling.subscribe(onNext: { [weak self] error in
             guard let self = self else { return }
-            self.signUpErrAlert(value.error! as NSError)
-        }.disposed(by: disposeBag)
+            self.signUpErrAlert(error as NSError)
+        }).disposed(by: disposeBag)
         
         viewModel.isCompleted.subscribe { [weak self] _ in
             guard let self = self else { return }

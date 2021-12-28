@@ -6,9 +6,14 @@
 //
 
 import UIKit
-
+import SDWebImage
+protocol SearchUserCellDelegate:AnyObject {
+    func searchUserCell(_ user: User,cell: SearchUserCell)
+}
 final class SearchUserCell: UITableViewCell {
     static let id = String(describing: self)
+    var user: User?
+    weak var delegate: SearchUserCellDelegate?
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
             userImageView.layer.cornerRadius = 20
@@ -23,16 +28,27 @@ final class SearchUserCell: UITableViewCell {
             applyFriendButton.layer.borderWidth = 1
         }
     }
+    @IBOutlet private weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         // Initialization code
     }
-    static func nib()->UINib {
+    static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
 
     @IBAction private func didTapApplyFriendsButton(_ sender: Any) {
+        guard let user = user else {
+            return
+        }
+        applyFriendButton.setTitle("申請済み", for: .normal)
+        self.delegate?.searchUserCell(user,cell: self)
+    }
+    func configure(_ user: User) {
+        self.user = user
+        userImageView.sd_setImage(with: user.profileImageUrl)
+        nameLabel.text = user.name
     }
     
 }

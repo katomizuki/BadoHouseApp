@@ -1,6 +1,6 @@
 
 import Firebase
-import Foundation
+import FirebaseAuth
 
 struct User {
     var uid: String
@@ -23,6 +23,9 @@ struct User {
         } else {
             return nil
         }
+    }
+    var isMyself:Bool {
+        return Auth.auth().currentUser?.uid == uid
     }
     init?(dic: [String: Any]) {
         guard let email = dic["email"] as? String,

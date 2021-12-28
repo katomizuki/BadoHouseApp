@@ -9,7 +9,8 @@ struct Ref {
     static let EventRef = Firestore.firestore().collection("Event")
     static let StorageEventImageRef = Storage.storage().reference().child("Event/Image")
     static let ChatroomRef = Firestore.firestore().collection("ChatRoom")
-    static let VideoRef = Firestore.firestore().collection("Video")
-    static let StorageVideoRef = Storage.storage().reference().child("Video")
     static let BlockRef = Firestore.firestore().collection("Block")
+    static let ApplyRef = Firestore.firestore().collection("Apply")
+    static let ApplyedRef = Firestore.firestore().collection("Applyed")
+    
 }

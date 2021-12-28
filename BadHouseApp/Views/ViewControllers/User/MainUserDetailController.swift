@@ -22,6 +22,7 @@ protocol MainUserDetailFlow: AnyObject {
      }
      @IBOutlet private weak var circleCollectionView: UICollectionView!
      var coordinator:MainUserDetailFlow?
+//     private let viewModel = User
      // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
