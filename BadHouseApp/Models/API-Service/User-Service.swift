@@ -64,5 +64,20 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
+    static func saveFriendId(uid:String) {
+        var ids = [String]()
+        Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
+            if let error = error {
+                return
+            }
+            if let snapShot = snapShot {
+                snapShot.documents.forEach {
+                    let dic = $0.data()
+                    ids.append(dic["id"] as? String ?? "")
+                }
+                UserDefaultsRepositry.shared.saveToUserDefaults(element: ids, key: "friends")
+            }
+        }
+    }
 }
 

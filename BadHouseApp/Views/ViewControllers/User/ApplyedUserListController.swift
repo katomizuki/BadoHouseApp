@@ -29,6 +29,11 @@ final class ApplyedUserListController: UIViewController {
         viewModel.outputs.isError.subscribe { [weak self] _ in
             self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
+        
+        viewModel.outputs.completedFriend.subscribe(onNext: { [weak self] text in
+            self?.showCDAlert(title: "\(text)さんとバド友になりました", message: "", action: "OK", alertType: .success)
+        }).disposed(by: disposeBag)
+
     }
 }
 extension ApplyedUserListController: UITableViewDataSource {
@@ -44,11 +49,11 @@ extension ApplyedUserListController: UITableViewDataSource {
 }
 extension ApplyedUserListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        viewModel.inputs.deleteFriends(viewModel.applyedSubject.value[indexPath.row])
     }
 }
 extension ApplyedUserListController: ApplyedUserListCellDelegate {
-    func onTapPermissionButton(_ applyed:Applyed) {
+    func onTapPermissionButton(_ applyed: Applyed) {
         viewModel.inputs.makeFriends(applyed)
     }
 }

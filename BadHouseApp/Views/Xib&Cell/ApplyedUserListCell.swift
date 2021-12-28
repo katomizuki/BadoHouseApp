@@ -17,7 +17,7 @@ final class ApplyedUserListCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
     }
-    static func nib()->UINib {
+    static func nib()-> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
 

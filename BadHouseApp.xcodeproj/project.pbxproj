@@ -191,6 +191,8 @@
 		D3FF15C0277AF979006355EF /* ApplyedUserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15BE277AF979006355EF /* ApplyedUserListCell.swift */; };
 		D3FF15C1277AF979006355EF /* ApplyedUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15BF277AF979006355EF /* ApplyedUserListCell.xib */; };
 		D3FF15C3277AFC9B006355EF /* Applyed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C2277AFC9B006355EF /* Applyed.swift */; };
+		D3FF15C6277B3535006355EF /* KeyChainRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C5277B3535006355EF /* KeyChainRepositry.swift */; };
+		D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C7277B3D60006355EF /* UserDefaultsRepositry.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -391,6 +393,8 @@
 		D3FF15BE277AF979006355EF /* ApplyedUserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyedUserListCell.swift; sourceTree = "<group>"; };
 		D3FF15BF277AF979006355EF /* ApplyedUserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyedUserListCell.xib; sourceTree = "<group>"; };
 		D3FF15C2277AFC9B006355EF /* Applyed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applyed.swift; sourceTree = "<group>"; };
+		D3FF15C5277B3535006355EF /* KeyChainRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepositry.swift; sourceTree = "<group>"; };
+		D3FF15C7277B3D60006355EF /* UserDefaultsRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepositry.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -710,6 +714,7 @@
 		D3BDB53B26E0540C00C53780 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D3FF15C4277B3525006355EF /* Keychain */,
 				D3FFD326271EBBD100DE54ED /* API-Service */,
 				D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */,
 				D3BDB56326E0B05D00C53780 /* User.swift */,
@@ -798,6 +803,15 @@
 				D3D761782776AA7D004381E4 /* CustomInputView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		D3FF15C4277B3525006355EF /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				D3FF15C5277B3535006355EF /* KeyChainRepositry.swift */,
+				D3FF15C7277B3D60006355EF /* UserDefaultsRepositry.swift */,
+			);
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 		D3FFD326271EBBD100DE54ED /* API-Service */ = {
@@ -1136,6 +1150,7 @@
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
 				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
+				D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
 				D3FF15B6277AD558006355EF /* ApplyUserListCell.swift in Sources */,
@@ -1177,6 +1192,7 @@
 				D3886430276A191500FC4F07 /* NotificationCoordinator.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
+				D3FF15C6277B3535006355EF /* KeyChainRepositry.swift in Sources */,
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,
 				D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */,
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,

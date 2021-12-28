@@ -18,9 +18,10 @@ final class HomeViewModel:HomeViewModelInputs, HomeViewModelOutputs, HomeViewMod
     var isAuth: PublishSubject<Void> = PublishSubject<Void>()
     var inputs: HomeViewModelInputs { return self }
     var outputs: HomeViewModelOutputs { return self }
-//    private var practiceAPI:
     func didLoad() {
-        
+        if let uid =  Auth.auth().currentUser?.uid {
+            UserService.saveFriendId(uid: uid)
+        }
     }
     func willAppear() {
         if !Network.shared.isOnline() {

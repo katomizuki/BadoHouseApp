@@ -22,4 +22,5 @@ pod 'R.swift'
 pod 'RxGesture'
 pod 'Charts'
 pod 'Firebase/Crashlytics'
+pod 'KeychainAccess'
 end

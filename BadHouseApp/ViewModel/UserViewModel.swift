@@ -11,6 +11,7 @@ protocol UserViewModelOutputs {
     var userName: BehaviorRelay<String> { get }
     var userUrl: BehaviorRelay<URL?> { get }
     var isError: PublishSubject<Bool> { get }
+    var isApplyViewHidden:PublishSubject<Bool> { get }
 }
 protocol UserViewModelType {
     var inputs: UserViewModelInputs { get }
@@ -20,6 +21,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     var userName = BehaviorRelay<String>(value: "")
     var userUrl = BehaviorRelay<URL?>(value: nil)
     var isError = PublishSubject<Bool>()
+    var isApplyViewHidden = PublishSubject<Bool>()
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
     var userAPI: UserServiceProtocol
@@ -44,6 +46,9 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 self.isError.onNext(true)
             }).disposed(by: disposeBag)
         }
+        
+        
+        
     }
     
     func didTapPermissionButton() {

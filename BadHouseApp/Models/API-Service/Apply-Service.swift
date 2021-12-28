@@ -11,6 +11,9 @@ import RxSwift
 protocol ApplyServiceProtocol {
     func getApplyUser(user: User)->Single<[Apply]>
     func getApplyedUser(user: User)->Single<[Applyed]>
+    func match(uid: String,
+               friendId: String,
+               completion: @escaping(Result<Void, Error>) -> Void)
 }
 struct ApplyService:ApplyServiceProtocol {
     
@@ -19,7 +22,11 @@ struct ApplyService:ApplyServiceProtocol {
                           completion: @escaping(Result<Void, Error>) -> Void) {
         Ref.ApplyRef.document(user.uid).collection("Users")
             .document(toUser.uid)
-            .setData(["toUserId": toUser.uid,"name": toUser.name,"imageUrl": toUser.profileImageUrlString,"createdAt": Timestamp(),"uid":user.uid]) { error in
+            .setData(["toUserId": toUser.uid,
+                      "name": toUser.name,
+                      "imageUrl": toUser.profileImageUrlString,
+                      "createdAt": Timestamp(),
+                      "uid":user.uid]) { error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -27,10 +34,10 @@ struct ApplyService:ApplyServiceProtocol {
                 Ref.ApplyedRef.document(toUser.uid)
                     .collection("Users")
                     .document(user.uid).setData(["fromUserId": user.uid,
-                                                         "name": user.name,
-                                                         "imageUrl" : user.profileImageUrlString,
-                                                         "createdAt": Timestamp(),
-                                                         "uid": toUser.uid]) { error in
+                                                 "name": user.name,
+                                                 "imageUrl" : user.profileImageUrlString,
+                                                  "createdAt": Timestamp(),
+                                                  "uid": toUser.uid]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -89,6 +96,22 @@ struct ApplyService:ApplyServiceProtocol {
                 }
             }
             return Disposables.create()
+        }
+    }
+    func match(uid: String,
+               friendId: String,
+               completion: @escaping(Result<Void, Error>) -> Void) {
+        Ref.UsersRef.document(uid).collection("Friends").document(friendId).setData(["id": friendId]) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            Ref.UsersRef.document(friendId).collection("Friends").document(uid).setData(["id": uid]) { error in
+                if let error = error {
+                    completion(.failure(error))
+                }
+                completion(.success(()))
+            }
         }
     }
    
