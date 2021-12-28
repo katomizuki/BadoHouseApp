@@ -5,6 +5,7 @@ import FirebaseAuth
 
 protocol UserViewModelInputs {
     func willAppear()
+    func didTapPermissionButton()
 }
 protocol UserViewModelOutputs {
     var userName: BehaviorRelay<String> { get }
@@ -26,7 +27,6 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     private let disposeBag = DisposeBag()
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
-      
     }
     func willAppear() {
         if let uid = Auth.auth().currentUser?.uid {
@@ -45,4 +45,9 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             }).disposed(by: disposeBag)
         }
     }
+    
+    func didTapPermissionButton() {
+        
+    }
+    
 }

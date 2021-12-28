@@ -185,6 +185,12 @@
 		D3FF15B3277ACEF5006355EF /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15B2277ACEF5006355EF /* Apply.swift */; };
 		D3FF15B6277AD558006355EF /* ApplyUserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15B4277AD558006355EF /* ApplyUserListCell.swift */; };
 		D3FF15B7277AD558006355EF /* ApplyUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */; };
+		D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15B8277AF3C6006355EF /* ApplyedUserListController.swift */; };
+		D3FF15BB277AF3C6006355EF /* ApplyedUserListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15B9277AF3C6006355EF /* ApplyedUserListController.xib */; };
+		D3FF15BD277AF45F006355EF /* ApplyedUserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15BC277AF45F006355EF /* ApplyedUserListViewModel.swift */; };
+		D3FF15C0277AF979006355EF /* ApplyedUserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15BE277AF979006355EF /* ApplyedUserListCell.swift */; };
+		D3FF15C1277AF979006355EF /* ApplyedUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15BF277AF979006355EF /* ApplyedUserListCell.xib */; };
+		D3FF15C3277AFC9B006355EF /* Applyed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C2277AFC9B006355EF /* Applyed.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -379,6 +385,12 @@
 		D3FF15B2277ACEF5006355EF /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
 		D3FF15B4277AD558006355EF /* ApplyUserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyUserListCell.swift; sourceTree = "<group>"; };
 		D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyUserListCell.xib; sourceTree = "<group>"; };
+		D3FF15B8277AF3C6006355EF /* ApplyedUserListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyedUserListController.swift; sourceTree = "<group>"; };
+		D3FF15B9277AF3C6006355EF /* ApplyedUserListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyedUserListController.xib; sourceTree = "<group>"; };
+		D3FF15BC277AF45F006355EF /* ApplyedUserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyedUserListViewModel.swift; sourceTree = "<group>"; };
+		D3FF15BE277AF979006355EF /* ApplyedUserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyedUserListCell.swift; sourceTree = "<group>"; };
+		D3FF15BF277AF979006355EF /* ApplyedUserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyedUserListCell.xib; sourceTree = "<group>"; };
+		D3FF15C2277AFC9B006355EF /* Applyed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applyed.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -483,13 +495,14 @@
 				D32E598E2774859D00C59548 /* UserCircleCell.xib */,
 				D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */,
 				D3C1BFF2277542E400C6C761 /* SearchUserCell.xib */,
-				D3FF15AA277AA9CE006355EF /* Apply-Service.swift */,
 				D3C1BFF72775DA9B00C6C761 /* InviteCell.swift */,
 				D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */,
 				D3F245A02775F58B0030DA1B /* SchduleCell.swift */,
 				D3F245A12775F58B0030DA1B /* SchduleCell.xib */,
 				D3FF15B4277AD558006355EF /* ApplyUserListCell.swift */,
 				D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */,
+				D3FF15BE277AF979006355EF /* ApplyedUserListCell.swift */,
+				D3FF15BF277AF979006355EF /* ApplyedUserListCell.xib */,
 			);
 			path = "Xib&Cell";
 			sourceTree = "<group>";
@@ -567,6 +580,8 @@
 				D3F2459D2775F4140030DA1B /* ScheduleController.xib */,
 				D3FF15AC277ACB48006355EF /* ApplyFriendController.swift */,
 				D3FF15AD277ACB48006355EF /* ApplyFriendController.xib */,
+				D3FF15B8277AF3C6006355EF /* ApplyedUserListController.swift */,
+				D3FF15B9277AF3C6006355EF /* ApplyedUserListController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -704,6 +719,7 @@
 				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 				D3D761882776D38D004381E4 /* AuthCredential.swift */,
 				D3FF15B2277ACEF5006355EF /* Apply.swift */,
+				D3FF15C2277AFC9B006355EF /* Applyed.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -770,6 +786,7 @@
 				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
 				D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */,
 				D3FF15B0277ACBF8006355EF /* ApplyFriendsViewModel.swift */,
+				D3FF15BC277AF45F006355EF /* ApplyedUserListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -793,6 +810,7 @@
 				D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */,
 				D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */,
 				D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */,
+				D3FF15AA277AA9CE006355EF /* Apply-Service.swift */,
 				D3FFD333271EDCC300DE54ED /* Join-Service.swift */,
 				D3FFD3432721043800DE54ED /* Block-Service.swift */,
 				D357BB15277963EF00DC8A79 /* Firebase-Service.swift */,
@@ -882,12 +900,14 @@
 				D3F245972775EC8F0030DA1B /* EmailSettingsController.xib in Resources */,
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
 				D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */,
+				D3FF15BB277AF3C6006355EF /* ApplyedUserListController.xib in Resources */,
 				D3F2459F2775F4140030DA1B /* ScheduleController.xib in Resources */,
 				D38864082768DA9200FC4F07 /* MainUserDetailController.xib in Resources */,
 				D3FF15AF277ACB49006355EF /* ApplyFriendController.xib in Resources */,
 				D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */,
 				D3FD194D26E4791500B6740E /* CustomCell.xib in Resources */,
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
+				D3FF15C1277AF979006355EF /* ApplyedUserListCell.xib in Resources */,
 				D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */,
 				D3FF15B7277AD558006355EF /* ApplyUserListCell.xib in Resources */,
 				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
@@ -1098,6 +1118,7 @@
 				D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */,
+				D3FF15C0277AF979006355EF /* ApplyedUserListCell.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
@@ -1130,6 +1151,7 @@
 				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,
+				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
@@ -1163,6 +1185,7 @@
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
 				D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */,
 				D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */,
+				D3FF15C3277AFC9B006355EF /* Applyed.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
@@ -1172,6 +1195,7 @@
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
 				D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */,
 				D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */,
+				D3FF15BD277AF45F006355EF /* ApplyedUserListViewModel.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,

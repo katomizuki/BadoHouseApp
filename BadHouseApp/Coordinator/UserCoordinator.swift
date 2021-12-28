@@ -17,7 +17,7 @@ class UserCoordinator: Coordinator, UserFlow {
         }
     }
     func toDetailUser() {
-        coordinator(to: UserCoordinator(navigationController: navigationController))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController))
         
     }
     func toDetailCircle() {
@@ -50,7 +50,14 @@ class UserCoordinator: Coordinator, UserFlow {
     func toApplyUser(user: User?) {
         let controller = ApplyFriendController.init(nibName: "ApplyFriendController", bundle: nil)
         if let user = user {
-            controller.viewModel = ApplyFriendsViewModel(user: user, userAPI: UserService())
+            controller.viewModel = ApplyFriendsViewModel(user: user, applyAPI: ApplyService())
+        }
+        navigationController.pushViewController(controller, animated: true)
+    }
+    func toApplyedUser(user: User?) {
+        let controller = ApplyedUserListController.init(nibName: "ApplyedUserListController", bundle: nil)
+        if let user = user {
+            controller.viewModel = ApplyedUserListViewModel(applyAPI: ApplyService(), user: user)
         }
         navigationController.pushViewController(controller, animated: true)
     }

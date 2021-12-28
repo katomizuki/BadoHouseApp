@@ -75,7 +75,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     let userAPI: UserServiceProtocol
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
-        if let uid = UserService.getUid() {
+        if let uid = AuthService.getUid() {
             userAPI.getUser(uid: uid).subscribe { [weak self] user in
                 self?.user = user
                 self?.userSubject.onNext(user)
@@ -131,7 +131,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     }
     
     func postUser(dic: [String:Any]) {
-        userAPI.postUser(uid: UserService.getUid()!, dic: dic) {[weak self] result in
+        userAPI.postUser(uid: AuthService.getUid()!, dic: dic) {[weak self] result in
             switch result {
             case .success:
                 self?.isCompleted.onNext(())

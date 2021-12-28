@@ -6,8 +6,7 @@ protocol UserServiceProtocol {
                   dic: [String : Any],
                   completion:@escaping (Result<Void, Error>) -> Void)
     func getUser(uid: String)->Single<User>
-    func searchUser(text:String)->Single<[User]>
-    func getApplyUser(user:User)->Single<[Apply]>
+    func searchUser(text: String)->Single<[User]>
 }
 struct UserService: UserServiceProtocol {
     
@@ -25,7 +24,7 @@ struct UserService: UserServiceProtocol {
     
     func getUser(uid: String) -> Single<User> {
         return Single.create { singleEvent -> Disposable in
-            Ref.UsersRef.document(uid).getDocument() { snapShot, error in
+            Ref.UsersRef.document(uid).getDocument { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
@@ -42,13 +41,11 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
-    static func getUid() -> String? {
-        return Auth.auth().currentUser?.uid
-    }
+   
     func searchUser(text: String)->Single<[User]> {
         var users = [User]()
         return Single.create { singleEvent -> Disposable in
-            Ref.UsersRef.getDocuments() { snapShot, error in
+            Ref.UsersRef.getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
@@ -62,25 +59,6 @@ struct UserService: UserServiceProtocol {
                         }
                     }
                     singleEvent(.success(users))
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    func getApplyUser(user: User) -> Single<[Apply]> {
-        var applies = [Apply]()
-        return Single.create { singleEvent -> Disposable in
-            Ref.ApplyRef.getDocuments() { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                if let snapShot = snapShot {
-                    snapShot.documents.forEach {
-                        let apply = Apply(dic: $0.data())
-                        applies.append(apply)
-                    }
-                    singleEvent(.success(applies))
                 }
             }
             return Disposables.create()

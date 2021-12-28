@@ -24,4 +24,7 @@ struct AuthService: AuthServiceProtocol {
             completion(.success(dic))
         }
     }
+    static func getUid() -> String? {
+        return Auth.auth().currentUser?.uid
+    }
 }

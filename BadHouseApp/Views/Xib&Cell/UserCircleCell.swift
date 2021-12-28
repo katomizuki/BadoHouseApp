@@ -14,12 +14,13 @@ final class UserCircleCell: UICollectionViewCell {
             circleImageView.layer.masksToBounds = true
         }
     }
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet weak var permissionButton: UIButton!
     static let id = String(describing: self)
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-    static func nib()-> UINib {
+    static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
 

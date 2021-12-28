@@ -28,12 +28,12 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
     var applySubject = BehaviorRelay<[Apply]>(value: [])
     var reload = PublishSubject<Void>()
     var user: User
-    var userAPI: UserServiceProtocol
+    var applyAPI: ApplyServiceProtocol
     private let disposeBag = DisposeBag()
-    init(user: User, userAPI: UserServiceProtocol) {
+    init(user: User, applyAPI: ApplyServiceProtocol) {
         self.user = user
-        self.userAPI = userAPI
-        userAPI.getApplyUser(user: user).subscribe {[weak self] apply in
+        self.applyAPI = applyAPI
+        applyAPI.getApplyUser(user: user).subscribe {[weak self] apply in
             self?.applySubject.accept(apply)
             self?.reload.onNext(())
         } onFailure: { [weak self] _ in

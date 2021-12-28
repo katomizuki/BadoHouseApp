@@ -11,8 +11,10 @@ protocol UserFlow: AnyObject {
     func toDetailCircle()
     func toMakeCircle()
     func toSettings(_ vc: UIViewController)
-    func toSchedule(_ vc:UIViewController)
+    func toSchedule(_ vc: UIViewController)
     func toApplyUser(user: User?)
+    func toApplyedUser(user:User?)
+
 }
 final class UserController: UIViewController {
     // MARK: - Properties
@@ -31,7 +33,8 @@ final class UserController: UIViewController {
             updateUserProfileButton.layer.masksToBounds = true
         }
     }
-    @IBOutlet private weak var myImageView: UIImageView! 
+    @IBOutlet private weak var applyView: UIView!
+    @IBOutlet private weak var myImageView: UIImageView!
     @IBOutlet private weak var myName: UILabel!
     @IBOutlet private weak var countLabel: UILabel!
     @IBOutlet private weak var updateProfileButton: UIButton! {
@@ -70,6 +73,13 @@ final class UserController: UIViewController {
             self.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
         }).disposed(by: disposeBag)
         
+        applyView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe { [weak self] _ in
+                self?.coordinator?.toApplyedUser(user: self?.viewModel.user)
+            }.disposed(by: disposeBag)
+
+        
     }
     
     private func setupNavigationItem() {
@@ -81,23 +91,16 @@ final class UserController: UIViewController {
         appearance.backgroundColor = UIColor.white
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
-        let tabAppearance = UITabBarAppearance()
-        tabAppearance.backgroundColor = UIColor.white
-        tabBarItem.standardAppearance = tabAppearance
-      
     }
     @objc private func didTapSettingButton() {
-        print(#function)
         coordinator?.toSettings(self)
     }
     
     @objc private func didTapScheduleButton() {
-        print(#function)
         coordinator?.toSchedule(self)
     }
     
     @objc private func didTapUpdateProfileButton() {
-        print(#function)
         coordinator?.toMyPage(self)
     }
     private func setupTableView() {
@@ -142,7 +145,16 @@ extension UserController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
     }
-    
+}
+extension UserController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCircleCell.id, for: indexPath) as? UserCircleCell else { return UICollectionViewCell() }
+        cell.permissionButton.isHidden = false
+        return cell
+    }
 }
 
 extension UserController: UserProfileHeaderViewDelegate {
