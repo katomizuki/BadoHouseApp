@@ -9,11 +9,11 @@ protocol UserFlow: AnyObject {
     func toSearchUser(user: User?)
     func toDetailUser()
     func toDetailCircle()
-    func toMakeCircle(user:User?)
+    func toMakeCircle(user: User?)
     func toSettings(_ vc: UIViewController)
     func toSchedule(_ vc: UIViewController)
     func toApplyUser(user: User?)
-    func toApplyedUser(user:User?)
+    func toApplyedUser(user: User?)
 
 }
 final class UserController: UIViewController {
@@ -42,6 +42,7 @@ final class UserController: UIViewController {
             updateProfileButton.addTarget(self, action: #selector(didTapUpdateProfileButton), for: .touchUpInside)
         }
     }
+    @IBOutlet private weak var friendCountLabel: UILabel!
     private let disposeBag = DisposeBag()
     private let viewModel = UserViewModel(userAPI: UserService(), applyAPI: ApplyService())
     var coordinator: UserFlow?
@@ -66,10 +67,17 @@ final class UserController: UIViewController {
             self?.myImageView.sd_setImage(with: url)
         }).disposed(by: disposeBag)
         
+        viewModel.outputs.userCircleCountText.subscribe(onNext: { [weak self] text in
+            self?.countLabel.text = text
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.userFriendsCountText.subscribe(onNext: { [weak self] text in
+            self?.friendCountLabel.text = text
+        }).disposed(by: disposeBag)
+
         viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
             self?.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
         }).disposed(by: disposeBag)
-        
         
         applyView.rx.tapGesture()
             .when(.recognized)
@@ -88,7 +96,6 @@ final class UserController: UIViewController {
             .subscribe { [weak self] _ in
                 self?.groupTableView.reloadData()
             }.disposed(by: disposeBag)
-        
         
     }
     
@@ -128,7 +135,7 @@ extension UserController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 10
+            return viewModel.outputs.circleRelay.value.count
         } else {
             return viewModel.outputs.friendsRelay.value.count
         }
@@ -137,6 +144,8 @@ extension UserController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
         if indexPath.section == 1 {
             cell.configure(user: viewModel.outputs.friendsRelay.value[indexPath.row])
+        } else {
+            cell.configure(circle: viewModel.outputs.circleRelay.value[indexPath.row])
         }
         return cell
     }

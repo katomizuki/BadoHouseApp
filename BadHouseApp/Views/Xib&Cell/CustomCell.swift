@@ -67,8 +67,9 @@ final class CustomCell: UITableViewCell {
         cellImagevView.sd_setImage(with: user.profileImageUrl)
         label.text = user.name
     }
-    func configure(circle:Circle) {
-        
+    func configure(circle: Circle) {
+        cellImagevView.sd_setImage(with: circle.iconUrl)
+        label.text = circle.name
     }
   
     func setTimeLabelandCommentLabel(chat: Chat) {

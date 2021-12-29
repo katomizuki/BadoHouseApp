@@ -2,32 +2,40 @@
 import Firebase
 
 struct Circle {
-    var teamId: String
-    var teamName: String
-    var teamPlace: String
-    var teamTime: String
-    var teamLevel: String
-    var teamImageUrl: String
-    var teamUrl: String
-    var createdAt: Timestamp
-    var updatedAt: Timestamp
-    init?(dic: [String: Any]) {
-        guard let teamId = dic["teamId"] as? String,
-              let teamName = dic["teamName"] as? String,
-              let teamPlace = dic["teamPlace"] as? String,
-              let teamTime = dic["teamTime"] as? String,
-              let teamLevel = dic["teamLevel"] as? String,
-              let teamImageUrl = dic["teamImageUrl"] as? String,
-              let createdAt: Timestamp = dic["createdAt"] as? Timestamp,
-              let updatedAt: Timestamp = dic["createdAt"] as? Timestamp else { return nil }
-        self.teamId = teamId
-        self.teamName = teamName
-        self.teamPlace = teamPlace
-        self.teamTime = teamTime
-        self.teamLevel = teamLevel
-        self.teamUrl = dic["teamUrl"] as? String ?? ""
-        self.teamImageUrl = teamImageUrl
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+    var id: String
+    var features: [String]
+    var time: String
+    var price: String
+    var place: String
+    var name: String
+    var member: [String]
+    var additionlText:String
+    var backGround:String
+    var icon:String
+    var iconUrl:URL? {
+        if let url = URL(string: icon) {
+            return url
+        } else {
+            return nil
+        }
+    }
+    var backGroundUrl:URL? {
+        if let url = URL(string: backGround) {
+            return url
+        } else {
+            return nil
+        }
+    }
+    init(dic:[String:Any]) {
+        self.id = dic["id"] as? String ?? ""
+        self.features = dic["features"] as? [String] ?? []
+        self.time = dic["time"] as? String ?? ""
+        self.price = dic["price"] as? String ?? ""
+        self.place = dic["place"] as? String ?? ""
+        self.name = dic["name"] as? String ?? ""
+        self.member = dic["member"] as? [String] ?? []
+        self.additionlText = dic["additionlText"] as? String ?? ""
+        self.backGround = dic["backGround"] as? String ?? ""
+        self.icon = dic["icon"] as? String ?? ""
     }
 }

@@ -50,15 +50,13 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
             self?.viewModel.inviteAction(user: self?.viewModel.friendsList.value[indexPath.row])
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.isCompleted
-            .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] _ in
-                self?.navigationController?.popToRootViewController(animated: true)
-            }.disposed(by: disposeBag)
 
     }
     @objc private func didTapRightButton() {
         viewModel.makeCircle()
         HUD.show(.success, onView: view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }

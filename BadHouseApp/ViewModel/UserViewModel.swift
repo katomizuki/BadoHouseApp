@@ -10,10 +10,13 @@ protocol UserViewModelInputs {
 protocol UserViewModelOutputs {
     var userName: BehaviorRelay<String> { get }
     var userUrl: BehaviorRelay<URL?> { get }
+    var userCircleCountText: BehaviorRelay<String> { get }
+    var userFriendsCountText: BehaviorRelay<String> { get }
     var isError: PublishSubject<Bool> { get }
     var isApplyViewHidden: PublishSubject<Bool> { get }
     var friendsRelay: BehaviorRelay<[User]> { get }
     var reload:PublishSubject<Void> { get }
+    var circleRelay: BehaviorRelay<[Circle]> { get }
 }
 protocol UserViewModelType {
     var inputs: UserViewModelInputs { get }
@@ -22,10 +25,13 @@ protocol UserViewModelType {
 final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModelOutputs {
     
     var userName = BehaviorRelay<String>(value: "")
+    var userFriendsCountText = BehaviorRelay<String>(value: "")
+    var userCircleCountText = BehaviorRelay<String>(value: "")
     var userUrl = BehaviorRelay<URL?>(value: nil)
     var isError = PublishSubject<Bool>()
     var isApplyViewHidden = PublishSubject<Bool>()
     var friendsRelay = BehaviorRelay<[User]>(value: [])
+    var circleRelay = BehaviorRelay<[Circle]>(value: [])
     var reload = PublishSubject<Void>()
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
@@ -44,6 +50,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 guard let self = self else { return }
                 self.userName.accept(user.name)
                 self.user = user
+                self.bindCircles(user: user)
                 self.bindApplyedUser(user: user)
                 self.bindFriends(user: user)
                 if let url = URL(string: user.profileImageUrlString) {
@@ -65,11 +72,25 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             self?.isError.onNext(true)
         }.disposed(by: self.disposeBag)
     }
+    
     private func bindFriends(user: User) {
         userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
-            self?.friendsRelay.accept(users)
-            self?.reload.onNext(())
+            guard let self = self else { return }
+            self.friendsRelay.accept(users)
+            self.userFriendsCountText.accept("バド友　\(users.count)人")
+            self.reload.onNext(())
         } onFailure: {[weak self] _ in
+            self?.isError.onNext(true)
+        }.disposed(by: disposeBag)
+    }
+    
+    private func bindCircles(user: User) {
+        userAPI.getMyCircles(uid: user.uid).subscribe { [weak self] circles in
+            guard let self = self else { return }
+            self.circleRelay.accept(circles)
+            self.userCircleCountText.accept("所属サークル　\(circles.count)個")
+            self.reload.onNext(())
+        } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
     }

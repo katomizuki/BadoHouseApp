@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="applyView" destination="1mY-Lm-tSm" id="1FE-1F-2SG"/>
                 <outlet property="countLabel" destination="I13-YM-Ttl" id="tlx-Er-LM9"/>
+                <outlet property="friendCountLabel" destination="5Qu-qS-HEF" id="evc-8c-HWW"/>
                 <outlet property="groupTableView" destination="TII-Ua-Duj" id="8ie-jy-y18"/>
                 <outlet property="myImageView" destination="R6k-XV-6pf" id="Zqo-3S-XGJ"/>
                 <outlet property="myName" destination="GqB-Eq-NvN" id="GAZ-O3-l2p"/>
@@ -48,8 +49,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属サークル0人　バド友　0人" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I13-YM-Ttl">
-                            <rect key="frame" x="105" y="70" width="205" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属サークル　0人" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I13-YM-Ttl">
+                            <rect key="frame" x="105" y="70" width="124" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="aAg-Ml-f8E"/>
                             </constraints>
@@ -70,10 +71,15 @@
                                 </attributedString>
                             </buttonConfiguration>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="バド友　0人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qu-qS-HEF">
+                            <rect key="frame" x="234" y="72" width="75.5" height="16"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <color key="textColor" systemColor="systemGray2Color"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" name="backGroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I13-YM-Ttl" secondAttribute="trailing" constant="20" id="4ep-EQ-3j5"/>
                         <constraint firstItem="j6y-RM-RQI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GqB-Eq-NvN" secondAttribute="trailing" id="7yj-aw-5Gq"/>
                         <constraint firstItem="GqB-Eq-NvN" firstAttribute="top" secondItem="Mva-si-c2U" secondAttribute="top" constant="10" id="8mw-qV-1IY"/>
                         <constraint firstItem="j6y-RM-RQI" firstAttribute="centerY" secondItem="GqB-Eq-NvN" secondAttribute="centerY" id="9xR-52-06a"/>
@@ -82,7 +88,9 @@
                         <constraint firstItem="GqB-Eq-NvN" firstAttribute="leading" secondItem="R6k-XV-6pf" secondAttribute="trailing" constant="15" id="LI7-4m-QbQ"/>
                         <constraint firstAttribute="height" constant="100" id="Oaj-za-mSc"/>
                         <constraint firstItem="R6k-XV-6pf" firstAttribute="leading" secondItem="Mva-si-c2U" secondAttribute="leading" constant="20" id="b6L-DC-8DM"/>
+                        <constraint firstItem="5Qu-qS-HEF" firstAttribute="centerY" secondItem="I13-YM-Ttl" secondAttribute="centerY" id="ko3-fH-aHe"/>
                         <constraint firstAttribute="trailing" secondItem="j6y-RM-RQI" secondAttribute="trailing" constant="20" id="ks3-t0-wzC"/>
+                        <constraint firstItem="5Qu-qS-HEF" firstAttribute="leading" secondItem="I13-YM-Ttl" secondAttribute="trailing" constant="5" id="olN-lF-lJd"/>
                         <constraint firstItem="I13-YM-Ttl" firstAttribute="top" secondItem="Mva-si-c2U" secondAttribute="top" constant="70" id="uxR-PG-rW7"/>
                     </constraints>
                 </view>

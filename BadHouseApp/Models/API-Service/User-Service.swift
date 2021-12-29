@@ -8,6 +8,7 @@ protocol UserServiceProtocol {
     func getUser(uid: String)->Single<User>
     func searchUser(text: String)->Single<[User]>
     func getFriends(uid: String)->Single<[User]>
+    func getMyCircles(uid: String) -> Single<[Circle]>
 }
 struct UserService: UserServiceProtocol {
     
@@ -120,10 +121,10 @@ struct UserService: UserServiceProtocol {
                     snapShot.documents.forEach {
                         group.enter()
                         let id = $0.data()["id"] as? String ?? ""
-//                        UserService.getUserById(uid: uid) { user in
-//                            defer { group.leave() }
-//                            users.append(user)
-//                        }
+                        CircleService.getCircle(id: id) { circle in
+                            defer { group.leave() }
+                            circles.append(circle)
+                        }
                     }
                     group.notify(queue: .main) {
                         singleEvent(.success(circles))
