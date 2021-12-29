@@ -106,8 +106,6 @@ extension MyScheduleController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CustomCell
-        let event = eventArray[indexPath.row]
-        cell.event = event
         cell.trashDelegate = self
         return cell
     }

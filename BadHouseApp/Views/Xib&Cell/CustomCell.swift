@@ -1,16 +1,25 @@
 import Foundation
 import UIKit
 import SDWebImage
-import Firebase
-import RxSwift
+
 protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Event, cell: UITableViewCell)
 }
 final class CustomCell: UITableViewCell {
     // MARK: - Properties
     static let id = String(describing: self)
-    @IBOutlet weak var cellImagevView: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var cellImagevView: UIImageView! {
+        didSet {
+            self.cellImagevView.layer.cornerRadius = 25
+            self.cellImagevView.layer.masksToBounds = true
+            self.cellImagevView.contentMode = .scaleAspectFill
+        }
+    }
+    @IBOutlet weak var label: UILabel! {
+        didSet {
+            label.font = UIFont.boldSystemFont(ofSize: 16)
+        }
+    }
     @IBOutlet weak var commentLabel: UILabel! {
         didSet {
             commentLabel.font = .boldSystemFont(ofSize: 12)
@@ -18,21 +27,7 @@ final class CustomCell: UITableViewCell {
     }
     @IBOutlet weak var timeLabel: UILabel!
     weak var trashDelegate: CalendarEventDelegate?
-    var team: Circle? {
-        didSet {
-            configure()
-        }
-    }
-    var user: User? {
-        didSet {
-            userconfigure()
-        }
-    }
-    var event: Event? {
-        didSet {
-            eventConfigure()
-        }
-    }
+   
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -48,11 +43,7 @@ final class CustomCell: UITableViewCell {
     // MARK: - LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
-        self.cellImagevView.layer.cornerRadius = 25
-        self.cellImagevView.layer.masksToBounds = true
-        self.cellImagevView.contentMode = .scaleAspectFill
-        self.accessoryType = .disclosureIndicator
-        self.label.font = UIFont.boldSystemFont(ofSize: 16)
+        accessoryType = .disclosureIndicator
         self.selectionStyle = .none
         addSubview(trashButton)
         trashButton.isHidden = true
@@ -70,46 +61,16 @@ final class CustomCell: UITableViewCell {
     }
     // MARK: - selector
     @objc private func handleTrash() {
-        print(#function)
-        guard let event = event else {
-            return
-        }
-        self.trashDelegate?.removeEvent(eventModel: event, cell: self)
     }
-    // MARK: - helperMethod
-    private func eventConfigure() {
-        label.text = event?.eventTitle
-        if let dateString = event?.eventStartTime.prefix(16) {
-            timeLabel.text = String(dateString)
-            timeLabel.isHidden = false
-        }
-        guard let urlString = event?.teamImageUrl else { return }
-        let url = URL(string: urlString)
-        cellImagevView.sd_setImage(with: url, completed: nil)
-        accessoryType = .none
-        trashButton.isHidden = false
-    }
-    // MARK: - Configure
-    private func configure() {
-        guard let team = team else { return }
-        self.label.text = team.teamName
-        let urlString = team.teamImageUrl
-        guard let url = URL(string: urlString) else { return }
-        self.cellImagevView.sd_setImage(with: url, completed: nil)
-        self.cellImagevView.contentMode = .scaleAspectFill
-        self.cellImagevView.chageCircle()
-    }
-    private func userconfigure() {
-        guard let user = user else { return }
-        self.label.text = user.name
-        let url = URL(string: user.profileImageUrlString)
-        if user.profileImageUrlString == "" {
     
-        } else {
-            self.cellImagevView.sd_setImage(with: url, completed: nil)
-        }
-        self.cellImagevView.chageCircle()
+    func configure(user: User) {
+        cellImagevView.sd_setImage(with: user.profileImageUrl)
+        label.text = user.name
     }
+    func configure(circle:Circle) {
+        
+    }
+  
     func setTimeLabelandCommentLabel(chat: Chat) {
         let text = chat.text
         let date = chat.sendTime

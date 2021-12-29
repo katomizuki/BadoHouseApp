@@ -7,6 +7,7 @@ protocol UserServiceProtocol {
                   completion:@escaping (Result<Void, Error>) -> Void)
     func getUser(uid: String)->Single<User>
     func searchUser(text: String)->Single<[User]>
+    func getFriends(uid: String)->Single<[User]>
 }
 struct UserService: UserServiceProtocol {
     
@@ -64,10 +65,11 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
-    static func saveFriendId(uid:String) {
+    static func saveFriendId(uid: String) {
         var ids = [String]()
         Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
             if let error = error {
+                print(error.localizedDescription)
                 return
             }
             if let snapShot = snapShot {
@@ -79,5 +81,47 @@ struct UserService: UserServiceProtocol {
             }
         }
     }
+    func getFriends(uid: String) -> Single<[User]> {
+        var users = [User]()
+        let group = DispatchGroup()
+        return Single.create { singleEvent -> Disposable in
+            Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                if let snapShot = snapShot {
+                    snapShot.documents.forEach {
+                        group.enter()
+                        let uid = $0.data()["id"] as? String ?? ""
+                        UserService.getUserById(uid: uid) { user in
+                            defer { group.leave() }
+                            users.append(user)
+                        }
+                    }
+                    group.notify(queue: .main) {
+                        print(users,"⚡️")
+                        singleEvent(.success(users))
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    static func getUserById(uid:String,completion:@escaping((User)->Void)) {
+        Ref.UsersRef.document(uid).getDocument { documents, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if let documents = documents {
+                if let dic = documents.data() {
+                    if let user = User(dic: dic) {
+                    completion(user)
+                    }
+                }
+            }
+        }
+    }
 }
-

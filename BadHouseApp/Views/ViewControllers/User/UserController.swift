@@ -76,13 +76,17 @@ final class UserController: UIViewController {
                 self?.coordinator?.toApplyedUser(user: self?.viewModel.user)
             }.disposed(by: disposeBag)
         
-        viewModel.isApplyViewHidden
+        viewModel.outputs.isApplyViewHidden
             .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isHidden in
-                print("ssss")
                 self?.applyView.isHidden = isHidden
             }).disposed(by: disposeBag)
-
+        
+        viewModel.outputs.reload
+            .subscribe(on: MainScheduler.instance)
+            .subscribe { [weak self] _ in
+                self?.groupTableView.reloadData()
+            }.disposed(by: disposeBag)
     }
     
     private func setupNavigationItem() {
@@ -120,10 +124,17 @@ extension UserController: UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if section == 0 {
+            return 10
+        } else {
+            return viewModel.outputs.friendsRelay.value.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
+        if indexPath.section == 1 {
+            cell.configure(user: viewModel.outputs.friendsRelay.value[indexPath.row])
+        }
         return cell
     }
 }
@@ -147,16 +158,6 @@ extension UserController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
-    }
-}
-extension UserController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCircleCell.id, for: indexPath) as? UserCircleCell else { return UICollectionViewCell() }
-        cell.permissionButton.isHidden = false
-        return cell
     }
 }
 
