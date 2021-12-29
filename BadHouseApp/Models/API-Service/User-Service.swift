@@ -100,7 +100,6 @@ struct UserService: UserServiceProtocol {
                         }
                     }
                     group.notify(queue: .main) {
-                        print(users,"⚡️")
                         singleEvent(.success(users))
                     }
                 }
@@ -108,6 +107,33 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
+    func getMyCircles(uid: String) -> Single<[Circle]> {
+        var circles = [Circle]()
+        let group = DispatchGroup()
+        return Single.create { singleEvent -> Disposable in
+            Ref.UsersRef.document(uid).collection("Circle").getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                if let snapShot = snapShot {
+                    snapShot.documents.forEach {
+                        group.enter()
+                        let id = $0.data()["id"] as? String ?? ""
+//                        UserService.getUserById(uid: uid) { user in
+//                            defer { group.leave() }
+//                            users.append(user)
+//                        }
+                    }
+                    group.notify(queue: .main) {
+                        singleEvent(.success(circles))
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
     
     static func getUserById(uid:String,completion:@escaping((User)->Void)) {
         Ref.UsersRef.document(uid).getDocument { documents, error in

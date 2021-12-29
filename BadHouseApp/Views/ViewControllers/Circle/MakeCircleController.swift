@@ -4,14 +4,18 @@ import RxSwift
 import RxCocoa
 import RxGesture
 protocol MakeCircleFlow {
-    func toInvite()
+    func toInvite(_ user: User,form: Form?)
     func pop()
+}
+enum ImageSelection {
+    case backGround
+    case icon
 }
 final class MakeCircleController: UIViewController {
 
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let viewModel = TeamRegisterViewModel()
+    var viewModel:TeamRegisterViewModel!
     private let imagePicker = UIImagePickerController()
     var coordinator: MakeCircleFlow?
     @IBOutlet private weak var groupImageView: UIImageView! {
@@ -23,20 +27,6 @@ final class MakeCircleController: UIViewController {
         }
     }
     @IBOutlet private weak var scrollView: UIView!
-    @IBOutlet private weak var makeCircleButton: UIButton! {
-        didSet {
-            makeCircleButton.layer.cornerRadius = 8
-            makeCircleButton.layer.borderColor = UIColor.systemBlue.cgColor
-            makeCircleButton.layer.borderWidth = 1
-            makeCircleButton.layer.masksToBounds = true
-        }
-    }
-    @IBOutlet private weak var inviteFriendButton: UIButton! {
-        didSet {
-            inviteFriendButton.layer.cornerRadius = 8
-            inviteFriendButton.layer.masksToBounds = true
-        }
-    }
     @IBOutlet private weak var backGroundImageView: UIImageView!
     @IBOutlet private weak var singleButton: UIButton!
     @IBOutlet private weak var doubleButton: UIButton!
@@ -52,22 +42,31 @@ final class MakeCircleController: UIViewController {
     @IBOutlet private weak var dateTextField: UITextField!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var placeNameTextField: UITextField!
-    @IBOutlet private weak var registerButton: UIButton!
+    private var imageSelection: ImageSelection?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupImagePicker()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.toolbar.tintColor = .systemBlue
+        setupNavigationBarItem()
     }
-
+    private func setupNavigationBarItem() {
+        navigationController?.toolbar.tintColor = .systemBlue
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "友だちを招待して作成", style: .done, target: self, action: #selector(didTapMakeCircleButton))
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    private func setupImagePicker() {
+        imagePicker.delegate = self
+    }
     private func setupBinding() {
         groupImageView.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                self.imageSelection = .icon
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposeBag)
         
@@ -75,23 +74,9 @@ final class MakeCircleController: UIViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                self.imageSelection = .backGround
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposeBag)
-        
-        makeCircleButton.rx.tap
-            .asDriver()
-            .drive(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.createTeam()
-        }).disposed(by: disposeBag)
-        
-        inviteFriendButton.rx.tap
-            .asDriver()
-            .drive(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.coordinator?.toInvite()
-                print("sasasagag")
-        }).disposed(by: disposeBag)
         
         circleNameTextField.rx.text
             .asDriver()
@@ -119,100 +104,98 @@ final class MakeCircleController: UIViewController {
         
         viewModel.validRegisterDriver
             .drive { [weak self] validAll in
-                self?.registerButton.isEnabled = validAll
-                self?.registerButton.backgroundColor = validAll ? .lightGray : .systemBlue
-            }.disposed(by: disposeBag)
-        
-        registerButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                self?.createTeam()
-                self?.coordinator?.pop()
+                self?.navigationItem.rightBarButtonItem?.isEnabled = validAll
             }.disposed(by: disposeBag)
         
         singleButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.singleButton.backgroundColor = self?.viewModel.buttonColor(color: self?.singleButton.backgroundColor)
+                self?.singleButton.backgroundColor = self?.singleButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
             self?.viewModel.addFeatures(.single)
         }.disposed(by: disposeBag)
         
         doubleButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.doubleButton.backgroundColor = self?.viewModel.buttonColor(color: self?.doubleButton.backgroundColor)
+                self?.doubleButton.backgroundColor = self?.doubleButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.double)
         }.disposed(by: disposeBag)
-        
+
         mixButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.mixButton.backgroundColor = self?.viewModel.buttonColor(color: self?.mixButton.backgroundColor)
+                self?.mixButton.backgroundColor = self?.mixButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
             self?.viewModel.addFeatures(.mix)
         }.disposed(by: disposeBag)
         
         weekDayButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.weekDayButton.backgroundColor = self?.viewModel.buttonColor(color: self?.weekDayButton.backgroundColor)
+                self?.weekDayButton.backgroundColor = self?.weekDayButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
             self?.viewModel.addFeatures(.weekDay)
         }.disposed(by: disposeBag)
         
         weekEndButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.weekEndButton.backgroundColor = self?.viewModel.buttonColor(color: self?.weekEndButton.backgroundColor)
+                self?.weekEndButton.backgroundColor = self?.weekEndButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.weekEnd)
             }.disposed(by: disposeBag)
         
         ageButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.ageButton.backgroundColor = self?.viewModel.buttonColor(color: self?.ageButton.backgroundColor)
+                self?.ageButton.backgroundColor = self?.ageButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.notAge)
             }.disposed(by: disposeBag)
         
         genderButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.genderButton.backgroundColor = self?.viewModel.buttonColor(color: self?.genderButton.backgroundColor)
+                self?.genderButton.backgroundColor = self?.genderButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.notGender)
             }.disposed(by: disposeBag)
         
         matchButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.matchButton.backgroundColor = self?.viewModel.buttonColor(color: self?.matchButton.backgroundColor)
+                self?.matchButton.backgroundColor = self?.matchButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.gameMain)
             }.disposed(by: disposeBag)
         
         practiceMainButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.practiceMainButton.backgroundColor = self?.viewModel.buttonColor(color: self?.practiceMainButton.backgroundColor)
+                self?.practiceMainButton.backgroundColor = self?.practiceMainButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.practiceMain)
             }.disposed(by: disposeBag)
+        
+        detailTextView.rx.text.orEmpty.subscribe(onNext: { text in
+            self.viewModel.textViewInput.onNext(text)
+        }).disposed(by: disposeBag)
 
 
     }
-
-    private func createTeam() {
-
+    @objc private func didTapMakeCircleButton() {
+        coordinator?.toInvite(viewModel.user, form: viewModel.form)
     }
-
 }
 // MARK: - UIPickerDelegate,UINavigationControllerDelegate
 extension MakeCircleController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        print(#function)
         if let image = info[.originalImage] as? UIImage {
-            groupImageView.image = image.withRenderingMode(.alwaysOriginal)
+            switch imageSelection {
+            case .backGround:
+                backGroundImageView.image = image.withRenderingMode(.alwaysOriginal)
+                viewModel.form.background = image.withRenderingMode(.alwaysOriginal)
+            case .icon:
+                groupImageView.image = image.withRenderingMode(.alwaysOriginal)
+                viewModel.form.icon = image.withRenderingMode(.alwaysOriginal)
+            case .none:print("失敗")
+            }
+            
         }
         self.dismiss(animated: true, completion: nil)
     }
 }
-
-
-
-

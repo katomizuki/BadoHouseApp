@@ -32,14 +32,17 @@ class UserCoordinator: Coordinator, UserFlow {
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }
-    func toMakeCircle() {
-        coordinator(to: MakeCicleCoordinator(navigationController: self.navigationController))
+    func toMakeCircle(user: User?) {
+        let coordinator =  MakeCicleCoordinator(navigationController: self.navigationController)
+        if let user = user {
+            coordinator.start(user: user)
+        }
     }
     func toSettings(_ vc: UIViewController) {
         let controller = UserSettingsController.init(nibName: R.nib.userSettingsController.name, bundle: nil)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
-        vc.present(nav,animated: true)
+        vc.present(nav, animated: true)
     }
     func toSchedule(_ vc: UIViewController) {
         let controller = ScheduleController.init(nibName: "ScheduleController", bundle: nil)

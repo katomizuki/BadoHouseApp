@@ -20,14 +20,11 @@
                 <outlet property="doubleButton" destination="bfO-Fc-eaF" id="Otv-iL-Ex6"/>
                 <outlet property="genderButton" destination="Wmv-8L-lcI" id="HFg-ei-oDw"/>
                 <outlet property="groupImageView" destination="egS-fL-Gzg" id="Guj-5J-QaN"/>
-                <outlet property="inviteFriendButton" destination="qGT-qp-ATe" id="8mC-8o-llF"/>
-                <outlet property="makeCircleButton" destination="9iK-bl-TGA" id="zA8-wb-Wzf"/>
                 <outlet property="matchButton" destination="hfh-Sd-EZM" id="UqL-Ep-MCi"/>
                 <outlet property="mixButton" destination="xL6-AF-Tt4" id="4dL-0Z-0cy"/>
                 <outlet property="placeNameTextField" destination="dz8-y8-bOB" id="ETO-DR-ygQ"/>
                 <outlet property="practiceMainButton" destination="osL-lx-JPj" id="7eh-La-eBt"/>
                 <outlet property="priceNameTextField" destination="SfT-XE-jwT" id="34g-Pf-c6O"/>
-                <outlet property="registerButton" destination="9iK-bl-TGA" id="eSe-4e-6pK"/>
                 <outlet property="scrollView" destination="yp9-7j-Xv2" id="Wfu-4K-9bn"/>
                 <outlet property="singleButton" destination="Vs9-Su-62v" id="7Ox-T9-bF1"/>
                 <outlet property="view" destination="Mdn-fb-SYP" id="Qj5-x3-Pjd"/>
@@ -55,7 +52,7 @@
                                                 <constraint firstAttribute="height" constant="150" id="JsK-cz-3wS"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImages" translatesAutoresizingMaskIntoConstraints="NO" id="egS-fL-Gzg">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImages" translatesAutoresizingMaskIntoConstraints="NO" id="egS-fL-Gzg">
                                             <rect key="frame" x="30" y="120" width="60" height="60"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -206,18 +203,24 @@
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-Su-62v">
                                                                     <rect key="frame" x="0.0" y="0.0" width="95.5" height="31"/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="filled" title="シングルス"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" title="シングルス"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfO-Fc-eaF">
                                                                     <rect key="frame" x="115.5" y="0.0" width="95.5" height="31"/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="filled" title="ダブルス"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" title="ダブルス"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xL6-AF-Tt4">
                                                                     <rect key="frame" x="231" y="0.0" width="95.5" height="31"/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="filled" title="ミックス"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" title="ミックス"/>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -228,18 +231,24 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuv-Qf-Q6U">
                                                             <rect key="frame" x="0.0" y="0.0" width="95.5" height="31"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="平日開催"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="平日開催"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqi-s6-1Bs">
                                                             <rect key="frame" x="115.5" y="0.0" width="95.5" height="31"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="土日開催"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="土日開催"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osL-lx-JPj">
                                                             <rect key="frame" x="231" y="0.0" width="95.5" height="31"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="練習メイン"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="練習メイン"/>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -248,18 +257,24 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfh-Sd-EZM">
                                                             <rect key="frame" x="0.0" y="0.0" width="95.5" height="31"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="試合メイン"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="試合メイン"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wmv-8L-lcI">
                                                             <rect key="frame" x="115.5" y="0.0" width="95.5" height="31"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="性別不問"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="性別不問"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n16-Xv-Toh">
                                                             <rect key="frame" x="231" y="0.0" width="95.5" height="31"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="年齢不問"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="年齢不問"/>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -274,7 +289,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbu-f2-Ufq">
-                                    <rect key="frame" x="0.0" y="647.5" width="375" height="100"/>
+                                    <rect key="frame" x="0.0" y="663" width="375" height="100"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qtS-04-FWe">
                                             <rect key="frame" x="20" y="10" width="335" height="80"/>
@@ -293,26 +308,18 @@
                                         <constraint firstAttribute="height" constant="100" id="SjT-ON-CUl"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-bl-TGA">
-                                    <rect key="frame" x="245" y="749" width="110" height="31"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="サークル作成"/>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   特徴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqS-c1-aFg">
                                     <rect key="frame" x="0.0" y="472" width="48" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGT-qp-ATe">
-                                    <rect key="frame" x="20" y="749" width="110" height="31"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="バド友を招待"/>
-                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   追加項目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkk-5f-qoX">
+                                    <rect key="frame" x="0.0" y="642.5" width="375" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemGray5Color"/>
                             <constraints>
@@ -320,24 +327,24 @@
                                 <constraint firstAttribute="trailing" secondItem="eqo-GK-wiS" secondAttribute="trailing" id="4hP-Fh-Yxu"/>
                                 <constraint firstItem="F9s-Z1-3DA" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="6ml-Yr-tIQ"/>
                                 <constraint firstItem="eqo-GK-wiS" firstAttribute="top" secondItem="a6q-uS-hh9" secondAttribute="bottom" id="6wF-aC-PxP"/>
-                                <constraint firstItem="qGT-qp-ATe" firstAttribute="bottom" secondItem="9iK-bl-TGA" secondAttribute="bottom" id="6xC-Qg-FUM"/>
                                 <constraint firstItem="irS-yU-7LR" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="7xB-hS-7Kt"/>
                                 <constraint firstItem="a6q-uS-hh9" firstAttribute="top" secondItem="xO6-LI-h7J" secondAttribute="bottom" id="9UN-FF-biu"/>
                                 <constraint firstItem="Rz8-l7-mRs" firstAttribute="top" secondItem="yqS-c1-aFg" secondAttribute="bottom" id="Bs2-1K-hng"/>
                                 <constraint firstItem="xO6-LI-h7J" firstAttribute="top" secondItem="iF7-ga-2L4" secondAttribute="bottom" id="C0w-eW-TuA"/>
                                 <constraint firstItem="iF7-ga-2L4" firstAttribute="top" secondItem="irS-yU-7LR" secondAttribute="bottom" id="D0f-vD-8sU"/>
                                 <constraint firstItem="6Sd-lW-jDt" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="EQm-J7-R5Z"/>
-                                <constraint firstItem="Gbu-f2-Ufq" firstAttribute="top" secondItem="Rz8-l7-mRs" secondAttribute="bottom" constant="5" id="I83-IV-pbV"/>
                                 <constraint firstAttribute="trailing" secondItem="Rz8-l7-mRs" secondAttribute="trailing" id="Lln-ZQ-usV"/>
                                 <constraint firstItem="7QS-Xy-3vn" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="Lt0-P9-y5t"/>
-                                <constraint firstAttribute="trailing" secondItem="9iK-bl-TGA" secondAttribute="trailing" constant="20" id="Myn-sl-h5g"/>
                                 <constraint firstItem="Gbu-f2-Ufq" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="OU0-Nj-Ylu"/>
+                                <constraint firstItem="xkk-5f-qoX" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="OY5-WQ-6hH"/>
+                                <constraint firstItem="xkk-5f-qoX" firstAttribute="top" secondItem="Rz8-l7-mRs" secondAttribute="bottom" id="U5v-2B-hnu"/>
                                 <constraint firstAttribute="trailing" secondItem="irS-yU-7LR" secondAttribute="trailing" id="VNX-PF-oW6"/>
                                 <constraint firstItem="yqS-c1-aFg" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="WK3-3K-dfC"/>
                                 <constraint firstItem="tLq-mE-ned" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="XmJ-GN-47l"/>
                                 <constraint firstItem="6Sd-lW-jDt" firstAttribute="top" secondItem="eqo-GK-wiS" secondAttribute="bottom" id="YCa-aa-DD2"/>
                                 <constraint firstAttribute="trailing" secondItem="tLq-mE-ned" secondAttribute="trailing" id="bhi-o9-oeL"/>
-                                <constraint firstItem="qGT-qp-ATe" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" constant="20" id="cyM-EA-VYd"/>
+                                <constraint firstItem="Gbu-f2-Ufq" firstAttribute="top" secondItem="xkk-5f-qoX" secondAttribute="bottom" id="cYN-nb-6n7"/>
+                                <constraint firstAttribute="trailing" secondItem="xkk-5f-qoX" secondAttribute="trailing" id="cYr-7r-qYj"/>
                                 <constraint firstAttribute="trailing" secondItem="F9s-Z1-3DA" secondAttribute="trailing" id="daw-Oc-DOe"/>
                                 <constraint firstItem="tLq-mE-ned" firstAttribute="top" secondItem="7QS-Xy-3vn" secondAttribute="bottom" id="ePN-05-eCR"/>
                                 <constraint firstItem="xO6-LI-h7J" firstAttribute="leading" secondItem="dz3-Q2-4Uy" secondAttribute="leading" id="gjo-02-ktQ"/>
@@ -371,7 +378,6 @@
                 <constraint firstItem="yp9-7j-Xv2" firstAttribute="top" secondItem="2ER-Vd-u06" secondAttribute="top" id="0jM-4B-He3"/>
                 <constraint firstItem="yp9-7j-Xv2" firstAttribute="leading" secondItem="2ER-Vd-u06" secondAttribute="leading" id="DcD-T8-dcT"/>
                 <constraint firstAttribute="bottom" secondItem="yp9-7j-Xv2" secondAttribute="bottom" id="E0b-4j-QMB"/>
-                <constraint firstItem="2ER-Vd-u06" firstAttribute="bottom" secondItem="9iK-bl-TGA" secondAttribute="bottom" constant="20" id="MFY-Bs-FR3"/>
                 <constraint firstItem="yp9-7j-Xv2" firstAttribute="trailing" secondItem="2ER-Vd-u06" secondAttribute="trailing" id="evE-ox-hyz"/>
             </constraints>
             <point key="canvasLocation" x="168.80000000000001" y="-151.57421289355324"/>
@@ -387,9 +393,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -9,7 +9,7 @@ protocol UserFlow: AnyObject {
     func toSearchUser(user: User?)
     func toDetailUser()
     func toDetailCircle()
-    func toMakeCircle()
+    func toMakeCircle(user:User?)
     func toSettings(_ vc: UIViewController)
     func toSchedule(_ vc: UIViewController)
     func toApplyUser(user: User?)
@@ -70,6 +70,7 @@ final class UserController: UIViewController {
             self?.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
         }).disposed(by: disposeBag)
         
+        
         applyView.rx.tapGesture()
             .when(.recognized)
             .subscribe { [weak self] _ in
@@ -87,6 +88,8 @@ final class UserController: UIViewController {
             .subscribe { [weak self] _ in
                 self?.groupTableView.reloadData()
             }.disposed(by: disposeBag)
+        
+        
     }
     
     private func setupNavigationItem() {
@@ -177,6 +180,6 @@ extension UserController: UserProfileHeaderViewDelegate {
     }
     
     func didTapPlusTeamButton() {
-        coordinator?.toMakeCircle()
+        coordinator?.toMakeCircle(user: viewModel.user)
     }
 }

@@ -14,9 +14,12 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
     init(navigationController:UINavigationController) {
         self.navigationController = navigationController
     }
-    func toInvite() {
-        print(#function,"⚡️")
+    func toInvite(_ user:User,form: Form?) {
+        guard let form = form else {
+            return
+        }
         let controller = InviteToCircleController.init(nibName: R.nib.inviteToCircleController.name, bundle: nil)
+        controller.viewModel = InviteViewModel(userAPI: UserService(), user: user, form: form)
         navigationController.pushViewController(controller, animated: true)
     }
     
@@ -25,8 +28,11 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
     }
     
     func start() {
-        print("🌂")
+        
+    }
+    func start(user:User) {
         let controller = MakeCircleController.init(nibName: R.nib.makeCircleController.name, bundle: nil)
+        controller.viewModel = TeamRegisterViewModel(user: user)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

@@ -44,6 +44,8 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 guard let self = self else { return }
                 self.userName.accept(user.name)
                 self.user = user
+                self.bindApplyedUser(user: user)
+                self.bindFriends(user: user)
                 if let url = URL(string: user.profileImageUrlString) {
                     self.userUrl.accept(url)
                 } else {
@@ -54,23 +56,22 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 self.isError.onNext(true)
             }).disposed(by: disposeBag)
         }
-        
-        guard let user = user else {
-            return
-        }
+    }
+    
+    private func bindApplyedUser(user: User) {
         applyAPI.getApplyedUser(user: user).subscribe {[weak self] applyed in
             self?.isApplyViewHidden.onNext(applyed.count == 0)
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: self.disposeBag)
-        
+    }
+    private func bindFriends(user: User) {
         userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
             self?.friendsRelay.accept(users)
             self?.reload.onNext(())
         } onFailure: {[weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
-        
     }
     
     func didTapPermissionButton() {
