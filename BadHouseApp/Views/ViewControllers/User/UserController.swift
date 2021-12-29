@@ -43,7 +43,7 @@ final class UserController: UIViewController {
         }
     }
     private let disposeBag = DisposeBag()
-    private let viewModel = UserViewModel(userAPI: UserService())
+    private let viewModel = UserViewModel(userAPI: UserService(), applyAPI: ApplyService())
     var coordinator: UserFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -59,18 +59,15 @@ final class UserController: UIViewController {
 
     private func setupBinding() {
         viewModel.outputs.userName.subscribe(onNext: {[weak self] userName in
-            guard let self = self else { return }
-            self.myName.text = userName
+            self?.myName.text = userName
         }).disposed(by: disposeBag)
 
         viewModel.outputs.userUrl.subscribe(onNext: { [weak self] url in
-            guard let self = self else { return }
-            self.myImageView.sd_setImage(with: url)
+            self?.myImageView.sd_setImage(with: url)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
         }).disposed(by: disposeBag)
         
         applyView.rx.tapGesture()
@@ -78,8 +75,14 @@ final class UserController: UIViewController {
             .subscribe { [weak self] _ in
                 self?.coordinator?.toApplyedUser(user: self?.viewModel.user)
             }.disposed(by: disposeBag)
-
         
+        viewModel.isApplyViewHidden
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isHidden in
+                print("ssss")
+                self?.applyView.isHidden = isHidden
+            }).disposed(by: disposeBag)
+
     }
     
     private func setupNavigationItem() {

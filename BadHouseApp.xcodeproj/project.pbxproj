@@ -714,7 +714,7 @@
 		D3BDB53B26E0540C00C53780 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D3FF15C4277B3525006355EF /* Keychain */,
+				D3FF15C4277B3525006355EF /* Repositry */,
 				D3FFD326271EBBD100DE54ED /* API-Service */,
 				D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */,
 				D3BDB56326E0B05D00C53780 /* User.swift */,
@@ -805,13 +805,13 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		D3FF15C4277B3525006355EF /* Keychain */ = {
+		D3FF15C4277B3525006355EF /* Repositry */ = {
 			isa = PBXGroup;
 			children = (
 				D3FF15C5277B3535006355EF /* KeyChainRepositry.swift */,
 				D3FF15C7277B3D60006355EF /* UserDefaultsRepositry.swift */,
 			);
-			path = Keychain;
+			path = Repositry;
 			sourceTree = "<group>";
 		};
 		D3FFD326271EBBD100DE54ED /* API-Service */ = {

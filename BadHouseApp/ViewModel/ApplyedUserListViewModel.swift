@@ -72,7 +72,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         applyedSubject.accept(sbj)
         reload.onNext(())
     }
-    private func saveFriendsId(id:String) {
+    private func saveFriendsId(id: String) {
         if UserDefaults.standard.object(forKey: "friends") != nil {
             var array:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
             UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "friends")
