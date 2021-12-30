@@ -22,7 +22,7 @@ class UserCoordinator: Coordinator, UserFlow {
                 return
             }
             let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
-            coordinator(to: UserDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
+            coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
        
     }
     func toDetailCircle(myData: User?, circle: Circle?) {
@@ -31,8 +31,12 @@ class UserCoordinator: Coordinator, UserFlow {
         let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
         coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
     }
-    func toSearchCircle() {
-        coordinator(to: SearchCircleCoordinator(navigationController: navigationController))
+    func toSearchCircle(user:User?) {
+        guard let user = user else {
+            return
+        }
+        let viewModel = SearchCircleViewModel(circleAPI: CircleService(), user: user)
+        coordinator(to: SearchCircleCoordinator(navigationController: navigationController,viewModel: viewModel))
     }
     func toMyPage(_ vc: UIViewController) {
         let controller = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)

@@ -85,6 +85,7 @@ struct UserService: UserServiceProtocol {
     func getFriends(uid: String) -> Single<[User]> {
         var users = [User]()
         let group = DispatchGroup()
+        let blockIds:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
         return Single.create { singleEvent -> Disposable in
             Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
                 if let error = error {
@@ -97,7 +98,9 @@ struct UserService: UserServiceProtocol {
                         let uid = $0.data()["id"] as? String ?? ""
                         UserService.getUserById(uid: uid) { user in
                             defer { group.leave() }
+                            if !blockIds.contains(uid) {
                             users.append(user)
+                            }
                         }
                     }
                     group.notify(queue: .main) {
@@ -136,7 +139,7 @@ struct UserService: UserServiceProtocol {
     }
 
     
-    static func getUserById(uid:String,completion:@escaping((User)->Void)) {
+    static func getUserById(uid: String, completion:@escaping((User)->Void)) {
         Ref.UsersRef.document(uid).getDocument { documents, error in
             if let error = error {
                 print(error.localizedDescription)

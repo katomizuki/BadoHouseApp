@@ -5,7 +5,7 @@ import Charts
 import RxSwift
 
 protocol CircleDetailFlow {
-    func toUserDetail(user: User?,myData: User)
+    func toUserDetail(user: User?, myData: User)
 }
 final class CircleDetailController: UIViewController {
     // MARK: - Properties

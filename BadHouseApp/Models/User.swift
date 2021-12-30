@@ -2,7 +2,7 @@
 import Firebase
 import FirebaseAuth
 
-struct User {
+struct User: Equatable {
     var uid: String
     var name: String
     var email: String

@@ -4,7 +4,7 @@ import RxCocoa
 import FirebaseAuth
 
 protocol UserFlow: AnyObject {
-    func toSearchCircle()
+    func toSearchCircle(user: User?)
     func toMyPage(_ vc: UIViewController)
     func toSearchUser(user: User?)
     func toDetailUser(myData: User?, user: User?)
@@ -173,18 +173,33 @@ extension UserController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            viewModel.inputs.withDrawCircle(viewModel.circleRelay.value[indexPath.row])
+        case 1:
+            viewModel.inputs.blockUser(viewModel.friendsRelay.value[indexPath.row])
+        default:break
+        }
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        switch indexPath.section {
+        case 0:return "退会"
+        case 1:return "ブロック"
+        default:return ""
+        }
+    }
 }
 
 extension UserController: UserProfileHeaderViewDelegate {
     func didTapApplyButton() {
-        print(#function)
         coordinator?.toApplyUser(user: viewModel.user)
     }
     
     func didTapSearchButton(option: UserProfileSelection) {
         switch option {
         case .circle:
-            coordinator?.toSearchCircle()
+            coordinator?.toSearchCircle(user: viewModel.user)
         case .user:
             coordinator?.toSearchUser(user: viewModel.user)
         }

@@ -2,7 +2,8 @@
 import Firebase
 import RxSwift
 protocol CircleServiceProtocol {
-    func getMembers(ids: [String],circle:Circle) -> Single<Circle> 
+    func getMembers(ids: [String], circle: Circle) -> Single<Circle>
+    func searchCircles(text: String) -> Single<[Circle]>
 }
 struct CircleService: CircleServiceProtocol {
    
@@ -43,7 +44,8 @@ struct CircleService: CircleServiceProtocol {
             completion(circle)
         }
     }
-    func getMembers(ids: [String],circle:Circle) -> Single<Circle> {
+    
+    func getMembers(ids: [String], circle: Circle) -> Single<Circle> {
         var data = circle
         let group = DispatchGroup()
         return Single.create { singleEvent in
@@ -59,5 +61,33 @@ struct CircleService: CircleServiceProtocol {
             }
             return Disposables.create()
         }
+    }
+    
+    func searchCircles(text: String) -> Single<[Circle]> {
+        var circles = [Circle]()
+        return Single.create { singleEvent-> Disposable in
+            Ref.TeamRef.getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                guard let snapShot = snapShot else { return }
+                snapShot.documents.forEach {
+                    let circle = Circle(dic: $0.data())
+                    if circle.name.contains(text) || circle.place.contains(text) {
+                        circles.append(circle)
+                    }
+                }
+                singleEvent(.success(circles))
+            }
+            return Disposables.create()
+        }
+    }
+    static func updateCircle(user:User,
+                             circle: Circle,
+                             completion: @escaping (Error?)->Void) {
+        let ids = circle.member.filter({ $0 != user.uid })
+        Ref.TeamRef.document(circle.id).updateData(["member" : ids],
+                                                   completion: completion)
     }
 }

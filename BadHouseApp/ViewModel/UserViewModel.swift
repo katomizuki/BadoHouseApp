@@ -5,7 +5,8 @@ import FirebaseAuth
 
 protocol UserViewModelInputs {
     func willAppear()
-    func didTapPermissionButton()
+    func blockUser(_ user:User?)
+    func withDrawCircle(_ circle:Circle?)
 }
 protocol UserViewModelOutputs {
     var userName: BehaviorRelay<String> { get }
@@ -23,6 +24,7 @@ protocol UserViewModelType {
     var outputs: UserViewModelOutputs { get }
 }
 final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModelOutputs {
+    
     
     var userName = BehaviorRelay<String>(value: "")
     var userFriendsCountText = BehaviorRelay<String>(value: "")
@@ -95,8 +97,45 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         }.disposed(by: disposeBag)
     }
     
-    func didTapPermissionButton() {
+    func blockUser(_ user: User?) {
+        guard let user = user else { return }
+        //ブロック処理
+        saveBlockUser(user)
+        var users = friendsRelay.value
+        users.remove(value: user)
+        friendsRelay.accept(users)
+        reload.onNext(())
+    }
+    private func saveBlockUser(_ user: User) {
+        if UserDefaults.standard.object(forKey: "blocks") != nil {
+            let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "blocks")
+        } else {
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: "blocks")
+        }
+    }
+    func withDrawCircle(_ circle: Circle?) {
+        guard let circle = circle else {
+            return
+        }
+        guard let user = user else {
+            return
+        }
+        var circles = circleRelay.value
+        circles.remove(value: circle)
+        circleRelay.accept(circles)
+        reload.onNext(())
         
+        DeleteService.deleteSubCollectionData(collecionName: "Users",
+                                              documentId: user.uid,
+                                              subCollectionName: "Circle",
+                                              subId: circle.id)
+        CircleService.updateCircle(user: user,
+                                   circle: circle) { error in
+            if error != nil {
+                self.isError.onNext(true)
+            }
+        }
     }
     
 }
