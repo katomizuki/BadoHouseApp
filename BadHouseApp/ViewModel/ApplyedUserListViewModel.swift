@@ -9,14 +9,14 @@ protocol ApplyedUserListViewModelInputs {
 protocol ApplyedUserListViewModelOutputs {
     var applyedSubject: BehaviorRelay<[Applyed]> { get }
     var isError: PublishSubject<Bool> { get }
-    var completedFriend:PublishSubject<String> { get }
+    var completedFriend: PublishSubject<String> { get }
     var reload: PublishSubject<Void> { get }
 }
 protocol ApplyedUserListViewModelType {
     var inputs: ApplyedUserListViewModelInputs { get }
     var outputs: ApplyedUserListViewModelOutputs { get }
 }
-final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUserListViewModelInputs,ApplyedUserListViewModelOutputs {
+final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUserListViewModelInputs, ApplyedUserListViewModelOutputs {
     
     var inputs: ApplyedUserListViewModelInputs { return self }
     var outputs: ApplyedUserListViewModelOutputs { return self }
@@ -52,7 +52,6 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         }
         applyedSubject.accept(sbj)
         reload.onNext(())
-        print(user.uid,applyed.fromUserId)
         applyAPI.match(uid: user.uid, friendId: applyed.fromUserId) { [weak self] result in
             switch result {
             case .success:

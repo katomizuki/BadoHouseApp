@@ -4,14 +4,23 @@ import RxSwift
 import RxCocoa
 
 protocol MainUserDetailFlow: AnyObject {
-    func toCircleDetail()
-    func toFriendList()
+    func toCircleDetail(myData: User, circle: Circle)
+    func toFriendList(friends: [User], myData:User)
+    func toChat()
 }
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
      var viewModel: UserDetailViewModel!
      @IBOutlet private weak var ageLabel: UILabel!
      @IBOutlet private weak var genderLabel: UILabel!
+     @IBOutlet private weak var talkButton: UIButton! {
+         didSet {
+             talkButton.layer.borderWidth = 1
+             talkButton.layer.borderColor = UIColor.systemBlue.cgColor
+             talkButton.changeCorner(num: 5)
+             talkButton.setTitle("", for: .normal)
+         }
+     }
      @IBOutlet private weak var levelLabel: UILabel!
      @IBOutlet private weak var placeLabel: UILabel!
      @IBOutlet private weak var racketLabel: UILabel!
@@ -30,8 +39,15 @@ protocol MainUserDetailFlow: AnyObject {
              userImageView.changeCorner(num: 30)
          }
      }
-     @IBOutlet private weak var friendsButton: UIButton!
+     @IBOutlet private weak var friendsButton: UIButton! {
+         didSet {
+             friendsButton.changeCorner(num: 5)
+             friendsButton.layer.borderColor = UIColor.systemBlue.cgColor
+             friendsButton.layer.borderWidth = 1
+         }
+     }
      @IBOutlet private weak var circleCollectionView: UICollectionView!
+     @IBOutlet private weak var nameLabel: UILabel!
      var coordinator: MainUserDetailFlow?
      private let disposeBag = DisposeBag()
      // MARK: - LifeCycle
@@ -60,8 +76,12 @@ protocol MainUserDetailFlow: AnyObject {
          placeLabel.text = viewModel.user.place
          racketLabel.text = viewModel.user.racket
          playerLabel.text = viewModel.user.player
+         nameLabel.text = viewModel.user.name
+         
          textView.text = viewModel.user.introduction
          badmintonTimeLabel.text = viewModel.user.badmintonTime
+         applyFriendButton.isHidden = viewModel.isApplyButtonHidden
+         talkButton.isHidden = viewModel.isTalkButtonHidden
          
          userImageView.sd_setImage(with: viewModel.user.profileImageUrl)
          
@@ -70,21 +90,19 @@ protocol MainUserDetailFlow: AnyObject {
          }).disposed(by: disposeBag)
          
          circleCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
-         viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _ ,item ,cell in
+         viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _,item ,cell in
              cell.configure(item)
          }.disposed(by: disposeBag)
          
          circleCollectionView.rx.itemSelected.bind(onNext: {[weak self] indexPath in
-             self?.coordinator?.toCircleDetail()
+             guard let self = self else { return }
+             self.coordinator?.toCircleDetail(myData:self.viewModel.myData,
+                                              circle:self.viewModel.circleListRelay.value[indexPath.row])
          }).disposed(by: disposeBag)
          
          viewModel.outputs.reload.subscribe { [weak self] _ in
              self?.circleCollectionView.reloadData()
          }.disposed(by: disposeBag)
-         
-         
-
-
      }
   
     // MARK: - Selector
@@ -93,11 +111,14 @@ protocol MainUserDetailFlow: AnyObject {
      }
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {
-         coordinator?.toFriendList()
-         let controller = FriendsListController.init(nibName: R.nib.friendsListController.name, bundle: nil)
-         navigationController?.pushViewController(controller, animated: true)
+         coordinator?.toFriendList(friends: viewModel.friendListRelay.value,
+                                   myData: viewModel.myData)
      }
-}
+     @IBAction func didTapTalkButton(_ sender: Any) {
+         coordinator?.toChat()
+     }
+     
+ }
 extension MainUserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 80)

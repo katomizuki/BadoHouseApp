@@ -6,9 +6,9 @@
 //
 
 import UIKit
-class PracticeDetailCoordinator:Coordinator,PracticeDetailFlow {
-    let navigationController:UINavigationController
-    init(navigationController:UINavigationController) {
+class PracticeDetailCoordinator:Coordinator, PracticeDetailFlow {
+    let navigationController: UINavigationController
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     func start() {
@@ -24,6 +24,6 @@ class PracticeDetailCoordinator:Coordinator,PracticeDetailFlow {
         
     }
     func toCircleDetail() {
-        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController))
+//        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController))
     }
 }

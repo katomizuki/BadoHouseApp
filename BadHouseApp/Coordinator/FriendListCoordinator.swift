@@ -6,17 +6,21 @@
 //
 
 import UIKit
-final class FriendListCoordinator:Coordinator,FriendListFlow {
+final class FriendListCoordinator:Coordinator, FriendListFlow {
     let navigationController:UINavigationController
-    init(navigationController:UINavigationController) {
+    let viewModel:FriendsListViewModel
+    init(navigationController:UINavigationController,viewModel:FriendsListViewModel) {
         self.navigationController = navigationController
+        self.viewModel = viewModel
     }
     func start() {
         let controller = FriendsListController.init(nibName: R.nib.friendsListController.name, bundle: nil)
+        controller.viewModel = viewModel
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toUserDetail() {
-//       coordinator(to: UserDetailCoordinator(navigationController: navigationController))
+    func toUserDetail(myData:User, user:User) {
+        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
     }
 }

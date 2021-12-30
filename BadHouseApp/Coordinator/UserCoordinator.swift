@@ -26,7 +26,7 @@ class UserCoordinator: Coordinator, UserFlow {
        
     }
     func toDetailCircle(circle: Circle?) {
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
+//        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
     }
     func toSearchCircle() {
         coordinator(to: SearchCircleCoordinator(navigationController: navigationController))

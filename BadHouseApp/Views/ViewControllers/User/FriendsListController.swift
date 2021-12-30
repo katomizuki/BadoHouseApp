@@ -6,37 +6,34 @@
 //
 
 import UIKit
+import RxSwift
+
 protocol FriendListFlow:AnyObject {
-    func toUserDetail()
+    func toUserDetail(myData:User,user:User)
 }
-final class FriendsListController: UIViewController {
+final class FriendsListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var friendListTableView: UITableView!
-    var coordinator:FriendListFlow?
+    var coordinator: FriendListFlow?
+    var viewModel: FriendsListViewModel!
+    private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setupBinding()
         navigationItem.backButtonDisplayMode = .minimal
     }
-    private func setupTableView() {
-        friendListTableView.delegate = self
-        friendListTableView.dataSource = self
+    private func setupBinding() {
         friendListTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
-    }
-}
-extension FriendsListController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        coordinator?.toUserDetail()
-    }
-}
-extension FriendsListController:UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberCell.id, for: indexPath) as? MemberCell else { fatalError() }
-        return cell
+        friendListTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        viewModel.usersRelay.bind(to: friendListTableView.rx.items(cellIdentifier: MemberCell.id, cellType: MemberCell.self)) {_, item, cell in
+            cell.configure(item)
+        }.disposed(by: disposeBag)
+        
+        friendListTableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
+            guard let self = self else { return }
+            self.coordinator?.toUserDetail(myData:self.viewModel.myData,
+                                           user: self.viewModel.usersRelay.value[indexPath.row])
+        }).disposed(by: disposeBag)
     }
 }

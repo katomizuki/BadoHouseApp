@@ -15,7 +15,7 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
 //        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: <#UserDetailViewModel#>))
     }
     func toCircleDetail() {
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
+//        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
     }
     func toChat() {
         coordinator(to: ChatCoordinator(navigationController: navigationController))

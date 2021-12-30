@@ -12,9 +12,9 @@ protocol UserDetailViewModelInputs {
     func willAppear()
 }
 protocol UserDetailViewModelOutputs {
-    var isError:PublishSubject<Bool> { get }
-    var friendListRelay:BehaviorRelay<[User]> { get }
-    var circleListRelay:BehaviorRelay<[Circle]> { get }
+    var isError: PublishSubject<Bool> { get }
+    var friendListRelay: BehaviorRelay<[User]> { get }
+    var circleListRelay: BehaviorRelay<[Circle]> { get }
     var reload: PublishSubject<Void> { get }
 }
 protocol UserDetailViewModelType {
@@ -31,6 +31,13 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var user: User
     var myData: User
     var userAPI: UserServiceProtocol
+    let ids:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+    var isApplyButtonHidden: Bool {
+        return ids.contains(user.uid) || myData.uid == user.uid
+    }
+    var isTalkButtonHidden: Bool {
+        return !(ids.contains(user.uid) && myData.uid != user.uid)
+    }
     private let disposeBag = DisposeBag()
     init(myData: User, user: User, userAPI: UserServiceProtocol) {
         self.user = user
@@ -52,6 +59,5 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
 
-    
     }
 }

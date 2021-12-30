@@ -1,7 +1,9 @@
 
 import Firebase
-
-struct CircleService {
+protocol CircleServiceProtocol {
+    
+}
+struct CircleService: CircleServiceProtocol {
    
     static func postCircle(id: String,
                            dic: [String: Any],

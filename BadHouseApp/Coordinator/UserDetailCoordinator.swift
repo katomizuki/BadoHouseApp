@@ -7,7 +7,7 @@
 
 import UIKit
 final class UserDetailCoordinator:Coordinator,MainUserDetailFlow {
-    
+
     let navigationController: UINavigationController
     let viewModel:UserDetailViewModel
     init(navigationController: UINavigationController,viewModel:UserDetailViewModel) {
@@ -20,11 +20,16 @@ final class UserDetailCoordinator:Coordinator,MainUserDetailFlow {
         controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
-    func toFriendList() {
-        coordinator(to: FriendListCoordinator(navigationController: navigationController))
+    func toFriendList(friends: [User],myData: User) {
+        let viewModel = FriendsListViewModel(users: friends, myData: myData)
+        coordinator(to: FriendListCoordinator(navigationController: navigationController, viewModel: viewModel))
     }
-    func toCircleDetail() {
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
+    func toCircleDetail(myData: User, circle: Circle) {
+        let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
+    }
+    func toChat() {
+        coordinator(to: ChatCoordinator(navigationController: navigationController))
     }
     
 }

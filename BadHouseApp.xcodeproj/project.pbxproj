@@ -193,6 +193,8 @@
 		D3FF15C3277AFC9B006355EF /* Applyed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C2277AFC9B006355EF /* Applyed.swift */; };
 		D3FF15C6277B3535006355EF /* KeyChainRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C5277B3535006355EF /* KeyChainRepositry.swift */; };
 		D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C7277B3D60006355EF /* UserDefaultsRepositry.swift */; };
+		D3FF15CA277D3C03006355EF /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15C9277D3C02006355EF /* FriendsListViewModel.swift */; };
+		D3FF15CC277D46C0006355EF /* CircleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15CB277D46C0006355EF /* CircleDetailViewModel.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -395,6 +397,8 @@
 		D3FF15C2277AFC9B006355EF /* Applyed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applyed.swift; sourceTree = "<group>"; };
 		D3FF15C5277B3535006355EF /* KeyChainRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepositry.swift; sourceTree = "<group>"; };
 		D3FF15C7277B3D60006355EF /* UserDefaultsRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepositry.swift; sourceTree = "<group>"; };
+		D3FF15C9277D3C02006355EF /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
+		D3FF15CB277D46C0006355EF /* CircleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailViewModel.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -792,6 +796,8 @@
 				D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */,
 				D3FF15B0277ACBF8006355EF /* ApplyFriendsViewModel.swift */,
 				D3FF15BC277AF45F006355EF /* ApplyedUserListViewModel.swift */,
+				D3FF15C9277D3C02006355EF /* FriendsListViewModel.swift */,
+				D3FF15CB277D46C0006355EF /* CircleDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1104,6 +1110,7 @@
 				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
 				D3886439276A1B5300FC4F07 /* UserController.swift in Sources */,
+				D3FF15CA277D3C03006355EF /* FriendsListViewModel.swift in Sources */,
 				D316073627676BF5005FF41D /* EventSearchController.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */,
 				D3B72CF1274A2EAA00253933 /* UIImageView+Extenstion.swift in Sources */,
@@ -1130,6 +1137,7 @@
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
 				D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */,
+				D3FF15CC277D46C0006355EF /* CircleDetailViewModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */,
 				D3FF15C0277AF979006355EF /* ApplyedUserListCell.swift in Sources */,
