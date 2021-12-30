@@ -49,8 +49,6 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
             self?.selectedCell["\(indexPath.row)"] = nil
             self?.viewModel.inviteAction(user: self?.viewModel.friendsList.value[indexPath.row])
         }).disposed(by: disposeBag)
-        
-
     }
     @objc private func didTapRightButton() {
         viewModel.makeCircle()

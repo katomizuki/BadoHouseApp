@@ -1,7 +1,8 @@
 
 import Firebase
+import RxSwift
 protocol CircleServiceProtocol {
-    
+    func getMembers(ids: [String],circle:Circle) -> Single<Circle> 
 }
 struct CircleService: CircleServiceProtocol {
    
@@ -40,6 +41,23 @@ struct CircleService: CircleServiceProtocol {
             guard let dic = snapshot?.data() else { return }
             let circle = Circle(dic: dic)
             completion(circle)
+        }
+    }
+    func getMembers(ids: [String],circle:Circle) -> Single<Circle> {
+        var data = circle
+        let group = DispatchGroup()
+        return Single.create { singleEvent in
+            ids.forEach {
+                group.enter()
+                UserService.getUserById(uid: $0) { user in
+                    defer { group.leave() }
+                    data.members.append(user)
+                }
+            }
+            group.notify(queue: .main) {
+                singleEvent(.success(data))
+            }
+            return Disposables.create()
         }
     }
 }

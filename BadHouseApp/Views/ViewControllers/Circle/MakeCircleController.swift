@@ -173,8 +173,6 @@ final class MakeCircleController: UIViewController {
         detailTextView.rx.text.orEmpty.subscribe(onNext: { text in
             self.viewModel.textViewInput.onNext(text)
         }).disposed(by: disposeBag)
-
-
     }
     @objc private func didTapMakeCircleButton() {
         coordinator?.toInvite(viewModel.user, form: viewModel.form)

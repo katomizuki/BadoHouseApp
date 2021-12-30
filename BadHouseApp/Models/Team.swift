@@ -12,6 +12,7 @@ struct Circle {
     var additionlText:String
     var backGround:String
     var icon:String
+    var members = [User]()
     var iconUrl:URL? {
         if let url = URL(string: icon) {
             return url

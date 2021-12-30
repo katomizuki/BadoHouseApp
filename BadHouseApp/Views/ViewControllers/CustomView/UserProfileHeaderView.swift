@@ -90,6 +90,11 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
             searchButton.setTitle("バド友を探す", for: .normal)
             plusButton.isHidden = true
             applyButton.isHidden = false
+        } else if section == 0 {
+            headerLabel.text = "所属サークル"
+            searchButton.setTitle("サークルを探す", for: .normal)
+            plusButton.isHidden = false
+            applyButton.isHidden = true
         }
     }
 }

@@ -20,4 +20,11 @@ final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
+    func toUserDetail(user: User?, myData: User) {
+        guard let user = user else {
+            return
+        }
+        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
+    }
 }

@@ -16,7 +16,7 @@ class UserCoordinator: Coordinator, UserFlow {
             navigationController.pushViewController(controller, animated: true)
         }
     }
-    func toDetailUser(myData: User?,user: User?) {
+    func toDetailUser(myData: User?, user: User?) {
         guard let user = user else { return }
             guard let myData = myData else {
                 return
@@ -25,8 +25,11 @@ class UserCoordinator: Coordinator, UserFlow {
             coordinator(to: UserDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
        
     }
-    func toDetailCircle(circle: Circle?) {
-//        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
+    func toDetailCircle(myData: User?, circle: Circle?) {
+        guard let circle = circle else { return }
+        guard let myData = myData else { return }
+        let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
     }
     func toSearchCircle() {
         coordinator(to: SearchCircleCoordinator(navigationController: navigationController))
