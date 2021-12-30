@@ -27,4 +27,10 @@ final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
         let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
         coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
     }
+    func toInvite(circle: Circle, myData: User) {
+//        let viewModel = InviteViewModel(userAPI: UserService(), user: myData, form: <#T##Form#>)
+    }
+    func toUpdate(circle: Circle) {
+        
+    }
 }

@@ -6,6 +6,8 @@ import RxSwift
 
 protocol CircleDetailFlow {
     func toUserDetail(user: User?, myData: User)
+    func toInvite(circle: Circle,myData: User)
+    func toUpdate(circle: Circle)
 }
 final class CircleDetailController: UIViewController {
     // MARK: - Properties
@@ -54,14 +56,27 @@ final class CircleDetailController: UIViewController {
     }
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var teamMemberTableView: UITableView!
+    @IBOutlet private weak var singleButton: UIButton!
+    @IBOutlet private weak var doubleButton: UIButton!
+    @IBOutlet private weak var mixButton: UIButton!
+    @IBOutlet private weak var weekDayButton: UIButton!
+    @IBOutlet private weak var genderButton: UIButton!
+    @IBOutlet private weak var weekEndButton: UIButton!
+    @IBOutlet private weak var matchButton: UIButton!
+    @IBOutlet private weak var practiceButton: UIButton!
+    private lazy var buttons = [singleButton,doubleButton,mixButton,weekDayButton,weekEndButton,practiceButton,matchButton,genderButton,ageButton]
+    @IBOutlet weak var ageButton: UIButton!
     var viewModel: CircleDetailViewModel!
     var coordinator: CircleDetailFlow?
+    private let rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapRightButton))
+    private let updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupBinding()
         navigationItem.backButtonDisplayMode = .minimal
+        navigationItem.rightBarButtonItems = [updateButton,rightButton]
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -101,6 +116,19 @@ final class CircleDetailController: UIViewController {
                                                myData: self.viewModel.myData)
             }
         }).disposed(by: disposeBag)
+        
+        viewModel.isRightButtonHidden.subscribe(onNext: { [weak self] isHidden in
+            if isHidden == true { self?.navigationItem.rightBarButtonItems = nil }
+        }).disposed(by: disposeBag)
+        
+        buttons.forEach { button in
+            guard let title = button?.currentTitle else { return }
+            if viewModel.circle.features.contains(title) {
+                button?.isEnabled = true
+                button?.backgroundColor = .systemBlue
+            }
+        }
+
     }
     
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
@@ -108,7 +136,6 @@ final class CircleDetailController: UIViewController {
     }
     private func setupPieChart() {
         let genderArray = viewModel.genderPercentage
-        print(genderArray)
         var entry = [ChartDataEntry]()
         for i in 0..<genderArray.count {
             guard let gender = Gender(rawValue: i)?.name else { return }
@@ -135,5 +162,11 @@ final class CircleDetailController: UIViewController {
         let data = BarChartData(dataSet: dataSet)
         barChartView.data = data
         dataSet.colors = [.systemBlue]
+    }
+    @objc private func didTapRightButton() {
+        coordinator?.toInvite(circle:viewModel.circle,myData:viewModel.myData)
+    }
+    @objc private func didTapEditButton() {
+        
     }
 }

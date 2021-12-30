@@ -15,6 +15,7 @@ protocol CircleDetailViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var memberRelay: BehaviorRelay<[User]> { get }
     var reload: PublishSubject<Void> { get }
+    var isRightButtonHidden:PublishSubject<Bool> { get }
 }
 protocol CircleDetailViewModelType {
     var inputs: CircleDetailViewModelInputs { get }
@@ -26,6 +27,7 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
     var isError = PublishSubject<Bool>()
     var memberRelay = BehaviorRelay<[User]>(value: [])
     var reload = PublishSubject<Void>()
+    var isRightButtonHidden = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
     var circle: Circle
     var myData: User
@@ -44,10 +46,11 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
         circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
             guard let self = self else { return }
             self.allMembers = circle.members
-            self.friendsMembers = circle.members.filter({
-                self.ids.contains($0.uid)
+            self.friendsMembers = circle.members.filter({ user in
+                self.ids.contains(user.uid)
             })
             self.getPercentage()
+            self.checkRightButtonHidden(self.allMembers)
             self.memberRelay.accept(circle.members)
             self.reload.onNext(())
         } onFailure: { [weak self] _ in
@@ -85,8 +88,18 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
             default:break
             }
         }
-        genderPercentage = [men,women,other]
-        levelPercentage = [one,two,three,four,five,six,seven,eight,nine,ten]
+        genderPercentage = [men, women, other]
+        levelPercentage = [one, two, three, four, five, six, seven, eight, nine, ten]
+    }
+    
+    private func checkRightButtonHidden(_ users:[User]) {
+        var isHidden = true
+        users.forEach { user in
+           if user.uid == myData.uid {
+               isHidden = false
+            }
+        }
+        self.isRightButtonHidden.onNext(isHidden)
     }
     
 }
