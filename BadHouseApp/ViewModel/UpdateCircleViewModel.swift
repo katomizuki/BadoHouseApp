@@ -18,6 +18,7 @@ protocol UpdateCircleViewModelInputs {
 }
 protocol UpdateCircleViewModelOutputs {
     var isError:PublishSubject<Bool>{ get }
+    var completed:PublishSubject<Void> { get }
 }
 protocol UpdateCircleViewModelType {
     var inputs: UpdateCircleViewModelInputs { get }
@@ -34,7 +35,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     private var dateTextSubject = PublishSubject<String>()
     private var textViewSubject = PublishSubject<String>()
     var isError = PublishSubject<Bool>()
-    var iconImage:UIImage?
+    var iconImage: UIImage?
     var backgroundImage:UIImage?
     lazy var selectionsFeature = circle.features
     var nameTextInputs: AnyObserver<String> {
@@ -53,6 +54,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
         return dateTextSubject.asObserver()
     }
     private let disposeBag = DisposeBag()
+    var completed = PublishSubject<Void>()
     init(circleAPI: CircleServiceProtocol,circle: Circle) {
         self.circle = circle
         self.circleAPI = circleAPI
@@ -78,6 +80,47 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
         }).disposed(by: disposeBag)
     }
     func save() {
+        if iconImage != nil && backgroundImage != nil {
+            StorageService.downLoadImage(image: iconImage!) { result in
+                switch result {
+                case .success(let iconUrlString):
+                    self.circle.icon = iconUrlString
+                    StorageService.downLoadImage(image: self.backgroundImage!) { result in
+                        switch result {
+                        case .success(let backGroundUrl):
+                            self.circle.backGround = backGroundUrl
+                            self.saveCircleAction(self.circle)
+                        case .failure:
+                            self.isError.onNext(true)
+                        }
+                    }
+                case .failure:
+                    self.isError.onNext(true)
+                }
+            }
+        } else if iconImage == nil && backgroundImage == nil {
+            self.saveCircleAction(circle)
+        } else if iconImage != nil {
+            StorageService.downLoadImage(image: iconImage!) { result in
+                switch result {
+                case .success(let iconUrlString):
+                    self.circle.icon = iconUrlString
+                    self.saveCircleAction(self.circle)
+                case .failure:
+                    self.isError.onNext(true)
+                }
+            }
+        } else if backgroundImage != nil {
+            StorageService.downLoadImage(image: self.backgroundImage!) { result in
+                switch result {
+                case .success(let backGroundUrl):
+                    self.circle.backGround = backGroundUrl
+                    self.saveCircleAction(self.circle)
+                case .failure:
+                    self.isError.onNext(true)
+                }
+            }
+        }
         
     }
     func addFeatures(_ feature: CircleFeatures) {
@@ -91,5 +134,14 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     
     func judgeFeatures(_ feature: CircleFeatures) -> Bool {
         return selectionsFeature.contains(feature.description)
+    }
+    
+    func saveCircleAction(_ circle:Circle) {
+        circleAPI.updateCircle(circle: circle) { error in
+            if let error = error {
+                self.isError.onNext(true)
+            }
+            self.completed.onNext(())
+        }
     }
 }

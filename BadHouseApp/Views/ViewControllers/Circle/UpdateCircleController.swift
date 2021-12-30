@@ -7,7 +7,10 @@
 
 import UIKit
 import RxSwift
-
+import PKHUD
+protocol UpdateCircleControllerDelegate:AnyObject {
+    func pop(_ vc:UpdateCircleController)
+}
 class UpdateCircleController: UIViewController {
     
     @IBOutlet private weak var backGroundImage: UIImageView!
@@ -34,6 +37,7 @@ class UpdateCircleController: UIViewController {
     private let imagePicker = UIImagePickerController()
     private lazy var buttons = [singleButton, doubleButton, mixButton,  weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
     private let disposeBag = DisposeBag()
+    weak var delegate: UpdateCircleControllerDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -67,6 +71,7 @@ class UpdateCircleController: UIViewController {
         imagePicker.delegate = self
     }
     private func setupBinding() {
+        
         iconImage.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
@@ -82,6 +87,27 @@ class UpdateCircleController: UIViewController {
                 self.imageSelection = .backGround
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposeBag)
+        
+        nameTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            self?.viewModel.nameTextInputs.onNext(text)
+        }).disposed(by: disposeBag)
+        
+        moneyTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            self?.viewModel.priceTextInputs.onNext(text)
+        }).disposed(by: disposeBag)
+        
+        placeTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            self?.viewModel.placeTextInputs.onNext(text)
+        }).disposed(by: disposeBag)
+        
+        dateTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            self?.viewModel.dateTextInput.onNext(text)
+        }).disposed(by: disposeBag)
+        
+        textView.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            self?.viewModel.textViewInputs.onNext(text)
+        }).disposed(by: disposeBag)
+
         
         singleButton.rx.tap
             .asDriver()
@@ -145,6 +171,14 @@ class UpdateCircleController: UIViewController {
                 self?.practiceButton.backgroundColor = self?.practiceButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
                 self?.viewModel.addFeatures(.practiceMain)
             }.disposed(by: disposeBag)
+        
+        viewModel.outputs.isError.subscribe { [weak self] _ in
+            self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .warning)
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.completed.subscribe { [weak self] _ in
+            self?.popAnimation()
+        }.disposed(by: disposeBag)
     }
     
     @objc private func didTapRightButton() {
@@ -167,5 +201,11 @@ extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerC
             
         }
         self.dismiss(animated: true, completion: nil)
+    }
+    private func popAnimation() {
+        HUD.show(.success, onView: view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }

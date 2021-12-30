@@ -130,7 +130,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                                               documentId: user.uid,
                                               subCollectionName: "Circle",
                                               subId: circle.id)
-        CircleService.updateCircle(user: user,
+        CircleService.withdrawCircle(user: user,
                                    circle: circle) { error in
             if error != nil {
                 self.isError.onNext(true)

@@ -4,6 +4,7 @@ import RxSwift
 protocol CircleServiceProtocol {
     func getMembers(ids: [String], circle: Circle) -> Single<Circle>
     func searchCircles(text: String) -> Single<[Circle]>
+    func updateCircle(circle:Circle,completion:@escaping (Error?)->Void)
 }
 struct CircleService: CircleServiceProtocol {
    
@@ -83,11 +84,24 @@ struct CircleService: CircleServiceProtocol {
             return Disposables.create()
         }
     }
-    static func updateCircle(user:User,
+    static func withdrawCircle(user: User,
                              circle: Circle,
-                             completion: @escaping (Error?)->Void) {
+                             completion: @escaping (Error?)-> Void) {
         let ids = circle.member.filter({ $0 != user.uid })
-        Ref.TeamRef.document(circle.id).updateData(["member" : ids],
+        Ref.TeamRef.document(circle.id).updateData(["member": ids],
                                                    completion: completion)
+    }
+    func updateCircle(circle:Circle,completion:@escaping (Error?)->Void) {
+        let dic:[String:Any] = ["id": circle.id,
+                                       "name": circle.name,
+                                       "price": circle.price,
+                                       "place": circle.place,
+                                       "time": circle.time,
+                                   "features": circle.features,
+                                   "additionlText":circle.additionlText,
+                                "icon":circle.icon,
+                                "backGround":circle.backGround,
+                                "member":circle.member]
+        Ref.TeamRef.document(circle.id).updateData(dic,completion: completion)
     }
 }
