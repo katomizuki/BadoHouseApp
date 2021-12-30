@@ -201,6 +201,7 @@
 		D3FF15D4277D978A006355EF /* AddtionalMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15D2277D9789006355EF /* AddtionalMemberController.xib */; };
 		D3FF15D6277DA680006355EF /* UpdateCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */; };
 		D3FF15D8277DA78F006355EF /* UpdateCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */; };
+		D3FF15DA277DD46A006355EF /* AdditionalMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -411,6 +412,7 @@
 		D3FF15D2277D9789006355EF /* AddtionalMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalMemberController.xib; sourceTree = "<group>"; };
 		D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCircleViewModel.swift; sourceTree = "<group>"; };
 		D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCircleCoordinator.swift; sourceTree = "<group>"; };
+		D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberViewModel.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 				D3FF15C9277D3C02006355EF /* FriendsListViewModel.swift */,
 				D3FF15CB277D46C0006355EF /* CircleDetailViewModel.swift */,
 				D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */,
+				D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1113,6 +1116,7 @@
 				D3FF15D3277D978A006355EF /* AddtionalMemberController.swift in Sources */,
 				D316072627675E98005FF41D /* AddtionalEventLevelController.swift in Sources */,
 				D357BB16277963EF00DC8A79 /* Firebase-Service.swift in Sources */,
+				D3FF15DA277DD46A006355EF /* AdditionalMemberViewModel.swift in Sources */,
 				D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */,
 				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
 				D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */,

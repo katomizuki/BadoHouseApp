@@ -138,7 +138,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     
     func saveCircleAction(_ circle:Circle) {
         circleAPI.updateCircle(circle: circle) { error in
-            if let error = error {
+            if error != nil {
                 self.isError.onNext(true)
             }
             self.completed.onNext(())

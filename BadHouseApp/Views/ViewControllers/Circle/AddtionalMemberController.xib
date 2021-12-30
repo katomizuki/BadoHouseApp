@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddtionalMemberController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="AMO-1L-RUa" id="6d4-by-Rbb"/>
                 <outlet property="view" destination="oMA-VV-izG" id="4si-Qq-qUk"/>
             </connections>
         </placeholder>

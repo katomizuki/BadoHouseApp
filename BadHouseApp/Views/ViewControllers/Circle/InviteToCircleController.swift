@@ -33,7 +33,7 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.friendsList
             .bind(to: friendTableView.rx.items(cellIdentifier: InviteCell.id, cellType: InviteCell.self)) {[weak self] row, item, cell in
             cell.configure(item)
-                cell.accessoryType = self?.selectedCell["\(row)"] != nil ? .checkmark : .none
+            cell.accessoryType = self?.selectedCell["\(row)"] != nil ? .checkmark : .none
         }.disposed(by: disposeBag)
         
         friendTableView.rx.itemSelected.asDriver().drive(onNext: { [weak self] indexPath in

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import PKHUD
 protocol UpdateCircleControllerDelegate:AnyObject {
-    func pop(_ vc:UpdateCircleController)
+    func pop(_ vc: UpdateCircleController)
 }
 class UpdateCircleController: UIViewController {
     
@@ -108,7 +108,6 @@ class UpdateCircleController: UIViewController {
             self?.viewModel.textViewInputs.onNext(text)
         }).disposed(by: disposeBag)
 
-        
         singleButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in

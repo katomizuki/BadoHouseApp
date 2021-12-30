@@ -33,7 +33,7 @@ final class InviteViewModel: InviteViewModelType,
     var inviteIds = [String]()
     private let disposeBag = DisposeBag()
     private var dic = [String : Any]()
-    init(userAPI: UserServiceProtocol,user: User,form:Form) {
+    init(userAPI: UserServiceProtocol, user: User, form: Form) {
         self.userAPI = userAPI
         self.user = user
         self.form = form
