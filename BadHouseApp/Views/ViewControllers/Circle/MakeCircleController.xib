@@ -98,11 +98,6 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xO6-LI-h7J">
                                     <rect key="frame" x="0.0" y="210.5" width="375" height="50"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aOg-yh-M1A">
-                                            <rect key="frame" x="30" y="16" width="315" height="18.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="〇〇バドミントンサークル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nEr-Fl-HBZ">
                                             <rect key="frame" x="30" y="16" width="315" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -111,12 +106,9 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="aOg-yh-M1A" secondAttribute="trailing" constant="30" id="Aix-3N-AtC"/>
                                         <constraint firstItem="nEr-Fl-HBZ" firstAttribute="leading" secondItem="xO6-LI-h7J" secondAttribute="leading" constant="30" id="O3o-6G-vPd"/>
                                         <constraint firstAttribute="trailing" secondItem="nEr-Fl-HBZ" secondAttribute="trailing" constant="30" id="WN4-Ly-HbL"/>
                                         <constraint firstItem="nEr-Fl-HBZ" firstAttribute="centerY" secondItem="xO6-LI-h7J" secondAttribute="centerY" id="cnj-fn-NN0"/>
-                                        <constraint firstItem="aOg-yh-M1A" firstAttribute="centerY" secondItem="xO6-LI-h7J" secondAttribute="centerY" id="dcN-bm-bJg"/>
-                                        <constraint firstItem="aOg-yh-M1A" firstAttribute="leading" secondItem="xO6-LI-h7J" secondAttribute="leading" constant="30" id="lQX-jO-BSZ"/>
                                         <constraint firstAttribute="height" constant="50" id="oLE-mC-nBQ"/>
                                     </constraints>
                                 </view>

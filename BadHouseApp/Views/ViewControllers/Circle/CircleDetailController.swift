@@ -68,8 +68,9 @@ final class CircleDetailController: UIViewController {
     @IBOutlet weak var ageButton: UIButton!
     var viewModel: CircleDetailViewModel!
     var coordinator: CircleDetailFlow?
-    private let rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapRightButton))
-    private let updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
+    private lazy
+    var rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapRightButton))
+    private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +103,7 @@ final class CircleDetailController: UIViewController {
             }.disposed(by: disposeBag)
         
         viewModel.outputs.memberRelay.bind(to: teamMemberTableView.rx.items(cellIdentifier: MemberCell.id,
-                                                                            cellType: MemberCell.self)) { _,item,cell in
+                                        cellType: MemberCell.self)) { _,item,cell in
             cell.configure(item)
         }.disposed(by: disposeBag)
         
@@ -117,9 +118,9 @@ final class CircleDetailController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.isRightButtonHidden.subscribe(onNext: { [weak self] isHidden in
-            if isHidden == true { self?.navigationItem.rightBarButtonItems = nil }
-        }).disposed(by: disposeBag)
+//        viewModel.isRightButtonHidden.subscribe(onNext: { [weak self] isHidden in
+//            if isHidden == true { self?.navigationItem.rightBarButtonItems = nil }
+//        }).disposed(by: disposeBag)
         
         buttons.forEach { button in
             guard let title = button?.currentTitle else { return }
@@ -164,9 +165,9 @@ final class CircleDetailController: UIViewController {
         dataSet.colors = [.systemBlue]
     }
     @objc private func didTapRightButton() {
-        coordinator?.toInvite(circle:viewModel.circle,myData:viewModel.myData)
+        coordinator?.toInvite(circle: viewModel.circle,myData: viewModel.myData)
     }
     @objc private func didTapEditButton() {
-        
+        coordinator?.toUpdate(circle: viewModel.circle)
     }
 }

@@ -12,7 +12,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdateCircleController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="ageButton" destination="UeP-lB-Ttn" id="yZg-OG-Lww"/>
+                <outlet property="backGroundImage" destination="UXy-ar-fsR" id="kQa-to-nke"/>
+                <outlet property="dateTextField" destination="pZu-SB-tnT" id="DE6-mv-k8L"/>
+                <outlet property="doubleButton" destination="5ET-5D-N7a" id="pbT-SC-OfX"/>
+                <outlet property="genderButton" destination="Bd6-Xk-3uu" id="6fA-yg-wAx"/>
+                <outlet property="iconImage" destination="5E1-jt-fjI" id="ZKk-GJ-FPN"/>
+                <outlet property="matchButton" destination="Qey-uX-yiS" id="PKw-Ul-hAe"/>
+                <outlet property="mixButton" destination="ZBx-YK-Jsn" id="ANH-EV-GcI"/>
+                <outlet property="moneyTextField" destination="D3u-S2-AL2" id="dyK-l5-Vkw"/>
+                <outlet property="nameTextField" destination="vqX-OF-9ge" id="q2o-Si-Dry"/>
+                <outlet property="placeTextField" destination="E6k-cI-7jU" id="3Ec-Lp-ZMK"/>
+                <outlet property="practiceButton" destination="WAS-ay-Xb6" id="trt-CI-0Ei"/>
+                <outlet property="singleButton" destination="oqh-rV-nMk" id="tIq-Y9-kIa"/>
+                <outlet property="textView" destination="vZn-rN-cbp" id="uGS-8U-bw2"/>
                 <outlet property="view" destination="Zee-nq-GCc" id="a2n-8Y-NeP"/>
+                <outlet property="weekDayButton" destination="p4K-3T-cgE" id="Ma4-NP-0qb"/>
+                <outlet property="weekEndButton" destination="NUS-wm-91D" id="cgd-Nt-K6G"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -86,21 +102,13 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="〇〇バドミントンサークル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pnB-Te-VCn">
-                                            <rect key="frame" x="30" y="16" width="354" height="18.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="pnB-Te-VCn" firstAttribute="centerY" secondItem="wZ9-Jv-3RN" secondAttribute="centerY" id="0Om-rV-FpT"/>
                                         <constraint firstItem="vqX-OF-9ge" firstAttribute="centerY" secondItem="wZ9-Jv-3RN" secondAttribute="centerY" id="M7X-u2-nhS"/>
-                                        <constraint firstAttribute="trailing" secondItem="pnB-Te-VCn" secondAttribute="trailing" constant="30" id="OaN-vQ-APG"/>
                                         <constraint firstItem="vqX-OF-9ge" firstAttribute="leading" secondItem="wZ9-Jv-3RN" secondAttribute="leading" constant="30" id="USD-x3-aGq"/>
                                         <constraint firstAttribute="trailing" secondItem="vqX-OF-9ge" secondAttribute="trailing" constant="30" id="d3i-Zz-NaH"/>
                                         <constraint firstAttribute="height" constant="50" id="fjm-fw-v2t"/>
-                                        <constraint firstItem="pnB-Te-VCn" firstAttribute="leading" secondItem="wZ9-Jv-3RN" secondAttribute="leading" constant="30" id="nzm-EP-BHb"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   会費" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJX-Pp-r97">

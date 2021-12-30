@@ -29,7 +29,7 @@ class UserCoordinator: Coordinator, UserFlow {
         guard let circle = circle else { return }
         guard let myData = myData else { return }
         let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
     }
     func toSearchCircle(user:User?) {
         guard let user = user else {
