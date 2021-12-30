@@ -23,5 +23,9 @@ final class UserCircleCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
+    func configure(_ circle:Circle) {
+        circleImageView.sd_setImage(with: circle.iconUrl)
+        nameLabel.text = circle.name
+    }
 
 }

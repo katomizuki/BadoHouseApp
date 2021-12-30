@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="103" height="153"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMF-gV-NCe">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMF-gV-NCe">
                         <rect key="frame" x="26.5" y="73" width="50" height="50"/>
                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <color key="tintColor" systemColor="systemBlueColor"/>
@@ -28,8 +28,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チーム名" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udV-tv-gbv">
-                        <rect key="frame" x="5" y="123" width="93" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="5" y="123" width="93" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,6 +46,7 @@
                 <constraint firstItem="xxE-8d-z1w" firstAttribute="centerX" secondItem="CMF-gV-NCe" secondAttribute="centerX" id="23f-Su-RF5"/>
                 <constraint firstAttribute="bottom" secondItem="CMF-gV-NCe" secondAttribute="bottom" constant="30" id="5Yk-QX-kHb"/>
                 <constraint firstItem="udV-tv-gbv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="8be-Pd-UO5"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="udV-tv-gbv" secondAttribute="bottom" id="Fst-Y1-H8D"/>
                 <constraint firstItem="CMF-gV-NCe" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VB2-2d-K9r"/>
                 <constraint firstItem="CMF-gV-NCe" firstAttribute="top" secondItem="xxE-8d-z1w" secondAttribute="bottom" constant="5" id="WYV-1y-Nh5"/>
                 <constraint firstAttribute="trailing" secondItem="udV-tv-gbv" secondAttribute="trailing" constant="5" id="cYq-aA-dQQ"/>

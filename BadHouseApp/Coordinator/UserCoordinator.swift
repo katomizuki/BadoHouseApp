@@ -16,11 +16,16 @@ class UserCoordinator: Coordinator, UserFlow {
             navigationController.pushViewController(controller, animated: true)
         }
     }
-    func toDetailUser() {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController))
-        
+    func toDetailUser(myData: User?,user: User?) {
+        guard let user = user else { return }
+            guard let myData = myData else {
+                return
+            }
+            let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
+            coordinator(to: UserDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
+       
     }
-    func toDetailCircle() {
+    func toDetailCircle(circle: Circle?) {
         coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
     }
     func toSearchCircle() {

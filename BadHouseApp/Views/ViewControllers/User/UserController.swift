@@ -7,8 +7,8 @@ protocol UserFlow: AnyObject {
     func toSearchCircle()
     func toMyPage(_ vc: UIViewController)
     func toSearchUser(user: User?)
-    func toDetailUser()
-    func toDetailCircle()
+    func toDetailUser(myData:User?, user: User?)
+    func toDetailCircle(circle: Circle?)
     func toMakeCircle(user: User?)
     func toSettings(_ vc: UIViewController)
     func toSchedule(_ vc: UIViewController)
@@ -154,9 +154,10 @@ extension UserController: UITableViewDataSource {
 extension UserController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            coordinator?.toDetailCircle()
-        } else if indexPath.section == 1 {
-            coordinator?.toDetailUser()
+            coordinator?.toDetailCircle(circle: viewModel.circleRelay.value[indexPath.row])
+        } else {
+            coordinator?.toDetailUser(myData: viewModel.user,
+                                      user: viewModel.friendsRelay.value[indexPath.row])
         }
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

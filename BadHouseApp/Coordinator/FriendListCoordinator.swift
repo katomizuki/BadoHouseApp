@@ -17,6 +17,6 @@ final class FriendListCoordinator:Coordinator,FriendListFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toUserDetail() {
-       coordinator(to: UserDetailCoordinator(navigationController: navigationController))
+//       coordinator(to: UserDetailCoordinator(navigationController: navigationController))
     }
 }

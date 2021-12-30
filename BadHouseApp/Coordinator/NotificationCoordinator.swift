@@ -12,7 +12,7 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toUserDetail() {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController))
+//        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: <#UserDetailViewModel#>))
     }
     func toCircleDetail() {
         coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
