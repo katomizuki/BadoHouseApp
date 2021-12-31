@@ -9,9 +9,9 @@ import CDAlertView
 protocol MainFlow: AnyObject {
     func toMap()
     func toMakeEvent()
-    func toDetailSearch(_ vc:UIViewController)
+    func toDetailSearch(_ vc: UIViewController)
     func toPracticeDetail()
-    func toAuthentication(_ vc:UIViewController)
+    func toAuthentication(_ vc: UIViewController)
 }
 final class MainViewController: UIViewController {
     // MARK: - Properties
@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
     var (myLatitude, myLongitude) = (Double(), Double())
     private let disposeBag = DisposeBag()
     var coordinator: MainFlow?
-    private let viewModel = HomeViewModel()
+    private let viewModel = HomeViewModel(practiceAPI: PracticeServie())
     @IBOutlet private weak var collectionView: UICollectionView!
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -49,12 +49,8 @@ final class MainViewController: UIViewController {
                                               action: #selector(didTapMakeEventButton))
         navigationItem.rightBarButtonItems = [detailSearchButton, mapButton]
         navigationItem.leftBarButtonItem = makeEventButton
-        if #available(iOS 15.0, *) {
-            navigationItem.leftBarButtonItem?.tintColor = .tintColor
-        }
-        if #available(iOS 15.0, *) {
-            navigationItem.rightBarButtonItem?.tintColor = .tintColor
-        }
+        navigationItem.leftBarButtonItem?.tintColor = .systemBlue
+        navigationItem.rightBarButtonItem?.tintColor = .systemBlue
         navigationController?.isNavigationBarHidden = false
         navigationItem.backButtonDisplayMode = .minimal
     }
@@ -78,13 +74,21 @@ final class MainViewController: UIViewController {
             guard let self = self else { return }
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
+        
+        viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _,item,cell in
+            cell.delegate = self
+            cell.configure(item)
+        }.disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
+            self?.coordinator?.toPracticeDetail()
+        }).disposed(by: disposeBag)
     }
     
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.width - 50)
         collectionView.collectionViewLayout = layout
         collectionView.register(EventInfoCell.nib(), forCellWithReuseIdentifier: EventInfoCell.id)
         collectionView.showsVerticalScrollIndicator = false
@@ -100,29 +104,6 @@ final class MainViewController: UIViewController {
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
-    }
-}
-// MARK: UICollectionViewDataSource
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventInfoCell.id, for: indexPath) as? EventInfoCell else { fatalError() }
-        cell.delegate = self
-        return cell
-    }
-}
-// MARK: UICollectionViewDelegateFlowLayout
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width - 50)
-    }
-}
-// MARK: UICollectionViewDelegate
-extension MainViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.toPracticeDetail()
     }
 }
 // MARK: - CLLOcationManagerDelegate

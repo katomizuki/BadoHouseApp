@@ -3,7 +3,7 @@ import UIKit
 import SDWebImage
 
 protocol CalendarEventDelegate: AnyObject {
-    func removeEvent(eventModel: Event, cell: UITableViewCell)
+    func removeEvent(eventModel: Practice, cell: UITableViewCell)
 }
 final class CustomCell: UITableViewCell {
     // MARK: - Properties

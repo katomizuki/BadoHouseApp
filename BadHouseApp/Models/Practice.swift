@@ -1,7 +1,7 @@
 
 import Firebase
 
-struct Event {
+struct Practice {
     var eventId: String
     var eventTime: String
     var eventPlace: String

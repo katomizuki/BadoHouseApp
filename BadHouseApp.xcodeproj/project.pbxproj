@@ -101,7 +101,6 @@
 		D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388643C276A1F8000FC4F07 /* TalkViewController.xib */; };
 		D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886443276A214B00FC4F07 /* MainViewController.swift */; };
 		D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* MainViewController.xib */; };
-		D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39771712709D1D40025BE19 /* MyScheduleController.swift */; };
 		D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */; };
 		D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */; };
 		D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */; };
@@ -147,6 +146,7 @@
 		D3C4E94726E1C2B400C21E46 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* Team.swift */; };
 		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
+		D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
 		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
 		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
@@ -168,7 +168,6 @@
 		D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */; };
 		D3FD194D26E4791500B6740E /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FD194C26E4791500B6740E /* CustomCell.xib */; };
 		D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */; };
-		D3FD195326E4C32C00B6740E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD195226E4C32C00B6740E /* Event.swift */; };
 		D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A6277988BE006355EF /* CircleFeatures.swift */; };
 		D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */; };
 		D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15AA277AA9CE006355EF /* Apply-Service.swift */; };
@@ -207,7 +206,7 @@
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
 		D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32B271EC01600DE54ED /* Team-Service.swift */; };
-		D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */; };
+		D3FFD32E271EC4BD00DE54ED /* Practice-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32D271EC4BD00DE54ED /* Practice-Service.swift */; };
 		D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */; };
 		D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */; };
 		D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* Join-Service.swift */; };
@@ -310,7 +309,6 @@
 		D388643C276A1F8000FC4F07 /* TalkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkViewController.xib; sourceTree = "<group>"; };
 		D3886443276A214B00FC4F07 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D3886444276A214B00FC4F07 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		D39771712709D1D40025BE19 /* MyScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleController.swift; sourceTree = "<group>"; };
 		D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -359,6 +357,7 @@
 		D3C4E95626E33A5700C21E46 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
+		D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeEntity.swift; sourceTree = "<group>"; };
 		D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
@@ -380,7 +379,6 @@
 		D3F860792727EEDF00085ABD /* FirebaseErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseErrorEnum.swift; sourceTree = "<group>"; };
 		D3FD194C26E4791500B6740E /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		D3FD195026E4993A00B6740E /* MakeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventViewModel.swift; sourceTree = "<group>"; };
-		D3FD195226E4C32C00B6740E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D3FF15A6277988BE006355EF /* CircleFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFeatures.swift; sourceTree = "<group>"; };
 		D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		D3FF15AA277AA9CE006355EF /* Apply-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apply-Service.swift"; sourceTree = "<group>"; };
@@ -419,7 +417,7 @@
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32B271EC01600DE54ED /* Team-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Team-Service.swift"; sourceTree = "<group>"; };
-		D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event-Service.swift"; sourceTree = "<group>"; };
+		D3FFD32D271EC4BD00DE54ED /* Practice-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Practice-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRoom-Service.swift"; sourceTree = "<group>"; };
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
 		D3FFD333271EDCC300DE54ED /* Join-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Join-Service.swift"; sourceTree = "<group>"; };
@@ -639,7 +637,6 @@
 				D388640A2769FE7E00FC4F07 /* CircleChatController.xib */,
 				D388643B276A1F8000FC4F07 /* TalkViewController.swift */,
 				D388643C276A1F8000FC4F07 /* TalkViewController.xib */,
-				D39771712709D1D40025BE19 /* MyScheduleController.swift */,
 			);
 			path = Talk;
 			sourceTree = "<group>";
@@ -744,12 +741,12 @@
 				D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */,
 				D3BDB56326E0B05D00C53780 /* User.swift */,
 				D3C4E94626E1C2B400C21E46 /* Team.swift */,
-				D3FD195226E4C32C00B6740E /* Event.swift */,
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
 				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 				D3D761882776D38D004381E4 /* AuthCredential.swift */,
 				D3FF15B2277ACEF5006355EF /* Apply.swift */,
 				D3FF15C2277AFC9B006355EF /* Applyed.swift */,
+				D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -851,7 +848,7 @@
 				D3FFD327271EBC9200DE54ED /* User-Service.swift */,
 				D3FFD329271EBECD00DE54ED /* Delete-Service.swift */,
 				D3FFD32B271EC01600DE54ED /* Team-Service.swift */,
-				D3FFD32D271EC4BD00DE54ED /* Event-Service.swift */,
+				D3FFD32D271EC4BD00DE54ED /* Practice-Service.swift */,
 				D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */,
 				D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */,
 				D3FF15AA277AA9CE006355EF /* Apply-Service.swift */,
@@ -1135,7 +1132,6 @@
 				D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,
 				D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */,
-				D39771722709D1D40025BE19 /* MyScheduleController.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
 				D3886439276A1B5300FC4F07 /* UserController.swift in Sources */,
 				D3FF15CA277D3C03006355EF /* FriendsListViewModel.swift in Sources */,
@@ -1146,7 +1142,6 @@
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
-				D3FD195326E4C32C00B6740E /* Event.swift in Sources */,
 				D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,
@@ -1159,6 +1154,7 @@
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
 				D3FF15CF277D9733006355EF /* UpdateCircleController.swift in Sources */,
+				D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */,
 				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
 				D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */,
@@ -1176,7 +1172,7 @@
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
-				D3FFD32E271EC4BD00DE54ED /* Event-Service.swift in Sources */,
+				D3FFD32E271EC4BD00DE54ED /* Practice-Service.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */,
 				D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */,

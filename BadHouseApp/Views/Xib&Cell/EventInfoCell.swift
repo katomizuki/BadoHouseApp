@@ -32,22 +32,22 @@ final class EventInfoCell: UICollectionViewCell {
         }
     }
     weak var delegate: EventInfoCellDelegate?
-    var event: Event? {
-        didSet {
-            configure()
-        }
-    }
     // MARK: - LifeCycle
     static let id = String(describing: self)
     
-    static func nib()-> UINib {
+    static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    // MARK: - helperMethod
-    func configure() {
+    func configure(_ practice:Practice) {
+        teamLabel.text = practice.circleName
+        teamImage.sd_setImage(with: practice.mainUrl)
+        userImageView.sd_setImage(with: practice.circleUrl)
+        titleLabel.text = practice.title
+        placeLabel.text = "場所  \(practice.placeName)"
+//        timeLabel.text = practice.st
     }
     @IBAction private func didTapAlertButton(_ sender: Any) {
         self.delegate?.didTapBlockButton(self)
