@@ -5,14 +5,14 @@
 //  Created by ミズキ on 2021/12/24.
 //
 
-enum SettingsSelection:Int,CaseIterable {
-    case password,email,app,rule,apply
+enum SettingsSelection: Int, CaseIterable {
+    case block, practice,app,rule,apply
     var description:String {
         switch self {
-        case .password:
-            return "パスワード変更"
-        case .email:
-            return "メール変更"
+        case .block:
+            return "ブロックリスト"
+        case .practice:
+            return "自分の募集中の練習"
         case .app:
             return "アプリ説明"
         case .rule:

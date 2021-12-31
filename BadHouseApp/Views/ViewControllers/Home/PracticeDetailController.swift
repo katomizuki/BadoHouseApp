@@ -42,7 +42,7 @@ final class PracticeDetailController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavigationBar()
     }
     
     @IBAction private func didTapChatButton(_ sender: Any) {
@@ -50,6 +50,12 @@ final class PracticeDetailController: UIViewController {
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
         print(#function)
         coordinator?.toCircleDetail()
+    }
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
+    }
+    @objc private func didTapRightButton() {
+        
     }
     @IBAction private func didTapUserButton(_ sender: Any) {
 //        coordinator?.toUserDetail()

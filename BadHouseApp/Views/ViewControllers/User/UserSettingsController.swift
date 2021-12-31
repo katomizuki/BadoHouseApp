@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxGesture
-import RxCocoa
 
 final class UserSettingsController: UIViewController {
 
@@ -39,7 +36,6 @@ final class UserSettingsController: UIViewController {
         navigationItem.scrollEdgeAppearance = appearance
     }
     @objc private func didTapCloseButton() {
-        print(#function)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -47,18 +43,34 @@ extension UserSettingsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        let controller = RuleController()
-//        navigationController?.pushViewController(controller, animated: true)
-        let viewController = AppExplainController()
-        viewController.modalPresentationStyle = .popover
-        viewController.preferredContentSize = CGSize(width: 200, height: 300)
-        let presentationController = viewController.popoverPresentationController
-        presentationController?.delegate = self
-        presentationController?.permittedArrowDirections = .up
-        presentationController?.sourceView = cell
-        presentationController?.sourceRect = cell.bounds
-        viewController.presentationController?.delegate = self
-        present(viewController, animated: true, completion: nil)
+        
+        switch indexPath.row {
+        case 0:
+            let controller = BlockListController.init(nibName: "BlockListController", bundle: nil)
+            navigationController?.pushViewController(controller, animated: true)
+        case 1:
+            let controller = MyPracticeController.init(nibName: "MyPracticeController", bundle: nil)
+            navigationController?.pushViewController(controller, animated: true)
+        case 2:
+            let viewController = AppExplainController()
+            viewController.modalPresentationStyle = .popover
+            viewController.preferredContentSize = CGSize(width: 200, height: 300)
+            let presentationController = viewController.popoverPresentationController
+            presentationController?.delegate = self
+            presentationController?.permittedArrowDirections = .up
+            presentationController?.sourceView = cell
+            presentationController?.sourceRect = cell.bounds
+            viewController.presentationController?.delegate = self
+            present(viewController, animated: true, completion: nil)
+        case 3:
+            let controller = RuleController()
+            navigationController?.pushViewController(controller, animated: true)
+        case 4:
+            let controller = ProblemInformationController.init(nibName: "ProblemInformationController", bundle: nil)
+            navigationController?.pushViewController(controller, animated: true)
+        default:break
+        }
+        
     }
 }
 extension UserSettingsController: UITableViewDataSource {
@@ -75,9 +87,8 @@ extension UserSettingsController: UITableViewDataSource {
     }
     
 }
-extension UserSettingsController:UIPopoverPresentationControllerDelegate {
+extension UserSettingsController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
-

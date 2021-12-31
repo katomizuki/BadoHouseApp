@@ -166,8 +166,6 @@
 		D3F245932775EC730030DA1B /* PasswordSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F245912775EC720030DA1B /* PasswordSettingController.xib */; };
 		D3F245962775EC8F0030DA1B /* EmailSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F245942775EC8F0030DA1B /* EmailSettingsController.swift */; };
 		D3F245972775EC8F0030DA1B /* EmailSettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F245952775EC8F0030DA1B /* EmailSettingsController.xib */; };
-		D3F2459A2775EEA30030DA1B /* ProblemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F245982775EEA30030DA1B /* ProblemController.swift */; };
-		D3F2459B2775EEA30030DA1B /* ProblemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F245992775EEA30030DA1B /* ProblemController.xib */; };
 		D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2459C2775F4140030DA1B /* ScheduleController.swift */; };
 		D3F2459F2775F4140030DA1B /* ScheduleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F2459D2775F4140030DA1B /* ScheduleController.xib */; };
 		D3F245A22775F58B0030DA1B /* SchduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F245A02775F58B0030DA1B /* SchduleCell.swift */; };
@@ -202,6 +200,13 @@
 		D3FF15D6277DA680006355EF /* UpdateCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */; };
 		D3FF15D8277DA78F006355EF /* UpdateCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */; };
 		D3FF15DA277DD46A006355EF /* AdditionalMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */; };
+		D3FF15DD277E7D1A006355EF /* ProblemInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15DB277E7D1A006355EF /* ProblemInformationController.swift */; };
+		D3FF15DE277E7D1A006355EF /* ProblemInformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15DC277E7D1A006355EF /* ProblemInformationController.xib */; };
+		D3FF15E1277E7D4B006355EF /* BlockListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15DF277E7D4B006355EF /* BlockListController.swift */; };
+		D3FF15E2277E7D4B006355EF /* BlockListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15E0277E7D4B006355EF /* BlockListController.xib */; };
+		D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */; };
+		D3FF15E6277E7DF7006355EF /* MyPracticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */; };
+		D3FF15E8277E7F00006355EF /* BlockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15E7277E7F00006355EF /* BlockListViewModel.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -377,8 +382,6 @@
 		D3F245912775EC720030DA1B /* PasswordSettingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordSettingController.xib; sourceTree = "<group>"; };
 		D3F245942775EC8F0030DA1B /* EmailSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSettingsController.swift; sourceTree = "<group>"; };
 		D3F245952775EC8F0030DA1B /* EmailSettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailSettingsController.xib; sourceTree = "<group>"; };
-		D3F245982775EEA30030DA1B /* ProblemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemController.swift; sourceTree = "<group>"; };
-		D3F245992775EEA30030DA1B /* ProblemController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProblemController.xib; sourceTree = "<group>"; };
 		D3F2459C2775F4140030DA1B /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 		D3F2459D2775F4140030DA1B /* ScheduleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleController.xib; sourceTree = "<group>"; };
 		D3F245A02775F58B0030DA1B /* SchduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduleCell.swift; sourceTree = "<group>"; };
@@ -413,6 +416,13 @@
 		D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCircleViewModel.swift; sourceTree = "<group>"; };
 		D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCircleCoordinator.swift; sourceTree = "<group>"; };
 		D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberViewModel.swift; sourceTree = "<group>"; };
+		D3FF15DB277E7D1A006355EF /* ProblemInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemInformationController.swift; sourceTree = "<group>"; };
+		D3FF15DC277E7D1A006355EF /* ProblemInformationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProblemInformationController.xib; sourceTree = "<group>"; };
+		D3FF15DF277E7D4B006355EF /* BlockListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListController.swift; sourceTree = "<group>"; };
+		D3FF15E0277E7D4B006355EF /* BlockListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockListController.xib; sourceTree = "<group>"; };
+		D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeController.swift; sourceTree = "<group>"; };
+		D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPracticeController.xib; sourceTree = "<group>"; };
+		D3FF15E7277E7F00006355EF /* BlockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListViewModel.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -601,14 +611,18 @@
 				D3F245912775EC720030DA1B /* PasswordSettingController.xib */,
 				D3F245942775EC8F0030DA1B /* EmailSettingsController.swift */,
 				D3F245952775EC8F0030DA1B /* EmailSettingsController.xib */,
-				D3F245982775EEA30030DA1B /* ProblemController.swift */,
-				D3F245992775EEA30030DA1B /* ProblemController.xib */,
 				D3F2459C2775F4140030DA1B /* ScheduleController.swift */,
 				D3F2459D2775F4140030DA1B /* ScheduleController.xib */,
 				D3FF15AC277ACB48006355EF /* ApplyFriendController.swift */,
 				D3FF15AD277ACB48006355EF /* ApplyFriendController.xib */,
 				D3FF15B8277AF3C6006355EF /* ApplyedUserListController.swift */,
 				D3FF15B9277AF3C6006355EF /* ApplyedUserListController.xib */,
+				D3FF15DB277E7D1A006355EF /* ProblemInformationController.swift */,
+				D3FF15DC277E7D1A006355EF /* ProblemInformationController.xib */,
+				D3FF15DF277E7D4B006355EF /* BlockListController.swift */,
+				D3FF15E0277E7D4B006355EF /* BlockListController.xib */,
+				D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */,
+				D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -819,6 +833,7 @@
 				D3FF15CB277D46C0006355EF /* CircleDetailViewModel.swift */,
 				D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */,
 				D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */,
+				D3FF15E7277E7F00006355EF /* BlockListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -934,6 +949,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */,
+				D3FF15E2277E7D4B006355EF /* BlockListController.xib in Resources */,
 				D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */,
 				D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */,
 				D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */,
@@ -957,12 +973,14 @@
 				D38863EC2768B80D00FC4F07 /* MakeCircleController.xib in Resources */,
 				D3886418276A059100FC4F07 /* LoginController.xib in Resources */,
 				D31606F52765822A005FF41D /* EventAdditionlItemsController.xib in Resources */,
+				D3FF15DE277E7D1A006355EF /* ProblemInformationController.xib in Resources */,
 				D3C1BFFA2775DA9B00C6C761 /* InviteCell.xib in Resources */,
 				D388643A276A1B5300FC4F07 /* UserController.xib in Resources */,
 				D3FF15D4277D978A006355EF /* AddtionalMemberController.xib in Resources */,
 				D32E598C2774519600C59548 /* MemberCell.xib in Resources */,
 				D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */,
 				D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */,
+				D3FF15E6277E7DF7006355EF /* MyPracticeController.xib in Resources */,
 				D31606F127657FAC005FF41D /* LevelDetailController.xib in Resources */,
 				D38863F42768BE0E00FC4F07 /* UserPageController.xib in Resources */,
 				D3F245A32775F58B0030DA1B /* SchduleCell.xib in Resources */,
@@ -973,7 +991,6 @@
 				D3FF15D0277D9733006355EF /* UpdateCircleController.xib in Resources */,
 				D32E599427748C0C00C59548 /* FriendsListController.xib in Resources */,
 				D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */,
-				D3F2459B2775EEA30030DA1B /* ProblemController.xib in Resources */,
 				D38863F02768BA3200FC4F07 /* UserLevelController.xib in Resources */,
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
 				D3F245932775EC730030DA1B /* PasswordSettingController.xib in Resources */,
@@ -1111,6 +1128,7 @@
 				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
+				D3FF15E8277E7F00006355EF /* BlockListViewModel.swift in Sources */,
 				D3FF15B3277ACEF5006355EF /* Apply.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D3FF15D3277D978A006355EF /* AddtionalMemberController.swift in Sources */,
@@ -1150,6 +1168,7 @@
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,
 				D3886436276A1A7E00FC4F07 /* HomeCoordinator.swift in Sources */,
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
+				D3FF15E1277E7D4B006355EF /* BlockListController.swift in Sources */,
 				D3698F0127728DB8004FA773 /* UserLevelViewModel.swift in Sources */,
 				D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */,
 				D3629FAD276F5EB70052B820 /* InviteCoordinator.swift in Sources */,
@@ -1194,7 +1213,6 @@
 				D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */,
 				D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
-				D3F2459A2775EEA30030DA1B /* ProblemController.swift in Sources */,
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */,
@@ -1202,6 +1220,7 @@
 				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,
+				D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */,
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
@@ -1220,6 +1239,7 @@
 				D3886417276A059100FC4F07 /* LoginController.swift in Sources */,
 				D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
+				D3FF15DD277E7D1A006355EF /* ProblemInformationController.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
 				D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */,
 				D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */,

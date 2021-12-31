@@ -80,7 +80,6 @@ final class MainViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-   
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
