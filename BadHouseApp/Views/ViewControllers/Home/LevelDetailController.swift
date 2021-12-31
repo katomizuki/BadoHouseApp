@@ -1,7 +1,5 @@
 import UIKit
-//protocol LevelDetailFlow {
-//    func dismiss()
-//}
+
 final class LevelDetailController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var levelLabel: UILabel!

@@ -10,13 +10,18 @@ import RxSwift
 import RxCocoa
 protocol AddtionalEventLevelFlow {
     func toNext(image: UIImage,
-                dic:[String:Any],
+                dic: [String:Any],
                 circle: Circle,
                 user: User)
 }
 class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
-    @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet private weak var nextButton: UIButton! {
+        didSet {
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = .lightGray
+        }
+    }
     @IBOutlet private weak var maxLabel: UILabel!
     @IBOutlet private weak var maxSlider: UISlider!
     @IBOutlet private weak var minLabel: UILabel!
@@ -61,7 +66,8 @@ class AddtionalEventLevelController: UIViewController {
             self.maxLabel.text = text
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _,item,cell in
+        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) {[weak self] _,item,cell in
+            guard let self = self else { return }
             var configuration = cell.defaultContentConfiguration()
             configuration.text = item.name
             cell.selectionStyle = .none
@@ -73,6 +79,8 @@ class AddtionalEventLevelController: UIViewController {
             guard let cell = self.circleTableView.cellForRow(at: indexPath) else { return }
             cell.accessoryType = .checkmark
             self.viewModel.circle = self.viewModel.circleRelay.value[indexPath.row]
+            self.nextButton.backgroundColor = .systemBlue
+            self.nextButton.isEnabled = true
         }).disposed(by: disposeBag)
         
         circleTableView.rx.itemDeselected.asDriver().drive(onNext: { indexPath in

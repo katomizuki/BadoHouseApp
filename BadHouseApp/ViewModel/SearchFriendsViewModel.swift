@@ -2,7 +2,7 @@ import RxSwift
 import RxRelay
 
 protocol SearchUserViewModelInputs {
-    var searchTextInput:AnyObserver<String> { get }
+    var searchTextInput: AnyObserver<String> { get }
 }
 protocol SearchUserViewModelOutputs {
     var isError: PublishSubject<Bool> { get }

@@ -9,16 +9,16 @@ import RxSwift
 import RxRelay
 import UIKit
 protocol UpdateCircleViewModelInputs {
-    var nameTextInputs:AnyObserver<String> { get }
-    var priceTextInputs:AnyObserver<String> { get }
-    var placeTextInputs:AnyObserver<String> { get }
-    var dateTextInput:AnyObserver<String> { get }
-    var textViewInputs:AnyObserver<String> { get }
+    var nameTextInputs: AnyObserver<String> { get }
+    var priceTextInputs: AnyObserver<String> { get }
+    var placeTextInputs: AnyObserver<String> { get }
+    var dateTextInput: AnyObserver<String> { get }
+    var textViewInputs: AnyObserver<String> { get }
     func save()
 }
 protocol UpdateCircleViewModelOutputs {
-    var isError:PublishSubject<Bool>{ get }
-    var completed:PublishSubject<Void> { get }
+    var isError: PublishSubject<Bool>{ get }
+    var completed: PublishSubject<Void> { get }
 }
 protocol UpdateCircleViewModelType {
     var inputs: UpdateCircleViewModelInputs { get }
@@ -36,7 +36,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     private var textViewSubject = PublishSubject<String>()
     var isError = PublishSubject<Bool>()
     var iconImage: UIImage?
-    var backgroundImage:UIImage?
+    var backgroundImage: UIImage?
     lazy var selectionsFeature = circle.features
     var nameTextInputs: AnyObserver<String> {
         return nameTextSubject.asObserver()
@@ -55,7 +55,8 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     }
     private let disposeBag = DisposeBag()
     var completed = PublishSubject<Void>()
-    init(circleAPI: CircleServiceProtocol,circle: Circle) {
+    
+    init(circleAPI: CircleServiceProtocol, circle: Circle) {
         self.circle = circle
         self.circleAPI = circleAPI
         
@@ -79,6 +80,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
             self?.circle.additionlText = text
         }).disposed(by: disposeBag)
     }
+    
     func save() {
         if iconImage != nil && backgroundImage != nil {
             StorageService.downLoadImage(image: iconImage!) { result in
@@ -136,7 +138,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
         return selectionsFeature.contains(feature.description)
     }
     
-    func saveCircleAction(_ circle:Circle) {
+    func saveCircleAction(_ circle: Circle) {
         circleAPI.updateCircle(circle: circle) { error in
             if error != nil {
                 self.isError.onNext(true)

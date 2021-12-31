@@ -161,10 +161,6 @@
 		D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */; };
 		D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */; };
 		D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458E2775EA270030DA1B /* SettingsSelection.swift */; };
-		D3F245922775EC720030DA1B /* PasswordSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F245902775EC720030DA1B /* PasswordSettingController.swift */; };
-		D3F245932775EC730030DA1B /* PasswordSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F245912775EC720030DA1B /* PasswordSettingController.xib */; };
-		D3F245962775EC8F0030DA1B /* EmailSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F245942775EC8F0030DA1B /* EmailSettingsController.swift */; };
-		D3F245972775EC8F0030DA1B /* EmailSettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F245952775EC8F0030DA1B /* EmailSettingsController.xib */; };
 		D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2459C2775F4140030DA1B /* ScheduleController.swift */; };
 		D3F2459F2775F4140030DA1B /* ScheduleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F2459D2775F4140030DA1B /* ScheduleController.xib */; };
 		D3F245A22775F58B0030DA1B /* SchduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F245A02775F58B0030DA1B /* SchduleCell.swift */; };
@@ -377,10 +373,6 @@
 		D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
 		D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D3F2458E2775EA270030DA1B /* SettingsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelection.swift; sourceTree = "<group>"; };
-		D3F245902775EC720030DA1B /* PasswordSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingController.swift; sourceTree = "<group>"; };
-		D3F245912775EC720030DA1B /* PasswordSettingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordSettingController.xib; sourceTree = "<group>"; };
-		D3F245942775EC8F0030DA1B /* EmailSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSettingsController.swift; sourceTree = "<group>"; };
-		D3F245952775EC8F0030DA1B /* EmailSettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailSettingsController.xib; sourceTree = "<group>"; };
 		D3F2459C2775F4140030DA1B /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 		D3F2459D2775F4140030DA1B /* ScheduleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleController.xib; sourceTree = "<group>"; };
 		D3F245A02775F58B0030DA1B /* SchduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduleCell.swift; sourceTree = "<group>"; };
@@ -607,10 +599,6 @@
 				D32E599227748C0C00C59548 /* FriendsListController.xib */,
 				D3C1BFED27753BE700C6C761 /* SearchUserController.swift */,
 				D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */,
-				D3F245902775EC720030DA1B /* PasswordSettingController.swift */,
-				D3F245912775EC720030DA1B /* PasswordSettingController.xib */,
-				D3F245942775EC8F0030DA1B /* EmailSettingsController.swift */,
-				D3F245952775EC8F0030DA1B /* EmailSettingsController.xib */,
 				D3F2459C2775F4140030DA1B /* ScheduleController.swift */,
 				D3F2459D2775F4140030DA1B /* ScheduleController.xib */,
 				D3FF15AC277ACB48006355EF /* ApplyFriendController.swift */,
@@ -954,7 +942,6 @@
 				D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */,
 				D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
-				D3F245972775EC8F0030DA1B /* EmailSettingsController.xib in Resources */,
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
 				D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */,
 				D3FF15BB277AF3C6006355EF /* ApplyedUserListController.xib in Resources */,
@@ -993,7 +980,6 @@
 				D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */,
 				D38863F02768BA3200FC4F07 /* UserLevelController.xib in Resources */,
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
-				D3F245932775EC730030DA1B /* PasswordSettingController.xib in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */,
 				D32E59902774859D00C59548 /* UserCircleCell.xib in Resources */,
@@ -1124,7 +1110,6 @@
 			files = (
 				D3629F99276F5D790052B820 /* TalkDataSource.swift in Sources */,
 				D3886422276A0A6900FC4F07 /* Coordinator.swift in Sources */,
-				D3F245922775EC720030DA1B /* PasswordSettingController.swift in Sources */,
 				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
@@ -1146,7 +1131,6 @@
 				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
-				D3F245962775EC8F0030DA1B /* EmailSettingsController.swift in Sources */,
 				D3D761892776D38D004381E4 /* AuthCredential.swift in Sources */,
 				D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,

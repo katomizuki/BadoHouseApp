@@ -19,7 +19,7 @@ protocol MakeEventFirstViewModelType {
     var outputs: MakeEventFirstViewModelOutputs { get }
 }
 
-final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstViewModelInputs, MakeEventFirstViewModelOutputs {
+final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirstViewModelInputs, MakeEventFirstViewModelOutputs {
     var buttonTextColor: UIColor {
         return isButtonValid.value ? .white : .lightGray
     }
@@ -35,10 +35,11 @@ final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstV
         return isButtonValid.value ? .systemBlue : .darkGray
     }
     var isTitle = BehaviorRelay<Bool>(value: false)
-    var title:String?
-    var practiceImage:UIImage?
-    var practiceKind:String?
+    var title: String?
+    var practiceImage: UIImage = UIImage(named: "noImages")!
+    var practiceKind: String = BadmintonCircle(rawValue: 0)!.name
     private let disposeBag = DisposeBag()
+    
     init() {
         let isTitleValid = titleTextOutputs.asObservable().map { text->Bool in
             return text.count >= 1

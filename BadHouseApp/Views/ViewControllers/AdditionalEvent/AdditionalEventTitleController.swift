@@ -46,9 +46,7 @@ final class AdditionalEventTitleController: UIViewController {
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
             guard let title = self.viewModel.title else { return }
-            guard let image = self.viewModel.practiceImage else { return }
-            guard let kind = self.viewModel.practiceKind else { return }
-            self.coordinator?.toNext(title: title, image: image, kind: kind)
+            self.coordinator?.toNext(title: title, image: self.viewModel.practiceImage, kind: self.viewModel.practiceKind)
         }).disposed(by: disposeBag)
 
         noImageView.rx.tapGesture()
@@ -67,8 +65,8 @@ final class AdditionalEventTitleController: UIViewController {
     // MARK: - SelectorMethod
     @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
-        kindCircle = BadmintonCircle(rawValue: index)?.name
-        viewModel.practiceKind = kindCircle
+        kindCircle = BadmintonCircle(rawValue: index)!.name
+        viewModel.practiceKind = kindCircle ?? "社会人サークル"
     }
 }
 // MARK: - UInavigationDelegate
