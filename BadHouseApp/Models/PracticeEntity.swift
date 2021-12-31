@@ -30,6 +30,7 @@ struct Practice {
     let userId: String
     let userName: String
     let userUrlString: String
+    let explain:String
     var circleUrl:URL? {
         if let url = URL(string: circleUrlString) {
             return url
@@ -74,5 +75,6 @@ struct Practice {
         self.userId = dic["userId"] as? String ?? ""
         self.userName = dic["userName"] as? String ?? ""
         self.userUrlString = dic["userUrlString"] as? String ?? ""
+        self.explain = dic["explain"] as? String ?? ""
     }
 }

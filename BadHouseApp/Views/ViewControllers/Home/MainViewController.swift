@@ -10,7 +10,7 @@ protocol MainFlow: AnyObject {
     func toMap()
     func toMakeEvent()
     func toDetailSearch(_ vc: UIViewController)
-    func toPracticeDetail()
+    func toPracticeDetail(_ practice:Practice)
     func toAuthentication(_ vc: UIViewController)
 }
 final class MainViewController: UIViewController {
@@ -81,7 +81,8 @@ final class MainViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         collectionView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
-            self?.coordinator?.toPracticeDetail()
+            guard let self = self else { return }
+            self.coordinator?.toPracticeDetail(self.viewModel.practiceRelay.value[indexPath.row])
         }).disposed(by: disposeBag)
     }
     

@@ -1,7 +1,8 @@
 
 import UIKit
 
-class HomeCoordinator: Coordinator,MainFlow {
+final class HomeCoordinator: Coordinator,MainFlow {
+    
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,13 +24,18 @@ class HomeCoordinator: Coordinator,MainFlow {
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)
     }
-    func toPracticeDetail() {
-        coordinator(to: PracticeDetailCoordinator(navigationController: self.navigationController))
-    }
+
     func toAuthentication(_ vc: UIViewController) {
         coordinator(to: RegisterCoordinator(navigationController: UINavigationController(),
                                             viewController: vc))
        
+    }
+    func toPracticeDetail(_ practice: Practice) {
+        coordinator(to:PracticeDetailCoordinator(
+            navigationController: self.navigationController,
+            viewModel: PracticeDetailViewModel(practice: practice,
+                                               userAPI: UserService(),
+                                               circleAPI: CircleService())))
     }
     
 }

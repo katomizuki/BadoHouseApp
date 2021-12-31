@@ -29,6 +29,10 @@ final class EventAdditionlItemsController: UIViewController {
         viewModel.completed.subscribe { [weak self] _ in
             self?.popAnimation()
         }.disposed(by: disposeBag)
+        
+        textView.rx.text.orEmpty.subscribe(onNext: {[weak self] text in
+            self?.viewModel.textViewInputs = text
+        }).disposed(by: disposeBag)
     }
     @IBAction func didTapPracticeButton(_ sender: Any) {
         viewModel.postPractice()

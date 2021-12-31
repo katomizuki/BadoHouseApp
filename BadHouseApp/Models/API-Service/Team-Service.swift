@@ -5,6 +5,7 @@ protocol CircleServiceProtocol {
     func getMembers(ids: [String], circle: Circle) -> Single<Circle>
     func searchCircles(text: String) -> Single<[Circle]>
     func updateCircle(circle: Circle, completion: @escaping (Error?) -> Void)
+    func getCircle(id:String)->Single<Circle>
 }
 struct CircleService: CircleServiceProtocol {
    
@@ -85,6 +86,7 @@ struct CircleService: CircleServiceProtocol {
             return Disposables.create()
         }
     }
+    
     static func withdrawCircle(user: User,
                              circle: Circle,
                              completion: @escaping (Error?) -> Void) {
@@ -93,6 +95,7 @@ struct CircleService: CircleServiceProtocol {
                                                    completion: completion)
         Ref.UsersRef.document(user.uid).collection("Circle").document(circle.id).delete()
     }
+    
     func updateCircle(circle:Circle,completion:@escaping (Error?) -> Void) {
         let dic:[String:Any] = ["id": circle.id,
                                        "name": circle.name,
@@ -106,6 +109,7 @@ struct CircleService: CircleServiceProtocol {
                                 "member": circle.member]
         Ref.TeamRef.document(circle.id).updateData(dic,completion: completion)
     }
+    
     static func inviteCircle(ids: [String],
                              circle: Circle,
                              completion: @escaping (Result<Void,Error>) -> Void) {
@@ -124,6 +128,21 @@ struct CircleService: CircleServiceProtocol {
         group.notify(queue: .main) {
             completion(.success(()))
         }
-        
+    }
+    
+    func getCircle(id: String) -> Single<Circle> {
+        return Single.create { singleEvent in
+            Ref.TeamRef.document(id).getDocument { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                }
+                guard let snapShot = snapShot else { return }
+                if let dic = snapShot.data() {
+                    let circle = Circle(dic: dic)
+                    singleEvent(.success(circle))
+                }
+            }
+            return Disposables.create()
+        }
     }
 }

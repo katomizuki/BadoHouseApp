@@ -13,9 +13,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PracticeDetailController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
                 <outlet property="circleImageView" destination="jkb-9J-fPG" id="8bz-di-xeF"/>
+                <outlet property="circleNameLabel" destination="WdA-xD-9uQ" id="fb0-Be-yWH"/>
+                <outlet property="courtLabel" destination="AmB-tM-g5C" id="4ld-ow-6IY"/>
+                <outlet property="deadLineLabel" destination="Ajd-25-bfT" id="FAa-e5-AEn"/>
+                <outlet property="finishLabel" destination="reB-yR-gtY" id="nwi-oS-jbE"/>
+                <outlet property="gatherLabel" destination="Lav-O3-gtm" id="nUq-Jx-Hx4"/>
                 <outlet property="mapView" destination="os8-Ox-LaM" id="ln0-vb-GWh"/>
                 <outlet property="practiceImageView" destination="fFP-Q4-InX" id="2S9-7o-4rP"/>
+                <outlet property="priceLabel" destination="8Ec-1e-ybX" id="a5G-Ud-cNt"/>
+                <outlet property="startLabel" destination="FcS-Zo-0PC" id="0U8-Hf-XBh"/>
+                <outlet property="textView" destination="kJV-H4-rkA" id="tO2-Do-BZC"/>
+                <outlet property="titleLabel" destination="SEQ-5i-FbD" id="7xd-KB-EZ9"/>
                 <outlet property="userImageView" destination="U9s-T5-a0F" id="Txh-AQ-jvg"/>
+                <outlet property="userNameLabel" destination="43q-sO-cfY" id="Suc-Sx-bAK"/>
                 <outlet property="view" destination="KhN-Jv-go0" id="9vN-bW-t1I"/>
             </connections>
         </placeholder>
@@ -252,7 +262,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gK2-6Q-Pdf">
                                     <rect key="frame" x="0.0" y="247" width="414" height="140"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jkb-9J-fPG">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jkb-9J-fPG">
                                             <rect key="frame" x="8" y="5" width="60" height="60"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                                             <constraints>
