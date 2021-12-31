@@ -1,6 +1,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import FirebaseAuth
 protocol MakeEventSecondViewModelInputs {
     var minLevel: PublishSubject<Float> { get }
     var maxLevel: PublishSubject<Float> { get }
@@ -8,6 +9,7 @@ protocol MakeEventSecondViewModelInputs {
 protocol MakeEventSecondViewModelOutputs {
     var minLevelText: BehaviorRelay<String> { get }
     var maxLevelText: BehaviorRelay<String> { get }
+    var circleRelay:BehaviorRelay<[Circle]> { get }
 }
 protocol MakeEventSecondViewModelType {
     var inputs: MakeEventSecondViewModelInputs { get }
@@ -20,21 +22,34 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var outputs: MakeEventSecondViewModelOutputs { return self }
     var minLevelText = BehaviorRelay<String>(value: "レベル1")
     var maxLevelText = BehaviorRelay<String>(value: "レベル10")
+    var circleRelay = BehaviorRelay<[Circle]>(value:[])
+    var userAPI:UserServiceProtocol
+    var user:User?
     private let disposeBag = DisposeBag()
-    init() {
+    init(userAPI:UserServiceProtocol) {
+        self.userAPI = userAPI
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        userAPI.getMyCircles(uid: uid).subscribe { [weak self] circle in
+            self?.circleRelay.accept(circle)
+        }.disposed(by: disposeBag)
+
+        UserService.getUserById(uid: uid) { user in
+            self.user = user
+        }
+        
         minLevel.subscribe(onNext: { [weak self] value in
             guard let self = self else { return }
             let minText = self.changeNumber(num: value)
-            print(minText)
             self.minLevelText.accept(minText)
         }).disposed(by: disposeBag)
         maxLevel.subscribe(onNext: {[weak self] value in
             guard let self = self else { return }
             let maxText = self.changeNumber(num: value)
-            print(maxText)
             self.maxLevelText.accept(maxText)
         }).disposed(by: disposeBag)
     }
+    
+    
     // MARK: - Helper
     func changeNumber(num: Float) -> String {
         var message = String()

@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 protocol AddtionalEventLevelFlow {
     func toNext()
-    func toLevel()
 }
 class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -20,7 +19,7 @@ class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var minLabel: UILabel!
     @IBOutlet private weak var circleTableView: UITableView!
     @IBOutlet private weak var minSlider: UISlider!
-    private let viewModel = MakeEventSecondViewModel()
+    private let viewModel = MakeEventSecondViewModel(userAPI: UserService())
     var coordinator: AddtionalEventLevelFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +29,11 @@ class AddtionalEventLevelController: UIViewController {
         setupTableView()
     }
     private func setupTableView() {
-        circleTableView.delegate = self
-        circleTableView.dataSource = self
         circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        circleTableView.separatorColor = .darkGray
+        circleTableView.allowsMultipleSelection = false
+        circleTableView.layer.borderColor = UIColor.lightGray.cgColor
+        circleTableView.layer.borderWidth = 1
     }
     private func setupBinding() {
         
@@ -45,9 +46,27 @@ class AddtionalEventLevelController: UIViewController {
             guard let self = self else { return }
             self.minLabel.text = "\(text)から"
         }).disposed(by: disposeBag)
+        
         viewModel.outputs.maxLevelText.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             self.maxLabel.text = text
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _,item,cell in
+            var configuration = cell.defaultContentConfiguration()
+            configuration.text = item.name
+            cell.selectionStyle = .none
+            cell.contentConfiguration = configuration
+        }.disposed(by: disposeBag)
+        
+        circleTableView.rx.itemSelected.asDriver().drive(onNext: { indexPath in
+            guard let cell = self.circleTableView.cellForRow(at: indexPath) else { return }
+            cell.accessoryType = .checkmark
+        }).disposed(by: disposeBag)
+        
+        circleTableView.rx.itemDeselected.asDriver().drive(onNext: { indexPath in
+            guard let cell = self.circleTableView.cellForRow(at: indexPath) else { return }
+            cell.accessoryType = .none
         }).disposed(by: disposeBag)
     }
     // MARK: - IBAction
@@ -58,23 +77,7 @@ class AddtionalEventLevelController: UIViewController {
         viewModel.inputs.maxLevel.onNext(sender.value)
     }
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
-        coordinator?.toLevel()
-    }
-}
-extension AddtionalEventLevelController:UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-}
-extension AddtionalEventLevelController:UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = "サークル名"
-        cell.contentConfiguration = configuration
-        return cell
+        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
+        present(controller, animated: true)
     }
 }

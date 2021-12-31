@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KXz-mg-BWA">
-                    <rect key="frame" x="0.0" y="229" width="375" height="250"/>
+                    <rect key="frame" x="20" y="239" width="335" height="250"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="250" id="UjR-I8-dlm"/>
@@ -188,10 +188,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztx-WO-y1b">
-                    <rect key="frame" x="0.0" y="479" width="375" height="188"/>
+                    <rect key="frame" x="0.0" y="489" width="375" height="178"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70C-eE-Fko">
-                            <rect key="frame" x="0.0" y="48" width="375" height="100"/>
+                            <rect key="frame" x="0.0" y="38" width="375" height="100"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-HR-uJS">
                                     <rect key="frame" x="30" y="20" width="315" height="60"/>
@@ -241,18 +241,18 @@
             <constraints>
                 <constraint firstItem="ztx-WO-y1b" firstAttribute="trailing" secondItem="Rii-WP-Loo" secondAttribute="trailing" id="C3s-xu-VsY"/>
                 <constraint firstItem="mJM-Kk-let" firstAttribute="top" secondItem="K3b-lf-aR4" secondAttribute="bottom" id="CNs-zY-ySq"/>
-                <constraint firstItem="KXz-mg-BWA" firstAttribute="leading" secondItem="Rii-WP-Loo" secondAttribute="leading" id="CYc-a7-CDB"/>
+                <constraint firstItem="KXz-mg-BWA" firstAttribute="leading" secondItem="Rii-WP-Loo" secondAttribute="leading" constant="20" id="CYc-a7-CDB"/>
                 <constraint firstItem="CXl-u3-6Qu" firstAttribute="leading" secondItem="Rii-WP-Loo" secondAttribute="leading" id="LVu-HV-2Gz"/>
                 <constraint firstItem="ztx-WO-y1b" firstAttribute="top" secondItem="KXz-mg-BWA" secondAttribute="bottom" id="NVb-pq-dMU"/>
                 <constraint firstItem="K3b-lf-aR4" firstAttribute="top" secondItem="CXl-u3-6Qu" secondAttribute="bottom" id="UvU-76-07f"/>
                 <constraint firstItem="CXl-u3-6Qu" firstAttribute="top" secondItem="Rii-WP-Loo" secondAttribute="top" constant="20" id="ZC4-Tp-8Tm"/>
                 <constraint firstItem="K3b-lf-aR4" firstAttribute="leading" secondItem="Rii-WP-Loo" secondAttribute="leading" id="ayi-pl-JGp"/>
-                <constraint firstItem="Rii-WP-Loo" firstAttribute="trailing" secondItem="KXz-mg-BWA" secondAttribute="trailing" id="ejs-ol-K8Z"/>
+                <constraint firstItem="Rii-WP-Loo" firstAttribute="trailing" secondItem="KXz-mg-BWA" secondAttribute="trailing" constant="20" id="ejs-ol-K8Z"/>
                 <constraint firstItem="ztx-WO-y1b" firstAttribute="bottom" secondItem="Rii-WP-Loo" secondAttribute="bottom" id="qwc-9O-G9G"/>
                 <constraint firstItem="ztx-WO-y1b" firstAttribute="leading" secondItem="Rii-WP-Loo" secondAttribute="leading" id="qyt-tA-mbO"/>
                 <constraint firstItem="CXl-u3-6Qu" firstAttribute="trailing" secondItem="Rii-WP-Loo" secondAttribute="trailing" id="tF0-Id-4tK"/>
                 <constraint firstItem="K3b-lf-aR4" firstAttribute="trailing" secondItem="Rii-WP-Loo" secondAttribute="trailing" id="td8-I2-EYM"/>
-                <constraint firstItem="KXz-mg-BWA" firstAttribute="top" secondItem="mJM-Kk-let" secondAttribute="bottom" id="tf2-DE-KqI"/>
+                <constraint firstItem="KXz-mg-BWA" firstAttribute="top" secondItem="mJM-Kk-let" secondAttribute="bottom" constant="10" id="tf2-DE-KqI"/>
                 <constraint firstItem="mJM-Kk-let" firstAttribute="leading" secondItem="Rii-WP-Loo" secondAttribute="leading" constant="20" id="v5K-VU-srE"/>
                 <constraint firstItem="Rii-WP-Loo" firstAttribute="trailing" secondItem="mJM-Kk-let" secondAttribute="trailing" id="wCM-rd-Gs4"/>
             </constraints>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddtionalPlaceController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="navItem" destination="LBI-Yw-xSU" id="ZHe-rh-xbO"/>
+                <outlet property="navigationBar" destination="s1a-ql-VDj" id="2WO-H5-R7L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,14 +42,25 @@
                         </textField>
                     </subviews>
                 </stackView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1a-ql-VDj">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <items>
+                        <navigationItem id="LBI-Yw-xSU"/>
+                    </items>
+                </navigationBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="QE7-xw-twZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="7Wi-y2-8mh"/>
+                <constraint firstAttribute="trailing" secondItem="s1a-ql-VDj" secondAttribute="trailing" id="LRZ-zO-ovo"/>
                 <constraint firstItem="QE7-xw-twZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nny-ko-xrd"/>
+                <constraint firstItem="s1a-ql-VDj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OYs-Hi-xNx"/>
                 <constraint firstItem="QE7-xw-twZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="m8y-db-aAG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QE7-xw-twZ" secondAttribute="trailing" constant="30" id="oEy-uO-QVd"/>
+                <constraint firstItem="s1a-ql-VDj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="pNi-Af-slN"/>
             </constraints>
             <point key="canvasLocation" x="139" y="114"/>
         </view>

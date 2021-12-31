@@ -1,7 +1,7 @@
 import UIKit
-protocol LevelDetailFlow {
-    func dismiss()
-}
+//protocol LevelDetailFlow {
+//    func dismiss()
+//}
 final class LevelDetailController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var levelLabel: UILabel!
@@ -12,7 +12,7 @@ final class LevelDetailController: UIViewController {
         }
     }
     @IBOutlet private weak var textView: UITextView!
-    var coordinator:LevelDetailFlow?
+//    var coordinator:LevelDetailFlow?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ final class LevelDetailController: UIViewController {
     }
     // MARK: - IBAction
     @IBAction private func back(_ sender: Any) {
-        coordinator?.dismiss()
+        dismiss(animated: true)
     }
     // MARK: - SelectorMethod
     @objc private func changeLevel(sender: UISlider) {

@@ -20,7 +20,5 @@ class AddtionalEventLevelCoordinator:Coordinator,AddtionalEventLevelFlow {
     func toNext() {
         coordinator(to: AddtionalPracticeElementCoordinator(navigationController: self.navigationController))
     }
-    func toLevel() {
-        coordinator(to: LevelDetailCoordinator(viewController: self.navigationController))
-    }
+    
 }
