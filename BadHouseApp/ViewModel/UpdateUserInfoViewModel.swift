@@ -130,7 +130,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         }
     }
     
-    func postUser(dic: [String:Any]) {
+    func postUser(dic: [String : Any]) {
         userAPI.postUser(uid: AuthService.getUid()!, dic: dic) {[weak self] result in
             switch result {
             case .success:

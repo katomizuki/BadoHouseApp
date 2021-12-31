@@ -2,6 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import FirebaseAuth
+import UIKit
 protocol MakeEventSecondViewModelInputs {
     var minLevel: PublishSubject<Float> { get }
     var maxLevel: PublishSubject<Float> { get }
@@ -22,12 +23,22 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var outputs: MakeEventSecondViewModelOutputs { return self }
     var minLevelText = BehaviorRelay<String>(value: "レベル1")
     var maxLevelText = BehaviorRelay<String>(value: "レベル10")
-    var circleRelay = BehaviorRelay<[Circle]>(value:[])
-    var userAPI:UserServiceProtocol
-    var user:User?
+    var circleRelay = BehaviorRelay<[Circle]>(value: [])
+    var userAPI: UserServiceProtocol
+    var user: User?
+    var circle: Circle?
     private let disposeBag = DisposeBag()
-    init(userAPI:UserServiceProtocol) {
+    var title:String
+    var image:UIImage
+    var kind:String
+    var dic:[String:Any] = [String:Any]()
+    init(userAPI:UserServiceProtocol, title:String, image: UIImage, kind: String) {
         self.userAPI = userAPI
+        self.title = title
+        self.image = image
+        self.kind = kind
+        self.dic["title"] = title
+        self.dic["kind"] = kind
         guard let uid = Auth.auth().currentUser?.uid else { return }
         userAPI.getMyCircles(uid: uid).subscribe { [weak self] circle in
             self?.circleRelay.accept(circle)

@@ -11,8 +11,17 @@ class AddtionalPracticeElementCoordinator:Coordinator,AddtionalPracticeElementFl
   
     let navigationController:UINavigationController
     var viewController:AdditionalEventElementController?
-    init(navigationController:UINavigationController) {
+    let image: UIImage
+    let circle: Circle
+    let dic: [String:Any]
+    init(navigationController:UINavigationController,
+         dic: [String:Any],
+         image: UIImage,
+         circle: Circle) {
         self.navigationController = navigationController
+        self.dic = dic
+        self.circle = circle
+        self.image = image
     }
     func start() {
         let controller = AdditionalEventElementController.init(nibName: R.nib.additionalEventElementController.name, bundle: nil)

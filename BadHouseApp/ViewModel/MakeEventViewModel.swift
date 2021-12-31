@@ -35,6 +35,9 @@ final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstV
         return isButtonValid.value ? .systemBlue : .darkGray
     }
     var isTitle = BehaviorRelay<Bool>(value: false)
+    var title:String?
+    var practiceImage:UIImage?
+    var practiceKind:String?
     private let disposeBag = DisposeBag()
     init() {
         let isTitleValid = titleTextOutputs.asObservable().map { text->Bool in
@@ -45,6 +48,7 @@ final class MakeEventFirstViewModel:MakeEventFirstViewModelType, MakeEventFirstV
         }).disposed(by: disposeBag)
         
         titleTextOutputs.subscribe(onNext: { text in
+            self.title = text
             let isButtonValid = text.count >= 1
             self.isButtonValid.accept(isButtonValid)
         }).disposed(by: disposeBag)

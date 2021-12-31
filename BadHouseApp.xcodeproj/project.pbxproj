@@ -62,7 +62,6 @@
 		D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EF32771E0FE004FA773 /* NotificationCell.xib */; };
 		D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */; };
 		D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */; };
-		D3698F0127728DB8004FA773 /* UserLevelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -275,7 +274,6 @@
 		D3698EF32771E0FE004FA773 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewModel.swift; sourceTree = "<group>"; };
-		D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLevelViewModel.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -825,7 +823,6 @@
 				D3629FAE276F5ED40052B820 /* InviteViewModel.swift */,
 				D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */,
 				D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */,
-				D3698F0027728DB8004FA773 /* UserLevelViewModel.swift */,
 				D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */,
 				D3FF15B0277ACBF8006355EF /* ApplyFriendsViewModel.swift */,
 				D3FF15BC277AF45F006355EF /* ApplyedUserListViewModel.swift */,
@@ -1169,7 +1166,6 @@
 				D3886436276A1A7E00FC4F07 /* HomeCoordinator.swift in Sources */,
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
 				D3FF15E1277E7D4B006355EF /* BlockListController.swift in Sources */,
-				D3698F0127728DB8004FA773 /* UserLevelViewModel.swift in Sources */,
 				D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */,
 				D3629FAD276F5EB70052B820 /* InviteCoordinator.swift in Sources */,
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,

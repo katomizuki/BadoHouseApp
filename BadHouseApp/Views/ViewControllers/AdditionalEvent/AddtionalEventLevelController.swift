@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 protocol AddtionalEventLevelFlow {
-    func toNext()
+    func toNext(image: UIImage, dic:[String:Any], circle: Circle)
 }
 class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -19,7 +19,7 @@ class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var minLabel: UILabel!
     @IBOutlet private weak var circleTableView: UITableView!
     @IBOutlet private weak var minSlider: UISlider!
-    private let viewModel = MakeEventSecondViewModel(userAPI: UserService())
+    var viewModel: MakeEventSecondViewModel!
     var coordinator: AddtionalEventLevelFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,12 @@ class AddtionalEventLevelController: UIViewController {
         
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.coordinator?.toNext()
+            guard let circle = self.viewModel.circle else { return }
+            self.viewModel.dic["minLevel"] = self.viewModel.minLevelText.value
+            self.viewModel.dic["maxLevel"] = self.viewModel.maxLevelText.value
+            self.coordinator?.toNext(image: self.viewModel.image,
+                                     dic: self.viewModel.dic,
+                                     circle: circle)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
@@ -59,9 +64,11 @@ class AddtionalEventLevelController: UIViewController {
             cell.contentConfiguration = configuration
         }.disposed(by: disposeBag)
         
-        circleTableView.rx.itemSelected.asDriver().drive(onNext: { indexPath in
+        circleTableView.rx.itemSelected.asDriver().drive(onNext: { [weak self] indexPath in
+            guard let self = self else { return }
             guard let cell = self.circleTableView.cellForRow(at: indexPath) else { return }
             cell.accessoryType = .checkmark
+            self.viewModel.circle = self.viewModel.circleRelay.value[indexPath.row]
         }).disposed(by: disposeBag)
         
         circleTableView.rx.itemDeselected.asDriver().drive(onNext: { indexPath in

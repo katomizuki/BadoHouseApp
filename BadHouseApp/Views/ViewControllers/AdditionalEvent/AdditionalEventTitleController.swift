@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 protocol AdditionalEventTitleFlow {
-    func toNext()
+    func toNext(title:String,image:UIImage,kind:String)
 }
 final class AdditionalEventTitleController: UIViewController {
     // MARK: - Properties
@@ -37,9 +37,6 @@ final class AdditionalEventTitleController: UIViewController {
         setupBinding()
         pickerView.delegate = self
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     private func setupBinding() {
         titleTextField.rx.text.asDriver().drive(onNext: { [weak self] text in
@@ -48,7 +45,10 @@ final class AdditionalEventTitleController: UIViewController {
 
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.coordinator?.toNext()
+            guard let title = self.viewModel.title else { return }
+            guard let image = self.viewModel.practiceImage else { return }
+            guard let kind = self.viewModel.practiceKind else { return }
+            self.coordinator?.toNext(title: title, image: image, kind: kind)
         }).disposed(by: disposeBag)
 
         noImageView.rx.tapGesture()
@@ -57,6 +57,7 @@ final class AdditionalEventTitleController: UIViewController {
                 guard let self = self else { return }
                 self.present(self.pickerView, animated: true, completion: nil)
             }.disposed(by: disposeBag)
+        
         viewModel.outputs.isButtonValid.subscribe(onNext: {[weak self] isValid in
             self?.nextButton.isEnabled = isValid
             self?.nextButton.backgroundColor = self?.viewModel.outputs.buttonColor
@@ -67,6 +68,7 @@ final class AdditionalEventTitleController: UIViewController {
     @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         kindCircle = BadmintonCircle(rawValue: index)?.name
+        viewModel.practiceKind = kindCircle
     }
 }
 // MARK: - UInavigationDelegate
@@ -75,6 +77,7 @@ extension AdditionalEventTitleController: UINavigationControllerDelegate, UIImag
         if let image = info[.originalImage] as? UIImage {
             noImageView.image = image.withRenderingMode(.alwaysOriginal)
             viewModel.inputs.hasImage.accept(true)
+            viewModel.practiceImage = image
         }
         self.dismiss(animated: true, completion: nil)
     }

@@ -9,7 +9,9 @@ class AddtionalPlaceController: UIViewController {
     @IBOutlet private weak var navigationBar: UINavigationBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapRightButton))
+        navItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
+                                                    target: self,
+                                                    action: #selector(didTapRightButton))
     }
     @objc private func didTapRightButton() {
         dismiss(animated: true)
