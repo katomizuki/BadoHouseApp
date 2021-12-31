@@ -206,6 +206,7 @@
 		D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */; };
 		D3FF15E6277E7DF7006355EF /* MyPracticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */; };
 		D3FF15E8277E7F00006355EF /* BlockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15E7277E7F00006355EF /* BlockListViewModel.swift */; };
+		D3FF15EA277ECB93006355EF /* EventAdditionalItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF15E9277ECB92006355EF /* EventAdditionalItemViewModel.swift */; };
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
@@ -421,6 +422,7 @@
 		D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeController.swift; sourceTree = "<group>"; };
 		D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPracticeController.xib; sourceTree = "<group>"; };
 		D3FF15E7277E7F00006355EF /* BlockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListViewModel.swift; sourceTree = "<group>"; };
+		D3FF15E9277ECB92006355EF /* EventAdditionalItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionalItemViewModel.swift; sourceTree = "<group>"; };
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
@@ -831,6 +833,7 @@
 				D3FF15D5277DA680006355EF /* UpdateCircleViewModel.swift */,
 				D3FF15D9277DD46A006355EF /* AdditionalMemberViewModel.swift */,
 				D3FF15E7277E7F00006355EF /* BlockListViewModel.swift */,
+				D3FF15E9277ECB92006355EF /* EventAdditionalItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1237,6 +1240,7 @@
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3FF15DD277E7D1A006355EF /* ProblemInformationController.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
+				D3FF15EA277ECB93006355EF /* EventAdditionalItemViewModel.swift in Sources */,
 				D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */,
 				D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */,
 				D3C1BFF62775A41400C6C761 /* AlertProvider.swift in Sources */,

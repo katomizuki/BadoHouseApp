@@ -2,7 +2,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 protocol AddtionalPracticeElementFlow {
-    func toNext()
+    func toNext(image: UIImage,
+                circle: Circle,
+                user: User,
+                dic: [String: Any])
     func toAddtionalPlace()
 }
 final class AdditionalEventElementController: UIViewController {
@@ -10,24 +13,48 @@ final class AdditionalEventElementController: UIViewController {
     @IBOutlet private weak var moneyTextField: UITextField!
     @IBOutlet private weak var courtCountLabel: UILabel!
     @IBOutlet private weak var gatherCountLabel: UILabel!
-    @IBOutlet private weak var startDatePicker: UIDatePicker!
+    @IBOutlet private weak var startDatePicker: UIDatePicker! {
+        didSet {
+            startDatePicker.addTarget(self, action: #selector(didTapStartPicker), for: .valueChanged)
+        }
+    }
     @IBOutlet private weak var nextButton: UIButton!
-    @IBOutlet private weak var finishDatePicker: UIDatePicker!
-    @IBOutlet private weak var deadLinePicker: UIDatePicker!
+    @IBOutlet private weak var finishDatePicker: UIDatePicker! {
+        didSet {
+            finishDatePicker.addTarget(self, action: #selector(didTapFinishButton), for: .valueChanged)
+        }
+    }
+    @IBOutlet private weak var deadLinePicker: UIDatePicker! {
+        didSet {
+            deadLinePicker.addTarget(self, action: #selector(didTapLinePicker), for: .touchUpInside)
+        }
+    }
+    @IBOutlet private weak var placeNameLabel: UILabel!
+    @IBOutlet private weak var addressNameLabel: UILabel!
     @IBOutlet private weak var placeButton: UIButton!
     private let moneyPicker = UIPickerView()
     private let disposeBag = DisposeBag()
     var coordinator: AddtionalPracticeElementFlow?
+    var viewModel: MakeEventThirdViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         setPicker(pickerView: moneyPicker, textField: moneyTextField)
     }
     private func setupBinding() {
+        
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
-            self.coordinator?.toNext()
+            guard let text = self.moneyTextField.text else { return }
+            var dic = self.viewModel.dic
+            dic["price"] = text
+            self.coordinator?.toNext(image: self.viewModel.image,
+                                     circle: self.viewModel.circle,
+                                     user: self.viewModel.user,
+                                     dic: dic)
         }).disposed(by: disposeBag)
+        
         placeButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
             self.coordinator?.toAddtionalPlace()
@@ -35,9 +62,11 @@ final class AdditionalEventElementController: UIViewController {
     }
     @IBAction private func courtStepper(_ sender: UIStepper) {
         courtCountLabel.text =  String(Int(sender.value))
+        viewModel.inputs.changedCourtCount(Int(sender.value))
     }
     @IBAction private func gatherStepper(_ sender: UIStepper) {
         gatherCountLabel.text = String(Int(sender.value))
+        viewModel.inputs.changedGatherCount(Int(sender.value))
     }
     private func setPicker(pickerView: UIPickerView, textField: UITextField) {
         pickerView.delegate = self
@@ -59,6 +88,16 @@ final class AdditionalEventElementController: UIViewController {
     @objc private func donePicker() {
         moneyTextField.endEditing(true)
     }
+    @objc private func didTapStartPicker(sender: UIDatePicker) {
+        viewModel.inputs.changedStartPicker(sender.date)
+    }
+    @objc private func didTapFinishButton(sender: UIDatePicker) {
+        viewModel.inputs.changedFinishPicker(sender.date)
+    }
+    @objc private func didTapLinePicker(sender :UIDatePicker) {
+        viewModel.inputs.changedDeadLinePicker(sender.date)
+    }
+    
 }
 // MARK: - UIPickerViewDelegate
 extension AdditionalEventElementController: UIPickerViewDelegate {
@@ -76,5 +115,13 @@ extension AdditionalEventElementController: UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return Constants.Data.moneyArray.count
+    }
+}
+extension AdditionalEventElementController: AddtionalPlaceControllerDelegate {
+    func AddtionalPlaceController(vc: AddtionalPlaceController, placeName: String, addressName: String, latitude: Double, longitude: Double) {
+        vc.dismiss(animated: true)
+//        addressNameLabel.text = addressName
+        placeNameLabel.text = placeName
+        viewModel.inputs.placeInfo(placeName, addressName, latitude, longitude)
     }
 }

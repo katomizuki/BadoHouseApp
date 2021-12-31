@@ -11,8 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddtionalPlaceController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="z5p-vp-AdG" id="rKT-pR-MEN"/>
                 <outlet property="navItem" destination="LBI-Yw-xSU" id="ZHe-rh-xbO"/>
                 <outlet property="navigationBar" destination="s1a-ql-VDj" id="2WO-H5-R7L"/>
+                <outlet property="searchBar" destination="266-AA-GM5" id="Hgf-AM-YgI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,27 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="QE7-xw-twZ">
-                    <rect key="frame" x="30" y="363" width="354" height="170"/>
-                    <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="施設名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xIq-iG-e1B">
-                            <rect key="frame" x="0.0" y="0.0" width="354" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="WVO-7L-dTX"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="住所" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ByC-Lw-ebX">
-                            <rect key="frame" x="0.0" y="110" width="354" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="ksi-U7-WAY"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                    </subviews>
-                </stackView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1a-ql-VDj">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -50,17 +31,27 @@
                         <navigationItem id="LBI-Yw-xSU"/>
                     </items>
                 </navigationBar>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="266-AA-GM5">
+                    <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z5p-vp-AdG">
+                    <rect key="frame" x="0.0" y="139" width="414" height="723"/>
+                </mapView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="QE7-xw-twZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="7Wi-y2-8mh"/>
+                <constraint firstItem="266-AA-GM5" firstAttribute="top" secondItem="s1a-ql-VDj" secondAttribute="bottom" id="1wj-zv-YeI"/>
                 <constraint firstAttribute="trailing" secondItem="s1a-ql-VDj" secondAttribute="trailing" id="LRZ-zO-ovo"/>
-                <constraint firstItem="QE7-xw-twZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nny-ko-xrd"/>
                 <constraint firstItem="s1a-ql-VDj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OYs-Hi-xNx"/>
-                <constraint firstItem="QE7-xw-twZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="m8y-db-aAG"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QE7-xw-twZ" secondAttribute="trailing" constant="30" id="oEy-uO-QVd"/>
+                <constraint firstItem="266-AA-GM5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zda-Yq-6jG"/>
+                <constraint firstItem="z5p-vp-AdG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c4y-Yz-EWT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="z5p-vp-AdG" secondAttribute="trailing" id="e1Q-fB-3Ww"/>
+                <constraint firstItem="266-AA-GM5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="guv-K6-dzQ"/>
+                <constraint firstItem="z5p-vp-AdG" firstAttribute="top" secondItem="266-AA-GM5" secondAttribute="bottom" id="irj-5A-DmE"/>
                 <constraint firstItem="s1a-ql-VDj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="pNi-Af-slN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="z5p-vp-AdG" secondAttribute="bottom" id="sjW-MK-JuE"/>
             </constraints>
             <point key="canvasLocation" x="139" y="114"/>
         </view>

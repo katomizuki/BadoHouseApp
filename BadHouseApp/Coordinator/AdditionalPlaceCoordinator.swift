@@ -8,13 +8,14 @@
 import UIKit
 
 class AdditionalPlaceCoordinator: Coordinator,AddtionalPlaceFlow {
-    let viewController:UIViewController
-    init(viewController:UIViewController) {
+    let viewController:AdditionalEventElementController
+    init(viewController:AdditionalEventElementController) {
         self.viewController = viewController
     }
     func start() {
         let controller = AddtionalPlaceController.init(nibName: R.nib.addtionalPlaceController.name, bundle: nil)
         controller.modalPresentationStyle = .fullScreen
+        controller.delegate = viewController
         controller.coordinator = self
         viewController.present(controller, animated: true, completion: nil)
     }

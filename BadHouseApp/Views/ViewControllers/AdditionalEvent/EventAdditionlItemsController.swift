@@ -1,12 +1,14 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PKHUD
 protocol EventAdditionlItemsFlow {
     func popToRoot()
 }
 final class EventAdditionlItemsController: UIViewController {
     private let disposeBag = DisposeBag()
     var coordinator: EventAdditionlItemsFlow?
+    var viewModel:EventAdditionalItemViewModel!
     @IBOutlet private weak var textView: UITextView! {
         didSet {
             textView.layer.borderColor = UIColor.systemBlue.cgColor
@@ -19,9 +21,23 @@ final class EventAdditionlItemsController: UIViewController {
         setupBinding()
     }
     private func setupBinding() {
-        makeEventButton.rx.tap.asDriver().drive(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.coordinator?.popToRoot()
-        }).disposed(by: disposeBag)
+        
+        viewModel.isError.subscribe { [weak self] _ in
+            self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .warning)
+        }.disposed(by: disposeBag)
+        
+        viewModel.completed.subscribe { [weak self] _ in
+            self?.popAnimation()
+        }.disposed(by: disposeBag)
     }
+    @IBAction func didTapPracticeButton(_ sender: Any) {
+        viewModel.postPractice()
+    }
+    private func popAnimation() {
+        HUD.show(.success, onView: view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.coordinator?.popToRoot()
+        }
+    }
+    
 }

@@ -26,8 +26,11 @@ class AddtionalEventLevelCoordinator:Coordinator,AddtionalEventLevelFlow {
         controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
-    func toNext(image: UIImage, dic: [String : Any], circle: Circle) {
-        coordinator(to: AddtionalPracticeElementCoordinator(navigationController: self.navigationController, dic: dic, image: image, circle: circle))
+    func toNext(image: UIImage, dic: [String : Any], circle: Circle ,user: User) {
+        coordinator(to: AddtionalPracticeElementCoordinator(navigationController: self.navigationController, dic: dic,
+                                       image: image,
+                                       circle: circle,
+                                       user: user))
     }
     
 }

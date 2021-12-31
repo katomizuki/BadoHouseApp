@@ -9,7 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 protocol AddtionalEventLevelFlow {
-    func toNext(image: UIImage, dic:[String:Any], circle: Circle)
+    func toNext(image: UIImage,
+                dic:[String:Any],
+                circle: Circle,
+                user: User)
 }
 class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -40,11 +43,12 @@ class AddtionalEventLevelController: UIViewController {
         nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
             guard let circle = self.viewModel.circle else { return }
+            guard let user = self.viewModel.user else { return }
             self.viewModel.dic["minLevel"] = self.viewModel.minLevelText.value
             self.viewModel.dic["maxLevel"] = self.viewModel.maxLevelText.value
             self.coordinator?.toNext(image: self.viewModel.image,
                                      dic: self.viewModel.dic,
-                                     circle: circle)
+                                     circle: circle, user: user)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in

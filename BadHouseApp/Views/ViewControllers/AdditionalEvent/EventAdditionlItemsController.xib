@@ -44,6 +44,9 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapPracticeButton:" destination="-1" eventType="touchUpInside" id="WL7-Am-1ge"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
