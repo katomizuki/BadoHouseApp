@@ -8,13 +8,14 @@
 import RxSwift
 import Firebase
 protocol PracticeSearchViewModelType {
-    var inputs:PracticeSearchViewModelInputs { get }
-    var outputs:PracticeSearchViewModelOutputs { get }
+    var inputs: PracticeSearchViewModelInputs { get }
+    var outputs: PracticeSearchViewModelOutputs { get }
 }
 protocol PracticeSearchViewModelInputs {
-    func changeSelection(_ selection:SearchSelection, text: String)
+    func changeSelection(_ selection: SearchSelection, text: String)
     func changeFinishPicker(_ date: Date)
     func changeStartPicker(_ date: Date)
+    func refresh()
 }
 protocol PracticeSearchViewModelOutputs {
     var navigationStriing: PublishSubject<String> { get }
@@ -32,12 +33,17 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var selectedPlace = String()
     var reload = PublishSubject<Void>()
     var practices = [Practice]()
+    var fullPractices = [Practice]()
     var searchedPractices = [Practice]()
     init(practiceAPI: PracticeServieProtocol, practices: [Practice]) {
         self.practiceAPI = practiceAPI
         self.practices = practices
+        self.fullPractices = practices
     }
     func changeSelection(_ selection:SearchSelection, text: String) {
+        if practices.isEmpty {
+            practices = fullPractices
+        }
         switch selection {
         case .place:
             self.selectedPlace = text
@@ -49,7 +55,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         reload.onNext(())
         navigationStriing.onNext("\(self.practices.count)件のヒット")
     }
-    func seachLevel(_ text: String)-> [Practice] {
+    func seachLevel(_ text: String) -> [Practice] {
         var array = [Practice]()
         let levelText = text
         var level = Int(levelText.suffix(1))!
@@ -65,7 +71,6 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
             if min == 0 {
                 min = 10
             }
-            print(min,max,level)
             if min <= level && level <= max {
                 array.append(practice)
             }
@@ -73,6 +78,9 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         return array
     }
     func changeStartPicker(_ date: Date) {
+        if practices.isEmpty {
+            practices = fullPractices
+        }
         let timeStamp = Timestamp(date: date)
         self.practices = self.practices.filter {
             return timeStamp.compare($0.start) == .orderedAscending
@@ -81,10 +89,20 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     }
     
     func changeFinishPicker(_ date: Date) {
+        if practices.isEmpty {
+            practices = fullPractices
+        }
         let timeStamp = Timestamp(date: date)
         self.practices = self.practices.filter {
             return timeStamp.compare($0.start) == .orderedDescending
         }
         navigationStriing.onNext("\(self.practices.count)件のヒット")
+    }
+    func refresh() {
+        selectedLevel = String()
+        selectedPlace = String()
+        practices = fullPractices
+        navigationStriing.onNext("\(self.practices.count)件のヒット")
+        reload.onNext(())
     }
 }

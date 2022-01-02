@@ -36,10 +36,11 @@ final class EventSearchController: UIViewController {
         setupTableView()
         setupNavigationBar()
         setupBinding()
+        navigationItem.title = "\(viewModel.fullPractices.count)件のヒット"
     }
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton)),UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapReloadButton))]
     }
     @objc private func didTapCloseButton() {
         dismiss(animated: true)
@@ -54,6 +55,9 @@ final class EventSearchController: UIViewController {
     @objc private func changeStartPicker(sender: UIDatePicker) {
         let date = sender.date
         viewModel.inputs.changeStartPicker(date)
+    }
+    @objc private func didTapReloadButton() {
+        viewModel.inputs.refresh()
     }
     private func setupBinding() {
         viewModel.outputs.reload.subscribe { [weak self] _ in
