@@ -29,7 +29,7 @@ final class MapCoordinator:Coordinator, MapListFlow {
         controller.viewModel = viewModel
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {
-                sheet.detents = [.medium(),.large(),]
+                sheet.detents = [.medium(),.large()]
             }
         }
         vc.present(controller, animated: true)

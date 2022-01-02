@@ -18,7 +18,7 @@ protocol PracticeDetailFlow {
 }
 final class PracticeDetailController: UIViewController {
     // MARK: - Properties
-    @IBOutlet private weak var chatButton: UIButton!
+    @IBOutlet  weak var chatButton: UIButton!
     @IBOutlet private weak var practiceImageView: UIImageView!
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet { userImageView.changeCorner(num: 30) }
@@ -34,12 +34,14 @@ final class PracticeDetailController: UIViewController {
     @IBOutlet private weak var finishLabel: UILabel!
     @IBOutlet private weak var deadLineLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet weak var userDetailButton: UIButton!
+    @IBOutlet weak var circleDetailButton: UIButton!
     @IBOutlet private weak var courtLabel: UILabel!
     @IBOutlet private weak var gatherLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     private var defaultRegion: MKCoordinateRegion {
-        let x =  0.0
-        let y = 0.0
+        let x =  viewModel.practice.latitude
+        let y = viewModel.practice.longitude
         let coordinate = CLLocationCoordinate2D(
             latitude: x,
             longitude: y
@@ -51,7 +53,7 @@ final class PracticeDetailController: UIViewController {
         return MKCoordinateRegion(center: coordinate, span: span)
     }
     var coordinator: PracticeDetailFlow?
-    var viewModel:PracticeDetailViewModel!
+    var viewModel: PracticeDetailViewModel!
     private lazy var rightButton = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
     private let disposeBag = DisposeBag()
     // MARK: - Lifecycle
@@ -59,6 +61,13 @@ final class PracticeDetailController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupBinding()
+        setupMapView()
+    }
+    private func setupMapView() {
+        mapView.setRegion(defaultRegion, animated: true)
+        let pin = MKPointAnnotation()
+        pin.coordinate = CLLocationCoordinate2DMake(viewModel.practice.latitude, viewModel.practice.longitude)
+        mapView.addAnnotation(pin)
     }
     
     @IBAction private func didTapChatButton(_ sender: Any) {
@@ -70,16 +79,6 @@ final class PracticeDetailController: UIViewController {
         navigationItem.rightBarButtonItem = rightButton
     }
     private func setupBinding() {
-        viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
-            self?.userImageView.sd_setImage(with: user.profileImageUrl)
-            self?.userNameLabel.text = user.name
-        }).disposed(by: disposeBag)
-        
-        viewModel.outputs.circleRelay.subscribe(onNext: { [weak self] circle in
-            self?.circleImageView.sd_setImage(with: circle.iconUrl)
-            self?.circleNameLabel.text = circle.name
-        }).disposed(by: disposeBag)
-        
         priceLabel.text = viewModel.practice.price
         practiceImageView.sd_setImage(with: viewModel.practice.mainUrl)
         textView.text = viewModel.practice.explain
@@ -90,10 +89,23 @@ final class PracticeDetailController: UIViewController {
         finishLabel.text = viewModel.practice.detailEndTimeString
         deadLineLabel.text = viewModel.practice.detailDeadLineTimeString
         
+        
+        viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
+            self?.userImageView.sd_setImage(with: user.profileImageUrl)
+            self?.userNameLabel.text = user.name
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.circleRelay.subscribe(onNext: { [weak self] circle in
+            self?.circleImageView.sd_setImage(with: circle.iconUrl)
+            self?.circleNameLabel.text = circle.name
+        }).disposed(by: disposeBag)
+        
         viewModel.outputs.isButtonHidden.subscribe { [weak self] _ in
             self?.navigationItem.rightBarButtonItem = nil
             self?.chatButton.isHidden = true
         }.disposed(by: disposeBag)
+        
+        
     }
     
     @objc private func didTapRightButton() {

@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PracticeDetailController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
                 <outlet property="chatButton" destination="nfQ-KE-1gv" id="QSL-B0-psS"/>
+                <outlet property="circleDetailButton" destination="dsu-dk-R6G" id="vzN-J6-OYr"/>
                 <outlet property="circleImageView" destination="jkb-9J-fPG" id="8bz-di-xeF"/>
                 <outlet property="circleNameLabel" destination="WdA-xD-9uQ" id="fb0-Be-yWH"/>
                 <outlet property="courtLabel" destination="AmB-tM-g5C" id="4ld-ow-6IY"/>
@@ -25,6 +26,7 @@
                 <outlet property="startLabel" destination="FcS-Zo-0PC" id="0U8-Hf-XBh"/>
                 <outlet property="textView" destination="kJV-H4-rkA" id="tO2-Do-BZC"/>
                 <outlet property="titleLabel" destination="SEQ-5i-FbD" id="7xd-KB-EZ9"/>
+                <outlet property="userDetailButton" destination="kLO-8q-TlO" id="gZh-Kp-0Wy"/>
                 <outlet property="userImageView" destination="U9s-T5-a0F" id="Txh-AQ-jvg"/>
                 <outlet property="userNameLabel" destination="43q-sO-cfY" id="Suc-Sx-bAK"/>
                 <outlet property="view" destination="KhN-Jv-go0" id="9vN-bW-t1I"/>
