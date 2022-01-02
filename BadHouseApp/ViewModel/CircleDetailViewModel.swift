@@ -46,6 +46,7 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
         circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
             guard let self = self else { return }
             self.allMembers = circle.members
+            self.circle = circle
             self.friendsMembers = circle.members.filter({ user in
                 self.ids.contains(user.uid)
             })

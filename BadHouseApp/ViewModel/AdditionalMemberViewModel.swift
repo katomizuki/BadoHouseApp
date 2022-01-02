@@ -16,12 +16,12 @@ protocol AdditionalMemberViewModelInputs {
 }
 protocol AdditionalMemberViewModelOutputs {
     var friendsSubject:BehaviorRelay<[User]> { get }
-    var isError:PublishSubject<Bool> { get }
-    var completed:PublishSubject<Void> { get }
+    var isError: PublishSubject<Bool> { get }
+    var completed: PublishSubject<Void> { get }
 }
 final class AdditionalMemberViewModel: AdditionalMemberViewModelType, AdditionalMemberViewModelInputs, AdditionalMemberViewModelOutputs {
     var inputs: AdditionalMemberViewModelInputs { return self }
-    var outputs:AdditionalMemberViewModelOutputs { return self }
+    var outputs: AdditionalMemberViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()
     var completed = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
@@ -34,16 +34,10 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         self.user = user
         self.userAPI = userAPI
         self.circle = circle
-        userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
-            var array = [User]()
-            for id in circle.member {
-                users.forEach({
-                    if $0.uid != id {
-                        array.append($0)
-                    }
-                })
-            }
-            self?.friendsSubject.accept(array)
+        userAPI.getFriends(uid: user.uid).subscribe { [weak self] friends in
+            guard let self = self else { return }
+            let users = self.judgeInviter(members: self.circle.members, friends: friends)
+            self.friendsSubject.accept(users)
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
@@ -72,4 +66,14 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
             }
         }
     }
+    
+    private func judgeInviter(members: [User],friends: [User]) -> [User] {
+        var array = friends
+        members.forEach {
+            array.remove(value: $0)
+        }
+        return array
+    }
 }
+
+

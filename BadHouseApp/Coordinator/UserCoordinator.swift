@@ -50,8 +50,9 @@ class UserCoordinator: Coordinator, UserFlow {
             coordinator.start(user: user)
         }
     }
-    func toSettings(_ vc: UIViewController) {
-        let controller = UserSettingsController.init(nibName: R.nib.userSettingsController.name, bundle: nil)
+    func toSettings(_ vc: UIViewController, user:User?) {
+        guard let user = user else { return }
+        let controller = UserSettingsController.init(user: user)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)

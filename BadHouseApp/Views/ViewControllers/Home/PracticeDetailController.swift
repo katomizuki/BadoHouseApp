@@ -86,6 +86,9 @@ final class PracticeDetailController: UIViewController {
         titleLabel.text = viewModel.practice.title
         courtLabel.text = String(viewModel.practice.court) + "面"
         gatherLabel.text = String(viewModel.practice.gather) + "人"
+        startLabel.text = viewModel.practice.detailStartTimeString
+        finishLabel.text = viewModel.practice.detailEndTimeString
+        deadLineLabel.text = viewModel.practice.detailDeadLineTimeString
 
 
     }

@@ -30,27 +30,47 @@ struct Practice {
     let userId: String
     let userName: String
     let userUrlString: String
-    let explain:String
-    var circleUrl:URL? {
+    let explain: String
+    var circleUrl: URL? {
         if let url = URL(string: circleUrlString) {
             return url
         } else {
             return nil
         }
     }
-    var userUrl:URL? {
+    var userUrl: URL? {
         if let url = URL(string: userUrlString) {
             return url
         } else {
             return nil
         }
     }
-    var mainUrl:URL? {
+    var mainUrl: URL? {
         if let url = URL(string: urlString) {
             return url
         } else {
             return nil
         }
+    }
+    var startTimeSring: String {
+        let date = start.dateValue()
+        let dateString = DateUtils.stringFromDate(date: date, format: "yyyy年MM月dd日HH時mm分")
+        return dateString
+    }
+    var detailStartTimeString: String {
+        let date = start.dateValue()
+        let dateString = DateUtils.stringFromDate(date: date, format: "MM月dd日HH時mm分")
+        return dateString
+    }
+    var detailEndTimeString: String {
+        let date = finish.dateValue()
+        let dateString = DateUtils.stringFromDate(date: date, format: "MM月dd日HH時mm分")
+        return dateString
+    }
+    var detailDeadLineTimeString: String {
+        let date = deadLine.dateValue()
+        let dateString = DateUtils.stringFromDate(date: date, format: "MM月dd日HH時mm分")
+        return dateString
     }
     init(dic: [String: Any]) {
         self.addressName = dic["addressName"] as? String ?? ""

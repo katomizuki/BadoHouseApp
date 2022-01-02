@@ -8,7 +8,14 @@
 import UIKit
 
 final class UserSettingsController: UIViewController {
-
+    var user: User
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     @IBOutlet private weak var settingsTableView: UITableView! {
         didSet {
             settingsTableView.changeCorner(num: 8)
@@ -41,15 +48,15 @@ final class UserSettingsController: UIViewController {
 }
 extension UserSettingsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        
         switch indexPath.row {
         case 0:
             let controller = BlockListController.init(nibName: "BlockListController", bundle: nil)
             navigationController?.pushViewController(controller, animated: true)
         case 1:
             let controller = MyPracticeController.init(nibName: "MyPracticeController", bundle: nil)
+            let viewModel = MyPracticeViewModel(user: user, userAPI: UserService())
+            controller.viewModel = viewModel
             navigationController?.pushViewController(controller, animated: true)
         case 2:
             let viewController = AppExplainController()

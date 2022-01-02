@@ -32,4 +32,10 @@ class AlertProvider {
         alertVC.addAction(canleAction)
         return alertVC
     }
+    static func practiceAlertVC()->UIAlertController {
+        let alertVC = UIAlertController(title: "この練習に関して", message: "", preferredStyle: .actionSheet)
+        let canleAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        alertVC.addAction(canleAction)
+        return alertVC
+    }
 }

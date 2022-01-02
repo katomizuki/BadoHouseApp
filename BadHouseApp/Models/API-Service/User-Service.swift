@@ -9,6 +9,7 @@ protocol UserServiceProtocol {
     func searchUser(text: String)->Single<[User]>
     func getFriends(uid: String)->Single<[User]>
     func getMyCircles(uid: String) -> Single<[Circle]>
+    func getMyPractice(uid: String) -> Single<[Practice]>
 }
 struct UserService: UserServiceProtocol {
     
@@ -138,8 +139,7 @@ struct UserService: UserServiceProtocol {
         }
     }
 
-    
-    static func getUserById(uid: String, completion:@escaping((User)->Void)) {
+    static func getUserById(uid: String, completion:@escaping((User) -> Void)) {
         Ref.UsersRef.document(uid).getDocument { documents, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -154,4 +154,31 @@ struct UserService: UserServiceProtocol {
             }
         }
     }
+    func getMyPractice(uid: String) -> Single<[Practice]> {
+        var practices = [Practice]()
+        let group = DispatchGroup()
+        return Single.create { singleEvent -> Disposable in
+            Ref.UsersRef.document(uid).collection("Practice").getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                if let snapShot = snapShot {
+                    snapShot.documents.forEach {
+                        group.enter()
+                        let id = $0.data()["id"] as? String ?? ""
+                        PracticeServie.getPracticeById(id: id) { practice in
+                            defer { group.leave() }
+                            practices.append(practice)
+                        }
+                    }
+                    group.notify(queue: .main) {
+                        singleEvent(.success(practices))
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
 }

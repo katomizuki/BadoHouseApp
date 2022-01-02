@@ -10,7 +10,7 @@ protocol UserFlow: AnyObject {
     func toDetailUser(myData: User?, user: User?)
     func toDetailCircle(myData:User?, circle: Circle?)
     func toMakeCircle(user: User?)
-    func toSettings(_ vc: UIViewController)
+    func toSettings(_ vc: UIViewController , user:User?)
     func toSchedule(_ vc: UIViewController)
     func toApplyUser(user: User?)
     func toApplyedUser(user: User?)
@@ -110,7 +110,7 @@ final class UserController: UIViewController {
         navigationItem.scrollEdgeAppearance = appearance
     }
     @objc private func didTapSettingButton() {
-        coordinator?.toSettings(self)
+        coordinator?.toSettings(self,user: viewModel.user)
     }
     
     @objc private func didTapScheduleButton() {

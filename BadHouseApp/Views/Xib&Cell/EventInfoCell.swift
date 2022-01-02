@@ -41,13 +41,13 @@ final class EventInfoCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    func configure(_ practice:Practice) {
+    func configure(_ practice: Practice) {
         teamLabel.text = practice.circleName
         teamImage.sd_setImage(with: practice.mainUrl)
         userImageView.sd_setImage(with: practice.circleUrl)
         titleLabel.text = practice.title
         placeLabel.text = "場所  \(practice.placeName)"
-//        timeLabel.text = practice.st
+        timeLabel.text = "時間  \(practice.startTimeSring)"
     }
     @IBAction private func didTapAlertButton(_ sender: Any) {
         self.delegate?.didTapBlockButton(self)

@@ -36,4 +36,15 @@ struct PracticeServie: PracticeServieProtocol {
             return Disposables.create()
         }
     }
+    static func getPracticeById(id:String,completion:@escaping(Practice)->Void) {
+        Ref.PracticeRef.document(id).getDocument { snapShot, error in
+            if error != nil {
+                return
+            }
+            if let dic = snapShot?.data() {
+                let practice = Practice(dic: dic)
+                completion(practice)
+            }
+        }
+    }
 }
