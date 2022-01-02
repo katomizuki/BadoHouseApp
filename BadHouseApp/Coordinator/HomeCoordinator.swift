@@ -12,8 +12,10 @@ final class HomeCoordinator: Coordinator,MainFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toMap(practices:[Practice]) {
+    func toMap(practices:[Practice],lat:Double, lon: Double) {
+        let viewModel = MapListViewModel(currnetLatitude: lat, currentLongitude: lon, practices: practices)
         let controller = MapListController.init(nibName: R.nib.mapListController.name, bundle: nil)
+        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
     func toMakeEvent() {
