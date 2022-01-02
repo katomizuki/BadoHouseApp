@@ -19,10 +19,10 @@ protocol MapListViewModelOutputs {
 }
 
 final class MapListViewModel: MapListViewModelType, MapListViewModelInputs, MapListViewModelOutputs {
-    var inputs:MapListViewModelInputs { return self }
-    var outputs:MapListViewModelOutputs { return self }
-    var currnetLatitude:CLLocationDegrees
-    var currentLongitude:CLLocationDegrees
+    var inputs: MapListViewModelInputs { return self }
+    var outputs: MapListViewModelOutputs { return self }
+    var currnetLatitude: CLLocationDegrees
+    var currentLongitude: CLLocationDegrees
     var practices = [Practice]()
     init(currnetLatitude: CLLocationDegrees,
          currentLongitude: CLLocationDegrees,
