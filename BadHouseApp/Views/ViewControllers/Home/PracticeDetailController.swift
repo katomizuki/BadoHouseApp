@@ -18,6 +18,7 @@ protocol PracticeDetailFlow {
 }
 final class PracticeDetailController: UIViewController {
     // MARK: - Properties
+    @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var practiceImageView: UIImageView!
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet { userImageView.changeCorner(num: 30) }
@@ -51,6 +52,7 @@ final class PracticeDetailController: UIViewController {
     }
     var coordinator: PracticeDetailFlow?
     var viewModel:PracticeDetailViewModel!
+    private lazy var rightButton = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
     private let disposeBag = DisposeBag()
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -62,11 +64,10 @@ final class PracticeDetailController: UIViewController {
     @IBAction private func didTapChatButton(_ sender: Any) {
     }
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
-        print(#function)
         coordinator?.toCircleDetail(myData: viewModel.myData!, circle: viewModel.circle!)
     }
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
+        navigationItem.rightBarButtonItem = rightButton
     }
     private func setupBinding() {
         viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
@@ -80,7 +81,6 @@ final class PracticeDetailController: UIViewController {
         }).disposed(by: disposeBag)
         
         priceLabel.text = viewModel.practice.price
-    
         practiceImageView.sd_setImage(with: viewModel.practice.mainUrl)
         textView.text = viewModel.practice.explain
         titleLabel.text = viewModel.practice.title
@@ -89,9 +89,13 @@ final class PracticeDetailController: UIViewController {
         startLabel.text = viewModel.practice.detailStartTimeString
         finishLabel.text = viewModel.practice.detailEndTimeString
         deadLineLabel.text = viewModel.practice.detailDeadLineTimeString
-
-
+        
+        viewModel.outputs.isButtonHidden.subscribe { [weak self] _ in
+            self?.navigationItem.rightBarButtonItem = nil
+            self?.chatButton.isHidden = true
+        }.disposed(by: disposeBag)
     }
+    
     @objc private func didTapRightButton() {
         
     }

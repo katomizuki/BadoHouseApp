@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PracticeDetailController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="chatButton" destination="nfQ-KE-1gv" id="QSL-B0-psS"/>
                 <outlet property="circleImageView" destination="jkb-9J-fPG" id="8bz-di-xeF"/>
                 <outlet property="circleNameLabel" destination="WdA-xD-9uQ" id="fb0-Be-yWH"/>
                 <outlet property="courtLabel" destination="AmB-tM-g5C" id="4ld-ow-6IY"/>

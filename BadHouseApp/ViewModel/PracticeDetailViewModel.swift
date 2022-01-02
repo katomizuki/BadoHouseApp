@@ -20,12 +20,14 @@ protocol PracticeDetailViewModelOutputs {
     var userRelay:PublishRelay<User> { get }
     var circleRelay: PublishRelay<Circle> { get }
     var isError: PublishSubject<Bool> { get }
+    var isButtonHidden: PublishSubject<Bool> { get }
 }
 final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetailViewModelInputs, PracticeDetailViewModelOutputs {
     var inputs: PracticeDetailViewModelInputs { return self }
     var outputs: PracticeDetailViewModelOutputs { return self }
     var userRelay = PublishRelay<User>()
     var circleRelay = PublishRelay<Circle>()
+    var isButtonHidden = PublishSubject<Bool>()
     var isError = PublishSubject<Bool>()
     let practice: Practice
     var myData:User?
@@ -42,6 +44,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         userAPI.getUser(uid: practice.userId).subscribe { [weak self] user in
             self?.userRelay.accept(user)
             self?.user = user
+            
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
@@ -57,6 +60,9 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         
         UserService.getUserById(uid: uid) { myData in
             self.myData = myData
+            if myData.uid == self.user?.uid {
+                self.isButtonHidden.onNext(true)
+            }
         }
         
     }
