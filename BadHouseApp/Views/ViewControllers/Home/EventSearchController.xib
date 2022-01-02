@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,26 +20,41 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cQL-XH-Oi2">
-                    <rect key="frame" x="37.5" y="133.5" width="300" height="400"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <rect key="frame" x="37.5" y="120" width="300" height="230"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="400" id="JUR-61-dDC"/>
+                        <constraint firstAttribute="height" constant="230" id="Ur3-Ds-PQ0"/>
                         <constraint firstAttribute="width" constant="300" id="bIG-By-WSN"/>
                     </constraints>
                 </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="qjo-7c-Sa5">
+                    <rect key="frame" x="87.5" y="360" width="200" height="103"/>
+                    <subviews>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="3As-Ia-XEf">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="gY6-JM-ZL3"/>
+                                <constraint firstAttribute="height" constant="50" id="nGD-H1-9ft"/>
+                            </constraints>
+                        </datePicker>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="iMQ-Uv-rcp">
+                            <rect key="frame" x="0.0" y="53" width="200" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="UHc-93-vmh"/>
+                                <constraint firstAttribute="width" constant="200" id="q65-dC-qoE"/>
+                            </constraints>
+                        </datePicker>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="cQL-XH-Oi2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7x0-ga-STI"/>
-                <constraint firstItem="cQL-XH-Oi2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Ho7-tP-PKQ"/>
+                <constraint firstItem="cQL-XH-Oi2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="7zc-pf-SkC"/>
+                <constraint firstItem="qjo-7c-Sa5" firstAttribute="top" secondItem="cQL-XH-Oi2" secondAttribute="bottom" constant="10" id="XSS-0P-PRg"/>
+                <constraint firstItem="qjo-7c-Sa5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wYQ-el-zup"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="98"/>
+            <point key="canvasLocation" x="138.40000000000001" y="97.601199400299862"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

@@ -12,15 +12,16 @@ final class HomeCoordinator: Coordinator,MainFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toMap() {
+    func toMap(practices:[Practice]) {
         let controller = MapListController.init(nibName: R.nib.mapListController.name, bundle: nil)
         navigationController.pushViewController(controller, animated: true)
     }
     func toMakeEvent() {
         coordinator(to: MakePracticeCoordinator(navigationController: self.navigationController))
     }
-    func toDetailSearch(_ vc: UIViewController) {
+    func toDetailSearch(_ vc: UIViewController,practices:[Practice]) {
         let controller = EventSearchController.init(nibName: R.nib.eventSearchController.name, bundle: nil)
+        controller.viewModel = PracticeSearchViewModel(practiceAPI: PracticeServie(), practices: practices)
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)
     }

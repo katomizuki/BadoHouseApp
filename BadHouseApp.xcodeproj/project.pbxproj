@@ -111,6 +111,8 @@
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */; };
+		D3B22D842781625800EC8C10 /* SearchSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D832781625800EC8C10 /* SearchSelectionController.swift */; };
+		D3B22D8A278172FF00EC8C10 /* PracticeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */; };
 		D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */; };
 		D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */; };
 		D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */; };
@@ -320,6 +322,8 @@
 		D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeViewModel.swift; sourceTree = "<group>"; };
+		D3B22D832781625800EC8C10 /* SearchSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionController.swift; sourceTree = "<group>"; };
+		D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -613,6 +617,7 @@
 				D3FF15E0277E7D4B006355EF /* BlockListController.xib */,
 				D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */,
 				D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */,
+				D3B22D832781625800EC8C10 /* SearchSelectionController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -825,6 +830,7 @@
 				D3FF15E9277ECB92006355EF /* EventAdditionalItemViewModel.swift */,
 				D3D57DDB277EFD6600BCBF0C /* PracticeDetailViewModel.swift */,
 				D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */,
+				D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1116,6 +1122,7 @@
 				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
+				D3B22D8A278172FF00EC8C10 /* PracticeSearchViewModel.swift in Sources */,
 				D3FF15E8277E7F00006355EF /* BlockListViewModel.swift in Sources */,
 				D3FF15B3277ACEF5006355EF /* Apply.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
@@ -1243,6 +1250,7 @@
 				D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */,
 				D32E598F2774859D00C59548 /* UserCircleCell.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
+				D3B22D842781625800EC8C10 /* SearchSelectionController.swift in Sources */,
 				D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */,
 				D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */,
 				D3FF15C3277AFC9B006355EF /* Applyed.swift in Sources */,

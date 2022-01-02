@@ -7,9 +7,9 @@ import MapKit
 import UserNotifications
 import CDAlertView
 protocol MainFlow: AnyObject {
-    func toMap()
+    func toMap(practices:[Practice])
     func toMakeEvent()
-    func toDetailSearch(_ vc: UIViewController)
+    func toDetailSearch(_ vc: UIViewController,practices:[Practice])
     func toPracticeDetail(_ practice:Practice)
     func toAuthentication(_ vc: UIViewController)
 }
@@ -55,10 +55,10 @@ final class MainViewController: UIViewController {
         navigationItem.backButtonDisplayMode = .minimal
     }
     @objc private func didTapMapButton() {
-        coordinator?.toMap()
+        coordinator?.toMap(practices:viewModel.practiceRelay.value)
     }
     @objc private func didTapDetailSearchButton() {
-        coordinator?.toDetailSearch(self)
+        coordinator?.toDetailSearch(self,practices: viewModel.practiceRelay.value)
     }
     @objc private func didTapMakeEventButton() {
         print(#function)

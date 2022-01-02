@@ -8,17 +8,13 @@
 
 
 enum SearchSelection:Int ,CaseIterable {
-    case place,level,time,name
+    case place,level
     var description:String {
         switch self {
         case .place:
-            return "〇〇件"
+            return "場所"
         case .level:
             return "レベル"
-        case .time:
-            return "日程"
-        case .name:
-            return "サークル名"
-        }
     }
+}
 }

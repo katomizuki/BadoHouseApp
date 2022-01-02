@@ -1,4 +1,5 @@
 import RxSwift
+import Foundation
 protocol PracticeServieProtocol {
     func getPractices()->Single<[Practice]>
 }
@@ -47,4 +48,5 @@ struct PracticeServie: PracticeServieProtocol {
             }
         }
     }
+    
 }
