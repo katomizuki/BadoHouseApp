@@ -5,12 +5,14 @@ import RxRelay
 protocol HomeViewModelInputs {
     func didLoad()
     func willAppear()
+    func search(_ practices:[Practice])
 }
 protocol HomeViewModelOutputs {
     var isNetWorkError: PublishSubject<Void> { get }
     var isAuth: PublishSubject<Void> { get }
     var isError: PublishSubject<Bool> { get }
     var practiceRelay: BehaviorRelay<[Practice]> { get }
+    var reload:PublishSubject<Void> { get }
 }
 protocol HomeViewModelType {
     var inputs: HomeViewModelInputs { get }
@@ -24,7 +26,9 @@ final class HomeViewModel:HomeViewModelInputs, HomeViewModelOutputs, HomeViewMod
     var isError = PublishSubject<Bool>()
     var practiceRelay = BehaviorRelay<[Practice]>(value: [])
     var practiceAPI: PracticeServieProtocol
+    var reload = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
+    
     init(practiceAPI: PracticeServieProtocol) {
         self.practiceAPI = practiceAPI
         practiceAPI.getPractices().subscribe { [weak self] practices in
@@ -46,5 +50,8 @@ final class HomeViewModel:HomeViewModelInputs, HomeViewModelOutputs, HomeViewMod
         if Auth.auth().currentUser == nil {
             isAuth.onNext(())
         }
+    }
+    func search(_ practices: [Practice]) {
+        practiceRelay.accept(practices)
     }
 }

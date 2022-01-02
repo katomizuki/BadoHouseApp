@@ -19,9 +19,10 @@ final class HomeCoordinator: Coordinator,MainFlow {
     func toMakeEvent() {
         coordinator(to: MakePracticeCoordinator(navigationController: self.navigationController))
     }
-    func toDetailSearch(_ vc: UIViewController,practices:[Practice]) {
+    func toDetailSearch(_ vc: MainViewController, practices:[Practice]) {
         let controller = EventSearchController.init(nibName: R.nib.eventSearchController.name, bundle: nil)
         controller.viewModel = PracticeSearchViewModel(practiceAPI: PracticeServie(), practices: practices)
+        controller.delegate = vc
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)
     }

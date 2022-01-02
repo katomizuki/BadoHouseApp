@@ -9,14 +9,14 @@ import CDAlertView
 protocol MainFlow: AnyObject {
     func toMap(practices:[Practice])
     func toMakeEvent()
-    func toDetailSearch(_ vc: UIViewController,practices:[Practice])
+    func toDetailSearch(_ vc: MainViewController, practices:[Practice])
     func toPracticeDetail(_ practice:Practice)
     func toAuthentication(_ vc: UIViewController)
 }
 final class MainViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
-    var (myLatitude, myLongitude) = (Double(), Double())
+    private var (myLatitude, myLongitude) = (Double(), Double())
     private let disposeBag = DisposeBag()
     var coordinator: MainFlow?
     private let viewModel = HomeViewModel(practiceAPI: PracticeServie())
@@ -58,13 +58,13 @@ final class MainViewController: UIViewController {
         coordinator?.toMap(practices:viewModel.practiceRelay.value)
     }
     @objc private func didTapDetailSearchButton() {
-        coordinator?.toDetailSearch(self,practices: viewModel.practiceRelay.value)
+        coordinator?.toDetailSearch(self, practices: viewModel.practiceRelay.value)
     }
     @objc private func didTapMakeEventButton() {
-        print(#function)
         coordinator?.toMakeEvent()
     }
     private func setupBinding() {
+        
         viewModel.outputs.isAuth.bind { [weak self] _ in
             guard let self = self else { return }
             self.coordinator?.toAuthentication(self)
@@ -75,7 +75,7 @@ final class MainViewController: UIViewController {
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
         
-        viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _,item,cell in
+        viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _, item,cell in
             cell.delegate = self
             cell.configure(item)
         }.disposed(by: disposeBag)
@@ -84,6 +84,11 @@ final class MainViewController: UIViewController {
             guard let self = self else { return }
             self.coordinator?.toPracticeDetail(self.viewModel.practiceRelay.value[indexPath.row])
         }).disposed(by: disposeBag)
+        
+        viewModel.outputs.reload.subscribe(onNext: { [weak self] _ in
+            self?.collectionView.reloadData()
+        }).disposed(by: disposeBag)
+
     }
     
     private func setupCollectionView() {
@@ -120,5 +125,11 @@ extension MainViewController: CLLocationManagerDelegate {
 extension MainViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell) {
         present(AlertProvider.postAlertVC(), animated: true)
+    }
+}
+extension MainViewController: EventSearchControllerDelegate {
+    func eventSearchControllerDismiss(practices: [Practice], vc: EventSearchController) {
+        vc.dismiss(animated: true)
+        viewModel.inputs.search(practices)
     }
 }

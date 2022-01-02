@@ -10,11 +10,25 @@ import RxSwift
 protocol EventSearchFlow:AnyObject {
     
 }
+protocol EventSearchControllerDelegate:AnyObject {
+    func eventSearchControllerDismiss(practices:[Practice], vc:EventSearchController)
+}
 final class EventSearchController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel:PracticeSearchViewModel!
+    weak var delegate: EventSearchControllerDelegate?
     @IBOutlet private weak var searchSelectionTableView: UITableView! {
         didSet { searchSelectionTableView.changeCorner(num: 8) }
+    }
+    @IBOutlet private weak var startPicker:UIDatePicker! {
+        didSet {
+            startPicker.addTarget(self, action: #selector(changeStartPicker), for: .valueChanged)
+        }
+    }
+    @IBOutlet private weak var finishPicker:UIDatePicker! {
+        didSet {
+            finishPicker.addTarget(self, action: #selector(changeFinishPicker), for: .valueChanged)
+        }
     }
     var coordinator: EventSearchFlow?
     override func viewDidLoad() {
@@ -31,7 +45,15 @@ final class EventSearchController: UIViewController {
         dismiss(animated: true)
     }
     @objc private func didTapSearchButton() {
-        dismiss(animated: true, completion: nil)
+        self.delegate?.eventSearchControllerDismiss(practices: viewModel.practices, vc: self)
+    }
+    @objc private func changeFinishPicker(sender: UIDatePicker) {
+        let date = sender.date
+        viewModel.inputs.changeFinishPicker(date)
+    }
+    @objc private func changeStartPicker(sender: UIDatePicker) {
+        let date = sender.date
+        viewModel.inputs.changeStartPicker(date)
     }
     private func setupBinding() {
         viewModel.outputs.reload.subscribe { [weak self] _ in
@@ -77,11 +99,12 @@ extension EventSearchController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         var configuration = cell.defaultContentConfiguration()
         configuration.text = SearchSelection(rawValue: indexPath.row)?.description
-       
         cell.selectionStyle = .none
         if indexPath.row == 0 {
+            print(viewModel.outputs.selectedPlace)
             configuration.secondaryText = viewModel.outputs.selectedPlace
         } else if indexPath.row == 1 {
+            print(viewModel.outputs.selectedLevel)
             configuration.secondaryText = viewModel.outputs.selectedLevel
         }
         cell.contentConfiguration = configuration

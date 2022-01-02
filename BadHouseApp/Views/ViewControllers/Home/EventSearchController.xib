@@ -10,7 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventSearchController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
+                <outlet property="finishPicker" destination="iMQ-Uv-rcp" id="lGe-xd-Rlh"/>
                 <outlet property="searchSelectionTableView" destination="cQL-XH-Oi2" id="7Tg-lM-Shb"/>
+                <outlet property="startPicker" destination="3As-Ia-XEf" id="0dM-cP-oRM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,7 +29,7 @@
                     </constraints>
                 </tableView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="qjo-7c-Sa5">
-                    <rect key="frame" x="87.5" y="360" width="200" height="103"/>
+                    <rect key="frame" x="87.5" y="390" width="200" height="103"/>
                     <subviews>
                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="3As-Ia-XEf">
                             <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
@@ -45,13 +47,21 @@
                         </datePicker>
                     </subviews>
                 </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開催する期間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhy-Ke-ibR">
+                    <rect key="frame" x="37.5" y="358" width="104" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="cQL-XH-Oi2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7x0-ga-STI"/>
                 <constraint firstItem="cQL-XH-Oi2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="7zc-pf-SkC"/>
-                <constraint firstItem="qjo-7c-Sa5" firstAttribute="top" secondItem="cQL-XH-Oi2" secondAttribute="bottom" constant="10" id="XSS-0P-PRg"/>
+                <constraint firstItem="qhy-Ke-ibR" firstAttribute="top" secondItem="cQL-XH-Oi2" secondAttribute="bottom" constant="8" id="APF-SJ-Dcc"/>
+                <constraint firstItem="qhy-Ke-ibR" firstAttribute="leading" secondItem="cQL-XH-Oi2" secondAttribute="leading" id="Med-nd-CIW"/>
+                <constraint firstItem="qjo-7c-Sa5" firstAttribute="top" secondItem="cQL-XH-Oi2" secondAttribute="bottom" constant="40" id="XSS-0P-PRg"/>
                 <constraint firstItem="qjo-7c-Sa5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wYQ-el-zup"/>
             </constraints>
             <point key="canvasLocation" x="138.40000000000001" y="97.601199400299862"/>

@@ -6,12 +6,15 @@
 //
 
 import RxSwift
+import Firebase
 protocol PracticeSearchViewModelType {
     var inputs:PracticeSearchViewModelInputs { get }
     var outputs:PracticeSearchViewModelOutputs { get }
 }
 protocol PracticeSearchViewModelInputs {
     func changeSelection(_ selection:SearchSelection, text: String)
+    func changeFinishPicker(_ date: Date)
+    func changeStartPicker(_ date: Date)
 }
 protocol PracticeSearchViewModelOutputs {
     var navigationStriing: PublishSubject<String> { get }
@@ -29,6 +32,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var selectedPlace = String()
     var reload = PublishSubject<Void>()
     var practices = [Practice]()
+    var searchedPractices = [Practice]()
     init(practiceAPI: PracticeServieProtocol, practices: [Practice]) {
         self.practiceAPI = practiceAPI
         self.practices = practices
@@ -41,9 +45,9 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         case .level:
             self.selectedLevel = text
             self.practices = seachLevel(text)
+        }
         reload.onNext(())
         navigationStriing.onNext("\(self.practices.count)件のヒット")
-        }
     }
     func seachLevel(_ text: String)-> [Practice] {
         var array = [Practice]()
@@ -61,11 +65,26 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
             if min == 0 {
                 min = 10
             }
+            print(min,max,level)
             if min <= level && level <= max {
                 array.append(practice)
             }
         }
         return array
     }
+    func changeStartPicker(_ date: Date) {
+        let timeStamp = Timestamp(date: date)
+        self.practices = self.practices.filter {
+            return timeStamp.compare($0.start) == .orderedAscending
+        }
+        navigationStriing.onNext("\(self.practices.count)件のヒット")
+    }
     
+    func changeFinishPicker(_ date: Date) {
+        let timeStamp = Timestamp(date: date)
+        self.practices = self.practices.filter {
+            return timeStamp.compare($0.start) == .orderedDescending
+        }
+        navigationStriing.onNext("\(self.practices.count)件のヒット")
+    }
 }

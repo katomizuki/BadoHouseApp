@@ -15,7 +15,7 @@ protocol AdditionalMemberViewModelInputs {
     func invite()
 }
 protocol AdditionalMemberViewModelOutputs {
-    var friendsSubject:BehaviorRelay<[User]> { get }
+    var friendsSubject: BehaviorRelay<[User]> { get }
     var isError: PublishSubject<Bool> { get }
     var completed: PublishSubject<Void> { get }
 }
