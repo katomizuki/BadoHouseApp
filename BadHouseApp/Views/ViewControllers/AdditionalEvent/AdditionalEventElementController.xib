@@ -18,7 +18,6 @@
                 <outlet property="finishDatePicker" destination="qhr-av-bBK" id="GsM-04-do6"/>
                 <outlet property="gatherCountLabel" destination="aB4-yp-Npf" id="LXZ-SE-3Zg"/>
                 <outlet property="moneyTextField" destination="ptT-tY-me8" id="cDJ-PS-lB4"/>
-                <outlet property="nextButton" destination="AiF-C6-pvM" id="Tfd-1V-4BZ"/>
                 <outlet property="placeButton" destination="rLl-7L-h73" id="kLX-SY-2q0"/>
                 <outlet property="placeNameLabel" destination="0M9-yd-tMI" id="EJs-yX-3kh"/>
                 <outlet property="startDatePicker" destination="04E-3N-E2V" id="72l-ag-Vv5"/>
@@ -33,36 +32,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5K-pi-dg7">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gly-xc-ftk">
-                            <rect key="frame" x="0.0" y="678" width="414" height="100"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiF-C6-pvM">
-                                    <rect key="frame" x="30" y="20" width="354" height="60"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="6nM-wM-ikU"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                    <state key="normal" title="次へ">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="AiF-C6-pvM" firstAttribute="centerX" secondItem="gly-xc-ftk" secondAttribute="centerX" id="Cyt-u2-v8A"/>
-                                <constraint firstItem="AiF-C6-pvM" firstAttribute="centerY" secondItem="gly-xc-ftk" secondAttribute="centerY" id="D6I-cW-tRs"/>
-                                <constraint firstItem="AiF-C6-pvM" firstAttribute="leading" secondItem="gly-xc-ftk" secondAttribute="leading" constant="30" id="V8H-IN-vIE"/>
-                                <constraint firstAttribute="height" constant="100" id="hxr-MX-RlF"/>
-                                <constraint firstAttribute="trailing" secondItem="AiF-C6-pvM" secondAttribute="trailing" constant="30" id="uUQ-RP-q8j"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l27-mi-eAl">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                             <subviews>
@@ -307,13 +276,9 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="gly-xc-ftk" secondAttribute="bottom" constant="40" id="6Jq-Xx-W7A"/>
                         <constraint firstItem="l27-mi-eAl" firstAttribute="top" secondItem="a5K-pi-dg7" secondAttribute="top" id="czM-MG-GLy"/>
-                        <constraint firstItem="gly-xc-ftk" firstAttribute="leading" secondItem="a5K-pi-dg7" secondAttribute="leading" id="gar-YT-sL2"/>
                         <constraint firstItem="l27-mi-eAl" firstAttribute="leading" secondItem="a5K-pi-dg7" secondAttribute="leading" id="gua-a5-Tuz"/>
                         <constraint firstAttribute="trailing" secondItem="l27-mi-eAl" secondAttribute="trailing" id="hA8-px-43e"/>
-                        <constraint firstAttribute="trailing" secondItem="gly-xc-ftk" secondAttribute="trailing" id="jb9-XZ-4QT"/>
-                        <constraint firstItem="gly-xc-ftk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="l27-mi-eAl" secondAttribute="bottom" constant="20" id="lfj-RA-J8D"/>
                     </constraints>
                 </view>
             </subviews>

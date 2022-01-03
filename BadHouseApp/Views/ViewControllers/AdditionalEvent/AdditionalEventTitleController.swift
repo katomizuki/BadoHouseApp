@@ -15,7 +15,6 @@ protocol AdditionalEventTitleFlow {
 final class AdditionalEventTitleController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var titleTextField: UITextField!
-    @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var circleSegment: UISegmentedControl! {
         didSet {
             circleSegment.addTarget(self, action: #selector(segmentTap(sender:)), for: UIControl.Event.valueChanged)
@@ -31,11 +30,17 @@ final class AdditionalEventTitleController: UIViewController {
     private let pickerView = UIImagePickerController()
     private let viewModel = MakeEventFirstViewModel()
     var coordinator: AdditionalEventTitleFlow?
+    private lazy var rightButton:UIBarButtonItem = {
+        let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
+        return button
+    }()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         pickerView.delegate = self
+        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.title = "1/4"
     }
 
     private func setupBinding() {
@@ -43,11 +48,6 @@ final class AdditionalEventTitleController: UIViewController {
             self?.viewModel.inputs.titleTextInputs.onNext(text ?? "")
         }).disposed(by: disposeBag)
 
-        nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            guard let title = self.viewModel.title else { return }
-            self.coordinator?.toNext(title: title, image: self.viewModel.practiceImage, kind: self.viewModel.practiceKind)
-        }).disposed(by: disposeBag)
 
         noImageView.rx.tapGesture()
             .when(.recognized)
@@ -57,9 +57,7 @@ final class AdditionalEventTitleController: UIViewController {
             }.disposed(by: disposeBag)
         
         viewModel.outputs.isButtonValid.subscribe(onNext: {[weak self] isValid in
-            self?.nextButton.isEnabled = isValid
-            self?.nextButton.backgroundColor = self?.viewModel.outputs.buttonColor
-            self?.nextButton.setTitleColor(self?.viewModel.outputs.buttonTextColor, for: .normal)
+            self?.rightButton.isEnabled = isValid
         }).disposed(by: disposeBag)
     }
     // MARK: - SelectorMethod
@@ -67,6 +65,10 @@ final class AdditionalEventTitleController: UIViewController {
         let index = sender.selectedSegmentIndex
         kindCircle = BadmintonCircle(rawValue: index)!.name
         viewModel.practiceKind = kindCircle ?? "社会人サークル"
+    }
+    @objc private func didTapNextButton() {
+        guard let title = self.viewModel.title else { return }
+        self.coordinator?.toNext(title: title, image: self.viewModel.practiceImage, kind: self.viewModel.practiceKind)
     }
 }
 // MARK: - UInavigationDelegate

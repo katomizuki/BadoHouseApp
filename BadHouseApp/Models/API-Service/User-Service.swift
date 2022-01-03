@@ -5,7 +5,7 @@ import UIKit
 protocol UserServiceProtocol {
     func postUser(uid: String,
                   dic: [String :Any],
-                  completion:@escaping (Result<Void, Error>) -> Void)
+                  completion: @escaping (Result<Void, Error>) -> Void)
     func getUser(uid: String)->Single<User>
     func searchUser(text: String)->Single<[User]>
     func getFriends(uid: String)->Single<[User]>
@@ -20,8 +20,8 @@ protocol UserServiceProtocol {
     func getMyChatRooms(uid: String)-> Single<[ChatRoom]>
     func getUserChatRoomById(myData: User,
                              id: String,
-                             completion: @escaping(ChatRoom)->Void)
-    func updateChatRoom(user: User,myData: User,message: String)
+                             completion: @escaping(ChatRoom) -> Void)
+    func updateChatRoom(user: User, myData: User,message: String)
 }
 struct UserService: UserServiceProtocol {
     

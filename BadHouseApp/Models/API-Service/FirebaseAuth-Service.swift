@@ -27,4 +27,9 @@ struct AuthService: AuthServiceProtocol {
     static func getUid() -> String? {
         return Auth.auth().currentUser?.uid
     }
+    
+    static func login(email: String,
+                      password: String,completion: ((AuthDataResult?,Error?)->Void)?) {
+        Auth.auth().signIn(withEmail: email, password: password,completion: completion)
+    }
 }

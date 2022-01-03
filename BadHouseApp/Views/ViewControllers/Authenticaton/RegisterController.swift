@@ -33,7 +33,7 @@ final class RegisterController: UIViewController {
         return button
     }()
     private var currentNonce: String?
-    var coordinator:RegisterFlow?
+    var coordinator: RegisterFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,7 +169,7 @@ final class RegisterController: UIViewController {
 // MARK: - GIDSignInDelegate
 extension RegisterController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
+        if error != nil {
             return
         } else {
             let fullName = user.profile.name
@@ -177,8 +177,8 @@ extension RegisterController: GIDSignInDelegate {
             guard let auth = user.authentication else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
             Auth.auth().signIn(with: credential) { result, error in
-                if let error = error {
-                    print(error.localizedDescription)
+                if error != nil {
+                    return
                 } else {
                     guard let id = result?.user.uid else { return }
                     guard let email = email else { return }
@@ -232,5 +232,3 @@ extension RegisterController: ASAuthorizationControllerPresentationContextProvid
         return self.view.window!
     }
 }
-
-

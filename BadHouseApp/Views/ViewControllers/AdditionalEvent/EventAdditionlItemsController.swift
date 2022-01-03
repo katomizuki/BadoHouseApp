@@ -16,9 +16,15 @@ final class EventAdditionlItemsController: UIViewController {
         }
     }
     @IBOutlet private weak var makeEventButton: UIButton!
+    private lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title:"投稿する", style:.done, target: self, action: #selector(didTapNextButton))
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        navigationItem.title = "4/4"
+        navigationItem.rightBarButtonItem = rightButton
     }
     private func setupBinding() {
         
@@ -34,7 +40,8 @@ final class EventAdditionlItemsController: UIViewController {
             self?.viewModel.textViewInputs = text
         }).disposed(by: disposeBag)
     }
-    @IBAction func didTapPracticeButton(_ sender: Any) {
+
+    @objc private func didTapNextButton() {
         viewModel.postPractice()
     }
     private func popAnimation() {

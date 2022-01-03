@@ -18,7 +18,6 @@ final class AdditionalEventElementController: UIViewController {
             startDatePicker.addTarget(self, action: #selector(didTapStartPicker), for: .valueChanged)
         }
     }
-    @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var finishDatePicker: UIDatePicker! {
         didSet {
             finishDatePicker.addTarget(self, action: #selector(didTapFinishButton), for: .valueChanged)
@@ -36,24 +35,18 @@ final class AdditionalEventElementController: UIViewController {
     private let disposeBag = DisposeBag()
     var coordinator: AddtionalPracticeElementFlow?
     var viewModel: MakeEventThirdViewModel!
-    
+    private lazy var rightButton:UIBarButtonItem = {
+        let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         setPicker(pickerView: moneyPicker, textField: moneyTextField)
+        navigationItem.title = "3/4"
+        navigationItem.rightBarButtonItem = rightButton
     }
     private func setupBinding() {
-        
-        nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
-            guard let self = self else { return }
-            guard let text = self.moneyTextField.text else { return }
-            var dic = self.viewModel.dic
-            dic["price"] = text
-            self.coordinator?.toNext(image: self.viewModel.image,
-                                     circle: self.viewModel.circle,
-                                     user: self.viewModel.user,
-                                     dic: dic)
-        }).disposed(by: disposeBag)
         
         placeButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
@@ -96,6 +89,15 @@ final class AdditionalEventElementController: UIViewController {
     }
     @objc private func didTapLinePicker(sender :UIDatePicker) {
         viewModel.inputs.changedDeadLinePicker(sender.date)
+    }
+    @objc private func didTapNextButton() {
+        guard let text = self.moneyTextField.text else { return }
+        var dic = self.viewModel.dic
+        dic["price"] = text
+        self.coordinator?.toNext(image: self.viewModel.image,
+                                 circle: self.viewModel.circle,
+                                 user: self.viewModel.user,
+                                 dic: dic)
     }
     
 }

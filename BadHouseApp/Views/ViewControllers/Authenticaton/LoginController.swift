@@ -124,22 +124,18 @@ final class LoginController: UIViewController {
     }
     // MARK: - Login
     private func login() {
-        print(#function)
-//        let email = emailTextField.text ?? ""
-//        let password = passwordTextField.text ?? ""
-//        AuthService.loginFirebaseAuth(email: email, password: password) { result, error in
-//            if result {
-//                self.dismiss(animated: true, completion: nil)
-//            } else {
-//                if let error = error as NSError? {
-//                    self.signInErrAlert(error)
-//                }
-//            }
-//        }
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        AuthService.login(email: email, password: password) { result, error in
+            if let error = error {
+                self.signInErrAlert(error as NSError)
+                return
+            }
+            self.dismiss(animated: true)
+        }
     }
     // MARK: - LoginError
     private func signInErrAlert(_ error: NSError) {
-        print(#function)
         let message = setupErrorMessage(error: error)
         self.showCDAlert(title: "ログインできませんでした", message: message, action: "OK", alertType: .error)
     }
@@ -189,4 +185,3 @@ extension LoginController: ASAuthorizationControllerDelegate {
         print(error.localizedDescription)
     }
 }
-

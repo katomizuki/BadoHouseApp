@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdditionalEventTitleController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
                 <outlet property="circleSegment" destination="7UC-Ae-mDi" id="ZEn-i3-MdX"/>
-                <outlet property="nextButton" destination="947-H0-qiL" id="z7F-vl-1mj"/>
                 <outlet property="noImageView" destination="h5N-G9-P0Q" id="6bZ-WZ-TFK"/>
                 <outlet property="notTitleLabel" destination="7wI-yW-q4d" id="p3P-4Z-tBS"/>
                 <outlet property="titleTextField" destination="dle-2k-8fI" id="8jJ-y1-RPr"/>
@@ -118,45 +117,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTM-8n-ETQ">
                     <rect key="frame" x="0.0" y="465" width="375" height="202"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkr-fu-Csu">
-                            <rect key="frame" x="0.0" y="62" width="375" height="100"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="947-H0-qiL">
-                                    <rect key="frame" x="30" y="20" width="315" height="60"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="M7o-Ea-EvN"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                    <state key="normal" title="次へ">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="100" id="7fp-hc-VNW"/>
-                                <constraint firstItem="947-H0-qiL" firstAttribute="centerX" secondItem="Mkr-fu-Csu" secondAttribute="centerX" id="8F2-17-f66"/>
-                                <constraint firstAttribute="trailing" secondItem="947-H0-qiL" secondAttribute="trailing" constant="30" id="b26-Ke-4Jh"/>
-                                <constraint firstItem="947-H0-qiL" firstAttribute="leading" secondItem="Mkr-fu-Csu" secondAttribute="leading" constant="30" id="bdh-wn-oJ9"/>
-                                <constraint firstItem="947-H0-qiL" firstAttribute="centerY" secondItem="Mkr-fu-Csu" secondAttribute="centerY" id="mDZ-VK-AZj"/>
-                            </constraints>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
-                    <constraints>
-                        <constraint firstItem="Mkr-fu-Csu" firstAttribute="leading" secondItem="fTM-8n-ETQ" secondAttribute="leading" id="NGF-gQ-JHy"/>
-                        <constraint firstAttribute="trailing" secondItem="Mkr-fu-Csu" secondAttribute="trailing" id="q9b-Mz-CfG"/>
-                        <constraint firstAttribute="bottom" secondItem="Mkr-fu-Csu" secondAttribute="bottom" constant="40" id="vHh-GO-82d"/>
-                        <constraint firstItem="Mkr-fu-Csu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fTM-8n-ETQ" secondAttribute="top" constant="20" id="wBP-59-WM6"/>
-                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="R5l-dC-vmG"/>

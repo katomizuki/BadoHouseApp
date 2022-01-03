@@ -16,12 +16,6 @@ protocol AddtionalEventLevelFlow {
 }
 class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
-    @IBOutlet private weak var nextButton: UIButton! {
-        didSet {
-            nextButton.isEnabled = false
-            nextButton.backgroundColor = .lightGray
-        }
-    }
     @IBOutlet private weak var maxLabel: UILabel!
     @IBOutlet private weak var maxSlider: UISlider!
     @IBOutlet private weak var minLabel: UILabel!
@@ -29,12 +23,18 @@ class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var minSlider: UISlider!
     var viewModel: MakeEventSecondViewModel!
     var coordinator: AddtionalEventLevelFlow?
+    private lazy var rightButton:UIBarButtonItem = {
+        let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         minSlider.value = 0.0
         maxSlider.value = 1.0
         setupTableView()
+        navigationItem.title = "2/4"
+        navigationItem.rightBarButtonItem = rightButton
     }
     private func setupTableView() {
         circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -44,17 +44,6 @@ class AddtionalEventLevelController: UIViewController {
         circleTableView.layer.borderWidth = 1
     }
     private func setupBinding() {
-        
-        nextButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            guard let circle = self.viewModel.circle else { return }
-            guard let user = self.viewModel.user else { return }
-            self.viewModel.dic["minLevel"] = self.viewModel.minLevelText.value
-            self.viewModel.dic["maxLevel"] = self.viewModel.maxLevelText.value
-            self.coordinator?.toNext(image: self.viewModel.image,
-                                     dic: self.viewModel.dic,
-                                     circle: circle, user: user)
-        }).disposed(by: disposeBag)
         
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
@@ -66,8 +55,7 @@ class AddtionalEventLevelController: UIViewController {
             self.maxLabel.text = text
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) {[weak self] _,item,cell in
-            guard let self = self else { return }
+        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _,item,cell in
             var configuration = cell.defaultContentConfiguration()
             configuration.text = item.name
             cell.selectionStyle = .none
@@ -79,8 +67,7 @@ class AddtionalEventLevelController: UIViewController {
             guard let cell = self.circleTableView.cellForRow(at: indexPath) else { return }
             cell.accessoryType = .checkmark
             self.viewModel.circle = self.viewModel.circleRelay.value[indexPath.row]
-            self.nextButton.backgroundColor = .systemBlue
-            self.nextButton.isEnabled = true
+            self.rightButton.isEnabled = true
         }).disposed(by: disposeBag)
         
         circleTableView.rx.itemDeselected.asDriver().drive(onNext: { indexPath in
@@ -98,5 +85,14 @@ class AddtionalEventLevelController: UIViewController {
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
         let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
         present(controller, animated: true)
+    }
+    @objc private func didTapNextButton() {
+        guard let circle = self.viewModel.circle else { return }
+        guard let user = self.viewModel.user else { return }
+        self.viewModel.dic["minLevel"] = self.viewModel.minLevelText.value
+        self.viewModel.dic["maxLevel"] = self.viewModel.maxLevelText.value
+        self.coordinator?.toNext(image: self.viewModel.image,
+                                 dic: self.viewModel.dic,
+                                 circle: circle, user: user)
     }
 }

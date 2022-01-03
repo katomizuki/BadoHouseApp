@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventAdditionlItemsController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
-                <outlet property="makeEventButton" destination="8ma-LP-o2k" id="rip-NA-5kf"/>
                 <outlet property="textView" destination="jDr-0f-Yys" id="nbC-A6-Y31"/>
                 <outlet property="view" destination="lnc-hk-poT" id="pZe-kt-J9r"/>
             </connections>
@@ -25,38 +24,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ce0-QZ-mQA">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRz-zf-hKA">
-                            <rect key="frame" x="0.0" y="678" width="414" height="100"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-LP-o2k">
-                                    <rect key="frame" x="30" y="20" width="354" height="60"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="c0w-I7-UAR"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                    <state key="normal" title="イベントを作成する">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="didTapPracticeButton:" destination="-1" eventType="touchUpInside" id="WL7-Am-1ge"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="8ma-LP-o2k" firstAttribute="leading" secondItem="lRz-zf-hKA" secondAttribute="leading" constant="30" id="5dm-qX-C32"/>
-                                <constraint firstAttribute="trailing" secondItem="8ma-LP-o2k" secondAttribute="trailing" constant="30" id="7Fh-XN-sXt"/>
-                                <constraint firstItem="8ma-LP-o2k" firstAttribute="centerY" secondItem="lRz-zf-hKA" secondAttribute="centerY" id="TyG-0x-Lk5"/>
-                                <constraint firstAttribute="height" constant="100" id="y4S-hT-CPB"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvJ-O3-4WV">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                             <subviews>
@@ -100,9 +67,6 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
-                        <constraint firstItem="lRz-zf-hKA" firstAttribute="leading" secondItem="Ce0-QZ-mQA" secondAttribute="leading" id="HN4-vB-Fb5"/>
-                        <constraint firstAttribute="bottom" secondItem="lRz-zf-hKA" secondAttribute="bottom" constant="40" id="JWB-Wc-Che"/>
-                        <constraint firstAttribute="trailing" secondItem="lRz-zf-hKA" secondAttribute="trailing" id="MQw-9p-VFn"/>
                         <constraint firstItem="zvJ-O3-4WV" firstAttribute="leading" secondItem="Ce0-QZ-mQA" secondAttribute="leading" id="MpC-9g-PSu"/>
                         <constraint firstItem="zvJ-O3-4WV" firstAttribute="top" secondItem="Ce0-QZ-mQA" secondAttribute="top" id="QTR-U0-WDS"/>
                         <constraint firstAttribute="trailing" secondItem="zvJ-O3-4WV" secondAttribute="trailing" id="QXK-li-fIe"/>

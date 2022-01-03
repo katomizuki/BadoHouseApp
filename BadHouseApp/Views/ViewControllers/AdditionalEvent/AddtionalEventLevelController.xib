@@ -16,7 +16,6 @@
                 <outlet property="maxSlider" destination="yaM-0D-2Uo" id="zId-I5-qyE"/>
                 <outlet property="minLabel" destination="Adx-0A-OqV" id="qil-Bw-SsT"/>
                 <outlet property="minSlider" destination="xAg-vT-pgd" id="1No-lN-BOk"/>
-                <outlet property="nextButton" destination="BEO-HR-uJS" id="pta-Nd-oad"/>
                 <outlet property="view" destination="mA6-BT-zuO" id="1XX-g5-afs"/>
             </connections>
         </placeholder>
@@ -189,44 +188,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztx-WO-y1b">
                     <rect key="frame" x="0.0" y="489" width="375" height="178"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70C-eE-Fko">
-                            <rect key="frame" x="0.0" y="38" width="375" height="100"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-HR-uJS">
-                                    <rect key="frame" x="30" y="20" width="315" height="60"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="vON-b2-gQr"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                    <state key="normal" title="次へ">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="BEO-HR-uJS" secondAttribute="trailing" constant="30" id="cXZ-29-Sua"/>
-                                <constraint firstItem="BEO-HR-uJS" firstAttribute="centerY" secondItem="70C-eE-Fko" secondAttribute="centerY" id="j8x-Kf-K6a"/>
-                                <constraint firstAttribute="height" constant="100" id="qa9-9K-Ev0"/>
-                                <constraint firstItem="BEO-HR-uJS" firstAttribute="leading" secondItem="70C-eE-Fko" secondAttribute="leading" constant="30" id="yFN-6T-B6Q"/>
-                            </constraints>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
-                    <constraints>
-                        <constraint firstItem="70C-eE-Fko" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ztx-WO-y1b" secondAttribute="top" constant="20" id="GyI-rA-M3f"/>
-                        <constraint firstItem="70C-eE-Fko" firstAttribute="leading" secondItem="ztx-WO-y1b" secondAttribute="leading" id="L9E-Ac-cXI"/>
-                        <constraint firstAttribute="bottom" secondItem="70C-eE-Fko" secondAttribute="bottom" constant="40" id="M3R-bb-k4w"/>
-                        <constraint firstAttribute="trailing" secondItem="70C-eE-Fko" secondAttribute="trailing" id="nUn-yW-Kh7"/>
-                    </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   主催チーム選択" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJM-Kk-let">
                     <rect key="frame" x="20" y="205" width="355" height="24"/>
