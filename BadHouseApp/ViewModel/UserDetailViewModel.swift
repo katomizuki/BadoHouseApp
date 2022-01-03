@@ -10,6 +10,7 @@ import RxRelay
 
 protocol UserDetailViewModelInputs {
     func willAppear()
+    func fetchChatRoom(completion:@escaping(ChatRoom)->Void)
 }
 protocol UserDetailViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
@@ -31,7 +32,7 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var user: User
     var myData: User
     var userAPI: UserServiceProtocol
-    let ids:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+    let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
     var isApplyButtonHidden: Bool {
         return ids.contains(user.uid) || myData.uid == user.uid
     }
@@ -58,6 +59,8 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
-
+    }
+    func fetchChatRoom(completion: @escaping (ChatRoom) -> Void) {
+        userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
     }
 }

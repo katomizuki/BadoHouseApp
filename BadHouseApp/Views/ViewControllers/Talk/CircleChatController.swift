@@ -1,6 +1,7 @@
 import UIKit
+import RxSwift
 
-final class CircleChatController: UIViewController {
+final class CircleChatController: UIViewController, UIScrollViewDelegate {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private lazy var customInputView: CustomInputAccessoryView = {
@@ -11,8 +12,9 @@ final class CircleChatController: UIViewController {
         ci.delegate = self
         return ci
     }()
-    var coordinator:ChatCoordinator?
-    var viewModel:ChatViewModel!
+    var coordinator: ChatCoordinator?
+    var viewModel: ChatViewModel!
+    private let disposeBag = DisposeBag()
     override var inputAccessoryView: UIView? {
         return customInputView
     }
@@ -24,40 +26,34 @@ final class CircleChatController: UIViewController {
         super.viewDidLoad()
         viewModel.inputs.didLoad()
         setupTableView()
+        setupBinding()
     }
     // MARK: - SetupMethod
     private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(ChatCell.nib(), forCellReuseIdentifier: ChatCell.id)
+        tableView.rowHeight = UITableView.automaticDimension
+        
+    }
+    private func setupBinding() {
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        viewModel.outputs.chatsList.bind(to: tableView.rx.items(cellIdentifier: ChatCell.id, cellType: ChatCell.self)) { _, item, cell in
+            cell.configure(chat: item,user: self.viewModel.user ,myData: self.viewModel.myData)
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.reload.subscribe { [weak self] _ in
+            self?.tableView.reloadData()
+        }.disposed(by: disposeBag)
+
     }
    
 }
-// MARK: - UITableViewDataSource
-extension CircleChatController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.id, for: indexPath) as? ChatCell else { fatalError() }
-        return cell
-    }
-}
-// MARK: - UITableViewDelegate
-extension CircleChatController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-}
-
 // MARK: - InputDelegate
 extension CircleChatController: InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
         guard let text = inputView.messageInputTextView.text else { return }
+        viewModel.inputs.sendText(text)
         if text == "" { return }
         inputView.messageInputTextView.text = ""
     }

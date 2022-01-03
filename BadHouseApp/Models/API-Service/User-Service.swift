@@ -1,17 +1,24 @@
 import Firebase
 import RxSwift
+import UIKit
 
 protocol UserServiceProtocol {
     func postUser(uid: String,
-                  dic: [String : Any],
+                  dic: [String :Any],
                   completion:@escaping (Result<Void, Error>) -> Void)
     func getUser(uid: String)->Single<User>
     func searchUser(text: String)->Single<[User]>
     func getFriends(uid: String)->Single<[User]>
     func getMyCircles(uid: String) -> Single<[Circle]>
     func getMyPractice(uid: String) -> Single<[Practice]>
-    func judgeChatRoom(user: User, myData:User,completion: @escaping (Bool) -> Void)
-    func postMyChatRoom(dic: [String:Any],user: User, myData: User)
+    func judgeChatRoom(user: User, myData: User, completion: @escaping (Bool) -> Void)
+    func postMyChatRoom(dic: [String: Any],
+                        partnerDic: [String: Any],
+                        user: User,
+                        myData: User,
+                        chatId: String)
+    func getMyChatRooms(uid: String)->Single<[ChatRoom]>
+    func getUserChatRoomById(myData:User,id:String,completion:@escaping(ChatRoom)->Void)
 }
 struct UserService: UserServiceProtocol {
     
@@ -88,7 +95,7 @@ struct UserService: UserServiceProtocol {
     func getFriends(uid: String) -> Single<[User]> {
         var users = [User]()
         let group = DispatchGroup()
-        let blockIds:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
+        let blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
         return Single.create { singleEvent -> Disposable in
             Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
                 if let error = error {
@@ -183,21 +190,51 @@ struct UserService: UserServiceProtocol {
         }
     }
     
-    func judgeChatRoom(user: User,myData:User,completion:@escaping(Bool)->Void) {
-        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).getDocument { snapShot, error in
+    func judgeChatRoom(user: User, myData: User, completion: @escaping(Bool) -> Void) {
+        Ref.UsersRef.document(myData.uid).collection("ChatRoom").whereField("userId", isEqualTo: user.uid).getDocuments { snapShot, error in
             if error != nil {
                 completion(false)
             }
             guard let snapShot = snapShot else { return }
-            if snapShot.exists {
+            if !snapShot.documents.isEmpty {
                 completion(true)
             } else {
                 completion(false)
             }
         }
     }
-    func postMyChatRoom(dic:[String:Any], user:User,myData:User) {
+    func postMyChatRoom(dic: [String : Any], partnerDic: [String:Any], user: User, myData: User, chatId:String) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).setData(dic)
+        Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).setData(partnerDic)
+        Ref.ChatRef.document(chatId).setData([:])
     }
-    
+    func getMyChatRooms(uid: String) -> Single<[ChatRoom]> {
+        var chatRooms = [ChatRoom]()
+        return Single.create { singleEvent->Disposable in
+            Ref.UsersRef.document(uid).collection("ChatRoom").getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                guard let snapShot = snapShot else { return }
+                snapShot.documents.forEach {
+                    let dic = $0.data()
+                    let chatRoom = ChatRoom(dic: dic)
+                    chatRooms.append(chatRoom)
+                }
+                singleEvent(.success(chatRooms))
+            }
+            return Disposables.create()
+        }
+    }
+    func getUserChatRoomById(myData:User,id:String,completion:@escaping(ChatRoom)->Void) {
+        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(id).getDocument { snapShot, error in
+            if error != nil {
+                return
+            }
+            guard let dic = snapShot?.data() else { return }
+            let chatRoom = ChatRoom(dic: dic)
+            completion(chatRoom)
+        }
+    }
 }

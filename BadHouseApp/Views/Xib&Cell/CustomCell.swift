@@ -75,18 +75,14 @@ final class CustomCell: UITableViewCell {
         cellImagevView.sd_setImage(with: practice.circleUrl)
         label.text = practice.title
     }
-  
-    func setTimeLabelandCommentLabel(chat: Chat) {
-        let text = chat.text
-        let date = chat.sendTime
-        self.commentLabel.text = text
-        if  date != nil {
-            if let safeTimeStamp = date {
-                let safeDate = safeTimeStamp.dateValue()
-                let dateText = self.formatter.string(from: safeDate)
-                self.timeLabel.text = dateText
-                self.timeLabel.isHidden = false
-            }
-        }
+    func configure(chatRoom: ChatRoom) {
+        cellImagevView.sd_setImage(with: chatRoom.partnerUrl)
+        label.text = chatRoom.partnerName
+        commentLabel.text = chatRoom.latestMessage
+        commentLabel.isHidden = false
+        timeLabel.isHidden = false
+        timeLabel.text = chatRoom.latestTimeString
     }
+  
+   
 }

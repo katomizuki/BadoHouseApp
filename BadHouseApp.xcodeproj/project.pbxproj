@@ -164,7 +164,6 @@
 		D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761842776C23C004381E4 /* LoginCoordinator.swift */; };
 		D3D761892776D38D004381E4 /* AuthCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761882776D38D004381E4 /* AuthCredential.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
-		D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */; };
 		D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */; };
 		D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */; };
 		D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458E2775EA270030DA1B /* SettingsSelection.swift */; };
@@ -382,7 +381,6 @@
 		D3D761842776C23C004381E4 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		D3D761882776D38D004381E4 /* AuthCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredential.swift; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
-		D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
 		D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D3F2458E2775EA270030DA1B /* SettingsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelection.swift; sourceTree = "<group>"; };
@@ -753,7 +751,6 @@
 			children = (
 				D3FF15C4277B3525006355EF /* Repositry */,
 				D3FFD326271EBBD100DE54ED /* API-Service */,
-				D3DA98C126F754D000DFF8B1 /* GroupChatModel.swift */,
 				D3BDB56326E0B05D00C53780 /* User.swift */,
 				D3C4E94626E1C2B400C21E46 /* Team.swift */,
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
@@ -1207,7 +1204,6 @@
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
-				D3DA98C226F754D000DFF8B1 /* GroupChatModel.swift in Sources */,
 				D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,

@@ -1,12 +1,12 @@
 import UIKit
-
+import SDWebImage
 final class ChatCell: UITableViewCell {
     // MARK: - Properties
     static let id = String(describing: self)
     var message: String? {
         didSet {
             guard let message = message else { return }
-            let width = estimateFrameSize(text: message).width + 20
+            let width = estimateFrameSize(text: message).width + 15
             messageConstraint.constant = width
             mytextView.text = message
         }
@@ -14,7 +14,7 @@ final class ChatCell: UITableViewCell {
     var yourMessaege: String? {
         didSet {
             guard let message = yourMessaege else { return }
-            let width = estimateFrameSize(text: message).width + 20
+            let width = estimateFrameSize(text: message).width + 15
             widthConstraint.constant = width
             textView.text = message
         }
@@ -26,14 +26,12 @@ final class ChatCell: UITableViewCell {
     @IBOutlet private weak var textView: UITextView!{
         didSet {
             textView.changeCorner(num: 8)
-//            textView.autoresizingMask = [.flexibleHeight]
             textView.font = UIFont(name: "Kailasa", size: 14)
         }
     }
     @IBOutlet private weak var mytimeLabel: UILabel!
     @IBOutlet private weak var mytextView: UITextView! {
         didSet {
-//            mytextView.autoresizingMask = [.flexibleHeight]
             mytextView.changeCorner(num: 8)
             mytextView.font = UIFont(name: "Kailasa", size: 14)
         }
@@ -52,6 +50,8 @@ final class ChatCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
+        selectionStyle = .none
+        isHighlighted = false
     }
     // MARK: - nibMethod
     static func nib() -> UINib {
@@ -66,83 +66,29 @@ final class ChatCell: UITableViewCell {
                                                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)],
                                                    context: nil)
     }
-    func configure(chat: GroupChatModel, bool: Bool) {
-//        timeLabel.text = ""
-//        mytimeLabel.text = ""
-//        mytextView.text = ""
-//        textView.text = ""
-//        message = ""
-//        guard let date = chat.timeStamp?.dateValue() else { return }
-//        let dateText = self.formatter.string(from: date)
-//        let text = chat.text
-//        var dateTextFirst = String(dateText.suffix(11))
-//        if dateTextFirst.prefix(1) == "/" {
-//            dateTextFirst = String(dateTextFirst.suffix(dateTextFirst.count - 1))
-//        }
-//        if bool {
-//            message = text
-//            userImageView.isHidden = true
-//            timeLabel.isHidden = true
-//            textView.isHidden = true
-//            nameLabel.isHidden = true
-//            mytimeLabel.isHidden = false
-//            mytextView.isHidden = false
-//            mytimeLabel.text = dateTextFirst
-//            mytextView.text = text
-//            message = text
-//        } else {
-//            userImageView.isHidden = false
-//            textView.isHidden = false
-//            timeLabel.isHidden = false
-//            nameLabel.isHidden = false
-//            mytextView.isHidden = true
-//            mytimeLabel.isHidden = true
-//            textView.text = chat.text
-//            let urlString = chat.senderUrl
-//            let url = URL(string: urlString)
-//            nameLabel.text = chat.senderName
-//            userImageView.sd_setImage(with: url, completed: nil)
-//            timeLabel.text = dateTextFirst
-//            yourMessaege = text
-//        }
+
+    func configure(chat: Chat, user: User,myData: User) {
+        if chat.senderId == myData.uid {
+            timeLabel.isHidden = true
+            textView.isHidden = true
+            nameLabel.isHidden = true
+            userImageView.isHidden = true
+            mytimeLabel.isHidden = false
+            mytextView.isHidden = false
+            message = chat.text
+            mytimeLabel.text = chat.timeString
+        } else {
+            timeLabel.isHidden = false
+            textView.isHidden = false
+            nameLabel.isHidden = false
+            userImageView.isHidden = false
+            mytimeLabel.isHidden = true
+            mytextView.isHidden = true
+            nameLabel.text = user.name
+            userImageView.sd_setImage(with: user.profileImageUrl)
+            yourMessaege = chat.text
+            timeLabel.text = chat.timeString
+        }
     }
-    func dmchatCel(chat: Chat, bool: Bool, you: User) {
-//        guard let date = chat.sendTime?.dateValue() else { return }
-//        let dateText = self.formatter.string(from: date)
-//        var dateTextFirst = String(dateText.suffix(11))
-//        if dateTextFirst.prefix(1) == "/" {
-//            dateTextFirst = String(dateTextFirst.suffix(dateTextFirst.count - 1))
-//        }
-//        mytextView.text = ""
-//        textView.text = ""
-//        timeLabel.text = ""
-//        mytimeLabel.text = ""
-//        let text = chat.text
-//        message = text
-//        if bool {
-//            userImageView.isHidden = true
-//            timeLabel.isHidden = true
-//            textView.isHidden = true
-//            mytimeLabel.isHidden = false
-//            mytextView.isHidden = false
-//            nameLabel.isHidden = true
-//            mytimeLabel.text = dateTextFirst
-//            mytextView.text = text
-//            message = text
-//        } else {
-//            userImageView.isHidden = false
-//            let urlString = you.profileImageUrl
-//            let url = URL(string: urlString)
-//            userImageView.sd_setImage(with: url, completed: nil)
-//            mytextView.isHidden = true
-//            mytimeLabel.isHidden = true
-//            textView.isHidden = false
-//            timeLabel.isHidden = false
-//            nameLabel.isHidden = false
-//            nameLabel.text =  you.name
-//            timeLabel.text = dateTextFirst
-//            textView.text = text
-//            yourMessaege = text
-//        }
-    }
+
 }

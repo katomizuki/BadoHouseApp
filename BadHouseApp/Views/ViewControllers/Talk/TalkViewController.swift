@@ -1,9 +1,10 @@
 import UIKit
 import CDAlertView
-protocol TalkFlow:AnyObject {
-    func toChat()
+import RxSwift
+protocol TalkFlow: AnyObject {
+    func toChat(userId: String, myDataId:String, chatId: String)
 }
-final class TalkViewController: UIViewController {
+final class TalkViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private lazy var refreshView: UIRefreshControl = {
@@ -11,53 +12,51 @@ final class TalkViewController: UIViewController {
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return view
     }()
-    var coordinator:TalkFlow?
+    private let viewModel = TalkViewModel(userAPI: UserService(), chatAPI: ChatService())
+    var coordinator: TalkFlow?
+    private let disposeBag = DisposeBag()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupNav()
+        navigationItem.backButtonDisplayMode = .minimal
+        setupBinding()
     }
-
-    // MARK: - SetupMethod
-    private func setupNav() {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.inputs.willAppear()
     }
 
     private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
         tableView.addSubview(refreshView)
     }
   
     private func setupBinding() {
-    
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        viewModel.outputs.chatRoomList.bind(to: tableView.rx.items(cellIdentifier: CustomCell.id, cellType: CustomCell.self)) { row,item,cell in
+            cell.configure(chatRoom: item)
+            print(item)
+        }.disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
+            guard let self = self else { return }
+            guard let uid = AuthService.getUid() else { return }
+            self.coordinator?.toChat(userId: self.viewModel.outputs.chatRoomList.value[indexPath.row].userId, myDataId: uid, chatId: self.viewModel.outputs.chatRoomList.value[indexPath.row].id)
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.isError.subscribe { [weak self] _ in
+            self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.reload.subscribe { [weak self] _ in
+            self?.tableView.reloadData()
+        }.disposed(by: disposeBag)
+
     }
 
-
-    @objc private func handleSchedule() {
-        print(#function)
-
-    }
     @objc private func handleRefresh() {
        
-    }
-}
-// MARK: - tableViewdatasource
-extension TalkViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
-        return cell
-    }
-}
-// MARK: - UITableViewDelegate
-extension TalkViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        coordinator?.toChat()
     }
 }

@@ -12,5 +12,6 @@ struct Ref {
     static let ApplyedRef = Firestore.firestore().collection("Applyed")
     static let MatchRef = Firestore.firestore().collection("Match")
     static let PracticeRef = Firestore.firestore().collection("Practice")
+    static let ChatRef = Firestore.firestore().collection("Chat")
     
 }

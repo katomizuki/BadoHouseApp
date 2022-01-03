@@ -2,14 +2,20 @@
 import Firebase
 
 struct Chat {
-    var sendTime: Timestamp?
-    var text: String
     var senderId: String
-    var reciverId: String
+    var text: String
+    var createdAt: Timestamp
+    var chatId: String
     init(dic: [String: Any]) {
-        self.sendTime = dic["sendTime"] as? Timestamp ?? Timestamp()
+        self.senderId = dic["senderId"] as? String ?? ""
         self.text = dic["text"] as? String ?? ""
-        self.senderId = dic["sender"] as? String ?? ""
-        self.reciverId = dic["reciver"] as? String ?? ""
+        self.chatId = dic["chatId"] as? String ?? ""
+        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }
+    var timeString: String {
+        let date = createdAt.dateValue()
+        let dateString = DateUtils.stringFromDate(date: date, format: "MM月dd日HH時mm分")
+        return dateString
+    }
+
 }

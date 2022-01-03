@@ -6,7 +6,7 @@ import RxCocoa
 protocol MainUserDetailFlow: AnyObject {
     func toCircleDetail(myData: User, circle: Circle)
     func toFriendList(friends: [User], myData:User)
-    func toChat(myData:User ,user:User)
+    func toChat(myData:User ,user: User,chatId: String)
 }
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
@@ -115,7 +115,11 @@ protocol MainUserDetailFlow: AnyObject {
                                    myData: viewModel.myData)
      }
      @IBAction func didTapTalkButton(_ sender: Any) {
-         coordinator?.toChat(myData: viewModel.myData, user: viewModel.user)
+         viewModel.inputs.fetchChatRoom { chatRoom in
+             self.coordinator?.toChat(myData: self.viewModel.myData,
+                                      user: self.viewModel.user,
+                                      chatId: chatRoom.id)
+         }
      }
      
  }
