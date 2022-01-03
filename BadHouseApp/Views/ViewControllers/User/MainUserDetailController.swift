@@ -55,6 +55,7 @@ protocol MainUserDetailFlow: AnyObject {
         super.viewDidLoad()
       setupCollectionView()
       setupNavigationBar()
+      setupUI()
       setupBinding()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +70,7 @@ protocol MainUserDetailFlow: AnyObject {
          let rightBarButton = UIBarButtonItem(title: "...", style: .done, target: self, action: #selector(didTapExpandedMenu))
          navigationItem.rightBarButtonItem = rightBarButton
      }
-     private func setupBinding() {
+     private func setupUI() {
          ageLabel.text = viewModel.user.age
          genderLabel.text = viewModel.user.gender
          levelLabel.text = viewModel.user.level
@@ -77,19 +78,21 @@ protocol MainUserDetailFlow: AnyObject {
          racketLabel.text = viewModel.user.racket
          playerLabel.text = viewModel.user.player
          nameLabel.text = viewModel.user.name
-         
          textView.text = viewModel.user.introduction
          badmintonTimeLabel.text = viewModel.user.badmintonTime
          applyFriendButton.isHidden = viewModel.isApplyButtonHidden
          talkButton.isHidden = viewModel.isTalkButtonHidden
-         
          userImageView.sd_setImage(with: viewModel.user.profileImageUrl)
+     }
+     private func setupBinding() {
+         
          
          viewModel.friendListRelay.subscribe(onNext: { [weak self] users in
              self?.friendsButton.setTitle("バド友 \(users.count)人", for: .normal)
          }).disposed(by: disposeBag)
          
          circleCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
+         
          viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _,item ,cell in
              cell.configure(item)
          }.disposed(by: disposeBag)

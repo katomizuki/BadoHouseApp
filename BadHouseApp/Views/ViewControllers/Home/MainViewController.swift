@@ -7,7 +7,7 @@ import MapKit
 import UserNotifications
 import CDAlertView
 protocol MainFlow: AnyObject {
-    func toMap(practices:[Practice],lat:Double,lon:Double)
+    func toMap(practices:[Practice], lat: Double, lon: Double)
     func toMakeEvent()
     func toDetailSearch(_ vc: MainViewController, practices:[Practice])
     func toPracticeDetail(_ practice:Practice)
@@ -96,7 +96,7 @@ final class MainViewController: UIViewController {
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.width - 50)
+        layout.itemSize = CGSize(width: collectionView.frame.width - 30, height: collectionView.frame.width - 50)
         collectionView.collectionViewLayout = layout
         collectionView.register(EventInfoCell.nib(), forCellWithReuseIdentifier: EventInfoCell.id)
         collectionView.showsVerticalScrollIndicator = false

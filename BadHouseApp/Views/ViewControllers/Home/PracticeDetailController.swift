@@ -12,9 +12,9 @@ import CoreLocation
 import MapKit
 import RxSwift
 protocol PracticeDetailFlow {
-    func toCircleDetail(myData:User,circle:Circle)
+    func toCircleDetail(myData:User, circle: Circle)
     func toUserDetail(myData: User, user: User)
-    func toChat()
+    func toChat(myData: User, user: User)
 }
 final class PracticeDetailController: UIViewController {
     // MARK: - Properties
@@ -72,6 +72,7 @@ final class PracticeDetailController: UIViewController {
     }
     
     @IBAction private func didTapChatButton(_ sender: Any) {
+        coordinator?.toChat(myData:viewModel.myData!, user: viewModel.user!)
     }
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
         coordinator?.toCircleDetail(myData: viewModel.myData!, circle: viewModel.circle!)
