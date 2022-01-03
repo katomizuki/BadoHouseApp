@@ -29,4 +29,5 @@ struct ChatService:ChatServiceProtocol {
         let id = Ref.ChatRef.document(chatId).collection("Comment").document().documentID
         Ref.ChatRef.document(chatId).collection("Comment").document(id).setData(dic,completion: completion)
     }
+    
 }

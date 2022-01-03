@@ -16,8 +16,9 @@ protocol UserViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var isApplyViewHidden: PublishSubject<Bool> { get }
     var friendsRelay: BehaviorRelay<[User]> { get }
-    var reload:PublishSubject<Void> { get }
+    var reload: PublishSubject<Void> { get }
     var circleRelay: BehaviorRelay<[Circle]> { get }
+    var notAuth: PublishSubject<Void> { get }
 }
 protocol UserViewModelType {
     var inputs: UserViewModelInputs { get }
@@ -31,6 +32,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     var userCircleCountText = BehaviorRelay<String>(value: "")
     var userUrl = BehaviorRelay<URL?>(value: nil)
     var isError = PublishSubject<Bool>()
+    var notAuth = PublishSubject<Void>()
     var isApplyViewHidden = PublishSubject<Bool>()
     var friendsRelay = BehaviorRelay<[User]>(value: [])
     var circleRelay = BehaviorRelay<[Circle]>(value: [])
@@ -64,6 +66,8 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 guard let self = self else { return }
                 self.isError.onNext(true)
             }).disposed(by: disposeBag)
+        } else {
+            self.notAuth.onNext(())
         }
     }
     

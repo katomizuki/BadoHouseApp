@@ -18,9 +18,10 @@ final class RegisterController: UIViewController {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var alreadyButton: UIButton!
-    private let googleView: GIDSignInButton = {
+    private lazy var  googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
+        button.addTarget(self, action: #selector(didTapGidButton), for: .touchUpInside)
         return button
     }()
     private let disposeBag = DisposeBag()
@@ -51,6 +52,7 @@ final class RegisterController: UIViewController {
         stackView.addArrangedSubview(appleButton)
         googleView.anchor(height: 40)
         appleButton.anchor(height: 40)
+       
     }
     private func setupBinding() {
         
@@ -101,6 +103,9 @@ final class RegisterController: UIViewController {
             self.coordinator?.toMain()
         }.disposed(by: disposeBag)
 
+    }
+    @objc private func didTapGidButton() {
+        GIDSignIn.sharedInstance()?.signIn()
     }
 
     private func sha256(_ input: String) -> String {
@@ -165,7 +170,6 @@ final class RegisterController: UIViewController {
 extension RegisterController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            print(error.localizedDescription)
             return
         } else {
             let fullName = user.profile.name
@@ -179,15 +183,8 @@ extension RegisterController: GIDSignInDelegate {
                     guard let id = result?.user.uid else { return }
                     guard let email = email else { return }
                     guard let name = fullName else { return }
-//                    UserService.setUserData(uid: id, password: "",
-//                                            email: email,
-//                                            name: name) { result in
-//                        if result == true {
-//                            let bool = false
-//                            UserDefaults.standard.set(bool, forKey: "MyId")
-//                            self.dismiss(animated: true, completion: nil)
-//                        }
-//                    }
+                    let credential = AuthCredential(name: name, email: email, password: "")
+                    self.viewModel.thirdPartyLogin(credential: credential, id: id)
                 }
             }
         }
@@ -219,16 +216,8 @@ extension RegisterController: ASAuthorizationControllerDelegate {
                 } else {
                     guard let email = result?.user.email else { return }
                     guard let uid = result?.user.uid else { return }
-//                    UserService.setUserData(uid: uid,
-//                                            password: "",
-//                                            email: email,
-//                                            name: name) { result in
-//                        if result == true {
-//                            let bool = false
-//                            UserDefaults.standard.set(bool, forKey: "MyId")
-//                            self.dismiss(animated: true, completion: nil)
-//                        }
-//                    }
+                    let credential = AuthCredential(name: name, email: email, password: "")
+                    self.viewModel.thirdPartyLogin(credential: credential, id: uid)
                 }
             }
         }

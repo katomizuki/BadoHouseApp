@@ -86,7 +86,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
         guard let chatId = chatId else {
             return
         }
-        let dic: [String:Any] = ["chatId": chatId,
+        let dic: [String: Any] = ["chatId": chatId,
                                  "text": text,
                                  "createdAt": Timestamp(),
                                  "senderId": myData.uid]
@@ -96,6 +96,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
                 self.isError.onNext(true)
             }
             self.getChat(chatId: chatId)
+            self.userAPI.updateChatRoom(user: self.user, myData: self.myData, message: text)
         }
     }
 }

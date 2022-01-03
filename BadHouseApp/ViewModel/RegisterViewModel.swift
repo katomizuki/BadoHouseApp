@@ -1,6 +1,6 @@
 import RxSwift
 import RxCocoa
-
+import Firebase
 // MARK: - Input Protocol
 protocol RegisterBindingInputs {
     var nameTextInput: AnyObserver<String> { get }
@@ -41,9 +41,9 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     var email: String = String()
     var password: String = String()
     var authAPI: AuthServiceProtocol
-    var firebaseAPI:FirebaseServiceProtocol
+    var firebaseAPI: FirebaseServiceProtocol
     // MARK: - initialize
-    init(authAPI:AuthServiceProtocol,firebaseAPI:FirebaseServiceProtocol) {
+    init(authAPI: AuthServiceProtocol, firebaseAPI: FirebaseServiceProtocol) {
         self.authAPI = authAPI
         self.firebaseAPI = firebaseAPI
         validRegisterDriver = valideRegisterSubject
@@ -87,6 +87,21 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
                         self?.errorHandling.onNext(error)
                     }
                 })
+            case .failure(let error):
+                self?.errorHandling.onNext(error)
+            }
+        }
+    }
+    func thirdPartyLogin(credential:AuthCredential,id:String) {
+        let dic:[String:Any] = ["name":credential.name,
+                                "uid":id,
+                                "createdAt":Timestamp(),
+                                "updatedAt":Timestamp(),
+                                "email":credential.email]
+        firebaseAPI.postData(id: id, dic: dic, ref: Ref.UsersRef) { [weak self] result in
+            switch result {
+            case .success:
+                self?.isCompleted.onNext(true)
             case .failure(let error):
                 self?.errorHandling.onNext(error)
             }

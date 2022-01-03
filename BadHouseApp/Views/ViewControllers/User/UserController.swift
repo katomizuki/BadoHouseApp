@@ -97,6 +97,12 @@ final class UserController: UIViewController {
                 self?.groupTableView.reloadData()
             }.disposed(by: disposeBag)
         
+        viewModel.outputs.notAuth.subscribe(on: MainScheduler.instance)
+            .subscribe {[weak self] _  in
+                guard let self = self else { return }
+                let vc = self.tabBarController?.viewControllers?[0]
+                self.tabBarController?.selectedViewController = vc
+            }.disposed(by: disposeBag)
     }
     
     private func setupNavigationItem() {
@@ -110,7 +116,7 @@ final class UserController: UIViewController {
         navigationItem.scrollEdgeAppearance = appearance
     }
     @objc private func didTapSettingButton() {
-        coordinator?.toSettings(self,user: viewModel.user)
+        coordinator?.toSettings(self, user: viewModel.user)
     }
     
     @objc private func didTapScheduleButton() {

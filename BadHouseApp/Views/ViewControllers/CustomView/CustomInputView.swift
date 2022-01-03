@@ -25,7 +25,7 @@ final class CustomInputAccessoryView: UIView {
     private lazy var sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .systemBlue
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 3

@@ -17,8 +17,11 @@ protocol UserServiceProtocol {
                         user: User,
                         myData: User,
                         chatId: String)
-    func getMyChatRooms(uid: String)->Single<[ChatRoom]>
-    func getUserChatRoomById(myData:User,id:String,completion:@escaping(ChatRoom)->Void)
+    func getMyChatRooms(uid: String)-> Single<[ChatRoom]>
+    func getUserChatRoomById(myData: User,
+                             id: String,
+                             completion: @escaping(ChatRoom)->Void)
+    func updateChatRoom(user: User,myData: User,message: String)
 }
 struct UserService: UserServiceProtocol {
     
@@ -163,6 +166,7 @@ struct UserService: UserServiceProtocol {
             }
         }
     }
+    
     func getMyPractice(uid: String) -> Single<[Practice]> {
         var practices = [Practice]()
         let group = DispatchGroup()
@@ -236,5 +240,9 @@ struct UserService: UserServiceProtocol {
             let chatRoom = ChatRoom(dic: dic)
             completion(chatRoom)
         }
+    }
+    func updateChatRoom(user:User,myData:User,message:String) {
+        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).updateData(["latestTime": Timestamp() ,"latestMessage": message])
+        Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).updateData(["latestTime": Timestamp() ,"latestMessage": message])
     }
 }

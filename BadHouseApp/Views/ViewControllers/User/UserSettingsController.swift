@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 final class UserSettingsController: UIViewController {
     var user: User
     init(user: User) {
@@ -36,6 +36,7 @@ final class UserSettingsController: UIViewController {
         navigationItem.title = "設定画面"
         navigationController?.navigationBar.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ログアウト",style: .done, target: self, action: #selector(didTapLogoutButton))
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white
@@ -44,6 +45,14 @@ final class UserSettingsController: UIViewController {
     }
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+    @objc private func didTapLogoutButton() {
+        do {
+            try Auth.auth().signOut()
+            dismiss(animated: true, completion: nil)
+        } catch {
+            print(error)
+        }
     }
 }
 extension UserSettingsController: UITableViewDelegate {
