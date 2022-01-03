@@ -50,12 +50,9 @@
 		D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */; };
 		D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */; };
 		D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */; };
-		D3629FA7276F5E600052B820 /* SearchDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA6276F5E600052B820 /* SearchDetailCoordinator.swift */; };
 		D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA8276F5E680052B820 /* MapCoordinator.swift */; };
 		D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FAA276F5E830052B820 /* MakePracticeCoordinator.swift */; };
-		D3629FAD276F5EB70052B820 /* InviteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FAC276F5EB70052B820 /* InviteCoordinator.swift */; };
 		D3629FAF276F5ED40052B820 /* InviteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FAE276F5ED40052B820 /* InviteViewModel.swift */; };
-		D3629FB1276F5F800052B820 /* SearchFriendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB0276F5F800052B820 /* SearchFriendCoordinator.swift */; };
 		D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB2276F5F8E0052B820 /* SearchCircleCoordinator.swift */; };
 		D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */; };
 		D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EF22771E0FE004FA773 /* NotificationCell.swift */; };
@@ -103,11 +100,9 @@
 		D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* MainViewController.xib */; };
 		D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */; };
 		D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */; };
-		D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */; };
 		D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */; };
 		D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */; };
 		D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */; };
-		D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */; };
@@ -264,12 +259,9 @@
 		D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleCoordinator.swift; sourceTree = "<group>"; };
-		D3629FA6276F5E600052B820 /* SearchDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA8276F5E680052B820 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		D3629FAA276F5E830052B820 /* MakePracticeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePracticeCoordinator.swift; sourceTree = "<group>"; };
-		D3629FAC276F5EB70052B820 /* InviteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCoordinator.swift; sourceTree = "<group>"; };
 		D3629FAE276F5ED40052B820 /* InviteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewModel.swift; sourceTree = "<group>"; };
-		D3629FB0276F5F800052B820 /* SearchFriendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendCoordinator.swift; sourceTree = "<group>"; };
 		D3629FB2276F5F8E0052B820 /* SearchCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCircleCoordinator.swift; sourceTree = "<group>"; };
 		D3629FB4276F60AC0052B820 /* SearchCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCircleViewModel.swift; sourceTree = "<group>"; };
 		D3698EF22771E0FE004FA773 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -317,11 +309,9 @@
 		D3886444276A214B00FC4F07 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementCoordinator.swift; sourceTree = "<group>"; };
-		D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalPlaceCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailCoordinator.swift; sourceTree = "<group>"; };
-		D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeViewModel.swift; sourceTree = "<group>"; };
 		D3B22D832781625800EC8C10 /* SearchSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionController.swift; sourceTree = "<group>"; };
@@ -470,19 +460,14 @@
 				D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */,
 				D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */,
 				D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */,
-				D3629FA6276F5E600052B820 /* SearchDetailCoordinator.swift */,
 				D3629FA8276F5E680052B820 /* MapCoordinator.swift */,
 				D3629FAA276F5E830052B820 /* MakePracticeCoordinator.swift */,
-				D3629FAC276F5EB70052B820 /* InviteCoordinator.swift */,
-				D3629FB0276F5F800052B820 /* SearchFriendCoordinator.swift */,
 				D3629FB2276F5F8E0052B820 /* SearchCircleCoordinator.swift */,
 				D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */,
 				D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */,
-				D39F0A962770AD0A00580708 /* LevelDetailCoordinator.swift */,
 				D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */,
 				D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */,
 				D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */,
-				D39F0A9E27714B5D00580708 /* AuthCoordinator.swift */,
 				D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */,
 				D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */,
 				D3D7617C2776AF84004381E4 /* FriendListCoordinator.swift */,
@@ -1170,7 +1155,6 @@
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
 				D3FF15E1277E7D4B006355EF /* BlockListController.swift in Sources */,
 				D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */,
-				D3629FAD276F5EB70052B820 /* InviteCoordinator.swift in Sources */,
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
@@ -1209,7 +1193,6 @@
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
 				D3FF15B6277AD558006355EF /* ApplyUserListCell.swift in Sources */,
 				D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */,
-				D39F0A9F27714B5D00580708 /* AuthCoordinator.swift in Sources */,
 				D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3D57DDC277EFD6600BCBF0C /* PracticeDetailViewModel.swift in Sources */,
@@ -1229,7 +1212,6 @@
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
 				D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */,
-				D3629FB1276F5F800052B820 /* SearchFriendCoordinator.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
@@ -1265,7 +1247,6 @@
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
-				D39F0A972770AD0A00580708 /* LevelDetailCoordinator.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* Team.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
@@ -1276,7 +1257,6 @@
 				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
-				D3629FA7276F5E600052B820 /* SearchDetailCoordinator.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,
 				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,
 				D38863EB2768B80D00FC4F07 /* MakeCircleController.swift in Sources */,

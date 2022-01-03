@@ -30,7 +30,7 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
     func start() {
         
     }
-    func start(user:User) {
+    func start(user: User) {
         let controller = MakeCircleController.init(nibName: R.nib.makeCircleController.name, bundle: nil)
         controller.viewModel = TeamRegisterViewModel(user: user)
         controller.coordinator = self

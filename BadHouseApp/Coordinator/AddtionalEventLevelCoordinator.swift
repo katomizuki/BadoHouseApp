@@ -9,11 +9,11 @@ import UIKit
 
 class AddtionalEventLevelCoordinator:Coordinator,AddtionalEventLevelFlow {
    
-    let navigationController:UINavigationController
-    let title:String
-    let image:UIImage
-    let kind:String
-    init(navigationController:UINavigationController ,title: String, image:UIImage, kind: String) {
+    let navigationController: UINavigationController
+    let title: String
+    let image: UIImage
+    let kind: String
+    init(navigationController: UINavigationController ,title: String, image: UIImage, kind: String) {
         self.navigationController = navigationController
         self.title = title
         self.image = image

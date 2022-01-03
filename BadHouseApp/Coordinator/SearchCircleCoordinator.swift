@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class SearchCircleCoordinator:Coordinator, CircleSearchFlow {
     let navigationController:UINavigationController
     let viewModel:SearchCircleViewModel
