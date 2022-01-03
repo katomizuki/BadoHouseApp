@@ -1,6 +1,6 @@
-
 import Firebase
 import RxSwift
+
 protocol UserServiceProtocol {
     func postUser(uid: String,
                   dic: [String : Any],
@@ -10,6 +10,8 @@ protocol UserServiceProtocol {
     func getFriends(uid: String)->Single<[User]>
     func getMyCircles(uid: String) -> Single<[Circle]>
     func getMyPractice(uid: String) -> Single<[Practice]>
+    func judgeChatRoom(user: User, myData:User,completion: @escaping (Bool) -> Void)
+    func postMyChatRoom(dic: [String:Any],user: User, myData: User)
 }
 struct UserService: UserServiceProtocol {
     
@@ -179,6 +181,23 @@ struct UserService: UserServiceProtocol {
             }
             return Disposables.create()
         }
+    }
+    
+    func judgeChatRoom(user: User,myData:User,completion:@escaping(Bool)->Void) {
+        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).getDocument { snapShot, error in
+            if error != nil {
+                completion(false)
+            }
+            guard let snapShot = snapShot else { return }
+            if snapShot.exists {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    func postMyChatRoom(dic:[String:Any], user:User,myData:User) {
+        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).setData(dic)
     }
     
 }

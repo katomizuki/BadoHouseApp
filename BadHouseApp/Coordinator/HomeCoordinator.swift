@@ -39,7 +39,7 @@ final class HomeCoordinator: Coordinator,MainFlow {
             navigationController: self.navigationController,
             viewModel: PracticeDetailViewModel(practice: practice,
                                                userAPI: UserService(),
-                                               circleAPI: CircleService())))
+                                               circleAPI: CircleService(), isModal: false)))
     }
     
 }

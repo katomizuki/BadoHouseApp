@@ -1,4 +1,6 @@
 import Firebase
-struct ChatRoomService {
-   
+protocol ChatServiceProtocol {
+    
+}
+struct ChatService:ChatServiceProtocol {
 }

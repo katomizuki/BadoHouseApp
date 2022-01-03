@@ -41,7 +41,7 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
             guard let self = self else { return }
             let viewModel = PracticeDetailViewModel(practice: self.viewModel.practices.value[indexPath.row],
                                                     userAPI: UserService(),
-                                                    circleAPI: CircleService())
+                                                    circleAPI: CircleService(), isModal: false)
             let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
             controller.viewModel = viewModel
             self.navigationController?.pushViewController(controller, animated: true)

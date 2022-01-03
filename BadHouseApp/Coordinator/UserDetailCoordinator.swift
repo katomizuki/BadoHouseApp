@@ -28,8 +28,8 @@ final class UserDetailCoordinator:Coordinator,MainUserDetailFlow {
         let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
         coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
     }
-    func toChat() {
-        coordinator(to: ChatCoordinator(navigationController: navigationController))
+    func toChat(myData: User, user: User) {
+        coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserService(), chatAPI: ChatService())))
     }
     
 }

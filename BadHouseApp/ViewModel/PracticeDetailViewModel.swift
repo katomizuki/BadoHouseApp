@@ -30,17 +30,18 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var isButtonHidden = PublishSubject<Bool>()
     var isError = PublishSubject<Bool>()
     let practice: Practice
-    var myData:User?
-    var circle:Circle?
-    var user:User?
+    var myData: User?
+    var circle: Circle?
+    var user: User?
     let userAPI: UserServiceProtocol
     let circleAPI: CircleServiceProtocol
     private let disposeBag = DisposeBag()
-    init(practice:Practice,userAPI:UserServiceProtocol,circleAPI:CircleServiceProtocol) {
+    var isModel:Bool
+    init(practice:Practice,userAPI:UserServiceProtocol,circleAPI:CircleServiceProtocol,isModal:Bool) {
         self.practice = practice
         self.userAPI = userAPI
         self.circleAPI = circleAPI
-        
+        self.isModel = isModal
         userAPI.getUser(uid: practice.userId).subscribe { [weak self] user in
             self?.userRelay.accept(user)
             self?.user = user
@@ -60,7 +61,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         
         UserService.getUserById(uid: uid) { myData in
             self.myData = myData
-            if myData.uid == self.user?.uid {
+            if myData.uid == self.user?.uid || self.isModel == true {
                 self.isButtonHidden.onNext(true)
             }
         }

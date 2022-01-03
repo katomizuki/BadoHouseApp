@@ -18,6 +18,6 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
 //        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
     }
     func toChat() {
-        coordinator(to: ChatCoordinator(navigationController: navigationController))
+//        coordinator(to: ChatCoordinator(navigationController: navigationController))
     }
 }

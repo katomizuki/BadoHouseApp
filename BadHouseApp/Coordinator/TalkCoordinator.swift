@@ -12,6 +12,6 @@ class TalkCoordinator: Coordinator,TalkFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toChat() {
-        coordinator(to: ChatCoordinator(navigationController: self.navigationController))
+//        coordinator(to: ChatCoordinator(navigationController: self.navigationController))
     }
 }

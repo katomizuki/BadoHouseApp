@@ -23,9 +23,8 @@ final class MapCoordinator:Coordinator, MapListFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func halfModal(_ practice: Practice,_ vc:MapListController) {
-        let viewModel = PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService())
-        let controller = PracticeDetailController(nibName: "PracticeDetailController", bundle: nil)
-        
+        let viewModel = PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true)
+        let controller = PracticeDetailController(nibName: R.nib.practiceDetailController.name, bundle: nil)
         controller.viewModel = viewModel
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {

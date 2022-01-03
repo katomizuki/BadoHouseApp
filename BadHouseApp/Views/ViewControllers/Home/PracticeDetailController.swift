@@ -18,7 +18,7 @@ protocol PracticeDetailFlow {
 }
 final class PracticeDetailController: UIViewController {
     // MARK: - Properties
-    @IBOutlet  weak var chatButton: UIButton!
+    @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var practiceImageView: UIImageView!
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet { userImageView.changeCorner(num: 30) }
@@ -34,10 +34,11 @@ final class PracticeDetailController: UIViewController {
     @IBOutlet private weak var finishLabel: UILabel!
     @IBOutlet private weak var deadLineLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
-    @IBOutlet weak var userDetailButton: UIButton!
-    @IBOutlet weak var circleDetailButton: UIButton!
+    @IBOutlet private weak var userDetailButton: UIButton!
+    @IBOutlet private weak var circleDetailButton: UIButton!
     @IBOutlet private weak var courtLabel: UILabel!
     @IBOutlet private weak var gatherLabel: UILabel!
+    @IBOutlet private weak var levelLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     private var defaultRegion: MKCoordinateRegion {
         let x =  viewModel.practice.latitude
@@ -88,7 +89,9 @@ final class PracticeDetailController: UIViewController {
         startLabel.text = viewModel.practice.detailStartTimeString
         finishLabel.text = viewModel.practice.detailEndTimeString
         deadLineLabel.text = viewModel.practice.detailDeadLineTimeString
-        
+        levelLabel.text = "\(viewModel.practice.minLevel)〜\(viewModel.practice.maxLevel)"
+        circleDetailButton.isHidden = viewModel.isModel
+        userDetailButton.isHidden = viewModel.isModel
         
         viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
             self?.userImageView.sd_setImage(with: user.profileImageUrl)
@@ -104,8 +107,6 @@ final class PracticeDetailController: UIViewController {
             self?.navigationItem.rightBarButtonItem = nil
             self?.chatButton.isHidden = true
         }.disposed(by: disposeBag)
-        
-        
     }
     
     @objc private func didTapRightButton() {

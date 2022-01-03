@@ -114,6 +114,8 @@
 		D3B22D842781625800EC8C10 /* SearchSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D832781625800EC8C10 /* SearchSelectionController.swift */; };
 		D3B22D8A278172FF00EC8C10 /* PracticeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */; };
 		D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D8B2781DB4900EC8C10 /* MapListViewModel.swift */; };
+		D3B22D8E27829F0400EC8C10 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D8D27829F0300EC8C10 /* ChatRoom.swift */; };
+		D3B22D902782A14500EC8C10 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D8F2782A14500EC8C10 /* ChatViewModel.swift */; };
 		D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */; };
 		D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */; };
 		D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */; };
@@ -326,6 +328,8 @@
 		D3B22D832781625800EC8C10 /* SearchSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionController.swift; sourceTree = "<group>"; };
 		D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchViewModel.swift; sourceTree = "<group>"; };
 		D3B22D8B2781DB4900EC8C10 /* MapListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListViewModel.swift; sourceTree = "<group>"; };
+		D3B22D8D27829F0300EC8C10 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		D3B22D8F2782A14500EC8C10 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B3275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B5275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventThirdViewModel.swift; sourceTree = "<group>"; };
 		D3B3C9B7275CE59B00B2CD2C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -758,6 +762,7 @@
 				D3FF15B2277ACEF5006355EF /* Apply.swift */,
 				D3FF15C2277AFC9B006355EF /* Applyed.swift */,
 				D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */,
+				D3B22D8D27829F0300EC8C10 /* ChatRoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -834,6 +839,7 @@
 				D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */,
 				D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */,
 				D3B22D8B2781DB4900EC8C10 /* MapListViewModel.swift */,
+				D3B22D8F2782A14500EC8C10 /* ChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1144,6 +1150,7 @@
 				D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */,
 				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
+				D3B22D902782A14500EC8C10 /* ChatViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
 				D3D761892776D38D004381E4 /* AuthCredential.swift in Sources */,
 				D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */,
@@ -1210,6 +1217,7 @@
 				D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3D57DDC277EFD6600BCBF0C /* PracticeDetailViewModel.swift in Sources */,
+				D3B22D8E27829F0400EC8C10 /* ChatRoom.swift in Sources */,
 				D3FFD3442721043800DE54ED /* Block-Service.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */,

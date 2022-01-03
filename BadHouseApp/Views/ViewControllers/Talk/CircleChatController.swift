@@ -12,6 +12,7 @@ final class CircleChatController: UIViewController {
         return ci
     }()
     var coordinator:ChatCoordinator?
+    var viewModel:ChatViewModel!
     override var inputAccessoryView: UIView? {
         return customInputView
     }
@@ -21,6 +22,7 @@ final class CircleChatController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.inputs.didLoad()
         setupTableView()
     }
     // MARK: - SetupMethod
