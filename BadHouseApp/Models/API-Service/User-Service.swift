@@ -215,7 +215,7 @@ struct UserService: UserServiceProtocol {
     func getMyChatRooms(uid: String) -> Single<[ChatRoom]> {
         var chatRooms = [ChatRoom]()
         return Single.create { singleEvent->Disposable in
-            Ref.UsersRef.document(uid).collection("ChatRoom").getDocuments { snapShot, error in
+            Ref.UsersRef.document(uid).collection("ChatRoom").order(by: "latestTime", descending: true).getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
@@ -231,7 +231,9 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
-    func getUserChatRoomById(myData:User,id:String,completion:@escaping(ChatRoom)->Void) {
+    func getUserChatRoomById(myData: User,
+                             id: String,
+                             completion: @escaping(ChatRoom)->Void) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(id).getDocument { snapShot, error in
             if error != nil {
                 return

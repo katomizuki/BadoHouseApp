@@ -25,7 +25,8 @@ struct ChatService:ChatServiceProtocol {
             return Disposables.create()
         }
      }
-    func postChat(chatId:String, dic:[String: Any],completion:@escaping(Error?)->Void) {
+    func postChat(chatId: String, dic:[String: Any],
+                  completion: @escaping(Error?)-> Void) {
         let id = Ref.ChatRef.document(chatId).collection("Comment").document().documentID
         Ref.ChatRef.document(chatId).collection("Comment").document(id).setData(dic,completion: completion)
     }

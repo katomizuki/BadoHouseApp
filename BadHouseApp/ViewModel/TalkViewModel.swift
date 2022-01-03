@@ -20,8 +20,8 @@ final class TalkViewModel:TalkViewModelType,TalkViewModelInputs,TalkViewModelOut
     var reload = PublishSubject<Void>()
     var chatRoomList = BehaviorRelay<[ChatRoom]>(value:[])
     private let disposeBag = DisposeBag()
-    var userAPI:UserServiceProtocol
-    var chatAPI:ChatServiceProtocol
+    var userAPI: UserServiceProtocol
+    var chatAPI: ChatServiceProtocol
     init(userAPI: UserServiceProtocol, chatAPI: ChatServiceProtocol) {
         self.chatAPI = chatAPI
         self.userAPI = userAPI

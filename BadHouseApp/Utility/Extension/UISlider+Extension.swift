@@ -7,7 +7,7 @@
 
 import UIKit
 extension UISlider {
-    func getLevelText(_ level:Double)->String {
+    func getLevelText(_ level:Double) -> String {
         var message = String()
         if case 0..<0.1 = level {
             message = BadmintonLevel(rawValue: 0)!.description
