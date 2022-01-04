@@ -1,8 +1,10 @@
 import Firebase
 import Foundation
 import RxSwift
-
-struct JoinService {
+protocol JoinServiceProtocol {
+    
+}
+struct JoinService:JoinServiceProtocol {
     static func postPreJoin(user: User,
                             toUser: User, practice:Practice,
                             completion: @escaping(Result<Void, Error>) -> Void) {
@@ -14,7 +16,8 @@ struct JoinService {
                       "createdAt": Timestamp(),
                       "uid":user.uid,
                       "practiceName":practice.title,
-                      "circleImage":practice.circleUrlString]) { error in
+                      "circleImage":practice.circleUrlString,
+                      "id":practice.id]) { error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -27,7 +30,8 @@ struct JoinService {
                                                   "createdAt": Timestamp(),
                                                   "uid": toUser.uid,
                                                  "practiceName":practice.title,
-                                                 "circleImage":practice.circleUrlString]) { error in
+                                                 "circleImage":practice.circleUrlString,
+                                                 "id":practice.id]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return

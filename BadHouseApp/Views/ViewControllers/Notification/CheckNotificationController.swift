@@ -11,6 +11,7 @@ final class CheckNotificationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        setupNavigationBar()
     }
     private func setupCollectionView() {
         notificationCollectionView.delegate = self
@@ -19,8 +20,15 @@ final class CheckNotificationController: UIViewController {
         let configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         notificationCollectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
     }
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "イベントの作成", style: .done, target: self, action: #selector(didTapRightButton))
+    }
+    @objc private func didTapRightButton() {
+        
+    }
 
 }
+
 extension CheckNotificationController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator?.toChat()

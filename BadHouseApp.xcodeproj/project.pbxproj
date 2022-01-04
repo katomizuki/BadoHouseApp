@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
+		D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E380278467500090CAF9 /* PreJoinedListController.swift */; };
+		D301E383278467500090CAF9 /* PreJoinedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E381278467500090CAF9 /* PreJoinedListController.xib */; };
+		D301E386278467C80090CAF9 /* PreJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E384278467C80090CAF9 /* PreJoinController.swift */; };
+		D301E387278467C80090CAF9 /* PreJoinController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E385278467C80090CAF9 /* PreJoinController.xib */; };
+		D301E389278468960090CAF9 /* PreJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E388278468960090CAF9 /* PreJoinViewModel.swift */; };
+		D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E38A278468A70090CAF9 /* PreJoinedViewModel.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
@@ -217,6 +223,12 @@
 /* Begin PBXFileReference section */
 		179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D301E380278467500090CAF9 /* PreJoinedListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedListController.swift; sourceTree = "<group>"; };
+		D301E381278467500090CAF9 /* PreJoinedListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinedListController.xib; sourceTree = "<group>"; };
+		D301E384278467C80090CAF9 /* PreJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinController.swift; sourceTree = "<group>"; };
+		D301E385278467C80090CAF9 /* PreJoinController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinController.xib; sourceTree = "<group>"; };
+		D301E388278468960090CAF9 /* PreJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinViewModel.swift; sourceTree = "<group>"; };
+		D301E38A278468A70090CAF9 /* PreJoinedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedViewModel.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
@@ -494,6 +506,10 @@
 			children = (
 				D388642B276A185800FC4F07 /* CheckNotificationController.swift */,
 				D388642C276A185800FC4F07 /* CheckNotificationController.xib */,
+				D301E380278467500090CAF9 /* PreJoinedListController.swift */,
+				D301E381278467500090CAF9 /* PreJoinedListController.xib */,
+				D301E384278467C80090CAF9 /* PreJoinController.swift */,
+				D301E385278467C80090CAF9 /* PreJoinController.xib */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -822,6 +838,8 @@
 				D3B22D89278172FF00EC8C10 /* PracticeSearchViewModel.swift */,
 				D3B22D8B2781DB4900EC8C10 /* MapListViewModel.swift */,
 				D3B22D8F2782A14500EC8C10 /* ChatViewModel.swift */,
+				D301E388278468960090CAF9 /* PreJoinViewModel.swift */,
+				D301E38A278468A70090CAF9 /* PreJoinedViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -964,6 +982,7 @@
 				D3C1BFFA2775DA9B00C6C761 /* InviteCell.xib in Resources */,
 				D388643A276A1B5300FC4F07 /* UserController.xib in Resources */,
 				D3FF15D4277D978A006355EF /* AddtionalMemberController.xib in Resources */,
+				D301E383278467500090CAF9 /* PreJoinedListController.xib in Resources */,
 				D32E598C2774519600C59548 /* MemberCell.xib in Resources */,
 				D38863F82768C06D00FC4F07 /* CircleSearchController.xib in Resources */,
 				D38864042768D41A00FC4F07 /* CircleDetailController.xib in Resources */,
@@ -982,6 +1001,7 @@
 				D316072727675E98005FF41D /* AddtionalEventLevelController.xib in Resources */,
 				D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */,
 				D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */,
+				D301E387278467C80090CAF9 /* PreJoinController.xib in Resources */,
 				D32E59902774859D00C59548 /* UserCircleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1128,6 +1148,7 @@
 				D3FF15D8277DA78F006355EF /* UpdateCircleCoordinator.swift in Sources */,
 				D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */,
 				D3F245A22775F58B0030DA1B /* SchduleCell.swift in Sources */,
+				D301E389278468960090CAF9 /* PreJoinViewModel.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */,
 				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
@@ -1159,6 +1180,7 @@
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
 				D3FF15CF277D9733006355EF /* UpdateCircleController.swift in Sources */,
+				D301E386278467C80090CAF9 /* PreJoinController.swift in Sources */,
 				D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */,
 				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
@@ -1203,11 +1225,13 @@
 				D32E598B2774519600C59548 /* MemberCell.swift in Sources */,
 				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */,
+				D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,
 				D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */,
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
+				D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
