@@ -15,7 +15,7 @@ final class PreJoinCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    func nib()->UINib {
+    static func nib()->UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
 

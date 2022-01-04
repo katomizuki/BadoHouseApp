@@ -24,7 +24,11 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
     }
     func toPreJoin() {
         let controller = PreJoinController.init(nibName: "PreJoinController", bundle: nil)
-        
+        guard let uid = AuthService.getUid() else { return }
+        UserService.getUserById(uid: uid) { user in
+            controller.viewModel = PreJoinViewModel(joinAPI: JoinService(), user: user)
+            self.navigationController.pushViewController(controller, animated: true)
+        }
     }
     
     func toPreJoined() {
