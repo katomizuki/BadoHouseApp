@@ -3,6 +3,8 @@ protocol CheckNotificationFlow: AnyObject {
     func toUserDetail()
     func toCircleDetail()
     func toChat()
+    func toPreJoin()
+    func toPreJoined()
 }
 final class CheckNotificationController: UIViewController {
     
@@ -21,10 +23,10 @@ final class CheckNotificationController: UIViewController {
         notificationCollectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
     }
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "イベントの作成", style: .done, target: self, action: #selector(didTapRightButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "申請を確認する", style: .done, target: self, action: #selector(didTapRightButton))
     }
     @objc private func didTapRightButton() {
-        
+        coordinator?.toPreJoined()
     }
 
 }
@@ -43,4 +45,3 @@ extension CheckNotificationController: UICollectionViewDataSource {
         return cell
     }
 }
-

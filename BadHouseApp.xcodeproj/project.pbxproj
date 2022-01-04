@@ -14,6 +14,11 @@
 		D301E387278467C80090CAF9 /* PreJoinController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E385278467C80090CAF9 /* PreJoinController.xib */; };
 		D301E389278468960090CAF9 /* PreJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E388278468960090CAF9 /* PreJoinViewModel.swift */; };
 		D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E38A278468A70090CAF9 /* PreJoinedViewModel.swift */; };
+		D301E38D27846B7D0090CAF9 /* PreJoined.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E38C27846B7D0090CAF9 /* PreJoined.swift */; };
+		D301E390278472C90090CAF9 /* PreJoinedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E38E278472C90090CAF9 /* PreJoinedCell.swift */; };
+		D301E391278472C90090CAF9 /* PreJoinedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E38F278472C90090CAF9 /* PreJoinedCell.xib */; };
+		D301E394278478D40090CAF9 /* PreJoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E392278478D40090CAF9 /* PreJoinCell.swift */; };
+		D301E395278478D40090CAF9 /* PreJoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E393278478D40090CAF9 /* PreJoinCell.xib */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
@@ -229,6 +234,11 @@
 		D301E385278467C80090CAF9 /* PreJoinController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinController.xib; sourceTree = "<group>"; };
 		D301E388278468960090CAF9 /* PreJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinViewModel.swift; sourceTree = "<group>"; };
 		D301E38A278468A70090CAF9 /* PreJoinedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedViewModel.swift; sourceTree = "<group>"; };
+		D301E38C27846B7D0090CAF9 /* PreJoined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoined.swift; sourceTree = "<group>"; };
+		D301E38E278472C90090CAF9 /* PreJoinedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedCell.swift; sourceTree = "<group>"; };
+		D301E38F278472C90090CAF9 /* PreJoinedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinedCell.xib; sourceTree = "<group>"; };
+		D301E392278478D40090CAF9 /* PreJoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinCell.swift; sourceTree = "<group>"; };
+		D301E393278478D40090CAF9 /* PreJoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinCell.xib; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
@@ -539,6 +549,10 @@
 				D3FF15B5277AD558006355EF /* ApplyUserListCell.xib */,
 				D3FF15BE277AF979006355EF /* ApplyedUserListCell.swift */,
 				D3FF15BF277AF979006355EF /* ApplyedUserListCell.xib */,
+				D301E38E278472C90090CAF9 /* PreJoinedCell.swift */,
+				D301E38F278472C90090CAF9 /* PreJoinedCell.xib */,
+				D301E392278478D40090CAF9 /* PreJoinCell.swift */,
+				D301E393278478D40090CAF9 /* PreJoinCell.xib */,
 			);
 			path = "Xib&Cell";
 			sourceTree = "<group>";
@@ -761,6 +775,7 @@
 				D3FF15C2277AFC9B006355EF /* Applyed.swift */,
 				D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */,
 				D3B22D8D27829F0300EC8C10 /* ChatRoom.swift */,
+				D301E38C27846B7D0090CAF9 /* PreJoined.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -958,6 +973,7 @@
 				D3FF15E2277E7D4B006355EF /* BlockListController.xib in Resources */,
 				D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */,
 				D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */,
+				D301E395278478D40090CAF9 /* PreJoinCell.xib in Resources */,
 				D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
 				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
@@ -972,6 +988,7 @@
 				D3FF15C1277AF979006355EF /* ApplyedUserListCell.xib in Resources */,
 				D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */,
 				D3FF15B7277AD558006355EF /* ApplyUserListCell.xib in Resources */,
+				D301E391278472C90090CAF9 /* PreJoinedCell.xib in Resources */,
 				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
 				D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */,
 				D316072F276764F9005FF41D /* MapListController.xib in Resources */,
@@ -1199,9 +1216,11 @@
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
+				D301E394278478D40090CAF9 /* PreJoinCell.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Practice-Service.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */,
+				D301E38D27846B7D0090CAF9 /* PreJoined.swift in Sources */,
 				D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */,
 				D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
@@ -1287,6 +1306,7 @@
 				D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */,
 				D3C1BFF3277542E400C6C761 /* SearchUserCell.swift in Sources */,
 				D3629FAF276F5ED40052B820 /* InviteViewModel.swift in Sources */,
+				D301E390278472C90090CAF9 /* PreJoinedCell.swift in Sources */,
 				D38863EF2768BA3200FC4F07 /* UserLevelController.swift in Sources */,
 				D3B72CF3274A308500253933 /* GenderEnum.swift in Sources */,
 			);

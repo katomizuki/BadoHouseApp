@@ -2,6 +2,8 @@
 import UIKit
 
 final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
+    
+    
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -19,5 +21,18 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
     }
     func toChat() {
 //        coordinator(to: ChatCoordinator(navigationController: navigationController))
+    }
+    func toPreJoin() {
+        let controller = PreJoinController.init(nibName: "PreJoinController", bundle: nil)
+        
+    }
+    
+    func toPreJoined() {
+        let controller = PreJoinedListController.init(nibName: "PreJoinedListController", bundle: nil)
+        guard let uid = AuthService.getUid() else { return }
+        UserService.getUserById(uid: uid) { user in
+            controller.viewModel = PreJoinedViewModel(joinAPI: JoinService(), user: user)
+            self.navigationController.pushViewController(controller, animated: true)
+        }
     }
 }
