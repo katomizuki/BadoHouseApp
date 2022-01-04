@@ -4,7 +4,7 @@ import RxSwift
 
 struct JoinService {
     static func postPreJoin(user: User,
-                            toUser: User,
+                            toUser: User, practice:Practice,
                             completion: @escaping(Result<Void, Error>) -> Void) {
         Ref.PreJoinRef.document(user.uid).collection("Users")
             .document(toUser.uid)
@@ -12,7 +12,9 @@ struct JoinService {
                       "name": toUser.name,
                       "imageUrl": toUser.profileImageUrlString,
                       "createdAt": Timestamp(),
-                      "uid":user.uid]) { error in
+                      "uid":user.uid,
+                      "practiceName":practice.title,
+                      "circleImage":practice.circleUrlString]) { error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -23,7 +25,9 @@ struct JoinService {
                                                  "name": user.name,
                                                  "imageUrl" : user.profileImageUrlString,
                                                   "createdAt": Timestamp(),
-                                                  "uid": toUser.uid]) { error in
+                                                  "uid": toUser.uid,
+                                                 "practiceName":practice.title,
+                                                 "circleImage":practice.circleUrlString]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return

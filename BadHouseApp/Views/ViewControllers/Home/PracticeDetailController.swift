@@ -60,7 +60,6 @@ final class PracticeDetailController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
         setupBinding()
         setupMapView()
     }
@@ -77,9 +76,7 @@ final class PracticeDetailController: UIViewController {
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
         coordinator?.toCircleDetail(myData: viewModel.myData!, circle: viewModel.circle!)
     }
-    private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = rightButton
-    }
+
     private func setupBinding() {
         priceLabel.text = viewModel.practice.price
         practiceImageView.sd_setImage(with: viewModel.practice.mainUrl)
@@ -93,7 +90,7 @@ final class PracticeDetailController: UIViewController {
         levelLabel.text = "\(viewModel.practice.minLevel)〜\(viewModel.practice.maxLevel)"
         circleDetailButton.isHidden = viewModel.isModal
         userDetailButton.isHidden = viewModel.isModal
-        
+        navigationItem.rightBarButtonItem = viewModel.practice.isPreJoined ? nil : rightButton
         viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
             self?.userImageView.sd_setImage(with: user.profileImageUrl)
             self?.userNameLabel.text = user.name
@@ -113,7 +110,6 @@ final class PracticeDetailController: UIViewController {
             self?.showCDAlert(title: "参加申請しました", message: "", action: "OK", alertType: .success)
             self?.navigationController?.popViewController(animated: true)
         }.disposed(by: disposeBag)
-
     }
     
     @objc private func didTapRightButton() {
@@ -123,4 +119,3 @@ final class PracticeDetailController: UIViewController {
         coordinator?.toUserDetail(myData: viewModel.myData!, user: viewModel.user!)
     }
 }
-

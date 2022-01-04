@@ -72,6 +72,11 @@ struct Practice {
         let dateString = DateUtils.stringFromDate(date: date, format: "MM月dd日HH時mm分")
         return dateString
     }
+    var isPreJoined: Bool {
+        let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "preJoin")
+        return array.contains(id)
+    }
+    
     init(dic: [String: Any]) {
         self.addressName = dic["addressName"] as? String ?? ""
         self.circleId = dic["circleId"] as? String ?? ""

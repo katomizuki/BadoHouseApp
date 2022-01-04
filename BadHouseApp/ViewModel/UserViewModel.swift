@@ -118,7 +118,6 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         } else {
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: "blocks")
         }
-        let a:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
     }
     func withDrawCircle(_ circle: Circle?) {
         guard let circle = circle else {

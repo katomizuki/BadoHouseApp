@@ -21,7 +21,8 @@ protocol PracticeDetailViewModelOutputs {
     var circleRelay: PublishRelay<Circle> { get }
     var isError: PublishSubject<Bool> { get }
     var isButtonHidden: PublishSubject<Bool> { get }
-    var completed:PublishSubject<Void> { get }
+    var completed: PublishSubject<Void> { get }
+    var isTakePartInButton: PublishSubject<Bool> { get }
 }
 final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetailViewModelInputs, PracticeDetailViewModelOutputs {
     var inputs: PracticeDetailViewModelInputs { return self }
@@ -31,6 +32,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var isButtonHidden = PublishSubject<Bool>()
     var isError = PublishSubject<Bool>()
     var completed = PublishSubject<Void>()
+    var isTakePartInButton = PublishSubject<Bool>()
     let practice: Practice
     var myData: User?
     var circle: Circle?
@@ -47,6 +49,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         self.userAPI = userAPI
         self.circleAPI = circleAPI
         self.isModal = isModal
+        
         userAPI.getUser(uid: practice.userId).subscribe { [weak self] user in
             self?.userRelay.accept(user)
             self?.user = user
@@ -72,19 +75,26 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         }
     }
     func takePartInPractice() {
-        guard let user = user else {
-            return
-        }
-        guard let myData = myData else {
-            return
-        }
-        JoinService.postPreJoin(user: myData, toUser: user) { result in
+        guard let user = user else { return }
+        guard let myData = myData else { return }
+        JoinService.postPreJoin(user: myData, toUser: user, practice: practice) { result in
             switch result {
             case .success:
                 self.completed.onNext(())
             case .failure:
                 self.isError.onNext(true)
             }
+        }
+        checkUserDefault()
+    }
+    
+    private func checkUserDefault() {
+        if UserDefaults.standard.object(forKey: "preJoin") != nil {
+            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "preJoin")
+            array.append(practice.id)
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "preJoin")
+        } else {
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: "preJoin")
         }
         
     }
