@@ -72,7 +72,7 @@ final class PracticeDetailController: UIViewController {
     }
     
     @IBAction private func didTapChatButton(_ sender: Any) {
-        coordinator?.toChat(myData:viewModel.myData!, user: viewModel.user!)
+        coordinator?.toChat(myData: viewModel.myData!, user: viewModel.user!)
     }
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
         coordinator?.toCircleDetail(myData: viewModel.myData!, circle: viewModel.circle!)
@@ -91,8 +91,8 @@ final class PracticeDetailController: UIViewController {
         finishLabel.text = viewModel.practice.detailEndTimeString
         deadLineLabel.text = viewModel.practice.detailDeadLineTimeString
         levelLabel.text = "\(viewModel.practice.minLevel)〜\(viewModel.practice.maxLevel)"
-        circleDetailButton.isHidden = viewModel.isModel
-        userDetailButton.isHidden = viewModel.isModel
+        circleDetailButton.isHidden = viewModel.isModal
+        userDetailButton.isHidden = viewModel.isModal
         
         viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
             self?.userImageView.sd_setImage(with: user.profileImageUrl)
@@ -108,10 +108,16 @@ final class PracticeDetailController: UIViewController {
             self?.navigationItem.rightBarButtonItem = nil
             self?.chatButton.isHidden = true
         }.disposed(by: disposeBag)
+        
+        viewModel.outputs.completed.subscribe {[weak self] _  in
+            self?.showCDAlert(title: "参加申請しました", message: "", action: "OK", alertType: .success)
+            self?.navigationController?.popViewController(animated: true)
+        }.disposed(by: disposeBag)
+
     }
     
     @objc private func didTapRightButton() {
-        
+        viewModel.inputs.takePartInPractice()
     }
     @IBAction private func didTapUserButton(_ sender: Any) {
         coordinator?.toUserDetail(myData: viewModel.myData!, user: viewModel.user!)

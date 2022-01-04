@@ -8,7 +8,7 @@
 import UIKit
 
 final class CalendarCoordinator:Coordinator {
-    let navigationController:UINavigationController
+    let navigationController: UINavigationController
     init(navigationController:UINavigationController) {
         self.navigationController = navigationController
     }

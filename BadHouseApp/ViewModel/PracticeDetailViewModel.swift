@@ -14,13 +14,14 @@ protocol PracticeDetailViewModelType {
     var outputs: PracticeDetailViewModelOutputs { get }
 }
 protocol PracticeDetailViewModelInputs {
-    
+    func takePartInPractice()
 }
 protocol PracticeDetailViewModelOutputs {
     var userRelay:PublishRelay<User> { get }
     var circleRelay: PublishRelay<Circle> { get }
     var isError: PublishSubject<Bool> { get }
     var isButtonHidden: PublishSubject<Bool> { get }
+    var completed:PublishSubject<Void> { get }
 }
 final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetailViewModelInputs, PracticeDetailViewModelOutputs {
     var inputs: PracticeDetailViewModelInputs { return self }
@@ -29,6 +30,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var circleRelay = PublishRelay<Circle>()
     var isButtonHidden = PublishSubject<Bool>()
     var isError = PublishSubject<Bool>()
+    var completed = PublishSubject<Void>()
     let practice: Practice
     var myData: User?
     var circle: Circle?
@@ -36,12 +38,15 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     let userAPI: UserServiceProtocol
     let circleAPI: CircleServiceProtocol
     private let disposeBag = DisposeBag()
-    var isModel:Bool
-    init(practice:Practice,userAPI:UserServiceProtocol,circleAPI:CircleServiceProtocol,isModal:Bool) {
+    var isModal: Bool
+    init(practice: Practice,
+         userAPI: UserServiceProtocol,
+         circleAPI: CircleServiceProtocol,
+         isModal: Bool) {
         self.practice = practice
         self.userAPI = userAPI
         self.circleAPI = circleAPI
-        self.isModel = isModal
+        self.isModal = isModal
         userAPI.getUser(uid: practice.userId).subscribe { [weak self] user in
             self?.userRelay.accept(user)
             self?.user = user
@@ -61,8 +66,24 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         
         UserService.getUserById(uid: uid) { myData in
             self.myData = myData
-            if myData.uid == self.user?.uid || self.isModel == true {
+            if myData.uid == self.user?.uid || self.isModal == true {
                 self.isButtonHidden.onNext(true)
+            }
+        }
+    }
+    func takePartInPractice() {
+        guard let user = user else {
+            return
+        }
+        guard let myData = myData else {
+            return
+        }
+        JoinService.postPreJoin(user: myData, toUser: user) { result in
+            switch result {
+            case .success:
+                self.completed.onNext(())
+            case .failure:
+                self.isError.onNext(true)
             }
         }
         

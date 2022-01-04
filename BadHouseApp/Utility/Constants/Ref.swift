@@ -1,5 +1,6 @@
 
 import Firebase
+import FirebaseFirestore
 
 struct Ref {
     static let UsersRef = Firestore.firestore().collection("Users")
@@ -13,5 +14,6 @@ struct Ref {
     static let MatchRef = Firestore.firestore().collection("Match")
     static let PracticeRef = Firestore.firestore().collection("Practice")
     static let ChatRef = Firestore.firestore().collection("Chat")
-    
+    static let PreJoinRef = Firestore.firestore().collection("PreJoin")
+    static let PreJoinedRef = Firestore.firestore().collection("PreJoined")
 }
