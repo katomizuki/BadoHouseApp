@@ -23,9 +23,10 @@ final class CheckNotificationController: UIViewController {
         notificationCollectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
     }
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "申請がきた練習を確認する", style: .done, target: self, action: #selector(didTapRightButton))
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "申請した練習を確認する", style: .done, target: self, action: #selector(didTapLeftButton))
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "申請", style: .done, target: self, action: #selector(didTapRightButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "承認待ちの練習", style: .done, target: self, action: #selector(didTapLeftButton))
+
     }
     @objc private func didTapRightButton() {
         coordinator?.toPreJoined()

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
 class PreJoinController: UIViewController, UIScrollViewDelegate {
     var viewModel:PreJoinViewModel!
     @IBOutlet private weak var tableView: UITableView!
@@ -20,7 +21,8 @@ class PreJoinController: UIViewController, UIScrollViewDelegate {
     }
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) {row ,item,cell in
+        viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) { _,item,cell in
+            cell.configure(item)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe { [weak self] _ in
@@ -30,10 +32,5 @@ class PreJoinController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.isError.subscribe { [weak self] _ in
             self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
-
-
     }
-    
-
-
 }
