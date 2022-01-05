@@ -13,9 +13,17 @@ protocol PreJoinedCellDelegate:AnyObject {
 final class PreJoinedCell: UITableViewCell {
     static let id = String(describing: self)
     weak var delegate: PreJoinedCellDelegate?
-    @IBOutlet private weak var userImageView: UIImageView!
+  
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var userImageView: UIImageView! {
+        didSet {
+            userImageView.layer.cornerRadius = 25
+            userImageView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet private weak var label: UILabel!
-    var preJoined:PreJoined?
+    var preJoined: PreJoined?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,8 +35,11 @@ final class PreJoinedCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func configure(_ prejoined:PreJoined) {
+    func configure(_ prejoined: PreJoined) {
         self.preJoined = prejoined
+        userImageView.sd_setImage(with: prejoined.url)
+        label.text = "\(prejoined.name) さん から参加申請がきております"
+        titleLabel.text = "~\(prejoined.practiceName)~"
     }
     
     @IBAction func didTapPermissionButton(_ sender: Any) {

@@ -33,12 +33,14 @@ final class PreJoinCell: UITableViewCell {
     }
     func configure(_ prejoin:PreJoin) {
         self.preJoin = prejoin
+        circleImageView.sd_setImage(with: prejoin.url)
+        label.text = "「\(prejoin.practiceName)」に参加申請中です"
     }
     
     @IBAction func didTapTrashButton(_ sender: Any) {
         guard let preJoin = preJoin else {
             return
         }
-        self.delegate?.preJoinCell(self,preJoin: preJoin)
+        self.delegate?.preJoinCell(self, preJoin: preJoin)
     }
 }
