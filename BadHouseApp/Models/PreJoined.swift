@@ -15,6 +15,13 @@ struct PreJoined {
     let name: String
     let practiceName: String
     let uid: String
+    var url:URL? {
+        if let url = URL(string: imageUrl) {
+            return url
+        } else {
+            return nil
+        }
+    }
     init(dic: [String: Any]) {
         self.id = dic["id"] as? String ?? ""
         self.circleImage = dic["circleImage"] as? String ?? ""

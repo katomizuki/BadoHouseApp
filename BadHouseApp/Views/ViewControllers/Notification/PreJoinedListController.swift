@@ -21,8 +21,9 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        viewModel.outputs.preJoinedList.bind(to: tableView.rx.items(cellIdentifier: PreJoinedCell.id, cellType: PreJoinedCell.self)) { row,item,cell in
-            cell.configure()
+        viewModel.outputs.preJoinedList.bind(to: tableView.rx.items(cellIdentifier: PreJoinedCell.id, cellType: PreJoinedCell.self)) { _,item,cell in
+            cell.configure(item)
+            cell.delegate = self
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
@@ -32,5 +33,14 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.reload.subscribe { [weak self] _ in
             self?.tableView.reloadData()
         }.disposed(by: disposeBag)
+        
+        viewModel.outputs.completed.subscribe { [weak self] _ in
+            self?.showCDAlert(title: "承認しました", message:  "", action: "OK", alertType: .success)
+        }.disposed(by: disposeBag)
+    }
+}
+extension PreJoinedListController: PreJoinedCellDelegate {
+    func preJoinedCell(prejoined: PreJoined) {
+        viewModel.inputs.permission(prejoined)
     }
 }

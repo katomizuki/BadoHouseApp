@@ -23,6 +23,7 @@ class PreJoinController: UIViewController, UIScrollViewDelegate {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) { _,item,cell in
             cell.configure(item)
+            cell.delegate = self
         }.disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe { [weak self] _ in
@@ -32,5 +33,10 @@ class PreJoinController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.isError.subscribe { [weak self] _ in
             self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
+    }
+}
+extension PreJoinController: PreJoinCellDelegate {
+    func preJoinCell(_ cell: PreJoinCell, preJoin: PreJoin) {
+        viewModel.inputs.delete(preJoin)
     }
 }

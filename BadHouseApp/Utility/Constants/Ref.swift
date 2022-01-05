@@ -16,4 +16,5 @@ struct Ref {
     static let ChatRef = Firestore.firestore().collection("Chat")
     static let PreJoinRef = Firestore.firestore().collection("PreJoin")
     static let PreJoinedRef = Firestore.firestore().collection("PreJoined")
+    static let JoinRef = Firestore.firestore().collection("Join")
 }

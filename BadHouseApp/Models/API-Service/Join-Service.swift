@@ -2,8 +2,10 @@ import Firebase
 import Foundation
 import RxSwift
 protocol JoinServiceProtocol {
-    func getPrejoin(userId:String)->Single<[PreJoin]>
-    func getPreJoined(userId:String)->Single<[PreJoined]>
+    func getPrejoin(userId: String)->Single<[PreJoin]>
+    func getPreJoined(userId: String)->Single<[PreJoined]>
+    func postMatchJoin(preJoined: PreJoined,
+                       completion: @escaping(Error?)->Void)
 }
 struct JoinService:JoinServiceProtocol {
     static func postPreJoin(user: User,
@@ -41,6 +43,7 @@ struct JoinService:JoinServiceProtocol {
             }
         }
     }
+    
     func getPrejoin(userId: String) -> Single<[PreJoin]> {
         var prejoins = [PreJoin]()
         return Single.create { singleEvent->Disposable in
@@ -79,6 +82,10 @@ struct JoinService:JoinServiceProtocol {
             }
             return Disposables.create()
         }
-        
+    }
+    func postMatchJoin(preJoined: PreJoined,completion:@escaping(Error?)->Void) {
+        let id = Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document().documentID
+        Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(id).setData(["id":id])
+        Ref.UsersRef.document(preJoined.uid).collection("Join").document(id).setData(["id":id],completion: completion)
     }
 }

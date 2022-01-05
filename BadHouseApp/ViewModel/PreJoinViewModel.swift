@@ -12,7 +12,7 @@ protocol PreJoinViewModelType {
     var outputs: PreJoinViewModelOutputs { get }
 }
 protocol PreJoinViewModelInputs {
-    
+    func delete(_ preJoin: PreJoin)
 }
 protocol PreJoinViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
@@ -22,12 +22,12 @@ protocol PreJoinViewModelOutputs {
 final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJoinViewModelOutputs {
     var inputs: PreJoinViewModelInputs { return self }
     var outputs: PreJoinViewModelOutputs { return self }
-    var joinAPI:JoinServiceProtocol
+    var joinAPI: JoinServiceProtocol
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var preJoinList =  BehaviorRelay<[PreJoin]>(value:[])
     private let disposeBag = DisposeBag()
-    init(joinAPI:JoinServiceProtocol,user: User) {
+    init(joinAPI: JoinServiceProtocol, user: User) {
         self.joinAPI = joinAPI
         
         joinAPI.getPrejoin(userId: user.uid).subscribe {[weak self] prejoins in
@@ -36,5 +36,10 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
+    }
+    
+    func delete(_ preJoin: PreJoin) {
+        DeleteService.deleteCollectionData(collectionName: "PreJoin", documentId: preJoin.uid)
+        DeleteService.deleteCollectionData(collectionName: "PreJoined", documentId: preJoin.toUserId)
     }
 }

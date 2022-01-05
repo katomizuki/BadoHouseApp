@@ -8,6 +8,13 @@ struct PreJoin {
     let imageUrl: String
     let toUserId: String
     let circleImage: String
+    var url:URL? {
+        if let url = URL(string: imageUrl) {
+            return url
+        } else {
+            return nil
+        }
+    }
     init(dic: [String: Any]) {
         self.name = dic["name"] as? String ?? String()
         self.id = dic["id"] as? String ?? String()
