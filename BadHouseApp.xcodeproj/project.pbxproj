@@ -19,6 +19,7 @@
 		D301E391278472C90090CAF9 /* PreJoinedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E38F278472C90090CAF9 /* PreJoinedCell.xib */; };
 		D301E394278478D40090CAF9 /* PreJoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E392278478D40090CAF9 /* PreJoinCell.swift */; };
 		D301E395278478D40090CAF9 /* PreJoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E393278478D40090CAF9 /* PreJoinCell.xib */; };
+		D301E3972785D1F30090CAF9 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E3962785D1F20090CAF9 /* ScheduleViewModel.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
@@ -239,6 +240,7 @@
 		D301E38F278472C90090CAF9 /* PreJoinedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinedCell.xib; sourceTree = "<group>"; };
 		D301E392278478D40090CAF9 /* PreJoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinCell.swift; sourceTree = "<group>"; };
 		D301E393278478D40090CAF9 /* PreJoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinCell.xib; sourceTree = "<group>"; };
+		D301E3962785D1F20090CAF9 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				D3B22D8F2782A14500EC8C10 /* ChatViewModel.swift */,
 				D301E388278468960090CAF9 /* PreJoinViewModel.swift */,
 				D301E38A278468A70090CAF9 /* PreJoinedViewModel.swift */,
+				D301E3962785D1F20090CAF9 /* ScheduleViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1186,6 +1189,7 @@
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
+				D301E3972785D1F30090CAF9 /* ScheduleViewModel.swift in Sources */,
 				D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,

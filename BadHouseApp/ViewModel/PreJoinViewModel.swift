@@ -39,7 +39,14 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
     }
     
     func delete(_ preJoin: PreJoin) {
-        DeleteService.deleteCollectionData(collectionName: "PreJoin", documentId: preJoin.uid)
-        DeleteService.deleteCollectionData(collectionName: "PreJoined", documentId: preJoin.toUserId)
+        DeleteService.deleteSubCollectionData(collecionName: "PreJoin", documentId: preJoin.uid, subCollectionName: "Users", subId: preJoin.toUserId)
+        DeleteService.deleteSubCollectionData(collecionName: "PreJoined", documentId: preJoin.toUserId, subCollectionName: "Users", subId: preJoin.uid)
+        var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "preJoin")
+        prejoins.remove(value: preJoin.id)
+        UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: "preJoin")
+        var list = preJoinList.value
+        list.remove(value: preJoin)
+        preJoinList.accept(list)
+        reload.onNext(())
     }
 }

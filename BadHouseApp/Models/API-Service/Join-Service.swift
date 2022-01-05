@@ -84,8 +84,7 @@ struct JoinService:JoinServiceProtocol {
         }
     }
     func postMatchJoin(preJoined: PreJoined,completion:@escaping(Error?)->Void) {
-        let id = Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document().documentID
-        Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(id).setData(["id":id])
-        Ref.UsersRef.document(preJoined.uid).collection("Join").document(id).setData(["id":id],completion: completion)
+        Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id":preJoined.id])
+        Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id":preJoined.id],completion: completion)
     }
 }

@@ -10,8 +10,8 @@ protocol UserFlow: AnyObject {
     func toDetailUser(myData: User?, user: User?)
     func toDetailCircle(myData: User?, circle: Circle?)
     func toMakeCircle(user: User?)
-    func toSettings(_ vc: UIViewController , user: User?)
-    func toSchedule(_ vc: UIViewController)
+    func toSettings(_ vc: UIViewController, user: User?)
+    func toSchedule(_ vc: UIViewController, user: User?)
     func toApplyUser(user: User?)
     func toApplyedUser(user: User?)
 
@@ -120,7 +120,7 @@ final class UserController: UIViewController {
     }
     
     @objc private func didTapScheduleButton() {
-        coordinator?.toSchedule(self)
+        coordinator?.toSchedule(self, user: viewModel.user)
     }
     
     @objc private func didTapUpdateProfileButton() {

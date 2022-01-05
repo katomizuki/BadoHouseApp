@@ -22,6 +22,7 @@ protocol UserServiceProtocol {
                              id: String,
                              completion: @escaping(ChatRoom) -> Void)
     func updateChatRoom(user: User, myData: User,message: String)
+    func getMyJoinPractice(user:User)->Single<[Practice]>
 }
 struct UserService: UserServiceProtocol {
     
@@ -231,6 +232,7 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
+    
     func getUserChatRoomById(myData: User,
                              id: String,
                              completion: @escaping(ChatRoom)->Void) {
@@ -243,8 +245,35 @@ struct UserService: UserServiceProtocol {
             completion(chatRoom)
         }
     }
+    
     func updateChatRoom(user:User,myData:User,message:String) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).updateData(["latestTime": Timestamp() ,"latestMessage": message])
         Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).updateData(["latestTime": Timestamp() ,"latestMessage": message])
+    }
+    func getMyJoinPractice(user:User)->Single<[Practice]> {
+        var practices = [Practice]()
+        let group = DispatchGroup()
+        return Single.create { singleEvent->Disposable in
+            Ref.UsersRef.document(user.uid).collection("Join").getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                guard let snapShot = snapShot else { return }
+                snapShot.documents.forEach {
+                    group.enter()
+                    let dic = $0.data()
+                    let id = dic["id"] as? String ?? ""
+                    PracticeServie.getPracticeById(id: id) { practice in
+                        defer { group.leave() }
+                        practices.append(practice)
+                    }
+                }
+                group.notify(queue: .main) {
+                    singleEvent(.success(practices))
+                }
+            }
+            return Disposables.create()
+        }
     }
 }

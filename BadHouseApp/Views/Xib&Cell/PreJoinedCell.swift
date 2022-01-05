@@ -13,8 +13,6 @@ protocol PreJoinedCellDelegate:AnyObject {
 final class PreJoinedCell: UITableViewCell {
     static let id = String(describing: self)
     weak var delegate: PreJoinedCellDelegate?
-  
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
@@ -39,7 +37,7 @@ final class PreJoinedCell: UITableViewCell {
         self.preJoined = prejoined
         userImageView.sd_setImage(with: prejoined.url)
         label.text = "\(prejoined.name) さん から参加申請がきております"
-        titleLabel.text = "~\(prejoined.practiceName)~"
+        titleLabel.text = "「\(prejoined.practiceName)」"
     }
     
     @IBAction func didTapPermissionButton(_ sender: Any) {

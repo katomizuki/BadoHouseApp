@@ -50,16 +50,20 @@ class UserCoordinator: Coordinator, UserFlow {
             coordinator.start(user: user)
         }
     }
-    func toSettings(_ vc: UIViewController, user:User?) {
+    func toSettings(_ vc: UIViewController, user: User?) {
         guard let user = user else { return }
         let controller = UserSettingsController.init(user: user)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }
-    func toSchedule(_ vc: UIViewController) {
+    func toSchedule(_ vc: UIViewController,user: User?) {
+        guard let user = user else {
+            return
+        }
         let controller = ScheduleController.init(nibName: "ScheduleController", bundle: nil)
         let nav = UINavigationController(rootViewController: controller)
+        controller.viewModel = ScheduleViewModel(userAPI: UserService(), practiceAPI: PracticeServie(),user: user)
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true, completion: nil)
     }

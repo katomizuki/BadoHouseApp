@@ -24,7 +24,7 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j1m-lM-Tfe">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j1m-lM-Tfe">
                         <rect key="frame" x="15" y="15.5" width="50" height="50"/>
                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <constraints>
@@ -57,6 +57,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="circleImageView" destination="j1m-lM-Tfe" id="Auc-Ao-xUp"/>
+                <outlet property="titleLabel" destination="8TE-xL-raz" id="Ihn-06-YA8"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="126.22767857142857"/>
         </tableViewCell>

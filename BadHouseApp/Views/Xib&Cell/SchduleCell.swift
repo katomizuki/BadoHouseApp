@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SDWebImage
 protocol SchduleCellDelegate:AnyObject {
     func onTapTrashButton(_ cell:SchduleCell)
 }
 final class SchduleCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var circleImageView: UIImageView! {
         didSet {
             circleImageView.changeCorner(num: 25)
@@ -28,5 +30,9 @@ final class SchduleCell: UITableViewCell {
     
     @IBAction func didTapTrashButton(_ sender: Any) {
         self.delegate?.onTapTrashButton(self)
+    }
+    func configure(_ practice: Practice) {
+        circleImageView.sd_setImage(with: practice.circleUrl)
+        titleLabel.text = practice.title
     }
 }
