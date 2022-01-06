@@ -2,9 +2,12 @@ import Firebase
 import RxSwift
 protocol ChatServiceProtocol {
     func getChat(chatId: String)->Single<[Chat]>
-    func postChat(chatId:String, dic:[String: Any],completion:@escaping(Error?)->Void)
+    func postChat(chatId:String,
+                  dic:[String: Any],
+                  completion: @escaping(Error?)->Void)
 }
 struct ChatService:ChatServiceProtocol {
+    
     func getChat(chatId: String)->Single<[Chat]> {
         var chats = [Chat]()
         return Single.create { singleEvent->Disposable in
@@ -25,6 +28,7 @@ struct ChatService:ChatServiceProtocol {
             return Disposables.create()
         }
      }
+    
     func postChat(chatId: String, dic:[String: Any],
                   completion: @escaping(Error?)-> Void) {
         let id = Ref.ChatRef.document(chatId).collection("Comment").document().documentID

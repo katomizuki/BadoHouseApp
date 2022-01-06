@@ -1,7 +1,7 @@
 
 import Firebase
 
-struct Circle: Equatable,FirebaseType {
+struct Circle: Equatable {
     var id: String
     var features: [String]
     var time: String

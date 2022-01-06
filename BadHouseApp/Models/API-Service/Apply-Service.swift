@@ -50,13 +50,13 @@ struct ApplyService:ApplyServiceProtocol {
     static func notApplyFriend(uid: String,
                                toUserId: String) {
         DeleteService.deleteSubCollectionData(collecionName: "Apply",
-                                              documentId: uid,
-                                              subCollectionName: "Users",
-                                              subId: toUserId)
+                                                documentId: uid,
+                                                subCollectionName: "Users",
+                                                subId: toUserId)
         DeleteService.deleteSubCollectionData(collecionName: "Applyed",
-                                              documentId: toUserId,
-                                              subCollectionName: "Users",
-                                              subId: uid)
+                                                documentId: toUserId,
+                                                subCollectionName: "Users",
+                                                subId: uid)
     }
     
     func getApplyUser(user: User) -> Single<[Apply]> {
@@ -98,6 +98,7 @@ struct ApplyService:ApplyServiceProtocol {
             return Disposables.create()
         }
     }
+    
     func match(uid: String,
                friendId: String,
                completion: @escaping(Result<Void, Error>) -> Void) {

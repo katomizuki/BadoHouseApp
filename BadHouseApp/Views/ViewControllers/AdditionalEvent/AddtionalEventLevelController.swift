@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
 protocol AddtionalEventLevelFlow {
     func toNext(image: UIImage,
                 dic: [String:Any],
