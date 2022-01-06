@@ -79,32 +79,30 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         authAPI.register(credential: credential) { [weak self] result in
             switch result {
             case .success(let dic):
-                self?.firebaseAPI.postData(id: dic["uid"] as! String, dic: dic, ref: Ref.UsersRef, completion: { result in
-                    switch result {
-                    case .success:
-                        self?.isCompleted.onNext(true)
-                    case .failure(let error):
+                self?.firebaseAPI.postData(id: dic["uid"] as! String, dic: dic, ref: Ref.UsersRef, completion: {[weak self] error in
+                    if let error = error {
                         self?.errorHandling.onNext(error)
+                        return
                     }
+                    self?.isCompleted.onNext(true)
                 })
             case .failure(let error):
                 self?.errorHandling.onNext(error)
             }
         }
     }
+    
     func thirdPartyLogin(credential:AuthCredential,id:String) {
         let dic:[String:Any] = ["name":credential.name,
                                 "uid":id,
                                 "createdAt":Timestamp(),
                                 "updatedAt":Timestamp(),
                                 "email":credential.email]
-        firebaseAPI.postData(id: id, dic: dic, ref: Ref.UsersRef) { [weak self] result in
-            switch result {
-            case .success:
-                self?.isCompleted.onNext(true)
-            case .failure(let error):
+        firebaseAPI.postData(id: id, dic: dic, ref: Ref.UsersRef) { [weak self] error in
+            if let error = error {
                 self?.errorHandling.onNext(error)
             }
+            self?.isCompleted.onNext(true)
         }
     }
 }

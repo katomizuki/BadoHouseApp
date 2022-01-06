@@ -6,23 +6,25 @@
 //
 
 import Firebase
+import RxSwift
 protocol FirebaseServiceProtocol {
-    func postData(id:String,
-                  dic:[String:Any],
-                  ref:CollectionReference,
-                  completion:@escaping(Result<Void,Error>)->Void)
+    func postData(id: String,
+                  dic: [String:Any],
+                  ref: CollectionReference,
+                  completion: @escaping (Error?)->Void)
+    func postSubDocData(id: String,
+                        dic: [String:Any],
+                        ref: CollectionReference,
+                        subId: String,
+                        subCollectioName: String,
+                        completion:@escaping (Error?)->Void)
 }
 struct FirebaseService: FirebaseServiceProtocol {
-    func postData(id:String,
-                  dic:[String:Any],
-                  ref:CollectionReference,
-                  completion:@escaping(Result<Void,Error>)->Void) {
-        ref.document(id).setData(dic) { error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            completion(.success(()))
-        }
+    func postData(id: String, dic: [String : Any], ref: CollectionReference, completion: @escaping (Error?) -> Void) {
+        ref.document(id).setData(dic,completion: completion)
+    }
+    
+    func postSubDocData(id: String, dic: [String : Any], ref: CollectionReference, subId: String, subCollectioName: String, completion: @escaping (Error?) -> Void) {
+        ref.document(id).collection(subCollectioName).document(subId).setData(dic,completion: completion)
     }
 }
