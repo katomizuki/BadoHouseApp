@@ -83,7 +83,8 @@ struct JoinService:JoinServiceProtocol {
             return Disposables.create()
         }
     }
-    func postMatchJoin(preJoined: PreJoined,completion:@escaping(Error?)->Void) {
+    func postMatchJoin(preJoined: PreJoined,
+                       completion: @escaping(Error?)->Void) {
         Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id":preJoined.id])
         Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id":preJoined.id],completion: completion)
     }
