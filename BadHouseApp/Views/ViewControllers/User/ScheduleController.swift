@@ -9,12 +9,16 @@ import UIKit
 import FSCalendar
 import RxSwift
 import RxCocoa
+protocol ScheduleFlow {
+    func toDetail(_ practice: Practice)
+}
 final class ScheduleController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var calendarView: FSCalendar!
     @IBOutlet private weak var practiceTableView: UITableView!
     private let disposeBag = DisposeBag()
     var viewModel:ScheduleViewModel!
+    var coordinator:ScheduleFlow?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -48,14 +52,12 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
             cell.configure(item)
         }.disposed(by: disposeBag)
         
-        practiceTableView.rx.itemSelected.bind { indexPath in
-            let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
-            controller.viewModel = PracticeDetailViewModel(practice: self.viewModel.practiceList.value[indexPath.row], userAPI: UserService(), circleAPI: CircleService(), isModal: true)
-            self.navigationController?.pushViewController(controller, animated: true)
+        practiceTableView.rx.itemSelected.bind { [weak self] indexPath in
+            guard let self = self else { return }
+            self.coordinator?.toDetail(self.viewModel.outputs.practiceList.value[indexPath.row])
         }.disposed(by: disposeBag)
-
-
     }
+    
     @objc private func didTapLeftBarButton() {
         dismiss(animated: true)
     }

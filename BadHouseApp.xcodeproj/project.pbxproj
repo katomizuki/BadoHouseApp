@@ -161,6 +161,7 @@
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */; };
 		D3D57DDC277EFD6600BCBF0C /* PracticeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D57DDB277EFD6600BCBF0C /* PracticeDetailViewModel.swift */; };
+		D3D62E8427887E6E00DCA027 /* ScheduleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E8327887E6E00DCA027 /* ScheduleCoordinator.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
 		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
 		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
@@ -384,6 +385,7 @@
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
 		D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeEntity.swift; sourceTree = "<group>"; };
 		D3D57DDB277EFD6600BCBF0C /* PracticeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailViewModel.swift; sourceTree = "<group>"; };
+		D3D62E8327887E6E00DCA027 /* ScheduleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCoordinator.swift; sourceTree = "<group>"; };
 		D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				D3D761822776C231004381E4 /* RegisterCoordinator.swift */,
 				D3D761842776C23C004381E4 /* LoginCoordinator.swift */,
 				D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */,
+				D3D62E8327887E6E00DCA027 /* ScheduleCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1275,6 +1278,7 @@
 				D38863F72768C06D00FC4F07 /* CircleSearchController.swift in Sources */,
 				D3886430276A191500FC4F07 /* NotificationCoordinator.swift in Sources */,
 				D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */,
+				D3D62E8427887E6E00DCA027 /* ScheduleCoordinator.swift in Sources */,
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
 				D3FF15C6277B3535006355EF /* KeyChainRepositry.swift in Sources */,
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,

@@ -57,15 +57,12 @@ class UserCoordinator: Coordinator, UserFlow {
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }
-    func toSchedule(_ vc: UIViewController,user: User?) {
+    func toSchedule(_ vc: UIViewController, user: User?) {
         guard let user = user else {
             return
         }
-        let controller = ScheduleController.init(nibName: "ScheduleController", bundle: nil)
-        let nav = UINavigationController(rootViewController: controller)
-        controller.viewModel = ScheduleViewModel(userAPI: UserService(), practiceAPI: PracticeServie(),user: user)
-        nav.modalPresentationStyle = .fullScreen
-        vc.present(nav, animated: true, completion: nil)
+        coordinator(to: ScheduleCoordinator(navigationController: UINavigationController(), viewModel: ScheduleViewModel(userAPI: UserService(), practiceAPI: PracticeServie(), user: user), vc: vc))
+       
     }
     func toApplyUser(user: User?) {
         let controller = ApplyFriendController.init(nibName: "ApplyFriendController", bundle: nil)
