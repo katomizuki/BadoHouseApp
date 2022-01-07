@@ -26,7 +26,7 @@ final class RegisterController: UIViewController {
     }()
     private let disposeBag = DisposeBag()
     private let viewModel = RegisterViewModel(authAPI: AuthService(),
-                                              firebaseAPI: FirebaseService())
+                                              userAPI: UserService())
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
