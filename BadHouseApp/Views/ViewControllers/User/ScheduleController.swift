@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 import RxSwift
 import RxCocoa
-final class ScheduleController: UIViewController {
+final class ScheduleController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var calendarView: FSCalendar!
     @IBOutlet private weak var practiceTableView: UITableView!
@@ -41,11 +41,17 @@ final class ScheduleController: UIViewController {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラーです", message:  "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
         
-        viewModel.outputs.practiceList.bind(to: practiceTableView.rx.items(cellIdentifier: SchduleCell.id, cellType: SchduleCell.self)) { row, item,cell in
+        viewModel.outputs.practiceList.bind(to: practiceTableView.rx.items(cellIdentifier: SchduleCell.id, cellType: SchduleCell.self)) { _, item, cell in
             cell.configure(item)
+        }.disposed(by: disposeBag)
+        
+        practiceTableView.rx.itemSelected.bind { indexPath in
+            let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
+            controller.viewModel = PracticeDetailViewModel(practice: self.viewModel.practiceList.value[indexPath.row], userAPI: UserService(), circleAPI: CircleService(), isModal: true)
+            self.navigationController?.pushViewController(controller, animated: true)
         }.disposed(by: disposeBag)
 
 
@@ -54,23 +60,7 @@ final class ScheduleController: UIViewController {
         dismiss(animated: true)
     }
 }
-// MARK: - UITableViewDelegate
-extension ScheduleController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-    }
-}
-// MARK: - UITableViewDataSource
-extension ScheduleController:UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SchduleCell.id, for: indexPath) as? SchduleCell else { fatalError() }
-        cell.delegate = self
-        return cell
-    }
-}
+
 // MARK: - SchduleCellDelegate
 extension ScheduleController: SchduleCellDelegate {
     func onTapTrashButton(_ cell: SchduleCell) {
