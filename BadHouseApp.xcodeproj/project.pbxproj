@@ -164,6 +164,7 @@
 		D3D62E8627891F4A00DCA027 /* Notification-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E8527891F4A00DCA027 /* Notification-Service.swift */; };
 		D3D62E88278920D300DCA027 /* NotificationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E87278920D300DCA027 /* NotificationEnum.swift */; };
 		D3D62E8A278921F500DCA027 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E89278921F500DCA027 /* Notification.swift */; };
+		D3D62E8C278925B600DCA027 /* SearchUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
 		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
 		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
@@ -390,6 +391,7 @@
 		D3D62E8527891F4A00DCA027 /* Notification-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification-Service.swift"; sourceTree = "<group>"; };
 		D3D62E87278920D300DCA027 /* NotificationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationEnum.swift; sourceTree = "<group>"; };
 		D3D62E89278921F500DCA027 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCoordinator.swift; sourceTree = "<group>"; };
 		D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				D3D761842776C23C004381E4 /* LoginCoordinator.swift */,
 				D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */,
 				D3D62E8327887E6E00DCA027 /* ScheduleCoordinator.swift */,
+				D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				D3FF15CF277D9733006355EF /* UpdateCircleController.swift in Sources */,
 				D301E386278467C80090CAF9 /* PreJoinController.swift in Sources */,
 				D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */,
+				D3D62E8C278925B600DCA027 /* SearchUserCoordinator.swift in Sources */,
 				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
 				D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */,

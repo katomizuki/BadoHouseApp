@@ -11,12 +11,16 @@ import RxRelay
 protocol UserDetailViewModelInputs {
     func willAppear()
     func fetchChatRoom(completion:@escaping(ChatRoom)->Void)
+    func applyFriend()
+    func notApplyedFriend()
 }
 protocol UserDetailViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var friendListRelay: BehaviorRelay<[User]> { get }
     var circleListRelay: BehaviorRelay<[Circle]> { get }
     var reload: PublishSubject<Void> { get }
+    var completed: PublishSubject<Void> { get }
+    var notApplyedCompleted: PublishSubject<Void> { get }
 }
 protocol UserDetailViewModelType {
     var inputs: UserDetailViewModelInputs { get }
@@ -29,6 +33,8 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var friendListRelay = BehaviorRelay<[User]>(value: [])
     var circleListRelay = BehaviorRelay<[Circle]>(value: [])
     var reload = PublishSubject<Void>()
+    var completed = PublishSubject<Void>()
+    var notApplyedCompleted = PublishSubject<Void>()
     var user: User
     var myData: User
     var userAPI: UserServiceProtocol
@@ -62,5 +68,19 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     }
     func fetchChatRoom(completion: @escaping (ChatRoom) -> Void) {
         userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
+    }
+    func applyFriend() {
+        ApplyService.postApply(user: myData, toUser: user) { result in
+            switch result {
+            case .success:
+                self.completed.onNext(())
+            case .failure:
+                self.isError.onNext(true)
+            }
+        }
+    }
+    func notApplyedFriend() {
+        ApplyService.notApplyFriend(uid: myData.uid, toUserId: user.uid)
+        notApplyedCompleted.onNext(())
     }
 }

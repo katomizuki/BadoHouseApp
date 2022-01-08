@@ -6,7 +6,7 @@ protocol SearchUserViewModelInputs {
 }
 protocol SearchUserViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
-    var usersSubject: PublishSubject<[User]> { get }
+    var usersRelay: BehaviorRelay<[User]> { get }
     var searchTextOutputs: PublishSubject<String> { get }
 }
 protocol SearchUserViewModelType {
@@ -17,18 +17,19 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
     var inputs: SearchUserViewModelInputs { return self }
     var outputs: SearchUserViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()
-    var usersSubject = PublishSubject<[User]>()
+    var usersRelay = BehaviorRelay<[User]>(value: [])
     var searchTextOutputs = PublishSubject<String>()
     var searchTextInput: AnyObserver<String> {
         return searchTextOutputs.asObserver()
     }
     private let disposeBag = DisposeBag()
-    
-    init(userAPI: UserServiceProtocol) {
+    let user: User
+    init(userAPI: UserServiceProtocol,user: User) {
+        self.user = user
         searchTextOutputs.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             userAPI.searchUser(text: text).subscribe { [weak self] users in
-                self?.usersSubject.onNext(users)
+                self?.usersRelay.accept(users)
             } onFailure: { [weak self] _ in
                 self?.isError.onNext(true)
             }.disposed(by: self.disposeBag)

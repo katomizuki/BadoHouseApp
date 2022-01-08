@@ -72,6 +72,9 @@
                                                     <rect key="frame" x="127.5" y="0.0" width="95.5" height="31"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="バド友申請"/>
+                                                    <connections>
+                                                        <action selector="didTapApplyFriendButton:" destination="-1" eventType="touchUpInside" id="JR7-h9-Nb5"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4R-Id-hFK">
                                                     <rect key="frame" x="233" y="0.0" width="47" height="31"/>

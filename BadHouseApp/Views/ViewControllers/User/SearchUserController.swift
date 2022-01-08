@@ -8,22 +8,26 @@
 import UIKit
 import RxSwift
 import SDWebImage
+protocol SearchUserFlow {
+    func toUserDetail(_ user: User,_ myData: User)
+}
 final class SearchUserController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var userTableView: UITableView!
-    private let viewModel = SearchUserViewModel(userAPI: UserService())
+    private let viewModel:SearchUserViewModel
+    var coordinator: SearchUserFlow?
     private let disposeBag = DisposeBag()
-    private var user: User
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupBinding()
     }
-    init(user:User) {
-        self.user = user
+    init(viewModel: SearchUserViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -39,15 +43,15 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
                 self?.viewModel.inputs.searchTextInput.onNext(text)
             }).disposed(by: disposeBag)
         
-        viewModel.outputs.usersSubject.bind(to: userTableView.rx.items(cellIdentifier: SearchUserCell.id, cellType: SearchUserCell.self)) {
+        viewModel.outputs.usersRelay.bind(to: userTableView.rx.items(cellIdentifier: SearchUserCell.id, cellType: SearchUserCell.self)) {
             _, item, cell in
             cell.configure(item)
             cell.delegate = self
         }.disposed(by: disposeBag)
         
-        userTableView.rx.itemSelected.asDriver().drive { [weak self] _ in
-            let controller = MainUserDetailController.init(nibName: "MainUserDetailController", bundle: nil)
-            self?.navigationController?.pushViewController(controller, animated: true)
+        userTableView.rx.itemSelected.asDriver().drive { [weak self] indexPath in
+            guard let self = self else { return }
+            self.coordinator?.toUserDetail(self.viewModel.outputs.usersRelay.value[indexPath.row],self.viewModel.user)
         }.disposed(by: disposeBag)
 
     }
@@ -55,9 +59,9 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
 }
 extension SearchUserController: SearchUserCellDelegate {
     func searchUserCellNotApply(_ user: User, cell: SearchUserCell) {
-        viewModel.notApplyFriend(user, myData: self.user)
+        viewModel.notApplyFriend(user, myData: viewModel.user)
     }
     func searchUserCellApply(_ user: User, cell: SearchUserCell) {
-        viewModel.applyFriend(user,myData: self.user)
+        viewModel.applyFriend(user, myData: viewModel.user)
     }
 }

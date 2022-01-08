@@ -11,10 +11,11 @@ class UserCoordinator: Coordinator, UserFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toSearchUser(user:User?) {
-        if let user = user {
-            let controller = SearchUserController.init(user: user)
-            navigationController.pushViewController(controller, animated: true)
+        guard let user = user else {
+            return
         }
+        let viewModel = SearchUserViewModel(userAPI: UserService() ,user: user)
+        coordinator(to: SearchUserCoordinator(navigationController: navigationController, viewModel: viewModel))
     }
     func toDetailUser(myData: User?, user: User?) {
         guard let user = user else { return }

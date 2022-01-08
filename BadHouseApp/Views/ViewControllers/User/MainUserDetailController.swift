@@ -86,25 +86,35 @@ protocol MainUserDetailFlow: AnyObject {
      }
      private func setupBinding() {
          
-         
          viewModel.friendListRelay.subscribe(onNext: { [weak self] users in
              self?.friendsButton.setTitle("バド友 \(users.count)人", for: .normal)
          }).disposed(by: disposeBag)
          
          circleCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
          
-         viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _,item ,cell in
+         viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _, item ,cell in
              cell.configure(item)
          }.disposed(by: disposeBag)
          
          circleCollectionView.rx.itemSelected.bind(onNext: {[weak self] indexPath in
              guard let self = self else { return }
-             self.coordinator?.toCircleDetail(myData:self.viewModel.myData,
-                                              circle:self.viewModel.circleListRelay.value[indexPath.row])
+             self.coordinator?.toCircleDetail(myData: self.viewModel.myData,
+                                              circle: self.viewModel.circleListRelay.value[indexPath.row])
          }).disposed(by: disposeBag)
          
          viewModel.outputs.reload.subscribe { [weak self] _ in
              self?.circleCollectionView.reloadData()
+         }.disposed(by: disposeBag)
+         
+         viewModel.outputs.completed.subscribe { [weak self] _ in
+             guard let self = self else { return }
+             self.applyFriendButton.setTitle("申請済み", for: .normal)
+             self.showCDAlert(title: "友だち申請しました", message: "", action: "OK", alertType: .success)
+         }.disposed(by: disposeBag)
+         
+         viewModel.outputs.notApplyedCompleted.subscribe { [weak self] _ in
+             self?.applyFriendButton.setTitle("バド友申請", for: .normal)
+             self?.showCDAlert(title: "申請を取り下げました", message: "", action: "OK", alertType: .success)
          }.disposed(by: disposeBag)
      }
   
@@ -124,6 +134,15 @@ protocol MainUserDetailFlow: AnyObject {
                                       chatId: chatRoom.id)
          }
      }
+     
+     @IBAction func didTapApplyFriendButton(_ sender: UIButton) {
+         if sender.titleLabel?.text == "バド友申請" {
+             viewModel.inputs.applyFriend()
+         } else {
+             viewModel.inputs.notApplyedFriend()
+         }
+     }
+     
      
  }
 extension MainUserDetailController: UICollectionViewDelegateFlowLayout {
