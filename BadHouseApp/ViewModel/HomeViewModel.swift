@@ -12,13 +12,13 @@ protocol HomeViewModelOutputs {
     var isAuth: PublishSubject<Void> { get }
     var isError: PublishSubject<Bool> { get }
     var practiceRelay: BehaviorRelay<[Practice]> { get }
-    var reload:PublishSubject<Void> { get }
+    var reload: PublishSubject<Void> { get }
 }
 protocol HomeViewModelType {
     var inputs: HomeViewModelInputs { get }
     var outputs: HomeViewModelOutputs { get }
 }
-final class HomeViewModel:HomeViewModelInputs, HomeViewModelOutputs, HomeViewModelType {
+final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewModelType {
     var isNetWorkError: PublishSubject<Void> = PublishSubject<Void>()
     var isAuth: PublishSubject<Void> = PublishSubject<Void>()
     var inputs: HomeViewModelInputs { return self }

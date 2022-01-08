@@ -55,7 +55,6 @@ protocol MainUserDetailFlow: AnyObject {
          self.viewModel = viewModel
          super.init(nibName: nil, bundle: nil)
      }
-     
      required init?(coder: NSCoder) {
          fatalError()
      }

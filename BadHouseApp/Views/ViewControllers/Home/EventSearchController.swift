@@ -7,11 +7,9 @@
 
 import UIKit
 import RxSwift
-protocol EventSearchFlow:AnyObject {
-    
-}
-protocol EventSearchControllerDelegate:AnyObject {
-    func eventSearchControllerDismiss(practices:[Practice], vc:EventSearchController)
+
+protocol EventSearchControllerDelegate: AnyObject {
+    func eventSearchControllerDismiss(practices:[Practice], vc: EventSearchController)
 }
 final class EventSearchController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -20,18 +18,17 @@ final class EventSearchController: UIViewController {
     @IBOutlet private weak var searchSelectionTableView: UITableView! {
         didSet { searchSelectionTableView.changeCorner(num: 8) }
     }
-    @IBOutlet private weak var startPicker:UIDatePicker! {
+    @IBOutlet private weak var startPicker: UIDatePicker! {
         didSet {
             startPicker.addTarget(self, action: #selector(changeStartPicker), for: .valueChanged)
         }
     }
-    @IBOutlet private weak var finishPicker:UIDatePicker! {
+    @IBOutlet private weak var finishPicker: UIDatePicker! {
         didSet {
             finishPicker.addTarget(self, action: #selector(changeFinishPicker), for: .valueChanged)
         }
     }
-    var coordinator: EventSearchFlow?
-    init(viewModel:PracticeSearchViewModel) {
+    init(viewModel: PracticeSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,6 +61,7 @@ final class EventSearchController: UIViewController {
         viewModel.inputs.changeStartPicker(date)
     }
     @objc private func didTapReloadButton() {
+        self.showCDAlert(title: "検索条件をクリアしました!", message:  "", action: "OK", alertType: .success)
         viewModel.inputs.refresh()
     }
     private func setupBinding() {
@@ -112,10 +110,8 @@ extension EventSearchController: UITableViewDataSource {
         configuration.text = SearchSelection(rawValue: indexPath.row)?.description
         cell.selectionStyle = .none
         if indexPath.row == 0 {
-            print(viewModel.outputs.selectedPlace)
             configuration.secondaryText = viewModel.outputs.selectedPlace
         } else if indexPath.row == 1 {
-            print(viewModel.outputs.selectedLevel)
             configuration.secondaryText = viewModel.outputs.selectedLevel
         }
         cell.contentConfiguration = configuration

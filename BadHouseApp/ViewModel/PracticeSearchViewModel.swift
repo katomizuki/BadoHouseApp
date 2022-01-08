@@ -40,10 +40,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         self.practices = practices
         self.fullPractices = practices
     }
-    func changeSelection(_ selection:SearchSelection, text: String) {
-        if practices.isEmpty {
-            practices = fullPractices
-        }
+    func changeSelection(_ selection: SearchSelection, text: String) {
         switch selection {
         case .place:
             self.selectedPlace = text
@@ -78,23 +75,18 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         return array
     }
     func changeStartPicker(_ date: Date) {
-        if practices.isEmpty {
-            practices = fullPractices
-        }
         let timeStamp = Timestamp(date: date)
         self.practices = self.practices.filter {
-            return timeStamp.compare($0.start) == .orderedAscending
+            timeStamp.compare($0.start) == .orderedAscending
         }
         navigationStriing.onNext("\(self.practices.count)件のヒット")
     }
     
     func changeFinishPicker(_ date: Date) {
-        if practices.isEmpty {
-            practices = fullPractices
-        }
         let timeStamp = Timestamp(date: date)
+        print(self.practices,"🌂")
         self.practices = self.practices.filter {
-            return timeStamp.compare($0.start) == .orderedDescending
+            timeStamp.compare($0.start) == .orderedDescending
         }
         navigationStriing.onNext("\(self.practices.count)件のヒット")
     }
