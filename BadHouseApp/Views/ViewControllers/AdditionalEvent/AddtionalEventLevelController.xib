@@ -190,7 +190,6 @@
                             </constraints>
                         </tableView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
                         <constraint firstItem="KXz-mg-BWA" firstAttribute="top" secondItem="ztx-WO-y1b" secondAttribute="top" constant="50" id="Urz-N7-ees"/>
                         <constraint firstItem="KXz-mg-BWA" firstAttribute="centerX" secondItem="ztx-WO-y1b" secondAttribute="centerX" id="n3u-pU-OJh"/>

@@ -117,7 +117,6 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTM-8n-ETQ">
                     <rect key="frame" x="0.0" y="465" width="375" height="202"/>
-                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="R5l-dC-vmG"/>

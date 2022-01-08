@@ -5,7 +5,7 @@ import RxRelay
 protocol HomeViewModelInputs {
     func didLoad()
     func willAppear()
-    func search(_ practices:[Practice])
+    func search(_ practices: [Practice])
     func refresh()
 }
 protocol HomeViewModelOutputs {

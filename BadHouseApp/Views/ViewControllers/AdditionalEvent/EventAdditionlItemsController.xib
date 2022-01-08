@@ -65,7 +65,6 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
                         <constraint firstItem="zvJ-O3-4WV" firstAttribute="leading" secondItem="Ce0-QZ-mQA" secondAttribute="leading" id="MpC-9g-PSu"/>
                         <constraint firstItem="zvJ-O3-4WV" firstAttribute="top" secondItem="Ce0-QZ-mQA" secondAttribute="top" id="QTR-U0-WDS"/>
@@ -96,9 +95,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
