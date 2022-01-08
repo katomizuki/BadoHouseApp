@@ -19,7 +19,7 @@ struct NotificationService: NotificationServiceProtocol {
     func getMyNotification(uid: String) -> Single<[Notification]> {
         var notifications = [Notification]()
         return Single.create { singleEvent -> Disposable in
-            Ref.NotificationRef.document(uid).collection("Notification").getDocuments { snapShot, error in
+            Ref.NotificationRef.document(uid).collection("Notification").order(by: "createdAt", descending: true).getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return

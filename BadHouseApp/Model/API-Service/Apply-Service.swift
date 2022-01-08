@@ -15,7 +15,7 @@ protocol ApplyServiceProtocol {
                friend: User,
                completion: @escaping(Result<Void, Error>) -> Void)
 }
-struct ApplyService:ApplyServiceProtocol {
+struct ApplyService: ApplyServiceProtocol {
     
     static func postApply(user: User,
                           toUser: User,
@@ -26,7 +26,7 @@ struct ApplyService:ApplyServiceProtocol {
                       "name": toUser.name,
                       "imageUrl": toUser.profileImageUrlString,
                       "createdAt": Timestamp(),
-                      "uid":user.uid]) { error in
+                      "uid": user.uid]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -35,7 +35,7 @@ struct ApplyService:ApplyServiceProtocol {
                     .collection("Users")
                     .document(user.uid).setData(["fromUserId": user.uid,
                                                  "name": user.name,
-                                                 "imageUrl" : user.profileImageUrlString,
+                                                 "imageUrl": user.profileImageUrlString,
                                                  "createdAt": Timestamp(),
                                                  "uid": toUser.uid]) { error in
                         if let error = error {
@@ -47,7 +47,7 @@ struct ApplyService:ApplyServiceProtocol {
                             "urlString": user.profileImageUrlString,
                             "notificationSelectionNumber": 0,
                             "titleText": user.name,
-                            "createdAt":Timestamp()]) { error in
+                            "createdAt": Timestamp()]) { error in
                                 if let error = error {
                                     completion(.failure(error))
                                     return
@@ -71,40 +71,30 @@ struct ApplyService:ApplyServiceProtocol {
     }
     
     func getApplyUser(user: User) -> Single<[Apply]> {
-        var applies = [Apply]()
         return Single.create { singleEvent -> Disposable in
             Ref.ApplyRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
                 }
-                if let snapShot = snapShot {
-                    snapShot.documents.forEach {
-                        let apply = Apply(dic: $0.data())
-                        applies.append(apply)
-                    }
-                    singleEvent(.success(applies))
-                }
+                guard let snapShot = snapShot else { return }
+                let applies = snapShot.documents.map { Apply(dic: $0.data()) }
+                singleEvent(.success(applies))
             }
             return Disposables.create()
         }
     }
     
     func getApplyedUser(user: User)->Single<[Applyed]> {
-        var applyeds = [Applyed]()
         return Single.create { singleEvent -> Disposable in
             Ref.ApplyedRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
                 }
-                if let snapShot = snapShot {
-                    snapShot.documents.forEach {
-                        let applyed = Applyed(dic: $0.data())
-                        applyeds.append(applyed)
-                    }
-                    singleEvent(.success(applyeds))
-                }
+                guard let snapShot = snapShot else { return }
+                let applyeds = snapShot.documents.map { Applyed(dic: $0.data()) }
+                singleEvent(.success(applyeds))
             }
             return Disposables.create()
         }
@@ -129,25 +119,24 @@ struct ApplyService:ApplyServiceProtocol {
                 "urlString": friend.profileImageUrlString,
                 "notificationSelectionNumber": 3,
                 "titleText": friend.name,
-                "createdAt":Timestamp()]) { error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                    NotificationService.postNotification(uid: friend.uid, dic: [
-                    "id": user.uid,
-                    "urlString": user.profileImageUrlString,
-                    "notificationSelectionNumber": 3,
-                    "titleText": user.name,
-                    "createdAt":Timestamp()]) { error in
+                "createdAt": Timestamp()]) { error in
                     if let error = error {
                         completion(.failure(error))
                         return
                     }
-                    completion(.success(()))
+                    NotificationService.postNotification(uid: friend.uid, dic: [
+                        "id": user.uid,
+                        "urlString": user.profileImageUrlString,
+                        "notificationSelectionNumber": 3,
+                        "titleText": user.name,
+                        "createdAt": Timestamp()]) { error in
+                            if let error = error {
+                                completion(.failure(error))
+                                return
+                            }
+                            completion(.success(()))
+                        }
                 }
-            }
         }
     }
 }
-

@@ -66,11 +66,7 @@ struct JoinService: JoinServiceProtocol {
                     return
                 }
                 guard let documents = snapShot?.documents else { return }
-                documents.forEach {
-                    let dic = $0.data()
-                    let prejoin = PreJoin(dic: dic)
-                    prejoins.append(prejoin)
-                }
+                prejoins = documents.map { PreJoin(dic: $0.data()) }
                 singleEvent(.success(prejoins))
             }
             return Disposables.create()
@@ -86,11 +82,7 @@ struct JoinService: JoinServiceProtocol {
                     return
                 }
                 guard let documents = snapShot?.documents else { return }
-                documents.forEach {
-                    let dic = $0.data()
-                    let prejoined = PreJoined(dic: dic)
-                    prejoineds.append(prejoined)
-                }
+                prejoineds = documents.map { PreJoined(dic: $0.data()) }
                 singleEvent(.success(prejoineds))
             }
             return Disposables.create()

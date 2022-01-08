@@ -21,17 +21,14 @@ struct PracticeServie: PracticeServieProtocol {
         Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id":id])
     }
     func getPractices() -> Single<[Practice]> {
-        var practices = [Practice]()
         return Single.create { singleEvent in
             Ref.PracticeRef.getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
                 }
-                snapShot?.documents.forEach({
-                    let practice = Practice(dic: $0.data())
-                    practices.append(practice)
-                })
+                guard let snapShot = snapShot else { return }
+                let practices = snapShot.documents.map { Practice(dic: $0.data()) }
                 singleEvent(.success(practices))
             }
             return Disposables.create()

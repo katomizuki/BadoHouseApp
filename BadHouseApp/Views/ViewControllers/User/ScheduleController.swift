@@ -18,8 +18,8 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var practiceTableView: UITableView!
     private let disposeBag = DisposeBag()
     private let viewModel: ScheduleViewModel
-    var coordinator:ScheduleFlow?
-    init(viewModel:ScheduleViewModel) {
+    var coordinator: ScheduleFlow?
+    init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,10 +31,15 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         setupTableView()
         setupNavigationBar()
         setupBinding()
+        setupCalendarView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear()
+    }
+    private func setupCalendarView() {
+        calendarView.delegate = self
+        calendarView.dataSource = self
     }
     private func setupTableView() {
         practiceTableView.register(SchduleCell.nib(), forCellReuseIdentifier: SchduleCell.id)
@@ -50,6 +55,7 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         
         viewModel.outputs.reload.subscribe { [weak self] _ in
             self?.practiceTableView.reloadData()
+            self?.calendarView.reloadData()
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
@@ -70,10 +76,21 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         dismiss(animated: true)
     }
 }
-
-// MARK: - SchduleCellDelegate
-extension ScheduleController: SchduleCellDelegate {
-    func onTapTrashButton(_ cell: SchduleCell) {
-        print(#function)
+extension ScheduleController: FSCalendarDelegate, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+        return viewModel.outputs.practiceList.value.filter {
+            let dateString = DateUtils.stringFromDate(date: date, format: "yyyy/MM/dd")
+            return DateUtils.stringFromDate(date: $0.start.dateValue(), format: "yyyy/MM/dd") == dateString
+        }.count
+    }
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        var color: UIColor?
+        viewModel.outputs.practiceList.value.forEach {
+            if DateUtils.stringFromDate(date: $0.start.dateValue(), format: "yyyy/MM/dd") == DateUtils.stringFromDate(date: date, format: "yyyy/MM/dd") {
+                color = .systemBlue
+            }
+        }
+        return color
     }
 }
