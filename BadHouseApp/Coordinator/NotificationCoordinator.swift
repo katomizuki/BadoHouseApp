@@ -3,7 +3,6 @@ import UIKit
 
 final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
     
-    
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

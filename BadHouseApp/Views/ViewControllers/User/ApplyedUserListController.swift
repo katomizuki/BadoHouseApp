@@ -1,11 +1,11 @@
 import UIKit
 import RxSwift
 
-final class ApplyedUserListController: UIViewController {
+final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: ApplyedUserListViewModel
-    init(viewModel:ApplyedUserListViewModel) {
+    init(viewModel: ApplyedUserListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -23,12 +23,12 @@ final class ApplyedUserListController: UIViewController {
         viewModel.willAppear()
     }
     private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.rowHeight = 60
         tableView.register(ApplyedUserListCell.nib(), forCellReuseIdentifier: ApplyedUserListCell.id)
     }
     private func setupBinding() {
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
         viewModel.outputs.reload.subscribe { [weak self] _ in
             self?.tableView.reloadData()
         }.disposed(by: disposeBag)
@@ -40,25 +40,20 @@ final class ApplyedUserListController: UIViewController {
         viewModel.outputs.completedFriend.subscribe(onNext: { [weak self] text in
             self?.showCDAlert(title: "\(text)さんとバド友になりました", message: "", action: "OK", alertType: .success)
         }).disposed(by: disposeBag)
+        
+        viewModel.outputs.applyedRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyedUserListCell.id, cellType: ApplyedUserListCell.self)) {
+            _, item, cell in
+            cell.delegate = self
+            cell.configure(item)
+        }.disposed(by: disposeBag)
+        
+        tableView.rx.itemDeleted.bind { indexPath in
+            self.viewModel.inputs.deleteFriends(self.viewModel.applyedRelay.value[indexPath.row])
+        }.disposed(by: disposeBag)
 
     }
 }
-extension ApplyedUserListController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ApplyedUserListCell.id, for: indexPath) as? ApplyedUserListCell else { return UITableViewCell() }
-        cell.delegate = self
-        cell.configure(applyed: viewModel.outputs.applyedSubject.value[indexPath.row])
-        return cell
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.outputs.applyedSubject.value.count
-    }
-}
-extension ApplyedUserListController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.inputs.deleteFriends(viewModel.applyedSubject.value[indexPath.row])
-    }
-}
+
 extension ApplyedUserListController: ApplyedUserListCellDelegate {
     func onTapPermissionButton(_ applyed: Applyed) {
         viewModel.inputs.makeFriends(applyed)

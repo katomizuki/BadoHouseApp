@@ -7,7 +7,7 @@ protocol ApplyedUserListViewModelInputs {
     func deleteFriends(_ applyed: Applyed)
 }
 protocol ApplyedUserListViewModelOutputs {
-    var applyedSubject: BehaviorRelay<[Applyed]> { get }
+    var applyedRelay: BehaviorRelay<[Applyed]> { get }
     var isError: PublishSubject<Bool> { get }
     var completedFriend: PublishSubject<String> { get }
     var reload: PublishSubject<Void> { get }
@@ -20,7 +20,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     
     var inputs: ApplyedUserListViewModelInputs { return self }
     var outputs: ApplyedUserListViewModelOutputs { return self }
-    var applyedSubject = BehaviorRelay<[Applyed]>(value: [])
+    var applyedRelay = BehaviorRelay<[Applyed]>(value: [])
     private let disposeBag = DisposeBag()
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
@@ -37,7 +37,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         applyAPI.getApplyedUser(user: user)
             .observe(on: MainScheduler.instance)
             .subscribe {[weak self] applyeds in
-            self?.applyedSubject.accept(applyeds)
+            self?.applyedRelay.accept(applyeds)
             self?.reload.onNext(())
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
@@ -47,10 +47,10 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     func makeFriends(_ applyed: Applyed) {
         ApplyService.notApplyFriend(uid: applyed.fromUserId,
                                     toUserId: user.uid)
-        let sbj = applyedSubject.value.filter {
+        let sbj = applyedRelay.value.filter {
             $0.fromUserId != applyed.fromUserId
         }
-        applyedSubject.accept(sbj)
+        applyedRelay.accept(sbj)
         reload.onNext(())
         UserService.getUserById(uid: applyed.fromUserId) { friend in
             self.applyAPI.match(user: self.user, friend: friend) { [weak self] result in
@@ -67,10 +67,10 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     
     func deleteFriends(_ applyed: Applyed) {
         ApplyService.notApplyFriend(uid: applyed.fromUserId, toUserId: user.uid)
-        let sbj = applyedSubject.value.filter {
+        let sbj = applyedRelay.value.filter {
             $0.fromUserId != applyed.fromUserId
         }
-        applyedSubject.accept(sbj)
+        applyedRelay.accept(sbj)
         reload.onNext(())
     }
     private func saveFriendsId(id: String) {

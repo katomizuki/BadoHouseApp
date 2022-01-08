@@ -11,7 +11,14 @@ import SDWebImage
 
 final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel: ApplyFriendsViewModel!
+    private let viewModel:ApplyFriendsViewModel
+    init(viewModel:ApplyFriendsViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()

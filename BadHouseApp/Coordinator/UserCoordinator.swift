@@ -14,30 +14,26 @@ class UserCoordinator: Coordinator, UserFlow {
         guard let user = user else {
             return
         }
-        let viewModel = SearchUserViewModel(userAPI: UserService() ,user: user)
-        coordinator(to: SearchUserCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: SearchUserCoordinator(navigationController: navigationController, viewModel: SearchUserViewModel(userAPI: UserService() ,user: user)))
     }
     func toDetailUser(myData: User?, user: User?) {
         guard let user = user else { return }
             guard let myData = myData else {
                 return
             }
-        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())
-            coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
        
     }
     func toDetailCircle(myData: User?, circle: Circle?) {
         guard let circle = circle else { return }
         guard let myData = myData else { return }
-        let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())))
     }
     func toSearchCircle(user:User?) {
         guard let user = user else {
             return
         }
-        let viewModel = SearchCircleViewModel(circleAPI: CircleService(), user: user)
-        coordinator(to: SearchCircleCoordinator(navigationController: navigationController,viewModel: viewModel))
+        coordinator(to: SearchCircleCoordinator(navigationController: navigationController,viewModel:  SearchCircleViewModel(circleAPI: CircleService(), user: user)))
     }
     func toMyPage(_ vc: UIViewController) {
         let controller = UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil)
@@ -66,16 +62,14 @@ class UserCoordinator: Coordinator, UserFlow {
        
     }
     func toApplyUser(user: User?) {
-        let controller = ApplyFriendController.init(nibName: "ApplyFriendController", bundle: nil)
         if let user = user {
-            controller.viewModel = ApplyFriendsViewModel(user: user, applyAPI: ApplyService())
+            navigationController.pushViewController( ApplyFriendController.init(viewModel: ApplyFriendsViewModel(user: user, applyAPI: ApplyService())), animated: true)
         }
-        navigationController.pushViewController(controller, animated: true)
+        
     }
     func toApplyedUser(user: User?) {
         if let user = user {
-            let controller = ApplyedUserListController.init(viewModel:  ApplyedUserListViewModel(applyAPI: ApplyService(), user: user))
-            navigationController.pushViewController(controller, animated: true)
+            navigationController.pushViewController(ApplyedUserListController.init(viewModel: ApplyedUserListViewModel(applyAPI: ApplyService(), user: user)), animated: true)
         }
     }
 }

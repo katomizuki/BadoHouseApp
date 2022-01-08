@@ -27,7 +27,7 @@ final class ApplyedUserListCell: UITableViewCell {
         }
     }
     
-    func configure(applyed:Applyed) {
+    func configure(_ applyed: Applyed) {
         self.applyed = applyed
         nameLabel.text = applyed.name
         userImageView.sd_setImage(with: applyed.url)
