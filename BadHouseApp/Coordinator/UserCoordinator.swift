@@ -73,10 +73,9 @@ class UserCoordinator: Coordinator, UserFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toApplyedUser(user: User?) {
-        let controller = ApplyedUserListController.init(nibName: "ApplyedUserListController", bundle: nil)
         if let user = user {
-            controller.viewModel = ApplyedUserListViewModel(applyAPI: ApplyService(), user: user)
+            let controller = ApplyedUserListController.init(viewModel:  ApplyedUserListViewModel(applyAPI: ApplyService(), user: user))
+            navigationController.pushViewController(controller, animated: true)
         }
-        navigationController.pushViewController(controller, animated: true)
     }
 }

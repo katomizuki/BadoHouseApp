@@ -46,7 +46,8 @@ struct ApplyService:ApplyServiceProtocol {
                             "id": user.uid,
                             "urlString": user.profileImageUrlString,
                             "notificationSelectionNumber": 0,
-                            "titleText": user.name]) { error in
+                            "titleText": user.name,
+                            "createdAt":Timestamp()]) { error in
                                 if let error = error {
                                     completion(.failure(error))
                                     return
@@ -127,7 +128,8 @@ struct ApplyService:ApplyServiceProtocol {
                 "id": friend.uid,
                 "urlString": friend.profileImageUrlString,
                 "notificationSelectionNumber": 3,
-                "titleText": friend.name]) { error in
+                "titleText": friend.name,
+                "createdAt":Timestamp()]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -136,7 +138,8 @@ struct ApplyService:ApplyServiceProtocol {
                     "id": user.uid,
                     "urlString": user.profileImageUrlString,
                     "notificationSelectionNumber": 3,
-                    "titleText": user.name]) { error in
+                    "titleText": user.name,
+                    "createdAt":Timestamp()]) { error in
                     if let error = error {
                         completion(.failure(error))
                         return

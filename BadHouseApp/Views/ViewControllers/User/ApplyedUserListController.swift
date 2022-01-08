@@ -4,7 +4,14 @@ import RxSwift
 final class ApplyedUserListController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel: ApplyedUserListViewModel!
+    private let viewModel: ApplyedUserListViewModel
+    init(viewModel:ApplyedUserListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()

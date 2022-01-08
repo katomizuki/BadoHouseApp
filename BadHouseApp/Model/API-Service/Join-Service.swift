@@ -45,7 +45,8 @@ struct JoinService: JoinServiceProtocol {
                             "notificationSelectionNumber": 1,
                             "titleText": user.name,
                             "practiceId": practice.id,
-                            "practiceTitle": practice.title]) { error in
+                            "practiceTitle": practice.title,
+                            "createdAt":Timestamp()]) { error in
                                 if let error = error {
                                     completion(.failure(error))
                                     return
@@ -107,7 +108,8 @@ struct JoinService: JoinServiceProtocol {
             "notificationSelectionNumber": 2,
             "titleText": myData.name,
             "practiceId": preJoined.id,
-            "practiceTitle": preJoined.practiceName]) { error in
+            "practiceTitle": preJoined.practiceName,
+            "createdAt":Timestamp()]) { error in
             if let error = error {
                 completion(error)
                 return
@@ -118,7 +120,8 @@ struct JoinService: JoinServiceProtocol {
                 "notificationSelectionNumber": 2,
                 "titleText": user.name,
                 "practiceId": preJoined.id,
-                "practiceTitle": preJoined.practiceName]) { error in
+                "practiceTitle": preJoined.practiceName,
+                "createdAt":Timestamp()]) { error in
                 if let error = error {
                     completion(error)
                     return

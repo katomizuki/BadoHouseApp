@@ -9,34 +9,31 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
         self.navigationController = navigationController
     }
     func start() {
-        let controller = CheckNotificationController.init(nibName: R.nib.checkNotificationController.name, bundle: nil)
-        controller.coordinator = self
+        guard let uid = AuthService.getUid() else { return }
+        UserService.getUserById(uid: uid) { user in
+            let viewModel = NotificationViewModel(user: user, notificationAPI: NotificationService())
+            let controller = CheckNotificationController.init(viewModel: viewModel)
+            controller.coordinator = self
+            self.navigationController.pushViewController(controller, animated: true)
+        }
+    }
+    func toUserDetail(_ myData: User, userId: String) {
+        UserService.getUserById(uid: userId) { user in
+            self.coordinator(to: UserDetailCoordinator(navigationController: self.navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
+        }
+    }
+    func toApplyedFriend(_ user: User) {
+        let controller = ApplyedUserListController.init(viewModel: ApplyedUserListViewModel(applyAPI: ApplyService(), user: user))
         navigationController.pushViewController(controller, animated: true)
     }
-    func toUserDetail() {
-//        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: <#UserDetailViewModel#>))
-    }
-    func toCircleDetail() {
-//        coordinator(to: CircleDetailCoordinator(navigationController: navigationController))
-    }
-    func toChat() {
-//        coordinator(to: ChatCoordinator(navigationController: navigationController))
-    }
-    func toPreJoin() {
-        let controller = PreJoinController.init(nibName: "PreJoinController", bundle: nil)
-        guard let uid = AuthService.getUid() else { return }
-        UserService.getUserById(uid: uid) { user in
-            controller.viewModel = PreJoinViewModel(joinAPI: JoinService(), user: user)
-            self.navigationController.pushViewController(controller, animated: true)
-        }
+    
+    func toPreJoin(_ user: User) {
+        let controller = PreJoinController.init(viewModel: PreJoinViewModel(joinAPI: JoinService(), user: user))
+        self.navigationController.pushViewController(controller, animated: true)
     }
     
-    func toPreJoined() {
-        let controller = PreJoinedListController.init(nibName: "PreJoinedListController", bundle: nil)
-        guard let uid = AuthService.getUid() else { return }
-        UserService.getUserById(uid: uid) { user in
-            controller.viewModel = PreJoinedViewModel(joinAPI: JoinService(), user: user)
-            self.navigationController.pushViewController(controller, animated: true)
-        }
+    func toPreJoined(_ user: User) {
+        let controller = PreJoinedListController.init(viewModel: PreJoinedViewModel(joinAPI: JoinService(), user: user))
+        self.navigationController.pushViewController(controller, animated: true)
     }
 }

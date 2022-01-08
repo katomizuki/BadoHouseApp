@@ -53,9 +53,6 @@
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
 		D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */; };
-		D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */; };
-		D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F96276F5D680052B820 /* PracticeDataSource.swift */; };
-		D3629F99276F5D790052B820 /* TalkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F98276F5D790052B820 /* TalkDataSource.swift */; };
 		D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9A276F5D940052B820 /* MyPageDataSource.swift */; };
 		D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */; };
 		D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */; };
@@ -277,9 +274,6 @@
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataSource.swift; sourceTree = "<group>"; };
-		D3629F96276F5D680052B820 /* PracticeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDataSource.swift; sourceTree = "<group>"; };
-		D3629F98276F5D790052B820 /* TalkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkDataSource.swift; sourceTree = "<group>"; };
 		D3629F9A276F5D940052B820 /* MyPageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDataSource.swift; sourceTree = "<group>"; };
 		D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -513,9 +507,6 @@
 		D31606E927657C02005FF41D /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				D3629F94276F5D5C0052B820 /* NotificationDataSource.swift */,
-				D3629F96276F5D680052B820 /* PracticeDataSource.swift */,
-				D3629F98276F5D790052B820 /* TalkDataSource.swift */,
 				D3629F9A276F5D940052B820 /* MyPageDataSource.swift */,
 			);
 			path = DataSource;
@@ -1157,7 +1148,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3629F99276F5D790052B820 /* TalkDataSource.swift in Sources */,
 				D3886422276A0A6900FC4F07 /* Coordinator.swift in Sources */,
 				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
@@ -1220,7 +1210,6 @@
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D3FF15D6277DA680006355EF /* UpdateCircleViewModel.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
-				D3629F95276F5D5C0052B820 /* NotificationDataSource.swift in Sources */,
 				D3FF15CC277D46C0006355EF /* CircleDetailViewModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */,
@@ -1310,7 +1299,6 @@
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
 				D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */,
-				D3629F97276F5D680052B820 /* PracticeDataSource.swift in Sources */,
 				D3FF15BD277AF45F006355EF /* ApplyedUserListViewModel.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,

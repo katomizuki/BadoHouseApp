@@ -10,9 +10,16 @@ import RxSwift
 import RxCocoa
 
 class PreJoinController: UIViewController, UIScrollViewDelegate {
-    var viewModel:PreJoinViewModel!
+    private let viewModel:PreJoinViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
+    init(viewModel:PreJoinViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(PreJoinCell.nib(), forCellReuseIdentifier: PreJoinCell.id)

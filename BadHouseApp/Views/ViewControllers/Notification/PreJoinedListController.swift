@@ -11,7 +11,14 @@ import RxSwift
 final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel:PreJoinedViewModel!
+    private let viewModel:PreJoinedViewModel
+    init(viewModel: PreJoinedViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
