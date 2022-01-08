@@ -5,8 +5,8 @@
 //  Created by ミズキ on 2022/01/08.
 //
 
-enum NotificationEnum:Int,CaseIterable {
-    case applyed,prejoined,permissionJoin,permissionFriend
+enum NotificationEnum: Int, CaseIterable {
+    case applyed, prejoined, permissionJoin, permissionFriend
     var description:String {
         switch self {
         case .applyed: return "さんから友だち申請がきました"

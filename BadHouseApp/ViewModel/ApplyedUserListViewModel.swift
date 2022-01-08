@@ -52,13 +52,15 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         }
         applyedSubject.accept(sbj)
         reload.onNext(())
-        applyAPI.match(uid: user.uid, friendId: applyed.fromUserId) { [weak self] result in
-            switch result {
-            case .success:
-                self?.completedFriend.onNext(applyed.name)
-                self?.saveFriendsId(id: applyed.fromUserId)
-            case .failure:
-                self?.isError.onNext(true)
+        UserService.getUserById(uid: applyed.fromUserId) { friend in
+            self.applyAPI.match(user: self.user, friend: friend) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.completedFriend.onNext(applyed.name)
+                    self?.saveFriendsId(id: applyed.fromUserId)
+                case .failure:
+                    self?.isError.onNext(true)
+                }
             }
         }
     }
@@ -73,7 +75,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     }
     private func saveFriendsId(id: String) {
         if UserDefaults.standard.object(forKey: "friends") != nil {
-            var array:[String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
             UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "friends")
         } else {
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: "friends")

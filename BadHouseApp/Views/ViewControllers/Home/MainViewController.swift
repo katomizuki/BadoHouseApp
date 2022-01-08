@@ -125,8 +125,14 @@ extension MainViewController: CLLocationManagerDelegate {
     }
 }
 extension MainViewController: EventInfoCellDelegate {
-    func didTapBlockButton(_ cell: EventInfoCell) {
-        present(AlertProvider.postAlertVC(), animated: true)
+    func didTapBlockButton(_ cell: EventInfoCell,practice: Practice) {
+        let alertVC = AlertProvider.postAlertVC(practice) { error in
+            if error != nil {
+                self.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .error)
+            }
+            self.showCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
+        }
+        present(alertVC, animated: true)
     }
 }
 extension MainViewController: EventSearchControllerDelegate {

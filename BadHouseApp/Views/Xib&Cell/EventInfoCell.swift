@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EventInfoCellDelegate: AnyObject {
-    func didTapBlockButton(_ cell: EventInfoCell)
+    func didTapBlockButton(_ cell: EventInfoCell,practice: Practice)
 }
 final class EventInfoCell: UICollectionViewCell {
     // MARK: - Properties
@@ -32,6 +32,7 @@ final class EventInfoCell: UICollectionViewCell {
         }
     }
     weak var delegate: EventInfoCellDelegate?
+    var practice:Practice?
     // MARK: - LifeCycle
     static let id = String(describing: self)
     
@@ -42,6 +43,7 @@ final class EventInfoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     func configure(_ practice: Practice) {
+        self.practice = practice
         teamLabel.text = practice.circleName
         teamImage.sd_setImage(with: practice.mainUrl)
         userImageView.sd_setImage(with: practice.circleUrl)
@@ -50,6 +52,9 @@ final class EventInfoCell: UICollectionViewCell {
         timeLabel.text = "時間  \(practice.startTimeSring)"
     }
     @IBAction private func didTapAlertButton(_ sender: Any) {
-        self.delegate?.didTapBlockButton(self)
+        guard let practice = practice else {
+            return
+        }
+        self.delegate?.didTapBlockButton(self,practice: practice)
     }
 }

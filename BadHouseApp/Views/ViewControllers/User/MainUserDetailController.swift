@@ -124,7 +124,14 @@ protocol MainUserDetailFlow: AnyObject {
   
     // MARK: - Selector
      @objc private func didTapExpandedMenu() {
-         present(AlertProvider.makeAlertVC(), animated: true)
+         let alertVC = AlertProvider.makeAlertVC(viewModel.user) { [weak self] error in
+             if error != nil {
+                 self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .error)
+                 return
+             }
+             self?.showCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
+         }
+         present(alertVC, animated: true)
      }
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {

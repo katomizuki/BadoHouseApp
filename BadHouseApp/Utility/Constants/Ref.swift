@@ -8,7 +8,7 @@ struct Ref {
     static let TeamRef = Firestore.firestore().collection("Teams")
     static let StorageTeamImageRef = Storage.storage().reference().child("Team/Image")
     static let StorageEventImageRef = Storage.storage().reference().child("Event/Image")
-    static let BlockRef = Firestore.firestore().collection("Block")
+    static let ReportRef = Firestore.firestore().collection("Report")
     static let ApplyRef = Firestore.firestore().collection("Apply")
     static let ApplyedRef = Firestore.firestore().collection("Applyed")
     static let MatchRef = Firestore.firestore().collection("Match")
@@ -18,4 +18,5 @@ struct Ref {
     static let PreJoinedRef = Firestore.firestore().collection("PreJoined")
     static let JoinRef = Firestore.firestore().collection("Join")
     static let NotificationRef = Firestore.firestore().collection("Notification")
+    
 }
