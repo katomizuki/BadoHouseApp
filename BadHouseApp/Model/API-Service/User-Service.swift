@@ -247,8 +247,8 @@ struct UserService: UserServiceProtocol {
     }
     
     func updateChatRoom(user:User,myData:User,message:String) {
-        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).updateData(["latestTime": Timestamp() ,"latestMessage": message])
-        Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).updateData(["latestTime": Timestamp() ,"latestMessage": message])
+        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).updateData(["latestTime": Timestamp(), "latestMessage": message])
+        Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).updateData(["latestTime": Timestamp(), "latestMessage": message])
     }
     func getMyJoinPractice(user:User)->Single<[Practice]> {
         var practices = [Practice]()

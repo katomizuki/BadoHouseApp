@@ -25,6 +25,7 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
         setupCollectionView()
         setupNavigationBar()
         setupBinding()
+        navigationItem.backButtonDisplayMode = .minimal
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
