@@ -22,7 +22,7 @@ class UserCoordinator: Coordinator, UserFlow {
             guard let myData = myData else {
                 return
             }
-            let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
+        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())
             coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
        
     }

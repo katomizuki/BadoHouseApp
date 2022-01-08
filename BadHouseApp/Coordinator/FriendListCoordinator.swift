@@ -20,7 +20,7 @@ final class FriendListCoordinator:Coordinator, FriendListFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toUserDetail(myData:User, user:User) {
-        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
+        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())
         coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
     }
 }

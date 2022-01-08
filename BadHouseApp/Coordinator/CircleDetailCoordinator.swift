@@ -24,8 +24,7 @@ final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
         guard let user = user else {
             return
         }
-        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService())
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
     }
     func toInvite(circle: Circle, myData: User) {
         let controller = AddtionalMemberController.init(nibName: "AddtionalMemberController", bundle: nil)
@@ -33,7 +32,6 @@ final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toUpdate(circle: Circle) {
-        let viewModel = UpdateCircleViewModel(circleAPI: CircleService(), circle: circle)
-        coordinator(to: UpdateCircleCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: UpdateCircleCoordinator(navigationController: navigationController, viewModel: UpdateCircleViewModel(circleAPI: CircleService(), circle: circle)))
     }
 }

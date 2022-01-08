@@ -86,7 +86,11 @@ protocol MainUserDetailFlow: AnyObject {
      }
      private func setupBinding() {
          
-         viewModel.friendListRelay.subscribe(onNext: { [weak self] users in
+         viewModel.outputs.applyButtonString.subscribe {[weak self] text in
+             self?.applyFriendButton.setTitle(text, for: .normal)
+         }.disposed(by: disposeBag)
+
+         viewModel.outputs.friendListRelay.subscribe(onNext: { [weak self] users in
              self?.friendsButton.setTitle("バド友 \(users.count)人", for: .normal)
          }).disposed(by: disposeBag)
          
@@ -142,8 +146,6 @@ protocol MainUserDetailFlow: AnyObject {
              viewModel.inputs.notApplyedFriend()
          }
      }
-     
-     
  }
 extension MainUserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

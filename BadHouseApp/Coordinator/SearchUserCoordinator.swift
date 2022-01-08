@@ -20,6 +20,6 @@ final class SearchUserCoordinator:Coordinator,SearchUserFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toUserDetail(_ user: User,_ myData: User) {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService())))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
     }
 }
