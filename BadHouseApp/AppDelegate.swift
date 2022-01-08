@@ -20,14 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
-//    //　追加
-//    func application(_ application : UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//        return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
-//    }
-//    //　追加
-//    func applicationDidBecomeActive(_ application: UIApplication) {
-//        AppEvents.activateApp()
-//    }
+
     // MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="BadHouseApp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="BadHouseApp" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ki1-Oi-sGq" id="4Bp-rr-qIg"/>
                 <outlet property="view" destination="fyE-R2-FFo" id="DI0-VA-CTU"/>

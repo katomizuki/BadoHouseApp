@@ -111,10 +111,10 @@ final class AdditionalEventElementController: UIViewController {
 // MARK: - UIPickerViewDelegate
 extension AdditionalEventElementController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        moneyTextField.text = Constants.Data.moneyArray[row]
+        moneyTextField.text = R.array.moneyArray[row]
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Constants.Data.moneyArray[row]
+        return R.array.moneyArray[row]
     }
 }
 // MARK: - UIPickerViewDataSource
@@ -123,7 +123,7 @@ extension AdditionalEventElementController: UIPickerViewDataSource {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Constants.Data.moneyArray.count
+        return R.array.moneyArray.count
     }
 }
 extension AdditionalEventElementController: AddtionalPlaceControllerDelegate {

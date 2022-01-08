@@ -84,7 +84,6 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     
     func changeFinishPicker(_ date: Date) {
         let timeStamp = Timestamp(date: date)
-        print(self.practices,"🌂")
         self.practices = self.practices.filter {
             timeStamp.compare($0.start) == .orderedDescending
         }

@@ -39,11 +39,11 @@ final class MyPageInfoPopoverController: UIViewController {
         case UserInfoSelection.gender:
             cellArray = Gender.genderArray
         case UserInfoSelection.badmintonTime:
-            cellArray = Constants.Data.yearArray
+            cellArray = R.array.yearArray
         case UserInfoSelection.place:
             cellArray = Place.placeArray
         case UserInfoSelection.age:
-            cellArray = Constants.Data.ageArray
+            cellArray = R.array.ageArray
         default:
             break
         }

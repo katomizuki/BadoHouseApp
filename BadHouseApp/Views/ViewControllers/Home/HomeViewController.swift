@@ -6,19 +6,19 @@ import CoreLocation
 import MapKit
 import UserNotifications
 import CDAlertView
-protocol MainFlow: AnyObject {
+protocol HomeFlow: AnyObject {
     func toMap(practices:[Practice], lat: Double, lon: Double)
     func toMakeEvent()
-    func toDetailSearch(_ vc: MainViewController, practices:[Practice])
+    func toDetailSearch(_ vc: HomeViewController, practices:[Practice])
     func toPracticeDetail(_ practice:Practice)
     func toAuthentication(_ vc: UIViewController)
 }
-final class MainViewController: UIViewController {
+final class HomeViewController: UIViewController {
     // MARK: - Properties
     private var locationManager: CLLocationManager!
     private var (myLatitude, myLongitude) = (Double(), Double())
     private let disposeBag = DisposeBag()
-    var coordinator: MainFlow?
+    var coordinator: HomeFlow?
     private let viewModel = HomeViewModel(practiceAPI: PracticeServie())
     @IBOutlet private weak var collectionView: UICollectionView!
     // MARK: - LifeCycle
@@ -43,11 +43,12 @@ final class MainViewController: UIViewController {
                                                  style: .plain,
                                                  target: self,
                                                  action: #selector(didTapDetailSearchButton))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapRefreshButton))
         let makeEventButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"),
                                               style: .plain,
                                               target: self,
                                               action: #selector(didTapMakeEventButton))
-        navigationItem.rightBarButtonItems = [detailSearchButton, mapButton]
+        navigationItem.rightBarButtonItems = [refreshButton, detailSearchButton, mapButton]
         navigationItem.leftBarButtonItem = makeEventButton
         navigationItem.leftBarButtonItem?.tintColor = .systemBlue
         navigationItem.rightBarButtonItem?.tintColor = .systemBlue
@@ -113,9 +114,15 @@ final class MainViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
+    @objc private func didTapRefreshButton() {
+        viewModel.inputs.refresh()
+    }
+    
+
+    
 }
 // MARK: - CLLOcationManagerDelegate
-extension MainViewController: CLLocationManagerDelegate {
+extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         guard let latitude = location?.coordinate.latitude else { return }
@@ -124,7 +131,7 @@ extension MainViewController: CLLocationManagerDelegate {
         myLongitude = longitude
     }
 }
-extension MainViewController: EventInfoCellDelegate {
+extension HomeViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell, practice: Practice) {
         let alertVC = AlertProvider.postAlertVC(practice) { error in
             if error != nil {
@@ -135,8 +142,8 @@ extension MainViewController: EventInfoCellDelegate {
         present(alertVC, animated: true)
     }
 }
-extension MainViewController: EventSearchControllerDelegate {
-    func eventSearchControllerDismiss(practices: [Practice], vc: EventSearchController) {
+extension HomeViewController: PracticeSearchControllerDelegate {
+    func eventSearchControllerDismiss(practices: [Practice], vc: PracticeSearchController) {
         vc.dismiss(animated: true)
         viewModel.inputs.search(practices)
     }

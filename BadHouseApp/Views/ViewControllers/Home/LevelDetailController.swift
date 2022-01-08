@@ -13,7 +13,7 @@ final class LevelDetailController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.text = Constants.Data.levelSentence[5]
+        textView.text = R.array.levelSentence[5]
     }
     // MARK: - IBAction
     @IBAction private func back(_ sender: Any) {

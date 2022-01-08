@@ -8,13 +8,13 @@
 import UIKit
 import RxSwift
 
-protocol EventSearchControllerDelegate: AnyObject {
-    func eventSearchControllerDismiss(practices:[Practice], vc: EventSearchController)
+protocol PracticeSearchControllerDelegate: AnyObject {
+    func eventSearchControllerDismiss(practices:[Practice], vc: PracticeSearchController)
 }
-final class EventSearchController: UIViewController {
+final class PracticeSearchController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: PracticeSearchViewModel
-    weak var delegate: EventSearchControllerDelegate?
+    weak var delegate: PracticeSearchControllerDelegate?
     @IBOutlet private weak var searchSelectionTableView: UITableView! {
         didSet { searchSelectionTableView.changeCorner(num: 8) }
     }
@@ -79,7 +79,7 @@ final class EventSearchController: UIViewController {
         searchSelectionTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
     }
 }
-extension EventSearchController: UITableViewDelegate {
+extension PracticeSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return }
@@ -99,7 +99,7 @@ extension EventSearchController: UITableViewDelegate {
         }
     }
 }
-extension EventSearchController: UITableViewDataSource {
+extension PracticeSearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SearchSelection.allCases.count
     }
@@ -119,12 +119,12 @@ extension EventSearchController: UITableViewDataSource {
     }
     
 }
-extension EventSearchController:UIPopoverPresentationControllerDelegate {
+extension PracticeSearchController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
-extension EventSearchController: SearchSelectionControllerDelegate {
+extension PracticeSearchController: SearchSelectionControllerDelegate {
     func searchSelectionControllerDismiss(vc: SearchSelectionController, selection: SearchSelection, text: String) {
         vc.dismiss(animated: true)
         viewModel.inputs.changeSelection(selection, text: text)

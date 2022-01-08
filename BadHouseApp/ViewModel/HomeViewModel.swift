@@ -6,6 +6,7 @@ protocol HomeViewModelInputs {
     func didLoad()
     func willAppear()
     func search(_ practices:[Practice])
+    func refresh()
 }
 protocol HomeViewModelOutputs {
     var isNetWorkError: PublishSubject<Void> { get }
@@ -31,12 +32,7 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     
     init(practiceAPI: PracticeServieProtocol) {
         self.practiceAPI = practiceAPI
-        practiceAPI.getPractices().subscribe { [weak self] practices in
-            self?.practiceRelay.accept(practices)
-        } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
-        }.disposed(by: disposeBag)
-
+        fetchPractices()
     }
     func didLoad() {
         if let uid =  Auth.auth().currentUser?.uid {
@@ -53,5 +49,16 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     }
     func search(_ practices: [Practice]) {
         practiceRelay.accept(practices)
+    }
+    func refresh() {
+        fetchPractices()
+    }
+    private func fetchPractices() {
+        practiceAPI.getPractices().subscribe { [weak self] practices in
+            self?.practiceRelay.accept(practices)
+            self?.reload.onNext(())
+        } onFailure: { [weak self] _ in
+            self?.isError.onNext(true)
+        }.disposed(by: disposeBag)
     }
 }

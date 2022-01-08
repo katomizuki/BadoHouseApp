@@ -4,7 +4,7 @@ final class AppExplainController: UIViewController {
 // MARK: - Properties
     private let explainLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.appName
+        label.text = R.appName
         label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .label
         return label

@@ -22,9 +22,9 @@ final class MyPageDetailCoordinator:Coordinator,UserPageFlow {
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         viewController.present(nav, animated: true)
+
     }
     func toMyLevel() {
-        
     }
     func toDismiss() {
         

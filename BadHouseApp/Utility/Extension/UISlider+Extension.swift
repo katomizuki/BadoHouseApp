@@ -44,34 +44,34 @@ extension UISlider {
     func getLevelSentence(_ level:Double) -> String {
         var text = String()
         if case 0..<0.1 = level {
-            text = Constants.Data.levelSentence[0]
+            text = R.array.levelSentence[0]
         }
         if case 0.1..<0.2 = level {
-            text = Constants.Data.levelSentence[1]
+            text = R.array.levelSentence[1]
         }
         if case 0.2..<0.3 = level {
-            text = Constants.Data.levelSentence[2]
+            text = R.array.levelSentence[2]
         }
         if case 0.3..<0.4 = level {
-            text = Constants.Data.levelSentence[3]
+            text = R.array.levelSentence[3]
         }
         if case 0.4..<0.5 = level {
-            text = Constants.Data.levelSentence[4]
+            text = R.array.levelSentence[4]
         }
         if case 0.5..<0.6 = level {
-            text = Constants.Data.levelSentence[5]
+            text = R.array.levelSentence[5]
         }
         if case 0.6..<0.7 = level {
-            text = Constants.Data.levelSentence[6]
+            text = R.array.levelSentence[6]
         }
         if case 0.7..<0.8 = level {
-            text = Constants.Data.levelSentence[7]
+            text = R.array.levelSentence[7]
         }
         if case 0.8..<0.9 = level {
-            text = Constants.Data.levelSentence[8]
+            text = R.array.levelSentence[8]
         }
         if case 0.9..<1.0 = level {
-            text = Constants.Data.levelSentence[9]
+            text = R.array.levelSentence[9]
         }
         return text
     }

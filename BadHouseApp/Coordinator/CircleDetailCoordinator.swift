@@ -10,7 +10,7 @@ import UIKit
 final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
     let navigationController:UINavigationController
     let viewModel:CircleDetailViewModel
-    init(navigationController:UINavigationController,viewModel:CircleDetailViewModel) {
+    init(navigationController: UINavigationController,viewModel: CircleDetailViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }

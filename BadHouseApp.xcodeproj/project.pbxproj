@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,8 +35,8 @@
 		D316072B276761EE005FF41D /* AdditionalEventTitleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */; };
 		D316072E276764F9005FF41D /* MapListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316072C276764F9005FF41D /* MapListController.swift */; };
 		D316072F276764F9005FF41D /* MapListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316072D276764F9005FF41D /* MapListController.xib */; };
-		D316073627676BF5005FF41D /* EventSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316073427676BF5005FF41D /* EventSearchController.swift */; };
-		D316073727676BF5005FF41D /* EventSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* EventSearchController.xib */; };
+		D316073627676BF5005FF41D /* PracticeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316073427676BF5005FF41D /* PracticeSearchController.swift */; };
+		D316073727676BF5005FF41D /* PracticeSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* PracticeSearchController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
@@ -54,7 +54,6 @@
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
 		D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */; };
 		D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9A276F5D940052B820 /* MyPageDataSource.swift */; };
-		D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */; };
 		D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */; };
 		D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */; };
 		D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */; };
@@ -104,8 +103,8 @@
 		D388643A276A1B5300FC4F07 /* UserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886438276A1B5300FC4F07 /* UserController.xib */; };
 		D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388643B276A1F8000FC4F07 /* TalkViewController.swift */; };
 		D388643E276A1F8000FC4F07 /* TalkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D388643C276A1F8000FC4F07 /* TalkViewController.xib */; };
-		D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886443276A214B00FC4F07 /* MainViewController.swift */; };
-		D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* MainViewController.xib */; };
+		D3886445276A214B00FC4F07 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3886443276A214B00FC4F07 /* HomeViewController.swift */; };
+		D3886446276A214B00FC4F07 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* HomeViewController.xib */; };
 		D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */; };
 		D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */; };
 		D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */; };
@@ -139,7 +138,6 @@
 		D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CFE274A322700253933 /* UserInfoEnum.swift */; };
 		D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52726E0525100C53780 /* AppDelegate.swift */; };
 		D3BDB52A26E0525100C53780 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB52926E0525100C53780 /* SceneDelegate.swift */; };
-		D3BDB54626E055C900C53780 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB54526E055C900C53780 /* Constants.swift */; };
 		D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */; };
 		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
@@ -256,8 +254,8 @@
 		D3160729276761EE005FF41D /* AdditionalEventTitleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalEventTitleController.xib; sourceTree = "<group>"; };
 		D316072C276764F9005FF41D /* MapListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListController.swift; sourceTree = "<group>"; };
 		D316072D276764F9005FF41D /* MapListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapListController.xib; sourceTree = "<group>"; };
-		D316073427676BF5005FF41D /* EventSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchController.swift; sourceTree = "<group>"; };
-		D316073527676BF5005FF41D /* EventSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSearchController.xib; sourceTree = "<group>"; };
+		D316073427676BF5005FF41D /* PracticeSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchController.swift; sourceTree = "<group>"; };
+		D316073527676BF5005FF41D /* PracticeSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeSearchController.xib; sourceTree = "<group>"; };
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3629F9A276F5D940052B820 /* MyPageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDataSource.swift; sourceTree = "<group>"; };
-		D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleCoordinator.swift; sourceTree = "<group>"; };
@@ -325,8 +322,8 @@
 		D3886438276A1B5300FC4F07 /* UserController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserController.xib; sourceTree = "<group>"; };
 		D388643B276A1F8000FC4F07 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		D388643C276A1F8000FC4F07 /* TalkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkViewController.xib; sourceTree = "<group>"; };
-		D3886443276A214B00FC4F07 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		D3886444276A214B00FC4F07 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		D3886443276A214B00FC4F07 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D3886444276A214B00FC4F07 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsCoordinator.swift; sourceTree = "<group>"; };
@@ -362,7 +359,6 @@
 		D3BDB52926E0525100C53780 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D3BDB53026E0525200C53780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3BDB53526E0525200C53780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3BDB54526E055C900C53780 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3BDB55226E05E7A00C53780 /* Anchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anchor+Extension.swift"; sourceTree = "<group>"; };
 		D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		D3BDB55F26E0AC9C00C53780 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
@@ -480,7 +476,6 @@
 				D3886431276A1A5F00FC4F07 /* UserCoordinator.swift */,
 				D3886433276A1A7000FC4F07 /* TalkCoordinator.swift */,
 				D3886435276A1A7E00FC4F07 /* HomeCoordinator.swift */,
-				D3629F9C276F5DDB0052B820 /* CalendarCoordinator.swift */,
 				D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */,
 				D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */,
 				D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */,
@@ -649,12 +644,12 @@
 				D31606EF27657FAC005FF41D /* LevelDetailController.xib */,
 				D316072C276764F9005FF41D /* MapListController.swift */,
 				D316072D276764F9005FF41D /* MapListController.xib */,
-				D316073427676BF5005FF41D /* EventSearchController.swift */,
-				D316073527676BF5005FF41D /* EventSearchController.xib */,
+				D316073427676BF5005FF41D /* PracticeSearchController.swift */,
+				D316073527676BF5005FF41D /* PracticeSearchController.xib */,
 				D3886411276A03E000FC4F07 /* PracticeDetailController.swift */,
 				D3886412276A03E000FC4F07 /* PracticeDetailController.xib */,
-				D3886443276A214B00FC4F07 /* MainViewController.swift */,
-				D3886444276A214B00FC4F07 /* MainViewController.xib */,
+				D3886443276A214B00FC4F07 /* HomeViewController.swift */,
+				D3886444276A214B00FC4F07 /* HomeViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -705,15 +700,6 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		D3B72CE8274A2DD000253933 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
-				D3BDB54526E055C900C53780 /* Constants.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		D3B72CE9274A2DD900253933 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +707,7 @@
 				D30B793B2700A5940086456E /* NotificationUtil.swift */,
 				D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */,
 				D3C1BFF52775A41400C6C761 /* AlertProvider.swift */,
+				D3BDB55F26E0AC9C00C53780 /* Ref.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -787,7 +774,6 @@
 			isa = PBXGroup;
 			children = (
 				D3B72CE9274A2DD900253933 /* Util */,
-				D3B72CE8274A2DD000253933 /* Constants */,
 				D3B72CE7274A2DC100253933 /* Enum */,
 				D3BDB54E26E05D9500C53780 /* Extension */,
 			);
@@ -975,11 +961,11 @@
 				D38863E82768B49700FC4F07 /* InviteToCircleController.xib in Resources */,
 				D3FF15E2277E7D4B006355EF /* BlockListController.xib in Resources */,
 				D388641C276A05AF00FC4F07 /* RegisterController.xib in Resources */,
-				D3886446276A214B00FC4F07 /* MainViewController.xib in Resources */,
+				D3886446276A214B00FC4F07 /* HomeViewController.xib in Resources */,
 				D301E395278478D40090CAF9 /* PreJoinCell.xib in Resources */,
 				D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */,
 				D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */,
-				D316073727676BF5005FF41D /* EventSearchController.xib in Resources */,
+				D316073727676BF5005FF41D /* PracticeSearchController.xib in Resources */,
 				D3C1BFF4277542E400C6C761 /* SearchUserCell.xib in Resources */,
 				D3FF15BB277AF3C6006355EF /* ApplyedUserListController.xib in Resources */,
 				D3F2459F2775F4140030DA1B /* ScheduleController.xib in Resources */,
@@ -1085,6 +1071,7 @@
 		D39F0AA42771536800580708 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
+			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
 			files = (
 			);
 			inputFileListPaths = (
@@ -1181,7 +1168,7 @@
 				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
 				D3886439276A1B5300FC4F07 /* UserController.swift in Sources */,
 				D3FF15CA277D3C03006355EF /* FriendsListViewModel.swift in Sources */,
-				D316073627676BF5005FF41D /* EventSearchController.swift in Sources */,
+				D316073627676BF5005FF41D /* PracticeSearchController.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */,
 				D3B72CF1274A2EAA00253933 /* UIImageView+Extenstion.swift in Sources */,
 				D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */,
@@ -1195,7 +1182,6 @@
 				D3886436276A1A7E00FC4F07 /* HomeCoordinator.swift in Sources */,
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
 				D3FF15E1277E7D4B006355EF /* BlockListController.swift in Sources */,
-				D3629F9D276F5DDB0052B820 /* CalendarCoordinator.swift in Sources */,
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
@@ -1257,7 +1243,7 @@
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
-				D3886445276A214B00FC4F07 /* MainViewController.swift in Sources */,
+				D3886445276A214B00FC4F07 /* HomeViewController.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
@@ -1266,7 +1252,6 @@
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D388640B2769FE7E00FC4F07 /* CircleChatController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
-				D3BDB54626E055C900C53780 /* Constants.swift in Sources */,
 				D3886417276A059100FC4F07 /* LoginController.swift in Sources */,
 				D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
