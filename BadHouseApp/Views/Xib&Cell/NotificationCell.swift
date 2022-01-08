@@ -32,7 +32,7 @@ final class NotificationCell: UICollectionViewCell {
         case .permissionJoin:
             titleLabel.text = "\(notification.titleText)さんから参加承認がおりました"
         case .permissionFriend:
-            titleLabel.text = "\(notification.titleText)さんから友だち承認がおりました"
+            titleLabel.text = "\(notification.titleText)さんと友だちになりました"
         }
     }
 

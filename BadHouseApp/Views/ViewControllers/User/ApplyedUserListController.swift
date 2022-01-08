@@ -50,6 +50,11 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
         tableView.rx.itemDeleted.bind { indexPath in
             self.viewModel.inputs.deleteFriends(self.viewModel.applyedRelay.value[indexPath.row])
         }.disposed(by: disposeBag)
+        
+        viewModel.outputs.navigationTitle.subscribe(onNext: { [weak self] text in
+            self?.navigationItem.title = text
+        }).disposed(by: disposeBag)
+
 
     }
 }

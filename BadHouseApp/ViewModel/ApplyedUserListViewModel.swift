@@ -11,6 +11,7 @@ protocol ApplyedUserListViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var completedFriend: PublishSubject<String> { get }
     var reload: PublishSubject<Void> { get }
+    var navigationTitle: PublishSubject<String> { get }
 }
 protocol ApplyedUserListViewModelType {
     var inputs: ApplyedUserListViewModelInputs { get }
@@ -25,6 +26,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var completedFriend = PublishSubject<String>()
+    var navigationTitle = PublishSubject<String>()
     var applyAPI: ApplyServiceProtocol
     var user: User
     
@@ -38,6 +40,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
             .observe(on: MainScheduler.instance)
             .subscribe {[weak self] applyeds in
             self?.applyedRelay.accept(applyeds)
+                self?.navigationTitle.onNext("\(applyeds.count)人から友達申請が来ています")
             self?.reload.onNext(())
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)

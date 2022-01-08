@@ -56,22 +56,22 @@ final class RegisterController: UIViewController {
     }
     private func setupBinding() {
         
-        nameTextField.rx.text
+        nameTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.nameTextInput.onNext(text ?? "")
+                self?.viewModel.nameTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
-        emailTextField.rx.text
+        emailTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.emailTextInput.onNext(text ?? "")
+                self?.viewModel.emailTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
-        passwordTextField.rx.text
+        passwordTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.passwordTextInput.onNext(text ?? "")
+                self?.viewModel.passwordTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
         registerButton.rx.tap
