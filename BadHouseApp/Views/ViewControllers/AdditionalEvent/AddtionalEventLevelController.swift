@@ -51,8 +51,6 @@ class AddtionalEventLevelController: UIViewController {
         circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         circleTableView.separatorColor = .darkGray
         circleTableView.allowsMultipleSelection = false
-        circleTableView.layer.borderColor = UIColor.lightGray.cgColor
-        circleTableView.layer.borderWidth = 1
     }
     private func setupBinding() {
         
