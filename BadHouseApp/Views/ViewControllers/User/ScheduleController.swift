@@ -38,6 +38,7 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapLeftBarButton))
     }
     private func setupBinding() {
+        
         practiceTableView.rx.setDelegate(self).disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe { [weak self] _ in

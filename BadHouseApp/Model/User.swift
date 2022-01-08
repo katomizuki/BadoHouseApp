@@ -24,7 +24,7 @@ struct User: Equatable {
             return nil
         }
     }
-    var isMyself:Bool {
+    var isMyself: Bool {
         return Auth.auth().currentUser?.uid == uid
     }
     init?(dic: [String: Any]) {

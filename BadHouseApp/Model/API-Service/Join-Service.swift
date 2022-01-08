@@ -29,12 +29,12 @@ struct JoinService:JoinServiceProtocol {
                     .collection("Users")
                     .document(user.uid).setData(["fromUserId": user.uid,
                                                  "name": user.name,
-                                                 "imageUrl" : user.profileImageUrlString,
+                                                 "imageUrl": user.profileImageUrlString,
                                                   "createdAt": Timestamp(),
                                                   "uid": toUser.uid,
-                                                 "practiceName":practice.title,
-                                                 "circleImage":practice.circleUrlString,
-                                                 "id":practice.id]) { error in
+                                                 "practiceName": practice.title,
+                                                 "circleImage": practice.circleUrlString,
+                                                 "id": practice.id]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
