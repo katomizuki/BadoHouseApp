@@ -15,8 +15,7 @@ final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = CircleDetailController.init(nibName: R.nib.circleDetailController.name, bundle: nil)
-        controller.viewModel = viewModel
+        let controller = CircleDetailController.init(viewModel: viewModel)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
@@ -27,9 +26,7 @@ final class CircleDetailCoordinator:Coordinator,CircleDetailFlow {
         coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
     }
     func toInvite(circle: Circle, myData: User) {
-        let controller = AddtionalMemberController.init(nibName: "AddtionalMemberController", bundle: nil)
-        controller.viewModel = AdditionalMemberViewModel(user: myData, userAPI: UserService(), circle: circle)
-        navigationController.pushViewController(controller, animated: true)
+        navigationController.pushViewController(AddtionalMemberController.init(viewModel: AdditionalMemberViewModel(user: myData, userAPI: UserService(), circle: circle)), animated: true)
     }
     func toUpdate(circle: Circle) {
         coordinator(to: UpdateCircleCoordinator(navigationController: navigationController, viewModel: UpdateCircleViewModel(circleAPI: CircleService(), circle: circle)))

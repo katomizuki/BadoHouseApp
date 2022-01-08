@@ -15,7 +15,7 @@ protocol EventSearchControllerDelegate:AnyObject {
 }
 final class EventSearchController: UIViewController {
     private let disposeBag = DisposeBag()
-    var viewModel:PracticeSearchViewModel!
+    private let viewModel: PracticeSearchViewModel
     weak var delegate: EventSearchControllerDelegate?
     @IBOutlet private weak var searchSelectionTableView: UITableView! {
         didSet { searchSelectionTableView.changeCorner(num: 8) }
@@ -31,6 +31,13 @@ final class EventSearchController: UIViewController {
         }
     }
     var coordinator: EventSearchFlow?
+    init(viewModel:PracticeSearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -40,7 +47,7 @@ final class EventSearchController: UIViewController {
     }
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton)),UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapReloadButton))]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton)), UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapReloadButton))]
     }
     @objc private func didTapCloseButton() {
         dismiss(animated: true)

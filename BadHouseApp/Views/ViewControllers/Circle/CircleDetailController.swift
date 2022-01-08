@@ -64,13 +64,21 @@ final class CircleDetailController: UIViewController {
     @IBOutlet private weak var weekEndButton: UIButton!
     @IBOutlet private weak var matchButton: UIButton!
     @IBOutlet private weak var practiceButton: UIButton!
-    private lazy var buttons = [singleButton,doubleButton,mixButton,weekDayButton,weekEndButton,practiceButton,matchButton,genderButton,ageButton]
+    private lazy var buttons = [singleButton, doubleButton,mixButton,weekDayButton,weekEndButton,practiceButton,matchButton,genderButton,ageButton]
     @IBOutlet weak var ageButton: UIButton!
-    var viewModel: CircleDetailViewModel!
+    private let viewModel: CircleDetailViewModel
     var coordinator: CircleDetailFlow?
-    private lazy
-    var rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapRightButton))
+    private lazy var rightButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                      target: self,
+                                      action: #selector(didTapRightButton))
     private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
+    init(viewModel:CircleDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

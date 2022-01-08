@@ -54,9 +54,16 @@ final class PracticeDetailController: UIViewController {
         return MKCoordinateRegion(center: coordinate, span: span)
     }
     var coordinator: PracticeDetailFlow?
-    var viewModel: PracticeDetailViewModel!
+    private let viewModel: PracticeDetailViewModel
     private lazy var rightButton = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
     private let disposeBag = DisposeBag()
+    init(viewModel:PracticeDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

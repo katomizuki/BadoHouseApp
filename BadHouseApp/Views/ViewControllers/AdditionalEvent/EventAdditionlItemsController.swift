@@ -8,7 +8,7 @@ protocol EventAdditionlItemsFlow {
 final class EventAdditionlItemsController: UIViewController {
     private let disposeBag = DisposeBag()
     var coordinator: EventAdditionlItemsFlow?
-    var viewModel:EventAdditionalItemViewModel!
+    private let viewModel:EventAdditionalItemViewModel
     @IBOutlet private weak var textView: UITextView! {
         didSet {
             textView.layer.borderColor = UIColor.systemBlue.cgColor
@@ -20,6 +20,13 @@ final class EventAdditionlItemsController: UIViewController {
         let button = UIBarButtonItem(title:"投稿する", style:.done, target: self, action: #selector(didTapNextButton))
         return button
     }()
+    init(viewModel:EventAdditionalItemViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()

@@ -14,7 +14,14 @@ protocol MapListFlow: AnyObject {
 final class MapListController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     var coordinator: MapListFlow?
-    var viewModel: MapListViewModel!
+    private let viewModel: MapListViewModel
+    init(viewModel:MapListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()

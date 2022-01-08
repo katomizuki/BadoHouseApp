@@ -9,11 +9,18 @@ import UIKit
 import RxSwift
 import PKHUD
 
-class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
-    var viewModel:AdditionalMemberViewModel!
+final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
+    private let viewModel:AdditionalMemberViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
     private var selectedCell: [String:Bool] = [String:Bool]()
+    init(viewModel:AdditionalMemberViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()

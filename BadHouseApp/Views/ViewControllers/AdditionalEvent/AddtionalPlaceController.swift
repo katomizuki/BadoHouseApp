@@ -54,7 +54,7 @@ class AddtionalPlaceController: UIViewController, CLLocationManagerDelegate, UIG
         dismiss(animated: true)
     }
     @objc private func didTapRightButton() {
-        self.delegate?.AddtionalPlaceController(vc:self,
+        self.delegate?.AddtionalPlaceController(vc: self,
                                                 placeName: placeName,
                                                 addressName: placeAddress,
                                                 latitude: placeLatitude,

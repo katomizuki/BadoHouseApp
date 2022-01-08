@@ -29,10 +29,8 @@ class AddtionalPracticeElementCoordinator:Coordinator,AddtionalPracticeElementFl
         self.user = user
     }
     func start() {
-        let viewModel = MakeEventThirdViewModel(image: image, dic: dic, circle: circle, user: user)
-        let controller = AdditionalEventElementController.init(nibName: R.nib.additionalEventElementController.name, bundle: nil)
+        let controller = AdditionalEventElementController.init(viewModel: MakeEventThirdViewModel(image: image, dic: dic, circle: circle, user: user))
         self.viewController = controller
-        controller.viewModel = viewModel
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

@@ -22,12 +22,22 @@ class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var minLabel: UILabel!
     @IBOutlet private weak var circleTableView: UITableView!
     @IBOutlet private weak var minSlider: UISlider!
-    var viewModel: MakeEventSecondViewModel!
+    private let viewModel: MakeEventSecondViewModel
     var coordinator: AddtionalEventLevelFlow?
     private lazy var rightButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
+        let button = UIBarButtonItem(title:"次へ",
+                                     style: .done,
+                                     target: self,
+                                     action: #selector(didTapNextButton))
         return button
     }()
+    init(viewModel: MakeEventSecondViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()

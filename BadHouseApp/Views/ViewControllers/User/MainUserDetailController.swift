@@ -10,7 +10,7 @@ protocol MainUserDetailFlow: AnyObject {
 }
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
-     var viewModel: UserDetailViewModel!
+     private let viewModel: UserDetailViewModel
      @IBOutlet private weak var ageLabel: UILabel!
      @IBOutlet private weak var genderLabel: UILabel!
      @IBOutlet private weak var talkButton: UIButton! {
@@ -50,6 +50,15 @@ protocol MainUserDetailFlow: AnyObject {
      @IBOutlet private weak var nameLabel: UILabel!
      var coordinator: MainUserDetailFlow?
      private let disposeBag = DisposeBag()
+     
+     init(viewModel: UserDetailViewModel) {
+         self.viewModel = viewModel
+         super.init(nibName: nil, bundle: nil)
+     }
+     
+     required init?(coder: NSCoder) {
+         fatalError()
+     }
      // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

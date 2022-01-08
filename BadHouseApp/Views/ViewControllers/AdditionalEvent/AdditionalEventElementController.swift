@@ -34,11 +34,18 @@ final class AdditionalEventElementController: UIViewController {
     private let moneyPicker = UIPickerView()
     private let disposeBag = DisposeBag()
     var coordinator: AddtionalPracticeElementFlow?
-    var viewModel: MakeEventThirdViewModel!
+    private let viewModel: MakeEventThirdViewModel
     private lazy var rightButton:UIBarButtonItem = {
         let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
         return button
     }()
+    init(viewModel: MakeEventThirdViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()

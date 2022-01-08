@@ -8,13 +8,13 @@
 import UIKit
 protocol SearchSelectionControllerDelegate:AnyObject {
     func searchSelectionControllerDismiss(vc: SearchSelectionController,
-                        selection:SearchSelection,
+                        selection: SearchSelection,
                         text: String)
 }
 class SearchSelectionController: UIViewController {
     private let cellId = "popCellId"
     private var cellArray = [String]()
-    var keyWord:SearchSelection = .level
+    var keyWord: SearchSelection = .level
     weak var delegate:SearchSelectionControllerDelegate?
     private lazy var tableView: UITableView = {
         let tb = UITableView()

@@ -20,10 +20,8 @@ class AddtionalEventLevelCoordinator:Coordinator,AddtionalEventLevelFlow {
         self.kind = kind
     }
     func start() {
-        let controller = AddtionalEventLevelController.init(nibName: R.nib.addtionalEventLevelController.name, bundle: nil)
-        let viewModel = MakeEventSecondViewModel(userAPI: UserService(), title: title, image: image, kind: kind)
+        let controller = AddtionalEventLevelController.init(viewModel: MakeEventSecondViewModel(userAPI: UserService(), title: title, image: image, kind: kind))
         controller.coordinator = self
-        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
     func toNext(image: UIImage, dic: [String : Any], circle: Circle ,user: User) {

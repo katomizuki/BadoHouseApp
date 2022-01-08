@@ -14,9 +14,8 @@ class UpdateCircleCoordinator:Coordinator {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = UpdateCircleController.init(nibName: "UpdateCircleController", bundle: nil)
+        let controller = UpdateCircleController.init(viewModel: viewModel)
         controller.coordinator = self
-        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
 }

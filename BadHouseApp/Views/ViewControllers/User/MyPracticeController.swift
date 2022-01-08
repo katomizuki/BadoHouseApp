@@ -11,8 +11,15 @@ import RxCocoa
 final class MyPracticeController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel:MyPracticeViewModel!
+    private let viewModel: MyPracticeViewModel
     private let disposeBag = DisposeBag()
+    init(viewModel:MyPracticeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
@@ -42,8 +49,7 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
             let viewModel = PracticeDetailViewModel(practice: self.viewModel.practices.value[indexPath.row],
                                                     userAPI: UserService(),
                                                     circleAPI: CircleService(), isModal: false)
-            let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
-            controller.viewModel = viewModel
+            let controller = PracticeDetailController.init(viewModel: viewModel)
             self.navigationController?.pushViewController(controller, animated: true)
         }).disposed(by: disposeBag)
     }

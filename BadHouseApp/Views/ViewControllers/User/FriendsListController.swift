@@ -15,8 +15,15 @@ final class FriendsListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var friendListTableView: UITableView!
     var coordinator: FriendListFlow?
-    var viewModel: FriendsListViewModel!
+    private let viewModel: FriendsListViewModel
     private let disposeBag = DisposeBag()
+    init(viewModel:FriendsListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()

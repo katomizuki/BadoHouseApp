@@ -40,7 +40,7 @@ final class UserPageController: UIViewController {
         }
     }
     @IBOutlet private weak var nameTextField: UITextField!
-    let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
+    private let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

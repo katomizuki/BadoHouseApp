@@ -14,8 +14,7 @@ final class FriendListCoordinator:Coordinator, FriendListFlow {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = FriendsListController.init(nibName: R.nib.friendsListController.name, bundle: nil)
-        controller.viewModel = viewModel
+        let controller = FriendsListController.init(viewModel: viewModel)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

@@ -17,8 +17,15 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var calendarView: FSCalendar!
     @IBOutlet private weak var practiceTableView: UITableView!
     private let disposeBag = DisposeBag()
-    var viewModel:ScheduleViewModel!
+    private let viewModel: ScheduleViewModel
     var coordinator:ScheduleFlow?
+    init(viewModel:ScheduleViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()

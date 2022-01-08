@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
     let navigationController: UINavigationController
     init(navigationController:UINavigationController) {
@@ -18,11 +16,9 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
         guard let form = form else {
             return
         }
-        let controller = InviteToCircleController.init(nibName: R.nib.inviteToCircleController.name, bundle: nil)
-        controller.viewModel = InviteViewModel(userAPI: UserService(), user: user, form: form)
+        let controller = InviteToCircleController.init(viewModel: InviteViewModel(userAPI: UserService(), user: user, form: form))
         navigationController.pushViewController(controller, animated: true)
     }
-    
     func pop() {
         navigationController.popViewController(animated: true)
     }
@@ -31,8 +27,7 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
         
     }
     func start(user: User) {
-        let controller = MakeCircleController.init(nibName: R.nib.makeCircleController.name, bundle: nil)
-        controller.viewModel = TeamRegisterViewModel(user: user)
+        let controller = MakeCircleController.init(viewModel: TeamRegisterViewModel(user: user))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

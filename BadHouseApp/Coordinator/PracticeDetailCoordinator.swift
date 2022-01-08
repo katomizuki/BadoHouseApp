@@ -14,9 +14,8 @@ class PracticeDetailCoordinator:Coordinator, PracticeDetailFlow {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = PracticeDetailController.init(nibName: R.nib.practiceDetailController.name, bundle: nil)
+        let controller = PracticeDetailController.init(viewModel: viewModel)
         controller.coordinator = self
-        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
     func toUserDetail(myData: User, user: User) {

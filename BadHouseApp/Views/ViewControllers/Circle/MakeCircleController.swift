@@ -15,7 +15,7 @@ final class MakeCircleController: UIViewController {
 
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    var viewModel:TeamRegisterViewModel!
+    private let viewModel:TeamRegisterViewModel
     private let imagePicker = UIImagePickerController()
     var coordinator: MakeCircleFlow?
     @IBOutlet private weak var groupImageView: UIImageView! {
@@ -43,6 +43,13 @@ final class MakeCircleController: UIViewController {
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var placeNameTextField: UITextField!
     private var imageSelection: ImageSelection?
+    init(viewModel:TeamRegisterViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

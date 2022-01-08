@@ -17,15 +17,12 @@ final class MapCoordinator:Coordinator, MapListFlow {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = MapListController.init(nibName: R.nib.mapListController.name, bundle: nil)
+        let controller = MapListController.init(viewModel: viewModel)
         controller.coordinator = self
-        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
     func halfModal(_ practice: Practice,_ vc:MapListController) {
-        let viewModel = PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true)
-        let controller = PracticeDetailController(nibName: R.nib.practiceDetailController.name, bundle: nil)
-        controller.viewModel = viewModel
+        let controller = PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true))
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {
                 sheet.detents = [.medium(),.large()]

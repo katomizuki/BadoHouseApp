@@ -15,18 +15,15 @@ final class UserDetailCoordinator:Coordinator,MainUserDetailFlow {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = MainUserDetailController.init(nibName: R.nib.mainUserDetailController.name, bundle: nil)
+        let controller = MainUserDetailController.init(viewModel: viewModel)
         controller.coordinator = self
-        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
     func toFriendList(friends: [User],myData: User) {
-        let viewModel = FriendsListViewModel(users: friends, myData: myData)
-        coordinator(to: FriendListCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: FriendListCoordinator(navigationController: navigationController, viewModel: FriendsListViewModel(users: friends, myData: myData)))
     }
     func toCircleDetail(myData: User, circle: Circle) {
-        let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: viewModel))
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController,viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())))
     }
     func toChat(myData: User, user: User,chatId: String) {
         coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserService(), chatAPI: ChatService())))

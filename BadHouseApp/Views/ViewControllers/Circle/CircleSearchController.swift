@@ -3,11 +3,11 @@ import CDAlertView
 import RxSwift
 
 protocol CircleSearchFlow {
-    func toCircleDetail(myData: User,circle: Circle?)
+    func toCircleDetail(myData: User, circle: Circle?)
 }
 final class CircleSearchController: UIViewController {
     // MARK: - properties
-    var viewModel:SearchCircleViewModel!
+    private let viewModel:SearchCircleViewModel
     private let disposeBag = DisposeBag()
     var coordinator: CircleSearchFlow?
     @IBOutlet private weak var searchBar: UISearchBar! {
@@ -16,6 +16,13 @@ final class CircleSearchController: UIViewController {
         }
     }
     @IBOutlet private weak var tableView: UITableView!
+    init(viewModel:SearchCircleViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

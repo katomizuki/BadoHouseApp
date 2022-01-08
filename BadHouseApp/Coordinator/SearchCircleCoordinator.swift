@@ -15,17 +15,15 @@ class SearchCircleCoordinator:Coordinator, CircleSearchFlow {
         self.viewModel = viewModel
     }
     func start() {
-        let controller = CircleSearchController.init(nibName: R.nib.circleSearchController.name, bundle: nil)
+        let controller = CircleSearchController.init(viewModel: viewModel)
         controller.coordinator = self
-        controller.viewModel = viewModel
         navigationController.pushViewController(controller, animated: true)
     }
     func toCircleDetail(myData: User, circle:Circle?) {
         guard let circle = circle else {
             return
         }
-        let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())))
     }
     
 }

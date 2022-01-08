@@ -60,13 +60,9 @@ extension UserSettingsController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         switch indexPath.row {
         case 0:
-            let controller = BlockListController.init(nibName: "BlockListController", bundle: nil)
-            navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(BlockListController.init(nibName: "BlockListController", bundle: nil), animated: true)
         case 1:
-            let controller = MyPracticeController.init(nibName: "MyPracticeController", bundle: nil)
-            let viewModel = MyPracticeViewModel(user: user, userAPI: UserService())
-            controller.viewModel = viewModel
-            navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(MyPracticeController.init(viewModel: MyPracticeViewModel(user: user, userAPI: UserService())), animated: true)
         case 2:
             let viewController = AppExplainController()
             viewController.modalPresentationStyle = .popover
@@ -79,11 +75,9 @@ extension UserSettingsController: UITableViewDelegate {
             viewController.presentationController?.delegate = self
             present(viewController, animated: true, completion: nil)
         case 3:
-            let controller = RuleController()
-            navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(RuleController(), animated: true)
         case 4:
-            let controller = ProblemInformationController.init(nibName: "ProblemInformationController", bundle: nil)
-            navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(ProblemInformationController.init(nibName: "ProblemInformationController", bundle: nil), animated: true)
         default:break
         }
         

@@ -31,13 +31,20 @@ class UpdateCircleController: UIViewController {
     @IBOutlet private weak var matchButton: UIButton!
     @IBOutlet private weak var moneyTextField: UITextField!
     @IBOutlet private weak var ageButton: UIButton!
-    var viewModel: UpdateCircleViewModel!
+    private let viewModel: UpdateCircleViewModel
     var coordinator: UpdateCircleCoordinator?
     private var imageSelection: ImageSelection?
     private let imagePicker = UIImagePickerController()
-    private lazy var buttons = [singleButton, doubleButton, mixButton,  weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
+    private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
     private let disposeBag = DisposeBag()
     weak var delegate: UpdateCircleControllerDelegate?
+    init(viewModel: UpdateCircleViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

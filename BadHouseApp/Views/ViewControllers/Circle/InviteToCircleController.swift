@@ -4,9 +4,16 @@ import PKHUD
 final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
     // MARK: - Properties
     @IBOutlet private weak var friendTableView: UITableView!
-    var viewModel: InviteViewModel!
+    private let viewModel: InviteViewModel
     private let disposeBag = DisposeBag()
     private var selectedCell: [String:Bool] = [String:Bool]()
+    init(viewModel:InviteViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
