@@ -19,14 +19,16 @@ protocol PreJoinedViewModelOutputs {
     var preJoinedList: BehaviorRelay<[PreJoined]> { get }
     var reload: PublishSubject<Void> { get }
     var completed: PublishSubject<Void> { get }
+    var navigationTitle: PublishSubject<String> { get }
 }
 final class PreJoinedViewModel:PreJoinedViewModelType,PreJoinedViewModelInputs, PreJoinedViewModelOutputs {
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var inputs: PreJoinedViewModelInputs { return self }
     var outputs: PreJoinedViewModelOutputs { return self }
-    var joinAPI:JoinServiceProtocol
+    var joinAPI: JoinServiceProtocol
     var preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
+    var navigationTitle = PublishSubject<String>()
     private let disposeBag = DisposeBag()
     var completed = PublishSubject<Void>()
     let user: User
@@ -35,6 +37,7 @@ final class PreJoinedViewModel:PreJoinedViewModelType,PreJoinedViewModelInputs, 
         self.user = user
         joinAPI.getPreJoined(userId: user.uid).subscribe {[weak self] prejoineds in
             self?.preJoinedList.accept(prejoineds)
+            self?.navigationTitle.onNext("\(prejoineds.count)人から参加申請が来ています")
             self?.reload.onNext(())
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)

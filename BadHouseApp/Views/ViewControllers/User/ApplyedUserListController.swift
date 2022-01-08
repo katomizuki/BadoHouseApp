@@ -21,6 +21,7 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear()
+        navigationItem.backButtonDisplayMode = .minimal
     }
     private func setupTableView() {
         tableView.rowHeight = 60
@@ -54,8 +55,10 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.navigationTitle.subscribe(onNext: { [weak self] text in
             self?.navigationItem.title = text
         }).disposed(by: disposeBag)
-
-
+        
+        viewModel.outputs.navigationTitle.subscribe(onNext: { [weak self] text in
+            self?.navigationItem.title = text
+        }).disposed(by: disposeBag)
     }
 }
 

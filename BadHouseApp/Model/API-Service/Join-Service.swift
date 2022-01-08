@@ -4,12 +4,12 @@ import RxSwift
 protocol JoinServiceProtocol {
     func getPrejoin(userId: String)->Single<[PreJoin]>
     func getPreJoined(userId: String)->Single<[PreJoined]>
-    func postMatchJoin(preJoined: PreJoined,user:User,myData:User,
-                       completion: @escaping(Error?)->Void)
+    func postMatchJoin(preJoined: PreJoined,user: User,myData: User,
+                       completion: @escaping(Error?) -> Void)
 }
 struct JoinService: JoinServiceProtocol {
     static func postPreJoin(user: User,
-                            toUser: User, practice:Practice,
+                            toUser: User, practice: Practice,
                             completion: @escaping(Result<Void, Error>) -> Void) {
         Ref.PreJoinRef.document(user.uid).collection("Users")
             .document(toUser.uid)
@@ -17,10 +17,10 @@ struct JoinService: JoinServiceProtocol {
                       "name": toUser.name,
                       "imageUrl": toUser.profileImageUrlString,
                       "createdAt": Timestamp(),
-                      "uid":user.uid,
+                      "uid": user.uid,
                       "practiceName": practice.title,
-                      "circleImage":practice.circleUrlString,
-                      "id":practice.id]) { error in
+                      "circleImage": practice.circleUrlString,
+                      "id": practice.id]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -46,7 +46,7 @@ struct JoinService: JoinServiceProtocol {
                             "titleText": user.name,
                             "practiceId": practice.id,
                             "practiceTitle": practice.title,
-                            "createdAt":Timestamp()]) { error in
+                            "createdAt": Timestamp()]) { error in
                                 if let error = error {
                                     completion(.failure(error))
                                     return
@@ -109,24 +109,10 @@ struct JoinService: JoinServiceProtocol {
             "titleText": myData.name,
             "practiceId": preJoined.id,
             "practiceTitle": preJoined.practiceName,
-            "createdAt":Timestamp()]) { error in
+            "createdAt": Timestamp()]) { error in
             if let error = error {
                 completion(error)
                 return
-            }
-            NotificationService.postNotification(uid: myData.uid, dic: [
-                "id": user.uid,
-                "urlString": user.profileImageUrlString,
-                "notificationSelectionNumber": 2,
-                "titleText": user.name,
-                "practiceId": preJoined.id,
-                "practiceTitle": preJoined.practiceName,
-                "createdAt":Timestamp()]) { error in
-                if let error = error {
-                    completion(error)
-                    return
-                }
-                
             }
         }
     }
