@@ -1,10 +1,11 @@
 import UIKit
 import RxSwift
 protocol CheckNotificationFlow: AnyObject {
-    func toUserDetail(_ myData: User, userId: String)
+    func toUserDetail(_ myData: User, user: User)
+    func toPracticeDetail(_ myData: User, practice: Practice)
     func toPreJoin(_ user: User)
     func toPreJoined(_ user: User)
-    func toApplyedFriend(_ user:User)
+    func toApplyedFriend(_ user: User)
 }
 final class CheckNotificationController: UIViewController, UIScrollViewDelegate {
     
@@ -57,15 +58,25 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
                 guard let self = self else { return }
                 self.coordinator?.toApplyedFriend(self.viewModel.user)
             }.disposed(by: disposeBag)
-
-
-
+        
+        viewModel.outputs.toPracticeDetail.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] practice in
+                guard let self = self else { return }
+                self.coordinator?.toPracticeDetail(self.viewModel.user, practice: practice)
+            }).disposed(by: disposeBag)
+        
+        viewModel.outputs.toUserDetail.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] user in
+                guard let self = self else { return }
+                self.coordinator?.toUserDetail(self.viewModel.user, user: user)
+            }).disposed(by: disposeBag)
     }
+    
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "申請", style: .done, target: self, action: #selector(didTapRightButton))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "承認待ちの練習", style: .done, target: self, action: #selector(didTapLeftButton))
-
     }
+    
     @objc private func didTapRightButton() {
         coordinator?.toPreJoined(viewModel.user)
     }

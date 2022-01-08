@@ -12,6 +12,8 @@ protocol NotificationViewModelOutputs {
     var reload: PublishSubject<Void> { get }
     var toPrejoined: PublishSubject<Void> { get }
     var toApplyedFriend: PublishSubject<Void> { get }
+    var toUserDetail: PublishSubject<User> { get }
+    var toPracticeDetail: PublishSubject<Practice> { get }
 }
 protocol NotificationViewModelType {
     var inputs: NotificationViewModelInputs { get }
@@ -25,6 +27,8 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
     var notificationList = BehaviorRelay<[Notification]>(value:[])
     var toPrejoined = PublishSubject<Void>()
     var toApplyedFriend = PublishSubject<Void>()
+    var toUserDetail = PublishSubject<User>()
+    var toPracticeDetail = PublishSubject<Practice>()
     let user: User
     let notificationAPI: NotificationServiceProtocol
     private let disposeBag = DisposeBag()
@@ -47,11 +51,13 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
         case .applyed:
             self.toApplyedFriend.onNext(())
         case .permissionFriend:
-            print("")
+            UserService.getUserById(uid: notification.id) { user in
+                self.toUserDetail.onNext(user)
+            }
         case .permissionJoin:
-            print("")
+            PracticeServie.getPracticeById(id: notification.id) { practice in
+                self.toPracticeDetail.onNext(practice)
+            }
         }
     }
-    
-    
 }
