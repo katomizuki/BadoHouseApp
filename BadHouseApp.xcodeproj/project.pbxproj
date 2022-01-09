@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -916,6 +916,7 @@
 			buildConfigurationList = D3BDB53826E0525200C53780 /* Build configuration list for PBXNativeTarget "BadHouseApp" */;
 			buildPhases = (
 				E7653B2371FC9E9AD21CB60D /* [CP] Check Pods Manifest.lock */,
+				D39F0AA42771536800580708 /* ShellScript */,
 				D3BDB52026E0525100C53780 /* Sources */,
 				D3BDB52126E0525100C53780 /* Frameworks */,
 				D3BDB52226E0525100C53780 /* Resources */,
@@ -923,7 +924,6 @@
 				D3A789CB26F3F8710088E8BC /* Run SwiftLint */,
 				4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */,
 				D33D29392722F87B000453B5 /* Run FirebaseCrash */,
-				D39F0AA42771536800580708 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1085,23 +1085,23 @@
 		};
 		D39F0AA42771536800580708 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
+				"",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+			shellScript = "#\"PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n#\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"\n";
+			showEnvVarsInLog = 0;
 		};
 		D3A789CB26F3F8710088E8BC /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1457,7 +1457,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 12.0;
+				MARKETING_VERSION = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1480,7 +1480,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 12.0;
+				MARKETING_VERSION = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
