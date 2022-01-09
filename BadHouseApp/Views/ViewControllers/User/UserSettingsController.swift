@@ -1,10 +1,3 @@
-//
-//  UserSettingsController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/22.
-//
-
 import UIKit
 import FirebaseAuth
 final class UserSettingsController: UIViewController {
@@ -60,7 +53,7 @@ extension UserSettingsController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         switch indexPath.row {
         case 0:
-            navigationController?.pushViewController(BlockListController.init(nibName: "BlockListController", bundle: nil), animated: true)
+            navigationController?.pushViewController(BlockListController.init(viewModel: BlockListViewModel()), animated: true)
         case 1:
             navigationController?.pushViewController(MyPracticeController.init(viewModel: MyPracticeViewModel(user: user, userAPI: UserService())), animated: true)
         case 2:

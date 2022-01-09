@@ -9,12 +9,12 @@ final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
     weak var delegate: PopDismissDelegate?
     private let cellId = "popCellId"
-    private var cellArray = [String]()
     var keyword: UserInfoSelection = .level
+    private let dataSourceDelegate = MyPageInfoDataSourceDelegate()
     private lazy var tableView: UITableView = {
         let tb = UITableView()
-        tb.delegate = self
-        tb.dataSource = self
+        tb.delegate = dataSourceDelegate
+        tb.dataSource = dataSourceDelegate
         tb.separatorStyle = .none
         tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         return tb
@@ -35,39 +35,24 @@ final class MyPageInfoPopoverController: UIViewController {
                          bottom: view.bottomAnchor,
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor)
+        dataSourceDelegate.delegate = self
         switch keyword {
         case UserInfoSelection.gender:
-            cellArray = Gender.genderArray
+            dataSourceDelegate.initArray(Gender.genderArray)
         case UserInfoSelection.badmintonTime:
-            cellArray = R.array.yearArray
+            dataSourceDelegate.initArray(R.array.yearArray)
         case UserInfoSelection.place:
-            cellArray = Place.placeArray
+            dataSourceDelegate.initArray(Place.placeArray)
         case UserInfoSelection.age:
-            cellArray = R.array.ageArray
+            dataSourceDelegate.initArray(R.array.ageArray)
         default:
             break
         }
         tableView.reloadData()
     }
 }
-// MARK: - TableViewDatasource
-extension MyPageInfoPopoverController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellArray.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = cellArray[indexPath.row]
-        cell.contentConfiguration = configuration
-        return cell
-    }
-}
-// MARK: - TableViewDelegate
-extension MyPageInfoPopoverController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate?.popDismiss(vc: self,
-                                  userInfoSelection: keyword,
-                                  text: cellArray[indexPath.row])
+extension MyPageInfoPopoverController:MyPageInfoDataSourceDelegateProtocol {
+    func myPageInfoDataSourceDelegate(_ text: String) {
+        self.delegate?.popDismiss(vc: self, userInfoSelection: keyword, text: text)
     }
 }

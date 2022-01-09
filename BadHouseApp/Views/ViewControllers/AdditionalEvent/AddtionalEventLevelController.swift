@@ -15,7 +15,7 @@ protocol AddtionalEventLevelFlow {
                 circle: Circle,
                 user: User)
 }
-class AddtionalEventLevelController: UIViewController {
+final class AddtionalEventLevelController: UIViewController {
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var maxLabel: UILabel!
     @IBOutlet private weak var maxSlider: UISlider!

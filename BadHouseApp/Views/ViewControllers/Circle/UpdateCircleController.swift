@@ -11,7 +11,7 @@ import PKHUD
 protocol UpdateCircleControllerDelegate:AnyObject {
     func pop(_ vc: UpdateCircleController)
 }
-class UpdateCircleController: UIViewController {
+final class UpdateCircleController: UIViewController {
     
     @IBOutlet private weak var backGroundImage: UIImageView!
     @IBOutlet private weak var iconImage: UIImageView! {

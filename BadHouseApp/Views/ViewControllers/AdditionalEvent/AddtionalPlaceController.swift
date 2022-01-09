@@ -10,7 +10,7 @@ protocol AddtionalPlaceControllerDelegate: AnyObject {
                                   latitude: Double,
                                   longitude: Double)
 }
-class AddtionalPlaceController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     var coordinator: AddtionalPlaceFlow?
     weak var delegate: AddtionalPlaceControllerDelegate?
     @IBOutlet weak var searchBar: UISearchBar!

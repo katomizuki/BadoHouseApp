@@ -1,10 +1,3 @@
-//
-//  FriendsListController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/23.
-//
-
 import UIKit
 import RxSwift
 

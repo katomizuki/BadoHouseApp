@@ -1,14 +1,8 @@
-//
-//  ScheduleController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/24.
-//
-
 import UIKit
 import FSCalendar
 import RxSwift
 import RxCocoa
+
 protocol ScheduleFlow {
     func toDetail(_ practice: Practice)
 }

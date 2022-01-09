@@ -14,6 +14,7 @@ protocol PracticeSearchControllerDelegate: AnyObject {
 final class PracticeSearchController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: PracticeSearchViewModel
+    private let dataSourceDelegate = PracticeDataSourceDelegate()
     weak var delegate: PracticeSearchControllerDelegate?
     @IBOutlet private weak var searchSelectionTableView: UITableView! {
         didSet { searchSelectionTableView.changeCorner(num: 8) }
@@ -37,6 +38,7 @@ final class PracticeSearchController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSourceDelegate.initViewModel(viewModel: viewModel)
         setupTableView()
         setupNavigationBar()
         setupBinding()
@@ -61,7 +63,7 @@ final class PracticeSearchController: UIViewController {
         viewModel.inputs.changeStartPicker(date)
     }
     @objc private func didTapReloadButton() {
-        self.showCDAlert(title: "検索条件をクリアしました!", message:  "", action: "OK", alertType: .success)
+        self.showCDAlert(title: "検索条件をクリアしました!", message: "", action: "OK", alertType: .success)
         viewModel.inputs.refresh()
     }
     private func setupBinding() {
@@ -74,60 +76,14 @@ final class PracticeSearchController: UIViewController {
         }).disposed(by: disposeBag)
     }
     private func setupTableView() {
-        searchSelectionTableView.delegate = self
-        searchSelectionTableView.dataSource = self
+        searchSelectionTableView.delegate = dataSourceDelegate
+        searchSelectionTableView.dataSource = dataSourceDelegate
+        dataSourceDelegate.delegate = self
         searchSelectionTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
     }
 }
-extension PracticeSearchController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return }
-        if indexPath.row != 2 {
-            let viewController = SearchSelectionController()
-            viewController.modalPresentationStyle = .popover
-            viewController.preferredContentSize = CGSize(width: 200, height: 150)
-            viewController.delegate = self
-            let presentationController = viewController.popoverPresentationController
-            presentationController?.delegate = self
-            presentationController?.permittedArrowDirections = .up
-            presentationController?.sourceView = cell
-            presentationController?.sourceRect = cell.bounds
-            viewController.keyWord = SearchSelection(rawValue: indexPath.row) ?? .level
-            viewController.presentationController?.delegate = self
-            present(viewController, animated: true, completion: nil)
-        }
+extension PracticeSearchController: PracticeDataSourceDelegateProtocol {
+    func presentVC(_ vc: SearchSelectionController) {
+        present(vc, animated: true)
     }
 }
-extension PracticeSearchController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SearchSelection.allCases.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = SearchSelection(rawValue: indexPath.row)?.description
-        cell.selectionStyle = .none
-        if indexPath.row == 0 {
-            configuration.secondaryText = viewModel.outputs.selectedPlace
-        } else if indexPath.row == 1 {
-            configuration.secondaryText = viewModel.outputs.selectedLevel
-        }
-        cell.contentConfiguration = configuration
-        return cell
-    }
-    
-}
-extension PracticeSearchController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
-    }
-}
-extension PracticeSearchController: SearchSelectionControllerDelegate {
-    func searchSelectionControllerDismiss(vc: SearchSelectionController, selection: SearchSelection, text: String) {
-        vc.dismiss(animated: true)
-        viewModel.inputs.changeSelection(selection, text: text)
-    }
-}
-

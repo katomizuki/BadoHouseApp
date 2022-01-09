@@ -159,6 +159,11 @@
 		D3D62E88278920D300DCA027 /* NotificationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E87278920D300DCA027 /* NotificationEnum.swift */; };
 		D3D62E8A278921F500DCA027 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E89278921F500DCA027 /* Notification.swift */; };
 		D3D62E8C278925B600DCA027 /* SearchUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */; };
+		D3D62E9C278A863900DCA027 /* BlockListDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E9B278A863800DCA027 /* BlockListDataSourceDelegate.swift */; };
+		D3D62E9E278A885A00DCA027 /* PracticeDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E9D278A885A00DCA027 /* PracticeDataSourceDelegate.swift */; };
+		D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E9F278A8EB800DCA027 /* UserPageDataSourceDelegate.swift */; };
+		D3D62EA2278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62EA1278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift */; };
+		D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62EA3278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
 		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
 		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
@@ -380,6 +385,11 @@
 		D3D62E87278920D300DCA027 /* NotificationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationEnum.swift; sourceTree = "<group>"; };
 		D3D62E89278921F500DCA027 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCoordinator.swift; sourceTree = "<group>"; };
+		D3D62E9B278A863800DCA027 /* BlockListDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListDataSourceDelegate.swift; sourceTree = "<group>"; };
+		D3D62E9D278A885A00DCA027 /* PracticeDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDataSourceDelegate.swift; sourceTree = "<group>"; };
+		D3D62E9F278A8EB800DCA027 /* UserPageDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageDataSourceDelegate.swift; sourceTree = "<group>"; };
+		D3D62EA1278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionDataSourceDelegate.swift; sourceTree = "<group>"; };
+		D3D62EA3278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoDataSourceDelegate.swift; sourceTree = "<group>"; };
 		D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
@@ -727,6 +737,7 @@
 				D32E59952774AC5A00C59548 /* R.generated.swift */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
+				D3D62E9A278A861000DCA027 /* DataSourceDelegate */,
 				D31606E827657BF7005FF41D /* Coordinator */,
 				D3BDB55A26E0964200C53780 /* ViewModel */,
 				D3BDB53E26E0542900C53780 /* Views */,
@@ -836,6 +847,18 @@
 				D301E3962785D1F20090CAF9 /* ScheduleViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D3D62E9A278A861000DCA027 /* DataSourceDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D3D62E9B278A863800DCA027 /* BlockListDataSourceDelegate.swift */,
+				D3D62E9D278A885A00DCA027 /* PracticeDataSourceDelegate.swift */,
+				D3D62E9F278A8EB800DCA027 /* UserPageDataSourceDelegate.swift */,
+				D3D62EA1278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift */,
+				D3D62EA3278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift */,
+			);
+			path = DataSourceDelegate;
 			sourceTree = "<group>";
 		};
 		D3D761772776AA2C004381E4 /* CustomView */ = {
@@ -1150,6 +1173,7 @@
 				D3D62E8A278921F500DCA027 /* Notification.swift in Sources */,
 				D3B22D902782A14500EC8C10 /* ChatViewModel.swift in Sources */,
 				D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */,
+				D3D62EA2278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift in Sources */,
 				D3D761892776D38D004381E4 /* AuthCredential.swift in Sources */,
 				D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,
@@ -1216,6 +1240,7 @@
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3D57DDC277EFD6600BCBF0C /* PracticeDetailViewModel.swift in Sources */,
 				D3B22D8E27829F0400EC8C10 /* ChatRoom.swift in Sources */,
+				D3D62E9C278A863900DCA027 /* BlockListDataSourceDelegate.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */,
 				D32E598B2774519600C59548 /* MemberCell.swift in Sources */,
@@ -1227,7 +1252,9 @@
 				D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */,
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
+				D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
+				D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */,
 				D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
@@ -1275,6 +1302,7 @@
 				D3FF15BD277AF45F006355EF /* ApplyedUserListViewModel.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,
+				D3D62E9E278A885A00DCA027 /* PracticeDataSourceDelegate.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,

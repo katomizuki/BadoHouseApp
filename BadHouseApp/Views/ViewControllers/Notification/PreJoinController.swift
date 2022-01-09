@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PreJoinController: UIViewController, UIScrollViewDelegate {
+final class PreJoinController: UIViewController, UIScrollViewDelegate {
     private let viewModel:PreJoinViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()

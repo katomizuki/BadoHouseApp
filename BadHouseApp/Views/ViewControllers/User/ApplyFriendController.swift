@@ -1,10 +1,3 @@
-//
-//  ApplyFriendController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/28.
-//
-
 import UIKit
 import RxSwift
 import SDWebImage

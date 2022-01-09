@@ -35,7 +35,7 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        viewModel.outputs.chatRoomList.bind(to: tableView.rx.items(cellIdentifier: CustomCell.id, cellType: CustomCell.self)) { _,item,cell in
+        viewModel.outputs.chatRoomList.bind(to: tableView.rx.items(cellIdentifier: CustomCell.id, cellType: CustomCell.self)) { _, item, cell in
             cell.configure(chatRoom: item)
         }.disposed(by: disposeBag)
         

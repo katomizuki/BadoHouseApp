@@ -1,13 +1,7 @@
-//
-//  MyPracticeController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/31.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
+
 final class MyPracticeController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
@@ -54,4 +48,3 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
         }).disposed(by: disposeBag)
     }
 }
-

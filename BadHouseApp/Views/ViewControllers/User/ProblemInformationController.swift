@@ -1,10 +1,3 @@
-//
-//  ProblemInformationController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/31.
-//
-
 import UIKit
 
 final class ProblemInformationController: UIViewController {
@@ -22,6 +15,4 @@ final class ProblemInformationController: UIViewController {
         Ref.ReportRef.document(id).setData(["problem": text])
         self.showCDAlert(title: "報告ありがとうございます！", message: "", action: "OK", alertType: .success)
     }
-
-
 }
