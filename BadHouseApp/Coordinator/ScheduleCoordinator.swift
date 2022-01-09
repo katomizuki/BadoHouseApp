@@ -26,11 +26,11 @@ final class ScheduleCoordinator:Coordinator,ScheduleFlow {
     }
     
     func toDetail(_ practice: Practice) {
-        let controller = PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice,
+        navigationController.pushViewController(PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice,
                                     userAPI: UserService(),
                                     circleAPI: CircleService(),
                                     isModal: true))
-        navigationController.pushViewController(controller, animated: true)
+, animated: true)
     }
 }
 

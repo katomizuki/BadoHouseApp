@@ -13,9 +13,7 @@ final class HomeCoordinator: Coordinator,HomeFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toMap(practices:[Practice],lat:Double, lon: Double) {
-        
-        let viewModel = MapListViewModel(currnetLatitude: lat, currentLongitude: lon, practices: practices)
-        coordinator(to: MapCoordinator(navigationController: navigationController,viewModel:viewModel))
+        coordinator(to: MapCoordinator(navigationController: navigationController,viewModel: MapListViewModel(currnetLatitude: lat, currentLongitude: lon, practices: practices)))
      
     }
     func toMakeEvent() {

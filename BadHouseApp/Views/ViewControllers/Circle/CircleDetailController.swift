@@ -64,7 +64,7 @@ final class CircleDetailController: UIViewController {
     @IBOutlet private weak var weekEndButton: UIButton!
     @IBOutlet private weak var matchButton: UIButton!
     @IBOutlet private weak var practiceButton: UIButton!
-    private lazy var buttons = [singleButton, doubleButton,mixButton,weekDayButton,weekEndButton,practiceButton,matchButton,genderButton,ageButton]
+    private lazy var buttons = [singleButton, doubleButton, mixButton,weekDayButton,weekEndButton,practiceButton,matchButton,genderButton,ageButton]
     @IBOutlet weak var ageButton: UIButton!
     private let viewModel: CircleDetailViewModel
     var coordinator: CircleDetailFlow?
@@ -72,7 +72,7 @@ final class CircleDetailController: UIViewController {
                                       target: self,
                                       action: #selector(didTapRightButton))
     private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
-    init(viewModel:CircleDetailViewModel) {
+    init(viewModel: CircleDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -86,10 +86,6 @@ final class CircleDetailController: UIViewController {
         setupBinding()
         navigationItem.backButtonDisplayMode = .minimal
         navigationItem.rightBarButtonItems = [updateButton,rightButton]
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.inputs.willAppear()
     }
     private func setupTableView() {
         teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
@@ -111,7 +107,7 @@ final class CircleDetailController: UIViewController {
             }.disposed(by: disposeBag)
         
         viewModel.outputs.memberRelay.bind(to: teamMemberTableView.rx.items(cellIdentifier: MemberCell.id,
-                                        cellType: MemberCell.self)) { _,item,cell in
+                                        cellType: MemberCell.self)) { _, item, cell in
             cell.configure(item)
         }.disposed(by: disposeBag)
         

@@ -43,7 +43,7 @@ final class MakeCircleController: UIViewController {
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var placeNameTextField: UITextField!
     private var imageSelection: ImageSelection?
-    init(viewModel:TeamRegisterViewModel) {
+    init(viewModel: TeamRegisterViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

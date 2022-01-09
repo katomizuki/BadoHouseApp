@@ -53,7 +53,6 @@
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
 		D357BB1427794EC000DC8A79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */; };
-		D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9A276F5D940052B820 /* MyPageDataSource.swift */; };
 		D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */; };
 		D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */; };
 		D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */; };
@@ -272,7 +271,6 @@
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		D353D8E926F21A4F00221B7D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		D357BB1327794EC000DC8A79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D3629F9A276F5D940052B820 /* MyPageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDataSource.swift; sourceTree = "<group>"; };
 		D3629F9E276F5DF00052B820 /* CircleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA0276F5DFC0052B820 /* MyPageDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3629FA4276F5E4E0052B820 /* MakeCircleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleCoordinator.swift; sourceTree = "<group>"; };
@@ -497,14 +495,6 @@
 				D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		D31606E927657C02005FF41D /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				D3629F9A276F5D940052B820 /* MyPageDataSource.swift */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		D32B8C9E2759BC150036FA98 /* Notification */ = {
@@ -737,7 +727,6 @@
 				D32E59952774AC5A00C59548 /* R.generated.swift */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
 				D3BDB52926E0525100C53780 /* SceneDelegate.swift */,
-				D31606E927657C02005FF41D /* DataSource */,
 				D31606E827657BF7005FF41D /* Coordinator */,
 				D3BDB55A26E0964200C53780 /* ViewModel */,
 				D3BDB53E26E0542900C53780 /* Views */,
@@ -1270,7 +1259,6 @@
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,
 				D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */,
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
-				D3629F9B276F5D940052B820 /* MyPageDataSource.swift in Sources */,
 				D32E598F2774859D00C59548 /* UserCircleCell.swift in Sources */,
 				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
 				D3B22D842781625800EC8C10 /* SearchSelectionController.swift in Sources */,

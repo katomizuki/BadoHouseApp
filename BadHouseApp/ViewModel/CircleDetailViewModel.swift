@@ -8,14 +8,13 @@
 import RxSwift
 import RxRelay
 protocol CircleDetailViewModelInputs {
-    func willAppear()
     func changeMember(_ index: Int)
 }
 protocol CircleDetailViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var memberRelay: BehaviorRelay<[User]> { get }
     var reload: PublishSubject<Void> { get }
-    var isRightButtonHidden:PublishSubject<Bool> { get }
+    var isRightButtonHidden: PublishSubject<Bool> { get }
 }
 protocol CircleDetailViewModelType {
     var inputs: CircleDetailViewModelInputs { get }
@@ -36,13 +35,13 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
     var circleAPI: CircleServiceProtocol
+    
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+    
     init(myData: User, circle: Circle, circleAPI: CircleServiceProtocol) {
         self.myData = myData
         self.circle = circle
         self.circleAPI = circleAPI
-    }
-    func willAppear() {
         circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
             guard let self = self else { return }
             self.allMembers = circle.members
@@ -58,6 +57,7 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
     }
+    
     func changeMember(_ index: Int) {
         if index == 0 {
             memberRelay.accept(allMembers)
