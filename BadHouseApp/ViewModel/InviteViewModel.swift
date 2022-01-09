@@ -104,8 +104,8 @@ final class InviteViewModel: InviteViewModelType,
     }
     
     func makeCircle() {
-        dic["member"] = inviteIds
         inviteIds.append(user.uid)
+        dic["member"] = inviteIds
         CircleService.postCircle(id: dic["id"] as? String ?? "",
                                  dic: dic,
                                  user: user,

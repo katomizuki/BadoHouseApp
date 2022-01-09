@@ -11,8 +11,8 @@ import UIKit
 
 final class MapCoordinator:Coordinator, MapListFlow {
     let navigationController:UINavigationController
-    let viewModel:MapListViewModel
-    init(navigationController:UINavigationController,viewModel:MapListViewModel) {
+    let viewModel: MapListViewModel
+    init(navigationController: UINavigationController, viewModel: MapListViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -21,7 +21,7 @@ final class MapCoordinator:Coordinator, MapListFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func halfModal(_ practice: Practice,_ vc:MapListController) {
+    func halfModal(_ practice: Practice,_ vc: MapListController) {
         let controller = PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true))
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {

@@ -235,7 +235,7 @@ struct UserService: UserServiceProtocol {
     
     func getUserChatRoomById(myData: User,
                              id: String,
-                             completion: @escaping(ChatRoom)->Void) {
+                             completion: @escaping(ChatRoom)-> Void) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(id).getDocument { snapShot, error in
             if error != nil {
                 return
@@ -246,11 +246,11 @@ struct UserService: UserServiceProtocol {
         }
     }
     
-    func updateChatRoom(user:User,myData:User,message:String) {
+    func updateChatRoom(user: User, myData: User, message: String) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).updateData(["latestTime": Timestamp(), "latestMessage": message])
         Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).updateData(["latestTime": Timestamp(), "latestMessage": message])
     }
-    func getMyJoinPractice(user:User)->Single<[Practice]> {
+    func getMyJoinPractice(user: User)->Single<[Practice]> {
         var practices = [Practice]()
         let group = DispatchGroup()
         return Single.create { singleEvent->Disposable in

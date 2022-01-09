@@ -96,6 +96,5 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         } else {
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: "preJoin")
         }
-        
     }
 }

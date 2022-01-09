@@ -19,14 +19,12 @@ class PracticeDetailCoordinator:Coordinator, PracticeDetailFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func toUserDetail(myData: User, user: User) {
-        let viewModel = UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: viewModel))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
     }
     func toChat(myData: User, user: User) {
         coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserService(), chatAPI: ChatService())))
     }
-    func toCircleDetail(myData:User,circle:Circle) {
-        let viewModel = CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())
-        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController, viewModel: viewModel))
+    func toCircleDetail(myData: User,circle: Circle) {
+        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())))
     }
 }

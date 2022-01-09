@@ -134,6 +134,7 @@ struct ApplyService: ApplyServiceProtocol {
                                 completion(.failure(error))
                                 return
                             }
+                            UserService.saveFriendId(uid: user.uid)
                             completion(.success(()))
                         }
                 }

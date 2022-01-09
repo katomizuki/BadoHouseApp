@@ -5,8 +5,8 @@ import RxCocoa
 
 protocol MainUserDetailFlow: AnyObject {
     func toCircleDetail(myData: User, circle: Circle)
-    func toFriendList(friends: [User], myData:User)
-    func toChat(myData:User ,user: User,chatId: String)
+    func toFriendList(friends: [User], myData: User)
+    func toChat(myData: User ,user: User)
 }
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
@@ -104,7 +104,7 @@ protocol MainUserDetailFlow: AnyObject {
          
          circleCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
          
-         viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _, item ,cell in
+         viewModel.outputs.circleListRelay.bind(to: circleCollectionView.rx.items(cellIdentifier: UserCircleCell.id, cellType: UserCircleCell.self)) { _, item, cell in
              cell.configure(item)
          }.disposed(by: disposeBag)
          
@@ -147,11 +147,9 @@ protocol MainUserDetailFlow: AnyObject {
                                    myData: viewModel.myData)
      }
      @IBAction func didTapTalkButton(_ sender: Any) {
-         viewModel.inputs.fetchChatRoom { chatRoom in
-             self.coordinator?.toChat(myData: self.viewModel.myData,
-                                      user: self.viewModel.user,
-                                      chatId: chatRoom.id)
-         }
+             self.coordinator?.toChat(
+                myData: self.viewModel.myData,
+                user: self.viewModel.user)
      }
      
      @IBAction func didTapApplyFriendButton(_ sender: UIButton) {

@@ -40,12 +40,15 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
         }
     }
     func willAppear() {
-        if !Network.shared.isOnline() {
-            isNetWorkError.onNext(())
-        }
+        
         if Auth.auth().currentUser == nil {
             isAuth.onNext(())
+        } else if !Network.shared.isOnline() {
+            isNetWorkError.onNext(())
+        } else {
+            fetchPractices()
         }
+        
     }
     func search(_ practices: [Practice]) {
         practiceRelay.accept(practices)

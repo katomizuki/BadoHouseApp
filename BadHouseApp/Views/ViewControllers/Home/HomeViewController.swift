@@ -24,7 +24,7 @@ final class HomeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.didLoad()
+        viewModel.inputs.didLoad()
         setupLocationManager()
         setupCollectionView()
         setupBinding()
@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.willAppear()
+        viewModel.inputs.willAppear()
     }
     private func setupNavBarButton() {
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
@@ -117,9 +117,6 @@ final class HomeViewController: UIViewController {
     @objc private func didTapRefreshButton() {
         viewModel.inputs.refresh()
     }
-    
-
-    
 }
 // MARK: - CLLOcationManagerDelegate
 extension HomeViewController: CLLocationManagerDelegate {

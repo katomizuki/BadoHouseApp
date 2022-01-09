@@ -57,7 +57,7 @@ final class PracticeDetailController: UIViewController {
     private let viewModel: PracticeDetailViewModel
     private lazy var rightButton = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
     private let disposeBag = DisposeBag()
-    init(viewModel:PracticeDetailViewModel) {
+    init(viewModel: PracticeDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
