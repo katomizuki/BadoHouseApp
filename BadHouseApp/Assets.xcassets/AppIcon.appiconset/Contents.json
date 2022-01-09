@@ -55,22 +55,10 @@
       "size" : "60x60"
     },
     {
-      "filename" : "1024x1024.png",
+      "filename" : "icon-messages-app-store-1024x1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
-    },
-    {
-      "filename" : "16x16.png",
-      "idiom" : "mac",
-      "scale" : "1x",
-      "size" : "16x16"
-    },
-    {
-      "filename" : "32x32.png",
-      "idiom" : "mac",
-      "scale" : "2x",
-      "size" : "16x16"
     }
   ],
   "info" : {
