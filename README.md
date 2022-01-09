@@ -14,9 +14,11 @@ Firebase系,RxSwift,RxCocoa,FSCaledar,Charts,IQkeyboardManager,SDWebImage,PKHUD,
 ##### 21年11月1回目のリリース
 #### ここまでの課題
 ・MVCアーキテクチャーでFatViewControllerになっていた。
+
 ・UIなどのFBをうけボコボコにされてしまった泣
+
 ・機能を付け足しすぎてよくわからないアプリになってしまった。
 ##### 21年12月
 ・全て開発し直すことを決意
 ##### 22年1月2回目のリリース(予定)
-アーキテクチャからUIまで全てを刷新。Zennで記事を書いていく予定。
+アーキテクチャからUIまで全てを刷新。Zennで詳細記事を書く予定。
