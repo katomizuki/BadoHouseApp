@@ -45,6 +45,7 @@ final class UserController: UIViewController {
     @IBOutlet private weak var friendCountLabel: UILabel!
     private let disposeBag = DisposeBag()
     private let viewModel = UserViewModel(userAPI: UserService(), applyAPI: ApplyService())
+    private lazy var dataSourceDelegate = UserDataSourceDelegate(viewModel: viewModel)
     var coordinator: UserFlow?
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -128,91 +129,36 @@ final class UserController: UIViewController {
         coordinator?.toMyPage(self)
     }
     private func setupTableView() {
-        groupTableView.delegate = self
-        groupTableView.dataSource = self
+        groupTableView.delegate = dataSourceDelegate
+        groupTableView.dataSource = dataSourceDelegate
+        dataSourceDelegate.delegate = self
         groupTableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
         groupTableView.register(UserProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: UserProfileHeaderView.id)
         groupTableView.showsVerticalScrollIndicator = false
     }
 }
-// MARK: - UItableViewDataSource
-extension UserController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return viewModel.outputs.circleRelay.value.count
-        } else {
-            return viewModel.outputs.friendsRelay.value.count
-        }
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath) as? CustomCell else { fatalError() }
-        if indexPath.section == 1 {
-            cell.configure(user: viewModel.outputs.friendsRelay.value[indexPath.row])
-        } else {
-            cell.configure(circle: viewModel.outputs.circleRelay.value[indexPath.row])
-        }
-        return cell
-    }
-}
-// MARK: - UITableViewDelegate
-extension UserController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            coordinator?.toDetailCircle(myData: viewModel.user,
-                                        circle: viewModel.circleRelay.value[indexPath.row])
-        } else if indexPath.section == 1 {
-            coordinator?.toDetailUser(myData: viewModel.user,
-                                      user: viewModel.friendsRelay.value[indexPath.row])
-        }
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: UserProfileHeaderView.id) as? UserProfileHeaderView else { fatalError() }
-        header.configure(section)
-        header.delegate = self
-        return header
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = .clear
-    }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
-            viewModel.inputs.withDrawCircle(viewModel.circleRelay.value[indexPath.row])
-        case 1:
-            viewModel.inputs.blockUser(viewModel.friendsRelay.value[indexPath.row])
-        default:break
-        }
-    }
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        switch indexPath.section {
-        case 0:return "退会"
-        case 1:return "ブロック"
-        default:return ""
-        }
-    }
-}
-
-extension UserController: UserProfileHeaderViewDelegate {
-    func didTapApplyButton() {
-        coordinator?.toApplyUser(user: viewModel.user)
+extension UserController: UserDataSourceDelegateProtocol {
+    func userDataSourceDelegate(toSearchUser user: User?) {
+        coordinator?.toSearchUser(user: user)
     }
     
-    func didTapSearchButton(option: UserProfileSelection) {
-        switch option {
-        case .circle:
-            coordinator?.toSearchCircle(user: viewModel.user)
-        case .user:
-            coordinator?.toSearchUser(user: viewModel.user)
-        }
+    func userDataSourceDelegate(toSearchCircle user: User?) {
+        coordinator?.toSearchCircle(user: user)
     }
     
-    func didTapPlusTeamButton() {
-        coordinator?.toMakeCircle(user: viewModel.user)
+    func userDataSourceDelegate(toApplyUser user: User?) {
+        coordinator?.toApplyUser(user: user)
+    }
+    
+    func userDataSourceDelegate(toMakeCircle user: User?) {
+        coordinator?.toMakeCircle(user: user)
+    }
+    
+    func userDataSourceDelegate(toCircleDetail user: User?, circle: Circle) {
+        coordinator?.toDetailCircle(myData: user, circle: circle)
+    }
+    
+    func userDataSourceDelegate(toUserDetail myData: User?, user: User) {
+        coordinator?.toDetailUser(myData: myData, user: user)
     }
 }

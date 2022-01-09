@@ -164,6 +164,7 @@
 		D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62E9F278A8EB800DCA027 /* UserPageDataSourceDelegate.swift */; };
 		D3D62EA2278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62EA1278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift */; };
 		D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62EA3278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift */; };
+		D3D62EA6278A99AE00DCA027 /* UserDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D62EA5278A99AE00DCA027 /* UserDataSourceDelegate.swift */; };
 		D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */; };
 		D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761782776AA7D004381E4 /* CustomInputView.swift */; };
 		D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */; };
@@ -390,6 +391,7 @@
 		D3D62E9F278A8EB800DCA027 /* UserPageDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageDataSourceDelegate.swift; sourceTree = "<group>"; };
 		D3D62EA1278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionDataSourceDelegate.swift; sourceTree = "<group>"; };
 		D3D62EA3278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoDataSourceDelegate.swift; sourceTree = "<group>"; };
+		D3D62EA5278A99AE00DCA027 /* UserDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSourceDelegate.swift; sourceTree = "<group>"; };
 		D3D761752776A70D004381E4 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		D3D761782776AA7D004381E4 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		D3D7617A2776AD73004381E4 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
@@ -857,6 +859,7 @@
 				D3D62E9F278A8EB800DCA027 /* UserPageDataSourceDelegate.swift */,
 				D3D62EA1278A93CA00DCA027 /* SearchSelectionDataSourceDelegate.swift */,
 				D3D62EA3278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift */,
+				D3D62EA5278A99AE00DCA027 /* UserDataSourceDelegate.swift */,
 			);
 			path = DataSourceDelegate;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				D3FF15C0277AF979006355EF /* ApplyedUserListCell.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */,
+				D3D62EA6278A99AE00DCA027 /* UserDataSourceDelegate.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,

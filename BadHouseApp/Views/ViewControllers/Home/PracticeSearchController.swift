@@ -1,10 +1,3 @@
-//
-//  EventSearchController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/13.
-//
-
 import UIKit
 import RxSwift
 

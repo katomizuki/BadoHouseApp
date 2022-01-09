@@ -37,7 +37,7 @@ extension UIViewController {
         }
         return message
     }
-    func setupFirestoreErrorMessage(error:NSError) -> String {
+    func setupFirestoreErrorMessage(error: NSError) -> String {
         var message = ""
         if let errCode = FirestoreErrorCode(rawValue: error.code) {
             switch errCode {
