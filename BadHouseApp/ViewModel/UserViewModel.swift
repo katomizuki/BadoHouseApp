@@ -26,7 +26,6 @@ protocol UserViewModelType {
 }
 final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModelOutputs {
     
-    
     var userName = BehaviorRelay<String>(value: "")
     var userFriendsCountText = BehaviorRelay<String>(value: "")
     var userCircleCountText = BehaviorRelay<String>(value: "")
@@ -66,6 +65,8 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 guard let self = self else { return }
                 self.isError.onNext(true)
             }).disposed(by: disposeBag)
+            
+            UserService.saveFriendId(uid: uid)
         } else {
             self.notAuth.onNext(())
         }
