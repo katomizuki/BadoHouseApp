@@ -81,19 +81,14 @@ struct UserService: UserServiceProtocol {
         }
     }
     static func saveFriendId(uid: String) {
-        var ids = [String]()
         Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            if let snapShot = snapShot {
-                snapShot.documents.forEach {
-                    let dic = $0.data()
-                    ids.append(dic["id"] as? String ?? "")
-                }
+            guard let snapShot = snapShot else { return }
+                let ids = snapShot.documents.map({ $0.data()["id"] as? String ?? "" })
                 UserDefaultsRepositry.shared.saveToUserDefaults(element: ids, key: "friends")
-            }
         }
     }
     func getFriends(uid: String) -> Single<[User]> {

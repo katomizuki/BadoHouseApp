@@ -89,14 +89,14 @@ struct CircleService: CircleServiceProtocol {
     
     static func withdrawCircle(user: User,
                              circle: Circle,
-                             completion: @escaping(Error?)->Void) {
+                             completion: @escaping(Error?) -> Void) {
         let ids = circle.member.filter({ $0 != user.uid })
         Ref.TeamRef.document(circle.id).updateData(["member": ids],
                                                    completion: completion)
         Ref.UsersRef.document(user.uid).collection("Circle").document(circle.id).delete()
     }
     
-    func updateCircle(circle: Circle, completion: @escaping(Error?)->Void) {
+    func updateCircle(circle: Circle, completion: @escaping(Error?) -> Void) {
         let dic: [String: Any] = ["id": circle.id,
                                        "name": circle.name,
                                        "price": circle.price,
