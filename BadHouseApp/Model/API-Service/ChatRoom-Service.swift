@@ -4,13 +4,13 @@ protocol ChatServiceProtocol {
     func getChat(chatId: String)->Single<[Chat]>
     func postChat(chatId: String,
                   dic: [String: Any],
-                  completion: @escaping(Error?)-> Void)
+                  completion: @escaping(Error?) -> Void)
 }
 struct ChatService: ChatServiceProtocol {
     
     func getChat(chatId: String)->Single<[Chat]> {
         return Single.create { singleEvent->Disposable in
-            Ref.ChatRef.document(chatId).collection("Comment").order(by: "createdAt", descending: true)
+            Ref.ChatRef.document(chatId).collection("Comment").order(by: "createdAt", descending: false)
                 .getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
@@ -24,8 +24,8 @@ struct ChatService: ChatServiceProtocol {
         }
      }
     
-    func postChat(chatId: String, dic:[String: Any],
-                  completion: @escaping(Error?)-> Void) {
+    func postChat(chatId: String, dic: [String: Any],
+                  completion: @escaping(Error?) -> Void) {
         let id = Ref.ChatRef.document(chatId).collection("Comment").document().documentID
         Ref.ChatRef.document(chatId).collection("Comment").document(id).setData(dic, completion: completion)
     }

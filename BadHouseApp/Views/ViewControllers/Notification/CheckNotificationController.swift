@@ -9,7 +9,9 @@ protocol CheckNotificationFlow: AnyObject {
 }
 final class CheckNotificationController: UIViewController, UIScrollViewDelegate {
     
-    @IBOutlet private weak var notificationCollectionView: UICollectionView!
+    @IBOutlet private weak var notificationCollectionView: UICollectionView! {
+        didSet { notificationCollectionView.backgroundColor = .white }
+    }
     var coordinator: CheckNotificationFlow?
     private let viewModel: NotificationViewModel
     private let disposeBag = DisposeBag()
@@ -26,6 +28,7 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
         setupNavigationBar()
         setupBinding()
         navigationItem.backButtonDisplayMode = .minimal
+        view.backgroundColor = .white
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

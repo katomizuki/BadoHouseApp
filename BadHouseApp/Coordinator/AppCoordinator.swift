@@ -5,6 +5,7 @@ class AppCoordinator: Coordinator {
     init(window: UIWindow) {
         self.window = window
     }
+
     func start() {
         let tabBarController = TabBarController()
         window.rootViewController = tabBarController
