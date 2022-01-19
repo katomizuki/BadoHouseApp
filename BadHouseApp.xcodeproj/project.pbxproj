@@ -50,6 +50,8 @@
 		D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */; };
 		D31CD0052798CABD00513587 /* UserGetApplyTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0042798CABD00513587 /* UserGetApplyTargetType.swift */; };
 		D31CD0072798CAE200513587 /* UserGetApplyedTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */; };
+		D31CD00A2798D72B00513587 /* PracticeGetPreJoinTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0092798D72B00513587 /* PracticeGetPreJoinTargetType.swift */; };
+		D31CD00C2798D75900513587 /* PracticeGetPreJoinedTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -286,6 +288,8 @@
 		D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGetMembersTargetType.swift; sourceTree = "<group>"; };
 		D31CD0042798CABD00513587 /* UserGetApplyTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetApplyTargetType.swift; sourceTree = "<group>"; };
 		D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetApplyedTargetType.swift; sourceTree = "<group>"; };
+		D31CD0092798D72B00513587 /* PracticeGetPreJoinTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGetPreJoinTargetType.swift; sourceTree = "<group>"; };
+		D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGetPreJoinedTargetType.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -547,6 +551,7 @@
 		D31CCFF127984B1600513587 /* TargetType */ = {
 			isa = PBXGroup;
 			children = (
+				D31CD0082798D71200513587 /* PracticeTargetType */,
 				D31CCFFD2798C2D500513587 /* UserTargetType */,
 				D31CCFFC2798C2D100513587 /* CircleTargetType */,
 			);
@@ -573,6 +578,15 @@
 				D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */,
 			);
 			path = UserTargetType;
+			sourceTree = "<group>";
+		};
+		D31CD0082798D71200513587 /* PracticeTargetType */ = {
+			isa = PBXGroup;
+			children = (
+				D31CD0092798D72B00513587 /* PracticeGetPreJoinTargetType.swift */,
+				D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */,
+			);
+			path = PracticeTargetType;
 			sourceTree = "<group>";
 		};
 		D32B8C9E2759BC150036FA98 /* Notification */ = {
@@ -1275,6 +1289,7 @@
 				D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */,
 				D3D62E8C278925B600DCA027 /* SearchUserCoordinator.swift in Sources */,
 				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
+				D31CD00A2798D72B00513587 /* PracticeGetPreJoinTargetType.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
 				D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
@@ -1294,6 +1309,7 @@
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
 				D301E394278478D40090CAF9 /* PreJoinCell.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Practice-Service.swift in Sources */,
+				D31CD00C2798D75900513587 /* PracticeGetPreJoinedTargetType.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */,
 				D301E38D27846B7D0090CAF9 /* PreJoined.swift in Sources */,

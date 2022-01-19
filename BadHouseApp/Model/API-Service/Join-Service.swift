@@ -58,35 +58,37 @@ struct JoinService: JoinServiceProtocol {
     }
     
     func getPrejoin(userId: String) -> Single<[PreJoin]> {
-        var prejoins = [PreJoin]()
-        return Single.create { singleEvent->Disposable in
-            Ref.PreJoinRef.document(userId).collection("Users").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                guard let documents = snapShot?.documents else { return }
-                prejoins = documents.map { PreJoin(dic: $0.data()) }
-                singleEvent(.success(prejoins))
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.getFirebaseSubData(request: PracticeGetPreJoinTargetType(id: userId))
+//        var prejoins = [PreJoin]()
+//        return Single.create { singleEvent->Disposable in
+//            Ref.PreJoinRef.document(userId).collection("Users").getDocuments { snapShot, error in
+//                if let error = error {
+//                    singleEvent(.failure(error))
+//                    return
+//                }
+//                guard let documents = snapShot?.documents else { return }
+//                prejoins = documents.map { PreJoin(dic: $0.data()) }
+//                singleEvent(.success(prejoins))
+//            }
+//            return Disposables.create()
+//        }
     }
     
     func getPreJoined(userId: String) -> Single<[PreJoined]> {
-        var prejoineds = [PreJoined]()
-        return Single.create { singleEvent->Disposable in
-            Ref.PreJoinedRef.document(userId).collection("Users").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                guard let documents = snapShot?.documents else { return }
-                prejoineds = documents.map { PreJoined(dic: $0.data()) }
-                singleEvent(.success(prejoineds))
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.getFirebaseSubData(request: PracticeGetPreJoinedTargetType(id: userId))
+//        var prejoineds = [PreJoined]()
+//        return Single.create { singleEvent->Disposable in
+//            Ref.PreJoinedRef.document(userId).collection("Users").getDocuments { snapShot, error in
+//                if let error = error {
+//                    singleEvent(.failure(error))
+//                    return
+//                }
+//                guard let documents = snapShot?.documents else { return }
+//                prejoineds = documents.map { PreJoined(dic: $0.data()) }
+//                singleEvent(.success(prejoineds))
+//            }
+//            return Disposables.create()
+//        }
     }
     func postMatchJoin(preJoined: PreJoined,
                        user: User,

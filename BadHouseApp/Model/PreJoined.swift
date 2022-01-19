@@ -6,7 +6,7 @@
 //
 
 import Firebase
-struct PreJoined:Equatable {
+struct PreJoined:Equatable,FirebaseModel {
     let id: String
     let circleImage: String
     let createdAt: Timestamp

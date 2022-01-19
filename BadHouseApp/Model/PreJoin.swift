@@ -1,5 +1,5 @@
 import Firebase
-struct PreJoin:Equatable{
+struct PreJoin:Equatable, FirebaseModel {
     let name: String
     let id: String
     let uid: String
