@@ -5,7 +5,7 @@
 //  Created by ミズキ on 2021/12/28.
 //
 import Foundation
-struct Apply {
+struct Apply: FirebaseModel {
     let uid: String
     let createdAt: String
     let imageUrl: String

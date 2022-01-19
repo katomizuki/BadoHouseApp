@@ -48,6 +48,8 @@
 		D31CCFFF2798C40A00513587 /* UserGetPracticeTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFFE2798C40A00513587 /* UserGetPracticeTargetType.swift */; };
 		D31CD0012798C60100513587 /* UserGetFriendsTargeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0002798C60100513587 /* UserGetFriendsTargeType.swift */; };
 		D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */; };
+		D31CD0052798CABD00513587 /* UserGetApplyTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0042798CABD00513587 /* UserGetApplyTargetType.swift */; };
+		D31CD0072798CAE200513587 /* UserGetApplyedTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -282,6 +284,8 @@
 		D31CCFFE2798C40A00513587 /* UserGetPracticeTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetPracticeTargetType.swift; sourceTree = "<group>"; };
 		D31CD0002798C60100513587 /* UserGetFriendsTargeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetFriendsTargeType.swift; sourceTree = "<group>"; };
 		D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGetMembersTargetType.swift; sourceTree = "<group>"; };
+		D31CD0042798CABD00513587 /* UserGetApplyTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetApplyTargetType.swift; sourceTree = "<group>"; };
+		D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetApplyedTargetType.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -565,6 +569,8 @@
 				D31CCFF82798BFF800513587 /* UserGetCircleTargetType.swift */,
 				D31CCFFE2798C40A00513587 /* UserGetPracticeTargetType.swift */,
 				D31CD0002798C60100513587 /* UserGetFriendsTargeType.swift */,
+				D31CD0042798CABD00513587 /* UserGetApplyTargetType.swift */,
+				D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */,
 			);
 			path = UserTargetType;
 			sourceTree = "<group>";
@@ -1329,6 +1335,7 @@
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
+				D31CD0052798CABD00513587 /* UserGetApplyTargetType.swift in Sources */,
 				D3886445276A214B00FC4F07 /* HomeViewController.swift in Sources */,
 				D31CCFFB2798C28000513587 /* FirebaseSubCollection.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
@@ -1339,6 +1346,7 @@
 				D31CCFF527984B4000513587 /* FirebaseModel.swift in Sources */,
 				D316072E276764F9005FF41D /* MapListController.swift in Sources */,
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
+				D31CD0072798CAE200513587 /* UserGetApplyedTargetType.swift in Sources */,
 				D388640B2769FE7E00FC4F07 /* CircleChatController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3886417276A059100FC4F07 /* LoginController.swift in Sources */,

@@ -91,7 +91,7 @@ struct JoinService: JoinServiceProtocol {
     func postMatchJoin(preJoined: PreJoined,
                        user: User,
                        myData: User,
-                       completion: @escaping(Error?)->Void) {
+                       completion: @escaping(Error?) -> Void) {
         Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
         Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id], completion: completion)
         NotificationService.postNotification(uid: user.uid, dic: [

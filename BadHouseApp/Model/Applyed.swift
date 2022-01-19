@@ -1,6 +1,6 @@
 import Foundation
 
-struct Applyed {
+struct Applyed: FirebaseModel {
     let uid: String
     let createdAt: String
     let imageUrl: String

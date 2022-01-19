@@ -65,33 +65,35 @@ struct ApplyService: ApplyServiceProtocol {
     }
     
     func getApplyUser(user: User) -> Single<[Apply]> {
-        return Single.create { singleEvent -> Disposable in
-            Ref.ApplyRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                guard let snapShot = snapShot else { return }
-                let applies = snapShot.documents.map { Apply(dic: $0.data()) }
-                singleEvent(.success(applies))
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.getFirebaseSubData(request: UserGetApplyTargetType(id: user.uid))
+//        return Single.create { singleEvent -> Disposable in
+//            Ref.ApplyRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
+//                if let error = error {
+//                    singleEvent(.failure(error))
+//                    return
+//                }
+//                guard let snapShot = snapShot else { return }
+//                let applies = snapShot.documents.map { Apply(dic: $0.data()) }
+//                singleEvent(.success(applies))
+//            }
+//            return Disposables.create()
+//        }
     }
     
     func getApplyedUser(user: User)->Single<[Applyed]> {
-        return Single.create { singleEvent -> Disposable in
-            Ref.ApplyedRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                guard let snapShot = snapShot else { return }
-                let applyeds = snapShot.documents.map { Applyed(dic: $0.data()) }
-                singleEvent(.success(applyeds))
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.getFirebaseSubData(request: UserGetApplyedTargetType(id: user.uid))
+//        return Single.create { singleEvent -> Disposable in
+//            Ref.ApplyedRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
+//                if let error = error {
+//                    singleEvent(.failure(error))
+//                    return
+//                }
+//                guard let snapShot = snapShot else { return }
+//                let applyeds = snapShot.documents.map { Applyed(dic: $0.data()) }
+//                singleEvent(.success(applyeds))
+//            }
+//            return Disposables.create()
+//        }
     }
     
     func match(user: User,
