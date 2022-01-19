@@ -2,7 +2,7 @@
 import Firebase
 import FirebaseAuth
 
-struct User: Equatable {
+struct User:FirebaseModel, Equatable {
     var uid: String
     var name: String
     var email: String
@@ -27,20 +27,15 @@ struct User: Equatable {
     var isMyself: Bool {
         return Auth.auth().currentUser?.uid == uid
     }
-    init?(dic: [String: Any]) {
-        guard let email = dic["email"] as? String,
-              let name = dic["name"] as? String,
-              let createdAt: Timestamp = dic["createdAt"] as? Timestamp,
-              let uid = dic["uid"] as? String,
-              let updateAt: Timestamp = dic["updatedAt"] as? Timestamp else { return nil }
-        self.email = email
-        self.name = name
-        self.createdAt = createdAt
+    init(dic: [String: Any]) {
+        self.email = dic["email"] as? String ?? ""
+        self.name = dic["name"] as? String ?? ""
+        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
         self.level = dic["level"] as? String ?? "レベル1"
-        self.updatedAt = updateAt
+        self.updatedAt = dic["updatedAt"] as? Timestamp ?? Timestamp()
         self.introduction = dic["introduction"] as? String ?? "未設定"
         self.profileImageUrlString = dic["profileImageUrl"] as? String ?? ""
-        self.uid = uid
+        self.uid = dic["uid"] as? String ?? ""
         self.gender = dic["gender"] as? String ?? "未設定"
         self.place = dic["place"] as? String ?? "未設定"
         self.badmintonTime = dic["badmintonTime"] as? String ?? "未設定"

@@ -38,6 +38,11 @@
 		D316073627676BF5005FF41D /* PracticeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316073427676BF5005FF41D /* PracticeSearchController.swift */; };
 		D316073727676BF5005FF41D /* PracticeSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D316073527676BF5005FF41D /* PracticeSearchController.xib */; };
 		D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C163C272B78AA00A94FC6 /* RuleController.swift */; };
+		D31CCFEE2798451200513587 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFED2798451200513587 /* FirebaseClient.swift */; };
+		D31CCFF02798453300513587 /* FirebaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFEF2798453300513587 /* FirebaseTargetType.swift */; };
+		D31CCFF327984B2C00513587 /* CircleTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFF227984B2C00513587 /* CircleTargetType.swift */; };
+		D31CCFF527984B4000513587 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFF427984B4000513587 /* FirebaseModel.swift */; };
+		D31CCFF727984B7100513587 /* UserTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFF627984B7100513587 /* UserTargetType.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -262,6 +267,11 @@
 		D316073427676BF5005FF41D /* PracticeSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchController.swift; sourceTree = "<group>"; };
 		D316073527676BF5005FF41D /* PracticeSearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeSearchController.xib; sourceTree = "<group>"; };
 		D31C163C272B78AA00A94FC6 /* RuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleController.swift; sourceTree = "<group>"; };
+		D31CCFED2798451200513587 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		D31CCFEF2798453300513587 /* FirebaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTargetType.swift; sourceTree = "<group>"; };
+		D31CCFF227984B2C00513587 /* CircleTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTargetType.swift; sourceTree = "<group>"; };
+		D31CCFF427984B4000513587 /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		D31CCFF627984B7100513587 /* UserTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTargetType.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -507,6 +517,25 @@
 				D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D31CCFEC2798450300513587 /* FirebaseClient */ = {
+			isa = PBXGroup;
+			children = (
+				D31CCFED2798451200513587 /* FirebaseClient.swift */,
+				D31CCFEF2798453300513587 /* FirebaseTargetType.swift */,
+				D31CCFF427984B4000513587 /* FirebaseModel.swift */,
+			);
+			path = FirebaseClient;
+			sourceTree = "<group>";
+		};
+		D31CCFF127984B1600513587 /* TargetType */ = {
+			isa = PBXGroup;
+			children = (
+				D31CCFF227984B2C00513587 /* CircleTargetType.swift */,
+				D31CCFF627984B7100513587 /* UserTargetType.swift */,
+			);
+			path = TargetType;
 			sourceTree = "<group>";
 		};
 		D32B8C9E2759BC150036FA98 /* Notification */ = {
@@ -755,6 +784,8 @@
 		D3BDB53B26E0540C00C53780 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D31CCFF127984B1600513587 /* TargetType */,
+				D31CCFEC2798450300513587 /* FirebaseClient */,
 				D3FF15C4277B3525006355EF /* Repositry */,
 				D3FFD326271EBBD100DE54ED /* API-Service */,
 				D3BDB56326E0B05D00C53780 /* User.swift */,
@@ -1172,6 +1203,7 @@
 				D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */,
 				D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */,
 				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
+				D31CCFF727984B7100513587 /* UserTargetType.swift in Sources */,
 				D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */,
 				D3D62E8A278921F500DCA027 /* Notification.swift in Sources */,
 				D3B22D902782A14500EC8C10 /* ChatViewModel.swift in Sources */,
@@ -1233,6 +1265,7 @@
 				D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
+				D31CCFF02798453300513587 /* FirebaseTargetType.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
 				D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */,
@@ -1267,7 +1300,9 @@
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
+				D31CCFF327984B2C00513587 /* CircleTargetType.swift in Sources */,
 				D3D62E88278920D300DCA027 /* NotificationEnum.swift in Sources */,
+				D31CCFF527984B4000513587 /* FirebaseModel.swift in Sources */,
 				D316072E276764F9005FF41D /* MapListController.swift in Sources */,
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D388640B2769FE7E00FC4F07 /* CircleChatController.swift in Sources */,
@@ -1277,6 +1312,7 @@
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3FF15DD277E7D1A006355EF /* ProblemInformationController.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
+				D31CCFEE2798451200513587 /* FirebaseClient.swift in Sources */,
 				D3FF15EA277ECB93006355EF /* EventAdditionalItemViewModel.swift in Sources */,
 				D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */,
 				D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */,

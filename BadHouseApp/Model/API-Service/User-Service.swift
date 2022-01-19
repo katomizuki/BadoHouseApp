@@ -39,23 +39,7 @@ struct UserService: UserServiceProtocol {
     }
     
     func getUser(uid: String) -> Single<User> {
-        return Single.create { singleEvent -> Disposable in
-            Ref.UsersRef.document(uid).getDocument { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                if let snapShot = snapShot {
-                    guard let dic = snapShot.data() else { return }
-                    
-                    let user = User(dic: dic)
-                    if let user = user {
-                        singleEvent(.success(user))
-                    }
-                }
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requesFirebase(request: UserTargetType(id: uid))
     }
    
     func searchUser(text: String)->Single<[User]> {
@@ -68,11 +52,10 @@ struct UserService: UserServiceProtocol {
                 }
                 if let snapShot = snapShot {
                     snapShot.documents.forEach {
-                        if let user = User(dic: $0.data()) {
+                         let user = User(dic: $0.data())
                             if user.name.contains(text) && !user.isMyself {
                                 users.append(user)
                             }
-                        }
                     }
                     singleEvent(.success(users))
                 }
@@ -155,9 +138,8 @@ struct UserService: UserServiceProtocol {
             }
             if let documents = documents {
                 if let dic = documents.data() {
-                    if let user = User(dic: dic) {
+                    let user = User(dic: dic)
                     completion(user)
-                    }
                 }
             }
         }
