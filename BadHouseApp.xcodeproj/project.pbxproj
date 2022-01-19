@@ -47,6 +47,7 @@
 		D31CCFFB2798C28000513587 /* FirebaseSubCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFFA2798C28000513587 /* FirebaseSubCollection.swift */; };
 		D31CCFFF2798C40A00513587 /* UserGetPracticeTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CCFFE2798C40A00513587 /* UserGetPracticeTargetType.swift */; };
 		D31CD0012798C60100513587 /* UserGetFriendsTargeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0002798C60100513587 /* UserGetFriendsTargeType.swift */; };
+		D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -280,6 +281,7 @@
 		D31CCFFA2798C28000513587 /* FirebaseSubCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSubCollection.swift; sourceTree = "<group>"; };
 		D31CCFFE2798C40A00513587 /* UserGetPracticeTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetPracticeTargetType.swift; sourceTree = "<group>"; };
 		D31CD0002798C60100513587 /* UserGetFriendsTargeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetFriendsTargeType.swift; sourceTree = "<group>"; };
+		D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGetMembersTargetType.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				D31CCFF227984B2C00513587 /* CircleTargetType.swift */,
+				D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */,
 			);
 			path = CircleTargetType;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,
 				D3D62E9E278A885A00DCA027 /* PracticeDataSourceDelegate.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
+				D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,
 				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,

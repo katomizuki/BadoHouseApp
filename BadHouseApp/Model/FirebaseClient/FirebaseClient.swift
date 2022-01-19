@@ -63,4 +63,19 @@ class FirebaseClient {
             return Disposables.create()
         }
     }
+    
+    func getFirebaseSubData<T: FirebaseSubCollectionTargetType>(request: T) -> Single<[T.Model]> {
+        return Single.create { singleEvent -> Disposable in
+            request.ref.document(request.id).collection(request.subCollectionName).getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                guard let snapShot = snapShot else { return }
+                let models = snapShot.documents.map { T.Model(dic: $0.data()) }
+                singleEvent(.success(models))
+            }
+            return Disposables.create()
+        }
+    }
 }

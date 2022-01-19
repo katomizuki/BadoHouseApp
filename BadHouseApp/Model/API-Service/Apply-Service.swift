@@ -1,9 +1,3 @@
-//
-//  Apply-Service.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/28.
-//
 
 import Firebase
 import RxSwift

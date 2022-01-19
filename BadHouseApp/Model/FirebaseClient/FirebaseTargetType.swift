@@ -12,4 +12,3 @@ protocol FirebaseTargetType {
     var id:String { get }
     var ref:CollectionReference { get }
 }
-

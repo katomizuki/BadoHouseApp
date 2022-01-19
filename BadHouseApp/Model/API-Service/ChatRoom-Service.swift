@@ -1,5 +1,6 @@
 import Firebase
 import RxSwift
+
 protocol ChatServiceProtocol {
     func getChat(chatId: String)->Single<[Chat]>
     func postChat(chatId: String,
