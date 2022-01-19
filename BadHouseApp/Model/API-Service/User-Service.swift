@@ -75,59 +75,14 @@ struct UserService: UserServiceProtocol {
         }
     }
     func getFriends(uid: String) -> Single<[User]> {
-        var users = [User]()
-        let group = DispatchGroup()
-        let blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
-        return Single.create { singleEvent -> Disposable in
-            Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                if let snapShot = snapShot {
-                    snapShot.documents.forEach {
-                        group.enter()
-                        let uid = $0.data()["id"] as? String ?? ""
-                        UserService.getUserById(uid: uid) { user in
-                            defer { group.leave() }
-                            if !blockIds.contains(uid) {
-                            users.append(user)
-                            }
-                        }
-                    }
-                    group.notify(queue: .main) {
-                        singleEvent(.success(users))
-                    }
-                }
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetFriendsTargeType(id: uid, subRef: Ref.UsersRef, subCollectionName: "Friends"))
+    }
+    
+    func getCircles(uid: String) -> Single<[Circle]> {
+        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetCircleTargetType(id: uid, subRef: Ref.CircleRef, subCollectionName: "Circle"))
     }
     func getMyCircles(uid: String) -> Single<[Circle]> {
-        var circles = [Circle]()
-        let group = DispatchGroup()
-        return Single.create { singleEvent -> Disposable in
-            Ref.UsersRef.document(uid).collection("Circle").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                if let snapShot = snapShot {
-                    snapShot.documents.forEach {
-                        group.enter()
-                        let id = $0.data()["id"] as? String ?? ""
-                        CircleService.getCircle(id: id) { circle in
-                            defer { group.leave() }
-                            circles.append(circle)
-                        }
-                    }
-                    group.notify(queue: .main) {
-                        singleEvent(.success(circles))
-                    }
-                }
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetCircleTargetType(id: uid, subRef: Ref.CircleRef, subCollectionName: "Circle"))
     }
 
     static func getUserById(uid: String, completion:@escaping((User) -> Void)) {
@@ -146,30 +101,7 @@ struct UserService: UserServiceProtocol {
     }
     
     func getMyPractice(uid: String) -> Single<[Practice]> {
-        var practices = [Practice]()
-        let group = DispatchGroup()
-        return Single.create { singleEvent -> Disposable in
-            Ref.UsersRef.document(uid).collection("Practice").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                if let snapShot = snapShot {
-                    snapShot.documents.forEach {
-                        group.enter()
-                        let id = $0.data()["id"] as? String ?? ""
-                        PracticeServie.getPracticeById(id: id) { practice in
-                            defer { group.leave() }
-                            practices.append(practice)
-                        }
-                    }
-                    group.notify(queue: .main) {
-                        singleEvent(.success(practices))
-                    }
-                }
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetPracticeTargetType(id: uid,subRef: Ref.PracticeRef,   subCollectionName: "Practice"))
     }
     
     func judgeChatRoom(user: User, myData: User, completion: @escaping(Bool) -> Void) {

@@ -7,7 +7,7 @@
 
 import Firebase
 
-struct Practice {
+struct Practice: FirebaseModel {
     let addressName: String
     let circleId: String
     let circleName: String
