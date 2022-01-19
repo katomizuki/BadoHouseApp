@@ -46,7 +46,7 @@ final class InviteViewModel: InviteViewModelType,
     }
     
     func willAppear() {
-        let id = Ref.TeamRef.document().documentID
+        let id = Ref.CircleRef.document().documentID
         dic = ["id": id,
                    "name": form.name,
                    "price": form.price,

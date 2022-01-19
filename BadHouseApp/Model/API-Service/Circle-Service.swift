@@ -14,7 +14,7 @@ struct CircleService: CircleServiceProtocol {
                            user: User,
                            memberId: [String],
                            completion: @escaping (Result<Void, Error>) -> Void) {
-        Ref.TeamRef.document(id).setData(dic) { error in
+        Ref.CircleRef.document(id).setData(dic) { error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -37,7 +37,7 @@ struct CircleService: CircleServiceProtocol {
         }
     }
     static func getCircle(id: String, completion:@escaping(Circle) -> Void) {
-        Ref.TeamRef.document(id).getDocument { snapshot, error in
+        Ref.CircleRef.document(id).getDocument { snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -69,7 +69,7 @@ struct CircleService: CircleServiceProtocol {
     func searchCircles(text: String) -> Single<[Circle]> {
         var circles = [Circle]()
         return Single.create { singleEvent-> Disposable in
-            Ref.TeamRef.getDocuments { snapShot, error in
+            Ref.CircleRef.getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
@@ -91,7 +91,7 @@ struct CircleService: CircleServiceProtocol {
                              circle: Circle,
                              completion: @escaping(Error?) -> Void) {
         let ids = circle.member.filter({ $0 != user.uid })
-        Ref.TeamRef.document(circle.id).updateData(["member": ids],
+        Ref.CircleRef.document(circle.id).updateData(["member": ids],
                                                    completion: completion)
         Ref.UsersRef.document(user.uid).collection("Circle").document(circle.id).delete()
     }
@@ -107,13 +107,13 @@ struct CircleService: CircleServiceProtocol {
                                 "icon": circle.icon,
                                 "backGround": circle.backGround,
                                 "member": circle.member]
-        Ref.TeamRef.document(circle.id).updateData(dic, completion: completion)
+        Ref.CircleRef.document(circle.id).updateData(dic, completion: completion)
     }
     
     static func inviteCircle(ids: [String],
                              circle: Circle,
                              completion: @escaping (Result<Void, Error>) -> Void) {
-        Ref.TeamRef.document(circle.id).updateData(["member": ids])
+        Ref.CircleRef.document(circle.id).updateData(["member": ids])
         let group = DispatchGroup()
         ids.forEach { uid in
             group.enter()
@@ -131,18 +131,6 @@ struct CircleService: CircleServiceProtocol {
     }
     
     func getCircle(id: String) -> Single<Circle> {
-        return Single.create { singleEvent in
-            Ref.TeamRef.document(id).getDocument { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                }
-                guard let snapShot = snapShot else { return }
-                if let dic = snapShot.data() {
-                    let circle = Circle(dic: dic)
-                    singleEvent(.success(circle))
-                }
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requesFirebase(request: CircleTargetType(id: id))
     }
 }

@@ -1,7 +1,7 @@
 
 import Firebase
 
-struct Circle: Equatable {
+struct Circle: Equatable,FirebaseModel {
     var id: String
     var features: [String]
     var time: String
@@ -20,7 +20,7 @@ struct Circle: Equatable {
             return nil
         }
     }
-    var backGroundUrl:URL? {
+    var backGroundUrl: URL? {
         if let url = URL(string: backGround) {
             return url
         } else {

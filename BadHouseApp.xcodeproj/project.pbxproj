@@ -154,7 +154,7 @@
 		D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF72775DA9B00C6C761 /* InviteCell.swift */; };
 		D3C1BFFA2775DA9B00C6C761 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */; };
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
-		D3C4E94726E1C2B400C21E46 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* Team.swift */; };
+		D3C4E94726E1C2B400C21E46 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* Circle.swift */; };
 		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
 		D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3D37E2721873A00E2853A /* AppExplainController.swift */; };
 		D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D57DD9277EF1CD00BCBF0C /* PracticeEntity.swift */; };
@@ -227,7 +227,7 @@
 		D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */; };
 		D3FFD328271EBC9200DE54ED /* User-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD327271EBC9200DE54ED /* User-Service.swift */; };
 		D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD329271EBECD00DE54ED /* Delete-Service.swift */; };
-		D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32B271EC01600DE54ED /* Team-Service.swift */; };
+		D3FFD32C271EC01600DE54ED /* Circle-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32B271EC01600DE54ED /* Circle-Service.swift */; };
 		D3FFD32E271EC4BD00DE54ED /* Practice-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32D271EC4BD00DE54ED /* Practice-Service.swift */; };
 		D3FFD330271EC6E000DE54ED /* ChatRoom-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */; };
 		D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */; };
@@ -385,7 +385,7 @@
 		D3C1BFF72775DA9B00C6C761 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		D3C1BFF82775DA9B00C6C761 /* InviteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
-		D3C4E94626E1C2B400C21E46 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		D3C4E94626E1C2B400C21E46 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D3D3D37E2721873A00E2853A /* AppExplainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExplainController.swift; sourceTree = "<group>"; };
 		D3D3D380272194D100E2853A /* BadHouseApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BadHouseApp.entitlements; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 		D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth-Service.swift"; sourceTree = "<group>"; };
 		D3FFD327271EBC9200DE54ED /* User-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User-Service.swift"; sourceTree = "<group>"; };
 		D3FFD329271EBECD00DE54ED /* Delete-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete-Service.swift"; sourceTree = "<group>"; };
-		D3FFD32B271EC01600DE54ED /* Team-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Team-Service.swift"; sourceTree = "<group>"; };
+		D3FFD32B271EC01600DE54ED /* Circle-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Circle-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32D271EC4BD00DE54ED /* Practice-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Practice-Service.swift"; sourceTree = "<group>"; };
 		D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRoom-Service.swift"; sourceTree = "<group>"; };
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
@@ -789,7 +789,7 @@
 				D3FF15C4277B3525006355EF /* Repositry */,
 				D3FFD326271EBBD100DE54ED /* API-Service */,
 				D3BDB56326E0B05D00C53780 /* User.swift */,
-				D3C4E94626E1C2B400C21E46 /* Team.swift */,
+				D3C4E94626E1C2B400C21E46 /* Circle.swift */,
 				D353D8E926F21A4F00221B7D /* Chat.swift */,
 				D34852B526FD3EBD0027592A /* PreJoin.swift */,
 				D3D761882776D38D004381E4 /* AuthCredential.swift */,
@@ -919,7 +919,7 @@
 				D3FFD324271EB86400DE54ED /* FirebaseAuth-Service.swift */,
 				D3FFD327271EBC9200DE54ED /* User-Service.swift */,
 				D3FFD329271EBECD00DE54ED /* Delete-Service.swift */,
-				D3FFD32B271EC01600DE54ED /* Team-Service.swift */,
+				D3FFD32B271EC01600DE54ED /* Circle-Service.swift */,
 				D3FFD32D271EC4BD00DE54ED /* Practice-Service.swift */,
 				D3FFD32F271EC6E000DE54ED /* ChatRoom-Service.swift */,
 				D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */,
@@ -1327,7 +1327,7 @@
 				D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */,
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
 				D32E598F2774859D00C59548 /* UserCircleCell.swift in Sources */,
-				D3FFD32C271EC01600DE54ED /* Team-Service.swift in Sources */,
+				D3FFD32C271EC01600DE54ED /* Circle-Service.swift in Sources */,
 				D3B22D842781625800EC8C10 /* SearchSelectionController.swift in Sources */,
 				D3B41DAE277345C10051FFB5 /* UserSettingsController.swift in Sources */,
 				D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */,
@@ -1335,7 +1335,7 @@
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
 				D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
-				D3C4E94726E1C2B400C21E46 /* Team.swift in Sources */,
+				D3C4E94726E1C2B400C21E46 /* Circle.swift in Sources */,
 				D3F8607A2727EEDF00085ABD /* FirebaseErrorEnum.swift in Sources */,
 				D3B72CEF274A2E7700253933 /* Array+Extenstion.swift in Sources */,
 				D3D7617B2776AD73004381E4 /* ChatCoordinator.swift in Sources */,
