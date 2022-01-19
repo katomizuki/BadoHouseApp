@@ -77,7 +77,7 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "shuttle"), style: .done, target: self, action: #selector(didTapRightButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "shuttle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(didTapRightButton))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "承認待ちの練習", style: .done, target: self, action: #selector(didTapLeftButton))
     }
     

@@ -39,7 +39,12 @@ final class PracticeSearchController: UIViewController {
     }
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton)), UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapReloadButton))]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(
+            barButtonSystemItem: .search,
+            target: self,
+            action: #selector(didTapSearchButton)), UIBarButtonItem(barButtonSystemItem: .refresh,
+                            target: self,
+                            action: #selector(didTapReloadButton))]
     }
     @objc private func didTapCloseButton() {
         dismiss(animated: true)
