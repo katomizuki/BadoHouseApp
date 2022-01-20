@@ -1,8 +1,8 @@
-import Foundation
 import UIKit
-import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 import CDAlertView
-// Mark UIViewcontroller-Extension
+
 extension UIViewController {
    
     func showCDAlert(title: String, message: String, action: String, alertType: CDAlertViewType) {

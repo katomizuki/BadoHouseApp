@@ -1,14 +1,8 @@
-//
-//  AlertProvider.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/24.
-//
-
 import UIKit
+
 class AlertProvider {
     static func makeAlertVC(_ user: User,
-                            completion: @escaping(Error?)->Void) -> UIAlertController {
+                            completion: @escaping(Error?) -> Void) -> UIAlertController {
         let alertVC = UIAlertController(title: "このユーザーに関して", message: "", preferredStyle: .actionSheet)
         let problemAction = UIAlertAction(title: "不適切なユーザーである", style: .destructive) {  _ in
             Ref.ReportRef.document(user.uid).setData(["id":user.uid],
@@ -32,7 +26,7 @@ class AlertProvider {
         alertVC.addAction(canleAction)
         return alertVC
     }
-    static func practiceAlertVC()->UIAlertController {
+    static func practiceAlertVC() -> UIAlertController {
         let alertVC = UIAlertController(title: "この練習に関して", message: "", preferredStyle: .actionSheet)
         let canleAction = UIAlertAction(title: "キャンセル", style: .cancel)
         alertVC.addAction(canleAction)

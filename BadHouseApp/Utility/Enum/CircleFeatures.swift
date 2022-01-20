@@ -1,9 +1,3 @@
-//
-//  CircleFeatures.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/27.
-//
 
 enum CircleFeatures: Int, CaseIterable {
     case single,double,mix,practiceMain,gameMain,notGender,notAge,weekDay,weekEnd

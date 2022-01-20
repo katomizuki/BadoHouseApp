@@ -1,7 +1,7 @@
 
 import Firebase
 
-struct Circle: Equatable,FirebaseModel {
+struct Circle: Equatable, FirebaseModel {
     var id: String
     var features: [String]
     var time: String
@@ -10,7 +10,7 @@ struct Circle: Equatable,FirebaseModel {
     var name: String
     var member: [String]
     var additionlText:String
-    var backGround:String
+    var backGround: String
     var icon:String
     var members = [User]()
     var iconUrl:URL? {

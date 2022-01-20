@@ -12,6 +12,7 @@ struct PracticeServie: PracticeServieProtocol {
                       circle: Circle,
                       user: User,
                       completion: @escaping(Error?) -> Void) {
+        
         var dictionary = dic
         dictionary["userId"] = user.uid
         dictionary["userName"] = user.name
@@ -22,6 +23,7 @@ struct PracticeServie: PracticeServieProtocol {
         let id = Ref.PracticeRef.document().documentID
         dictionary["id"] = id
         Ref.PracticeRef.document(id).setData(dictionary)
+        
         Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id": id], completion: completion)
     }
     func getPractices() -> Single<[Practice]> {

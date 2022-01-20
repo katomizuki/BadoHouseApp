@@ -1,29 +1,28 @@
-//
-//  UserPageDataSourceDelegate.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/09.
-//
-
 import UIKit
-protocol UserPageDataSourceDelegateProtocol:AnyObject {
+
+protocol UserPageDataSourceDelegateProtocol: AnyObject {
     func pop()
     func push(_ vc: UserLevelController)
     func present(_ vc: MyPageInfoPopoverController)
 }
-class UserPageDataSourceDelegate: NSObject,UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate,PopDismissDelegate, UserLevelDelegate {
+final class UserPageDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, PopDismissDelegate, UserLevelDelegate {
+    
     let viewModel:UpdateUserInfoViewModel
     private let cellId = "cellId"
     weak var delegate:UserPageDataSourceDelegateProtocol?
+    
     init(viewModel:UpdateUserInfoViewModel) {
         self.viewModel = viewModel
     }
+    
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserInfoSelection.allCases.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: cellId)
         var configuration = cell.defaultContentConfiguration()
@@ -33,6 +32,7 @@ class UserPageDataSourceDelegate: NSObject,UITableViewDelegate,UITableViewDataSo
         cell.selectionStyle = .none
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if UserInfoSelection(rawValue: indexPath.row) == .level {
@@ -56,10 +56,12 @@ class UserPageDataSourceDelegate: NSObject,UITableViewDelegate,UITableViewDataSo
             self.delegate?.present(viewController)
             }
         }
+    
     func popDismiss(vc: MyPageInfoPopoverController, userInfoSelection: UserInfoSelection, text: String) {
         viewModel.changeUser(userInfoSelection, text: text)
         vc.dismiss(animated: true)
     }
+    
     func UserLevelController(vc: UserLevelController, text: String) {
         viewModel.changeUser(.level, text: text)
         self.delegate?.pop()

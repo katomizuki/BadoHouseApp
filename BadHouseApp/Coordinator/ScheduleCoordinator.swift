@@ -10,9 +10,9 @@ import UIKit
 final class ScheduleCoordinator:Coordinator,ScheduleFlow {
    
     let navigationController:UINavigationController
-    let viewModel:ScheduleViewModel
+    let viewModel: ScheduleViewModel
     let vc:UIViewController
-    init(navigationController:UINavigationController,viewModel:ScheduleViewModel,vc:UIViewController) {
+    init(navigationController: UINavigationController, viewModel:ScheduleViewModel,vc: UIViewController) {
         self.navigationController = navigationController
         self.viewModel = viewModel
         self.vc = vc
@@ -30,8 +30,6 @@ final class ScheduleCoordinator:Coordinator,ScheduleFlow {
                                     userAPI: UserService(),
                                     circleAPI: CircleService(),
                                     isModal: true,
-                                    joinAPI: JoinService()))
-, animated: true)
+                                    joinAPI: JoinService())), animated: true)
     }
 }
-

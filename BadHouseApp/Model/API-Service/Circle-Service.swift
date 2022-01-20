@@ -1,4 +1,3 @@
-import Firebase
 import RxSwift
 
 protocol CircleServiceProtocol {
@@ -25,25 +24,22 @@ struct CircleService: CircleServiceProtocol {
                     user: User,
                     memberId: [String],
                     completion: @escaping (Result<Void, Error>) -> Void) {
-        Ref.CircleRef.document(id).setData(dic) { error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            let group = DispatchGroup()
-            memberId.forEach { uid in
-                group.enter()
-                Ref.UsersRef.document(uid).collection("Circle").document(id).setData(["id": id]) { error in
-                    defer { group.leave() }
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
+        
+        Ref.CircleRef.document(id).setData(dic)
+        
+        let group = DispatchGroup()
+        memberId.forEach { uid in
+            group.enter()
+            Ref.UsersRef.document(uid).collection("Circle").document(id).setData(["id": id]) { error in
+                defer { group.leave() }
+                if let error = error {
+                    completion(.failure(error))
+                    return
                 }
             }
-            group.notify(queue: .main) {
-                completion(.success(()))
-            }
+        }
+        group.notify(queue: .main) {
+            completion(.success(()))
         }
     }
     
@@ -94,8 +90,10 @@ struct CircleService: CircleServiceProtocol {
                         circle: Circle,
                         completion: @escaping(Error?) -> Void) {
         let ids = circle.member.filter({ $0 != user.uid })
+        
         Ref.CircleRef.document(circle.id).updateData(["member": ids],
                                                      completion: completion)
+        
         Ref.UsersRef.document(user.uid).collection("Circle").document(circle.id).delete()
     }
     
@@ -116,7 +114,9 @@ struct CircleService: CircleServiceProtocol {
     func inviteCircle(ids: [String],
                       circle: Circle,
                       completion: @escaping (Result<Void, Error>) -> Void) {
+        
         Ref.CircleRef.document(circle.id).updateData(["member": ids])
+        
         let group = DispatchGroup()
         ids.forEach { uid in
             group.enter()

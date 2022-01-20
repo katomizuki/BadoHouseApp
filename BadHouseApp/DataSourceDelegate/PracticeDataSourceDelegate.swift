@@ -1,14 +1,16 @@
 import UIKit
-protocol PracticeDataSourceDelegateProtocol:AnyObject {
+protocol PracticeDataSourceDelegateProtocol: AnyObject {
     func presentVC(_ vc: SearchSelectionController)
 }
-class PracticeDataSourceDelegate:NSObject,UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate, SearchSelectionControllerDelegate {
+final class PracticeDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, SearchSelectionControllerDelegate {
     
     weak var delegate: PracticeDataSourceDelegateProtocol?
-    var viewModel:PracticeSearchViewModel?
+    var viewModel: PracticeSearchViewModel?
+    
     func initViewModel(viewModel:PracticeSearchViewModel) {
         self.viewModel = viewModel
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return }
@@ -27,6 +29,7 @@ class PracticeDataSourceDelegate:NSObject,UITableViewDelegate,UITableViewDataSou
             self.delegate?.presentVC(viewController)
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SearchSelection.allCases.count
     }
@@ -45,9 +48,11 @@ class PracticeDataSourceDelegate:NSObject,UITableViewDelegate,UITableViewDataSou
         cell.contentConfiguration = configuration
         return cell
     }
+    
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
+    
     func searchSelectionControllerDismiss(vc: SearchSelectionController, selection: SearchSelection, text: String) {
         guard let viewModel = viewModel else { return }
         vc.dismiss(animated: true)

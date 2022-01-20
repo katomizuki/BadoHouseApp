@@ -1,6 +1,6 @@
 import UIKit
 
-class AppCoordinator: Coordinator {
+final class AppCoordinator: Coordinator {
     let window: UIWindow
     init(window: UIWindow) {
         self.window = window
@@ -22,7 +22,7 @@ class AppCoordinator: Coordinator {
         UITabBarItem(title: "ユーザー",
                      image: UIImage(systemName: "person.fill"),
                      tag: 2)
-        talkNavigationController.tabBarItem = UITabBarItem(title:"トーク",
+        talkNavigationController.tabBarItem = UITabBarItem(title: "トーク",
                         image:UIImage(systemName: "bubble.left.fill"),
                         tag: 3)
         mainNavigationController.tabBarItem =

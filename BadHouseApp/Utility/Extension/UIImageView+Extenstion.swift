@@ -1,6 +1,5 @@
-
-import Foundation
 import UIKit
+
 extension UIImageView {
     func chageCircle() {
         self.layer.cornerRadius = self.frame.width / 2

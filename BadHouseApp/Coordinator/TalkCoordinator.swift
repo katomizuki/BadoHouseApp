@@ -1,7 +1,6 @@
-
 import UIKit
 
-class TalkCoordinator: Coordinator,TalkFlow {
+final class TalkCoordinator: Coordinator, TalkFlow {
    
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
@@ -15,10 +14,10 @@ class TalkCoordinator: Coordinator,TalkFlow {
     func toChat(userId: String, myDataId: String,chatId: String) {
         UserService.getUserById(uid: userId) { user in
             UserService.getUserById(uid: myDataId) { myData in
-                let viewModel = ChatViewModel(myData: myData, user: user,
-                                              userAPI: UserService(),
-                                              chatAPI: ChatService())
-                self.coordinator(to: ChatCoordinator(navigationController: self.navigationController, viewModel: viewModel))
+                self.coordinator(to: ChatCoordinator(navigationController: self.navigationController, viewModel: ChatViewModel(myData: myData,
+                                                                        user: user,
+                                                                        userAPI: UserService(),
+                                                                        chatAPI: ChatService())))
             }
         }
     }

@@ -17,7 +17,7 @@ struct User:FirebaseModel, Equatable {
     var age: String
     var racket: String
     var player: String
-    var profileImageUrl:URL? {
+    var profileImageUrl: URL? {
         if let url = URL(string: profileImageUrlString) {
             return url
         } else {

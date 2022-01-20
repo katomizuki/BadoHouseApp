@@ -1,4 +1,4 @@
-import Firebase
+import FirebaseFirestore
 
 struct DeleteService {
     static func deleteCollectionData(collectionName: String, documentId: String) {

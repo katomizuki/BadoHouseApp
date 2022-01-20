@@ -1,5 +1,5 @@
-import Foundation
 import Network
+
 class Network {
     static let shared = Network()
     private let monitor = NWPathMonitor()

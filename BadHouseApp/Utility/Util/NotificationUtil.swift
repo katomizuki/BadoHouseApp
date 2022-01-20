@@ -1,6 +1,6 @@
-import Foundation
 import UserNotifications
 import UIKit
+
 // Mark LocalNotificationStruct
 struct LocalNotification {
     var id: String

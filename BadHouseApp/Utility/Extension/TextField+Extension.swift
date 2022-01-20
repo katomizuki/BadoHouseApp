@@ -1,11 +1,5 @@
-//
-//  TextField+Extension.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/24.
-//
-
 import UIKit
+
 extension UITextField {
     func setUnderLine(width:CGFloat) {
         borderStyle = .none

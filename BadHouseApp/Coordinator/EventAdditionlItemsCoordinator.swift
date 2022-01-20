@@ -1,12 +1,6 @@
-//
-//  EventAdditionlItemsCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/20.
-//
-
 import UIKit
-class EventAdditionlItemsCoordinator:Coordinator,EventAdditionlItemsFlow {
+
+final class EventAdditionlItemsCoordinator: Coordinator, EventAdditionlItemsFlow {
     let navigationController:UINavigationController
     let image: UIImage
     let user: User

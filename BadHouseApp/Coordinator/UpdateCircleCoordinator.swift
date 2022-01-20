@@ -1,12 +1,6 @@
-//
-//  UpdateCircleCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/30.
-//
-
 import UIKit
-class UpdateCircleCoordinator:Coordinator {
+
+final class UpdateCircleCoordinator:Coordinator {
     let navigationController:UINavigationController
     let viewModel:UpdateCircleViewModel
     init(navigationController:UINavigationController,viewModel:UpdateCircleViewModel) {

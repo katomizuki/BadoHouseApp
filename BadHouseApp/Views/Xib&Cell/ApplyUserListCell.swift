@@ -1,12 +1,6 @@
-//
-//  ApplyUserListCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/28.
-//
-
 import UIKit
 import SDWebImage
+
 protocol ApplyUserListCellDelegate:AnyObject {
     func onTapTrashButton(_ apply:Apply, cell:ApplyUserListCell)
 }

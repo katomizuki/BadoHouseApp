@@ -1,25 +1,32 @@
-
 import UIKit
 
-final class HomeCoordinator: Coordinator,HomeFlow {
+final class HomeCoordinator: Coordinator, HomeFlow {
     
     let navigationController: UINavigationController
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+    
     func start() {
         let controller = HomeViewController.init(nibName: "HomeViewController", bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toMap(practices:[Practice],lat:Double, lon: Double) {
-        coordinator(to: MapCoordinator(navigationController: navigationController,viewModel: MapListViewModel(currnetLatitude: lat, currentLongitude: lon, practices: practices)))
+    
+    func toMap(practices: [Practice], lat: Double, lon: Double) {
+        coordinator(to: MapCoordinator(navigationController: navigationController,
+                                       viewModel: MapListViewModel(currnetLatitude: lat,
+                                                                   currentLongitude: lon,
+                                                                   practices: practices)))
      
     }
+    
     func toMakeEvent() {
         coordinator(to: MakePracticeCoordinator(navigationController: self.navigationController))
     }
-    func toDetailSearch(_ vc: HomeViewController, practices:[Practice]) {
+    
+    func toDetailSearch(_ vc: HomeViewController, practices: [Practice]) {
         let controller = PracticeSearchController.init(viewModel: PracticeSearchViewModel(practiceAPI: PracticeServie(), practices: practices))
         controller.delegate = vc
         let nav = UINavigationController(rootViewController: controller)
@@ -31,6 +38,7 @@ final class HomeCoordinator: Coordinator,HomeFlow {
                                             viewController: vc))
        
     }
+    
     func toPracticeDetail(_ practice: Practice) {
         coordinator(to: PracticeDetailCoordinator(
             navigationController: self.navigationController,

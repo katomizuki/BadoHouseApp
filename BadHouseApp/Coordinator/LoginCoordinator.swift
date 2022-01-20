@@ -1,14 +1,8 @@
-//
-//  LoginCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/25.
-//
-
 import UIKit
+
 final class LoginCoordinator: Coordinator, LoginFlow {
-    let navigationController:UINavigationController
-    init(navigationController:UINavigationController) {
+    let navigationController: UINavigationController
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     func start() {

@@ -1,5 +1,6 @@
 import UIKit
 import SDWebImage
+
 protocol ApplyedUserListCellDelegate:AnyObject {
     func onTapPermissionButton(_ applyed:Applyed)
 }

@@ -1,4 +1,3 @@
-import Firebase
 import RxSwift
 
 protocol ChatServiceProtocol {

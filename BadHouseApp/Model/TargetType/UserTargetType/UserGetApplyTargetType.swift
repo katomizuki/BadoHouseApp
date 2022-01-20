@@ -1,11 +1,5 @@
-//
-//  UserGetApplyTargetType.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/20.
-//
-
 import FirebaseFirestore
+
 struct UserGetApplyTargetType: FirebaseSubCollectionTargetType {
     var subId: String = ""
     

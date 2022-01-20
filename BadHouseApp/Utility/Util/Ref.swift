@@ -1,5 +1,4 @@
-
-import Firebase
+import FirebaseStorage
 import FirebaseFirestore
 
 struct Ref {

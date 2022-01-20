@@ -1,5 +1,4 @@
 import FirebaseStorage
-import Firebase
 
 struct StorageService {
     // MARK: - DownloadUrl

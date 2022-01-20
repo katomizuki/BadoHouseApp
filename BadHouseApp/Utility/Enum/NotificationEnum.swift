@@ -1,9 +1,3 @@
-//
-//  NotificationEnum.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/08.
-//
 
 enum NotificationEnum: Int, CaseIterable {
     case applyed, prejoined, permissionJoin, permissionFriend

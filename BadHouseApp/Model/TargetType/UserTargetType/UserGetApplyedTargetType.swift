@@ -4,7 +4,9 @@ struct UserGetApplyedTargetType: FirebaseSubCollectionTargetType {
     var subId: String = ""
     
     var isDescending: Bool?
+    
     var sortField: String = ""
+    
     var id: String
     
     var ref: CollectionReference { Ref.ApplyedRef }

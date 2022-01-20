@@ -1,13 +1,7 @@
-//
-//  UISlider+Extension.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/25.
-//
-
 import UIKit
+
 extension UISlider {
-    func getLevelText(_ level:Double) -> String {
+    func getLevelText(_ level: Double) -> String {
         var message = String()
         if case 0..<0.1 = level {
             message = BadmintonLevel(rawValue: 0)!.description
@@ -41,7 +35,7 @@ extension UISlider {
         }
         return message
     }
-    func getLevelSentence(_ level:Double) -> String {
+    func getLevelSentence(_ level: Double) -> String {
         var text = String()
         if case 0..<0.1 = level {
             text = R.array.levelSentence[0]
@@ -75,6 +69,4 @@ extension UISlider {
         }
         return text
     }
-    
-   
 }

@@ -1,6 +1,6 @@
 import Firebase
-import Foundation
 import RxSwift
+
 protocol JoinServiceProtocol {
     func getPrejoin(userId: String)->Single<[PreJoin]>
     func getPreJoined(userId: String)->Single<[PreJoined]>
@@ -17,50 +17,42 @@ struct JoinService: JoinServiceProtocol {
     func postPreJoin(user: User,
                      toUser: User, practice: Practice,
                      completion: @escaping(Result<Void, Error>) -> Void) {
+        
         Ref.PreJoinRef.document(user.uid).collection("Users")
-            .document(toUser.uid)
-            .setData(["toUserId": toUser.uid,
-                      "name": toUser.name,
-                      "imageUrl": toUser.profileImageUrlString,
-                      "createdAt": Timestamp(),
-                      "uid": user.uid,
-                      "practiceName": practice.title,
-                      "circleImage": practice.circleUrlString,
-                      "id": practice.id]) { error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                Ref.PreJoinedRef.document(toUser.uid)
-                    .collection("Users")
-                    .document(user.uid).setData(["fromUserId": user.uid,
-                                                 "name": user.name,
-                                                 "imageUrl": user.profileImageUrlString,
-                                                 "createdAt": Timestamp(),
-                                                 "uid": toUser.uid,
-                                                 "practiceName": practice.title,
-                                                 "circleImage": practice.circleUrlString,
-                                                 "id": practice.id]) { error in
-                        if let error = error {
-                            completion(.failure(error))
-                            return
-                        }
-                        NotificationService.postNotification(uid: toUser.uid, dic: [
-                            "id": user.uid,
-                            "urlString": user.profileImageUrlString,
-                            "notificationSelectionNumber": 1,
-                            "titleText": user.name,
-                            "practiceId": practice.id,
-                            "practiceTitle": practice.title,
-                            "createdAt": Timestamp()]) { error in
-                                if let error = error {
-                                    completion(.failure(error))
-                                    return
-                                }
-                                completion(.success(()))
-                            }
-                    }
+            .document(toUser.uid).setData(["toUserId": toUser.uid,
+                                           "name": toUser.name,
+                                           "imageUrl": toUser.profileImageUrlString,
+                                           "createdAt": Timestamp(),
+                                           "uid": user.uid,
+                                           "practiceName": practice.title,
+                                           "circleImage": practice.circleUrlString,
+                                           "id": practice.id])
+        
+        Ref.PreJoinedRef.document(toUser.uid)
+            .collection("Users")
+            .document(user.uid).setData(["fromUserId": user.uid,
+                                         "name": user.name,
+                                         "imageUrl": user.profileImageUrlString,
+                                         "createdAt": Timestamp(),
+                                         "uid": toUser.uid,
+                                         "practiceName": practice.title,
+                                         "circleImage": practice.circleUrlString,
+                                         "id": practice.id])
+        
+        NotificationService.postNotification(uid: toUser.uid,
+                                             dic: ["id": user.uid,
+                                                   "urlString": user.profileImageUrlString,
+                                                   "notificationSelectionNumber": 1,
+                                                   "titleText": user.name,
+                                                   "practiceId": practice.id,
+                                                   "practiceTitle": practice.title,
+                                                   "createdAt": Timestamp()]) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
             }
+            completion(.success(()))
+        }
     }
     
     func getPrejoin(userId: String) -> Single<[PreJoin]> {
@@ -74,15 +66,18 @@ struct JoinService: JoinServiceProtocol {
                        user: User,
                        myData: User,
                        completion: @escaping(Error?) -> Void) {
+        
         Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
+        
         Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
-        NotificationService.postNotification(uid: user.uid, dic: [
-            "id": myData.uid,
-            "urlString": myData.profileImageUrlString,
-            "notificationSelectionNumber": 2,
-            "titleText": myData.name,
-            "practiceId": preJoined.id,
-            "practiceTitle": preJoined.practiceName,
-            "createdAt": Timestamp()], completion: completion)
+        
+        NotificationService.postNotification(uid: user.uid,
+                                             dic: ["id": myData.uid,
+                                                   "urlString": myData.profileImageUrlString,
+                                                   "notificationSelectionNumber": 2,
+                                                   "titleText": myData.name,
+                                                   "practiceId": preJoined.id,
+                                                   "practiceTitle": preJoined.practiceName,
+                                                   "createdAt": Timestamp()], completion: completion)
     }
 }

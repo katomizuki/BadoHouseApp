@@ -1,23 +1,14 @@
-//
-//  AddtionalPracticeElementCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/20.
-//
-
 import UIKit
 
-class AddtionalPracticeElementCoordinator:Coordinator,AddtionalPracticeElementFlow {
-   
-    
-  
-    let navigationController:UINavigationController
-    var viewController:AdditionalEventElementController?
+final class AddtionalPracticeElementCoordinator:Coordinator, AddtionalPracticeElementFlow {
+
+    let navigationController: UINavigationController
+    var viewController: AdditionalEventElementController?
     let image: UIImage
     let circle: Circle
-    let dic: [String:Any]
+    let dic: [String : Any]
     let user: User
-    init(navigationController:UINavigationController,
+    init(navigationController: UINavigationController,
          dic: [String:Any],
          image: UIImage,
          circle: Circle,

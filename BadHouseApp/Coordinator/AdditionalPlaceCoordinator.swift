@@ -1,13 +1,6 @@
-//
-//  AdditionalPlaceCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/20.
-//
-
 import UIKit
 
-class AdditionalPlaceCoordinator: Coordinator,AddtionalPlaceFlow {
+final class AdditionalPlaceCoordinator: Coordinator, AddtionalPlaceFlow {
     let viewController:AdditionalEventElementController
     init(viewController:AdditionalEventElementController) {
         self.viewController = viewController

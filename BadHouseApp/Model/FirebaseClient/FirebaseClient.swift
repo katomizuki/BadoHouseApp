@@ -107,7 +107,7 @@ class FirebaseClient {
         }
     }
     func getDataById<T: FirebaseSubCollectionTargetType>(request: T,
-                                            completion: @escaping(T.Model) -> Void) {
+                                                         completion: @escaping(T.Model) -> Void) {
         request.ref.document(request.id).collection(request.subCollectionName).document(request.subId).getDocument { snapShot, error in
             if error != nil { return }
             if let dic = snapShot?.data() {

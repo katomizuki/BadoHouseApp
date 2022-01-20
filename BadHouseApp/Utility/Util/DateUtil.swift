@@ -1,6 +1,5 @@
 import Foundation
-import UIKit
-// Mark DateUtils
+
 class DateUtils {
     static func dateFromString(string: String, format: String) -> Date? {
         let formatter: DateFormatter = DateFormatter()

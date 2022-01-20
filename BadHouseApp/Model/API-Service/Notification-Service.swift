@@ -1,4 +1,3 @@
-import FirebaseFirestore
 import RxSwift
 
 protocol NotificationServiceProtocol {

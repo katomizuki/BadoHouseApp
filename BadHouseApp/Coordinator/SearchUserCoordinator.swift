@@ -1,16 +1,9 @@
-//
-//  SearchUserCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/08.
-//
-
 import UIKit
 
-final class SearchUserCoordinator:Coordinator,SearchUserFlow {
-    let navigationController:UINavigationController
-    let viewModel:SearchUserViewModel
-    init(navigationController:UINavigationController,viewModel:SearchUserViewModel) {
+final class SearchUserCoordinator: Coordinator,SearchUserFlow {
+    let navigationController: UINavigationController
+    let viewModel: SearchUserViewModel
+    init(navigationController: UINavigationController, viewModel: SearchUserViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }

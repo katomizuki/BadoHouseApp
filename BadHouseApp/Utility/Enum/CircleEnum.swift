@@ -1,5 +1,4 @@
 
-
 enum BadmintonCircle: Int, CaseIterable {
     case student, society, other
     var name: String {

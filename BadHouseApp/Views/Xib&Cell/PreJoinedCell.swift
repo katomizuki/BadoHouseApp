@@ -1,12 +1,6 @@
-//
-//  PreJoinedCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/04.
-//
-
 import UIKit
 import SDWebImage
+
 protocol PreJoinedCellDelegate:AnyObject {
     func preJoinedCell(prejoined: PreJoined)
 }

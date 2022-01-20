@@ -1,12 +1,6 @@
-//
-//  PreJoinCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/04.
-//
-
 import UIKit
 import SDWebImage
+
 protocol PreJoinCellDelegate: AnyObject {
     func preJoinCell(_ cell: PreJoinCell,preJoin: PreJoin)
 }
@@ -31,7 +25,7 @@ final class PreJoinCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func configure(_ prejoin:PreJoin) {
+    func configure(_ prejoin: PreJoin) {
         self.preJoin = prejoin
         circleImageView.sd_setImage(with: prejoin.url)
         label.text = "「\(prejoin.practiceName)」に参加申請中です"

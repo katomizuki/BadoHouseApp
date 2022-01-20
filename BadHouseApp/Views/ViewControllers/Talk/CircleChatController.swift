@@ -21,7 +21,7 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    init(viewModel:ChatViewModel) {
+    init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

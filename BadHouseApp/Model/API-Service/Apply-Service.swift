@@ -66,32 +66,36 @@ struct ApplyService: ApplyServiceProtocol {
     func match(user: User,
                friend: User,
                completion: @escaping(Result<Void, Error>) -> Void) {
+        
         sendUserData(id1: user.uid, id2: friend.uid, dic: ["id": friend.uid])
+        
         sendUserData(id1: friend.uid, id2: user.uid, dic: ["id": user.uid])
-        NotificationService.postNotification(uid: user.uid, dic: [
-            "id": friend.uid,
-            "urlString": friend.profileImageUrlString,
-            "notificationSelectionNumber": 3,
-            "titleText": friend.name,
-            "createdAt": Timestamp()]) { error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                NotificationService.postNotification(uid: friend.uid, dic: [
-                    "id": user.uid,
-                    "urlString": user.profileImageUrlString,
-                    "notificationSelectionNumber": 3,
-                    "titleText": user.name,
-                    "createdAt": Timestamp()]) { error in
-                        if let error = error {
-                            completion(.failure(error))
-                            return
-                        }
-                        UserService.saveFriendId(uid: user.uid)
-                        completion(.success(()))
-                    }
+        
+        NotificationService.postNotification(uid: user.uid,
+                                             dic: ["id": friend.uid,
+                                                   "urlString": friend.profileImageUrlString,
+                                                   "notificationSelectionNumber": 3,
+                                                   "titleText": friend.name,
+                                                   "createdAt": Timestamp()]) { error in
+                                                        if let error = error {
+                                                            completion(.failure(error))
+                                                            return
+                                                        }
+            
+            NotificationService.postNotification(uid: friend.uid,
+                                                 dic: ["id": user.uid,
+                                                       "urlString": user.profileImageUrlString,
+                                                       "notificationSelectionNumber": 3,
+                                                       "titleText": user.name,
+                                                       "createdAt": Timestamp()]) { error in
+                                                            if let error = error {
+                                                                completion(.failure(error))
+                                                                return
+                                                            }
+                UserService.saveFriendId(uid: user.uid)
+                completion(.success(()))
             }
+        }
     }
     
     private func sendUserData(id1: String, id2: String, dic: [String: Any]) {

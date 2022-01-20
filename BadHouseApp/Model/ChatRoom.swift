@@ -14,8 +14,8 @@ struct ChatRoom: FirebaseModel {
     let latestTime: Timestamp
     let partnerName: String
     let partnerUrlString: String
-    var userId:String
-    init(dic:[String:Any]) {
+    var userId: String
+    init(dic: [String: Any]) {
         self.id = dic["id"] as? String ?? ""
         self.latestTime = dic["latestTime"] as? Timestamp ?? Timestamp()
         self.latestMessage = dic["latestMessage"] as? String ?? ""

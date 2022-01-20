@@ -1,12 +1,6 @@
-//
-//  InviteCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/24.
-//
-
 import UIKit
 import SDWebImage
+
 final class InviteCell: UITableViewCell {
     static let id = String(describing: self)
     @IBOutlet private weak var userImageView: UIImageView! {

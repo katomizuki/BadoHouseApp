@@ -1,12 +1,6 @@
-//
-//  NotificationCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/21.
-//
-
 import UIKit
 import SDWebImage
+
 final class NotificationCell: UICollectionViewCell {
     @IBOutlet private weak var notificationImageView: UIImageView! {
         didSet {

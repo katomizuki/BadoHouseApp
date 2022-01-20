@@ -1,6 +1,6 @@
 import Firebase
 import RxSwift
-import UIKit
+
 
 protocol UserServiceProtocol {
     func postUser(uid: String,
