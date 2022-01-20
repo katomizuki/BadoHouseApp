@@ -15,8 +15,7 @@ struct ChatService: ChatServiceProtocol {
     
     func postChat(chatId: String, dic: [String: Any],
                   completion: @escaping(Error?) -> Void) {
-        let id = Ref.ChatRef.document(chatId).collection("Comment").document().documentID
-        Ref.ChatRef.document(chatId).collection("Comment").document(id).setData(dic, completion: completion)
+        Ref.ChatRef.document(chatId).collection("Comment").document(Ref.ChatRef.document(chatId).collection("Comment").document().documentID).setData(dic, completion: completion)
     }
     
 }

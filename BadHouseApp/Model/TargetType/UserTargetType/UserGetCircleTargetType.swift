@@ -11,7 +11,7 @@ struct UserGetCircleTargetType:FirebaseSubCollectionTargetType {
     var isDescending: Bool?
     typealias Model = Circle
     var id: String
-    
+    var sortField: String = ""
     var ref: CollectionReference { Ref.UsersRef }
     
     var subRef: CollectionReference

@@ -9,13 +9,14 @@ protocol JoinServiceProtocol {
                        myData: User,
                        completion: @escaping(Error?) -> Void)
     func postPreJoin(user: User,
-                            toUser: User, practice: Practice,
-                            completion: @escaping(Result<Void, Error>) -> Void)
+                     toUser: User,
+                     practice: Practice,
+                     completion: @escaping(Result<Void, Error>) -> Void)
 }
 struct JoinService: JoinServiceProtocol {
     func postPreJoin(user: User,
-                            toUser: User, practice: Practice,
-                            completion: @escaping(Result<Void, Error>) -> Void) {
+                     toUser: User, practice: Practice,
+                     completion: @escaping(Result<Void, Error>) -> Void) {
         Ref.PreJoinRef.document(user.uid).collection("Users")
             .document(toUser.uid)
             .setData(["toUserId": toUser.uid,
@@ -82,11 +83,6 @@ struct JoinService: JoinServiceProtocol {
             "titleText": myData.name,
             "practiceId": preJoined.id,
             "practiceTitle": preJoined.practiceName,
-            "createdAt": Timestamp()]) { error in
-            if let error = error {
-                completion(error)
-                return
-            }
-        }
+            "createdAt": Timestamp()], completion: completion)
     }
 }

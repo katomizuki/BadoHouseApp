@@ -44,16 +44,11 @@ struct CircleService: CircleServiceProtocol {
             group.notify(queue: .main) {
                 completion(.success(()))
             }
-            
         }
     }
     
     static func getCircle(id: String, completion: @escaping(Circle) -> Void) {
-        Ref.CircleRef.document(id).getDocument { snapshot, error in
-            if error != nil { return }
-            guard let dic = snapshot?.data() else { return }
-            completion(Circle(dic: dic))
-        }
+        FirebaseClient.shared.getDataById(request: CircleTargetType(id: id), completion: completion)
     }
     
     func getMembers(ids: [String], circle: Circle) -> Single<Circle> {

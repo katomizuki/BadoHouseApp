@@ -8,7 +8,7 @@
 import Firebase
 import Foundation
 
-struct ChatRoom {
+struct ChatRoom: FirebaseModel {
     let id: String
     let latestMessage: String
     let latestTime: Timestamp

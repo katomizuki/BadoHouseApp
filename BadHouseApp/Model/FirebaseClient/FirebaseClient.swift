@@ -73,7 +73,7 @@ class FirebaseClient {
     
     func requestFirebaseSortedSubData<T: FirebaseSubCollectionTargetType>(request: T) -> Single<[T.Model]> {
         return Single.create { singleEvent -> Disposable in
-            request.ref.document(request.id).collection(request.subCollectionName).order(by: "createdAt", descending: request.isDescending!).getDocuments { snapShot, error in
+            request.ref.document(request.id).collection(request.subCollectionName).order(by: request.sortField, descending: request.isDescending!).getDocuments { snapShot, error in
                 if let error = error {
                     singleEvent(.failure(error))
                     return
@@ -97,4 +97,14 @@ class FirebaseClient {
             return Disposables.create()
         }
     }
+    func getDataById<T: FirebaseTargetType>(request: T,
+                                            completion: @escaping(T.Model) -> Void) {
+        request.ref.document(request.id).getDocument { snapShot, error in
+            if error != nil { return }
+            if let dic = snapShot?.data() {
+                completion(T.Model(dic: dic))
+            }
+        }
+    }
+
 }

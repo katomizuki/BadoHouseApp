@@ -17,13 +17,13 @@ struct Notification:FirebaseModel {
     let practiceTitle: String
     let createdAt:Timestamp
     var url: URL? {
-        if let url = URL(string: urlString){
+        if let url = URL(string: urlString) {
             return url
         } else {
             return nil
         }
     }
-    init(dic:[String:Any]) {
+    init(dic: [String:Any]) {
         self.id = dic["id"] as? String ?? ""
         self.urlString = dic["urlString"] as? String ?? ""
         self.notificationSelectionNumber = dic["notificationSelectionNumber"] as? Int ?? 0

@@ -94,14 +94,14 @@ struct ApplyService: ApplyServiceProtocol {
             }
     }
     
-    private func sendUserData(id1:String, id2: String, dic: [String: Any]) {
+    private func sendUserData(id1: String, id2: String, dic: [String: Any]) {
         Ref.UsersRef.document(id1).collection("Friends").document(id2).setData(dic)
     }
-    private func sendApplyData(uid: String,toUserId: String, dic: [String: Any]) {
+    private func sendApplyData(uid: String, toUserId: String, dic: [String: Any]) {
         Ref.ApplyRef.document(uid).collection("Users")
             .document(toUserId).setData(dic)
     }
-    private func sendApplyedData(uid: String,toUserId: String, dic: [String: Any]) {
+    private func sendApplyedData(uid: String, toUserId: String, dic: [String: Any]) {
         Ref.ApplyedRef.document(uid).collection("Users")
             .document(toUserId).setData(dic)
     }

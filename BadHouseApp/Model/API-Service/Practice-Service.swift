@@ -22,20 +22,14 @@ struct PracticeServie: PracticeServieProtocol {
         let id = Ref.PracticeRef.document().documentID
         dictionary["id"] = id
         Ref.PracticeRef.document(id).setData(dictionary)
-        Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id":id],completion: completion)
+        Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id": id], completion: completion)
     }
     func getPractices() -> Single<[Practice]> {
         FirebaseClient.shared.requestFirebaseSort(request: PracticeGetTargetType())
     }
     static func getPracticeById(id: String,
                                 completion: @escaping(Practice) -> Void) {
-        Ref.PracticeRef.document(id).getDocument { snapShot, error in
-            if error != nil { return }
-            if let dic = snapShot?.data() {
-                let practice = Practice(dic: dic)
-                completion(practice)
-            }
-        }
+        FirebaseClient.shared.getDataById(request: PracticeGetTargetType(id: id), completion: completion)
     }
     
 }

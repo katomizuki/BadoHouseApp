@@ -2,7 +2,7 @@ import FirebaseFirestore
 
 struct UserGetApplyedTargetType: FirebaseSubCollectionTargetType {
     var isDescending: Bool?
-    
+    var sortField: String = ""
     var id: String
     
     var ref: CollectionReference { Ref.ApplyedRef }

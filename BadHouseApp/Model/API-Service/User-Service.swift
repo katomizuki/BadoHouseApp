@@ -28,7 +28,7 @@ struct UserService: UserServiceProtocol {
     
     func postUser(uid: String,
                   dic: [String : Any],
-                  completion:@escaping (Result<Void, Error>) -> Void) {
+                  completion: @escaping (Result<Void, Error>) -> Void) {
         Ref.UsersRef.document(uid).setData(dic) { error in
             if let error = error {
                 completion(.failure(error))
@@ -65,7 +65,6 @@ struct UserService: UserServiceProtocol {
     }
     static func saveFriendId(uid: String) {
         Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
-            if error != nil { return }
             guard let snapShot = snapShot else { return }
                 let ids = snapShot.documents.map({ $0.data()["id"] as? String ?? "" })
                 UserDefaultsRepositry.shared.saveToUserDefaults(element: ids, key: "friends")
@@ -82,20 +81,12 @@ struct UserService: UserServiceProtocol {
         FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetCircleTargetType(id: uid, subRef: Ref.CircleRef, subCollectionName: "Circle"))
     }
 
-    static func getUserById(uid: String, completion:@escaping((User) -> Void)) {
-        Ref.UsersRef.document(uid).getDocument { documents, error in
-            if  error != nil { return }
-            if let documents = documents {
-                if let dic = documents.data() {
-                    let user = User(dic: dic)
-                    completion(user)
-                }
-            }
-        }
+    static func getUserById(uid: String, completion: @escaping((User) -> Void)) {
+        FirebaseClient.shared.getDataById(request: UserTargetType(id: uid), completion: completion)
     }
     
     func getMyPractice(uid: String) -> Single<[Practice]> {
-        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetPracticeTargetType(id: uid,subRef: Ref.PracticeRef,   subCollectionName: "Practice"))
+        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetPracticeTargetType(id: uid))
     }
     
     func judgeChatRoom(user: User, myData: User, completion: @escaping(Bool) -> Void) {
@@ -109,41 +100,26 @@ struct UserService: UserServiceProtocol {
             }
         }
     }
-    func postMyChatRoom(dic: [String : Any], partnerDic: [String:Any], user: User, myData: User, chatId:String) {
+    func postMyChatRoom(dic: [String : Any],
+                        partnerDic: [String : Any],
+                        user: User,
+                        myData: User,
+                        chatId: String) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).setData(dic)
         Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).setData(partnerDic)
         Ref.ChatRef.document(chatId).setData([:])
     }
     func getMyChatRooms(uid: String) -> Single<[ChatRoom]> {
-        var chatRooms = [ChatRoom]()
-        return Single.create { singleEvent->Disposable in
-            Ref.UsersRef.document(uid).collection("ChatRoom").order(by: "latestTime", descending: true).getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                guard let snapShot = snapShot else { return }
-                snapShot.documents.forEach {
-                    let dic = $0.data()
-                    let chatRoom = ChatRoom(dic: dic)
-                    chatRooms.append(chatRoom)
-                }
-                singleEvent(.success(chatRooms))
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requestFirebaseSortedSubData(request: UserGetChatRoomTargetType(id: uid))
     }
     
     func getUserChatRoomById(myData: User,
                              id: String,
-                             completion: @escaping(ChatRoom)-> Void) {
+                             completion: @escaping(ChatRoom) -> Void) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(id).getDocument { snapShot, error in
-            if error != nil {
-                return
-            }
+            if error != nil { return }
             guard let dic = snapShot?.data() else { return }
-            let chatRoom = ChatRoom(dic: dic)
-            completion(chatRoom)
+            completion(ChatRoom(dic: dic))
         }
     }
     
@@ -153,29 +129,6 @@ struct UserService: UserServiceProtocol {
     }
     
     func getMyJoinPractice(user: User)->Single<[Practice]> {
-        var practices = [Practice]()
-        let group = DispatchGroup()
-        return Single.create { singleEvent->Disposable in
-            Ref.UsersRef.document(user.uid).collection("Join").getDocuments { snapShot, error in
-                if let error = error {
-                    singleEvent(.failure(error))
-                    return
-                }
-                guard let snapShot = snapShot else { return }
-                snapShot.documents.forEach {
-                    group.enter()
-                    let dic = $0.data()
-                    let id = dic["id"] as? String ?? ""
-                    PracticeServie.getPracticeById(id: id) { practice in
-                        defer { group.leave() }
-                        practices.append(practice)
-                    }
-                }
-                group.notify(queue: .main) {
-                    singleEvent(.success(practices))
-                }
-            }
-            return Disposables.create()
-        }
+        FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetJoinPracticeTargetType( id: user.uid))
     }
 }

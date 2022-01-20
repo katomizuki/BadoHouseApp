@@ -7,4 +7,5 @@ struct CircleGetMembersTargetType: FirebaseSubCollectionTargetType {
     var subRef: CollectionReference
     var subCollectionName: String
     typealias Model = User
+    var sortField: String = ""
 }
