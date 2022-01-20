@@ -30,8 +30,6 @@ struct StorageService {
             }
         }
     }
-   
-   
     static func setupStorageErrorMessage(error: NSError) -> String {
         var message = ""
         let storageError = StorageErrorCode(rawValue: error.code)

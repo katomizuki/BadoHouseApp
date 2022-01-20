@@ -6,13 +6,12 @@
 //
 
 import FirebaseFirestore
-struct PracticeGetPreJoinTargetType: FirebaseSubCollectionTargetType {
-    var isDescending: Bool?
+struct PracticeGetPreJoinTargetType: FirebaseTargetType {
     var id: String
-    var ref: CollectionReference { Ref.PreJoinRef }
     
-    var subRef: CollectionReference { Ref.PreJoinRef }
+    var ref: CollectionReference
     
-    var subCollectionName: String { "Users"}
-    typealias Model = PreJoin
+    typealias Model = Practice
+    
+ 
 }

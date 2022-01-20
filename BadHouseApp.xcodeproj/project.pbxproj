@@ -54,6 +54,7 @@
 		D31CD00C2798D75900513587 /* PracticeGetPreJoinedTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */; };
 		D31CD0102798DB2400513587 /* ChatGetTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD00F2798DB2400513587 /* ChatGetTargetType.swift */; };
 		D31CD0122798DB3C00513587 /* NotificationGetTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0112798DB3C00513587 /* NotificationGetTargetType.swift */; };
+		D31CD0142798E7A500513587 /* PracticeGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0132798E7A500513587 /* PracticeGet.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -294,6 +295,7 @@
 		D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGetPreJoinedTargetType.swift; sourceTree = "<group>"; };
 		D31CD00F2798DB2400513587 /* ChatGetTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGetTargetType.swift; sourceTree = "<group>"; };
 		D31CD0112798DB3C00513587 /* NotificationGetTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationGetTargetType.swift; sourceTree = "<group>"; };
+		D31CD0132798E7A500513587 /* PracticeGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGet.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 			children = (
 				D31CD0092798D72B00513587 /* PracticeGetPreJoinTargetType.swift */,
 				D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */,
+				D31CD0132798E7A500513587 /* PracticeGet.swift */,
 			);
 			path = PracticeTargetType;
 			sourceTree = "<group>";
@@ -1368,6 +1371,7 @@
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D31CCFFF2798C40A00513587 /* UserGetPracticeTargetType.swift in Sources */,
+				D31CD0142798E7A500513587 /* PracticeGet.swift in Sources */,
 				D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
 				D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */,

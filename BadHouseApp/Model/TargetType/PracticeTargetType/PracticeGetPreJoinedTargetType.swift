@@ -18,6 +18,4 @@ struct PracticeGetPreJoinedTargetType: FirebaseSubCollectionTargetType {
     var subCollectionName: String { "Users"}
     
     typealias Model = PreJoined
-    
-    
 }
