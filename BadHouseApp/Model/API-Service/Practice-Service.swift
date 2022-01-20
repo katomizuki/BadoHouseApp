@@ -1,13 +1,17 @@
 import RxSwift
-import Foundation
+
 protocol PracticeServieProtocol {
     func getPractices()->Single<[Practice]>
+    func postPractice(dic:[String:Any],
+                      circle: Circle,
+                      user: User,
+                      completion: @escaping(Error?) -> Void)
 }
 struct PracticeServie: PracticeServieProtocol {
-    static func postPractice(dic:[String:Any],
-                             circle: Circle,
-                             user: User,
-                             completion: @escaping(Error?) -> Void) {
+    func postPractice(dic:[String:Any],
+                      circle: Circle,
+                      user: User,
+                      completion: @escaping(Error?) -> Void) {
         var dictionary = dic
         dictionary["userId"] = user.uid
         dictionary["userName"] = user.name
@@ -17,8 +21,8 @@ struct PracticeServie: PracticeServieProtocol {
         dictionary["circleUrlString"] = circle.backGround
         let id = Ref.PracticeRef.document().documentID
         dictionary["id"] = id
-        Ref.PracticeRef.document(id).setData(dictionary, completion: completion)
-        Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id":id])
+        Ref.PracticeRef.document(id).setData(dictionary)
+        Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id":id],completion: completion)
     }
     func getPractices() -> Single<[Practice]> {
         FirebaseClient.shared.requestFirebaseSort(request: PracticeGetTargetType())
@@ -26,9 +30,7 @@ struct PracticeServie: PracticeServieProtocol {
     static func getPracticeById(id: String,
                                 completion: @escaping(Practice) -> Void) {
         Ref.PracticeRef.document(id).getDocument { snapShot, error in
-            if error != nil {
-                return
-            }
+            if error != nil { return }
             if let dic = snapShot?.data() {
                 let practice = Practice(dic: dic)
                 completion(practice)

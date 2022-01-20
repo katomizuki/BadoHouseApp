@@ -8,9 +8,12 @@ protocol JoinServiceProtocol {
                        user: User,
                        myData: User,
                        completion: @escaping(Error?) -> Void)
+    func postPreJoin(user: User,
+                            toUser: User, practice: Practice,
+                            completion: @escaping(Result<Void, Error>) -> Void)
 }
 struct JoinService: JoinServiceProtocol {
-    static func postPreJoin(user: User,
+    func postPreJoin(user: User,
                             toUser: User, practice: Practice,
                             completion: @escaping(Result<Void, Error>) -> Void) {
         Ref.PreJoinRef.document(user.uid).collection("Users")
@@ -71,7 +74,7 @@ struct JoinService: JoinServiceProtocol {
                        myData: User,
                        completion: @escaping(Error?) -> Void) {
         Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
-        Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id], completion: completion)
+        Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
         NotificationService.postNotification(uid: user.uid, dic: [
             "id": myData.uid,
             "urlString": myData.profileImageUrlString,

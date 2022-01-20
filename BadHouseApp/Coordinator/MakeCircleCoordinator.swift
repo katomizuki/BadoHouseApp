@@ -13,10 +13,8 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
         self.navigationController = navigationController
     }
     func toInvite(_ user:User,form: Form?) {
-        guard let form = form else {
-            return
-        }
-        let controller = InviteToCircleController.init(viewModel: InviteViewModel(userAPI: UserService(), user: user, form: form))
+        guard let form = form else { return }
+        let controller = InviteToCircleController.init(viewModel: InviteViewModel(userAPI: UserService(), user: user, form: form, circleAPI: CircleService()))
         navigationController.pushViewController(controller, animated: true)
     }
     func pop() {

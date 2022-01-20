@@ -65,10 +65,7 @@ struct UserService: UserServiceProtocol {
     }
     static func saveFriendId(uid: String) {
         Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+            if error != nil { return }
             guard let snapShot = snapShot else { return }
                 let ids = snapShot.documents.map({ $0.data()["id"] as? String ?? "" })
                 UserDefaultsRepositry.shared.saveToUserDefaults(element: ids, key: "friends")
@@ -87,10 +84,7 @@ struct UserService: UserServiceProtocol {
 
     static func getUserById(uid: String, completion:@escaping((User) -> Void)) {
         Ref.UsersRef.document(uid).getDocument { documents, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+            if  error != nil { return }
             if let documents = documents {
                 if let dic = documents.data() {
                     let user = User(dic: dic)
@@ -106,9 +100,7 @@ struct UserService: UserServiceProtocol {
     
     func judgeChatRoom(user: User, myData: User, completion: @escaping(Bool) -> Void) {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").whereField("userId", isEqualTo: user.uid).getDocuments { snapShot, error in
-            if error != nil {
-                completion(false)
-            }
+            if error != nil { completion(false) }
             guard let snapShot = snapShot else { return }
             if !snapShot.documents.isEmpty {
                 completion(true)
@@ -159,6 +151,7 @@ struct UserService: UserServiceProtocol {
         Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(user.uid).updateData(["latestTime": Timestamp(), "latestMessage": message])
         Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).updateData(["latestTime": Timestamp(), "latestMessage": message])
     }
+    
     func getMyJoinPractice(user: User)->Single<[Practice]> {
         var practices = [Practice]()
         let group = DispatchGroup()

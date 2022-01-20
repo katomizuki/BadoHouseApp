@@ -39,17 +39,18 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var user: User?
     let userAPI: UserServiceProtocol
     let circleAPI: CircleServiceProtocol
+    let joinAPI: JoinServiceProtocol
     private let disposeBag = DisposeBag()
     var isModal: Bool
     init(practice: Practice,
          userAPI: UserServiceProtocol,
          circleAPI: CircleServiceProtocol,
-         isModal: Bool) {
+         isModal: Bool, joinAPI: JoinServiceProtocol) {
         self.practice = practice
         self.userAPI = userAPI
         self.circleAPI = circleAPI
         self.isModal = isModal
-        
+        self.joinAPI = joinAPI
         userAPI.getUser(uid: practice.userId).subscribe { [weak self] user in
             self?.userRelay.accept(user)
             self?.user = user
@@ -77,7 +78,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     func takePartInPractice() {
         guard let user = user else { return }
         guard let myData = myData else { return }
-        JoinService.postPreJoin(user: myData, toUser: user, practice: practice) { result in
+        joinAPI.postPreJoin(user: myData, toUser: user, practice: practice) { result in
             switch result {
             case .success:
                 self.completed.onNext(())

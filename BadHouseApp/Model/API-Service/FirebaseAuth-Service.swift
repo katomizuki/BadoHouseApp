@@ -29,7 +29,10 @@ struct AuthService: AuthServiceProtocol {
     }
     
     static func login(email: String,
-                      password: String,completion: ((AuthDataResult?,Error?)->Void)?) {
-        Auth.auth().signIn(withEmail: email, password: password,completion: completion)
+                      password: String,
+                      completion: ((AuthDataResult?,Error?) -> Void)?) {
+        Auth.auth().signIn(withEmail: email,
+                           password: password,
+                           completion: completion)
     }
 }

@@ -31,6 +31,6 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
         self.navigationController.pushViewController(PreJoinedListController.init(viewModel: PreJoinedViewModel(joinAPI: JoinService(), user: user)), animated: true)
     }
     func toPracticeDetail(_ myData: User, practice: Practice) {
-        coordinator(to: PracticeDetailCoordinator(navigationController: navigationController, viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true)))
+        coordinator(to: PracticeDetailCoordinator(navigationController: navigationController, viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true, joinAPI: JoinService())))
     }
 }

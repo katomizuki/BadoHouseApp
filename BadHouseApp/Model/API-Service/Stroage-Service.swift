@@ -6,10 +6,7 @@ struct StorageService {
     static func downloadStorage(userIconRef: StorageReference,
                                 completion: @escaping (URL) -> Void) {
         userIconRef.downloadURL { url, error in
-            if let error = error {
-                print(error)
-                return
-            }
+            if error != nil { return }
             guard let url = url else { return }
             completion(url)
         }

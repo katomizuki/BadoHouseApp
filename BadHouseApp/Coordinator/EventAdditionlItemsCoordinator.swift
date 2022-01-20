@@ -21,7 +21,7 @@ class EventAdditionlItemsCoordinator:Coordinator,EventAdditionlItemsFlow {
         self.image = image
     }
     func start() {
-        let controller = EventAdditionlItemsController.init(viewModel: EventAdditionalItemViewModel(image: image, circle: circle, user: user, dic: dic))
+        let controller = EventAdditionlItemsController.init(viewModel: EventAdditionalItemViewModel(image: image, circle: circle, user: user, dic: dic, practiceAPI: PracticeServie()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

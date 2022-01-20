@@ -40,11 +40,11 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
         
         tableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
             guard let self = self else { return }
-            let viewModel = PracticeDetailViewModel(practice: self.viewModel.practices.value[indexPath.row],
-                                                    userAPI: UserService(),
-                                                    circleAPI: CircleService(), isModal: false)
-            let controller = PracticeDetailController.init(viewModel: viewModel)
-            self.navigationController?.pushViewController(controller, animated: true)
+            self.navigationController?.pushViewController(PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: self.viewModel.practices.value[indexPath.row],
+                                        userAPI: UserService(),
+                                        circleAPI: CircleService(),
+                                        isModal: false,
+                                        joinAPI: JoinService())), animated: true)
         }).disposed(by: disposeBag)
     }
 }

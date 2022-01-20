@@ -32,11 +32,13 @@ final class HomeCoordinator: Coordinator,HomeFlow {
        
     }
     func toPracticeDetail(_ practice: Practice) {
-        coordinator(to:PracticeDetailCoordinator(
+        coordinator(to: PracticeDetailCoordinator(
             navigationController: self.navigationController,
             viewModel: PracticeDetailViewModel(practice: practice,
                                                userAPI: UserService(),
-                                               circleAPI: CircleService(), isModal: false)))
+                                               circleAPI: CircleService(),
+                                               isModal: false,
+                                               joinAPI: JoinService())))
     }
     
 }

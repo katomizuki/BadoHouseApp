@@ -16,49 +16,35 @@ protocol ApplyServiceProtocol {
 }
 struct ApplyService: ApplyServiceProtocol {
     
-     func postApply(user: User,
-                          toUser: User,
-                          completion: @escaping(Result<Void, Error>) -> Void) {
-        Ref.ApplyRef.document(user.uid).collection("Users")
-            .document(toUser.uid)
-            .setData(["toUserId": toUser.uid,
-                      "name": toUser.name,
-                      "imageUrl": toUser.profileImageUrlString,
-                      "createdAt": Timestamp(),
-                      "uid": user.uid]) { error in
+    func postApply(user: User,
+                   toUser: User,
+                   completion: @escaping(Result<Void, Error>) -> Void) {
+        sendApplyData(uid: user.uid, toUserId: toUser.uid, dic: ["toUserId": toUser.uid,
+                                                                 "name": toUser.name,
+                                                                 "imageUrl": toUser.profileImageUrlString,
+                                                                 "createdAt": Timestamp(),
+                                                                 "uid": user.uid])
+        sendApplyedData(uid: user.uid, toUserId: toUser.uid, dic: ["fromUserId": user.uid,
+                                                                   "name": user.name,
+                                                                   "imageUrl": user.profileImageUrlString,
+                                                                   "createdAt": Timestamp(),
+                                                                   "uid": toUser.uid])
+        NotificationService.postNotification(uid: toUser.uid, dic: [
+            "id": user.uid,
+            "urlString": user.profileImageUrlString,
+            "notificationSelectionNumber": 0,
+            "titleText": user.name,
+            "createdAt": Timestamp()]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
                 }
-                Ref.ApplyedRef.document(toUser.uid)
-                    .collection("Users")
-                    .document(user.uid).setData(["fromUserId": user.uid,
-                                                 "name": user.name,
-                                                 "imageUrl": user.profileImageUrlString,
-                                                 "createdAt": Timestamp(),
-                                                 "uid": toUser.uid]) { error in
-                        if let error = error {
-                            completion(.failure(error))
-                            return
-                        }
-                        NotificationService.postNotification(uid: toUser.uid, dic: [
-                            "id": user.uid,
-                            "urlString": user.profileImageUrlString,
-                            "notificationSelectionNumber": 0,
-                            "titleText": user.name,
-                            "createdAt": Timestamp()]) { error in
-                                if let error = error {
-                                    completion(.failure(error))
-                                    return
-                                }
-                                completion(.success(()))
-                            }
-                    }
+                completion(.success(()))
             }
     }
     
-     func notApplyFriend(uid: String,
-                               toUserId: String) {
+    func notApplyFriend(uid: String,
+                        toUserId: String) {
         DeleteService.deleteSubCollectionData(collecionName: "Apply",
                                               documentId: uid,
                                               subCollectionName: "Users",
@@ -80,41 +66,43 @@ struct ApplyService: ApplyServiceProtocol {
     func match(user: User,
                friend: User,
                completion: @escaping(Result<Void, Error>) -> Void) {
-        Ref.UsersRef.document(user.uid).collection("Friends").document(friend.uid).setData(["id": friend.uid]) { error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            Ref.UsersRef.document(friend.uid).collection("Friends").document(user.uid).setData(["id": user.uid]) { error in
+        sendUserData(id1: user.uid, id2: friend.uid, dic: ["id": friend.uid])
+        sendUserData(id1: friend.uid, id2: user.uid, dic: ["id": user.uid])
+        NotificationService.postNotification(uid: user.uid, dic: [
+            "id": friend.uid,
+            "urlString": friend.profileImageUrlString,
+            "notificationSelectionNumber": 3,
+            "titleText": friend.name,
+            "createdAt": Timestamp()]) { error in
                 if let error = error {
                     completion(.failure(error))
                     return
                 }
-            }
-            NotificationService.postNotification(uid: user.uid, dic: [
-                "id": friend.uid,
-                "urlString": friend.profileImageUrlString,
-                "notificationSelectionNumber": 3,
-                "titleText": friend.name,
-                "createdAt": Timestamp()]) { error in
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
-                    NotificationService.postNotification(uid: friend.uid, dic: [
-                        "id": user.uid,
-                        "urlString": user.profileImageUrlString,
-                        "notificationSelectionNumber": 3,
-                        "titleText": user.name,
-                        "createdAt": Timestamp()]) { error in
-                            if let error = error {
-                                completion(.failure(error))
-                                return
-                            }
-                            UserService.saveFriendId(uid: user.uid)
-                            completion(.success(()))
+                NotificationService.postNotification(uid: friend.uid, dic: [
+                    "id": user.uid,
+                    "urlString": user.profileImageUrlString,
+                    "notificationSelectionNumber": 3,
+                    "titleText": user.name,
+                    "createdAt": Timestamp()]) { error in
+                        if let error = error {
+                            completion(.failure(error))
+                            return
                         }
-                }
-        }
+                        UserService.saveFriendId(uid: user.uid)
+                        completion(.success(()))
+                    }
+            }
+    }
+    
+    private func sendUserData(id1:String, id2: String, dic: [String: Any]) {
+        Ref.UsersRef.document(id1).collection("Friends").document(id2).setData(dic)
+    }
+    private func sendApplyData(uid: String,toUserId: String, dic: [String: Any]) {
+        Ref.ApplyRef.document(uid).collection("Users")
+            .document(toUserId).setData(dic)
+    }
+    private func sendApplyedData(uid: String,toUserId: String, dic: [String: Any]) {
+        Ref.ApplyedRef.document(uid).collection("Users")
+            .document(toUserId).setData(dic)
     }
 }

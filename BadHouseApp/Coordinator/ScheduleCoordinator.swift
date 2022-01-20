@@ -29,7 +29,8 @@ final class ScheduleCoordinator:Coordinator,ScheduleFlow {
         navigationController.pushViewController(PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice,
                                     userAPI: UserService(),
                                     circleAPI: CircleService(),
-                                    isModal: true))
+                                    isModal: true,
+                                    joinAPI: JoinService()))
 , animated: true)
     }
 }

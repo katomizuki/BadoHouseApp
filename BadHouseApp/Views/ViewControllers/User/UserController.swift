@@ -44,7 +44,9 @@ final class UserController: UIViewController {
     }
     @IBOutlet private weak var friendCountLabel: UILabel!
     private let disposeBag = DisposeBag()
-    private let viewModel = UserViewModel(userAPI: UserService(), applyAPI: ApplyService())
+    private let viewModel = UserViewModel(userAPI: UserService(),
+                                          applyAPI: ApplyService(),
+                                          circleAPI: CircleService())
     private lazy var dataSourceDelegate = UserDataSourceDelegate(viewModel: viewModel)
     var coordinator: UserFlow?
     // MARK: - LifeCycle

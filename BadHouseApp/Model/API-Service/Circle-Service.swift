@@ -6,14 +6,25 @@ protocol CircleServiceProtocol {
     func searchCircles(text: String) -> Single<[Circle]>
     func updateCircle(circle: Circle, completion: @escaping (Error?) -> Void)
     func getCircle(id: String)->Single<Circle>
+    func postCircle(id: String,
+                    dic: [String: Any],
+                    user: User,
+                    memberId: [String],
+                    completion: @escaping (Result<Void, Error>) -> Void)
+    func withdrawCircle(user: User,
+                        circle: Circle,
+                        completion: @escaping(Error?) -> Void)
+    func inviteCircle(ids: [String],
+                      circle: Circle,
+                      completion: @escaping (Result<Void, Error>) -> Void)
 }
 struct CircleService: CircleServiceProtocol {
-   
-    static func postCircle(id: String,
-                           dic: [String: Any],
-                           user: User,
-                           memberId: [String],
-                           completion: @escaping (Result<Void, Error>) -> Void) {
+    
+    func postCircle(id: String,
+                    dic: [String: Any],
+                    user: User,
+                    memberId: [String],
+                    completion: @escaping (Result<Void, Error>) -> Void) {
         Ref.CircleRef.document(id).setData(dic) { error in
             if let error = error {
                 completion(.failure(error))
@@ -36,15 +47,12 @@ struct CircleService: CircleServiceProtocol {
             
         }
     }
-    static func getCircle(id: String, completion:@escaping(Circle) -> Void) {
+    
+    static func getCircle(id: String, completion: @escaping(Circle) -> Void) {
         Ref.CircleRef.document(id).getDocument { snapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+            if error != nil { return }
             guard let dic = snapshot?.data() else { return }
-            let circle = Circle(dic: dic)
-            completion(circle)
+            completion(Circle(dic: dic))
         }
     }
     
@@ -87,32 +95,32 @@ struct CircleService: CircleServiceProtocol {
         }
     }
     
-    static func withdrawCircle(user: User,
-                             circle: Circle,
-                             completion: @escaping(Error?) -> Void) {
+    func withdrawCircle(user: User,
+                        circle: Circle,
+                        completion: @escaping(Error?) -> Void) {
         let ids = circle.member.filter({ $0 != user.uid })
         Ref.CircleRef.document(circle.id).updateData(["member": ids],
-                                                   completion: completion)
+                                                     completion: completion)
         Ref.UsersRef.document(user.uid).collection("Circle").document(circle.id).delete()
     }
     
     func updateCircle(circle: Circle, completion: @escaping(Error?) -> Void) {
-        let dic: [String: Any] = ["id": circle.id,
-                                       "name": circle.name,
-                                       "price": circle.price,
-                                       "place": circle.place,
-                                       "time": circle.time,
-                                   "features": circle.features,
-                                   "additionlText": circle.additionlText,
-                                "icon": circle.icon,
-                                "backGround": circle.backGround,
-                                "member": circle.member]
-        Ref.CircleRef.document(circle.id).updateData(dic, completion: completion)
+        Ref.CircleRef.document(circle.id).updateData(["id": circle.id,
+                                                      "name": circle.name,
+                                                      "price": circle.price,
+                                                      "place": circle.place,
+                                                      "time": circle.time,
+                                                      "features": circle.features,
+                                                      "additionlText": circle.additionlText,
+                                                      "icon": circle.icon,
+                                                      "backGround": circle.backGround,
+                                                      "member": circle.member],
+                                                     completion: completion)
     }
     
-    static func inviteCircle(ids: [String],
-                             circle: Circle,
-                             completion: @escaping (Result<Void, Error>) -> Void) {
+    func inviteCircle(ids: [String],
+                      circle: Circle,
+                      completion: @escaping (Result<Void, Error>) -> Void) {
         Ref.CircleRef.document(circle.id).updateData(["member": ids])
         let group = DispatchGroup()
         ids.forEach { uid in

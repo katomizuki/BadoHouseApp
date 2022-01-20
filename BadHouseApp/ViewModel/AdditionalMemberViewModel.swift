@@ -28,12 +28,17 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
     lazy var inviteIds = circle.member
     var friendsSubject = BehaviorRelay<[User]>(value: [])
     var user: User
-    var userAPI: UserServiceProtocol
+    let userAPI: UserServiceProtocol
     var circle: Circle
-    init(user:User, userAPI: UserServiceProtocol,circle: Circle) {
+    let circleAPI: CircleServiceProtocol
+    init(user: User,
+         userAPI: UserServiceProtocol,
+         circle: Circle,
+         circleAPI: CircleServiceProtocol) {
         self.user = user
         self.userAPI = userAPI
         self.circle = circle
+        self.circleAPI = circleAPI
         userAPI.getFriends(uid: user.uid).subscribe { [weak self] friends in
             guard let self = self else { return }
             let users = self.judgeInviter(members: self.circle.members, friends: friends)
@@ -43,9 +48,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         }.disposed(by: disposeBag)
     }
     func inviteAction(user: User?) {
-        guard let user = user else {
-            return
-        }
+        guard let user = user else { return }
         if judgeInvite(id: user.uid) {
             inviteIds.remove(value: user.uid)
         } else {
@@ -57,7 +60,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         return inviteIds.contains(id)
     }
     func invite() {
-        CircleService.inviteCircle(ids: inviteIds, circle: circle) { result in
+        circleAPI.inviteCircle(ids: inviteIds, circle: circle) { result in
             switch result {
             case .success:
                 self.completed.onNext(())

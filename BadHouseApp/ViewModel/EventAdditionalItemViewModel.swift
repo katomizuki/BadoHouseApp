@@ -16,14 +16,14 @@ final class EventAdditionalItemViewModel {
     var isError = PublishSubject<Bool>()
     var completed = PublishSubject<Void>()
     var textViewInputs = String()
+    let practiceAPI: PracticeServieProtocol
     private let disposeBag = DisposeBag()
-    init(image: UIImage, circle: Circle, user: User, dic: [String:Any]) {
+    init(image: UIImage, circle: Circle, user: User, dic: [String:Any], practiceAPI:PracticeServieProtocol) {
         self.image = image
         self.circle = circle
         self.user = user
         self.dic = dic
-
-
+        self.practiceAPI = practiceAPI
     }
     func postPractice() {
         StorageService.downLoadImage(image: image) { [weak self] result in
@@ -32,7 +32,7 @@ final class EventAdditionalItemViewModel {
             case .success(let urlString):
                 self.dic["urlString"] = urlString
                 self.dic["explain"] = self.textViewInputs
-                PracticeServie.postPractice(dic: self.dic,
+                self.practiceAPI.postPractice(dic: self.dic,
                                             circle: self.circle,
                                             user: self.user) { error in
                     if error != nil {

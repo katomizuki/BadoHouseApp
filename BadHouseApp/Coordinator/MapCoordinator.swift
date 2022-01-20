@@ -22,7 +22,7 @@ final class MapCoordinator:Coordinator, MapListFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     func halfModal(_ practice: Practice,_ vc: MapListController) {
-        let controller = PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true))
+        let controller = PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true, joinAPI: JoinService()))
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {
                 sheet.detents = [.medium(),.large()]

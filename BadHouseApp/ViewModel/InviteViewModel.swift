@@ -33,10 +33,12 @@ final class InviteViewModel: InviteViewModelType,
     var inviteIds = [String]()
     private let disposeBag = DisposeBag()
     private var dic = [String : Any]()
-    init(userAPI: UserServiceProtocol, user: User, form: Form) {
+    let circleAPI: CircleServiceProtocol
+    init(userAPI: UserServiceProtocol, user: User, form: Form,circleAPI: CircleServiceProtocol) {
         self.userAPI = userAPI
         self.user = user
         self.form = form
+        self.circleAPI = circleAPI
         userAPI.getFriends(uid: user.uid).subscribe {[weak self] users in
             self?.friendsList.accept(users)
         } onFailure: {[weak self] _ in
@@ -106,7 +108,7 @@ final class InviteViewModel: InviteViewModelType,
     func makeCircle() {
         inviteIds.append(user.uid)
         dic["member"] = inviteIds
-        CircleService.postCircle(id: dic["id"] as? String ?? "",
+        circleAPI.postCircle(id: dic["id"] as? String ?? "",
                                  dic: dic,
                                  user: user,
                                  memberId: inviteIds) { [weak self] result in

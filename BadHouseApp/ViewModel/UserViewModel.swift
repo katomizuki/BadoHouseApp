@@ -40,12 +40,16 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     var outputs: UserViewModelOutputs { return self }
     var userAPI: UserServiceProtocol
     var user: User?
-    var applyAPI: ApplyServiceProtocol
+    let applyAPI: ApplyServiceProtocol
+    let circleAPI: CircleServiceProtocol
     private let disposeBag = DisposeBag()
     
-    init(userAPI: UserServiceProtocol, applyAPI: ApplyServiceProtocol) {
+    init(userAPI: UserServiceProtocol,
+         applyAPI: ApplyServiceProtocol,
+         circleAPI: CircleServiceProtocol) {
         self.userAPI = userAPI
         self.applyAPI = applyAPI
+        self.circleAPI = circleAPI
     }
     func willAppear() {
         if let uid = Auth.auth().currentUser?.uid {
@@ -136,7 +140,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                                               documentId: user.uid,
                                               subCollectionName: "Circle",
                                               subId: circle.id)
-        CircleService.withdrawCircle(user: user,
+        circleAPI.withdrawCircle(user: user,
                                    circle: circle) { error in
             if error != nil {
                 self.isError.onNext(true)
