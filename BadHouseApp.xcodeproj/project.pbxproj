@@ -52,6 +52,8 @@
 		D31CD0072798CAE200513587 /* UserGetApplyedTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */; };
 		D31CD00A2798D72B00513587 /* PracticeGetPreJoinTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0092798D72B00513587 /* PracticeGetPreJoinTargetType.swift */; };
 		D31CD00C2798D75900513587 /* PracticeGetPreJoinedTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */; };
+		D31CD0102798DB2400513587 /* ChatGetTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD00F2798DB2400513587 /* ChatGetTargetType.swift */; };
+		D31CD0122798DB3C00513587 /* NotificationGetTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0112798DB3C00513587 /* NotificationGetTargetType.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -290,6 +292,8 @@
 		D31CD0062798CAE200513587 /* UserGetApplyedTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetApplyedTargetType.swift; sourceTree = "<group>"; };
 		D31CD0092798D72B00513587 /* PracticeGetPreJoinTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGetPreJoinTargetType.swift; sourceTree = "<group>"; };
 		D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGetPreJoinedTargetType.swift; sourceTree = "<group>"; };
+		D31CD00F2798DB2400513587 /* ChatGetTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGetTargetType.swift; sourceTree = "<group>"; };
+		D31CD0112798DB3C00513587 /* NotificationGetTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationGetTargetType.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 		D31CCFF127984B1600513587 /* TargetType */ = {
 			isa = PBXGroup;
 			children = (
+				D31CD00E2798DB0B00513587 /* NotificationTargetType */,
+				D31CD00D2798DB0400513587 /* ChatTargetType */,
 				D31CD0082798D71200513587 /* PracticeTargetType */,
 				D31CCFFD2798C2D500513587 /* UserTargetType */,
 				D31CCFFC2798C2D100513587 /* CircleTargetType */,
@@ -587,6 +593,22 @@
 				D31CD00B2798D75900513587 /* PracticeGetPreJoinedTargetType.swift */,
 			);
 			path = PracticeTargetType;
+			sourceTree = "<group>";
+		};
+		D31CD00D2798DB0400513587 /* ChatTargetType */ = {
+			isa = PBXGroup;
+			children = (
+				D31CD00F2798DB2400513587 /* ChatGetTargetType.swift */,
+			);
+			path = ChatTargetType;
+			sourceTree = "<group>";
+		};
+		D31CD00E2798DB0B00513587 /* NotificationTargetType */ = {
+			isa = PBXGroup;
+			children = (
+				D31CD0112798DB3C00513587 /* NotificationGetTargetType.swift */,
+			);
+			path = NotificationTargetType;
 			sourceTree = "<group>";
 		};
 		D32B8C9E2759BC150036FA98 /* Notification */ = {
@@ -1320,7 +1342,9 @@
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
 				D31CCFF02798453300513587 /* FirebaseTargetType.swift in Sources */,
+				D31CD0102798DB2400513587 /* ChatGetTargetType.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
+				D31CD0122798DB3C00513587 /* NotificationGetTargetType.swift in Sources */,
 				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
 				D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,

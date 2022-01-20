@@ -65,7 +65,7 @@ struct ApplyService: ApplyServiceProtocol {
     }
     
     func getApplyUser(user: User) -> Single<[Apply]> {
-        FirebaseClient.shared.getFirebaseSubData(request: UserGetApplyTargetType(id: user.uid))
+        FirebaseClient.shared.requestFirebaseSubData(request: UserGetApplyTargetType(id: user.uid))
 //        return Single.create { singleEvent -> Disposable in
 //            Ref.ApplyRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
 //                if let error = error {
@@ -81,7 +81,7 @@ struct ApplyService: ApplyServiceProtocol {
     }
     
     func getApplyedUser(user: User)->Single<[Applyed]> {
-        FirebaseClient.shared.getFirebaseSubData(request: UserGetApplyedTargetType(id: user.uid))
+        FirebaseClient.shared.requestFirebaseSubData(request: UserGetApplyedTargetType(id: user.uid))
 //        return Single.create { singleEvent -> Disposable in
 //            Ref.ApplyedRef.document(user.uid).collection("Users").getDocuments { snapShot, error in
 //                if let error = error {

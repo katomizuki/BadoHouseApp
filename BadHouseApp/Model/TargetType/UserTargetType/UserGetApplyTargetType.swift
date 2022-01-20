@@ -7,6 +7,8 @@
 
 import FirebaseFirestore
 struct UserGetApplyTargetType: FirebaseSubCollectionTargetType {
+    var isDescending: Bool?
+    
     var id: String
     
     var ref: CollectionReference { Ref.ApplyRef }

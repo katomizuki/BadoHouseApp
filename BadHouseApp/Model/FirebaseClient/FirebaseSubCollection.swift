@@ -12,4 +12,5 @@ protocol FirebaseSubCollectionTargetType {
     var ref:CollectionReference { get }
     var subRef: CollectionReference { get }
     var subCollectionName:String { get }
+    var isDescending:Bool? { get }
 }

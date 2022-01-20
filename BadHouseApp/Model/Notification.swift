@@ -7,7 +7,7 @@
 
 import Foundation
 import Firebase
-struct Notification {
+struct Notification:FirebaseModel {
     let id: String
     let urlString: String
     let notificationSelectionNumber: Int
@@ -16,7 +16,7 @@ struct Notification {
     let practiceId: String
     let practiceTitle: String
     let createdAt:Timestamp
-    var url:URL? {
+    var url: URL? {
         if let url = URL(string: urlString){
             return url
         } else {

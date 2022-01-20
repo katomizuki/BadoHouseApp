@@ -4,7 +4,9 @@ import RxSwift
 protocol JoinServiceProtocol {
     func getPrejoin(userId: String)->Single<[PreJoin]>
     func getPreJoined(userId: String)->Single<[PreJoined]>
-    func postMatchJoin(preJoined: PreJoined,user: User,myData: User,
+    func postMatchJoin(preJoined: PreJoined,
+                       user: User,
+                       myData: User,
                        completion: @escaping(Error?) -> Void)
 }
 struct JoinService: JoinServiceProtocol {
@@ -58,7 +60,7 @@ struct JoinService: JoinServiceProtocol {
     }
     
     func getPrejoin(userId: String) -> Single<[PreJoin]> {
-        FirebaseClient.shared.getFirebaseSubData(request: PracticeGetPreJoinTargetType(id: userId))
+        FirebaseClient.shared.requestFirebaseSubData(request: PracticeGetPreJoinTargetType(id: userId))
 //        var prejoins = [PreJoin]()
 //        return Single.create { singleEvent->Disposable in
 //            Ref.PreJoinRef.document(userId).collection("Users").getDocuments { snapShot, error in
@@ -75,7 +77,7 @@ struct JoinService: JoinServiceProtocol {
     }
     
     func getPreJoined(userId: String) -> Single<[PreJoined]> {
-        FirebaseClient.shared.getFirebaseSubData(request: PracticeGetPreJoinedTargetType(id: userId))
+        FirebaseClient.shared.requestFirebaseSubData(request: PracticeGetPreJoinedTargetType(id: userId))
 //        var prejoineds = [PreJoined]()
 //        return Single.create { singleEvent->Disposable in
 //            Ref.PreJoinedRef.document(userId).collection("Users").getDocuments { snapShot, error in

@@ -57,7 +57,7 @@ class FirebaseClient {
         }
     }
     
-    func getFirebaseSubData<T: FirebaseSubCollectionTargetType>(request: T) -> Single<[T.Model]> {
+    func requestFirebaseSubData<T: FirebaseSubCollectionTargetType>(request: T) -> Single<[T.Model]> {
         return Single.create { singleEvent -> Disposable in
             request.ref.document(request.id).collection(request.subCollectionName).getDocuments { snapShot, error in
                 if let error = error {
@@ -65,8 +65,21 @@ class FirebaseClient {
                     return
                 }
                 guard let snapShot = snapShot else { return }
-                let models = snapShot.documents.map { T.Model(dic: $0.data()) }
-                singleEvent(.success(models))
+                singleEvent(.success(snapShot.documents.map { T.Model(dic: $0.data()) }))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func requestFirebaseSortedSubData<T: FirebaseSubCollectionTargetType>(request: T) -> Single<[T.Model]> {
+        return Single.create { singleEvent -> Disposable in
+            request.ref.document(request.id).collection(request.subCollectionName).order(by: "createdAt", descending: request.isDescending!).getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                guard let documents = snapShot?.documents else { return }
+                singleEvent(.success(documents.map { T.Model(dic: $0.data()) }))
             }
             return Disposables.create()
         }

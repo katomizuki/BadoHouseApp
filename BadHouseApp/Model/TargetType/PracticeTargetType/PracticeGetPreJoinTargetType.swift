@@ -7,8 +7,8 @@
 
 import FirebaseFirestore
 struct PracticeGetPreJoinTargetType: FirebaseSubCollectionTargetType {
+    var isDescending: Bool?
     var id: String
-    
     var ref: CollectionReference { Ref.PreJoinRef }
     
     var subRef: CollectionReference { Ref.PreJoinRef }

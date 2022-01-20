@@ -24,7 +24,7 @@ final class SchduleCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    static func nib() ->UINib {
+    static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
