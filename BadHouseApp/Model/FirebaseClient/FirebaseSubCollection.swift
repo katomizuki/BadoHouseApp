@@ -14,4 +14,5 @@ protocol FirebaseSubCollectionTargetType {
     var subCollectionName:String { get }
     var isDescending:Bool? { get }
     var sortField:String { get }
+    var subId: String { get }
 }

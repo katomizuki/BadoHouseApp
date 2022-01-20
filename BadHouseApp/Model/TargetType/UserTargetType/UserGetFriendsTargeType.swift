@@ -7,6 +7,8 @@
 
 import FirebaseFirestore
 struct UserGetFriendsTargeType: FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool?
     
     typealias Model = User

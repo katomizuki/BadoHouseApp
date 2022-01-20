@@ -1,6 +1,8 @@
 import FirebaseFirestore
 
 struct UserGetApplyedTargetType: FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool?
     var sortField: String = ""
     var id: String

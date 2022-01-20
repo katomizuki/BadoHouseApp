@@ -8,6 +8,8 @@
 import FirebaseFirestore
 
 struct NotificationGetTargetType:FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool? { true }
     var id: String
     var ref: CollectionReference { Ref.NotificationRef }

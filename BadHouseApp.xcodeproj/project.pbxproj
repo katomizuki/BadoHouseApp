@@ -57,6 +57,7 @@
 		D31CD0142798E7A500513587 /* PracticeGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0132798E7A500513587 /* PracticeGet.swift */; };
 		D31CD01627998DF700513587 /* UserGetJoinPracticeTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD01527998DF700513587 /* UserGetJoinPracticeTargetType.swift */; };
 		D31CD0182799932D00513587 /* UserGetChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD0172799932D00513587 /* UserGetChatRoom.swift */; };
+		D31CD01A279996A000513587 /* ChatRoomGetTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CD019279996A000513587 /* ChatRoomGetTargetType.swift */; };
 		D31DC6B1272A6DE000BD2951 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */; };
 		D32B8C9D2759B83C0036FA98 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */; };
 		D32E598B2774519600C59548 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59892774519600C59548 /* MemberCell.swift */; };
@@ -300,6 +301,7 @@
 		D31CD0132798E7A500513587 /* PracticeGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGet.swift; sourceTree = "<group>"; };
 		D31CD01527998DF700513587 /* UserGetJoinPracticeTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetJoinPracticeTargetType.swift; sourceTree = "<group>"; };
 		D31CD0172799932D00513587 /* UserGetChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetChatRoom.swift; sourceTree = "<group>"; };
+		D31CD019279996A000513587 /* ChatRoomGetTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomGetTargetType.swift; sourceTree = "<group>"; };
 		D31DC6B0272A6DE000BD2951 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D32B8C9C2759B83C0036FA98 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D32E59892774519600C59548 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				D31CD00F2798DB2400513587 /* ChatGetTargetType.swift */,
+				D31CD019279996A000513587 /* ChatRoomGetTargetType.swift */,
 			);
 			path = ChatTargetType;
 			sourceTree = "<group>";
@@ -1340,6 +1343,7 @@
 				D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */,
 				D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */,
 				D301E394278478D40090CAF9 /* PreJoinCell.swift in Sources */,
+				D31CD01A279996A000513587 /* ChatRoomGetTargetType.swift in Sources */,
 				D3FFD32E271EC4BD00DE54ED /* Practice-Service.swift in Sources */,
 				D31CD00C2798D75900513587 /* PracticeGetPreJoinedTargetType.swift in Sources */,
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,

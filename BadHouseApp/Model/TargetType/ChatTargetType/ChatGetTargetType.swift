@@ -7,6 +7,8 @@
 
 import FirebaseFirestore
 struct ChatGetTargetType:FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool? { false }
     var sortField: String = "createdAt"
     var id: String

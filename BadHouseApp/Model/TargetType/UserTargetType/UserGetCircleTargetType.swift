@@ -8,6 +8,8 @@
 import FirebaseFirestore
 
 struct UserGetCircleTargetType:FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool?
     typealias Model = Circle
     var id: String

@@ -64,7 +64,7 @@ struct UserService: UserServiceProtocol {
         }
     }
     static func saveFriendId(uid: String) {
-        Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, error in
+        Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, _ in
             guard let snapShot = snapShot else { return }
                 let ids = snapShot.documents.map({ $0.data()["id"] as? String ?? "" })
                 UserDefaultsRepositry.shared.saveToUserDefaults(element: ids, key: "friends")
@@ -116,11 +116,8 @@ struct UserService: UserServiceProtocol {
     func getUserChatRoomById(myData: User,
                              id: String,
                              completion: @escaping(ChatRoom) -> Void) {
-        Ref.UsersRef.document(myData.uid).collection("ChatRoom").document(id).getDocument { snapShot, error in
-            if error != nil { return }
-            guard let dic = snapShot?.data() else { return }
-            completion(ChatRoom(dic: dic))
-        }
+        FirebaseClient.shared.getDataById(request: ChatRoomGetTargetType(subId: id,
+                                                                         id :myData.uid), completion: completion)
     }
     
     func updateChatRoom(user: User, myData: User, message: String) {

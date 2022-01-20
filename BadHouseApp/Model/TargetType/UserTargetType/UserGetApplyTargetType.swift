@@ -7,6 +7,8 @@
 
 import FirebaseFirestore
 struct UserGetApplyTargetType: FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool?
     
     var id: String

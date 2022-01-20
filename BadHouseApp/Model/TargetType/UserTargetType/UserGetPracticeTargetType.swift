@@ -7,6 +7,8 @@
 
 import FirebaseFirestore
 struct UserGetPracticeTargetType: FirebaseSubCollectionTargetType {
+    var subId: String = ""
+    
     var isDescending: Bool?
     
     typealias Model = Practice
