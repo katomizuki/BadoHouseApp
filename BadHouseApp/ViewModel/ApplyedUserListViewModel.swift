@@ -48,7 +48,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     }
     
     func makeFriends(_ applyed: Applyed) {
-        ApplyService.notApplyFriend(uid: applyed.fromUserId,
+        applyAPI.notApplyFriend(uid: applyed.fromUserId,
                                     toUserId: user.uid)
         let sbj = applyedRelay.value.filter {
             $0.fromUserId != applyed.fromUserId
@@ -69,7 +69,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     }
     
     func deleteFriends(_ applyed: Applyed) {
-        ApplyService.notApplyFriend(uid: applyed.fromUserId, toUserId: user.uid)
+        applyAPI.notApplyFriend(uid: applyed.fromUserId, toUserId: user.uid)
         let sbj = applyedRelay.value.filter {
             $0.fromUserId != applyed.fromUserId
         }

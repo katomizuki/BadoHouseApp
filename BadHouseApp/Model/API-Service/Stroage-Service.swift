@@ -15,7 +15,7 @@ struct StorageService {
         }
     }
     static func downLoadImage(image: UIImage,
-                              completion: @escaping(Result<String,Error>) -> Void) {
+                              completion: @escaping(Result<String, Error>) -> Void) {
         guard let uploadImage = image.jpegData(compressionQuality: 0.3) else { return }
         let fileName = NSUUID().uuidString
         let storageRef = Ref.StorageUserImageRef.child(fileName)

@@ -90,7 +90,7 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
         userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
     }
     func applyFriend() {
-        ApplyService.postApply(user: myData, toUser: user) { result in
+        applyAPI.postApply(user: myData, toUser: user) { result in
             switch result {
             case .success:
                 self.completed.onNext(())
@@ -100,7 +100,7 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
         }
     }
     func notApplyedFriend() {
-        ApplyService.notApplyFriend(uid: myData.uid, toUserId: user.uid)
+        applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
         notApplyedCompleted.onNext(())
     }
 }

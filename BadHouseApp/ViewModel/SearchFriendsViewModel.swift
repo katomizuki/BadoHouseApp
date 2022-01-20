@@ -24,8 +24,10 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
     }
     private let disposeBag = DisposeBag()
     let user: User
-    init(userAPI: UserServiceProtocol,user: User) {
+    let applyAPI: ApplyServiceProtocol
+    init(userAPI: UserServiceProtocol,user: User,applyAPI: ApplyServiceProtocol) {
         self.user = user
+        self.applyAPI = applyAPI
         searchTextOutputs.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             userAPI.searchUser(text: text).subscribe { [weak self] users in
@@ -37,7 +39,7 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
     }
     
     func applyFriend(_ user: User, myData: User) {
-        ApplyService.postApply(user: myData, toUser: user) { result in
+         applyAPI.postApply(user: myData, toUser: user) { result in
             switch result {
             case .success:
                 print(#function)
@@ -47,7 +49,7 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
         }
     }
     func notApplyFriend(_ user: User, myData: User) {
-        ApplyService.notApplyFriend(uid: myData.uid, toUserId: user.uid)
+        applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
     }
     
 }

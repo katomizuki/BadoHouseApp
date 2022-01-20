@@ -41,7 +41,7 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
         }.disposed(by: disposeBag)
     }
     func onTrashButton(apply: Apply) {
-            ApplyService.notApplyFriend(uid: self.user.uid, toUserId: apply.toUserId)
+        applyAPI.notApplyFriend(uid: self.user.uid, toUserId: apply.toUserId)
         let value = applyRelay.value.filter {
             $0.toUserId != apply.toUserId
         }
