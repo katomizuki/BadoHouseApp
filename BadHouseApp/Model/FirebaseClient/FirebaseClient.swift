@@ -84,4 +84,17 @@ class FirebaseClient {
             return Disposables.create()
         }
     }
+    func requestFirebaseSort<T: FirebaseTargetType>(request: T) -> Single<[T.Model]> {
+        return Single.create { singleEvent in
+            request.ref.getDocuments { snapShot, error in
+                if let error = error {
+                    singleEvent(.failure(error))
+                    return
+                }
+                guard let snapShot = snapShot else { return }
+                singleEvent(.success(snapShot.documents.map { T.Model(dic: $0.data()) }))
+            }
+            return Disposables.create()
+        }
+    }
 }
