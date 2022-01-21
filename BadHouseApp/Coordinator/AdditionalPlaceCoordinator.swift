@@ -1,8 +1,8 @@
 import UIKit
 
 final class AdditionalPlaceCoordinator: Coordinator, AddtionalPlaceFlow {
-    let viewController:AdditionalEventElementController
-    init(viewController:AdditionalEventElementController) {
+    let viewController: AdditionalEventElementController
+    init(viewController: AdditionalEventElementController) {
         self.viewController = viewController
     }
     func start() {

@@ -2,13 +2,13 @@ import RxSwift
 
 protocol PracticeServieProtocol {
     func getPractices()->Single<[Practice]>
-    func postPractice(dic:[String:Any],
+    func postPractice(dic: [String: Any],
                       circle: Circle,
                       user: User,
                       completion: @escaping(Error?) -> Void)
 }
 struct PracticeServie: PracticeServieProtocol {
-    func postPractice(dic:[String:Any],
+    func postPractice(dic: [String: Any],
                       circle: Circle,
                       user: User,
                       completion: @escaping(Error?) -> Void) {

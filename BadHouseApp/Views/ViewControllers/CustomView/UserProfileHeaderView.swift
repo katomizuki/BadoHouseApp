@@ -32,8 +32,8 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
             button.tintColor = .systemBlue
             return button
     }()
-    private let applyButton:UIButton = {
-        let button = UIButton(type:.system)
+    private let applyButton: UIButton = {
+        let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "person.3"), for: .normal)
         button.setTitle("申請済みのユーザー", for: .normal)
         button.tintColor = .systemBlue

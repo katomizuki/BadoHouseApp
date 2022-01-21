@@ -17,4 +17,3 @@ struct UserGetFriendsTargeType: FirebaseSubCollectionTargetType {
     var subCollectionName: String
     
 }
-

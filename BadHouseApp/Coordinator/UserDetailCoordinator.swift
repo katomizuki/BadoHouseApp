@@ -3,8 +3,8 @@ import UIKit
 final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
 
     let navigationController: UINavigationController
-    let viewModel:UserDetailViewModel
-    init(navigationController: UINavigationController,viewModel:UserDetailViewModel) {
+    let viewModel: UserDetailViewModel
+    init(navigationController: UINavigationController, viewModel: UserDetailViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }

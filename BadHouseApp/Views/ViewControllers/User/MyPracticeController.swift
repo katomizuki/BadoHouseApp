@@ -7,7 +7,7 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: MyPracticeViewModel
     private let disposeBag = DisposeBag()
-    init(viewModel:MyPracticeViewModel) {
+    init(viewModel: MyPracticeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

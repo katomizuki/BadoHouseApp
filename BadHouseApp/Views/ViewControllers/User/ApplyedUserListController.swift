@@ -42,8 +42,7 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
             self?.showCDAlert(title: "\(text)さんとバド友になりました", message: "", action: "OK", alertType: .success)
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.applyedRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyedUserListCell.id, cellType: ApplyedUserListCell.self)) {
-            _, item, cell in
+        viewModel.outputs.applyedRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyedUserListCell.id, cellType: ApplyedUserListCell.self)) {_, item, cell in
             cell.delegate = self
             cell.configure(item)
         }.disposed(by: disposeBag)

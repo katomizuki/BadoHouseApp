@@ -83,6 +83,4 @@ final class CustomCell: UITableViewCell {
         timeLabel.isHidden = false
         timeLabel.text = chatRoom.latestTimeString
     }
-  
-   
 }

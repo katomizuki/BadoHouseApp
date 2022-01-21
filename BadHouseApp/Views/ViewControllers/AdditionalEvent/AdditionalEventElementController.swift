@@ -35,8 +35,8 @@ final class AdditionalEventElementController: UIViewController {
     private let disposeBag = DisposeBag()
     var coordinator: AddtionalPracticeElementFlow?
     private let viewModel: MakeEventThirdViewModel
-    private lazy var rightButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
+    private lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "次へ", style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     init(viewModel: MakeEventThirdViewModel) {
@@ -94,7 +94,7 @@ final class AdditionalEventElementController: UIViewController {
     @objc private func didTapFinishButton(sender: UIDatePicker) {
         viewModel.inputs.changedFinishPicker(sender.date)
     }
-    @objc private func didTapLinePicker(sender :UIDatePicker) {
+    @objc private func didTapLinePicker(sender: UIDatePicker) {
         viewModel.inputs.changedDeadLinePicker(sender.date)
     }
     @objc private func didTapNextButton() {

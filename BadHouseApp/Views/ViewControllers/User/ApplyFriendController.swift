@@ -30,7 +30,7 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
             self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
         
-        viewModel.outputs.applyRelay.bind(to: tableView.rx.items(cellIdentifier:ApplyUserListCell.id, cellType: ApplyUserListCell.self)) { _, item, cell in
+        viewModel.outputs.applyRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyUserListCell.id, cellType: ApplyUserListCell.self)) { _, item, cell in
             cell.configure(item)
             cell.delegate = self
         }.disposed(by: disposeBag)

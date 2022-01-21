@@ -1,9 +1,9 @@
 import UIKit
 
-final class UpdateCircleCoordinator:Coordinator {
-    let navigationController:UINavigationController
-    let viewModel:UpdateCircleViewModel
-    init(navigationController:UINavigationController,viewModel:UpdateCircleViewModel) {
+final class UpdateCircleCoordinator: Coordinator {
+    let navigationController: UINavigationController
+    let viewModel: UpdateCircleViewModel
+    init(navigationController: UINavigationController, viewModel: UpdateCircleViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }

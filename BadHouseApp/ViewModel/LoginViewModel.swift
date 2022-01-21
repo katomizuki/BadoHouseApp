@@ -1,6 +1,5 @@
 import RxSwift
 import RxCocoa
-import Foundation
 // MARK: - InputProtocol
 protocol LoginBindingInputs {
     var emailTextInput: AnyObserver<String> { get }
@@ -28,7 +27,7 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
     var authAPI: AuthServiceProtocol
     var userAPI: UserServiceProtocol
     // MARK: - initialize
-    init(authAPI:AuthServiceProtocol,userAPI:UserServiceProtocol) {
+    init(authAPI: AuthServiceProtocol, userAPI: UserServiceProtocol) {
         self.authAPI = authAPI
         self.userAPI = userAPI
         validRegisterDriver = valideRegisterSubject

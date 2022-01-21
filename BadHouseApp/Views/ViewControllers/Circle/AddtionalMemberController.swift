@@ -1,38 +1,37 @@
-//
-//  AddtionalMemberController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/30.
-//
-
 import UIKit
 import RxSwift
 import PKHUD
 
 final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
-    private let viewModel:AdditionalMemberViewModel
+    private let viewModel: AdditionalMemberViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
-    private var selectedCell: [String:Bool] = [String:Bool]()
-    init(viewModel:AdditionalMemberViewModel) {
+    private var selectedCell: [String: Bool] = [String: Bool]()
+    
+    init(viewModel: AdditionalMemberViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
         setupBinding()
     }
+    
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "招待", style: .done, target: self, action: #selector(didTapRightButton))
     }
+    
     private func setupTableView() {
         tableView.register(InviteCell.nib(), forCellReuseIdentifier: InviteCell.id)
     }
+    
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.outputs.friendsSubject.bind(to: tableView.rx.items(cellIdentifier: InviteCell.id, cellType: InviteCell.self)) {[weak self] row, item, cell in
@@ -70,6 +69,7 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     @objc private func didTapRightButton() {
         viewModel.inputs.invite()
     }
+    
     private func popAnimation() {
         HUD.show(.success, onView: view)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

@@ -5,7 +5,7 @@ class AlertProvider {
                             completion: @escaping(Error?) -> Void) -> UIAlertController {
         let alertVC = UIAlertController(title: "このユーザーに関して", message: "", preferredStyle: .actionSheet)
         let problemAction = UIAlertAction(title: "不適切なユーザーである", style: .destructive) {  _ in
-            Ref.ReportRef.document(user.uid).setData(["id":user.uid],
+            Ref.ReportRef.document(user.uid).setData(["id": user.uid],
                                                      completion: completion)
         }
 
@@ -19,7 +19,7 @@ class AlertProvider {
                             completion: @escaping(Error?)->Void)->UIAlertController {
         let alertVC = UIAlertController(title: "この投稿に関して", message: "", preferredStyle: .actionSheet)
         let problemAction = UIAlertAction(title: "不適切な投稿である", style: .destructive) {  _ in
-            Ref.ReportRef.document(practice.id).setData(["id":practice.id],completion: completion)
+            Ref.ReportRef.document(practice.id).setData(["id": practice.id], completion: completion)
         }
         let canleAction = UIAlertAction(title: "キャンセル", style: .cancel)
         alertVC.addAction(problemAction)

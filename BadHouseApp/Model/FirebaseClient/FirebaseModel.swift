@@ -1,4 +1,4 @@
 
 protocol FirebaseModel {
-     init(dic: [String:Any])
+     init(dic: [String: Any])
 }

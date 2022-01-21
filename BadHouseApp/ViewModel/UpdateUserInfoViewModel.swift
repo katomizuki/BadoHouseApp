@@ -1,14 +1,8 @@
-//
-//  UpdateUserInfoViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/22.
-//
-
 import RxSwift
 import Firebase
 import RxRelay
 import UIKit
+
 protocol UpdateUserInfoViewModelInputs {
     func saveUser()
     var textViewInputs: AnyObserver<String> { get }
@@ -16,6 +10,7 @@ protocol UpdateUserInfoViewModelInputs {
     var racketTextFieldInputs: AnyObserver<String> { get }
     var playerTextFieldInputs: AnyObserver<String> { get }
 }
+
 protocol UpdateUserInfoViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var userSubject: PublishSubject<User> { get }
@@ -32,6 +27,7 @@ protocol UpdateUserInfoViewModelOutputs {
     var playerTextFieldSubject: BehaviorSubject<String> { get }
     var userImage: UIImage? { get }
 }
+
 protocol UpdateUserInfoViewModelType {
     var inputs: UpdateUserInfoViewModelInputs { get }
     var outputs: UpdateUserInfoViewModelOutputs { get }
@@ -101,7 +97,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     
     func saveUser() {
         guard let user = user else { return }
-        var dic: [String:Any] = ["name": user.name,
+        var dic: [String: Any] = ["name": user.name,
                                 "email": user.email,
                                 "createdAt": user.createdAt,
                                 "updatedAt": Timestamp(),
@@ -130,7 +126,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         }
     }
     
-    func postUser(dic: [String : Any]) {
+    func postUser(dic: [String: Any]) {
         userAPI.postUser(uid: AuthService.getUid()!, dic: dic) {[weak self] result in
             switch result {
             case .success:
@@ -141,7 +137,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         }
     }
     
-    func getUserData(_ selection:UserInfoSelection) -> String {
+    func getUserData(_ selection: UserInfoSelection) -> String {
         guard let user = user else {
             return "未設定"
         }

@@ -1,7 +1,6 @@
-
 enum CircleFeatures: Int, CaseIterable {
-    case single,double,mix,practiceMain,gameMain,notGender,notAge,weekDay,weekEnd
-    var description:String {
+    case single, double, mix, practiceMain, gameMain, notGender, notAge, weekDay, weekEnd
+    var description: String {
         switch self {
         case .single: return "シングルス"
         case .double: return "ダブルス"

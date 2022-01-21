@@ -1,15 +1,9 @@
-//
-//  SearchUserCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/24.
-//
-
 import UIKit
 import SDWebImage
-protocol SearchUserCellDelegate:AnyObject {
-    func searchUserCellApply(_ user: User,cell: SearchUserCell)
-    func searchUserCellNotApply(_ user:User, cell:SearchUserCell)
+
+protocol SearchUserCellDelegate: AnyObject {
+    func searchUserCellApply(_ user: User, cell: SearchUserCell)
+    func searchUserCellNotApply(_ user: User, cell: SearchUserCell)
 
 }
 final class SearchUserCell: UITableViewCell {

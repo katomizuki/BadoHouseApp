@@ -13,7 +13,7 @@ protocol SearchUserViewModelType {
     var inputs: SearchUserViewModelInputs { get }
     var outputs: SearchUserViewModelOutputs { get }
 }
-final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInputs, SearchUserViewModelOutputs {
+final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInputs, SearchUserViewModelOutputs {
     var inputs: SearchUserViewModelInputs { return self }
     var outputs: SearchUserViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()
@@ -25,7 +25,7 @@ final class SearchUserViewModel:SearchUserViewModelType, SearchUserViewModelInpu
     private let disposeBag = DisposeBag()
     let user: User
     let applyAPI: ApplyServiceProtocol
-    init(userAPI: UserServiceProtocol,user: User,applyAPI: ApplyServiceProtocol) {
+    init(userAPI: UserServiceProtocol, user: User, applyAPI: ApplyServiceProtocol) {
         self.user = user
         self.applyAPI = applyAPI
         searchTextOutputs.subscribe(onNext: { [weak self] text in

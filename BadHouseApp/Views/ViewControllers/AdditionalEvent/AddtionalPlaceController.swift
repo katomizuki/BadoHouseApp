@@ -1,15 +1,18 @@
 import UIKit
 import CoreLocation
 import MapKit
+
 protocol AddtionalPlaceFlow {
 }
+
 protocol AddtionalPlaceControllerDelegate: AnyObject {
-    func AddtionalPlaceController(vc:AddtionalPlaceController,
+    func AddtionalPlaceController(vc: AddtionalPlaceController,
                                   placeName: String,
                                   addressName: String,
                                   latitude: Double,
                                   longitude: Double)
 }
+
 final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     var coordinator: AddtionalPlaceFlow?
     weak var delegate: AddtionalPlaceControllerDelegate?

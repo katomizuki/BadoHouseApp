@@ -23,7 +23,7 @@ final class ChatCell: UITableViewCell {
         didSet { userImageView.changeCorner(num: 30) }
     }
     @IBOutlet private weak var timeLabel: UILabel!
-    @IBOutlet private weak var textView: UITextView!{
+    @IBOutlet private weak var textView: UITextView! {
         didSet {
             textView.changeCorner(num: 8)
             textView.font = UIFont(name: "Kailasa", size: 14)
@@ -55,7 +55,7 @@ final class ChatCell: UITableViewCell {
     }
     // MARK: - nibMethod
     static func nib() -> UINib {
-        return UINib(nibName:String(describing: self), bundle: nil)
+        return UINib(nibName: String(describing: self), bundle: nil)
     }
     // MARK: - helperMethod
     private func estimateFrameSize(text: String) -> CGRect {
@@ -67,7 +67,7 @@ final class ChatCell: UITableViewCell {
                                                    context: nil)
     }
 
-    func configure(chat: Chat, user: User,myData: User) {
+    func configure(chat: Chat, user: User, myData: User) {
         if chat.senderId == myData.uid {
             timeLabel.isHidden = true
             textView.isHidden = true

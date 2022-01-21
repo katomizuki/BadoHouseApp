@@ -1,23 +1,20 @@
-//
-//  SearchCircleViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/19.
-//
-
 import RxSwift
 import RxRelay
+
 protocol SearchCircleViewModelInputs {
     var searchBarTextInput: AnyObserver<String> { get }
 }
+
 protocol SearchCircleViewModelOutputs {
     var circleRelay: BehaviorRelay<[Circle]> { get }
     var isError: PublishSubject<Bool> { get }
 }
+
 protocol SearchCircleViewModelType {
     var inputs: SearchCircleViewModelInputs { get }
     var outputs: SearchCircleViewModelOutputs { get }
 }
+
 final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleViewModelOutputs, SearchCircleViewModelType {
     var inputs: SearchCircleViewModelInputs { return self }
     var outputs: SearchCircleViewModelOutputs { return self }
@@ -29,8 +26,9 @@ final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleView
     var searchBarTextInput: AnyObserver<String> {
         return searchBarText.asObserver()
     }
-    var user:User
-    init(circleAPI: CircleServiceProtocol,user:User) {
+    var user: User
+    
+    init(circleAPI: CircleServiceProtocol, user: User) {
         self.circleAPI = circleAPI
         self.user = user
         searchBarText.subscribe(onNext: { [weak self] text in

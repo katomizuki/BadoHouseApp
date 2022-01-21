@@ -1,14 +1,8 @@
-//
-//  SchduleCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/24.
-//
-
 import UIKit
 import SDWebImage
-protocol SchduleCellDelegate:AnyObject {
-    func onTapTrashButton(_ cell:SchduleCell)
+
+protocol SchduleCellDelegate: AnyObject {
+    func onTapTrashButton(_ cell: SchduleCell)
 }
 final class SchduleCell: UITableViewCell {
 

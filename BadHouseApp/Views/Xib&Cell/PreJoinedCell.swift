@@ -1,7 +1,7 @@
 import UIKit
 import SDWebImage
 
-protocol PreJoinedCellDelegate:AnyObject {
+protocol PreJoinedCellDelegate: AnyObject {
     func preJoinedCell(prejoined: PreJoined)
 }
 final class PreJoinedCell: UITableViewCell {

@@ -7,7 +7,7 @@ protocol AuthServiceProtocol {
 }
 struct AuthService: AuthServiceProtocol {
     func register(credential: AuthCredential,
-                  completion: @escaping (Result<[String : Any], Error>) -> Void) {
+                  completion: @escaping (Result<[String: Any], Error>) -> Void) {
         Auth.auth().createUser(withEmail: credential.email,
                                password: credential.password) { result, error in
             if let error = error {
@@ -15,7 +15,7 @@ struct AuthService: AuthServiceProtocol {
                 return
             }
             guard let uid = result?.user.uid else { return }
-            let dic:[String: Any] = ["uid": uid,
+            let dic: [String: Any] = ["uid": uid,
                                     "email": credential.email,
                                      "name": credential.name,
                                      "createdAt": Timestamp(),
@@ -30,7 +30,7 @@ struct AuthService: AuthServiceProtocol {
     
     static func login(email: String,
                       password: String,
-                      completion: ((AuthDataResult?,Error?) -> Void)?) {
+                      completion: ((AuthDataResult?, Error?) -> Void)?) {
         Auth.auth().signIn(withEmail: email,
                            password: password,
                            completion: completion)

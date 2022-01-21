@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EventInfoCellDelegate: AnyObject {
-    func didTapBlockButton(_ cell: EventInfoCell,practice: Practice)
+    func didTapBlockButton(_ cell: EventInfoCell, practice: Practice)
 }
 final class EventInfoCell: UICollectionViewCell {
     // MARK: - Properties
@@ -32,7 +32,7 @@ final class EventInfoCell: UICollectionViewCell {
         }
     }
     weak var delegate: EventInfoCellDelegate?
-    var practice:Practice?
+    var practice: Practice?
     // MARK: - LifeCycle
     static let id = String(describing: self)
     
@@ -55,6 +55,6 @@ final class EventInfoCell: UICollectionViewCell {
         guard let practice = practice else {
             return
         }
-        self.delegate?.didTapBlockButton(self,practice: practice)
+        self.delegate?.didTapBlockButton(self, practice: practice)
     }
 }

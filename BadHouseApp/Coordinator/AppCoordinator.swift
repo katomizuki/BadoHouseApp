@@ -23,7 +23,7 @@ final class AppCoordinator: Coordinator {
                      image: UIImage(systemName: "person.fill"),
                      tag: 2)
         talkNavigationController.tabBarItem = UITabBarItem(title: "トーク",
-                        image:UIImage(systemName: "bubble.left.fill"),
+                        image: UIImage(systemName: "bubble.left.fill"),
                         tag: 3)
         mainNavigationController.tabBarItem =
         UITabBarItem(title: "ホーム",

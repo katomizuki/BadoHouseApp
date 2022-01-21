@@ -1,10 +1,3 @@
-//
-//  PreJoinedListController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/04.
-//
-
 import UIKit
 import RxSwift
 
@@ -32,7 +25,7 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        viewModel.outputs.preJoinedList.bind(to: tableView.rx.items(cellIdentifier: PreJoinedCell.id, cellType: PreJoinedCell.self)) { _,item,cell in
+        viewModel.outputs.preJoinedList.bind(to: tableView.rx.items(cellIdentifier: PreJoinedCell.id, cellType: PreJoinedCell.self)) { _, item, cell in
             cell.configure(item)
             cell.delegate = self
         }.disposed(by: disposeBag)

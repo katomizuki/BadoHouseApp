@@ -6,7 +6,7 @@ import GoogleSignIn
 import Firebase
 import AuthenticationServices
 import CryptoKit
-protocol LoginFlow:AnyObject {
+protocol LoginFlow: AnyObject {
     func toRegister()
 }
 final class LoginController: UIViewController {
@@ -87,7 +87,7 @@ final class LoginController: UIViewController {
         return hashString
     }
     private func randomNonceString(length: Int = 32) -> String {
-        let charset: Array<Character> = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
         while remainingLength > 0 {
@@ -126,7 +126,7 @@ final class LoginController: UIViewController {
     private func login() {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        AuthService.login(email: email, password: password) { result, error in
+        AuthService.login(email: email, password: password) { _, error in
             if let error = error {
                 self.signInErrAlert(error as NSError)
                 return

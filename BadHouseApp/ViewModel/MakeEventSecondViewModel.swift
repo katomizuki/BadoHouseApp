@@ -1,8 +1,8 @@
-import Foundation
 import RxSwift
 import RxCocoa
 import FirebaseAuth
 import UIKit
+
 protocol MakeEventSecondViewModelInputs {
     var minLevel: PublishSubject<Float> { get }
     var maxLevel: PublishSubject<Float> { get }
@@ -10,7 +10,7 @@ protocol MakeEventSecondViewModelInputs {
 protocol MakeEventSecondViewModelOutputs {
     var minLevelText: BehaviorRelay<String> { get }
     var maxLevelText: BehaviorRelay<String> { get }
-    var circleRelay:BehaviorRelay<[Circle]> { get }
+    var circleRelay: BehaviorRelay<[Circle]> { get }
 }
 protocol MakeEventSecondViewModelType {
     var inputs: MakeEventSecondViewModelInputs { get }
@@ -28,11 +28,11 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var user: User?
     var circle: Circle?
     private let disposeBag = DisposeBag()
-    var title:String
-    var image:UIImage
-    var kind:String
-    var dic:[String:Any] = [String:Any]()
-    init(userAPI:UserServiceProtocol, title:String, image: UIImage, kind: String) {
+    var title: String
+    var image: UIImage
+    var kind: String
+    var dic: [String: Any] = [String: Any]()
+    init(userAPI: UserServiceProtocol, title: String, image: UIImage, kind: String) {
         self.userAPI = userAPI
         self.title = title
         self.image = image
@@ -59,7 +59,6 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
             self.maxLevelText.accept(maxText)
         }).disposed(by: disposeBag)
     }
-    
     
     // MARK: - Helper
     func changeNumber(num: Float) -> String {

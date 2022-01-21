@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+// swiftlint:disable line_length
 protocol RuleControllerDelegate: AnyObject {
     func didTapBackButton(_ vc: RuleController)
 }

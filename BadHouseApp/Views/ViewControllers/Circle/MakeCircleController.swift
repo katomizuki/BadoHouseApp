@@ -1,21 +1,23 @@
-
 import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+
 protocol MakeCircleFlow {
     func toInvite(_ user: User, form: Form?)
     func pop()
 }
+
 enum ImageSelection {
     case backGround
     case icon
 }
+
 final class MakeCircleController: UIViewController {
 
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let viewModel:TeamRegisterViewModel
+    private let viewModel: TeamRegisterViewModel
     private let imagePicker = UIImagePickerController()
     var coordinator: MakeCircleFlow?
     @IBOutlet private weak var groupImageView: UIImageView! {

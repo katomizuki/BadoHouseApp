@@ -1,8 +1,8 @@
 import UIKit
 import SDWebImage
 
-protocol ApplyUserListCellDelegate:AnyObject {
-    func onTapTrashButton(_ apply:Apply, cell:ApplyUserListCell)
+protocol ApplyUserListCellDelegate: AnyObject {
+    func onTapTrashButton(_ apply: Apply, cell: ApplyUserListCell)
 }
 final class ApplyUserListCell: UITableViewCell {
     @IBOutlet private weak var userImageView: UIImageView! {

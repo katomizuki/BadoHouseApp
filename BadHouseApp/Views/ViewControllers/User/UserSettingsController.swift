@@ -29,7 +29,7 @@ final class UserSettingsController: UIViewController {
         navigationItem.title = "設定画面"
         navigationController?.navigationBar.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ログアウト",style: .done, target: self, action: #selector(didTapLogoutButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ログアウト", style: .done, target: self, action: #selector(didTapLogoutButton))
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white
@@ -78,7 +78,7 @@ extension UserSettingsController: UITableViewDelegate {
 }
 extension UserSettingsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId",for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         var configuration = cell.defaultContentConfiguration()
         configuration.text = SettingsSelection(rawValue: indexPath.row)?.description
         cell.contentConfiguration = configuration

@@ -1,24 +1,22 @@
-//
-//  MyPracticeViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/02.
-//
-
 import RxSwift
 import RxRelay
+
 protocol MyPracticeViewModelType {
-    var inputs:MyPracticeViewModelInputs { get }
-    var outputs:MyPracticeViewModelOutputs { get }
+    var inputs: MyPracticeViewModelInputs { get }
+    var outputs: MyPracticeViewModelOutputs { get }
 }
+
 protocol MyPracticeViewModelInputs {
     func deletePractice(_ practice: Practice)
 }
+
 protocol MyPracticeViewModelOutputs {
     var practices: BehaviorRelay<[Practice]> { get }
     var isError: PublishSubject<Bool> { get }
 }
-final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelOutputs, MyPracticeViewModelType{
+
+final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelOutputs, MyPracticeViewModelType {
+    
     var inputs: MyPracticeViewModelInputs { return self }
     var outputs: MyPracticeViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()

@@ -5,10 +5,10 @@ protocol SearchSelectionDataSourceDelegateProtocol: AnyObject {
 final class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var cellArray = [String]()
-    weak var delegate:SearchSelectionDataSourceDelegateProtocol?
+    weak var delegate: SearchSelectionDataSourceDelegateProtocol?
     private let cellId = "popCellId"
     
-    func initCellArray(_ array:[String]) {
+    func initCellArray(_ array: [String]) {
         self.cellArray = array
     }
     

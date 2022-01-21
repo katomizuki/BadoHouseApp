@@ -1,12 +1,6 @@
-//
-//  InviteViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/19.
-//
-
 import RxSwift
 import RxRelay
+
 protocol InviteViewModelInputs {
     func willAppear()
 }
@@ -32,9 +26,12 @@ final class InviteViewModel: InviteViewModelType,
     var form: Form
     var inviteIds = [String]()
     private let disposeBag = DisposeBag()
-    private var dic = [String : Any]()
+    private var dic = [String: Any]()
     let circleAPI: CircleServiceProtocol
-    init(userAPI: UserServiceProtocol, user: User, form: Form,circleAPI: CircleServiceProtocol) {
+    init(userAPI: UserServiceProtocol,
+         user: User,
+         form: Form,
+         circleAPI: CircleServiceProtocol) {
         self.userAPI = userAPI
         self.user = user
         self.form = form
@@ -55,7 +52,7 @@ final class InviteViewModel: InviteViewModelType,
                    "place": form.place,
                    "time": form.time,
                "features": form.features,
-               "additionlText":form.additionlText]
+               "additionlText": form.additionlText]
         setupBackGroundImage()
         setupIconImage()
     }

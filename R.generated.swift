@@ -6,7 +6,11 @@
 import Foundation
 import Rswift
 import UIKit
-
+// swiftlint:disable colon
+// swiftlint:disable nesting
+// swiftlint:disable line_length
+// swiftlint:disable comma
+// swiftlint:disable opening_brace
 /// This `R` struct is generated and contains references to static resources.
 struct R: Rswift.Validatable {
   fileprivate static let applicationLocale = hostingBundle.preferredLocalizations.first.flatMap { Locale(identifier: $0) } ?? Locale.current
@@ -106,7 +110,6 @@ struct R: Rswift.Validatable {
         static let ageArray = ["10代以下", "10代", "20代", "30代", "40代", "50代", "60代", "70代以上"]
     }
     
-
   /// This `R.color` struct is generated, and contains static references to 4 colors.
   struct color {
     /// Color `AccentColor`.
@@ -758,7 +761,6 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "UserCircleCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.userCircleCell) instead")
@@ -1330,7 +1332,6 @@ struct _R: Rswift.Validatable {
 
       fileprivate init() {}
     }
-
 
     struct _UserCircleCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle

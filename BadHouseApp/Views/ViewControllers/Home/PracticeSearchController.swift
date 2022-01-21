@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 
 protocol PracticeSearchControllerDelegate: AnyObject {
-    func eventSearchControllerDismiss(practices:[Practice], vc: PracticeSearchController)
+    func eventSearchControllerDismiss(practices: [Practice], vc: PracticeSearchController)
 }
 final class PracticeSearchController: UIViewController {
     private let disposeBag = DisposeBag()

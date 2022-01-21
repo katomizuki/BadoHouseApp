@@ -1,12 +1,6 @@
-//
-//  MemberCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/23.
-//
-
 import UIKit
 import SDWebImage
+
 final class MemberCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var memberImageView: UIImageView! {
@@ -24,7 +18,7 @@ final class MemberCell: UITableViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    func configure(_ user:User) {
+    func configure(_ user: User) {
         memberImageView.sd_setImage(with: user.profileImageUrl)
         nameLabel.text = user.name
     }

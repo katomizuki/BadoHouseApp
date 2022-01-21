@@ -1,11 +1,11 @@
 import UIKit
 
-final class PracticeDetailCoordinator:Coordinator, PracticeDetailFlow {
+final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
     
     let navigationController: UINavigationController
-    let viewModel:PracticeDetailViewModel
+    let viewModel: PracticeDetailViewModel
     
-    init(navigationController: UINavigationController,viewModel:PracticeDetailViewModel) {
+    init(navigationController: UINavigationController, viewModel: PracticeDetailViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -24,7 +24,7 @@ final class PracticeDetailCoordinator:Coordinator, PracticeDetailFlow {
         coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserService(), chatAPI: ChatService())))
     }
     
-    func toCircleDetail(myData: User,circle: Circle) {
+    func toCircleDetail(myData: User, circle: Circle) {
         coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())))
     }
 }

@@ -1,9 +1,3 @@
-//
-//  EventAdditionalItemViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/31.
-//
 import UIKit
 import RxSwift
 import RxRelay
@@ -12,19 +6,21 @@ final class EventAdditionalItemViewModel {
     let image: UIImage
     let circle: Circle
     let user: User
-    var dic: [String : Any]
+    var dic: [String: Any]
     var isError = PublishSubject<Bool>()
     var completed = PublishSubject<Void>()
     var textViewInputs = String()
     let practiceAPI: PracticeServieProtocol
     private let disposeBag = DisposeBag()
-    init(image: UIImage, circle: Circle, user: User, dic: [String:Any], practiceAPI:PracticeServieProtocol) {
+    
+    init(image: UIImage, circle: Circle, user: User, dic: [String: Any], practiceAPI: PracticeServieProtocol) {
         self.image = image
         self.circle = circle
         self.user = user
         self.dic = dic
         self.practiceAPI = practiceAPI
     }
+    
     func postPractice() {
         StorageService.downLoadImage(image: image) { [weak self] result in
             guard let self = self else { return }

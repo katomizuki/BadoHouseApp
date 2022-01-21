@@ -46,8 +46,8 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
             self?.viewModel.inputs.didTapCell(indexPath.row)
         }.disposed(by: disposeBag)
         
-        viewModel.outputs.notificationList.bind(to: notificationCollectionView.rx.items(cellIdentifier: NotificationCell.id, cellType: NotificationCell.self)) {
-            _, item, cell in
+        viewModel.outputs.notificationList.bind(to: notificationCollectionView.rx.items(cellIdentifier: NotificationCell.id,
+                                                cellType: NotificationCell.self)) { _, item, cell in
             cell.configure(item)
         }.disposed(by: disposeBag)
         

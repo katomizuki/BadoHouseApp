@@ -7,7 +7,7 @@ final class PracticeDataSourceDelegate: NSObject, UITableViewDelegate, UITableVi
     weak var delegate: PracticeDataSourceDelegateProtocol?
     var viewModel: PracticeSearchViewModel?
     
-    func initViewModel(viewModel:PracticeSearchViewModel) {
+    func initViewModel(viewModel: PracticeSearchViewModel) {
         self.viewModel = viewModel
     }
     

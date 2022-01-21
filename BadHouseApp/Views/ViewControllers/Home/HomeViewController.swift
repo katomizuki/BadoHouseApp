@@ -7,10 +7,10 @@ import MapKit
 import UserNotifications
 import CDAlertView
 protocol HomeFlow: AnyObject {
-    func toMap(practices:[Practice], lat: Double, lon: Double)
+    func toMap(practices: [Practice], lat: Double, lon: Double)
     func toMakeEvent()
-    func toDetailSearch(_ vc: HomeViewController, practices:[Practice])
-    func toPracticeDetail(_ practice:Practice)
+    func toDetailSearch(_ vc: HomeViewController, practices: [Practice])
+    func toPracticeDetail(_ practice: Practice)
     func toAuthentication(_ vc: UIViewController)
 }
 final class HomeViewController: UIViewController {
@@ -78,7 +78,7 @@ final class HomeViewController: UIViewController {
             self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
         }.disposed(by: disposeBag)
         
-        viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _, item,cell in
+        viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _, item, cell in
             cell.delegate = self
             cell.configure(item)
         }.disposed(by: disposeBag)

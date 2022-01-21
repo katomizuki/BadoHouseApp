@@ -3,7 +3,7 @@ import FirebaseFirestore
 
 class FirebaseClient {
     static let shared = FirebaseClient()
-    func requesFirebase<T:FirebaseTargetType>(request: T) -> Single<T.Model> {
+    func requesFirebase<T: FirebaseTargetType>(request: T) -> Single<T.Model> {
         return Single.create { singleEvent -> Disposable in
             request.ref.document(request.id).getDocument { snapShot, error in
                 if let error = error {

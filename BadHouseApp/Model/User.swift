@@ -1,8 +1,7 @@
-
 import Firebase
 import FirebaseAuth
 
-struct User:FirebaseModel, Equatable {
+struct User: FirebaseModel, Equatable {
     var uid: String
     var name: String
     var email: String

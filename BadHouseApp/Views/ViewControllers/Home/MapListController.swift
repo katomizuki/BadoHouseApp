@@ -1,21 +1,16 @@
-//
-//  MapListController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/13.
-//
-
 import UIKit
 import MapKit
 import CoreLocation
+
 protocol MapListFlow: AnyObject {
-    func halfModal(_ practice:Practice,_ vc: MapListController)
+    func halfModal(_ practice: Practice, _ vc: MapListController)
 }
+
 final class MapListController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     var coordinator: MapListFlow?
     private let viewModel: MapListViewModel
-    init(viewModel:MapListViewModel) {
+    init(viewModel: MapListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -40,7 +35,10 @@ final class MapListController: UIViewController {
 
     }
     
-    func addAnnotation(_ latitude: CLLocationDegrees,_ longitude: CLLocationDegrees,_ title: String,_ subtitle:String) {
+    func addAnnotation(_ latitude: CLLocationDegrees,
+                       _ longitude: CLLocationDegrees,
+                       _ title: String,
+                       _ subtitle: String) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         annotation.title = title
@@ -54,7 +52,7 @@ extension MapListController: MKMapViewDelegate {
             let practice = viewModel.practices.filter {
                 $0.title == annotation.title && $0.placeName == annotation.subtitle
             }
-            coordinator?.halfModal(practice[0],self)
+            coordinator?.halfModal(practice[0], self)
         }
     }
 }

@@ -5,10 +5,10 @@ protocol MyPageInfoDataSourceDelegateProtocol: AnyObject {
 class MyPageInfoDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private let cellId = "popCellId"
-    weak var delegate:MyPageInfoDataSourceDelegateProtocol?
+    weak var delegate: MyPageInfoDataSourceDelegateProtocol?
     private var cellArray = [String]()
     
-    func initArray(_ array:[String]) {
+    func initArray(_ array: [String]) {
         self.cellArray = array
     }
     

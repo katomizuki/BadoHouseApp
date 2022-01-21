@@ -7,7 +7,7 @@ struct Applyed: FirebaseModel {
     let name: String
     let fromUserId: String
     var url: URL? {
-        if let url = URL(string:imageUrl) {
+        if let url = URL(string: imageUrl) {
             return url
         } else {
             return nil

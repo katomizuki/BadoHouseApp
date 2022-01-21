@@ -1,6 +1,6 @@
 import FirebaseFirestore
 
-struct NotificationGetTargetType:FirebaseSubCollectionTargetType {
+struct NotificationGetTargetType: FirebaseSubCollectionTargetType {
     var subId: String = ""
     
     var isDescending: Bool? { true }

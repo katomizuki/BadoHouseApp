@@ -1,28 +1,25 @@
-//
-//  PracticeSearchViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/02.
-//
-
 import RxSwift
 import Firebase
+
 protocol PracticeSearchViewModelType {
     var inputs: PracticeSearchViewModelInputs { get }
     var outputs: PracticeSearchViewModelOutputs { get }
 }
+
 protocol PracticeSearchViewModelInputs {
     func changeSelection(_ selection: SearchSelection, text: String)
     func changeFinishPicker(_ date: Date)
     func changeStartPicker(_ date: Date)
     func refresh()
 }
+
 protocol PracticeSearchViewModelOutputs {
     var navigationStriing: PublishSubject<String> { get }
     var selectedPlace: String { get }
     var selectedLevel: String { get }
     var reload: PublishSubject<Void> { get }
 }
+
 final class PracticeSearchViewModel: PracticeSearchViewModelType,
                                      PracticeSearchViewModelInputs, PracticeSearchViewModelOutputs {
     var inputs: PracticeSearchViewModelInputs { return self }
@@ -35,11 +32,13 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var practices = [Practice]()
     var fullPractices = [Practice]()
     var searchedPractices = [Practice]()
+    
     init(practiceAPI: PracticeServieProtocol, practices: [Practice]) {
         self.practiceAPI = practiceAPI
         self.practices = practices
         self.fullPractices = practices
     }
+    
     func changeSelection(_ selection: SearchSelection, text: String) {
         switch selection {
         case .place:
@@ -52,6 +51,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         reload.onNext(())
         navigationStriing.onNext("\(self.practices.count)件のヒット")
     }
+    
     func seachLevel(_ text: String) -> [Practice] {
         var array = [Practice]()
         let levelText = text
@@ -74,6 +74,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         }
         return array
     }
+    
     func changeStartPicker(_ date: Date) {
         let timeStamp = Timestamp(date: date)
         self.practices = self.practices.filter {
@@ -89,6 +90,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         }
         navigationStriing.onNext("\(self.practices.count)件のヒット")
     }
+    
     func refresh() {
         selectedLevel = String()
         selectedPlace = String()

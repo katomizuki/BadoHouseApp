@@ -1,13 +1,7 @@
-//
-//  UpdateCircleViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/30.
-//
-
 import RxSwift
 import RxRelay
 import UIKit
+
 protocol UpdateCircleViewModelInputs {
     var nameTextInputs: AnyObserver<String> { get }
     var priceTextInputs: AnyObserver<String> { get }
@@ -16,14 +10,17 @@ protocol UpdateCircleViewModelInputs {
     var textViewInputs: AnyObserver<String> { get }
     func save()
 }
+
 protocol UpdateCircleViewModelOutputs {
-    var isError: PublishSubject<Bool>{ get }
+    var isError: PublishSubject<Bool> { get }
     var completed: PublishSubject<Void> { get }
 }
+
 protocol UpdateCircleViewModelType {
     var inputs: UpdateCircleViewModelInputs { get }
     var outputs: UpdateCircleViewModelOutputs { get }
 }
+
 final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewModelInputs, UpdateCircleViewModelOutputs {
     var inputs: UpdateCircleViewModelInputs { return self }
     var outputs: UpdateCircleViewModelOutputs { return self }
@@ -123,8 +120,8 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
                 }
             }
         }
-        
     }
+    
     func addFeatures(_ feature: CircleFeatures) {
     if !judgeFeatures(feature) {
             selectionsFeature.append(feature.description)

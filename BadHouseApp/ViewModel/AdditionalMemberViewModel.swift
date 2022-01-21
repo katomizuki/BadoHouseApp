@@ -1,24 +1,21 @@
-//
-//  AdditionalMemberViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/30.
-//
-
 import RxSwift
 import RxRelay
+
 protocol AdditionalMemberViewModelType {
     var inputs: AdditionalMemberViewModelInputs { get }
     var outputs: AdditionalMemberViewModelOutputs { get }
 }
+
 protocol AdditionalMemberViewModelInputs {
     func invite()
 }
+
 protocol AdditionalMemberViewModelOutputs {
     var friendsSubject: BehaviorRelay<[User]> { get }
     var isError: PublishSubject<Bool> { get }
     var completed: PublishSubject<Void> { get }
 }
+
 final class AdditionalMemberViewModel: AdditionalMemberViewModelType, AdditionalMemberViewModelInputs, AdditionalMemberViewModelOutputs {
     var inputs: AdditionalMemberViewModelInputs { return self }
     var outputs: AdditionalMemberViewModelOutputs { return self }
@@ -31,6 +28,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
     let userAPI: UserServiceProtocol
     var circle: Circle
     let circleAPI: CircleServiceProtocol
+    
     init(user: User,
          userAPI: UserServiceProtocol,
          circle: Circle,
@@ -47,6 +45,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
     }
+    
     func inviteAction(user: User?) {
         guard let user = user else { return }
         if judgeInvite(id: user.uid) {
@@ -59,6 +58,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
     func judgeInvite(id: String) -> Bool {
         return inviteIds.contains(id)
     }
+    
     func invite() {
         circleAPI.inviteCircle(ids: inviteIds, circle: circle) { result in
             switch result {
@@ -70,7 +70,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         }
     }
     
-    private func judgeInviter(members: [User],friends: [User]) -> [User] {
+    private func judgeInviter(members: [User], friends: [User]) -> [User] {
         var array = friends
         members.forEach {
             array.remove(value: $0)
@@ -78,5 +78,3 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         return array
     }
 }
-
-

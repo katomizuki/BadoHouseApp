@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 protocol AdditionalEventTitleFlow {
-    func toNext(title:String,image:UIImage,kind:String)
+    func toNext(title: String, image: UIImage, kind: String)
 }
 final class AdditionalEventTitleController: UIViewController {
     // MARK: - Properties
@@ -30,8 +30,8 @@ final class AdditionalEventTitleController: UIViewController {
     private let pickerView = UIImagePickerController()
     private let viewModel = MakeEventFirstViewModel()
     var coordinator: AdditionalEventTitleFlow?
-    private lazy var rightButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(title:"次へ",style:.done, target: self, action: #selector(didTapNextButton))
+    private lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "次へ", style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     // MARK: - LifeCycle
@@ -47,7 +47,6 @@ final class AdditionalEventTitleController: UIViewController {
         titleTextField.rx.text.asDriver().drive(onNext: { [weak self] text in
             self?.viewModel.inputs.titleTextInputs.onNext(text ?? "")
         }).disposed(by: disposeBag)
-
 
         noImageView.rx.tapGesture()
             .when(.recognized)

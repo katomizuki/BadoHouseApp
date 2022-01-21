@@ -1,19 +1,12 @@
-//
-//  PreJoinController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/04.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
 
 final class PreJoinController: UIViewController, UIScrollViewDelegate {
-    private let viewModel:PreJoinViewModel
+    private let viewModel: PreJoinViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
-    init(viewModel:PreJoinViewModel) {
+    init(viewModel: PreJoinViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -28,7 +21,7 @@ final class PreJoinController: UIViewController, UIScrollViewDelegate {
     }
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) { _,item,cell in
+        viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) {_, item, cell in
             cell.configure(item)
             cell.delegate = self
         }.disposed(by: disposeBag)

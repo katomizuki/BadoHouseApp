@@ -1,14 +1,13 @@
 import Firebase
 import RxSwift
 
-
 protocol UserServiceProtocol {
     func postUser(uid: String,
-                  dic: [String :Any],
+                  dic: [String: Any],
                   completion: @escaping (Result<Void, Error>) -> Void)
-    func getUser(uid: String)->Single<User>
-    func searchUser(text: String)->Single<[User]>
-    func getFriends(uid: String)->Single<[User]>
+    func getUser(uid: String) ->Single<User>
+    func searchUser(text: String) ->Single<[User]>
+    func getFriends(uid: String) ->Single<[User]>
     func getMyCircles(uid: String) -> Single<[Circle]>
     func getMyPractice(uid: String) -> Single<[Practice]>
     func judgeChatRoom(user: User, myData: User, completion: @escaping (Bool) -> Void)
@@ -17,17 +16,17 @@ protocol UserServiceProtocol {
                         user: User,
                         myData: User,
                         chatId: String)
-    func getMyChatRooms(uid: String)-> Single<[ChatRoom]>
+    func getMyChatRooms(uid: String) -> Single<[ChatRoom]>
     func getUserChatRoomById(myData: User,
                              id: String,
                              completion: @escaping(ChatRoom) -> Void)
-    func updateChatRoom(user: User, myData: User,message: String)
-    func getMyJoinPractice(user:User)->Single<[Practice]>
+    func updateChatRoom(user: User, myData: User, message: String)
+    func getMyJoinPractice(user: User) -> Single<[Practice]>
 }
 struct UserService: UserServiceProtocol {
     
     func postUser(uid: String,
-                  dic: [String : Any],
+                  dic: [String: Any],
                   completion: @escaping (Result<Void, Error>) -> Void) {
         Ref.UsersRef.document(uid).setData(dic) { error in
             if let error = error {
@@ -100,8 +99,8 @@ struct UserService: UserServiceProtocol {
             }
         }
     }
-    func postMyChatRoom(dic: [String : Any],
-                        partnerDic: [String : Any],
+    func postMyChatRoom(dic: [String: Any],
+                        partnerDic: [String: Any],
                         user: User,
                         myData: User,
                         chatId: String) {
@@ -117,7 +116,7 @@ struct UserService: UserServiceProtocol {
                              id: String,
                              completion: @escaping(ChatRoom) -> Void) {
         FirebaseClient.shared.getDataById(request: ChatRoomGetTargetType(subId: id,
-                                                                         id :myData.uid), completion: completion)
+                                                                         id: myData.uid), completion: completion)
     }
     
     func updateChatRoom(user: User, myData: User, message: String) {

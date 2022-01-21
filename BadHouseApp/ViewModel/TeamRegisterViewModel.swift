@@ -8,7 +8,7 @@ protocol TeamRegisterInput {
     var placeTextInput: AnyObserver<String> { get }
     var timeTextInput: AnyObserver<String> { get }
     var priceTextInput: AnyObserver<String> { get }
-    var textViewInput:BehaviorSubject<String> { get }
+    var textViewInput: BehaviorSubject<String> { get }
 }
 // MARK: - OutputProtocol
 protocol TeamRegisterOutput {
@@ -25,7 +25,7 @@ struct Form {
     var icon: UIImage?
     var background: UIImage?
     var features: [String]
-    var additionlText:String
+    var additionlText: String
 }
 final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
     private let disposeBag = DisposeBag()

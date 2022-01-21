@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchUserCoordinator: Coordinator,SearchUserFlow {
+final class SearchUserCoordinator: Coordinator, SearchUserFlow {
     let navigationController: UINavigationController
     let viewModel: SearchUserViewModel
     init(navigationController: UINavigationController, viewModel: SearchUserViewModel) {
@@ -12,7 +12,7 @@ final class SearchUserCoordinator: Coordinator,SearchUserFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toUserDetail(_ user: User,_ myData: User) {
+    func toUserDetail(_ user: User, _ myData: User) {
         coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
     }
 }

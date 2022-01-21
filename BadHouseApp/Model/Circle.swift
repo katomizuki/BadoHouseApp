@@ -1,4 +1,3 @@
-
 import Firebase
 
 struct Circle: Equatable, FirebaseModel {
@@ -9,11 +8,11 @@ struct Circle: Equatable, FirebaseModel {
     var place: String
     var name: String
     var member: [String]
-    var additionlText:String
+    var additionlText: String
     var backGround: String
-    var icon:String
+    var icon: String
     var members = [User]()
-    var iconUrl:URL? {
+    var iconUrl: URL? {
         if let url = URL(string: icon) {
             return url
         } else {
@@ -27,7 +26,7 @@ struct Circle: Equatable, FirebaseModel {
             return nil
         }
     }
-    init(dic:[String:Any]) {
+    init(dic: [String: Any]) {
         self.id = dic["id"] as? String ?? ""
         self.features = dic["features"] as? [String] ?? []
         self.time = dic["time"] as? String ?? ""

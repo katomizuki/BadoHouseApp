@@ -1,16 +1,11 @@
-//
-//  MapListViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/02.
-//
-
 import RxSwift
 import CoreLocation
+
 protocol MapListViewModelType {
-    var inputs:MapListViewModelInputs { get }
-    var outputs:MapListViewModelOutputs { get }
+    var inputs: MapListViewModelInputs { get }
+    var outputs: MapListViewModelOutputs { get }
 }
+
 protocol MapListViewModelInputs {
     
 }
@@ -31,5 +26,4 @@ final class MapListViewModel: MapListViewModelType, MapListViewModelInputs, MapL
         self.currentLongitude = currentLongitude
         self.practices = practices
     }
-    
 }

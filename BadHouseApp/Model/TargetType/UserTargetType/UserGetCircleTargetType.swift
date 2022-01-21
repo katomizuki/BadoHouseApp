@@ -1,6 +1,6 @@
 import FirebaseFirestore
 
-struct UserGetCircleTargetType:FirebaseSubCollectionTargetType {
+struct UserGetCircleTargetType: FirebaseSubCollectionTargetType {
     var subId: String = ""
     
     var isDescending: Bool?

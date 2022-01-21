@@ -1,7 +1,6 @@
-
 enum UserInfoSelection: Int, CaseIterable {
     case level, gender, badmintonTime, place, age
-    var description:String {
+    var description: String {
         switch self {
         case .place: return "居住地"
         case .gender: return "性別"

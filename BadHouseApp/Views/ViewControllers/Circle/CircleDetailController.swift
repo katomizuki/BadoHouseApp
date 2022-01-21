@@ -6,7 +6,7 @@ import RxSwift
 
 protocol CircleDetailFlow {
     func toUserDetail(user: User?, myData: User)
-    func toInvite(circle: Circle,myData: User)
+    func toInvite(circle: Circle, myData: User)
     func toUpdate(circle: Circle)
 }
 final class CircleDetailController: UIViewController {
@@ -64,7 +64,7 @@ final class CircleDetailController: UIViewController {
     @IBOutlet private weak var weekEndButton: UIButton!
     @IBOutlet private weak var matchButton: UIButton!
     @IBOutlet private weak var practiceButton: UIButton!
-    private lazy var buttons = [singleButton, doubleButton, mixButton,weekDayButton,weekEndButton,practiceButton,matchButton,genderButton,ageButton]
+    private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
     @IBOutlet weak var ageButton: UIButton!
     private let viewModel: CircleDetailViewModel
     var coordinator: CircleDetailFlow?
@@ -85,7 +85,7 @@ final class CircleDetailController: UIViewController {
         setupTableView()
         setupBinding()
         navigationItem.backButtonDisplayMode = .minimal
-        navigationItem.rightBarButtonItems = [updateButton,rightButton]
+        navigationItem.rightBarButtonItems = [updateButton, rightButton]
     }
     private func setupTableView() {
         teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)

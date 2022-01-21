@@ -1,12 +1,11 @@
 import RxSwift
-import Foundation
 import RxCocoa
 import FirebaseAuth
 
 protocol UserViewModelInputs {
     func willAppear()
-    func blockUser(_ user:User?)
-    func withDrawCircle(_ circle:Circle?)
+    func blockUser(_ user: User?)
+    func withDrawCircle(_ circle: Circle?)
 }
 protocol UserViewModelOutputs {
     var userName: BehaviorRelay<String> { get }
@@ -108,7 +107,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     
     func blockUser(_ user: User?) {
         guard let user = user else { return }
-        //ブロック処理
+        // ブロック処理
         saveBlockUser(user)
         var users = friendsRelay.value
         users.remove(value: user)

@@ -1,4 +1,3 @@
-
 enum Money: Int, CaseIterable {
     case low, middle, high
     var name: String {

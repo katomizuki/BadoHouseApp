@@ -1,18 +1,11 @@
-//
-//  ScheduleCoordinator.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/07.
-//
-
 import UIKit
 
-final class ScheduleCoordinator:Coordinator,ScheduleFlow {
+final class ScheduleCoordinator: Coordinator, ScheduleFlow {
    
-    let navigationController:UINavigationController
+    let navigationController: UINavigationController
     let viewModel: ScheduleViewModel
-    let vc:UIViewController
-    init(navigationController: UINavigationController, viewModel:ScheduleViewModel,vc: UIViewController) {
+    let vc: UIViewController
+    init(navigationController: UINavigationController, viewModel: ScheduleViewModel, vc: UIViewController) {
         self.navigationController = navigationController
         self.viewModel = viewModel
         self.vc = vc

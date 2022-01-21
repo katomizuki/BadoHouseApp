@@ -1,8 +1,8 @@
 import UIKit
 import SDWebImage
 
-protocol ApplyedUserListCellDelegate:AnyObject {
-    func onTapPermissionButton(_ applyed:Applyed)
+protocol ApplyedUserListCellDelegate: AnyObject {
+    func onTapPermissionButton(_ applyed: Applyed)
 }
 final class ApplyedUserListCell: UITableViewCell {
     static let id = String(describing: self)
@@ -12,13 +12,13 @@ final class ApplyedUserListCell: UITableViewCell {
         }
     }
     @IBOutlet private weak var nameLabel: UILabel!
-    weak var delegate:ApplyedUserListCellDelegate?
-    var applyed:Applyed?
+    weak var delegate: ApplyedUserListCellDelegate?
+    var applyed: Applyed?
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
-    static func nib()-> UINib {
+    static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
 

@@ -1,6 +1,6 @@
 import RxSwift
-import Foundation
 import Firebase
+
 protocol MakeEventThirdViewModelInputs {
     func changedStartPicker(_ date: Date)
     func changedDeadLinePicker(_ date: Date)
@@ -8,10 +8,10 @@ protocol MakeEventThirdViewModelInputs {
     func changedCourtCount(_ count: Int)
     func changedGatherCount(_ count: Int)
     func changedMoney(_ priceText: String)
-    func placeInfo(_ placeName:String,
-                   _ addressName:String,
-                   _ latitude:Double,
-                   _ longitude:Double)
+    func placeInfo(_ placeName: String,
+                   _ addressName: String,
+                   _ latitude: Double,
+                   _ longitude: Double)
 }
 protocol MakeEventThirdViewModelOutputs {
     
@@ -20,15 +20,15 @@ protocol MakeEventThirdViewModelType {
     var inputs: MakeEventThirdViewModelInputs { get }
     var outputs: MakeEventThirdViewModelOutputs { get }
 }
-final class MakeEventThirdViewModel:MakeEventThirdViewModelInputs,MakeEventThirdViewModelOutputs,MakeEventThirdViewModelType {
+final class MakeEventThirdViewModel: MakeEventThirdViewModelInputs, MakeEventThirdViewModelOutputs, MakeEventThirdViewModelType {
     var inputs: MakeEventThirdViewModelInputs { return self }
     var outputs: MakeEventThirdViewModelOutputs { return self }
     var image: UIImage
-    var dic: [String:Any]
+    var dic: [String: Any]
     var circle: Circle
     var user: User
     
-    init(image: UIImage, dic:[String: Any], circle: Circle, user: User) {
+    init(image: UIImage, dic: [String: Any], circle: Circle, user: User) {
         self.image = image
         self.dic = dic
         self.circle = circle

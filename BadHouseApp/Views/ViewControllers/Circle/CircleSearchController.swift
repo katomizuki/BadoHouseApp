@@ -7,7 +7,7 @@ protocol CircleSearchFlow {
 }
 final class CircleSearchController: UIViewController {
     // MARK: - properties
-    private let viewModel:SearchCircleViewModel
+    private let viewModel: SearchCircleViewModel
     private let disposeBag = DisposeBag()
     var coordinator: CircleSearchFlow?
     @IBOutlet private weak var searchBar: UISearchBar! {
@@ -16,7 +16,7 @@ final class CircleSearchController: UIViewController {
         }
     }
     @IBOutlet private weak var tableView: UITableView!
-    init(viewModel:SearchCircleViewModel) {
+    init(viewModel: SearchCircleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

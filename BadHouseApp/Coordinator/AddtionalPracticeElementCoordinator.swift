@@ -1,15 +1,15 @@
 import UIKit
 
-final class AddtionalPracticeElementCoordinator:Coordinator, AddtionalPracticeElementFlow {
+final class AddtionalPracticeElementCoordinator: Coordinator, AddtionalPracticeElementFlow {
 
     let navigationController: UINavigationController
     var viewController: AdditionalEventElementController?
     let image: UIImage
     let circle: Circle
-    let dic: [String : Any]
+    let dic: [String: Any]
     let user: User
     init(navigationController: UINavigationController,
-         dic: [String:Any],
+         dic: [String: Any],
          image: UIImage,
          circle: Circle,
          user: User) {
@@ -25,7 +25,7 @@ final class AddtionalPracticeElementCoordinator:Coordinator, AddtionalPracticeEl
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toNext(image: UIImage, circle: Circle, user: User, dic: [String : Any]) {
+    func toNext(image: UIImage, circle: Circle, user: User, dic: [String: Any]) {
         coordinator(to: EventAdditionlItemsCoordinator(navigationController: navigationController, image: image, circle: circle, user: user, dic: dic))
     }
     func toAddtionalPlace() {

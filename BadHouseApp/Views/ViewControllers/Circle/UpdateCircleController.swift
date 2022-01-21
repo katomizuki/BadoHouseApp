@@ -1,16 +1,11 @@
-//
-//  UpdateCircleController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/30.
-//
-
 import UIKit
 import RxSwift
 import PKHUD
-protocol UpdateCircleControllerDelegate:AnyObject {
+
+protocol UpdateCircleControllerDelegate: AnyObject {
     func pop(_ vc: UpdateCircleController)
 }
+
 final class UpdateCircleController: UIViewController {
     
     @IBOutlet private weak var backGroundImage: UIImageView!
@@ -38,13 +33,16 @@ final class UpdateCircleController: UIViewController {
     private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
     private let disposeBag = DisposeBag()
     weak var delegate: UpdateCircleControllerDelegate?
+    
     init(viewModel: UpdateCircleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -74,9 +72,11 @@ final class UpdateCircleController: UIViewController {
             }
         }
     }
+    
     private func setupImagePicker() {
         imagePicker.delegate = self
     }
+    
     private func setupBinding() {
         
         iconImage.rx.tapGesture()
@@ -191,7 +191,9 @@ final class UpdateCircleController: UIViewController {
         viewModel.inputs.save()
     }
 }
+
 extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -208,6 +210,7 @@ extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerC
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     private func popAnimation() {
         HUD.show(.success, onView: view)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

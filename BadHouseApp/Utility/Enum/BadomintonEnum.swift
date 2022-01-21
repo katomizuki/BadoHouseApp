@@ -1,4 +1,3 @@
-
 enum Badominton: Int, CaseIterable {
     case single, double, mix
     var name: String {

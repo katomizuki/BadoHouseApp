@@ -4,7 +4,7 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
     
     let navigationController: UINavigationController
     
-    init(navigationController:UINavigationController) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     

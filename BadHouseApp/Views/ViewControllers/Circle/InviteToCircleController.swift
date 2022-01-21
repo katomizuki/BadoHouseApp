@@ -6,8 +6,8 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var friendTableView: UITableView!
     private let viewModel: InviteViewModel
     private let disposeBag = DisposeBag()
-    private var selectedCell: [String:Bool] = [String:Bool]()
-    init(viewModel:InviteViewModel) {
+    private var selectedCell: [String: Bool] = [String: Bool]()
+    init(viewModel: InviteViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

@@ -18,7 +18,7 @@ struct Apply: FirebaseModel {
             return nil
         }
     }
-    init(dic: [String : Any]) {
+    init(dic: [String: Any]) {
         self.uid = dic["uid"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? String ?? ""
         self.imageUrl = dic["imageUrl"] as? String ?? ""

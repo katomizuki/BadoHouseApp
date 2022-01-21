@@ -1,13 +1,13 @@
 import UIKit
 
 final class EventAdditionlItemsCoordinator: Coordinator, EventAdditionlItemsFlow {
-    let navigationController:UINavigationController
+    let navigationController: UINavigationController
     let image: UIImage
     let user: User
-    let dic: [String:Any]
+    let dic: [String: Any]
     let circle: Circle
-    init(navigationController:UINavigationController,
-         image: UIImage, circle: Circle, user: User, dic: [String : Any]) {
+    init(navigationController: UINavigationController,
+         image: UIImage, circle: Circle, user: User, dic: [String: Any]) {
         self.navigationController = navigationController
         self.dic = dic
         self.circle = circle

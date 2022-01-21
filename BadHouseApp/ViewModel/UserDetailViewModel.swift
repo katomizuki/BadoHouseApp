@@ -1,19 +1,13 @@
-//
-//  UserDetailViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/27.
-//
-
 import RxSwift
 import RxRelay
 
 protocol UserDetailViewModelInputs {
     func willAppear()
-    func fetchChatRoom(completion:@escaping(ChatRoom)->Void)
+    func fetchChatRoom(completion: @escaping(ChatRoom) -> Void)
     func applyFriend()
     func notApplyedFriend()
 }
+
 protocol UserDetailViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var friendListRelay: BehaviorRelay<[User]> { get }
@@ -23,10 +17,12 @@ protocol UserDetailViewModelOutputs {
     var notApplyedCompleted: PublishSubject<Void> { get }
     var applyButtonString: PublishSubject<String> { get }
 }
+
 protocol UserDetailViewModelType {
     var inputs: UserDetailViewModelInputs { get }
     var outputs: UserDetailViewModelOutputs { get }
 }
+
 final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInputs, UserDetailViewModelOutputs {
     var inputs: UserDetailViewModelInputs { return self }
     var outputs: UserDetailViewModelOutputs { return self }
@@ -50,6 +46,7 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
         return !(ids.contains(user.uid) && myData.uid != user.uid)
     }
     private let disposeBag = DisposeBag()
+    
     init(myData: User, user: User,
          userAPI: UserServiceProtocol,
          applyAPI: ApplyServiceProtocol) {
@@ -86,9 +83,11 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
         }.disposed(by: disposeBag)
 
     }
+    
     func fetchChatRoom(completion: @escaping (ChatRoom) -> Void) {
         userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
     }
+    
     func applyFriend() {
         applyAPI.postApply(user: myData, toUser: user) { result in
             switch result {
@@ -99,6 +98,7 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
             }
         }
     }
+    
     func notApplyedFriend() {
         applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
         notApplyedCompleted.onNext(())

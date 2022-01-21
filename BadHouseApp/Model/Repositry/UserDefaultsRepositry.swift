@@ -9,7 +9,7 @@ import Foundation
 struct UserDefaultsRepositry {
     static let shared = UserDefaultsRepositry()
     
-    func saveToUserDefaults<T:Codable>(element:[T],key:String) {
+    func saveToUserDefaults<T: Codable>(element: [T], key: String) {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(element)
@@ -19,7 +19,7 @@ struct UserDefaultsRepositry {
         }
     }
     
-    func loadFromUserDefaults<T:Codable>(key:String) -> [T] {
+    func loadFromUserDefaults<T: Codable>(key: String) -> [T] {
         let decoder = JSONDecoder()
         do {
             guard let data = UserDefaults.standard.data(forKey: key) else {
@@ -33,7 +33,7 @@ struct UserDefaultsRepositry {
         }
     }
     
-    func deleteFromUserDefaults(key:String) {
+    func deleteFromUserDefaults(key: String) {
         UserDefaults.standard.removeObject(forKey: key)
     }
 }

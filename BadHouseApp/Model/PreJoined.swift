@@ -1,12 +1,6 @@
-//
-//  PreJoined.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/04.
-//
-
 import Firebase
-struct PreJoined:Equatable, FirebaseModel {
+
+struct PreJoined: Equatable, FirebaseModel {
     let id: String
     let circleImage: String
     let createdAt: Timestamp
@@ -15,7 +9,7 @@ struct PreJoined:Equatable, FirebaseModel {
     let name: String
     let practiceName: String
     let uid: String
-    var url:URL? {
+    var url: URL? {
         if let url = URL(string: imageUrl) {
             return url
         } else {

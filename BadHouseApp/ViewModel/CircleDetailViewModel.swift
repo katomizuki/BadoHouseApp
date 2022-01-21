@@ -1,25 +1,22 @@
-//
-//  CircleDetailViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/30.
-//
-
 import RxSwift
 import RxRelay
+
 protocol CircleDetailViewModelInputs {
     func changeMember(_ index: Int)
 }
+
 protocol CircleDetailViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var memberRelay: BehaviorRelay<[User]> { get }
     var reload: PublishSubject<Void> { get }
     var isRightButtonHidden: PublishSubject<Bool> { get }
 }
+
 protocol CircleDetailViewModelType {
     var inputs: CircleDetailViewModelInputs { get }
     var outputs: CircleDetailViewModelOutputs { get }
 }
+
 final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailViewModelOutputs, CircleDetailViewModelType {
     var inputs: CircleDetailViewModelInputs { return self }
     var outputs: CircleDetailViewModelOutputs { return self }
@@ -67,8 +64,8 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
         reload.onNext(())
     }
     func getPercentage() {
-        var (men, women, other) = (0,0,0)
-        var (one, two, three, four, five, six, seven, eight, nine, ten) = (0,0,0,0,0,0,0,0,0,0)
+        var (men, women, other) = (0, 0, 0)
+        var (one, two, three, four, five, six, seven, eight, nine, ten) = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         allMembers.forEach {
             switch $0.gender {
             case "男性":men += 1
@@ -93,7 +90,7 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
         levelPercentage = [one, two, three, four, five, six, seven, eight, nine, ten]
     }
     
-    private func checkRightButtonHidden(_ users:[User]) {
+    private func checkRightButtonHidden(_ users: [User]) {
         var isHidden = true
         users.forEach { user in
            if user.uid == myData.uid {

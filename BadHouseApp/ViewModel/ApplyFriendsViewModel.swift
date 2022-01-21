@@ -1,20 +1,16 @@
-//
-//  ApplyFriendsViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/28.
-//
-
 import RxSwift
 import FirebaseAuth
 import RxRelay
+
 protocol ApplyFriendsViewModelType {
     var inputs: ApplyFriendsViewModelInputs { get }
     var outputs: ApplyFriendsViewModelOutputs { get }
 }
+
 protocol ApplyFriendsViewModelInputs {
     func onTrashButton(apply: Apply)
 }
+
 protocol ApplyFriendsViewModelOutputs {
     var applyRelay: BehaviorRelay<[Apply]> { get }
     var isError: PublishSubject<Bool> { get }
@@ -30,6 +26,7 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
     var user: User
     var applyAPI: ApplyServiceProtocol
     private let disposeBag = DisposeBag()
+    
     init(user: User, applyAPI: ApplyServiceProtocol) {
         self.user = user
         self.applyAPI = applyAPI
@@ -40,6 +37,7 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
     }
+    
     func onTrashButton(apply: Apply) {
         applyAPI.notApplyFriend(uid: self.user.uid, toUserId: apply.toUserId)
         let value = applyRelay.value.filter {
@@ -48,5 +46,4 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
         applyRelay.accept(value)
         reload.onNext(())
     }
-    
 }

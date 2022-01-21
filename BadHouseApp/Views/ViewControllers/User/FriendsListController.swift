@@ -1,8 +1,8 @@
 import UIKit
 import RxSwift
 
-protocol FriendListFlow:AnyObject {
-    func toUserDetail(myData:User,user:User)
+protocol FriendListFlow: AnyObject {
+    func toUserDetail(myData: User, user: User)
 }
 final class FriendsListController: UIViewController, UIScrollViewDelegate {
 
@@ -10,7 +10,7 @@ final class FriendsListController: UIViewController, UIScrollViewDelegate {
     var coordinator: FriendListFlow?
     private let viewModel: FriendsListViewModel
     private let disposeBag = DisposeBag()
-    init(viewModel:FriendsListViewModel) {
+    init(viewModel: FriendsListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

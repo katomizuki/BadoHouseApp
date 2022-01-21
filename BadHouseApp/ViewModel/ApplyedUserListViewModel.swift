@@ -1,11 +1,12 @@
 import RxSwift
 import RxRelay
-import Foundation
+
 protocol ApplyedUserListViewModelInputs {
     func willAppear()
     func makeFriends(_ applyed: Applyed)
     func deleteFriends(_ applyed: Applyed)
 }
+
 protocol ApplyedUserListViewModelOutputs {
     var applyedRelay: BehaviorRelay<[Applyed]> { get }
     var isError: PublishSubject<Bool> { get }
@@ -13,10 +14,12 @@ protocol ApplyedUserListViewModelOutputs {
     var reload: PublishSubject<Void> { get }
     var navigationTitle: PublishSubject<String> { get }
 }
+
 protocol ApplyedUserListViewModelType {
     var inputs: ApplyedUserListViewModelInputs { get }
     var outputs: ApplyedUserListViewModelOutputs { get }
 }
+
 final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUserListViewModelInputs, ApplyedUserListViewModelOutputs {
     
     var inputs: ApplyedUserListViewModelInputs { return self }
@@ -76,9 +79,10 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         applyedRelay.accept(sbj)
         reload.onNext(())
     }
+    
     private func saveFriendsId(id: String) {
         if UserDefaults.standard.object(forKey: "friends") != nil {
-            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+            let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
             UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "friends")
         } else {
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: "friends")

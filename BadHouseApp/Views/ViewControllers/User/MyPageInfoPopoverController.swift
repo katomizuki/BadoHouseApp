@@ -51,7 +51,7 @@ final class MyPageInfoPopoverController: UIViewController {
         tableView.reloadData()
     }
 }
-extension MyPageInfoPopoverController:MyPageInfoDataSourceDelegateProtocol {
+extension MyPageInfoPopoverController: MyPageInfoDataSourceDelegateProtocol {
     func myPageInfoDataSourceDelegate(_ text: String) {
         self.delegate?.popDismiss(vc: self, userInfoSelection: keyword, text: text)
     }

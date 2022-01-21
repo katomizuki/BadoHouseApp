@@ -8,7 +8,7 @@ struct PreJoin: Equatable, FirebaseModel {
     let imageUrl: String
     let toUserId: String
     let circleImage: String
-    var url:URL? {
+    var url: URL? {
         if let url = URL(string: imageUrl) {
             return url
         } else {

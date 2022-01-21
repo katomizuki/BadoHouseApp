@@ -18,7 +18,7 @@ final class InviteCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
-    func configure(_ user:User) {
+    func configure(_ user: User) {
         namaLabel.text = user.name
         userImageView.sd_setImage(with: user.profileImageUrl)
     }

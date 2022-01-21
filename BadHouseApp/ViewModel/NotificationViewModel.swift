@@ -7,7 +7,7 @@ protocol NotificationViewModelInputs {
     func didTapCell(_ row: Int)
 }
 protocol NotificationViewModelOutputs {
-    var notificationList:BehaviorRelay<[Notification]> { get }
+    var notificationList: BehaviorRelay<[Notification]> { get }
     var errorHandling: PublishSubject<Error> { get }
     var reload: PublishSubject<Void> { get }
     var toPrejoined: PublishSubject<Void> { get }
@@ -24,7 +24,7 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
     var outputs: NotificationViewModelOutputs { return self }
     var reload = PublishSubject<Void>()
     var errorHandling = PublishSubject<Error>()
-    var notificationList = BehaviorRelay<[Notification]>(value:[])
+    var notificationList = BehaviorRelay<[Notification]>(value: [])
     var toPrejoined = PublishSubject<Void>()
     var toApplyedFriend = PublishSubject<Void>()
     var toUserDetail = PublishSubject<User>()
@@ -55,9 +55,7 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
                 self.toUserDetail.onNext(user)
             }
         case .permissionJoin:
-            print("ここ！",notification.id)
             PracticeServie.getPracticeById(id: notification.practiceId) { practice in
-                print(practice,"あれ？")
                 self.toPracticeDetail.onNext(practice)
             }
         }

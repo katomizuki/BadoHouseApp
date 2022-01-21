@@ -1,7 +1,6 @@
-
 enum SettingsSelection: Int, CaseIterable {
-    case block, practice,app,rule,apply
-    var description:String {
+    case block, practice, app, rule, apply
+    var description: String {
         switch self {
         case .block:
             return "ブロックリスト"

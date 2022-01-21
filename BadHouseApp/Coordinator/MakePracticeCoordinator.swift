@@ -2,9 +2,9 @@ import UIKit
 
 final class MakePracticeCoordinator: Coordinator, AdditionalEventTitleFlow {
     
-    let navigationController:UINavigationController
+    let navigationController: UINavigationController
     
-    init(navigationController:UINavigationController) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
@@ -15,7 +15,7 @@ final class MakePracticeCoordinator: Coordinator, AdditionalEventTitleFlow {
     }
     
     func toNext(title: String, image: UIImage, kind: String) {
-        coordinator(to: AddtionalEventLevelCoordinator(navigationController: self.navigationController, title:title,
+        coordinator(to: AddtionalEventLevelCoordinator(navigationController: self.navigationController, title: title,
                                        image: image,
                                        kind: kind))
     }

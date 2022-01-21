@@ -1,10 +1,3 @@
-//
-//  UserCircleCell.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/23.
-//
-
 import UIKit
 
 final class UserCircleCell: UICollectionViewCell {
@@ -23,9 +16,8 @@ final class UserCircleCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
-    func configure(_ circle:Circle) {
+    func configure(_ circle: Circle) {
         circleImageView.sd_setImage(with: circle.iconUrl)
         nameLabel.text = circle.name
     }
-
 }

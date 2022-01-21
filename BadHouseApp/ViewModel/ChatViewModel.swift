@@ -1,21 +1,17 @@
-//
-//  ChatViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/03.
-//
-import Foundation
 import Firebase
 import RxSwift
 import RxRelay
+
 protocol ChatViewModelType {
-    var inputs:ChatViewModelInputs { get }
-    var outputs:ChatViewModelOutputs { get }
+    var inputs: ChatViewModelInputs { get }
+    var outputs: ChatViewModelOutputs { get }
 }
+
 protocol ChatViewModelInputs {
     func didLoad()
     func sendText(_ text: String)
 }
+
 protocol ChatViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var chatsList: BehaviorRelay<[Chat]> { get }
@@ -23,6 +19,7 @@ protocol ChatViewModelOutputs {
 }
 
 final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewModelType {
+    
     var inputs: ChatViewModelInputs { return self }
     var outputs: ChatViewModelOutputs { return self }
     let myData: User
@@ -34,6 +31,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     var reload = PublishSubject<Void>()
     var chatsList = BehaviorRelay<[Chat]>(value: [])
     var chatId: String?
+    
     init(myData: User, user: User,
          userAPI: UserServiceProtocol,
          chatAPI: ChatServiceProtocol) {
@@ -42,6 +40,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
         self.chatAPI = chatAPI
         self.userAPI = userAPI
     }
+    
     private func getChat(chatId: String) {
         self.chatAPI.getChat(chatId: chatId).subscribe {[weak self] chats in
             self?.chatsList.accept(chats)
@@ -50,6 +49,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
             self?.isError.onNext(true)
         }.disposed(by: self.disposeBag)
     }
+    
     func didLoad() {
         userAPI.judgeChatRoom(user: user, myData: myData) { isExits in
             if isExits {
@@ -67,7 +67,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
                                         "latestMessage": String(),
                                         "partnerName": self.user.name,
                                         "partnerUrlString": self.user.profileImageUrlString]
-                let partnerDic:[String: Any] = ["id": id,
+                let partnerDic: [String: Any] = ["id": id,
                                                 "userId": self.myData.uid,
                                                 "latestTime": Timestamp(),
                                                 "latestMessage": String(),

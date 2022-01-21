@@ -2,13 +2,13 @@ import UIKit
 import RxSwift
 import SDWebImage
 protocol SearchUserFlow {
-    func toUserDetail(_ user: User,_ myData: User)
+    func toUserDetail(_ user: User, _ myData: User)
 }
 final class SearchUserController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var userTableView: UITableView!
-    private let viewModel:SearchUserViewModel
+    private let viewModel: SearchUserViewModel
     var coordinator: SearchUserFlow?
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -36,15 +36,14 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
                 self?.viewModel.inputs.searchTextInput.onNext(text)
             }).disposed(by: disposeBag)
         
-        viewModel.outputs.usersRelay.bind(to: userTableView.rx.items(cellIdentifier: SearchUserCell.id, cellType: SearchUserCell.self)) {
-            _, item, cell in
+        viewModel.outputs.usersRelay.bind(to: userTableView.rx.items(cellIdentifier: SearchUserCell.id, cellType: SearchUserCell.self)) {_, item, cell in
             cell.configure(item)
             cell.delegate = self
         }.disposed(by: disposeBag)
         
         userTableView.rx.itemSelected.asDriver().drive { [weak self] indexPath in
             guard let self = self else { return }
-            self.coordinator?.toUserDetail(self.viewModel.outputs.usersRelay.value[indexPath.row],self.viewModel.user)
+            self.coordinator?.toUserDetail(self.viewModel.outputs.usersRelay.value[indexPath.row], self.viewModel.user)
         }.disposed(by: disposeBag)
 
     }

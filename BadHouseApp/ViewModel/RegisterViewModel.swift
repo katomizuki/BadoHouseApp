@@ -93,12 +93,12 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         }
     }
     
-    func thirdPartyLogin(credential: AuthCredential,id:String) {
-        let dic: [String:Any] = ["name":credential.name,
-                                "uid":id,
-                                "createdAt":Timestamp(),
-                                "updatedAt":Timestamp(),
-                                "email":credential.email]
+    func thirdPartyLogin(credential: AuthCredential, id: String) {
+        let dic: [String: Any] = ["name": credential.name,
+                                "uid": id,
+                                "createdAt": Timestamp(),
+                                "updatedAt": Timestamp(),
+                                "email": credential.email]
         userAPI.postUser(uid: id, dic: dic) { [weak self] result in
             switch result {
             case .success:

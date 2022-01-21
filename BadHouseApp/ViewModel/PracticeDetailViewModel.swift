@@ -1,29 +1,26 @@
-//
-//  PracticeDetailViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/31.
-//
-
 import RxRelay
 import RxSwift
 import FirebaseAuth
 import UIKit
+
 protocol PracticeDetailViewModelType {
     var inputs: PracticeDetailViewModelInputs { get }
     var outputs: PracticeDetailViewModelOutputs { get }
 }
+
 protocol PracticeDetailViewModelInputs {
     func takePartInPractice()
 }
+
 protocol PracticeDetailViewModelOutputs {
-    var userRelay:PublishRelay<User> { get }
+    var userRelay: PublishRelay<User> { get }
     var circleRelay: PublishRelay<Circle> { get }
     var isError: PublishSubject<Bool> { get }
     var isButtonHidden: PublishSubject<Bool> { get }
     var completed: PublishSubject<Void> { get }
     var isTakePartInButton: PublishSubject<Bool> { get }
 }
+
 final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetailViewModelInputs, PracticeDetailViewModelOutputs {
     var inputs: PracticeDetailViewModelInputs { return self }
     var outputs: PracticeDetailViewModelOutputs { return self }
@@ -42,6 +39,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     let joinAPI: JoinServiceProtocol
     private let disposeBag = DisposeBag()
     var isModal: Bool
+    
     init(practice: Practice,
          userAPI: UserServiceProtocol,
          circleAPI: CircleServiceProtocol,
@@ -75,6 +73,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
             }
         }
     }
+    
     func takePartInPractice() {
         guard let user = user else { return }
         guard let myData = myData else { return }

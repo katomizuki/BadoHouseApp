@@ -1,7 +1,7 @@
 import UIKit
 
 extension UITextField {
-    func setUnderLine(width:CGFloat) {
+    func setUnderLine(width: CGFloat) {
         borderStyle = .none
         let underLine = UIView()
         underLine.backgroundColor = .darkGray

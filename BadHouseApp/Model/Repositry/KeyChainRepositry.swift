@@ -8,7 +8,7 @@
 import KeychainAccess
 
 struct KeyChainRepositry {
-    static var keychain:Keychain {
+    static var keychain: Keychain {
         guard let identifier = Bundle.main.object(forInfoDictionaryKey: "friendsId") as? String else { return Keychain(service: "") }
         return Keychain(service: identifier)
     }

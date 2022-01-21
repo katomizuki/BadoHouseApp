@@ -1,17 +1,10 @@
-//
-//  AddtionalEventLevelController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/13.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
 
 protocol AddtionalEventLevelFlow {
     func toNext(image: UIImage,
-                dic: [String:Any],
+                dic: [String: Any],
                 circle: Circle,
                 user: User)
 }
@@ -24,8 +17,8 @@ final class AddtionalEventLevelController: UIViewController {
     @IBOutlet private weak var minSlider: UISlider!
     private let viewModel: MakeEventSecondViewModel
     var coordinator: AddtionalEventLevelFlow?
-    private lazy var rightButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(title:"次へ",
+    private lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "次へ",
                                      style: .done,
                                      target: self,
                                      action: #selector(didTapNextButton))
@@ -64,7 +57,7 @@ final class AddtionalEventLevelController: UIViewController {
             self.maxLabel.text = text
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _,item,cell in
+        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, item, cell in
             var configuration = cell.defaultContentConfiguration()
             configuration.text = item.name
             cell.selectionStyle = .none

@@ -11,7 +11,7 @@ final class TalkCoordinator: Coordinator, TalkFlow {
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
-    func toChat(userId: String, myDataId: String,chatId: String) {
+    func toChat(userId: String, myDataId: String, chatId: String) {
         UserService.getUserById(uid: userId) { user in
             UserService.getUserById(uid: myDataId) { myData in
                 self.coordinator(to: ChatCoordinator(navigationController: self.navigationController, viewModel: ChatViewModel(myData: myData,

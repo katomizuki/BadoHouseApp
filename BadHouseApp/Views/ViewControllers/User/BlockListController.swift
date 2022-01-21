@@ -3,7 +3,7 @@ import RxSwift
 
 final class BlockListController: UIViewController, UIScrollViewDelegate {
     private let disposeBag = DisposeBag()
-    private let viewModel:BlockListViewModel
+    private let viewModel: BlockListViewModel
     private let dataSourceDelegate = BlockListDataSourceDelegate()
     @IBOutlet private weak var tableView: UITableView!
     init(viewModel: BlockListViewModel) {

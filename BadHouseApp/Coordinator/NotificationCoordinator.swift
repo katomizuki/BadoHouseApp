@@ -1,7 +1,6 @@
-
 import UIKit
-
-final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
+// swiftlint:disable line_length
+final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
@@ -16,7 +15,10 @@ final class NotificationCoordinator: Coordinator,CheckNotificationFlow {
         }
     }
     func toUserDetail(_ myData: User, user: User) {
-    self.coordinator(to: UserDetailCoordinator(navigationController: self.navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
+    self.coordinator(to: UserDetailCoordinator(navigationController: self.navigationController, viewModel: UserDetailViewModel(myData: myData,
+                                                                  user: user,
+                                                                  userAPI: UserService(),
+                                                                  applyAPI: ApplyService())))
         
     }
     func toApplyedFriend(_ user: User) {

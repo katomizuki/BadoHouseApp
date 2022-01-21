@@ -13,20 +13,21 @@ protocol BlockListViewModelType {
 }
 protocol BlockListViewModelInputs {
     func willAppear()
-    func removeBlock(_ user:User)
+    func removeBlock(_ user: User)
 }
 protocol BlockListViewModelOutputs {
     var blockListRelay: BehaviorRelay<[User]> { get }
     var isError: PublishSubject<Bool> { get }
     var reload: PublishSubject<Void> { get }
 }
-final class BlockListViewModel:BlockListViewModelInputs, BlockListViewModelOutputs, BlockListViewModelType {
+final class BlockListViewModel: BlockListViewModelInputs, BlockListViewModelOutputs, BlockListViewModelType {
     var reload = PublishSubject<Void>()
     var blockListRelay = BehaviorRelay<[User]>(value: [])
     var isError = PublishSubject<Bool>()
     private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
     var inputs: BlockListViewModelInputs { return self }
     var outputs: BlockListViewModelOutputs { return self }
+    
     func willAppear() {
         print(blockIds)
         let group = DispatchGroup()
@@ -43,6 +44,7 @@ final class BlockListViewModel:BlockListViewModelInputs, BlockListViewModelOutpu
             self.reload.onNext(())
         }
     }
+    
     func removeBlock(_ user: User) {
         blockIds.remove(value: user.uid)
         UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: "blocks")
