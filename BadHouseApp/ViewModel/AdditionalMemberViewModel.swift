@@ -17,6 +17,7 @@ protocol AdditionalMemberViewModelOutputs {
 }
 
 final class AdditionalMemberViewModel: AdditionalMemberViewModelType, AdditionalMemberViewModelInputs, AdditionalMemberViewModelOutputs {
+    
     var inputs: AdditionalMemberViewModelInputs { return self }
     var outputs: AdditionalMemberViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()

@@ -1,10 +1,12 @@
 import UIKit
 import RxSwift
+// swiftlint:disable weak_delegate
 protocol PopDismissDelegate: AnyObject {
     func popDismiss(vc: MyPageInfoPopoverController,
                     userInfoSelection: UserInfoSelection,
                     text: String)
 }
+
 final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
     weak var delegate: PopDismissDelegate?
@@ -51,6 +53,7 @@ final class MyPageInfoPopoverController: UIViewController {
         tableView.reloadData()
     }
 }
+
 extension MyPageInfoPopoverController: MyPageInfoDataSourceDelegateProtocol {
     func myPageInfoDataSourceDelegate(_ text: String) {
         self.delegate?.popDismiss(vc: self, userInfoSelection: keyword, text: text)

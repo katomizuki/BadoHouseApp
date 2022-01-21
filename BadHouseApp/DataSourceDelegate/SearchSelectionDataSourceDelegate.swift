@@ -1,7 +1,9 @@
 import UIKit
-protocol SearchSelectionDataSourceDelegateProtocol: AnyObject {
+
+protocol SearchSelectionDataSourceDelegateProtocol: NSObjectProtocol {
     func searchSelectionDataSourceDelegate(_ text: String)
 }
+
 final class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var cellArray = [String]()

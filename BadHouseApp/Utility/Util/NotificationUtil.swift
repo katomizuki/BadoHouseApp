@@ -17,6 +17,7 @@ enum LocalNotificationDurationType {
 // Mark LocationManagerStruct
 struct LocalNotificationManager {
     static private var notifications = [LocalNotification]()
+    
     static private func requestPermission() {
         UNUserNotificationCenter
             .current()
@@ -25,6 +26,7 @@ struct LocalNotificationManager {
                 }
             }
     }
+    
     static private func addNotification(title: String, body: String) {
         // 用意していたnotificationの構造体が入る配列に打ち込む。
         let localNotification = LocalNotification(id: UUID().uuidString, title: title, body: body)
@@ -62,6 +64,7 @@ struct LocalNotificationManager {
         }
         notifications.removeAll()
     }
+    
     static private func scheduleNotifications(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool) {
         var seconds = 0
         // typeによって,時間を変更させる。
@@ -78,9 +81,11 @@ struct LocalNotificationManager {
         // 時間を設定したらいよいよ登録。
         scheduleNotifications(seconds, repeats: repeats)
     }
+    
     static func cancel() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
+    
     static func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String) {
         requestPermission()
         addNotification(title: title, body: body)

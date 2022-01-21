@@ -17,6 +17,7 @@ protocol PreJoinViewModelOutputs {
 }
 
 final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJoinViewModelOutputs {
+    
     var inputs: PreJoinViewModelInputs { return self }
     var outputs: PreJoinViewModelOutputs { return self }
     var joinAPI: JoinServiceProtocol

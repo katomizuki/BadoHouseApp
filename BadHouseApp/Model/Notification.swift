@@ -2,6 +2,7 @@ import Foundation
 import Firebase
 
 struct Notification: FirebaseModel {
+    
     let id: String
     let urlString: String
     let notificationSelectionNumber: Int
@@ -17,6 +18,7 @@ struct Notification: FirebaseModel {
             return nil
         }
     }
+    
     init(dic: [String: Any]) {
         self.id = dic["id"] as? String ?? ""
         self.urlString = dic["urlString"] as? String ?? ""

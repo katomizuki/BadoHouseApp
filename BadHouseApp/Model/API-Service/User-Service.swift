@@ -23,6 +23,7 @@ protocol UserServiceProtocol {
     func updateChatRoom(user: User, myData: User, message: String)
     func getMyJoinPractice(user: User) -> Single<[Practice]>
 }
+
 struct UserService: UserServiceProtocol {
     
     func postUser(uid: String,
@@ -62,6 +63,7 @@ struct UserService: UserServiceProtocol {
             return Disposables.create()
         }
     }
+    
     static func saveFriendId(uid: String) {
         Ref.UsersRef.document(uid).collection("Friends").getDocuments { snapShot, _ in
             guard let snapShot = snapShot else { return }
@@ -69,6 +71,7 @@ struct UserService: UserServiceProtocol {
                 UserDefaultsRepositry.shared.saveToUserDefaults(element: ids, key: "friends")
         }
     }
+    
     func getFriends(uid: String) -> Single<[User]> {
         FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetFriendsTargeType(id: uid, subRef: Ref.UsersRef, subCollectionName: "Friends"))
     }
@@ -76,6 +79,7 @@ struct UserService: UserServiceProtocol {
     func getCircles(uid: String) -> Single<[Circle]> {
         FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetCircleTargetType(id: uid, subRef: Ref.CircleRef, subCollectionName: "Circle"))
     }
+    
     func getMyCircles(uid: String) -> Single<[Circle]> {
         FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetCircleTargetType(id: uid, subRef: Ref.CircleRef, subCollectionName: "Circle"))
     }
@@ -99,6 +103,7 @@ struct UserService: UserServiceProtocol {
             }
         }
     }
+    
     func postMyChatRoom(dic: [String: Any],
                         partnerDic: [String: Any],
                         user: User,
@@ -108,6 +113,7 @@ struct UserService: UserServiceProtocol {
         Ref.UsersRef.document(user.uid).collection("ChatRoom").document(myData.uid).setData(partnerDic)
         Ref.ChatRef.document(chatId).setData([:])
     }
+    
     func getMyChatRooms(uid: String) -> Single<[ChatRoom]> {
         FirebaseClient.shared.requestFirebaseSortedSubData(request: UserGetChatRoomTargetType(id: uid))
     }

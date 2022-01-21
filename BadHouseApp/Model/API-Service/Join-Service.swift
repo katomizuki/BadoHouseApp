@@ -13,7 +13,9 @@ protocol JoinServiceProtocol {
                      practice: Practice,
                      completion: @escaping(Result<Void, Error>) -> Void)
 }
+
 struct JoinService: JoinServiceProtocol {
+    
     func postPreJoin(user: User,
                      toUser: User, practice: Practice,
                      completion: @escaping(Result<Void, Error>) -> Void) {
@@ -62,6 +64,7 @@ struct JoinService: JoinServiceProtocol {
     func getPreJoined(userId: String) -> Single<[PreJoined]> {
         FirebaseClient.shared.requestFirebaseSubData(request: PracticeGetPreJoinedTargetType(id: userId))
     }
+    
     func postMatchJoin(preJoined: PreJoined,
                        user: User,
                        myData: User,

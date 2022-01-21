@@ -2,6 +2,7 @@ import UIKit
 import SDWebImage
 
 final class NotificationCell: UICollectionViewCell {
+    
     @IBOutlet private weak var notificationImageView: UIImageView! {
         didSet {
             notificationImageView.layer.cornerRadius = 20
@@ -10,12 +11,15 @@ final class NotificationCell: UICollectionViewCell {
     }
     @IBOutlet private weak var titleLabel: UILabel!
     static let id = String(describing: self)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
+    
     func configure(_ notification: Notification) {
         notificationImageView.sd_setImage(with: notification.url)
         switch notification.notificationSelection {
@@ -29,5 +33,4 @@ final class NotificationCell: UICollectionViewCell {
             titleLabel.text = "\(notification.titleText)さんと友だちになりました"
         }
     }
-
 }

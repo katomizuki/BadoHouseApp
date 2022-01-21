@@ -1,14 +1,8 @@
-//
-//  ChatRoom.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2022/01/03.
-//
-
 import Firebase
 import Foundation
 
 struct ChatRoom: FirebaseModel {
+    
     let id: String
     let latestMessage: String
     let latestTime: Timestamp

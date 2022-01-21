@@ -1,6 +1,7 @@
 import Firebase
 
 struct Circle: Equatable, FirebaseModel {
+    
     var id: String
     var features: [String]
     var time: String
@@ -26,6 +27,7 @@ struct Circle: Equatable, FirebaseModel {
             return nil
         }
     }
+    
     init(dic: [String: Any]) {
         self.id = dic["id"] as? String ?? ""
         self.features = dic["features"] as? [String] ?? []

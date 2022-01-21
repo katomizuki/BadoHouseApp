@@ -6,6 +6,7 @@ protocol SearchUserCellDelegate: AnyObject {
     func searchUserCellNotApply(_ user: User, cell: SearchUserCell)
 
 }
+
 final class SearchUserCell: UITableViewCell {
     static let id = String(describing: self)
     var user: User?
@@ -25,11 +26,13 @@ final class SearchUserCell: UITableViewCell {
         }
     }
     @IBOutlet private weak var nameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         // Initialization code
     }
+    
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
@@ -46,6 +49,7 @@ final class SearchUserCell: UITableViewCell {
         applyFriendButton.setTitle(changeButtonTitle(applyFriendButton.currentTitle), for: .normal)
       
     }
+    
     func configure(_ user: User) {
         self.user = user
         userImageView.sd_setImage(with: user.profileImageUrl)
@@ -55,6 +59,7 @@ final class SearchUserCell: UITableViewCell {
     private func changeButtonTitle(_ text: String?) -> String {
         return text == "申請済み" ? "バド友申請" : "申請済み"
     }
+    
     private func judgeButtonAction(_ text: String?) -> Bool {
         return text == "申請済み"
     }

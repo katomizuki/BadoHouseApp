@@ -10,6 +10,7 @@ struct StorageService {
             completion(url)
         }
     }
+    
     static func downLoadImage(image: UIImage,
                               completion: @escaping(Result<String, Error>) -> Void) {
         guard let uploadImage = image.jpegData(compressionQuality: 0.3) else { return }
@@ -26,6 +27,7 @@ struct StorageService {
             }
         }
     }
+    
     static func setupStorageErrorMessage(error: NSError) -> String {
         var message = ""
         let storageError = StorageErrorCode(rawValue: error.code)

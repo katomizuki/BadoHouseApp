@@ -22,6 +22,7 @@ protocol UpdateCircleViewModelType {
 }
 
 final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewModelInputs, UpdateCircleViewModelOutputs {
+    
     var inputs: UpdateCircleViewModelInputs { return self }
     var outputs: UpdateCircleViewModelOutputs { return self }
     var circleAPI: CircleServiceProtocol

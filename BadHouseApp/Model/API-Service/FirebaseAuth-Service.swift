@@ -5,7 +5,9 @@ protocol AuthServiceProtocol {
     func register(credential: AuthCredential,
                   completion: @escaping(Result<[String: Any], Error>) -> Void)
 }
+
 struct AuthService: AuthServiceProtocol {
+    
     func register(credential: AuthCredential,
                   completion: @escaping (Result<[String: Any], Error>) -> Void) {
         Auth.auth().createUser(withEmail: credential.email,
@@ -24,6 +26,7 @@ struct AuthService: AuthServiceProtocol {
             completion(.success(dic))
         }
     }
+    
     static func getUid() -> String? {
         return Auth.auth().currentUser?.uid
     }

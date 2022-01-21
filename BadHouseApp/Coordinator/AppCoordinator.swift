@@ -1,7 +1,9 @@
 import UIKit
 
 final class AppCoordinator: Coordinator {
+    
     let window: UIWindow
+    
     init(window: UIWindow) {
         self.window = window
     }

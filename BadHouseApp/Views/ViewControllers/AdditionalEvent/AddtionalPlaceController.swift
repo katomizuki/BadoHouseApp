@@ -14,6 +14,7 @@ protocol AddtionalPlaceControllerDelegate: AnyObject {
 }
 
 final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+    
     var coordinator: AddtionalPlaceFlow?
     weak var delegate: AddtionalPlaceControllerDelegate?
     @IBOutlet weak var searchBar: UISearchBar!
@@ -40,6 +41,7 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.setRegion(defaultRegion, animated: false)
@@ -49,13 +51,16 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
                                                     action: #selector(didTapLeftButton))
         navItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapRightButton))
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
             searchBar.becomeFirstResponder()
     }
+    
     @objc private func didTapLeftButton() {
         dismiss(animated: true)
     }
+    
     @objc private func didTapRightButton() {
         self.delegate?.AddtionalPlaceController(vc: self,
                                                 placeName: placeName,
@@ -63,6 +68,7 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
                                                 latitude: placeLatitude,
                                                 longitude: placeLongitude)
     }
+    
     @objc private func mapTap(_ gesture: UITapGestureRecognizer) {
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)

@@ -3,9 +3,11 @@ import UIKit
 final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     
     let navigationController: UINavigationController
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+    
     func start() {
         guard let uid = AuthService.getUid() else { return }
         UserService.getUserById(uid: uid) { user in
@@ -14,6 +16,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
             self.navigationController.pushViewController(controller, animated: true)
         }
     }
+    
     func toUserDetail(_ myData: User, user: User) {
     self.coordinator(to: UserDetailCoordinator(navigationController: self.navigationController, viewModel: UserDetailViewModel(myData: myData,
                                                                   user: user,
@@ -21,6 +24,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                                                                   applyAPI: ApplyService())))
         
     }
+    
     func toApplyedFriend(_ user: User) {
         navigationController.pushViewController(ApplyedUserListController.init(viewModel: ApplyedUserListViewModel(applyAPI: ApplyService(), user: user)), animated: true)
     }
@@ -32,6 +36,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     func toPreJoined(_ user: User) {
         self.navigationController.pushViewController(PreJoinedListController.init(viewModel: PreJoinedViewModel(joinAPI: JoinService(), user: user)), animated: true)
     }
+    
     func toPracticeDetail(_ myData: User, practice: Practice) {
     coordinator(to: PracticeDetailCoordinator(navigationController: navigationController, viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserService(), circleAPI: CircleService(), isModal: true, joinAPI: JoinService())))
     }

@@ -2,29 +2,34 @@ import UIKit
 import FirebaseAuth
 final class UserSettingsController: UIViewController {
     var user: User
-    init(user: User) {
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     @IBOutlet private weak var settingsTableView: UITableView! {
         didSet {
             settingsTableView.changeCorner(num: 8)
         }
     }
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavigationBar()
     }
+    
     private func setupTableView() {
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         settingsTableView.showsVerticalScrollIndicator = true
     }
+    
     private func setupNavigationBar() {
         navigationItem.title = "設定画面"
         navigationController?.navigationBar.isHidden = false
@@ -36,9 +41,11 @@ final class UserSettingsController: UIViewController {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
     }
+    
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
     }
+    
     @objc private func didTapLogoutButton() {
         do {
             try Auth.auth().signOut()
@@ -48,6 +55,7 @@ final class UserSettingsController: UIViewController {
         }
     }
 }
+
 extension UserSettingsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }

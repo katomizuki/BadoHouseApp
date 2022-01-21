@@ -1,4 +1,3 @@
-
 import Firebase
 
 struct Practice {

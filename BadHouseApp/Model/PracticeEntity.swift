@@ -1,10 +1,3 @@
-//
-//  PracticeEntity.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/31.
-//
-
 import Firebase
 
 struct Practice: FirebaseModel {

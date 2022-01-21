@@ -6,6 +6,7 @@ import RxCocoa
 protocol ScheduleFlow {
     func toDetail(_ practice: Practice)
 }
+
 final class ScheduleController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var calendarView: FSCalendar!
@@ -13,13 +14,16 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
     private let disposeBag = DisposeBag()
     private let viewModel: ScheduleViewModel
     var coordinator: ScheduleFlow?
+    
     init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -27,22 +31,27 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         setupBinding()
         setupCalendarView()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear()
     }
+    
     private func setupCalendarView() {
         calendarView.delegate = self
         calendarView.dataSource = self
     }
+    
     private func setupTableView() {
         practiceTableView.register(SchduleCell.nib(), forCellReuseIdentifier: SchduleCell.id)
         practiceTableView.showsVerticalScrollIndicator = false
         practiceTableView.rowHeight = 60
     }
+    
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapLeftBarButton))
     }
+    
     private func setupBinding() {
         
         practiceTableView.rx.setDelegate(self).disposed(by: disposeBag)
@@ -70,6 +79,7 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         dismiss(animated: true)
     }
 }
+
 extension ScheduleController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         

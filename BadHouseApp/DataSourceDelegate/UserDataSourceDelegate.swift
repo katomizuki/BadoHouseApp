@@ -1,6 +1,6 @@
 import UIKit
 
-protocol UserDataSourceDelegateProtocol: AnyObject {
+protocol UserDataSourceDelegateProtocol: NSObjectProtocol {
     func userDataSourceDelegate(toSearchUser user: User?)
     func userDataSourceDelegate(toSearchCircle user: User?)
     func userDataSourceDelegate(toApplyUser user: User?)
@@ -8,6 +8,7 @@ protocol UserDataSourceDelegateProtocol: AnyObject {
     func userDataSourceDelegate(toCircleDetail user: User?, circle: Circle)
     func userDataSourceDelegate(toUserDetail myData: User?, user: User)
 }
+
 final class UserDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     let viewModel: UserViewModel

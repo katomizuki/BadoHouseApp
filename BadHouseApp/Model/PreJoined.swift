@@ -1,6 +1,7 @@
 import Firebase
 
 struct PreJoined: Equatable, FirebaseModel {
+    
     let id: String
     let circleImage: String
     let createdAt: Timestamp
@@ -16,6 +17,7 @@ struct PreJoined: Equatable, FirebaseModel {
             return nil
         }
     }
+    
     init(dic: [String: Any]) {
         self.id = dic["id"] as? String ?? ""
         self.circleImage = dic["circleImage"] as? String ?? ""

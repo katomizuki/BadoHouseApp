@@ -1,4 +1,3 @@
-
 enum BadmintonLevel: Int, CaseIterable {
     case one, two, three, four, five, six, seven, eight, nine, ten
     var description: String {

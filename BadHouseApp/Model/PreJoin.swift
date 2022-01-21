@@ -1,5 +1,7 @@
 import Firebase
+
 struct PreJoin: Equatable, FirebaseModel {
+    
     let name: String
     let id: String
     let uid: String
@@ -15,6 +17,7 @@ struct PreJoin: Equatable, FirebaseModel {
             return nil
         }
     }
+    
     init(dic: [String: Any]) {
         self.name = dic["name"] as? String ?? String()
         self.id = dic["id"] as? String ?? String()

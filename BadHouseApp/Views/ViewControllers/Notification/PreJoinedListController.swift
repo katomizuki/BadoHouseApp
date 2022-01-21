@@ -2,26 +2,32 @@ import UIKit
 import RxSwift
 
 final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
+    
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: PreJoinedViewModel
+    
     init(viewModel: PreJoinedViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         tableView.register(PreJoinedCell.nib(), forCellReuseIdentifier: PreJoinedCell.id)
         tableView.rowHeight = 60
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backButtonDisplayMode = .minimal
     }
+    
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
@@ -47,6 +53,7 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
         }).disposed(by: disposeBag)
     }
 }
+
 extension PreJoinedListController: PreJoinedCellDelegate {
     func preJoinedCell(prejoined: PreJoined) {
         viewModel.inputs.permission(prejoined)

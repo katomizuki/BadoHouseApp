@@ -18,6 +18,7 @@ protocol CircleDetailViewModelType {
 }
 
 final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailViewModelOutputs, CircleDetailViewModelType {
+    
     var inputs: CircleDetailViewModelInputs { return self }
     var outputs: CircleDetailViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()

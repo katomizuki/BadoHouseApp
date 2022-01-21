@@ -22,6 +22,7 @@ protocol PracticeSearchViewModelOutputs {
 
 final class PracticeSearchViewModel: PracticeSearchViewModelType,
                                      PracticeSearchViewModelInputs, PracticeSearchViewModelOutputs {
+    
     var inputs: PracticeSearchViewModelInputs { return self }
     var outputs: PracticeSearchViewModelOutputs { return self }
     var navigationStriing = PublishSubject<String>()

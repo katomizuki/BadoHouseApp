@@ -1,7 +1,9 @@
 import UIKit
-protocol MyPageInfoDataSourceDelegateProtocol: AnyObject {
+
+protocol MyPageInfoDataSourceDelegateProtocol: NSObjectProtocol {
     func myPageInfoDataSourceDelegate(_ text: String)
 }
+
 class MyPageInfoDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private let cellId = "popCellId"

@@ -7,7 +7,9 @@ protocol PracticeServieProtocol {
                       user: User,
                       completion: @escaping(Error?) -> Void)
 }
+
 struct PracticeServie: PracticeServieProtocol {
+    
     func postPractice(dic: [String: Any],
                       circle: Circle,
                       user: User,
@@ -26,12 +28,13 @@ struct PracticeServie: PracticeServieProtocol {
         
         Ref.UsersRef.document(user.uid).collection("Practice").document(id).setData(["id": id], completion: completion)
     }
+    
     func getPractices() -> Single<[Practice]> {
         FirebaseClient.shared.requestFirebaseSort(request: PracticeGetTargetType())
     }
+    
     static func getPracticeById(id: String,
                                 completion: @escaping(Practice) -> Void) {
         FirebaseClient.shared.getDataById(request: PracticeGetTargetType(id: id), completion: completion)
     }
-    
 }

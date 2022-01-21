@@ -17,6 +17,7 @@ protocol TeamRegisterOutput {
     var timeTextOutput: PublishSubject<String> { get }
     var priceTextOutput: PublishSubject<String> { get }
 }
+
 struct Form {
     var name: String
     var price: String
@@ -27,6 +28,7 @@ struct Form {
     var features: [String]
     var additionlText: String
 }
+
 final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
     private let disposeBag = DisposeBag()
     // MARK: - Observable
@@ -106,6 +108,7 @@ final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
         }
         .disposed(by: disposeBag)
     }
+    
     func addFeatures(_ feature: CircleFeatures) {
     if !judgeFeatures(feature) {
             selectionsFeature.append(feature.description)

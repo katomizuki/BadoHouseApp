@@ -1,7 +1,9 @@
 import UIKit
-protocol PracticeDataSourceDelegateProtocol: AnyObject {
+
+protocol PracticeDataSourceDelegateProtocol: NSObjectProtocol {
     func presentVC(_ vc: SearchSelectionController)
 }
+
 final class PracticeDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, SearchSelectionControllerDelegate {
     
     weak var delegate: PracticeDataSourceDelegateProtocol?

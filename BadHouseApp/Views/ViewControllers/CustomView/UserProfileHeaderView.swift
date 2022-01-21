@@ -4,12 +4,15 @@ enum UserProfileSelection {
     case circle
     case user
 }
+
 protocol UserProfileHeaderViewDelegate: AnyObject {
     func didTapSearchButton(option: UserProfileSelection)
    func didTapPlusTeamButton()
     func didTapApplyButton()
 }
+
 final class UserProfileHeaderView: UITableViewHeaderFooterView {
+    
     static let id = String(describing: self)
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -40,6 +43,7 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     weak var delegate: UserProfileHeaderViewDelegate?
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
@@ -73,6 +77,7 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
         plusButton.addAction(plusAction, for: .primaryActionTriggered)
         applyButton.addAction(applyAction, for: .primaryActionTriggered)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }

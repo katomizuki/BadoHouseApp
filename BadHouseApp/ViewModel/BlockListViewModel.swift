@@ -1,25 +1,22 @@
-//
-//  BlockListViewModel.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/31.
-//
-
 import RxRelay
 import RxSwift
+
 protocol BlockListViewModelType {
     var inputs: BlockListViewModelInputs { get }
     var outputs: BlockListViewModelOutputs { get }
 }
+
 protocol BlockListViewModelInputs {
     func willAppear()
     func removeBlock(_ user: User)
 }
+
 protocol BlockListViewModelOutputs {
     var blockListRelay: BehaviorRelay<[User]> { get }
     var isError: PublishSubject<Bool> { get }
     var reload: PublishSubject<Void> { get }
 }
+
 final class BlockListViewModel: BlockListViewModelInputs, BlockListViewModelOutputs, BlockListViewModelType {
     var reload = PublishSubject<Void>()
     var blockListRelay = BehaviorRelay<[User]>(value: [])

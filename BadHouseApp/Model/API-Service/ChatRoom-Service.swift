@@ -16,5 +16,4 @@ struct ChatService: ChatServiceProtocol {
                   completion: @escaping(Error?) -> Void) {
         Ref.ChatRef.document(chatId).collection("Comment").document(Ref.ChatRef.document(chatId).collection("Comment").document().documentID).setData(dic, completion: completion)
     }
-    
 }

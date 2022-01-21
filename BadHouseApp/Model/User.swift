@@ -2,6 +2,7 @@ import Firebase
 import FirebaseAuth
 
 struct User: FirebaseModel, Equatable {
+    
     var uid: String
     var name: String
     var email: String
@@ -26,6 +27,7 @@ struct User: FirebaseModel, Equatable {
     var isMyself: Bool {
         return Auth.auth().currentUser?.uid == uid
     }
+    
     init(dic: [String: Any]) {
         self.email = dic["email"] as? String ?? ""
         self.name = dic["name"] as? String ?? ""

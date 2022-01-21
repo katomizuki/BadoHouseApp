@@ -4,18 +4,22 @@ import RxRelay
 protocol InviteViewModelInputs {
     func willAppear()
 }
+
 protocol InviteViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var friendsList: BehaviorRelay<[User]> { get }
     var isCompleted: PublishSubject<Void> { get }
 }
+
 protocol InviteViewModelType {
     var inputs: InviteViewModelInputs { get  }
     var outputs: InviteViewModelOutputs { get }
 }
+
 final class InviteViewModel: InviteViewModelType,
                                 InviteViewModelInputs,
                             InviteViewModelOutputs {
+    
     var isError = PublishSubject<Bool>()
     var isCompleted = PublishSubject<Void>()
     var friendsList = BehaviorRelay<[User]>(value: [])
@@ -28,6 +32,7 @@ final class InviteViewModel: InviteViewModelType,
     private let disposeBag = DisposeBag()
     private var dic = [String: Any]()
     let circleAPI: CircleServiceProtocol
+    
     init(userAPI: UserServiceProtocol,
          user: User,
          form: Form,
@@ -41,7 +46,6 @@ final class InviteViewModel: InviteViewModelType,
         } onFailure: {[weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
-        
     }
     
     func willAppear() {
@@ -116,6 +120,5 @@ final class InviteViewModel: InviteViewModelType,
                 self?.isError.onNext(true)
             }
         }
-        
     }
 }

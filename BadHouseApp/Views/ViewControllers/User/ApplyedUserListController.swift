@@ -5,28 +5,34 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: ApplyedUserListViewModel
+    private let disposeBag = DisposeBag()
+    
     init(viewModel: ApplyedUserListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
-    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupBinding()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear()
         navigationItem.backButtonDisplayMode = .minimal
     }
+    
     private func setupTableView() {
         tableView.rowHeight = 60
         tableView.register(ApplyedUserListCell.nib(), forCellReuseIdentifier: ApplyedUserListCell.id)
     }
+    
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         

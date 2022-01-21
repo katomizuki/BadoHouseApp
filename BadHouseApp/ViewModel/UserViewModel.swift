@@ -7,6 +7,7 @@ protocol UserViewModelInputs {
     func blockUser(_ user: User?)
     func withDrawCircle(_ circle: Circle?)
 }
+
 protocol UserViewModelOutputs {
     var userName: BehaviorRelay<String> { get }
     var userUrl: BehaviorRelay<URL?> { get }
@@ -19,10 +20,12 @@ protocol UserViewModelOutputs {
     var circleRelay: BehaviorRelay<[Circle]> { get }
     var notAuth: PublishSubject<Void> { get }
 }
+
 protocol UserViewModelType {
     var inputs: UserViewModelInputs { get }
     var outputs: UserViewModelOutputs { get }
 }
+
 final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModelOutputs {
     
     var userName = BehaviorRelay<String>(value: "")
@@ -50,6 +53,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         self.applyAPI = applyAPI
         self.circleAPI = circleAPI
     }
+    
     func willAppear() {
         if let uid = Auth.auth().currentUser?.uid {
             userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
@@ -114,6 +118,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         friendsRelay.accept(users)
         reload.onNext(())
     }
+    
     private func saveBlockUser(_ user: User) {
         if UserDefaults.standard.object(forKey: "blocks") != nil {
             var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
@@ -123,6 +128,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: "blocks")
         }
     }
+    
     func withDrawCircle(_ circle: Circle?) {
         guard let circle = circle else {
             return
@@ -146,5 +152,4 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             }
         }
     }
-    
 }

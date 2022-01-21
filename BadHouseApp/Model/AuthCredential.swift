@@ -1,4 +1,3 @@
-
 struct AuthCredential {
     let name: String
     let email: String

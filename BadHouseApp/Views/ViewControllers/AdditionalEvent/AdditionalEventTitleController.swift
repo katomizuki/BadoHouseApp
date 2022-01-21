@@ -1,18 +1,14 @@
-//
-//  AdditionalEventTitleController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/13.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+
 protocol AdditionalEventTitleFlow {
     func toNext(title: String, image: UIImage, kind: String)
 }
+
 final class AdditionalEventTitleController: UIViewController {
+    
     // MARK: - Properties
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var circleSegment: UISegmentedControl! {
@@ -34,6 +30,7 @@ final class AdditionalEventTitleController: UIViewController {
         let button = UIBarButtonItem(title: "次へ", style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +56,7 @@ final class AdditionalEventTitleController: UIViewController {
             self?.rightButton.isEnabled = isValid
         }).disposed(by: disposeBag)
     }
+    
     // MARK: - SelectorMethod
     @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
@@ -70,6 +68,7 @@ final class AdditionalEventTitleController: UIViewController {
         self.coordinator?.toNext(title: title, image: self.viewModel.practiceImage, kind: self.viewModel.practiceKind)
     }
 }
+
 // MARK: - UInavigationDelegate
 extension AdditionalEventTitleController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

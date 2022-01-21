@@ -3,6 +3,7 @@ import RxSwift
 import PKHUD
 
 final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
+    
     private let viewModel: AdditionalMemberViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()

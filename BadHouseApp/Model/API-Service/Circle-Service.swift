@@ -17,6 +17,7 @@ protocol CircleServiceProtocol {
                       circle: Circle,
                       completion: @escaping (Result<Void, Error>) -> Void)
 }
+
 struct CircleService: CircleServiceProtocol {
     
     func postCircle(id: String,

@@ -2,7 +2,9 @@ import RxSwift
 import FirebaseFirestore
 
 class FirebaseClient {
+    
     static let shared = FirebaseClient()
+    
     func requesFirebase<T: FirebaseTargetType>(request: T) -> Single<T.Model> {
         return Single.create { singleEvent -> Disposable in
             request.ref.document(request.id).getDocument { snapShot, error in
@@ -84,6 +86,7 @@ class FirebaseClient {
             return Disposables.create()
         }
     }
+    
     func requestFirebaseSort<T: FirebaseTargetType>(request: T) -> Single<[T.Model]> {
         return Single.create { singleEvent in
             request.ref.getDocuments { snapShot, error in
@@ -97,6 +100,7 @@ class FirebaseClient {
             return Disposables.create()
         }
     }
+    
     func getDataById<T: FirebaseTargetType>(request: T,
                                             completion: @escaping(T.Model) -> Void) {
         request.ref.document(request.id).getDocument { snapShot, error in
@@ -106,6 +110,7 @@ class FirebaseClient {
             }
         }
     }
+    
     func getDataById<T: FirebaseSubCollectionTargetType>(request: T,
                                                          completion: @escaping(T.Model) -> Void) {
         request.ref.document(request.id).collection(request.subCollectionName).document(request.subId).getDocument { snapShot, error in
@@ -115,5 +120,4 @@ class FirebaseClient {
             }
         }
     }
-
 }

@@ -3,6 +3,7 @@ import UIKit
 protocol EventInfoCellDelegate: AnyObject {
     func didTapBlockButton(_ cell: EventInfoCell, practice: Practice)
 }
+
 final class EventInfoCell: UICollectionViewCell {
     // MARK: - Properties
     @IBOutlet weak var teamLabel: UILabel! {
@@ -39,9 +40,11 @@ final class EventInfoCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
     func configure(_ practice: Practice) {
         self.practice = practice
         teamLabel.text = practice.circleName
@@ -51,6 +54,7 @@ final class EventInfoCell: UICollectionViewCell {
         placeLabel.text = "場所  \(practice.placeName)"
         timeLabel.text = "時間  \(practice.startTimeSring)"
     }
+    
     @IBAction private func didTapAlertButton(_ sender: Any) {
         guard let practice = practice else {
             return

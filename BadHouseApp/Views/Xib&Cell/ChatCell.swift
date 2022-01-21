@@ -90,5 +90,4 @@ final class ChatCell: UITableViewCell {
             timeLabel.text = chat.timeString
         }
     }
-
 }

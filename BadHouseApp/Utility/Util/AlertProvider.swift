@@ -1,6 +1,7 @@
 import UIKit
 
 class AlertProvider {
+    
     static func makeAlertVC(_ user: User,
                             completion: @escaping(Error?) -> Void) -> UIAlertController {
         let alertVC = UIAlertController(title: "このユーザーに関して", message: "", preferredStyle: .actionSheet)
@@ -15,6 +16,7 @@ class AlertProvider {
         alertVC.addAction(canleAction)
         return alertVC
     }
+    
     static func postAlertVC(_ practice: Practice,
                             completion: @escaping(Error?)->Void)->UIAlertController {
         let alertVC = UIAlertController(title: "この投稿に関して", message: "", preferredStyle: .actionSheet)
@@ -26,6 +28,7 @@ class AlertProvider {
         alertVC.addAction(canleAction)
         return alertVC
     }
+    
     static func practiceAlertVC() -> UIAlertController {
         let alertVC = UIAlertController(title: "この練習に関して", message: "", preferredStyle: .actionSheet)
         let canleAction = UIAlertAction(title: "キャンセル", style: .cancel)

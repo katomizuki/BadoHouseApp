@@ -3,22 +3,27 @@ import RxSwift
 import RxCocoa
 
 final class PreJoinController: UIViewController, UIScrollViewDelegate {
+    
     private let viewModel: PreJoinViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
+    
     init(viewModel: PreJoinViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(PreJoinCell.nib(), forCellReuseIdentifier: PreJoinCell.id)
         tableView.rowHeight = 60
         setupBinding()
     }
+    
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) {_, item, cell in
@@ -35,6 +40,7 @@ final class PreJoinController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
     }
 }
+
 extension PreJoinController: PreJoinCellDelegate {
     func preJoinCell(_ cell: PreJoinCell, preJoin: PreJoin) {
         viewModel.inputs.delete(preJoin)

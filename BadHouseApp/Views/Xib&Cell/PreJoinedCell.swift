@@ -4,6 +4,7 @@ import SDWebImage
 protocol PreJoinedCellDelegate: AnyObject {
     func preJoinedCell(prejoined: PreJoined)
 }
+
 final class PreJoinedCell: UITableViewCell {
     static let id = String(describing: self)
     weak var delegate: PreJoinedCellDelegate?
@@ -16,10 +17,11 @@ final class PreJoinedCell: UITableViewCell {
     }
     @IBOutlet private weak var label: UILabel!
     var preJoined: PreJoined?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
+    
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
@@ -27,6 +29,7 @@ final class PreJoinedCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
     func configure(_ prejoined: PreJoined) {
         self.preJoined = prejoined
         userImageView.sd_setImage(with: prejoined.url)

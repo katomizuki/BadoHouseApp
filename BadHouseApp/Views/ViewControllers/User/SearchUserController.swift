@@ -11,11 +11,13 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
     private let viewModel: SearchUserViewModel
     var coordinator: SearchUserFlow?
     private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupBinding()
     }
+    
     init(viewModel: SearchUserViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -24,10 +26,12 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     private func setupTableView() {
         userTableView.rowHeight = 50
         userTableView.register(SearchUserCell.nib(), forCellReuseIdentifier: SearchUserCell.id)
     }
+    
     private func setupBinding() {
         userTableView.rx.setDelegate(self).disposed(by: disposeBag)
         
@@ -45,10 +49,9 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
             guard let self = self else { return }
             self.coordinator?.toUserDetail(self.viewModel.outputs.usersRelay.value[indexPath.row], self.viewModel.user)
         }.disposed(by: disposeBag)
-
     }
-
 }
+
 extension SearchUserController: SearchUserCellDelegate {
     func searchUserCellNotApply(_ user: User, cell: SearchUserCell) {
         viewModel.notApplyFriend(user, myData: viewModel.user)

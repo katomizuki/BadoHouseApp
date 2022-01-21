@@ -1,6 +1,7 @@
 import Foundation
 
 struct Applyed: FirebaseModel {
+    
     let uid: String
     let createdAt: String
     let imageUrl: String
@@ -13,6 +14,7 @@ struct Applyed: FirebaseModel {
             return nil
         }
     }
+    
     init(dic: [String: Any]) {
         self.uid = dic["uid"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? String ?? ""

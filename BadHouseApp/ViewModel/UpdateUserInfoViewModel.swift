@@ -69,6 +69,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         return textViewSubject.asObserver()
     }
     let userAPI: UserServiceProtocol
+    
     init(userAPI: UserServiceProtocol) {
         self.userAPI = userAPI
         if let uid = AuthService.getUid() {
@@ -154,6 +155,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
             return user.age
         }
     }
+    
     func changeUser(_ userInfoSelecition: UserInfoSelection,
                     text: String) {
         switch userInfoSelecition {
@@ -170,5 +172,4 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         }
         self.reload.onNext(())
     }
-    
 }

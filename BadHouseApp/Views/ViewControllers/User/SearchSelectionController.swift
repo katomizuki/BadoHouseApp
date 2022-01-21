@@ -1,4 +1,5 @@
 import UIKit
+// swiftlint:disable weak_delegate
 protocol SearchSelectionControllerDelegate: AnyObject {
     func searchSelectionControllerDismiss(vc: SearchSelectionController,
                                           selection: SearchSelection,
@@ -9,7 +10,7 @@ class SearchSelectionController: UIViewController {
     private var cellArray = [String]()
     var keyWord: SearchSelection = .level
     weak var delegate: SearchSelectionControllerDelegate?
-    private weak var dataSourceDelegate = SearchSelectionDataSourceDelegate()
+    private let dataSourceDelegate = SearchSelectionDataSourceDelegate()
     private lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.delegate = dataSourceDelegate
@@ -33,13 +34,13 @@ class SearchSelectionController: UIViewController {
                          bottom: view.bottomAnchor,
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor)
-        dataSourceDelegate?.delegate = self
+        dataSourceDelegate.delegate = self
         switch keyWord {
         case .place:
-            dataSourceDelegate?.initCellArray(Place.placeArray)
+            dataSourceDelegate.initCellArray(Place.placeArray)
             cellArray = Place.placeArray
         case .level:
-            dataSourceDelegate?.initCellArray(BadmintonLevel.level)
+            dataSourceDelegate.initCellArray(BadmintonLevel.level)
             cellArray = BadmintonLevel.level
             }
         tableView.reloadData()

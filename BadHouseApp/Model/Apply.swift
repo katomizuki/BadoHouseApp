@@ -1,10 +1,5 @@
-//
-//  Apply.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/28.
-//
 import Foundation
+
 struct Apply: FirebaseModel {
     let uid: String
     let createdAt: String
@@ -18,6 +13,7 @@ struct Apply: FirebaseModel {
             return nil
         }
     }
+    
     init(dic: [String: Any]) {
         self.uid = dic["uid"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? String ?? ""

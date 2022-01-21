@@ -19,6 +19,7 @@ protocol PreJoinedViewModelOutputs {
 }
 
 final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs, PreJoinedViewModelOutputs {
+    
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var inputs: PreJoinedViewModelInputs { return self }
@@ -29,6 +30,7 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
     private let disposeBag = DisposeBag()
     var completed = PublishSubject<Void>()
     let user: User
+    
     init(joinAPI: JoinServiceProtocol, user: User) {
         self.joinAPI = joinAPI
         self.user = user

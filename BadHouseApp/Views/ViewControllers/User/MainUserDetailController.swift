@@ -8,6 +8,7 @@ protocol MainUserDetailFlow: AnyObject {
     func toFriendList(friends: [User], myData: User)
     func toChat(myData: User, user: User)
 }
+
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
      private let viewModel: UserDetailViewModel
@@ -55,6 +56,7 @@ protocol MainUserDetailFlow: AnyObject {
          self.viewModel = viewModel
          super.init(nibName: nil, bundle: nil)
      }
+     
      required init?(coder: NSCoder) {
          fatalError()
      }
@@ -66,18 +68,22 @@ protocol MainUserDetailFlow: AnyObject {
       setupUI()
       setupBinding()
     }
+     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backButtonDisplayMode = .minimal
         viewModel.willAppear()
     }
+     
      private func setupCollectionView() {
          circleCollectionView.register(UserCircleCell.nib(), forCellWithReuseIdentifier: UserCircleCell.id)
      }
+     
      private func setupNavigationBar() {
          let rightBarButton = UIBarButtonItem(title: "...", style: .done, target: self, action: #selector(didTapExpandedMenu))
          navigationItem.rightBarButtonItem = rightBarButton
      }
+     
      private func setupUI() {
          ageLabel.text = viewModel.user.age
          genderLabel.text = viewModel.user.gender
@@ -92,6 +98,7 @@ protocol MainUserDetailFlow: AnyObject {
          talkButton.isHidden = viewModel.isTalkButtonHidden
          userImageView.sd_setImage(with: viewModel.user.profileImageUrl)
      }
+     
      private func setupBinding() {
          
          viewModel.outputs.applyButtonString.subscribe {[weak self] text in
@@ -141,11 +148,13 @@ protocol MainUserDetailFlow: AnyObject {
          }
          present(alertVC, animated: true)
      }
+     
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {
          coordinator?.toFriendList(friends: viewModel.friendListRelay.value,
                                    myData: viewModel.myData)
      }
+     
      @IBAction func didTapTalkButton(_ sender: Any) {
              self.coordinator?.toChat(
                 myData: self.viewModel.myData,
@@ -160,6 +169,7 @@ protocol MainUserDetailFlow: AnyObject {
          }
      }
  }
+
 extension MainUserDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 80)

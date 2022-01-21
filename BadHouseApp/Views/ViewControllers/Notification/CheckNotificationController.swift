@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+
 protocol CheckNotificationFlow: AnyObject {
     func toUserDetail(_ myData: User, user: User)
     func toPracticeDetail(_ myData: User, practice: Practice)
@@ -7,6 +8,7 @@ protocol CheckNotificationFlow: AnyObject {
     func toPreJoined(_ user: User)
     func toApplyedFriend(_ user: User)
 }
+
 final class CheckNotificationController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet private weak var notificationCollectionView: UICollectionView! {
@@ -15,13 +17,16 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     var coordinator: CheckNotificationFlow?
     private let viewModel: NotificationViewModel
     private let disposeBag = DisposeBag()
+    
     init(viewModel: NotificationViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -30,15 +35,18 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
         navigationItem.backButtonDisplayMode = .minimal
         view.backgroundColor = .white
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.willAppear()
     }
+    
     private func setupCollectionView() {
         notificationCollectionView.register(NotificationCell.nib(), forCellWithReuseIdentifier: NotificationCell.id)
         let configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         notificationCollectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
     }
+    
     private func setupBinding() {
         notificationCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
@@ -84,6 +92,7 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     @objc private func didTapRightButton() {
         coordinator?.toPreJoined(viewModel.user)
     }
+    
     @objc private func didTapLeftButton() {
         coordinator?.toPreJoin(viewModel.user)
     }

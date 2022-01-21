@@ -7,16 +7,20 @@ protocol MakeEventSecondViewModelInputs {
     var minLevel: PublishSubject<Float> { get }
     var maxLevel: PublishSubject<Float> { get }
 }
+
 protocol MakeEventSecondViewModelOutputs {
     var minLevelText: BehaviorRelay<String> { get }
     var maxLevelText: BehaviorRelay<String> { get }
     var circleRelay: BehaviorRelay<[Circle]> { get }
 }
+
 protocol MakeEventSecondViewModelType {
     var inputs: MakeEventSecondViewModelInputs { get }
     var outputs: MakeEventSecondViewModelOutputs { get }
 }
+
 final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSecondViewModelOutputs, MakeEventSecondViewModelInputs {
+    
     var minLevel = PublishSubject<Float>()
     var maxLevel = PublishSubject<Float>()
     var inputs: MakeEventSecondViewModelInputs { return self }
@@ -32,6 +36,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var image: UIImage
     var kind: String
     var dic: [String: Any] = [String: Any]()
+    
     init(userAPI: UserServiceProtocol, title: String, image: UIImage, kind: String) {
         self.userAPI = userAPI
         self.title = title
@@ -39,7 +44,9 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
         self.kind = kind
         self.dic["title"] = title
         self.dic["kind"] = kind
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
         userAPI.getMyCircles(uid: uid).subscribe { [weak self] circle in
             self?.circleRelay.accept(circle)
         }.disposed(by: disposeBag)

@@ -1,8 +1,10 @@
 import UIKit
 
 final class RegisterCoordinator: Coordinator, RegisterFlow {
+    
     let navigationController: UINavigationController
     let viewController: UIViewController
+    
     init(navigationController: UINavigationController,
          viewController: UIViewController) {
         self.navigationController = navigationController

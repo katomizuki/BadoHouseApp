@@ -13,14 +13,18 @@ protocol MakeEventThirdViewModelInputs {
                    _ latitude: Double,
                    _ longitude: Double)
 }
+
 protocol MakeEventThirdViewModelOutputs {
     
 }
+
 protocol MakeEventThirdViewModelType {
     var inputs: MakeEventThirdViewModelInputs { get }
     var outputs: MakeEventThirdViewModelOutputs { get }
 }
+
 final class MakeEventThirdViewModel: MakeEventThirdViewModelInputs, MakeEventThirdViewModelOutputs, MakeEventThirdViewModelType {
+    
     var inputs: MakeEventThirdViewModelInputs { return self }
     var outputs: MakeEventThirdViewModelOutputs { return self }
     var image: UIImage
@@ -58,6 +62,7 @@ final class MakeEventThirdViewModel: MakeEventThirdViewModelInputs, MakeEventThi
     func changedMoney(_ priceText: String) {
         dic["money"] = priceText
     }
+    
     func placeInfo(_ placeName: String, _ addressName: String, _ latitude: Double, _ longitude: Double) {
         dic["placeName"] = placeName
         dic["addressName"] = addressName

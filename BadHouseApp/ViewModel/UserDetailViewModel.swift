@@ -24,6 +24,7 @@ protocol UserDetailViewModelType {
 }
 
 final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInputs, UserDetailViewModelOutputs {
+    
     var inputs: UserDetailViewModelInputs { return self }
     var outputs: UserDetailViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()

@@ -7,17 +7,21 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: MyPracticeViewModel
     private let disposeBag = DisposeBag()
+    
     init(viewModel: MyPracticeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
     }
+    
     private func setupBinding() {
         
         tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)

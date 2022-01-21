@@ -1,6 +1,7 @@
 import Foundation
 
 class DateUtils {
+    
     static func dateFromString(string: String, format: String) -> Date? {
         let formatter: DateFormatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .gregorian)
@@ -8,12 +9,14 @@ class DateUtils {
         let date = formatter.date(from: string)
         return date
     }
+    
     static func stringFromDate(date: Date, format: String) -> String {
         let formatter: DateFormatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.dateFormat = format
         return formatter.string(from: date)
     }
+    
     static func getNow() -> Date? {
         let dt = Date()
         let dateFormatter = DateFormatter()

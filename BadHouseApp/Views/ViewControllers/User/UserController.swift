@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import FirebaseAuth
-
+// swiftlint:disable weak_delegate
 protocol UserFlow: AnyObject {
     func toSearchCircle(user: User?)
     func toMyPage(_ vc: UIViewController)
@@ -14,8 +14,8 @@ protocol UserFlow: AnyObject {
     func toSchedule(_ vc: UIViewController, user: User?)
     func toApplyUser(user: User?)
     func toApplyedUser(user: User?)
-
 }
+
 final class UserController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var groupTableView: UITableView!
@@ -119,6 +119,7 @@ final class UserController: UIViewController {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
     }
+    
     @objc private func didTapSettingButton() {
         coordinator?.toSettings(self, user: viewModel.user)
     }
@@ -130,6 +131,7 @@ final class UserController: UIViewController {
     @objc private func didTapUpdateProfileButton() {
         coordinator?.toMyPage(self)
     }
+    
     private func setupTableView() {
         groupTableView.delegate = dataSourceDelegate
         groupTableView.dataSource = dataSourceDelegate
@@ -139,7 +141,9 @@ final class UserController: UIViewController {
         groupTableView.showsVerticalScrollIndicator = false
     }
 }
+
 extension UserController: UserDataSourceDelegateProtocol {
+    
     func userDataSourceDelegate(toSearchUser user: User?) {
         coordinator?.toSearchUser(user: user)
     }

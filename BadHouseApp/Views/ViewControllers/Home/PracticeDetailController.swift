@@ -1,10 +1,3 @@
-//
-//  PracticeDetailController.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/15.
-//
-
 import UIKit
 import CDAlertView
 import Charts
@@ -17,7 +10,9 @@ protocol PracticeDetailFlow {
     func toUserDetail(myData: User, user: User)
     func toChat(myData: User, user: User)
 }
+
 final class PracticeDetailController: UIViewController {
+    
     // MARK: - Properties
     @IBOutlet private weak var chatButton: UIButton!
     @IBOutlet private weak var practiceImageView: UIImageView!
@@ -58,19 +53,23 @@ final class PracticeDetailController: UIViewController {
     private let viewModel: PracticeDetailViewModel
     private lazy var rightButton = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
     private let disposeBag = DisposeBag()
+    
     init(viewModel: PracticeDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         setupMapView()
     }
+    
     private func setupMapView() {
         mapView.setRegion(defaultRegion, animated: true)
         let pin = MKPointAnnotation()
@@ -81,6 +80,7 @@ final class PracticeDetailController: UIViewController {
     @IBAction private func didTapChatButton(_ sender: Any) {
         coordinator?.toChat(myData: viewModel.myData!, user: viewModel.user!)
     }
+    
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
         coordinator?.toCircleDetail(myData: viewModel.myData!, circle: viewModel.circle!)
     }
@@ -123,6 +123,7 @@ final class PracticeDetailController: UIViewController {
     @objc private func didTapRightButton() {
         viewModel.inputs.takePartInPractice()
     }
+    
     @IBAction private func didTapUserButton(_ sender: Any) {
         coordinator?.toUserDetail(myData: viewModel.myData!, user: viewModel.user!)
     }

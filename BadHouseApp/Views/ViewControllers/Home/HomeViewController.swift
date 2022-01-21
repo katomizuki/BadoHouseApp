@@ -6,6 +6,7 @@ import CoreLocation
 import MapKit
 import UserNotifications
 import CDAlertView
+
 protocol HomeFlow: AnyObject {
     func toMap(practices: [Practice], lat: Double, lon: Double)
     func toMakeEvent()
@@ -13,7 +14,9 @@ protocol HomeFlow: AnyObject {
     func toPracticeDetail(_ practice: Practice)
     func toAuthentication(_ vc: UIViewController)
 }
+
 final class HomeViewController: UIViewController {
+    
     // MARK: - Properties
     private var locationManager: CLLocationManager!
     private var (myLatitude, myLongitude) = (Double(), Double())
@@ -21,6 +24,7 @@ final class HomeViewController: UIViewController {
     var coordinator: HomeFlow?
     private let viewModel = HomeViewModel(practiceAPI: PracticeServie())
     @IBOutlet private weak var collectionView: UICollectionView!
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +34,12 @@ final class HomeViewController: UIViewController {
         setupBinding()
         setupNavBarButton()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.willAppear()
     }
+    
     private func setupNavBarButton() {
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
                                         style: .plain,
@@ -55,17 +61,21 @@ final class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationItem.backButtonDisplayMode = .minimal
     }
+    
     @objc private func didTapMapButton() {
         coordinator?.toMap(practices: viewModel.practiceRelay.value,
                            lat: myLatitude,
                            lon: myLongitude)
     }
+    
     @objc private func didTapDetailSearchButton() {
         coordinator?.toDetailSearch(self, practices: viewModel.practiceRelay.value)
     }
+    
     @objc private func didTapMakeEventButton() {
         coordinator?.toMakeEvent()
     }
+    
     private func setupBinding() {
         
         viewModel.outputs.isAuth.bind { [weak self] _ in
@@ -91,7 +101,7 @@ final class HomeViewController: UIViewController {
         viewModel.outputs.reload.subscribe(onNext: { [weak self] _ in
             self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
-
+        
     }
     
     private func setupCollectionView() {
@@ -102,18 +112,23 @@ final class HomeViewController: UIViewController {
         collectionView.register(EventInfoCell.nib(), forCellWithReuseIdentifier: EventInfoCell.id)
         collectionView.showsVerticalScrollIndicator = false
     }
+    
     private func setupLocationManager() {
         locationManager = CLLocationManager()
         guard let locationManager = locationManager else { return }
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        let status = CLLocationManager.authorizationStatus()
-        if status == .authorizedWhenInUse {
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
             locationManager.distanceFilter = 10
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
+        case .notDetermined, .denied, .restricted:
+            print("")
+        default:break
         }
     }
+    
     @objc private func didTapRefreshButton() {
         viewModel.inputs.refresh()
     }
@@ -127,7 +142,20 @@ extension HomeViewController: CLLocationManagerDelegate {
         myLatitude = latitude
         myLongitude = longitude
     }
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.distanceFilter = 10
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+        case .notDetermined, .denied, .restricted:
+            print("")
+        default:break
+        }
+    }
 }
+
 extension HomeViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell, practice: Practice) {
         let alertVC = AlertProvider.postAlertVC(practice) { error in
@@ -139,6 +167,7 @@ extension HomeViewController: EventInfoCellDelegate {
         present(alertVC, animated: true)
     }
 }
+
 extension HomeViewController: PracticeSearchControllerDelegate {
     func eventSearchControllerDismiss(practices: [Practice], vc: PracticeSearchController) {
         vc.dismiss(animated: true)

@@ -1,8 +1,10 @@
 import UIKit
 
 final class FriendListCoordinator: Coordinator, FriendListFlow {
+    
     let navigationController: UINavigationController
     let viewModel: FriendsListViewModel
+    
     init(navigationController: UINavigationController, viewModel: FriendsListViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel

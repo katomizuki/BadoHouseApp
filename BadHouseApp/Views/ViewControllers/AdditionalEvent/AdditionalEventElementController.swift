@@ -39,13 +39,16 @@ final class AdditionalEventElementController: UIViewController {
         let button = UIBarButtonItem(title: "次へ", style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
+    
     init(viewModel: MakeEventThirdViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
@@ -53,6 +56,7 @@ final class AdditionalEventElementController: UIViewController {
         navigationItem.title = "3/4"
         navigationItem.rightBarButtonItem = rightButton
     }
+    
     private func setupBinding() {
         
         placeButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
@@ -60,14 +64,17 @@ final class AdditionalEventElementController: UIViewController {
             self.coordinator?.toAddtionalPlace()
         }).disposed(by: disposeBag)
     }
+    
     @IBAction private func courtStepper(_ sender: UIStepper) {
         courtCountLabel.text =  String(Int(sender.value))
         viewModel.inputs.changedCourtCount(Int(sender.value))
     }
+    
     @IBAction private func gatherStepper(_ sender: UIStepper) {
         gatherCountLabel.text = String(Int(sender.value))
         viewModel.inputs.changedGatherCount(Int(sender.value))
     }
+    
     private func setPicker(pickerView: UIPickerView, textField: UITextField) {
         pickerView.delegate = self
         textField.inputView = pickerView
@@ -85,18 +92,23 @@ final class AdditionalEventElementController: UIViewController {
         toolBar.setItems([flexibleButton, doneButtonItem], animated: true)
         textField.inputAccessoryView = toolBar
     }
+    
     @objc private func donePicker() {
         moneyTextField.endEditing(true)
     }
+    
     @objc private func didTapStartPicker(sender: UIDatePicker) {
         viewModel.inputs.changedStartPicker(sender.date)
     }
+    
     @objc private func didTapFinishButton(sender: UIDatePicker) {
         viewModel.inputs.changedFinishPicker(sender.date)
     }
+    
     @objc private func didTapLinePicker(sender: UIDatePicker) {
         viewModel.inputs.changedDeadLinePicker(sender.date)
     }
+    
     @objc private func didTapNextButton() {
         guard let text = self.moneyTextField.text else { return }
         var dic = self.viewModel.dic
@@ -106,8 +118,8 @@ final class AdditionalEventElementController: UIViewController {
                                  user: self.viewModel.user,
                                  dic: dic)
     }
-    
 }
+
 // MARK: - UIPickerViewDelegate
 extension AdditionalEventElementController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -117,6 +129,7 @@ extension AdditionalEventElementController: UIPickerViewDelegate {
         return R.array.moneyArray[row]
     }
 }
+
 // MARK: - UIPickerViewDataSource
 extension AdditionalEventElementController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -126,10 +139,10 @@ extension AdditionalEventElementController: UIPickerViewDataSource {
         return R.array.moneyArray.count
     }
 }
+
 extension AdditionalEventElementController: AddtionalPlaceControllerDelegate {
     func AddtionalPlaceController(vc: AddtionalPlaceController, placeName: String, addressName: String, latitude: Double, longitude: Double) {
         vc.dismiss(animated: true)
-//        addressNameLabel.text = addressName
         placeNameLabel.text = placeName
         viewModel.inputs.placeInfo(placeName, addressName, latitude, longitude)
     }

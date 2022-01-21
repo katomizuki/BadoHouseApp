@@ -1,10 +1,11 @@
 import UIKit
 
-protocol UserPageDataSourceDelegateProtocol: AnyObject {
+protocol UserPageDataSourceDelegateProtocol: NSObjectProtocol {
     func pop()
     func push(_ vc: UserLevelController)
     func present(_ vc: MyPageInfoPopoverController)
 }
+
 final class UserPageDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, PopDismissDelegate, UserLevelDelegate {
     
     let viewModel: UpdateUserInfoViewModel

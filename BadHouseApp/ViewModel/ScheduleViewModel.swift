@@ -17,6 +17,7 @@ protocol ScheduleViewModelType {
 }
 
 final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, ScheduleViewModelOutputs {
+    
     var inputs: ScheduleViewModelInputs { return self }
     var outputs: ScheduleViewModelOutputs { return self }
     var userAPI: UserServiceProtocol
@@ -26,11 +27,13 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
     var user: User
     var practiceList = BehaviorRelay<[Practice]>(value: [])
     private let disposeBag = DisposeBag()
+    
     init(userAPI: UserServiceProtocol, practiceAPI: PracticeServieProtocol, user: User) {
         self.userAPI = userAPI
         self.practiceAPI = practiceAPI
         self.user = user
     }
+    
     func willAppear() {
         userAPI.getMyJoinPractice(user: user).subscribe {[weak self] practices in
             self?.practiceList.accept(practices)
@@ -38,6 +41,5 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
-
     }
 }

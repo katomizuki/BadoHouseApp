@@ -4,16 +4,20 @@ import RxRelay
 protocol SearchUserViewModelInputs {
     var searchTextInput: AnyObserver<String> { get }
 }
+
 protocol SearchUserViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var usersRelay: BehaviorRelay<[User]> { get }
     var searchTextOutputs: PublishSubject<String> { get }
 }
+
 protocol SearchUserViewModelType {
     var inputs: SearchUserViewModelInputs { get }
     var outputs: SearchUserViewModelOutputs { get }
 }
+
 final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInputs, SearchUserViewModelOutputs {
+    
     var inputs: SearchUserViewModelInputs { return self }
     var outputs: SearchUserViewModelOutputs { return self }
     var isError = PublishSubject<Bool>()
@@ -25,6 +29,7 @@ final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInp
     private let disposeBag = DisposeBag()
     let user: User
     let applyAPI: ApplyServiceProtocol
+    
     init(userAPI: UserServiceProtocol, user: User, applyAPI: ApplyServiceProtocol) {
         self.user = user
         self.applyAPI = applyAPI
@@ -48,6 +53,7 @@ final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInp
             }
         }
     }
+    
     func notApplyFriend(_ user: User, myData: User) {
         applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
     }

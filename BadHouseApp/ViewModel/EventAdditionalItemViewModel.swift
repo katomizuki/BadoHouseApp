@@ -3,6 +3,7 @@ import RxSwift
 import RxRelay
 
 final class EventAdditionalItemViewModel {
+    
     let image: UIImage
     let circle: Circle
     let user: User

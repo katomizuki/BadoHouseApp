@@ -1,10 +1,13 @@
 import UIKit
 import CDAlertView
 import RxSwift
+
 protocol TalkFlow: AnyObject {
     func toChat(userId: String, myDataId: String, chatId: String)
 }
+
 final class TalkViewController: UIViewController, UIScrollViewDelegate {
+    
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     private lazy var refreshView: UIRefreshControl = {
@@ -15,6 +18,7 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
     private let viewModel = TalkViewModel(userAPI: UserService(), chatAPI: ChatService())
     var coordinator: TalkFlow?
     private let disposeBag = DisposeBag()
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,7 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
         navigationItem.backButtonDisplayMode = .minimal
         setupBinding()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.willAppear()
@@ -52,7 +57,6 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.reload.subscribe { [weak self] _ in
             self?.tableView.reloadData()
         }.disposed(by: disposeBag)
-
     }
 
     @objc private func handleRefresh() {

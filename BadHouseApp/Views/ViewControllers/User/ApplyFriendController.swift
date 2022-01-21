@@ -3,21 +3,26 @@ import RxSwift
 import SDWebImage
 
 final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
+    
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: ApplyFriendsViewModel
+    private let disposeBag = DisposeBag()
+    
     init(viewModel: ApplyFriendsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
-    private let disposeBag = DisposeBag()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
         navigationItem.title = "バド友申請一覧"
     }
+    
     private func setupBinding() {
         tableView.register(ApplyUserListCell.nib(), forCellReuseIdentifier: ApplyUserListCell.id)
         tableView.rowHeight = 60
@@ -34,7 +39,6 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
             cell.configure(item)
             cell.delegate = self
         }.disposed(by: disposeBag)
-
     }
 }
 

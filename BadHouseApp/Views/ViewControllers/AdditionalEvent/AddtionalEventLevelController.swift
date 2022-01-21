@@ -8,7 +8,9 @@ protocol AddtionalEventLevelFlow {
                 circle: Circle,
                 user: User)
 }
+
 final class AddtionalEventLevelController: UIViewController {
+    
     private let disposeBag = DisposeBag()
     @IBOutlet private weak var maxLabel: UILabel!
     @IBOutlet private weak var maxSlider: UISlider!
@@ -24,13 +26,16 @@ final class AddtionalEventLevelController: UIViewController {
                                      action: #selector(didTapNextButton))
         return button
     }()
+    
     init(viewModel: MakeEventSecondViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
@@ -40,11 +45,13 @@ final class AddtionalEventLevelController: UIViewController {
         navigationItem.title = "2/4"
         navigationItem.rightBarButtonItem = rightButton
     }
+    
     private func setupTableView() {
         circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         circleTableView.separatorColor = .darkGray
         circleTableView.allowsMultipleSelection = false
     }
+    
     private func setupBinding() {
         
         viewModel.outputs.minLevelText.subscribe(onNext: { [weak self] text in
@@ -77,17 +84,21 @@ final class AddtionalEventLevelController: UIViewController {
             cell.accessoryType = .none
         }).disposed(by: disposeBag)
     }
+    
     // MARK: - IBAction
     @IBAction private func minLevelSliderChanged(_ sender: UISlider) {
         viewModel.inputs.minLevel.onNext(sender.value)
     }
+    
     @IBAction private func maxLevelSliderChanged(_ sender: UISlider) {
         viewModel.inputs.maxLevel.onNext(sender.value)
     }
+    
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
         let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
         present(controller, animated: true)
     }
+    
     @objc private func didTapNextButton() {
         guard let circle = self.viewModel.circle else { return }
         guard let user = self.viewModel.user else { return }

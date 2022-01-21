@@ -8,6 +8,7 @@ protocol HomeViewModelInputs {
     func search(_ practices: [Practice])
     func refresh()
 }
+
 protocol HomeViewModelOutputs {
     var isNetWorkError: PublishSubject<Void> { get }
     var isAuth: PublishSubject<Void> { get }
@@ -15,11 +16,14 @@ protocol HomeViewModelOutputs {
     var practiceRelay: BehaviorRelay<[Practice]> { get }
     var reload: PublishSubject<Void> { get }
 }
+
 protocol HomeViewModelType {
     var inputs: HomeViewModelInputs { get }
     var outputs: HomeViewModelOutputs { get }
 }
+
 final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewModelType {
+    
     var isNetWorkError: PublishSubject<Void> = PublishSubject<Void>()
     var isAuth: PublishSubject<Void> = PublishSubject<Void>()
     var inputs: HomeViewModelInputs { return self }
@@ -34,11 +38,13 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
         self.practiceAPI = practiceAPI
         fetchPractices()
     }
+    
     func didLoad() {
         if let uid =  Auth.auth().currentUser?.uid {
             UserService.saveFriendId(uid: uid)
         }
     }
+    
     func willAppear() {
         
         if Auth.auth().currentUser == nil {
@@ -48,14 +54,16 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
         } else {
             fetchPractices()
         }
-        
     }
+    
     func search(_ practices: [Practice]) {
         practiceRelay.accept(practices)
     }
+    
     func refresh() {
         fetchPractices()
     }
+    
     private func fetchPractices() {
         practiceAPI.getPractices().subscribe { [weak self] practices in
             self?.practiceRelay.accept(practices)

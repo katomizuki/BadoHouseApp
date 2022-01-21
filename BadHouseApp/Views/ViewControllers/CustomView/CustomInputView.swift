@@ -1,15 +1,9 @@
-//
-//  CustomInputView.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/12/25.
-//
-
 import UIKit
 
 protocol InputDelegate: AnyObject {
     func inputView(inputView: CustomInputAccessoryView, message: String)
 }
+
 final class CustomInputAccessoryView: UIView {
     // MARK: - Properties
     weak var delegate: InputDelegate?
@@ -80,9 +74,11 @@ final class CustomInputAccessoryView: UIView {
         guard let text = messageInputTextView.text else { return }
         self.delegate?.inputView(inputView: self, message: text)
     }
+    
     @objc func textDidChange() {
         placeholder.isHidden = !self.messageInputTextView.isHidden
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

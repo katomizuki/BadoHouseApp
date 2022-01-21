@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  BadHouseApp
-//
-//  Created by ミズキ on 2021/09/02.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

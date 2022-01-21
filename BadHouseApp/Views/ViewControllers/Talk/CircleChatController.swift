@@ -15,19 +15,24 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
     var coordinator: ChatCoordinator?
     private let viewModel: ChatViewModel
     private let disposeBag = DisposeBag()
+    
     override var inputAccessoryView: UIView? {
         return customInputView
     }
+    
     override var canBecomeFirstResponder: Bool {
         return true
     }
+    
     init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +40,14 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
         setupTableView()
         setupBinding()
     }
+    
     // MARK: - SetupMethod
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.register(ChatCell.nib(), forCellReuseIdentifier: ChatCell.id)
         tableView.rowHeight = UITableView.automaticDimension
-        
     }
+    
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
@@ -54,9 +60,7 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
         viewModel.outputs.reload.subscribe { [weak self] _ in
             self?.tableView.reloadData()
         }.disposed(by: disposeBag)
-
     }
-   
 }
 // MARK: - InputDelegate
 extension CircleChatController: InputDelegate {

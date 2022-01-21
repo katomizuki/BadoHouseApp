@@ -4,10 +4,12 @@ import RxCocoa
 import FirebaseAuth
 import RxGesture
 import SDWebImage
+// swiftlint:disable weak_delegate
 protocol UserPageFlow {
     func toMyLevel()
     func toDismiss()
 }
+
 final class UserPageController: UIViewController {
     
     // MARK: - Properties
@@ -25,7 +27,6 @@ final class UserPageController: UIViewController {
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet { userImageView.changeCorner(num: 45) }
     }
-    private let imagePicker = UIImagePickerController()
     @IBOutlet private weak var racketTextField: UITextField!
     @IBOutlet private weak var playerTextField: UITextField!
     @IBOutlet private weak var userIntroductionTextView: UITextView! {
@@ -34,6 +35,7 @@ final class UserPageController: UIViewController {
     @IBOutlet private weak var nameTextField: UITextField!
     private let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
     private lazy var dataSourceDelegate = UserPageDataSourceDelegate(viewModel: viewModel)
+    private let imagePicker = UIImagePickerController()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +54,15 @@ final class UserPageController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
     }
+    
     @objc private func didTapDismissButton() {
         self.dismiss(animated: true)
     }
+    
     @objc private func didTapSaveButton() {
         viewModel.inputs.saveUser()
     }
+    
     // MARK: - SetupMethod
     private func setupTableView() {
         userInfoTableView.delegate = dataSourceDelegate
@@ -66,6 +71,7 @@ final class UserPageController: UIViewController {
         userInfoTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         imagePicker.delegate = self
     }
+    
     private func setupBinding() {
         userImageView.rx
             .tapGesture()
@@ -124,7 +130,9 @@ extension UserPageController: UINavigationControllerDelegate, UIImagePickerContr
         self.dismiss(animated: true, completion: nil)
     }
 }
+
 extension UserPageController: UserPageDataSourceDelegateProtocol {
+    
     func pop() {
         navigationController?.popViewController(animated: true)
     }

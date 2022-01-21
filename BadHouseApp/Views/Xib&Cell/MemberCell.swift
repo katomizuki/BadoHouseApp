@@ -2,6 +2,7 @@ import UIKit
 import SDWebImage
 
 final class MemberCell: UITableViewCell {
+    
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var memberImageView: UIImageView! {
         didSet {
@@ -10,10 +11,12 @@ final class MemberCell: UITableViewCell {
         }
     }
     static let id = String(describing: self)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
+    
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
