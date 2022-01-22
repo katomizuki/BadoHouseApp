@@ -16,29 +16,30 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
     static let id = String(describing: self)
     private let headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "所属サークル"
+        label.text = R.label.circle
         label.textColor = .systemBlue
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
+    
     private let searchButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
-            button.setTitle("サークルを探す", for: .normal)
+        button.setImage(UIImage(systemName: R.SFSymbols.magnifying), for: .normal)
+        button.setTitle(R.buttonTitle.searchCircle, for: .normal)
             button.tintColor = .systemBlue
             return button
     }()
     private let plusButton: UIButton = {
         let button = UIButton(type: .system)
-            button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-            button.setTitle("サークルを作る", for: .normal)
+        button.setImage(UIImage(systemName: R.SFSymbols.plus), for: .normal)
+        button.setTitle(R.buttonTitle.makeCircle, for: .normal)
             button.tintColor = .systemBlue
             return button
     }()
     private let applyButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "person.3"), for: .normal)
-        button.setTitle("申請済みのユーザー", for: .normal)
+        button.setImage(UIImage(systemName: R.SFSymbols.person3), for: .normal)
+        button.setTitle(R.buttonTitle.applyedUser, for: .normal)
         button.tintColor = .systemBlue
         return button
     }()
@@ -65,7 +66,7 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
                            paddingLeft: 10,
                            centerY: contentView.centerYAnchor)
         let searchAction = UIAction { _ in
-            self.delegate?.didTapSearchButton(option: self.headerLabel.text == "バド友" ? .user : .circle)
+            self.delegate?.didTapSearchButton(option: self.headerLabel.text == R.label.friends ? .user : .circle)
         }
         let plusAction = UIAction { _ in
             self.delegate?.didTapPlusTeamButton()
@@ -84,13 +85,13 @@ final class UserProfileHeaderView: UITableViewHeaderFooterView {
     
     func configure(_ section: Int) {
         if section == 1 {
-            headerLabel.text = "バド友"
-            searchButton.setTitle("バド友を探す", for: .normal)
+            headerLabel.text = R.label.friends
+            searchButton.setTitle(R.buttonTitle.searchFriends, for: .normal)
             plusButton.isHidden = true
             applyButton.isHidden = false
         } else if section == 0 {
-            headerLabel.text = "所属サークル"
-            searchButton.setTitle("サークルを探す", for: .normal)
+            headerLabel.text = R.label.circle
+            searchButton.setTitle(R.buttonTitle.searchCircle, for: .normal)
             plusButton.isHidden = false
             applyButton.isHidden = true
         }

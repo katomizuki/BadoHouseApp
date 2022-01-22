@@ -1,6 +1,6 @@
 import UIKit
 
-class AlertProvider {
+final class AlertProvider {
     
     static func makeAlertVC(_ user: User,
                             completion: @escaping(Error?) -> Void) -> UIAlertController {

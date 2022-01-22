@@ -36,7 +36,7 @@ final class AdditionalEventElementController: UIViewController {
     var coordinator: AddtionalPracticeElementFlow?
     private let viewModel: MakeEventThirdViewModel
     private lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "次へ", style: .done, target: self, action: #selector(didTapNextButton))
+        let button = UIBarButtonItem(title: R.buttonTitle.next, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     
@@ -53,7 +53,7 @@ final class AdditionalEventElementController: UIViewController {
         super.viewDidLoad()
         setupBinding()
         setPicker(pickerView: moneyPicker, textField: moneyTextField)
-        navigationItem.title = "3/4"
+        navigationItem.title = R.navTitle.three
         navigationItem.rightBarButtonItem = rightButton
     }
     

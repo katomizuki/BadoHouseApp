@@ -17,7 +17,7 @@ final class EventAdditionlItemsController: UIViewController {
     }
     @IBOutlet private weak var makeEventButton: UIButton!
     private lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "投稿する", style: .done, target: self, action: #selector(didTapNextButton))
+        let button = UIBarButtonItem(title: R.buttonTitle.post, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     private let disposeBag = DisposeBag()
@@ -36,7 +36,7 @@ final class EventAdditionlItemsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        navigationItem.title = "4/4"
+        navigationItem.title = R.navTitle.four
         navigationItem.rightBarButtonItem = rightButton
     }
     

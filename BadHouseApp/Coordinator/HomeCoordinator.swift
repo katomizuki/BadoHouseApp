@@ -9,7 +9,7 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func start() {
-        let controller = HomeViewController.init(nibName: R.nib.homeViewController, bundle: nil)
+        let controller = HomeViewController.init(nibName: R.nib.homeViewController.name, bundle: nil)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

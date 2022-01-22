@@ -17,7 +17,7 @@ final class AppCoordinator: Coordinator {
         let talkNavigationController = UINavigationController()
         let mainNavigationController = UINavigationController()
         
-        notificationNavigationController.tabBarItem = UITabBarItem(title: R.TabName.notification,image: UIImage(systemName: R.SFSymbols.bell),tag: 1)
+        notificationNavigationController.tabBarItem = UITabBarItem(title: R.TabName.notification, image: UIImage(systemName: R.SFSymbols.bell), tag: 1)
         userNavigationController.tabBarItem =
         UITabBarItem(title: R.TabName.user,
                      image: UIImage(systemName: R.SFSymbols.person),

@@ -27,7 +27,7 @@ final class AdditionalEventTitleController: UIViewController {
     private let viewModel = MakeEventFirstViewModel()
     var coordinator: AdditionalEventTitleFlow?
     private lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "次へ", style: .done, target: self, action: #selector(didTapNextButton))
+        let button = UIBarButtonItem(title: R.buttonTitle.next, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     
@@ -37,12 +37,13 @@ final class AdditionalEventTitleController: UIViewController {
         setupBinding()
         pickerView.delegate = self
         navigationItem.rightBarButtonItem = rightButton
-        navigationItem.title = "1/4"
+        navigationItem.title = R.navTitle.one
     }
 
     private func setupBinding() {
-        titleTextField.rx.text.asDriver().drive(onNext: { [weak self] text in
-            self?.viewModel.inputs.titleTextInputs.onNext(text ?? "")
+        titleTextField.rx.text.orEmpty
+            .asDriver().drive(onNext: { [weak self] text in
+            self?.viewModel.inputs.titleTextInputs.onNext(text)
         }).disposed(by: disposeBag)
 
         noImageView.rx.tapGesture()
@@ -61,7 +62,7 @@ final class AdditionalEventTitleController: UIViewController {
     @objc private func segmentTap(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         kindCircle = BadmintonCircle(rawValue: index)!.name
-        viewModel.practiceKind = kindCircle ?? "社会人サークル"
+        viewModel.practiceKind = kindCircle ?? ""
     }
     @objc private func didTapNextButton() {
         guard let title = self.viewModel.title else { return }

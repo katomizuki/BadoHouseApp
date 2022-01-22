@@ -37,7 +37,7 @@ final class CustomCell: UITableViewCell {
     }()
     let trashButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "trash"), for: UIControl.State.normal)
+        button.setImage(UIImage(systemName: R.SFSymbols.trash), for: UIControl.State.normal)
         return button
     }()
     // MARK: - LifeCycle

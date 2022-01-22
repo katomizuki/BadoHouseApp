@@ -14,7 +14,6 @@ final class UserPageController: UIViewController {
     
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let cellId = "cellId"
     var coordinator: UserPageFlow?
     @IBOutlet private weak var userInfoTableView: UITableView!
     @IBOutlet private weak var scrollView: UIView!
@@ -68,7 +67,7 @@ final class UserPageController: UIViewController {
         userInfoTableView.delegate = dataSourceDelegate
         userInfoTableView.dataSource = dataSourceDelegate
         dataSourceDelegate.delegate = self
-        userInfoTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        userInfoTableView.register(UITableViewCell.self, forCellReuseIdentifier: R.cellId)
         imagePicker.delegate = self
     }
     
@@ -82,7 +81,7 @@ final class UserPageController: UIViewController {
             }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.userSubject.subscribe(onNext: { [weak self] user in

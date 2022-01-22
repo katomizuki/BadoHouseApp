@@ -73,7 +73,7 @@ final class PracticeSearchController: UIViewController {
     }
     
     @objc private func didTapReloadButton() {
-        self.showCDAlert(title: "検索条件をクリアしました!", message: "", action: "OK", alertType: .success)
+        self.showCDAlert(title: R.alertMessage.searchClear, message: "", action: R.alertMessage.ok, alertType: .success)
         viewModel.inputs.refresh()
     }
     
@@ -91,7 +91,7 @@ final class PracticeSearchController: UIViewController {
         searchSelectionTableView.delegate = dataSourceDelegate
         searchSelectionTableView.dataSource = dataSourceDelegate
         dataSourceDelegate.delegate = self
-        searchSelectionTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        searchSelectionTableView.register(UITableViewCell.self, forCellReuseIdentifier: R.cellId)
     }
 }
 

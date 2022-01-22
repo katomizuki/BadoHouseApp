@@ -18,7 +18,7 @@ final class CustomInputAccessoryView: UIView {
     }()
     private lazy var sendButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        button.setImage(UIImage(systemName: R.SFSymbols.paperPlane), for: .normal)
         button.tintColor = .systemBlue
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         button.layer.borderColor = UIColor.white.cgColor
@@ -31,7 +31,7 @@ final class CustomInputAccessoryView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.textColor = .lightGray
-        label.text = "Aa"
+        label.text = R.placeholder.input
         return label
     }()
     // MARK: - Initialize

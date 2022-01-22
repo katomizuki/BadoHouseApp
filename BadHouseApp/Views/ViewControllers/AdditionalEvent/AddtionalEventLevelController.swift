@@ -20,7 +20,7 @@ final class AddtionalEventLevelController: UIViewController {
     private let viewModel: MakeEventSecondViewModel
     var coordinator: AddtionalEventLevelFlow?
     private lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "次へ",
+        let button = UIBarButtonItem(title: R.buttonTitle.next,
                                      style: .done,
                                      target: self,
                                      action: #selector(didTapNextButton))
@@ -42,12 +42,12 @@ final class AddtionalEventLevelController: UIViewController {
         minSlider.value = 0.0
         maxSlider.value = 1.0
         setupTableView()
-        navigationItem.title = "2/4"
+        navigationItem.title = R.navTitle.two
         navigationItem.rightBarButtonItem = rightButton
     }
     
     private func setupTableView() {
-        circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        circleTableView.register(UITableViewCell.self, forCellReuseIdentifier: R.cellId)
         circleTableView.separatorColor = .darkGray
         circleTableView.allowsMultipleSelection = false
     }
@@ -64,7 +64,7 @@ final class AddtionalEventLevelController: UIViewController {
             self.maxLabel.text = text
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, item, cell in
+        viewModel.outputs.circleRelay.bind(to: circleTableView.rx.items(cellIdentifier: R.cellId, cellType: UITableViewCell.self)) { _, item, cell in
             var configuration = cell.defaultContentConfiguration()
             configuration.text = item.name
             cell.selectionStyle = .none
@@ -95,7 +95,7 @@ final class AddtionalEventLevelController: UIViewController {
     }
     
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {
-        let controller = LevelDetailController.init(nibName: "LevelDetailController", bundle: nil)
+        let controller = LevelDetailController.init(nibName: R.nib.levelDetailController.name, bundle: nil)
         present(controller, animated: true)
     }
     

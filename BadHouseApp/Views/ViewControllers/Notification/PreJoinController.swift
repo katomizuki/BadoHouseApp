@@ -36,7 +36,7 @@ final class PreJoinController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
     }
 }

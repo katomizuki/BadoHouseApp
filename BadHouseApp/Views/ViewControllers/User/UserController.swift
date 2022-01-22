@@ -79,7 +79,7 @@ final class UserController: UIViewController {
         }).disposed(by: disposeBag)
 
         viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
-            self?.showCDAlert(title: "通信エラーになりました", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }).disposed(by: disposeBag)
         
         applyView.rx.tapGesture()
@@ -111,8 +111,8 @@ final class UserController: UIViewController {
     private func setupNavigationItem() {
         navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.tintColor = .systemBlue
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .done, target: self, action: #selector(didTapScheduleButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .done, target: self, action: #selector(didTapSettingButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.calendar), style: .done, target: self, action: #selector(didTapScheduleButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.gear), style: .done, target: self, action: #selector(didTapSettingButton))
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white

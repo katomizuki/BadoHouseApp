@@ -20,7 +20,7 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        navigationItem.title = "バド友申請一覧"
+        navigationItem.title = R.navTitle.friends
     }
     
     private func setupBinding() {
@@ -32,7 +32,7 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラー", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.applyRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyUserListCell.id, cellType: ApplyUserListCell.self)) { _, item, cell in

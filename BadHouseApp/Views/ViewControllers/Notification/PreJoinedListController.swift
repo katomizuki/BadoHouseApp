@@ -45,7 +45,7 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "承認しました", message: "", action: "OK", alertType: .success)
+            self?.showCDAlert(title: R.buttonTitle.join, message: "", action: R.alertMessage.ok, alertType: .success)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.navigationTitle.subscribe(onNext: { [weak self] text in

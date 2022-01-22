@@ -57,11 +57,11 @@ final class SearchUserCell: UITableViewCell {
     }
     
     private func changeButtonTitle(_ text: String?) -> String {
-        return text == "申請済み" ? "バド友申請" : "申請済み"
+        return text == R.buttonTitle.alreadyApply ? R.buttonTitle.apply : R.buttonTitle.alreadyApply
     }
     
     private func judgeButtonAction(_ text: String?) -> Bool {
-        return text == "申請済み"
+        return text == R.buttonTitle.alreadyApply
     }
     
 }

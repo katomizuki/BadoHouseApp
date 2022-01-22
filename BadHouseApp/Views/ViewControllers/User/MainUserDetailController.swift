@@ -127,13 +127,13 @@ protocol MainUserDetailFlow: AnyObject {
          
          viewModel.outputs.completed.subscribe { [weak self] _ in
              guard let self = self else { return }
-             self.applyFriendButton.setTitle("申請済み", for: .normal)
-             self.showCDAlert(title: "友だち申請しました", message: "", action: "OK", alertType: .success)
+             self.applyFriendButton.setTitle(R.buttonTitle.alreadyApply, for: .normal)
+             self.showCDAlert(title: R.alertMessage.applyFriend, message: "", action: R.alertMessage.ok, alertType: .success)
          }.disposed(by: disposeBag)
          
          viewModel.outputs.notApplyedCompleted.subscribe { [weak self] _ in
-             self?.applyFriendButton.setTitle("バド友申請", for: .normal)
-             self?.showCDAlert(title: "申請を取り下げました", message: "", action: "OK", alertType: .success)
+             self?.applyFriendButton.setTitle(R.buttonTitle.apply, for: .normal)
+             self?.showCDAlert(title: R.alertMessage.noApplyFriend, message: "", action: R.alertMessage.ok, alertType: .success)
          }.disposed(by: disposeBag)
      }
   
@@ -141,10 +141,10 @@ protocol MainUserDetailFlow: AnyObject {
      @objc private func didTapExpandedMenu() {
          let alertVC = AlertProvider.makeAlertVC(viewModel.user) { [weak self] error in
              if error != nil {
-                 self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .error)
+                 self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .error)
                  return
              }
-             self?.showCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
+             self?.showCDAlert(title: R.alertMessage.block, message: "", action: R.alertMessage.ok, alertType: .success)
          }
          present(alertVC, animated: true)
      }
@@ -162,7 +162,7 @@ protocol MainUserDetailFlow: AnyObject {
      }
      
      @IBAction func didTapApplyFriendButton(_ sender: UIButton) {
-         if sender.titleLabel?.text == "バド友申請" {
+         if sender.titleLabel?.text == R.alertMessage.applyFriend {
              viewModel.inputs.applyFriend()
          } else {
              viewModel.inputs.notApplyedFriend()

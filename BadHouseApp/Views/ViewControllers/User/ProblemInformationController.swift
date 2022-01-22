@@ -6,8 +6,8 @@ final class ProblemInformationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "不具合報告"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "報告", style: .done, target: self, action: #selector(didTapRightButton))
+        navigationItem.title = R.navTitle.problem
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.buttonTitle.report, style: .done, target: self, action: #selector(didTapRightButton))
     }
     
     @objc private func didTapRightButton() {
@@ -15,6 +15,6 @@ final class ProblemInformationController: UIViewController {
         guard let text = textView.text else { return }
         textView.text = ""
         Ref.ReportRef.document(id).setData(["problem": text])
-        self.showCDAlert(title: "報告ありがとうございます！", message: "", action: "OK", alertType: .success)
+        self.showCDAlert(title: R.alertMessage.thankYou, message: "", action: R.alertMessage.ok, alertType: .success)
     }
 }

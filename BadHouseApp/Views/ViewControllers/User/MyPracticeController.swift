@@ -35,7 +35,7 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
         tableView.rx.itemDeleted.bind(onNext: {[weak self] indexPath in
             let alertVC = AlertProvider.practiceAlertVC()
             guard let self = self else { return }
-            let gatherAction = UIAlertAction(title: "この練習の募集を停止する", style: .destructive) {  _ in
+            let gatherAction = UIAlertAction(title: R.buttonTitle.stopPractice, style: .destructive) {  _ in
                 self.viewModel.inputs.deletePractice(self.viewModel.practices.value[indexPath.row])
             }
             alertVC.addAction(gatherAction)

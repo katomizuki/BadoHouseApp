@@ -39,7 +39,7 @@ final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirst
     }
     var isTitle = BehaviorRelay<Bool>(value: false)
     var title: String?
-    var practiceImage: UIImage = UIImage(named: R.image.noImages)!
+    var practiceImage: UIImage = UIImage(named: R.image.noImages.name)!
     var practiceKind: String = BadmintonCircle(rawValue: 0)!.name
     private let disposeBag = DisposeBag()
     

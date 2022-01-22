@@ -51,7 +51,7 @@ final class PracticeDetailController: UIViewController {
     }
     var coordinator: PracticeDetailFlow?
     private let viewModel: PracticeDetailViewModel
-    private lazy var rightButton = UIBarButtonItem(title: "参加申請", style: .done, target: self, action: #selector(didTapRightButton))
+    private lazy var rightButton = UIBarButtonItem(title: R.buttonTitle.takePartIn, style: .done, target: self, action: #selector(didTapRightButton))
     private let disposeBag = DisposeBag()
     
     init(viewModel: PracticeDetailViewModel) {
@@ -115,7 +115,7 @@ final class PracticeDetailController: UIViewController {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe {[weak self] _  in
-            self?.showCDAlert(title: "参加申請しました", message: "", action: "OK", alertType: .success)
+            self?.showCDAlert(title: R.alertMessage.joinMessage, message: "", action: R.alertMessage.ok, alertType: .success)
             self?.navigationController?.popViewController(animated: true)
         }.disposed(by: disposeBag)
     }

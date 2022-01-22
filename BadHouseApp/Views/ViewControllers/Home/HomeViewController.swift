@@ -41,16 +41,16 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupNavBarButton() {
-        let mapButton = UIBarButtonItem(image: UIImage(systemName: "location.north.circle.fill"),
+        let mapButton = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.location),
                                         style: .plain,
                                         target: self,
                                         action: #selector(didTapMapButton))
-        let detailSearchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle.fill"),
+        let detailSearchButton = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.magnifyingglass),
                                                  style: .plain,
                                                  target: self,
                                                  action: #selector(didTapDetailSearchButton))
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapRefreshButton))
-        let makeEventButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"),
+        let makeEventButton = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.square),
                                               style: .plain,
                                               target: self,
                                               action: #selector(didTapMakeEventButton))
@@ -85,7 +85,7 @@ final class HomeViewController: UIViewController {
         
         viewModel.outputs.isNetWorkError.bind { [weak self] _ in
             guard let self = self else { return }
-            self.showCDAlert(title: "ネットワークがつながっておりません", message: "", action: "OK", alertType: .warning)
+            self.showCDAlert(title: R.alertMessage.notNet, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _, item, cell in
@@ -160,9 +160,9 @@ extension HomeViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell, practice: Practice) {
         let alertVC = AlertProvider.postAlertVC(practice) { error in
             if error != nil {
-                self.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .error)
+                self.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .error)
             }
-            self.showCDAlert(title: "通報しました", message: "", action: "OK", alertType: .success)
+            self.showCDAlert(title: R.alertMessage.block, message: "", action: R.alertMessage.ok, alertType: .success)
         }
         present(alertVC, animated: true)
     }

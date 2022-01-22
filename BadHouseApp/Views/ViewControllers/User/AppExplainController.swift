@@ -11,7 +11,7 @@ final class AppExplainController: UIViewController {
     }()
     private let textView: UITextView = {
         let textView = UITextView()
-        textView.text = "このアプリはB版となります。\n もし,ご質問、不適切な投稿が確認できた場合は、下記のTwitterアカウントにご連絡ください。\n また、このアプリは現在地から近い順に練習を表示させるために位置情報を使用させていただいております。"
+        textView.text = R.appExplain
         textView.font = .systemFont(ofSize: 15)
         textView.textColor = .label
         textView.isEditable = false
@@ -20,7 +20,7 @@ final class AppExplainController: UIViewController {
     }()
     private let accessLabel: UILabel = {
         let label = UILabel()
-        label.text = "連絡先@katopan0405"
+        label.text = R.address
         label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .label
         return label
