@@ -34,7 +34,7 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
     var levelPercentage = [Int]()
     var circleAPI: CircleServiceProtocol
     
-    private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+    private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     
     init(myData: User, circle: Circle, circleAPI: CircleServiceProtocol) {
         self.myData = myData

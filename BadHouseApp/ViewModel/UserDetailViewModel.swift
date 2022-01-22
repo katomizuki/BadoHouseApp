@@ -39,7 +39,7 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var myData: User
     var userAPI: UserServiceProtocol
     var applyAPI: ApplyServiceProtocol
-    let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
+    let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     var isApplyButtonHidden: Bool {
         return ids.contains(user.uid) || myData.uid == user.uid
     }
@@ -75,9 +75,9 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
             guard let self = self else { return }
             self.applies = applies
             if applies.filter({$0.toUserId == self.user.uid}).count != 0 {
-                self.applyButtonString.onNext("申請済み")
+                self.applyButtonString.onNext(R.buttonTitle.alreadyApply)
             } else {
-                self.applyButtonString.onNext("バド友申請")
+                self.applyButtonString.onNext(R.buttonTitle.apply)
             }
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)

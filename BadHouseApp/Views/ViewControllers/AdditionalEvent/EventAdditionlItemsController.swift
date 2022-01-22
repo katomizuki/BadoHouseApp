@@ -43,7 +43,7 @@ final class EventAdditionlItemsController: UIViewController {
     private func setupBinding() {
         
         viewModel.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
         
         viewModel.completed.subscribe { [weak self] _ in

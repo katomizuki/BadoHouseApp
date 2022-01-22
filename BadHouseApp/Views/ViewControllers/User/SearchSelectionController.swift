@@ -5,8 +5,8 @@ protocol SearchSelectionControllerDelegate: AnyObject {
                                           selection: SearchSelection,
                                           text: String)
 }
-class SearchSelectionController: UIViewController {
-    private let cellId = "popCellId"
+final class SearchSelectionController: UIViewController {
+
     private var cellArray = [String]()
     var keyWord: SearchSelection = .level
     weak var delegate: SearchSelectionControllerDelegate?
@@ -16,7 +16,7 @@ class SearchSelectionController: UIViewController {
         tb.delegate = dataSourceDelegate
         tb.dataSource = dataSourceDelegate
         tb.separatorStyle = .none
-        tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tb.register(UITableViewCell.self, forCellReuseIdentifier: R.cellId)
         return tb
     }()
     var (age,

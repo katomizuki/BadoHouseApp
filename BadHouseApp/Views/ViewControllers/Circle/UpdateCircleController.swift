@@ -179,7 +179,7 @@ final class UpdateCircleController: UIViewController {
             }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラーです", message: "", action: "OK", alertType: .warning)
+            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe { [weak self] _ in
@@ -204,7 +204,7 @@ extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerC
             case .icon:
                 iconImage.image = image.withRenderingMode(.alwaysOriginal)
                 viewModel.iconImage = image.withRenderingMode(.alwaysOriginal)
-            case .none:print("失敗")
+            case .none:print("")
             }
             
         }

@@ -33,7 +33,7 @@ final class CircleDetailController: UIViewController {
                 .foregroundColor: UIColor.systemGray,
                 .font: UIFont.boldSystemFont(ofSize: 12.0)
             ]
-            let string = NSAttributedString(string: "男女比",
+            let string = NSAttributedString(string: R.charts.genderPer,
                                             attributes: stringAttributes)
             pieView.centerAttributedText = string
         }
@@ -148,7 +148,7 @@ final class CircleDetailController: UIViewController {
                                            label: gender,
                                            data: genderArray[i]))
         }
-        let pieChartDataSet = PieChartDataSet(entries: entry, label: "男女比")
+        let pieChartDataSet = PieChartDataSet(entries: entry, label: R.charts.genderPer)
         pieChartDataSet.entryLabelFont = .boldSystemFont(ofSize: 12)
         pieChartDataSet.drawValuesEnabled = false
         pieChartDataSet.valueTextColor = .darkGray

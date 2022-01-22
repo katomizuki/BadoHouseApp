@@ -16,20 +16,18 @@ final class AppCoordinator: Coordinator {
         let userNavigationController = UINavigationController()
         let talkNavigationController = UINavigationController()
         let mainNavigationController = UINavigationController()
-
-        notificationNavigationController.tabBarItem = UITabBarItem(title: "お知らせ",
-                        image: UIImage(systemName: "bell.fill"),
-                        tag: 1)
+        
+        notificationNavigationController.tabBarItem = UITabBarItem(title: R.TabName.notification,image: UIImage(systemName: R.SFSymbols.bell),tag: 1)
         userNavigationController.tabBarItem =
-        UITabBarItem(title: "ユーザー",
-                     image: UIImage(systemName: "person.fill"),
+        UITabBarItem(title: R.TabName.user,
+                     image: UIImage(systemName: R.SFSymbols.person),
                      tag: 2)
-        talkNavigationController.tabBarItem = UITabBarItem(title: "トーク",
-                        image: UIImage(systemName: "bubble.left.fill"),
+        talkNavigationController.tabBarItem = UITabBarItem(title: R.TabName.talk,
+                                                           image: UIImage(systemName: R.SFSymbols.bubble),
                         tag: 3)
         mainNavigationController.tabBarItem =
-        UITabBarItem(title: "ホーム",
-                     image: UIImage(systemName: "homekit"),
+        UITabBarItem(title: R.TabName.home,
+                     image: UIImage(systemName: R.SFSymbols.home),
                      tag: 0)
         
         let notificationCoordinator = NotificationCoordinator(navigationController: notificationNavigationController)

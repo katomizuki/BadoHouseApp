@@ -25,7 +25,7 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
         viewModel.inputs.willAppear()
     }
     private func setupNavigationBar() {
-        let rightButton = UIBarButtonItem(title: "サークルへ招待",
+        let rightButton = UIBarButtonItem(title: R.buttonTitle.inviteCircle,
                                           style: .done,
                                           target: self,
                                           action: #selector(didTapRightButton))

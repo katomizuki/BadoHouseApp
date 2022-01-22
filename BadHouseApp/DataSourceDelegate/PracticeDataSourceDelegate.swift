@@ -37,7 +37,7 @@ final class PracticeDataSourceDelegate: NSObject, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.cellId, for: indexPath)
         var configuration = cell.defaultContentConfiguration()
         guard let viewModel = viewModel else { return cell }
         configuration.text = SearchSelection(rawValue: indexPath.row)?.description

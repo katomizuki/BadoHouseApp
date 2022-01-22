@@ -13,7 +13,7 @@ final class CircleSearchController: UIViewController {
     var coordinator: CircleSearchFlow?
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
-            searchBar.placeholder = "場所名,サークル名等,検索"
+            searchBar.placeholder = R.placeholder.basic
         }
     }
     @IBOutlet private weak var tableView: UITableView!

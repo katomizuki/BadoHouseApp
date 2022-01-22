@@ -81,11 +81,11 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     }
     
     private func saveFriendsId(id: String) {
-        if UserDefaults.standard.object(forKey: "friends") != nil {
-            let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "friends")
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "friends")
+        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.friends) != nil {
+            let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.friends)
         } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: "friends")
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: R.UserDefaultsKey.friends)
         }
     }
 }

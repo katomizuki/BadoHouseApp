@@ -6,7 +6,6 @@ protocol MyPageInfoDataSourceDelegateProtocol: NSObjectProtocol {
 
 class MyPageInfoDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    private let cellId = "popCellId"
     weak var delegate: MyPageInfoDataSourceDelegateProtocol?
     private var cellArray = [String]()
     
@@ -19,7 +18,7 @@ class MyPageInfoDataSourceDelegate: NSObject, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.cellId, for: indexPath)
         var configuration = cell.defaultContentConfiguration()
         configuration.text = cellArray[indexPath.row]
         cell.contentConfiguration = configuration

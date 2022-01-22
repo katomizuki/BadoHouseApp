@@ -89,12 +89,12 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     }
     
     private func checkUserDefault() {
-        if UserDefaults.standard.object(forKey: "preJoin") != nil {
-            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "preJoin")
+        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.preJoin) != nil {
+            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
             array.append(practice.id)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "preJoin")
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.preJoin)
         } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: "preJoin")
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: R.UserDefaultsKey.preJoin)
         }
     }
 }

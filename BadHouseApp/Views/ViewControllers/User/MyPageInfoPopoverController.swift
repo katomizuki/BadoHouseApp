@@ -10,7 +10,6 @@ protocol PopDismissDelegate: AnyObject {
 final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
     weak var delegate: PopDismissDelegate?
-    private let cellId = "popCellId"
     var keyword: UserInfoSelection = .level
     private let dataSourceDelegate = MyPageInfoDataSourceDelegate()
     private lazy var tableView: UITableView = {
@@ -18,7 +17,7 @@ final class MyPageInfoPopoverController: UIViewController {
         tb.delegate = dataSourceDelegate
         tb.dataSource = dataSourceDelegate
         tb.separatorStyle = .none
-        tb.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tb.register(UITableViewCell.self, forCellReuseIdentifier: R.cellId)
         return tb
     }()
     var (age,

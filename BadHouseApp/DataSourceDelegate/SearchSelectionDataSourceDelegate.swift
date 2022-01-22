@@ -4,11 +4,10 @@ protocol SearchSelectionDataSourceDelegateProtocol: NSObjectProtocol {
     func searchSelectionDataSourceDelegate(_ text: String)
 }
 
-final class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+ class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var cellArray = [String]()
     weak var delegate: SearchSelectionDataSourceDelegateProtocol?
-    private let cellId = "popCellId"
     
     func initCellArray(_ array: [String]) {
         self.cellArray = array
@@ -20,7 +19,7 @@ final class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.cellId, for: indexPath)
         var configuration = cell.defaultContentConfiguration()
         configuration.text = cellArray[indexPath.row]
         cell.contentConfiguration = configuration

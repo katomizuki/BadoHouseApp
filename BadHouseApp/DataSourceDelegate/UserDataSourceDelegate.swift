@@ -75,9 +75,9 @@ final class UserDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         switch indexPath.section {
-        case 0:return "退会"
-        case 1:return "ブロック"
-        default:return ""
+        case 0:return R.swipeAction.withDraw
+        case 1:return R.swipeAction.block
+        default:return R.swipeAction.withDraw
         }
     }
 }

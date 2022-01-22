@@ -36,8 +36,8 @@ final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelO
     }
     
     func deletePractice(_ practice: Practice) {
-        DeleteService.deleteSubCollectionData(collecionName: "Users", documentId: user.uid, subCollectionName: "Practice", subId: practice.id)
-        DeleteService.deleteCollectionData(collectionName: "Practice", documentId: practice.id)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: user.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
+        DeleteService.deleteCollectionData(collectionName: R.Collection.Practice, documentId: practice.id)
     }
     
 }

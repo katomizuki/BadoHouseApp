@@ -103,9 +103,9 @@ extension AddtionalPlaceController: UISearchBarDelegate {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(search) { placemark, error in
                 if  error != nil {
-                    self.showCDAlert(title: "検索エラー",
-                                      message: "開催場所の正式名称を入力してください",
-                                      action: "OK",
+                    self.showCDAlert(title: R.alertMessage.searchError,
+                                     message: R.alertMessage.placeError,
+                                     action: R.alertMessage.ok,
                                       alertType: .error)
                     return
                 }

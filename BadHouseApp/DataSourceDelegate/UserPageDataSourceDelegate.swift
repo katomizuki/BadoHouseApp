@@ -9,7 +9,7 @@ protocol UserPageDataSourceDelegateProtocol: NSObjectProtocol {
 final class UserPageDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, PopDismissDelegate, UserLevelDelegate {
     
     let viewModel: UpdateUserInfoViewModel
-    private let cellId = "cellId"
+    private let cellId = R.cellId
     weak var delegate: UserPageDataSourceDelegateProtocol?
     
     init(viewModel: UpdateUserInfoViewModel) {

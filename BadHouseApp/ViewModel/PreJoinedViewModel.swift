@@ -44,8 +44,8 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
     }
     
     func permission(_ preJoined: PreJoined) {
-        DeleteService.deleteSubCollectionData(collecionName: "PreJoin", documentId: preJoined.fromUserId, subCollectionName: "Users", subId: preJoined.uid)
-        DeleteService.deleteSubCollectionData(collecionName: "PreJoined", documentId: preJoined.uid, subCollectionName: "Users", subId: preJoined.fromUserId)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)
         var list = preJoinedList.value
         list.remove(value: preJoined)
         preJoinedList.accept(list)

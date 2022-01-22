@@ -92,6 +92,61 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   static let appName = "バドハウス"
+  static let cellId = "cellId"
+    struct swipeAction {
+        static let block = "ブロック"
+        static let withDraw = "退会"
+    }
+    struct SFSymbols {
+        static let bell = "bell.fill"
+        static let person = "person.fill"
+        static let bubble = "bubble.left.fill"
+        static let home = "homekit"
+    }
+    struct TabName {
+        static let notification = "お知らせ"
+        static let user = "ユーザー"
+        static let talk = "トーク"
+        static let home = "ホーム"
+    }
+    struct UserDefaultsKey {
+        static let blocks = "blocks"
+        static let friends = "friends"
+        static let preJoin = "preJoin"
+    }
+    struct Collection {
+        static let ChatRoom = "ChatRoom"
+        static let Users = "Users"
+        static let Practice = "Practice"
+        static let PreJoined = "PreJoined"
+        static let PreJoin = "PreJoin"
+        static let Circle = "Circle"
+    }
+    struct buttonTitle {
+        static let alreadyApply = "申請済み"
+        static let apply = "バド友申請"
+        static let inviteCircle = "サークルへ招待"
+        static let inviteFriend = "友だちを招待して作成"
+        static let invite = "招待"
+    }
+    struct placeholder {
+        static let basic = "場所名,サークル名等,検索"
+    }
+    struct charts {
+        static let genderPer = "男女比"
+    }
+    struct alertMessage {
+        static let ok = "OK"
+        static let netError = "通信エラーです"
+        static let placeError = "開催場所の正式名称を入力してください"
+        static let searchError = "検索エラー"
+    }
+    struct navTitle {
+        static let one = "1/4"
+        static let two = "2/4"
+        static let three = "3/4"
+        static let four = "4/4"
+    }
     struct array {
         static let moneyArray = ["100", "200", "300", "400", "500", "600", "700", "800", "900",
                                  "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700",

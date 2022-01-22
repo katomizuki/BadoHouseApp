@@ -38,11 +38,11 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
     }
     
     func delete(_ preJoin: PreJoin) {
-        DeleteService.deleteSubCollectionData(collecionName: "PreJoin", documentId: preJoin.uid, subCollectionName: "Users", subId: preJoin.toUserId)
-        DeleteService.deleteSubCollectionData(collecionName: "PreJoined", documentId: preJoin.toUserId, subCollectionName: "Users", subId: preJoin.uid)
-        var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "preJoin")
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoin.uid, subCollectionName: R.Collection.Users, subId: preJoin.toUserId)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoin.toUserId, subCollectionName: R.Collection.Users, subId: preJoin.uid)
+        var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
         prejoins.remove(value: preJoin.id)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: "preJoin")
+        UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: R.UserDefaultsKey.preJoin)
         var list = preJoinList.value
         list.remove(value: preJoin)
         preJoinList.accept(list)

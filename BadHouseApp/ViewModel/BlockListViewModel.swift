@@ -21,12 +21,11 @@ final class BlockListViewModel: BlockListViewModelInputs, BlockListViewModelOutp
     var reload = PublishSubject<Void>()
     var blockListRelay = BehaviorRelay<[User]>(value: [])
     var isError = PublishSubject<Bool>()
-    private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
+    private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
     var inputs: BlockListViewModelInputs { return self }
     var outputs: BlockListViewModelOutputs { return self }
     
     func willAppear() {
-        print(blockIds)
         let group = DispatchGroup()
         var blockUsers = [User]()
         blockIds.forEach {
@@ -44,7 +43,7 @@ final class BlockListViewModel: BlockListViewModelInputs, BlockListViewModelOutp
     
     func removeBlock(_ user: User) {
         blockIds.remove(value: user.uid)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: "blocks")
+        UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: R.UserDefaultsKey.blocks)
         var list = blockListRelay.value
         list.remove(value: user)
         blockListRelay.accept(list)

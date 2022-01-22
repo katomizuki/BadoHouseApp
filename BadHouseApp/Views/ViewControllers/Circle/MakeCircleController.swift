@@ -64,7 +64,7 @@ final class MakeCircleController: UIViewController {
     }
     private func setupNavigationBarItem() {
         navigationController?.toolbar.tintColor = .systemBlue
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "友だちを招待して作成", style: .done, target: self, action: #selector(didTapMakeCircleButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.buttonTitle.inviteFriend, style: .done, target: self, action: #selector(didTapMakeCircleButton))
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     private func setupImagePicker() {
@@ -87,28 +87,28 @@ final class MakeCircleController: UIViewController {
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposeBag)
         
-        circleNameTextField.rx.text
+        circleNameTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.nameTextInput.onNext(text ?? "")
+                self?.viewModel.nameTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
-        placeNameTextField.rx.text
+        placeNameTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.placeTextInput.onNext(text ?? "")
+                self?.viewModel.placeTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
-        dateTextField.rx.text
+        dateTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.timeTextInput.onNext(text ?? "")
+                self?.viewModel.timeTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
-        priceNameTextField.rx.text
+        priceNameTextField.rx.text.orEmpty
             .asDriver()
             .drive { [weak self] text in
-                self?.viewModel.priceTextInput.onNext(text ?? "")
+                self?.viewModel.priceTextInput.onNext(text)
             }.disposed(by: disposeBag)
         
         viewModel.validRegisterDriver
@@ -199,7 +199,7 @@ extension MakeCircleController: UINavigationControllerDelegate, UIImagePickerCon
             case .icon:
                 groupImageView.image = image.withRenderingMode(.alwaysOriginal)
                 viewModel.form.icon = image.withRenderingMode(.alwaysOriginal)
-            case .none:print("失敗")
+            case .none:print("")
             }
             
         }

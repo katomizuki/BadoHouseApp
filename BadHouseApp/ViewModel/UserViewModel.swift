@@ -120,12 +120,12 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     }
     
     private func saveBlockUser(_ user: User) {
-        if UserDefaults.standard.object(forKey: "blocks") != nil {
-            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: "blocks")
+        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.blocks) != nil {
+            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
             array.append(user.uid)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: "blocks")
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.blocks)
         } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: "blocks")
+            UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: R.UserDefaultsKey.blocks)
         }
     }
     
@@ -141,9 +141,9 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         circleRelay.accept(circles)
         reload.onNext(())
         
-        DeleteService.deleteSubCollectionData(collecionName: "Users",
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
                                               documentId: user.uid,
-                                              subCollectionName: "Circle",
+                                              subCollectionName: R.Collection.Circle,
                                               subId: circle.id)
         circleAPI.withdrawCircle(user: user,
                                    circle: circle) { error in

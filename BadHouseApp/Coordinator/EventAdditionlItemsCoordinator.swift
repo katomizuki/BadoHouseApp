@@ -1,6 +1,7 @@
 import UIKit
 
 final class EventAdditionlItemsCoordinator: Coordinator, EventAdditionlItemsFlow {
+    
     let navigationController: UINavigationController
     let image: UIImage
     let user: User

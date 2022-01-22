@@ -59,7 +59,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
                     self.getChat(chatId: chatRoom.id)
                 }
             } else {
-                let id = Ref.UsersRef.document(self.myData.uid).collection("ChatRoom").document().documentID
+                let id = Ref.UsersRef.document(self.myData.uid).collection(R.Collection.ChatRoom).document().documentID
                 self.chatId = id
                 let dic: [String: Any] = ["id": id,
                                         "userId": self.user.uid,

@@ -26,7 +26,7 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "招待", style: .done, target: self, action: #selector(didTapRightButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.buttonTitle.invite, style: .done, target: self, action: #selector(didTapRightButton))
     }
     
     private func setupTableView() {
@@ -55,9 +55,9 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
         }).disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: "通信エラー",
+            self?.showCDAlert(title: R.alertMessage.netError,
                               message: "",
-                              action: "OK",
+                              action: R.alertMessage.ok,
                               alertType: .warning)
         }.disposed(by: disposeBag)
         
