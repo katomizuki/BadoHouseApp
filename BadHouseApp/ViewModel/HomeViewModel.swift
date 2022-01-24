@@ -15,6 +15,8 @@ protocol HomeViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var practiceRelay: BehaviorRelay<[Practice]> { get }
     var reload: PublishSubject<Void> { get }
+    var stopIndicator: PublishSubject<Void> { get }
+    var stopRefresh: PublishSubject<Void> { get }
 }
 
 protocol HomeViewModelType {
@@ -32,6 +34,8 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     var practiceRelay = BehaviorRelay<[Practice]>(value: [])
     var practiceAPI: PracticeServieProtocol
     var reload = PublishSubject<Void>()
+    var stopIndicator = PublishSubject<Void>()
+    var stopRefresh = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
     
     init(practiceAPI: PracticeServieProtocol) {
@@ -68,6 +72,8 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
         practiceAPI.getPractices().subscribe { [weak self] practices in
             self?.practiceRelay.accept(practices)
             self?.reload.onNext(())
+            self?.stopIndicator.onNext(())
+            self?.stopRefresh.onNext(())
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)

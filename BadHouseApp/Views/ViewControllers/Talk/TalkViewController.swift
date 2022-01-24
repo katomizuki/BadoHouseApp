@@ -15,9 +15,18 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
         view.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return view
     }()
-    private let viewModel = TalkViewModel(userAPI: UserService(), chatAPI: ChatService())
+    private let viewModel: TalkViewModel
     var coordinator: TalkFlow?
     private let disposeBag = DisposeBag()
+    
+    init(viewModel: TalkViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -34,7 +43,7 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
 
     private func setupTableView() {
         tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
-        tableView.addSubview(refreshView)
+        tableView.refreshControl = refreshView
     }
   
     private func setupBinding() {

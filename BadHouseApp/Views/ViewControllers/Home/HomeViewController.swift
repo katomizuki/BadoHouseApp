@@ -22,8 +22,27 @@ final class HomeViewController: UIViewController {
     private var (myLatitude, myLongitude) = (Double(), Double())
     private let disposeBag = DisposeBag()
     var coordinator: HomeFlow?
-    private let viewModel = HomeViewModel(practiceAPI: PracticeServie())
+    private let viewModel: HomeViewModel
     @IBOutlet private weak var collectionView: UICollectionView!
+    private let indicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        return indicator
+    }()
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -33,11 +52,19 @@ final class HomeViewController: UIViewController {
         setupCollectionView()
         setupBinding()
         setupNavBarButton()
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        indicatorView.startAnimating()
         viewModel.inputs.willAppear()
+    }
+    
+    private func setupUI() {
+        indicatorView.center = self.view.center
+        view.addSubview(indicatorView)
+        collectionView.refreshControl = refreshControl
     }
     
     private func setupNavBarButton() {
@@ -76,6 +103,10 @@ final class HomeViewController: UIViewController {
         coordinator?.toMakeEvent()
     }
     
+    @objc private func refreshCollectionView() {
+        viewModel.inputs.refresh()
+    }
+    
     private func setupBinding() {
         
         viewModel.outputs.isAuth.bind { [weak self] _ in
@@ -100,6 +131,14 @@ final class HomeViewController: UIViewController {
         
         viewModel.outputs.reload.subscribe(onNext: { [weak self] _ in
             self?.collectionView.reloadData()
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.stopIndicator.subscribe(onNext: { [weak self] _ in
+            self?.indicatorView.stopAnimating()
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.stopRefresh.subscribe(onNext: { [weak self] _ in
+            self?.refreshControl.endRefreshing()
         }).disposed(by: disposeBag)
         
     }

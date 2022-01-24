@@ -103,7 +103,7 @@ extension ScheduleController: SchduleCellDelegate {
     
     func onTapTrashButton(_ cell: SchduleCell) {
         guard let indexPath = practiceTableView.indexPath(for: cell) else { return }
-        present(AlertProvider.makeCancleVC(viewModel,row: indexPath.row), animated: true)
+        present(AlertProvider.makeCancleVC(viewModel, row: indexPath.row), animated: true)
         
 //        viewModel.inputs.deleteSchdule()
     }

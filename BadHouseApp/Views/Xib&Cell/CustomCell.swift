@@ -5,6 +5,7 @@ import SDWebImage
 protocol CalendarEventDelegate: AnyObject {
     func removeEvent(eventModel: Practice, cell: UITableViewCell)
 }
+
 final class CustomCell: UITableViewCell {
     // MARK: - Properties
     static let id = String(describing: self)

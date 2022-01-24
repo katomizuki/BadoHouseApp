@@ -9,7 +9,7 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func start() {
-        let controller = UserController.init(nibName: R.nib.userController.name, bundle: nil)
+        let controller = UserController.init(viewModel: UserViewModel(userAPI: UserService(), applyAPI: ApplyService(), circleAPI: CircleService()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
@@ -37,7 +37,7 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func toMyPage(_ vc: UIViewController) {
-        let nav = UINavigationController(rootViewController: UserPageController.init(nibName: R.nib.userPageController.name, bundle: nil))
+        let nav = UINavigationController(rootViewController: UserPageController.init(viewModel: UpdateUserInfoViewModel(userAPI: UserService())))
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }

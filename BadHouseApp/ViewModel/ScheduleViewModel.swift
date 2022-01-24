@@ -44,6 +44,6 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
         }.disposed(by: disposeBag)
     }
     func deleteSchdule(_ row: Int) {
-        // ここで削除する
+        //  ここで削除する
     }
 }

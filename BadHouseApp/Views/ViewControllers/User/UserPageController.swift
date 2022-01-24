@@ -32,9 +32,18 @@ final class UserPageController: UIViewController {
         didSet { userIntroductionTextView.changeCorner(num: 8) }
     }
     @IBOutlet private weak var nameTextField: UITextField!
-    private let viewModel = UpdateUserInfoViewModel(userAPI: UserService())
+    private let viewModel: UpdateUserInfoViewModel
     private lazy var dataSourceDelegate = UserPageDataSourceDelegate(viewModel: viewModel)
     private let imagePicker = UIImagePickerController()
+    
+    init(viewModel: UpdateUserInfoViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
