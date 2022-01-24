@@ -2,7 +2,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 struct Ref {
-    static let UsersRef = Firestore.firestore().collection("Users")
+    static let UsersRef = Firestore.firestore().collection(R.Collection.Users)
     static let StorageUserImageRef =  Storage.storage().reference().child("User/Image")
     static let CircleRef = Firestore.firestore().collection("Teams")
     static let StorageTeamImageRef = Storage.storage().reference().child("Team/Image")
@@ -11,10 +11,10 @@ struct Ref {
     static let ApplyRef = Firestore.firestore().collection("Apply")
     static let ApplyedRef = Firestore.firestore().collection("Applyed")
     static let MatchRef = Firestore.firestore().collection("Match")
-    static let PracticeRef = Firestore.firestore().collection("Practice")
+    static let PracticeRef = Firestore.firestore().collection(R.Collection.Practice)
     static let ChatRef = Firestore.firestore().collection("Chat")
-    static let PreJoinRef = Firestore.firestore().collection("PreJoin")
-    static let PreJoinedRef = Firestore.firestore().collection("PreJoined")
+    static let PreJoinRef = Firestore.firestore().collection(R.Collection.PreJoin)
+    static let PreJoinedRef = Firestore.firestore().collection(R.Collection.PreJoined)
     static let JoinRef = Firestore.firestore().collection("Join")
     static let NotificationRef = Firestore.firestore().collection("Notification")
     

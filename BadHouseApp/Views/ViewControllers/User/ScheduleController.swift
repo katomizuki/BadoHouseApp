@@ -67,6 +67,7 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         
         viewModel.outputs.practiceList.bind(to: practiceTableView.rx.items(cellIdentifier: SchduleCell.id, cellType: SchduleCell.self)) { _, item, cell in
             cell.configure(item)
+            cell.delegate = self
         }.disposed(by: disposeBag)
         
         practiceTableView.rx.itemSelected.bind { [weak self] indexPath in
@@ -96,5 +97,14 @@ extension ScheduleController: FSCalendarDelegate, FSCalendarDataSource {
             }
         }
         return color
+    }
+}
+extension ScheduleController: SchduleCellDelegate {
+    
+    func onTapTrashButton(_ cell: SchduleCell) {
+        guard let indexPath = practiceTableView.indexPath(for: cell) else { return }
+        present(AlertProvider.makeCancleVC(viewModel,row: indexPath.row), animated: true)
+        
+//        viewModel.inputs.deleteSchdule()
     }
 }

@@ -3,6 +3,7 @@ import RxSwift
 
 protocol ScheduleViewModelInputs {
     func willAppear()
+    func deleteSchdule(_ index: Int)
 }
 
 protocol ScheduleViewModelOutputs {
@@ -17,7 +18,7 @@ protocol ScheduleViewModelType {
 }
 
 final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, ScheduleViewModelOutputs {
-    
+  
     var inputs: ScheduleViewModelInputs { return self }
     var outputs: ScheduleViewModelOutputs { return self }
     var userAPI: UserServiceProtocol
@@ -41,5 +42,8 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
         } onFailure: { [weak self] _ in
             self?.isError.onNext(true)
         }.disposed(by: disposeBag)
+    }
+    func deleteSchdule(_ row: Int) {
+        // ここで削除する
     }
 }

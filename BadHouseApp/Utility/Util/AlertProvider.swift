@@ -16,6 +16,16 @@ final class AlertProvider {
         alertVC.addAction(canleAction)
         return alertVC
     }
+    static func makeCancleVC(_ viewModel: ScheduleViewModel, row: Int) -> UIAlertController {
+        let alertVC = UIAlertController(title: "練習をキャンセルしますか?", message: "必ず、主催者にチャットで確認をしてから行ってください", preferredStyle: .actionSheet)
+        let backAction = UIAlertAction(title: "閉じる", style: .cancel)
+        let cancleAction = UIAlertAction(title: "キャンセルする", style: .destructive) { _ in
+            viewModel.inputs.deleteSchdule(row)
+        }
+        alertVC.addAction(backAction)
+        alertVC.addAction(cancleAction)
+        return alertVC
+    }
     
     static func postAlertVC(_ practice: Practice,
                             completion: @escaping(Error?)->Void)->UIAlertController {
