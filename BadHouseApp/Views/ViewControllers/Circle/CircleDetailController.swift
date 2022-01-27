@@ -72,10 +72,12 @@ final class CircleDetailController: UIViewController {
                                       target: self,
                                       action: #selector(didTapRightButton))
     private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
+    
     init(viewModel: CircleDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -87,9 +89,11 @@ final class CircleDetailController: UIViewController {
         navigationItem.backButtonDisplayMode = .minimal
         navigationItem.rightBarButtonItems = [updateButton, rightButton]
     }
+    
     private func setupTableView() {
         teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
     }
+    
     private func setupBinding() {
         backGroundImageView.sd_setImage(with: viewModel.circle.backGroundUrl)
         iconImageView.sd_setImage(with: viewModel.circle.iconUrl)
@@ -139,6 +143,7 @@ final class CircleDetailController: UIViewController {
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         viewModel.inputs.changeMember(sender.selectedSegmentIndex)
     }
+    
     private func setupPieChart() {
         let genderArray = viewModel.genderPercentage
         var entry = [ChartDataEntry]()
@@ -156,6 +161,7 @@ final class CircleDetailController: UIViewController {
         let colors = [.blue, .red, UIColor.systemGreen]
         pieChartDataSet.colors = colors
     }
+    
     private func setupGraph() {
         let rawData = viewModel.levelPercentage
         barChartView.xAxis.labelCount = rawData.count
@@ -168,9 +174,11 @@ final class CircleDetailController: UIViewController {
         barChartView.data = data
         dataSet.colors = [.systemBlue]
     }
+    
     @objc private func didTapRightButton() {
         coordinator?.toInvite(circle: viewModel.circle, myData: viewModel.myData)
     }
+    
     @objc private func didTapEditButton() {
         coordinator?.toUpdate(circle: viewModel.circle)
     }
