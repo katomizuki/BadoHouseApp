@@ -73,6 +73,15 @@
 		D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4F27A94D6700B87D74 /* FirebaseFirestore */; };
 		D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */; };
 		D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD5327A94D6700B87D74 /* FirebaseStorage */; };
+		D346BD7227A966FA00B87D74 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7127A966FA00B87D74 /* PKHUD */; };
+		D346BD7527A967D900B87D74 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7427A967D900B87D74 /* FSCalendar */; };
+		D346BD7827A9687200B87D74 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7727A9687200B87D74 /* Charts */; };
+		D346BD7B27A968C100B87D74 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7A27A968C100B87D74 /* SDWebImage */; };
+		D346BD7E27A96BB000B87D74 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7D27A96BB000B87D74 /* KeychainAccess */; };
+		D346BD8127A96DD200B87D74 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD8027A96DD200B87D74 /* RxCocoa */; };
+		D346BD8327A96DD200B87D74 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD8227A96DD200B87D74 /* RxRelay */; };
+		D346BD8527A96DD200B87D74 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD8427A96DD200B87D74 /* RxSwift */; };
+		D346BD8827A96E3C00B87D74 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD8727A96E3C00B87D74 /* RxGesture */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
@@ -511,8 +520,17 @@
 				D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */,
 				D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */,
+				D346BD7E27A96BB000B87D74 /* KeychainAccess in Frameworks */,
+				D346BD7B27A968C100B87D74 /* SDWebImage in Frameworks */,
+				D346BD8527A96DD200B87D74 /* RxSwift in Frameworks */,
+				D346BD8827A96E3C00B87D74 /* RxGesture in Frameworks */,
+				D346BD8127A96DD200B87D74 /* RxCocoa in Frameworks */,
+				D346BD7827A9687200B87D74 /* Charts in Frameworks */,
 				D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */,
+				D346BD8327A96DD200B87D74 /* RxRelay in Frameworks */,
+				D346BD7527A967D900B87D74 /* FSCalendar in Frameworks */,
 				D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */,
+				D346BD7227A966FA00B87D74 /* PKHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,6 +1079,15 @@
 				D346BD4F27A94D6700B87D74 /* FirebaseFirestore */,
 				D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */,
 				D346BD5327A94D6700B87D74 /* FirebaseStorage */,
+				D346BD7127A966FA00B87D74 /* PKHUD */,
+				D346BD7427A967D900B87D74 /* FSCalendar */,
+				D346BD7727A9687200B87D74 /* Charts */,
+				D346BD7A27A968C100B87D74 /* SDWebImage */,
+				D346BD7D27A96BB000B87D74 /* KeychainAccess */,
+				D346BD8027A96DD200B87D74 /* RxCocoa */,
+				D346BD8227A96DD200B87D74 /* RxRelay */,
+				D346BD8427A96DD200B87D74 /* RxSwift */,
+				D346BD8727A96E3C00B87D74 /* RxGesture */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -1092,6 +1119,13 @@
 			mainGroup = D3BDB51B26E0525100C53780;
 			packageReferences = (
 				D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */,
+				D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */,
+				D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1655,6 +1689,62 @@
 				kind = branch;
 			};
 		};
+		D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pkluz/PKHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1682,6 +1772,51 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		D346BD7127A966FA00B87D74 /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
+		};
+		D346BD7427A967D900B87D74 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		D346BD7727A9687200B87D74 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		D346BD7A27A968C100B87D74 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		D346BD7D27A96BB000B87D74 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		D346BD8027A96DD200B87D74 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		D346BD8227A96DD200B87D74 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		D346BD8427A96DD200B87D74 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		D346BD8727A96E3C00B87D74 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

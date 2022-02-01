@@ -1,4 +1,5 @@
 import RxSwift
+import Foundation
 
 protocol CircleServiceProtocol {
     func getMembers(ids: [String], circle: Circle) -> Single<Circle>

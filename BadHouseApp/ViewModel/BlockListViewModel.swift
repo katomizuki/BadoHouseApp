@@ -1,5 +1,6 @@
 import RxRelay
 import RxSwift
+import Foundation
 
 protocol BlockListViewModelType {
     var inputs: BlockListViewModelInputs { get }

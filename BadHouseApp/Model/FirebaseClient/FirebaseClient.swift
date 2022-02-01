@@ -1,6 +1,5 @@
 import RxSwift
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 class FirebaseClient {
     
@@ -15,7 +14,7 @@ class FirebaseClient {
                 }
                 if let snapShot = snapShot {
                     guard let dic = snapShot.data() else { return }
-
+                    
                     let model = T.Model(dic: dic)
                         singleEvent(.success(model))
                 }

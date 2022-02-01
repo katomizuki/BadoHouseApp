@@ -5,10 +5,6 @@ PODS:
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
   - CDAlertView (0.11.0)
-  - Charts (3.6.0):
-    - Charts/Core (= 3.6.0)
-  - Charts/Core (3.6.0)
-  - FSCalendar (2.8.2)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
@@ -18,77 +14,37 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
   - IQKeyboardManagerSwift (6.5.9)
-  - KeychainAccess (4.2.2)
-  - PKHUD (5.3.0)
   - R.swift (6.1.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
-  - RxCocoa (6.2.0):
-    - RxRelay (= 6.2.0)
-    - RxSwift (= 6.2.0)
-  - RxGesture (4.0.3):
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - RxRelay (6.2.0):
-    - RxSwift (= 6.2.0)
-  - RxSwift (6.2.0)
-  - SDWebImage (5.12.3):
-    - SDWebImage/Core (= 5.12.3)
-  - SDWebImage/Core (5.12.3)
 
 DEPENDENCIES:
   - CDAlertView
-  - Charts
-  - FSCalendar
   - GoogleSignIn (~> 5.0.0)
   - IQKeyboardManagerSwift
-  - KeychainAccess
-  - PKHUD
   - R.swift
-  - RxCocoa (= 6.2.0)
-  - RxGesture
-  - RxSwift (= 6.2.0)
-  - SDWebImage
 
 SPEC REPOS:
   trunk:
     - AppAuth
     - CDAlertView
-    - Charts
-    - FSCalendar
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
-    - KeychainAccess
-    - PKHUD
     - R.swift
     - R.swift.Library
-    - RxCocoa
-    - RxGesture
-    - RxRelay
-    - RxSwift
-    - SDWebImage
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   CDAlertView: cd6624e857c85ad14560e2cd23d7eb25b983b590
-  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
-  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
-  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
-  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxGesture: abadd243fc36db74df43dfc893829ddde94f1a3d
-  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
-  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
 
-PODFILE CHECKSUM: 240ac6bfede35fa668e7716dd20231abc29508f6
+PODFILE CHECKSUM: 561719482dd28641eed235e76d2f29130d15b9c5
 
 COCOAPODS: 1.11.2

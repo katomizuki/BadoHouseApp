@@ -6,17 +6,10 @@ target 'BadHouseApp' do
   use_frameworks!
   inhibit_all_warnings!
   # Pods for BadHouseApp
-pod 'SDWebImage'
+
 pod 'IQKeyboardManagerSwift'
-pod 'FSCalendar'
-pod 'PKHUD'
 pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
-pod 'RxSwift', '6.2.0'
-pod 'RxCocoa', '6.2.0'
 pod 'R.swift'
-pod 'RxGesture'
-pod 'Charts'
-#pod 'Firebase/Crashlytics'
-pod 'KeychainAccess'
+
 end

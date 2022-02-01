@@ -1,5 +1,6 @@
 import RxSwift
 import RxRelay
+import Foundation
 
 protocol ApplyedUserListViewModelInputs {
     func willAppear()
