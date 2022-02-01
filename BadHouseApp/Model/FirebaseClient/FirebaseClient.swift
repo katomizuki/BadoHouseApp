@@ -1,5 +1,6 @@
 import RxSwift
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FirebaseClient {
     

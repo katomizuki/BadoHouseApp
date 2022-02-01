@@ -37,6 +37,7 @@ final class RuleController: UIViewController {
                         paddingLeft: 20)
     }
     
+    
     @objc private func back() {
         print(#function)
         self.delegate?.didTapBackButton(self)

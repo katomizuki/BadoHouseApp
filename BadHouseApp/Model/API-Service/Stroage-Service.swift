@@ -1,5 +1,5 @@
 import FirebaseStorage
-
+import UIKit
 struct StorageService {
     // MARK: - DownloadUrl
     static func downloadStorage(userIconRef: StorageReference,

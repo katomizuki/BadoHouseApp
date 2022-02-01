@@ -6,10 +6,6 @@ target 'BadHouseApp' do
   use_frameworks!
   inhibit_all_warnings!
   # Pods for BadHouseApp
-pod 'Firebase/Auth'
-pod 'Firebase/Firestore'
-pod 'Firebase'
-pod 'FirebaseStorage'
 pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
 pod 'FSCalendar'
@@ -21,6 +17,6 @@ pod 'RxCocoa', '6.2.0'
 pod 'R.swift'
 pod 'RxGesture'
 pod 'Charts'
-pod 'Firebase/Crashlytics'
+#pod 'Firebase/Crashlytics'
 pod 'KeychainAccess'
 end
