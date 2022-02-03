@@ -7,7 +7,6 @@ target 'BadHouseApp' do
   inhibit_all_warnings!
   # Pods for BadHouseApp
 
-pod 'IQKeyboardManagerSwift'
 pod "CDAlertView"
 pod 'GoogleSignIn', '~> 5.0.0'
 pod 'R.swift'

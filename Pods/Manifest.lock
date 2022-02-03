@@ -13,7 +13,6 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
-  - IQKeyboardManagerSwift (6.5.9)
   - R.swift (6.1.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
@@ -21,7 +20,6 @@ PODS:
 DEPENDENCIES:
   - CDAlertView
   - GoogleSignIn (~> 5.0.0)
-  - IQKeyboardManagerSwift
   - R.swift
 
 SPEC REPOS:
@@ -31,7 +29,6 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
-    - IQKeyboardManagerSwift
     - R.swift
     - R.swift.Library
 
@@ -41,10 +38,9 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
-  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
 
-PODFILE CHECKSUM: 561719482dd28641eed235e76d2f29130d15b9c5
+PODFILE CHECKSUM: 31157ad717f1d6a814aedbff2c8821c37762ab95
 
 COCOAPODS: 1.11.2

@@ -99,6 +99,7 @@
 		D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EF32771E0FE004FA773 /* NotificationCell.xib */; };
 		D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */; };
 		D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */; };
+		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -525,6 +526,7 @@
 				D346BD8527A96DD200B87D74 /* RxSwift in Frameworks */,
 				D346BD8827A96E3C00B87D74 /* RxGesture in Frameworks */,
 				D346BD8127A96DD200B87D74 /* RxCocoa in Frameworks */,
+				D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */,
 				D346BD7827A9687200B87D74 /* Charts in Frameworks */,
 				D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */,
 				D346BD8327A96DD200B87D74 /* RxRelay in Frameworks */,
@@ -1088,6 +1090,7 @@
 				D346BD8227A96DD200B87D74 /* RxRelay */,
 				D346BD8427A96DD200B87D74 /* RxSwift */,
 				D346BD8727A96E3C00B87D74 /* RxGesture */,
+				D370503327ABE91500373225 /* IQKeyboardManagerSwift */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -1126,6 +1129,7 @@
 				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1745,6 +1749,14 @@
 				kind = branch;
 			};
 		};
+		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1817,6 +1829,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		D370503327ABE91500373225 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
