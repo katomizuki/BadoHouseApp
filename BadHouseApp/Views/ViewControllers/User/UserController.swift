@@ -14,6 +14,7 @@ protocol UserFlow: AnyObject {
     func toSchedule(_ vc: UIViewController, user: User?)
     func toApplyUser(user: User?)
     func toApplyedUser(user: User?)
+    func toTodo()
 }
 
 final class UserController: UIViewController {
@@ -44,7 +45,7 @@ final class UserController: UIViewController {
     }
     @IBOutlet private weak var friendCountLabel: UILabel!
     private let disposeBag = DisposeBag()
-    private let viewModel:UserViewModel
+    private let viewModel: UserViewModel
     private lazy var dataSourceDelegate = UserDataSourceDelegate(viewModel: viewModel)
     var coordinator: UserFlow?
     
@@ -117,8 +118,19 @@ final class UserController: UIViewController {
     private func setupNavigationItem() {
         navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.tintColor = .systemBlue
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.calendar), style: .done, target: self, action: #selector(didTapScheduleButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: R.SFSymbols.gear), style: .done, target: self, action: #selector(didTapSettingButton))
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image:
+                                                                UIImage(systemName: R.SFSymbols.gear),
+                                                              style: .done,
+                                                              target: self,
+                                                              action: #selector(didTapSettingButton)),
+                                              UIBarButtonItem(image:
+                                                                UIImage(systemName: R.SFSymbols.list),
+                                                              style: .done,
+                                                              target: self,
+                                                              action: #selector(didTapTodoButton))]
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white
@@ -136,6 +148,10 @@ final class UserController: UIViewController {
     
     @objc private func didTapUpdateProfileButton() {
         coordinator?.toMyPage(self)
+    }
+    
+    @objc private func didTapTodoButton() {
+        coordinator?.toTodo()
     }
     
     private func setupTableView() {

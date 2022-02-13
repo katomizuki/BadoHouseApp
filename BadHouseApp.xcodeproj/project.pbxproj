@@ -99,6 +99,10 @@
 		D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3698EF32771E0FE004FA773 /* NotificationCell.xib */; };
 		D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */; };
 		D3698EFF27728DA9004FA773 /* UpdateUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */; };
+		D36E52EB27B9353200DC637C /* MyTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52E927B9353200DC637C /* MyTaskController.swift */; };
+		D36E52EC27B9353200DC637C /* MyTaskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36E52EA27B9353200DC637C /* MyTaskController.xib */; };
+		D36E52EE27B9375900DC637C /* MyTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */; };
+		D36E52F027B9383400DC637C /* MyTaskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52EF27B9383400DC637C /* MyTaskCoordinator.swift */; };
 		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
@@ -344,6 +348,10 @@
 		D3698EF32771E0FE004FA773 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		D3698EFA2771FADE004FA773 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewModel.swift; sourceTree = "<group>"; };
+		D36E52E927B9353200DC637C /* MyTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskController.swift; sourceTree = "<group>"; };
+		D36E52EA27B9353200DC637C /* MyTaskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTaskController.xib; sourceTree = "<group>"; };
+		D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskViewModel.swift; sourceTree = "<group>"; };
+		D36E52EF27B9383400DC637C /* MyTaskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskCoordinator.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -575,6 +583,7 @@
 				D3FF15D7277DA78F006355EF /* UpdateCircleCoordinator.swift */,
 				D3D62E8327887E6E00DCA027 /* ScheduleCoordinator.swift */,
 				D3D62E8B278925B600DCA027 /* SearchUserCoordinator.swift */,
+				D36E52EF27B9383400DC637C /* MyTaskCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -699,6 +708,20 @@
 			path = "Xib&Cell";
 			sourceTree = "<group>";
 		};
+		D36E52F127B93A0D00DC637C /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		D36E52F227B93A1200DC637C /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		D3886447276A274300FC4F07 /* AdditionalEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +802,8 @@
 				D3FF15E3277E7DF7006355EF /* MyPracticeController.swift */,
 				D3FF15E4277E7DF7006355EF /* MyPracticeController.xib */,
 				D3B22D832781625800EC8C10 /* SearchSelectionController.swift */,
+				D36E52E927B9353200DC637C /* MyTaskController.swift */,
+				D36E52EA27B9353200DC637C /* MyTaskController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -879,6 +904,8 @@
 		D3BDB52626E0525100C53780 /* BadHouseApp */ = {
 			isa = PBXGroup;
 			children = (
+				D36E52F227B93A1200DC637C /* UseCase */,
+				D36E52F127B93A0D00DC637C /* Flow */,
 				D3D3D380272194D100E2853A /* BadHouseApp.entitlements */,
 				D32E59952774AC5A00C59548 /* R.generated.swift */,
 				D3BDB52726E0525100C53780 /* AppDelegate.swift */,
@@ -993,6 +1020,7 @@
 				D3698EFE27728DA9004FA773 /* UpdateUserInfoViewModel.swift */,
 				D3FF15A82779F19A006355EF /* UserDetailViewModel.swift */,
 				D3B3C9BB275CE6F400B2CD2C /* UserViewModel.swift */,
+				D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1163,6 +1191,7 @@
 				D316072327675C31005FF41D /* AdditionalEventElementController.xib in Resources */,
 				D3FF15C1277AF979006355EF /* ApplyedUserListCell.xib in Resources */,
 				D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */,
+				D36E52EC27B9353200DC637C /* MyTaskController.xib in Resources */,
 				D3FF15B7277AD558006355EF /* ApplyUserListCell.xib in Resources */,
 				D301E391278472C90090CAF9 /* PreJoinedCell.xib in Resources */,
 				D3698EF52771E0FE004FA773 /* NotificationCell.xib in Resources */,
@@ -1406,6 +1435,7 @@
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
 				D3D57DDC277EFD6600BCBF0C /* PracticeDetailViewModel.swift in Sources */,
 				D3B22D8E27829F0400EC8C10 /* ChatRoom.swift in Sources */,
+				D36E52F027B9383400DC637C /* MyTaskCoordinator.swift in Sources */,
 				D3D62E9C278A863900DCA027 /* BlockListDataSourceDelegate.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */,
@@ -1430,6 +1460,7 @@
 				D31CD0052798CABD00513587 /* UserGetApplyTargetType.swift in Sources */,
 				D3886445276A214B00FC4F07 /* HomeViewController.swift in Sources */,
 				D31CCFFB2798C28000513587 /* FirebaseSubCollection.swift in Sources */,
+				D36E52EE27B9375900DC637C /* MyTaskViewModel.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
@@ -1458,6 +1489,7 @@
 				D3FFD334271EDCC300DE54ED /* Join-Service.swift in Sources */,
 				D3FF15C6277B3535006355EF /* KeyChainRepositry.swift in Sources */,
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,
+				D36E52EB27B9353200DC637C /* MyTaskController.swift in Sources */,
 				D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */,
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
 				D31CD0012798C60100513587 /* UserGetFriendsTargeType.swift in Sources */,

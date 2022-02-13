@@ -26,6 +26,7 @@ final class PreJoinController: UIViewController, UIScrollViewDelegate {
     
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
         viewModel.outputs.preJoinList.bind(to: tableView.rx.items(cellIdentifier: PreJoinCell.id, cellType: PreJoinCell.self)) {_, item, cell in
             cell.configure(item)
             cell.delegate = self

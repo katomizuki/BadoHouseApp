@@ -115,6 +115,7 @@ struct R: Rswift.Validatable {
         static let plus = "plus.circle"
         static let person3 = "person.3"
         static let trash = "trash"
+        static let list  = "list.bullet"
     }
     struct TabName {
         static let notification = "お知らせ"

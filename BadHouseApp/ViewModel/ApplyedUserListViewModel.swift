@@ -59,6 +59,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         }
         applyedRelay.accept(sbj)
         reload.onNext(())
+        
         UserService.getUserById(uid: applyed.fromUserId) { friend in
             self.applyAPI.match(user: self.user, friend: friend) { [weak self] result in
                 switch result {
