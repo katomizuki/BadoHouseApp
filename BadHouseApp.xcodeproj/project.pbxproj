@@ -103,6 +103,7 @@
 		D36E52EC27B9353200DC637C /* MyTaskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36E52EA27B9353200DC637C /* MyTaskController.xib */; };
 		D36E52EE27B9375900DC637C /* MyTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */; };
 		D36E52F027B9383400DC637C /* MyTaskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52EF27B9383400DC637C /* MyTaskCoordinator.swift */; };
+		D36E52F927B9B12500DC637C /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D36E52F827B9B12500DC637C /* ReSwift */; };
 		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
@@ -539,6 +540,7 @@
 				D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */,
 				D346BD8327A96DD200B87D74 /* RxRelay in Frameworks */,
 				D346BD7527A967D900B87D74 /* FSCalendar in Frameworks */,
+				D36E52F927B9B12500DC637C /* ReSwift in Frameworks */,
 				D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */,
 				D346BD7227A966FA00B87D74 /* PKHUD in Frameworks */,
 			);
@@ -715,11 +717,32 @@
 			path = Flow;
 			sourceTree = "<group>";
 		};
-		D36E52F227B93A1200DC637C /* UseCase */ = {
+		D36E52F327B9B03B00DC637C /* State */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = UseCase;
+			path = State;
+			sourceTree = "<group>";
+		};
+		D36E52F427B9B04000DC637C /* Action */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		D36E52F527B9B05E00DC637C /* ActionCreator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ActionCreator;
+			sourceTree = "<group>";
+		};
+		D36E52F627B9B06700DC637C /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reducer;
 			sourceTree = "<group>";
 		};
 		D3886447276A274300FC4F07 /* AdditionalEvent */ = {
@@ -904,7 +927,10 @@
 		D3BDB52626E0525100C53780 /* BadHouseApp */ = {
 			isa = PBXGroup;
 			children = (
-				D36E52F227B93A1200DC637C /* UseCase */,
+				D36E52F627B9B06700DC637C /* Reducer */,
+				D36E52F527B9B05E00DC637C /* ActionCreator */,
+				D36E52F427B9B04000DC637C /* Action */,
+				D36E52F327B9B03B00DC637C /* State */,
 				D36E52F127B93A0D00DC637C /* Flow */,
 				D3D3D380272194D100E2853A /* BadHouseApp.entitlements */,
 				D32E59952774AC5A00C59548 /* R.generated.swift */,
@@ -1119,6 +1145,7 @@
 				D346BD8427A96DD200B87D74 /* RxSwift */,
 				D346BD8727A96E3C00B87D74 /* RxGesture */,
 				D370503327ABE91500373225 /* IQKeyboardManagerSwift */,
+				D36E52F827B9B12500DC637C /* ReSwift */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -1158,6 +1185,7 @@
 				D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1781,6 +1809,14 @@
 				kind = branch;
 			};
 		};
+		D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -1861,6 +1897,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		D36E52F827B9B12500DC637C /* ReSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift" */;
+			productName = ReSwift;
 		};
 		D370503327ABE91500373225 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
