@@ -4,6 +4,9 @@ import IQKeyboardManagerSwift
 import UserNotifications
 import GoogleSignIn
 import Network
+import ReSwift
+
+let appStore = Store(reducer: appReduce, state: AppState())
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
