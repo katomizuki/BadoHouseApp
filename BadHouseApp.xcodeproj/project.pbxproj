@@ -104,6 +104,8 @@
 		D36E52EE27B9375900DC637C /* MyTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */; };
 		D36E52F027B9383400DC637C /* MyTaskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52EF27B9383400DC637C /* MyTaskCoordinator.swift */; };
 		D36E52F927B9B12500DC637C /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D36E52F827B9B12500DC637C /* ReSwift */; };
+		D36E52FB27B9B23A00DC637C /* CircleSearchFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52FA27B9B23A00DC637C /* CircleSearchFlow.swift */; };
+		D36E52FD27B9B29D00DC637C /* MakeCircleFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52FC27B9B29D00DC637C /* MakeCircleFlow.swift */; };
 		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
@@ -353,6 +355,8 @@
 		D36E52EA27B9353200DC637C /* MyTaskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTaskController.xib; sourceTree = "<group>"; };
 		D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskViewModel.swift; sourceTree = "<group>"; };
 		D36E52EF27B9383400DC637C /* MyTaskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskCoordinator.swift; sourceTree = "<group>"; };
+		D36E52FA27B9B23A00DC637C /* CircleSearchFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSearchFlow.swift; sourceTree = "<group>"; };
+		D36E52FC27B9B29D00DC637C /* MakeCircleFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleFlow.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -713,6 +717,8 @@
 		D36E52F127B93A0D00DC637C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				D36E52FA27B9B23A00DC637C /* CircleSearchFlow.swift */,
+				D36E52FC27B9B29D00DC637C /* MakeCircleFlow.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1453,6 +1459,7 @@
 				D31CD0102798DB2400513587 /* ChatGetTargetType.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D31CD0122798DB3C00513587 /* NotificationGetTargetType.swift in Sources */,
+				D36E52FD27B9B29D00DC637C /* MakeCircleFlow.swift in Sources */,
 				D3FF15AB277AA9CF006355EF /* Apply-Service.swift in Sources */,
 				D3FF15C8277B3D60006355EF /* UserDefaultsRepositry.swift in Sources */,
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
@@ -1537,6 +1544,7 @@
 				D3FF15BD277AF45F006355EF /* ApplyedUserListViewModel.swift in Sources */,
 				D3886413276A03E000FC4F07 /* PracticeDetailController.swift in Sources */,
 				D3BDB56426E0B05D00C53780 /* User.swift in Sources */,
+				D36E52FB27B9B23A00DC637C /* CircleSearchFlow.swift in Sources */,
 				D3D62E9E278A885A00DCA027 /* PracticeDataSourceDelegate.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
 				D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */,

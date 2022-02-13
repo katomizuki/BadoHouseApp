@@ -3,11 +3,6 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-protocol MakeCircleFlow {
-    func toInvite(_ user: User, form: Form?)
-    func pop()
-}
-
 enum ImageSelection {
     case backGround
     case icon

@@ -2,10 +2,6 @@ import UIKit
 import CDAlertView
 import RxSwift
 
-protocol CircleSearchFlow {
-    func toCircleDetail(myData: User, circle: Circle?)
-}
-
 final class CircleSearchController: UIViewController {
     // MARK: - properties
     private let viewModel: SearchCircleViewModel
