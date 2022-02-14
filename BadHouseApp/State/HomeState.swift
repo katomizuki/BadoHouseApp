@@ -7,6 +7,6 @@
 
 import ReSwift
 
-struct MainState: StateType {
-    
+struct HomeState: StateType {
+    var practices: [Practice] = []
 }

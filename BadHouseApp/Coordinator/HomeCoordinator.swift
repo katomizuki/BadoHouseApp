@@ -9,7 +9,9 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func start() {
-        let controller = HomeViewController.init(viewModel: HomeViewModel(practiceAPI: PracticeServie()))
+        let controller = HomeViewController.init(viewModel: HomeViewModel(practiceAPI: PracticeServie(),
+                                                                          store: appStore,
+                                                                          actionCreator: HomeActionCreator(practiceAPI: PracticeServie())))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

@@ -108,10 +108,10 @@
 		D36E52FD27B9B29D00DC637C /* MakeCircleFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52FC27B9B29D00DC637C /* MakeCircleFlow.swift */; };
 		D36E52FF27B9C36E00DC637C /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E52FE27B9C36E00DC637C /* AppReducer.swift */; };
 		D36E530127B9C3A800DC637C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530027B9C3A800DC637C /* AppState.swift */; };
-		D36E530327B9C5A800DC637C /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530227B9C5A800DC637C /* MainState.swift */; };
-		D36E530527B9C64000DC637C /* MainActionCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530427B9C64000DC637C /* MainActionCreators.swift */; };
-		D36E530727B9C69300DC637C /* MainAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530627B9C69300DC637C /* MainAction.swift */; };
-		D36E530927B9C6E200DC637C /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530827B9C6E200DC637C /* MainReducer.swift */; };
+		D36E530327B9C5A800DC637C /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530227B9C5A800DC637C /* HomeState.swift */; };
+		D36E530527B9C64000DC637C /* HomeActionCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530427B9C64000DC637C /* HomeActionCreators.swift */; };
+		D36E530727B9C69300DC637C /* HomeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530627B9C69300DC637C /* HomeAction.swift */; };
+		D36E530927B9C6E200DC637C /* HomeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530827B9C6E200DC637C /* HomeReducer.swift */; };
 		D36E530B27B9D71000DC637C /* CircleDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530A27B9D71000DC637C /* CircleDetailFlow.swift */; };
 		D36E530D27B9D74C00DC637C /* AddtionalPlaceFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530C27B9D74C00DC637C /* AddtionalPlaceFlow.swift */; };
 		D36E530F27B9D77300DC637C /* EventAdditionlItemsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530E27B9D77300DC637C /* EventAdditionlItemsFlow.swift */; };
@@ -385,10 +385,10 @@
 		D36E52FC27B9B29D00DC637C /* MakeCircleFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCircleFlow.swift; sourceTree = "<group>"; };
 		D36E52FE27B9C36E00DC637C /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D36E530027B9C3A800DC637C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		D36E530227B9C5A800DC637C /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
-		D36E530427B9C64000DC637C /* MainActionCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionCreators.swift; sourceTree = "<group>"; };
-		D36E530627B9C69300DC637C /* MainAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAction.swift; sourceTree = "<group>"; };
-		D36E530827B9C6E200DC637C /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
+		D36E530227B9C5A800DC637C /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
+		D36E530427B9C64000DC637C /* HomeActionCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeActionCreators.swift; sourceTree = "<group>"; };
+		D36E530627B9C69300DC637C /* HomeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAction.swift; sourceTree = "<group>"; };
+		D36E530827B9C6E200DC637C /* HomeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReducer.swift; sourceTree = "<group>"; };
 		D36E530A27B9D71000DC637C /* CircleDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailFlow.swift; sourceTree = "<group>"; };
 		D36E530C27B9D74C00DC637C /* AddtionalPlaceFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceFlow.swift; sourceTree = "<group>"; };
 		D36E530E27B9D77300DC637C /* EventAdditionlItemsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsFlow.swift; sourceTree = "<group>"; };
@@ -798,7 +798,7 @@
 			isa = PBXGroup;
 			children = (
 				D36E530027B9C3A800DC637C /* AppState.swift */,
-				D36E530227B9C5A800DC637C /* MainState.swift */,
+				D36E530227B9C5A800DC637C /* HomeState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -806,7 +806,7 @@
 		D36E52F427B9B04000DC637C /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				D36E530627B9C69300DC637C /* MainAction.swift */,
+				D36E530627B9C69300DC637C /* HomeAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -814,7 +814,7 @@
 		D36E52F527B9B05E00DC637C /* ActionCreator */ = {
 			isa = PBXGroup;
 			children = (
-				D36E530427B9C64000DC637C /* MainActionCreators.swift */,
+				D36E530427B9C64000DC637C /* HomeActionCreators.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -823,7 +823,7 @@
 			isa = PBXGroup;
 			children = (
 				D36E52FE27B9C36E00DC637C /* AppReducer.swift */,
-				D36E530827B9C6E200DC637C /* MainReducer.swift */,
+				D36E530827B9C6E200DC637C /* HomeReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1492,7 +1492,7 @@
 				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
 				D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */,
 				D301E3972785D1F30090CAF9 /* ScheduleViewModel.swift in Sources */,
-				D36E530927B9C6E200DC637C /* MainReducer.swift in Sources */,
+				D36E530927B9C6E200DC637C /* HomeReducer.swift in Sources */,
 				D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */,
 				D3B72CF9274A311D00253933 /* PlaceEnum.swift in Sources */,
 				D388642D276A185800FC4F07 /* CheckNotificationController.swift in Sources */,
@@ -1547,7 +1547,7 @@
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
 				D31CCFF02798453300513587 /* FirebaseTargetType.swift in Sources */,
 				D31CD0102798DB2400513587 /* ChatGetTargetType.swift in Sources */,
-				D36E530727B9C69300DC637C /* MainAction.swift in Sources */,
+				D36E530727B9C69300DC637C /* HomeAction.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D31CD0122798DB3C00513587 /* NotificationGetTargetType.swift in Sources */,
 				D36E52FD27B9B29D00DC637C /* MakeCircleFlow.swift in Sources */,
@@ -1569,7 +1569,7 @@
 				D32E598B2774519600C59548 /* MemberCell.swift in Sources */,
 				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */,
-				D36E530327B9C5A800DC637C /* MainState.swift in Sources */,
+				D36E530327B9C5A800DC637C /* HomeState.swift in Sources */,
 				D3D62E8627891F4A00DCA027 /* Notification-Service.swift in Sources */,
 				D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,
@@ -1580,7 +1580,7 @@
 				D31CCFFF2798C40A00513587 /* UserGetPracticeTargetType.swift in Sources */,
 				D31CD0142798E7A500513587 /* PracticeGet.swift in Sources */,
 				D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */,
-				D36E530527B9C64000DC637C /* MainActionCreators.swift in Sources */,
+				D36E530527B9C64000DC637C /* HomeActionCreators.swift in Sources */,
 				D3D222E527BA65880022059A /* TalkFlow.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
 				D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */,

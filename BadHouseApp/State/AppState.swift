@@ -8,5 +8,5 @@
 import ReSwift
 
 struct AppState: ReSwift.StateType {
-    let mainState = MainState()
+    var homeState = HomeState()
 }

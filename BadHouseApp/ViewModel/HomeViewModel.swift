@@ -1,12 +1,14 @@
 import RxSwift
 import FirebaseAuth
 import RxRelay
+import ReSwift
 
 protocol HomeViewModelInputs {
     func didLoad()
-    func willAppear()
     func search(_ practices: [Practice])
     func refresh()
+    var willAppear: PublishRelay<Void> { get }
+    var willDisAppear: PublishRelay<Void> { get }
 }
 
 protocol HomeViewModelOutputs {
@@ -36,27 +38,43 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     var reload = PublishSubject<Void>()
     var stopIndicator = PublishSubject<Void>()
     var stopRefresh = PublishSubject<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
+    private let store: Store<AppState>
+    private let actionCreator: HomeActionCreator
     
-    init(practiceAPI: PracticeServieProtocol) {
+    init(practiceAPI: PracticeServieProtocol, store: Store<AppState>, actionCreator: HomeActionCreator) {
         self.practiceAPI = practiceAPI
-        fetchPractices()
+        self.store = store
+        self.actionCreator = actionCreator
+        
+        willAppear.subscribe { [unowned self] _ in
+            self.store.subscribe(self) { subscription in
+                subscription.select({ $0.homeState })
+            }
+            self.willAppearAction()
+        }.disposed(by: disposeBag)
+        
+        willDisAppear.subscribe { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }.disposed(by: disposeBag)
+
+        self.actionCreator.getPractices()
     }
     
     func didLoad() {
-        if let uid =  Auth.auth().currentUser?.uid {
-            UserService.saveFriendId(uid: uid)
-        }
+        actionCreator.saveFriend()
     }
     
-    func willAppear() {
+    func willAppearAction() {
         
         if Auth.auth().currentUser == nil {
             isAuth.onNext(())
         } else if !Network.shared.isOnline() {
             isNetWorkError.onNext(())
         } else {
-            fetchPractices()
+            actionCreator.getPractices()
         }
     }
     
@@ -65,17 +83,30 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     }
     
     func refresh() {
-        fetchPractices()
+        actionCreator.getPractices()
     }
     
     private func fetchPractices() {
-        practiceAPI.getPractices().subscribe { [weak self] practices in
-            self?.practiceRelay.accept(practices)
-            self?.reload.onNext(())
-            self?.stopIndicator.onNext(())
-            self?.stopRefresh.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
-        }.disposed(by: disposeBag)
+        
+//        practiceAPI.getPractices().subscribe { [weak self] practices in
+////            self?.practiceRelay.accept(practices)
+////            self?.reload.onNext(())
+////            self?.stopIndicator.onNext(())
+////            self?.stopRefresh.onNext(())
+//        } onFailure: { [weak self] _ in
+//            self?.isError.onNext(true)
+//        }.disposed(by: disposeBag)
+    }
+}
+
+extension HomeViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = HomeState
+    
+    func newState(state: HomeState) {
+        self.practiceRelay.accept(state.practices)
+        print(state.practices)
+        self.reload.onNext(())
+        self.stopIndicator.onNext(())
+        self.stopRefresh.onNext(())
     }
 }

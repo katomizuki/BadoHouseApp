@@ -50,7 +50,12 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         indicatorView.startAnimating()
-        viewModel.inputs.willAppear()
+        viewModel.inputs.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.inputs.willDisAppear.accept(())
     }
     
     private func setupUI() {

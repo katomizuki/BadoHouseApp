@@ -6,8 +6,8 @@
 //
 
 import ReSwift
-extension MainState {
-    enum MainStateAction: ReSwift.Action {
+extension HomeState {
+    enum HomeStateAction: ReSwift.Action {
         case setPractices(_ practies: [Practice])
     }
 }
