@@ -17,8 +17,8 @@ protocol HomeViewModelOutputs {
     var isError: PublishSubject<Bool> { get }
     var practiceRelay: BehaviorRelay<[Practice]> { get }
     var reload: PublishSubject<Void> { get }
-    var stopIndicator: PublishSubject<Void> { get }
-    var stopRefresh: PublishSubject<Void> { get }
+    var isIndicatorAnimating: PublishSubject<Bool> { get }
+    var isRefreshAnimating: PublishSubject<Bool> { get }
 }
 
 protocol HomeViewModelType {
@@ -36,8 +36,8 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     var practiceRelay = BehaviorRelay<[Practice]>(value: [])
     var practiceAPI: PracticeServieProtocol
     var reload = PublishSubject<Void>()
-    var stopIndicator = PublishSubject<Void>()
-    var stopRefresh = PublishSubject<Void>()
+    var isIndicatorAnimating = PublishSubject<Bool>()
+    var isRefreshAnimating = PublishSubject<Bool>()
     let willDisAppear = PublishRelay<Void>()
     let willAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
@@ -86,17 +86,6 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
         actionCreator.getPractices()
     }
     
-    private func fetchPractices() {
-        
-//        practiceAPI.getPractices().subscribe { [weak self] practices in
-////            self?.practiceRelay.accept(practices)
-////            self?.reload.onNext(())
-////            self?.stopIndicator.onNext(())
-////            self?.stopRefresh.onNext(())
-//        } onFailure: { [weak self] _ in
-//            self?.isError.onNext(true)
-//        }.disposed(by: disposeBag)
-    }
 }
 
 extension HomeViewModel: StoreSubscriber {
@@ -104,9 +93,11 @@ extension HomeViewModel: StoreSubscriber {
     
     func newState(state: HomeState) {
         self.practiceRelay.accept(state.practices)
-        print(state.practices)
-        self.reload.onNext(())
-        self.stopIndicator.onNext(())
-        self.stopRefresh.onNext(())
+        self.isRefreshAnimating.onNext(state.isRefreshAnimating)
+        self.isIndicatorAnimating.onNext(state.isIndicatorAnimating)
+        
+        state.reload.subscribe { [weak self] _ in
+            self?.reload.onNext(())
+        }.disposed(by: disposeBag)
     }
 }

@@ -130,12 +130,20 @@ final class HomeViewController: UIViewController {
             self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.stopIndicator.subscribe(onNext: { [weak self] _ in
-            self?.indicatorView.stopAnimating()
+        viewModel.outputs.isIndicatorAnimating.subscribe(onNext: { [weak self] isAnimating in
+            if isAnimating {
+                self?.indicatorView.startAnimating()
+            } else {
+                self?.indicatorView.stopAnimating()
+            }
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.stopRefresh.subscribe(onNext: { [weak self] _ in
-            self?.refreshControl.endRefreshing()
+        viewModel.outputs.isRefreshAnimating.subscribe(onNext: { [weak self] isAnimating in
+            if isAnimating {
+                self?.refreshControl.beginRefreshing()
+            } else {
+                self?.refreshControl.endRefreshing()
+            }
         }).disposed(by: disposeBag)
         
     }

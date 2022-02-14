@@ -14,6 +14,14 @@ struct HomeReducer {
         switch action {
         case .setPractices(let practices):
             state.practices = practices
+        case .changeIndicatorStatus(let isAnimating):
+            state.isIndicatorAnimating = isAnimating
+        case .changeRefreshStatus(let isAnimating):
+            state.isRefreshAnimating = isAnimating
+        case .chageErrorStatus(let error):
+            state.errorStatus = error
+        case .reload:
+            state.reload.onNext(())
         }
         return state
     }
