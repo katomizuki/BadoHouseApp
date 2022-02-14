@@ -3,10 +3,6 @@ import RxSwift
 import RxCocoa
 import PKHUD
 
-protocol EventAdditionlItemsFlow {
-    func popToRoot()
-}
-
 final class EventAdditionlItemsController: UIViewController {
     
     @IBOutlet private weak var textView: UITextView! {

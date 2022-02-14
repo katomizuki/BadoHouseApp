@@ -2,13 +2,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol AddtionalEventLevelFlow {
-    func toNext(image: UIImage,
-                dic: [String: Any],
-                circle: Circle,
-                user: User)
-}
-
 final class AddtionalEventLevelController: UIViewController {
     
     private let disposeBag = DisposeBag()

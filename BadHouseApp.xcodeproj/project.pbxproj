@@ -112,6 +112,11 @@
 		D36E530527B9C64000DC637C /* MainActionCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530427B9C64000DC637C /* MainActionCreators.swift */; };
 		D36E530727B9C69300DC637C /* MainAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530627B9C69300DC637C /* MainAction.swift */; };
 		D36E530927B9C6E200DC637C /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530827B9C6E200DC637C /* MainReducer.swift */; };
+		D36E530B27B9D71000DC637C /* CircleDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530A27B9D71000DC637C /* CircleDetailFlow.swift */; };
+		D36E530D27B9D74C00DC637C /* AddtionalPlaceFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530C27B9D74C00DC637C /* AddtionalPlaceFlow.swift */; };
+		D36E530F27B9D77300DC637C /* EventAdditionlItemsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E530E27B9D77300DC637C /* EventAdditionlItemsFlow.swift */; };
+		D36E531127B9D7A500DC637C /* AddtionalPracticeElementFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E531027B9D7A500DC637C /* AddtionalPracticeElementFlow.swift */; };
+		D36E531327B9D83800DC637C /* AddtionalEventLevelFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */; };
 		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
@@ -369,6 +374,11 @@
 		D36E530427B9C64000DC637C /* MainActionCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionCreators.swift; sourceTree = "<group>"; };
 		D36E530627B9C69300DC637C /* MainAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAction.swift; sourceTree = "<group>"; };
 		D36E530827B9C6E200DC637C /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
+		D36E530A27B9D71000DC637C /* CircleDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailFlow.swift; sourceTree = "<group>"; };
+		D36E530C27B9D74C00DC637C /* AddtionalPlaceFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceFlow.swift; sourceTree = "<group>"; };
+		D36E530E27B9D77300DC637C /* EventAdditionlItemsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsFlow.swift; sourceTree = "<group>"; };
+		D36E531027B9D7A500DC637C /* AddtionalPracticeElementFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementFlow.swift; sourceTree = "<group>"; };
+		D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelFlow.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -731,6 +741,11 @@
 			children = (
 				D36E52FA27B9B23A00DC637C /* CircleSearchFlow.swift */,
 				D36E52FC27B9B29D00DC637C /* MakeCircleFlow.swift */,
+				D36E530A27B9D71000DC637C /* CircleDetailFlow.swift */,
+				D36E530C27B9D74C00DC637C /* AddtionalPlaceFlow.swift */,
+				D36E530E27B9D77300DC637C /* EventAdditionlItemsFlow.swift */,
+				D36E531027B9D7A500DC637C /* AddtionalPracticeElementFlow.swift */,
+				D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1390,6 +1405,7 @@
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D3B22D8A278172FF00EC8C10 /* PracticeSearchViewModel.swift in Sources */,
 				D3FF15E8277E7F00006355EF /* BlockListViewModel.swift in Sources */,
+				D36E530B27B9D71000DC637C /* CircleDetailFlow.swift in Sources */,
 				D3FF15B3277ACEF5006355EF /* Apply.swift in Sources */,
 				D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */,
 				D3FF15D3277D978A006355EF /* AddtionalMemberController.swift in Sources */,
@@ -1451,6 +1467,7 @@
 				D31CD0182799932D00513587 /* UserGetChatRoom.swift in Sources */,
 				D3FF15D6277DA680006355EF /* UpdateCircleViewModel.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
+				D36E530D27B9D74C00DC637C /* AddtionalPlaceFlow.swift in Sources */,
 				D3FF15CC277D46C0006355EF /* CircleDetailViewModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */,
@@ -1536,6 +1553,7 @@
 				D3FF15DD277E7D1A006355EF /* ProblemInformationController.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
 				D36E52FF27B9C36E00DC637C /* AppReducer.swift in Sources */,
+				D36E531327B9D83800DC637C /* AddtionalEventLevelFlow.swift in Sources */,
 				D31CCFEE2798451200513587 /* FirebaseClient.swift in Sources */,
 				D3FF15EA277ECB93006355EF /* EventAdditionalItemViewModel.swift in Sources */,
 				D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */,
@@ -1559,6 +1577,7 @@
 				D3D761762776A70D004381E4 /* UserDetailCoordinator.swift in Sources */,
 				D3FF15C3277AFC9B006355EF /* Applyed.swift in Sources */,
 				D3FFD325271EB86400DE54ED /* FirebaseAuth-Service.swift in Sources */,
+				D36E531127B9D7A500DC637C /* AddtionalPracticeElementFlow.swift in Sources */,
 				D3D761812776BDFB004381E4 /* UISlider+Extension.swift in Sources */,
 				D3886434276A1A7100FC4F07 /* TalkCoordinator.swift in Sources */,
 				D3C4E94726E1C2B400C21E46 /* Circle.swift in Sources */,
@@ -1572,6 +1591,7 @@
 				D3D62E9E278A885A00DCA027 /* PracticeDataSourceDelegate.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
 				D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */,
+				D36E530F27B9D77300DC637C /* EventAdditionlItemsFlow.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,
 				D31CD01627998DF700513587 /* UserGetJoinPracticeTargetType.swift in Sources */,

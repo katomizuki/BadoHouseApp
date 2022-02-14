@@ -2,9 +2,6 @@ import UIKit
 import CoreLocation
 import MapKit
 
-protocol AddtionalPlaceFlow {
-}
-
 protocol AddtionalPlaceControllerDelegate: AnyObject {
     func AddtionalPlaceController(vc: AddtionalPlaceController,
                                   placeName: String,

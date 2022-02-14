@@ -4,11 +4,6 @@ import Firebase
 import Charts
 import RxSwift
 
-protocol CircleDetailFlow {
-    func toUserDetail(user: User?, myData: User)
-    func toInvite(circle: Circle, myData: User)
-    func toUpdate(circle: Circle)
-}
 final class CircleDetailController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var nameLabel: UILabel!

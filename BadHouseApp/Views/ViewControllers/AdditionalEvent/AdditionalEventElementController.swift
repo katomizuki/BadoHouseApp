@@ -1,13 +1,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-protocol AddtionalPracticeElementFlow {
-    func toNext(image: UIImage,
-                circle: Circle,
-                user: User,
-                dic: [String: Any])
-    func toAddtionalPlace()
-}
+
 final class AdditionalEventElementController: UIViewController {
 
     @IBOutlet private weak var moneyTextField: UITextField!
