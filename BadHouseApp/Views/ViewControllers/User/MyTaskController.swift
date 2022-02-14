@@ -2,9 +2,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol MyTaskFlow {
-    
-}
 final class MyTaskController: UIViewController {
     
     private let viewModel: MyTaskViewModel

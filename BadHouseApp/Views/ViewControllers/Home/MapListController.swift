@@ -2,10 +2,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-protocol MapListFlow: AnyObject {
-    func halfModal(_ practice: Practice, _ vc: MapListController)
-}
-
 final class MapListController: UIViewController {
     
     @IBOutlet private weak var mapView: MKMapView!

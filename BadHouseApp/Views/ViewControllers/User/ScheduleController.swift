@@ -3,10 +3,6 @@ import FSCalendar
 import RxSwift
 import RxCocoa
 
-protocol ScheduleFlow {
-    func toDetail(_ practice: Practice)
-}
-
 final class ScheduleController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var calendarView: FSCalendar!
@@ -104,7 +100,5 @@ extension ScheduleController: SchduleCellDelegate {
     func onTapTrashButton(_ cell: SchduleCell) {
         guard let indexPath = practiceTableView.indexPath(for: cell) else { return }
         present(AlertProvider.makeCancleVC(viewModel, row: indexPath.row), animated: true)
-        
-//        viewModel.inputs.deleteSchdule()
     }
 }

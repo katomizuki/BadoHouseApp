@@ -3,19 +3,6 @@ import RxSwift
 import RxCocoa
 import FirebaseAuth
 // swiftlint:disable weak_delegate
-protocol UserFlow: AnyObject {
-    func toSearchCircle(user: User?)
-    func toMyPage(_ vc: UIViewController)
-    func toSearchUser(user: User?)
-    func toDetailUser(myData: User?, user: User?)
-    func toDetailCircle(myData: User?, circle: Circle?)
-    func toMakeCircle(user: User?)
-    func toSettings(_ vc: UIViewController, user: User?)
-    func toSchedule(_ vc: UIViewController, user: User?)
-    func toApplyUser(user: User?)
-    func toApplyedUser(user: User?)
-    func toTodo()
-}
 
 final class UserController: UIViewController {
     // MARK: - Properties

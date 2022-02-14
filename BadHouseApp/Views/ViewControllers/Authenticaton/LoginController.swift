@@ -6,9 +6,7 @@ import GoogleSignIn
 import Firebase
 import AuthenticationServices
 import CryptoKit
-protocol LoginFlow: AnyObject {
-    func toRegister()
-}
+
 final class LoginController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var stackView: UIStackView!
@@ -19,7 +17,7 @@ final class LoginController: UIViewController {
     var coordinator: LoginFlow?
     private var currentNonce: String?
     private let disposeBag = DisposeBag()
-    private let viewModel = LoginViewModel(authAPI: AuthService(), userAPI: UserService())
+    private let viewModel: LoginViewModel
     private let googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
@@ -30,6 +28,15 @@ final class LoginController: UIViewController {
         button.addTarget(self, action: #selector(appleLogin), for: .touchUpInside)
         return button
     }()
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         setupBinding()

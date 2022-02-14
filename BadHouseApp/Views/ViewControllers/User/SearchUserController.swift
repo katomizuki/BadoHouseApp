@@ -1,9 +1,7 @@
 import UIKit
 import RxSwift
 import SDWebImage
-protocol SearchUserFlow {
-    func toUserDetail(_ user: User, _ myData: User)
-}
+
 final class SearchUserController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var searchBar: UISearchBar!

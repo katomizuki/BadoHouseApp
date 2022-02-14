@@ -1,10 +1,5 @@
 import UIKit
 
-enum UserProfileSelection {
-    case circle
-    case user
-}
-
 protocol UserProfileHeaderViewDelegate: AnyObject {
     func didTapSearchButton(option: UserProfileSelection)
    func didTapPlusTeamButton()

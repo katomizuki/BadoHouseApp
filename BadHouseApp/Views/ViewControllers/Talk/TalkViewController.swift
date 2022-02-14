@@ -2,10 +2,6 @@ import UIKit
 import CDAlertView
 import RxSwift
 
-protocol TalkFlow: AnyObject {
-    func toChat(userId: String, myDataId: String, chatId: String)
-}
-
 final class TalkViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Properties

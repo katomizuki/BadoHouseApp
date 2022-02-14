@@ -1,9 +1,6 @@
 import UIKit
 import RxSwift
 
-protocol FriendListFlow: AnyObject {
-    func toUserDetail(myData: User, user: User)
-}
 final class FriendsListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var friendListTableView: UITableView!

@@ -9,7 +9,7 @@ final class LoginCoordinator: Coordinator, LoginFlow {
     }
     
     func start() {
-        let controller = LoginController.init(nibName: R.nib.loginController.name, bundle: nil)
+        let controller = LoginController.init(viewModel: LoginViewModel(authAPI: AuthService(), userAPI: UserService()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

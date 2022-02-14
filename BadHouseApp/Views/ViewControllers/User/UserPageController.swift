@@ -5,10 +5,6 @@ import FirebaseAuth
 import RxGesture
 import SDWebImage
 // swiftlint:disable weak_delegate
-protocol UserPageFlow {
-    func toMyLevel()
-    func toDismiss()
-}
 
 final class UserPageController: UIViewController {
     

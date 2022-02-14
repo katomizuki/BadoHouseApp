@@ -6,10 +6,7 @@ import Firebase
 import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
-protocol RegisterFlow: AnyObject {
-    func toLogin()
-    func toMain()
-}
+
 final class RegisterController: UIViewController {
     // MARK: - Properties
     @IBOutlet private weak var registerButton: UIButton!
@@ -25,8 +22,7 @@ final class RegisterController: UIViewController {
         return button
     }()
     private let disposeBag = DisposeBag()
-    private let viewModel = RegisterViewModel(authAPI: AuthService(),
-                                              userAPI: UserService())
+    private let viewModel: RegisterViewModel
     private lazy var appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
@@ -34,6 +30,15 @@ final class RegisterController: UIViewController {
     }()
     private var currentNonce: String?
     var coordinator: RegisterFlow?
+    
+    init(viewModel: RegisterViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

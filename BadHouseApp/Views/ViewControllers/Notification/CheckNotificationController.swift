@@ -1,14 +1,6 @@
 import UIKit
 import RxSwift
 
-protocol CheckNotificationFlow: AnyObject {
-    func toUserDetail(_ myData: User, user: User)
-    func toPracticeDetail(_ myData: User, practice: Practice)
-    func toPreJoin(_ user: User)
-    func toPreJoined(_ user: User)
-    func toApplyedFriend(_ user: User)
-}
-
 final class CheckNotificationController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet private weak var notificationCollectionView: UICollectionView! {

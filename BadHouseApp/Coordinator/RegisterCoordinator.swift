@@ -12,7 +12,8 @@ final class RegisterCoordinator: Coordinator, RegisterFlow {
     }
     
     func start() {
-        let controller = RegisterController.init(nibName: R.nib.registerController.name, bundle: nil)
+        let controller = RegisterController.init(viewModel: RegisterViewModel(authAPI: AuthService(),
+                                                                              userAPI: UserService()))
         self.navigationController.setViewControllers([controller], animated: true)
         controller.coordinator = self
         navigationController.modalPresentationStyle = .fullScreen

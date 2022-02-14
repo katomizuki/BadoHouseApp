@@ -7,14 +7,6 @@ import MapKit
 import UserNotifications
 import CDAlertView
 
-protocol HomeFlow: AnyObject {
-    func toMap(practices: [Practice], lat: Double, lon: Double)
-    func toMakeEvent()
-    func toDetailSearch(_ vc: HomeViewController, practices: [Practice])
-    func toPracticeDetail(_ practice: Practice)
-    func toAuthentication(_ vc: UIViewController)
-}
-
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
