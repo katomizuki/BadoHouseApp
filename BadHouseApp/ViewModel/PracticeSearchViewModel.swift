@@ -26,7 +26,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var inputs: PracticeSearchViewModelInputs { return self }
     var outputs: PracticeSearchViewModelOutputs { return self }
     var navigationStriing = PublishSubject<String>()
-    var practiceAPI: PracticeServieProtocol
+    var practiceAPI: PracticeRepositry
     var selectedLevel = String()
     var selectedPlace = String()
     var reload = PublishSubject<Void>()
@@ -34,7 +34,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var fullPractices = [Practice]()
     var searchedPractices = [Practice]()
     
-    init(practiceAPI: PracticeServieProtocol, practices: [Practice]) {
+    init(practiceAPI: PracticeRepositry, practices: [Practice]) {
         self.practiceAPI = practiceAPI
         self.practices = practices
         self.fullPractices = practices

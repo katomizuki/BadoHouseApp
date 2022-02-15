@@ -62,7 +62,7 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
                 self.toUserDetail.onNext(user)
             }
         case .permissionJoin:
-            PracticeServie.getPracticeById(id: notification.practiceId) { practice in
+            PracticeRepositryImpl.getPracticeById(id: notification.practiceId) { practice in
                 self.toPracticeDetail.onNext(practice)
             }
         }

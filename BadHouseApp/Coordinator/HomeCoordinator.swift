@@ -9,9 +9,8 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func start() {
-        let controller = HomeViewController.init(viewModel: HomeViewModel(practiceAPI: PracticeServie(),
-                                                                          store: appStore,
-                                                                          actionCreator: HomeActionCreator(practiceAPI: PracticeServie())))
+        let controller = HomeViewController.init(viewModel: HomeViewModel(store: appStore,
+                                                                          actionCreator: HomeActionCreator(practiceAPI: PracticeRepositryImpl())))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
@@ -29,7 +28,7 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func toDetailSearch(_ vc: HomeViewController, practices: [Practice]) {
-        let controller = PracticeSearchController.init(viewModel: PracticeSearchViewModel(practiceAPI: PracticeServie(), practices: practices))
+        let controller = PracticeSearchController.init(viewModel: PracticeSearchViewModel(practiceAPI: PracticeRepositryImpl(), practices: practices))
         controller.delegate = vc
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)

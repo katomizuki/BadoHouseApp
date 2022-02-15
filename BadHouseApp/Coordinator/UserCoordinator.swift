@@ -56,7 +56,7 @@ final class UserCoordinator: Coordinator, UserFlow {
     
     func toSchedule(_ vc: UIViewController, user: User?) {
         guard let user = user else { return }
-        coordinator(to: ScheduleCoordinator(navigationController: UINavigationController(), viewModel: ScheduleViewModel(userAPI: UserService(), practiceAPI: PracticeServie(), user: user), vc: vc))
+        coordinator(to: ScheduleCoordinator(navigationController: UINavigationController(), viewModel: ScheduleViewModel(userAPI: UserService(), practiceAPI: PracticeRepositryImpl(), user: user), vc: vc))
     }
     
     func toApplyUser(user: User?) {

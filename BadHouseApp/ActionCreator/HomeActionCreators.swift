@@ -10,7 +10,7 @@ import RxSwift
 import FirebaseAuth
 struct HomeActionCreator {
     
-    let practiceAPI: PracticeServieProtocol
+    let practiceAPI: PracticeRepositry
     private let disposeBag = DisposeBag()
     
     func saveFriend() {
