@@ -39,7 +39,7 @@ final class HomeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.inputs.didLoad()
+        viewModel.inputs.didLoadInput.onNext(())
         setupLocationManager()
         setupCollectionView()
         setupBinding()
@@ -49,13 +49,12 @@ final class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        indicatorView.startAnimating()
-        viewModel.inputs.willAppear.accept(())
+        viewModel.inputs.willAppear.onNext(())
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        viewModel.inputs.willDisAppear.accept(())
+        viewModel.inputs.willDisAppear.onNext(())
     }
     
     private func setupUI() {
@@ -130,7 +129,9 @@ final class HomeViewController: UIViewController {
             self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.isIndicatorAnimating.subscribe(onNext: { [weak self] isAnimating in
+        viewModel.outputs
+            .isIndicatorAnimating
+            .subscribe(onNext: { [weak self] isAnimating in
             if isAnimating {
                 self?.indicatorView.startAnimating()
             } else {
@@ -138,7 +139,9 @@ final class HomeViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.isRefreshAnimating.subscribe(onNext: { [weak self] isAnimating in
+        viewModel.outputs
+            .isRefreshAnimating
+            .subscribe(onNext: { [weak self] isAnimating in
             if isAnimating {
                 self?.refreshControl.beginRefreshing()
             } else {

@@ -4,21 +4,26 @@ import RxRelay
 import ReSwift
 
 protocol HomeViewModelInputs {
-    func didLoad()
     func search(_ practices: [Practice])
+    var didLoadInput: AnyObserver<Void> { get }
     func refresh()
-    var willAppear: PublishRelay<Void> { get }
-    var willDisAppear: PublishRelay<Void> { get }
+    var reloadInput: AnyObserver<Void> { get }
+    var willAppear: AnyObserver<Void> { get }
+    var willDisAppear: AnyObserver<Void> { get }
+    var isAuthInput: AnyObserver<Void> { get }
+    var isNetWorkErrorInput: AnyObserver<Void> { get }
+    var indicatorInput: AnyObserver<Bool> { get }
+    var isRefreshInput: AnyObserver<Bool> { get }
 }
 
 protocol HomeViewModelOutputs {
-    var isNetWorkError: PublishSubject<Void> { get }
-    var isAuth: PublishSubject<Void> { get }
-    var isError: PublishSubject<Bool> { get }
+    var isNetWorkError: Observable<Void> { get }
+    var isAuth: Observable<Void> { get }
+    var isError: Observable<Bool> { get }
     var practiceRelay: BehaviorRelay<[Practice]> { get }
-    var reload: PublishSubject<Void> { get }
-    var isIndicatorAnimating: PublishSubject<Bool> { get }
-    var isRefreshAnimating: PublishSubject<Bool> { get }
+    var reload: Observable<Void> { get }
+    var isIndicatorAnimating: Observable<Bool> { get }
+    var isRefreshAnimating: Observable<Bool> { get }
 }
 
 protocol HomeViewModelType {
@@ -26,53 +31,55 @@ protocol HomeViewModelType {
     var outputs: HomeViewModelOutputs { get }
 }
 
-final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewModelType {
-    
-    var isNetWorkError: PublishSubject<Void> = PublishSubject<Void>()
-    var isAuth: PublishSubject<Void> = PublishSubject<Void>()
+final class HomeViewModel: HomeViewModelType {
+
     var inputs: HomeViewModelInputs { return self }
     var outputs: HomeViewModelOutputs { return self }
-    var isError = PublishSubject<Bool>()
+   
     var practiceRelay = BehaviorRelay<[Practice]>(value: [])
-    var practiceAPI: PracticeServieProtocol
-    var reload = PublishSubject<Void>()
-    var isIndicatorAnimating = PublishSubject<Bool>()
-    var isRefreshAnimating = PublishSubject<Bool>()
-    let willDisAppear = PublishRelay<Void>()
-    let willAppear = PublishRelay<Void>()
+    
+    private let didLoadStream = PublishSubject<Void>()
+    private let willAppearStream = PublishSubject<Void>()
+    private let willDisAppearStream = PublishSubject<Void>()
+    private let refreshStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
+    private let newWorkErrorStream = PublishSubject<Void>()
+    private let authStream = PublishSubject<Void>()
+    private let errorStream = PublishSubject<Bool>()
+    private let indicatorStream = PublishSubject<Bool>()
+    private let practiceAPI: PracticeServieProtocol
     private let disposeBag = DisposeBag()
     private let store: Store<AppState>
     private let actionCreator: HomeActionCreator
     
     init(practiceAPI: PracticeServieProtocol, store: Store<AppState>, actionCreator: HomeActionCreator) {
+        
         self.practiceAPI = practiceAPI
         self.store = store
         self.actionCreator = actionCreator
         
-        willAppear.subscribe { [unowned self] _ in
+        willAppearStream.subscribe { [unowned self] _ in
             self.store.subscribe(self) { subscription in
-                subscription.select({ $0.homeState })
-            }
+                subscription.select({ $0.homeState }) }
             self.willAppearAction()
         }.disposed(by: disposeBag)
         
-        willDisAppear.subscribe { [unowned self] _ in
+        willDisAppearStream.subscribe { [unowned self] _ in
             self.store.unsubscribe(self)
         }.disposed(by: disposeBag)
-
-        self.actionCreator.getPractices()
+        
+        didLoadStream.subscribe { [weak self] _ in
+            self?.actionCreator.saveFriend()
+        }.disposed(by: disposeBag)
+        
     }
-    
-    func didLoad() {
-        actionCreator.saveFriend()
-    }
-    
+        
     func willAppearAction() {
         
         if Auth.auth().currentUser == nil {
-            isAuth.onNext(())
+            isAuthInput.onNext(())
         } else if !Network.shared.isOnline() {
-            isNetWorkError.onNext(())
+            isNetWorkErrorInput.onNext(())
         } else {
             actionCreator.getPractices()
         }
@@ -81,23 +88,89 @@ final class HomeViewModel: HomeViewModelInputs, HomeViewModelOutputs, HomeViewMo
     func search(_ practices: [Practice]) {
         practiceRelay.accept(practices)
     }
+}
+
+// MARK: - Input
+extension HomeViewModel: HomeViewModelInputs {
     
     func refresh() {
         actionCreator.getPractices()
     }
     
+    var willDisAppear: AnyObserver<Void> {
+        willDisAppearStream.asObserver()
+    }
+    
+    var willAppear: AnyObserver<Void> {
+        willAppearStream.asObserver()
+    }
+    
+    var didLoadInput: AnyObserver<Void> {
+        didLoadStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+    
+    var isAuthInput: AnyObserver<Void> {
+        authStream.asObserver()
+    }
+    
+    var isNetWorkErrorInput: AnyObserver<Void> {
+        newWorkErrorStream.asObserver()
+    }
+    
+    var indicatorInput: AnyObserver<Bool> {
+        indicatorStream.asObserver()
+    }
+    
+    var isRefreshInput: AnyObserver<Bool> {
+        refreshStream.asObserver()
+    }
 }
 
+// MARK: - Output
+extension HomeViewModel: HomeViewModelOutputs {
+    var isAuth: Observable<Void> {
+        authStream.asObservable()
+    }
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var isNetWorkError: Observable<Void> {
+        newWorkErrorStream.asObservable()
+    }
+    
+    var isRefreshAnimating: Observable<Bool> {
+        refreshStream.asObservable()
+    }
+    
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+    
+    var isIndicatorAnimating: Observable<Bool> {
+        indicatorStream.asObservable()
+    }
+    
+}
+
+// MARK: - StoreSubscriber
 extension HomeViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = HomeState
     
     func newState(state: HomeState) {
         self.practiceRelay.accept(state.practices)
-        self.isRefreshAnimating.onNext(state.isRefreshAnimating)
-        self.isIndicatorAnimating.onNext(state.isIndicatorAnimating)
+        self.isRefreshInput.onNext(state.isRefreshAnimating)
+        self.indicatorInput.onNext(state.isIndicatorAnimating)
         
-        state.reload.subscribe { [weak self] _ in
-            self?.reload.onNext(())
+        state.reload
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] _ in
+                self?.reloadInput.onNext(())
         }.disposed(by: disposeBag)
     }
 }

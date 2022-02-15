@@ -30,8 +30,10 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
     init(authAPI: AuthServiceProtocol, userAPI: UserServiceProtocol) {
         self.authAPI = authAPI
         self.userAPI = userAPI
+        
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
+        
         let emailValid = emailTextOutput
             .asObservable()
             .map { text -> Bool in
