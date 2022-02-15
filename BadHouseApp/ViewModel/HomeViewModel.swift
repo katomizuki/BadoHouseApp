@@ -37,7 +37,6 @@ final class HomeViewModel: HomeViewModelType {
     var outputs: HomeViewModelOutputs { return self }
    
     var practiceRelay = BehaviorRelay<[Practice]>(value: [])
-    
     private let didLoadStream = PublishSubject<Void>()
     private let willAppearStream = PublishSubject<Void>()
     private let willDisAppearStream = PublishSubject<Void>()
@@ -47,14 +46,11 @@ final class HomeViewModel: HomeViewModelType {
     private let authStream = PublishSubject<Void>()
     private let errorStream = PublishSubject<Bool>()
     private let indicatorStream = PublishSubject<Bool>()
-    private let practiceAPI: PracticeServieProtocol
     private let disposeBag = DisposeBag()
     private let store: Store<AppState>
     private let actionCreator: HomeActionCreator
     
-    init(practiceAPI: PracticeServieProtocol, store: Store<AppState>, actionCreator: HomeActionCreator) {
-        
-        self.practiceAPI = practiceAPI
+    init(store: Store<AppState>, actionCreator: HomeActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
         
