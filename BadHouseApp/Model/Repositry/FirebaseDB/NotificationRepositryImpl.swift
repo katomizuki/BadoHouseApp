@@ -1,10 +1,6 @@
 import RxSwift
 
-protocol NotificationServiceProtocol {
-    func getMyNotification(uid: String)->Single<[Notification]>
-}
-
-struct NotificationService: NotificationServiceProtocol {
+struct NotificationRepositryImpl: NotificationRepositry {
     
     static func postNotification(uid: String, dic: [String: Any], completion: @escaping (Error?) -> Void) {
         let id = Ref.NotificationRef.document(uid).collection("Notification").document().documentID

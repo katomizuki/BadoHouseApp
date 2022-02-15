@@ -1,25 +1,7 @@
 import RxSwift
 import Foundation
 
-protocol CircleServiceProtocol {
-    func getMembers(ids: [String], circle: Circle) -> Single<Circle>
-    func searchCircles(text: String) -> Single<[Circle]>
-    func updateCircle(circle: Circle, completion: @escaping (Error?) -> Void)
-    func getCircle(id: String)->Single<Circle>
-    func postCircle(id: String,
-                    dic: [String: Any],
-                    user: User,
-                    memberId: [String],
-                    completion: @escaping (Result<Void, Error>) -> Void)
-    func withdrawCircle(user: User,
-                        circle: Circle,
-                        completion: @escaping(Error?) -> Void)
-    func inviteCircle(ids: [String],
-                      circle: Circle,
-                      completion: @escaping (Result<Void, Error>) -> Void)
-}
-
-struct CircleService: CircleServiceProtocol {
+struct CircleRepositryImpl: CircleRepositry {
     
     func postCircle(id: String,
                     dic: [String: Any],
@@ -55,7 +37,7 @@ struct CircleService: CircleServiceProtocol {
         return Single.create { singleEvent in
             ids.forEach {
                 group.enter()
-                UserService.getUserById(uid: $0) { user in
+                UserRepositryImpl.getUserById(uid: $0) { user in
                     defer { group.leave() }
                     data.members.append(user)
                 }

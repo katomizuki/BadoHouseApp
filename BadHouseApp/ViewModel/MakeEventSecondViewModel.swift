@@ -28,7 +28,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var minLevelText = BehaviorRelay<String>(value: "レベル1")
     var maxLevelText = BehaviorRelay<String>(value: "レベル10")
     var circleRelay = BehaviorRelay<[Circle]>(value: [])
-    var userAPI: UserServiceProtocol
+    var userAPI: UserRepositry
     var user: User?
     var circle: Circle?
     private let disposeBag = DisposeBag()
@@ -37,7 +37,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var kind: String
     var dic: [String: Any] = [String: Any]()
     
-    init(userAPI: UserServiceProtocol, title: String, image: UIImage, kind: String) {
+    init(userAPI: UserRepositry, title: String, image: UIImage, kind: String) {
         self.userAPI = userAPI
         self.title = title
         self.image = image
@@ -51,7 +51,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
             self?.circleRelay.accept(circle)
         }.disposed(by: disposeBag)
 
-        UserService.getUserById(uid: uid) { user in
+        UserRepositryImpl.getUserById(uid: uid) { user in
             self.user = user
         }
         

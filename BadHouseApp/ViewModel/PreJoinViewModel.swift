@@ -20,13 +20,13 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
     
     var inputs: PreJoinViewModelInputs { return self }
     var outputs: PreJoinViewModelOutputs { return self }
-    var joinAPI: JoinServiceProtocol
+    var joinAPI: JoinRepositry
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
     private let disposeBag = DisposeBag()
     
-    init(joinAPI: JoinServiceProtocol, user: User) {
+    init(joinAPI: JoinRepositry, user: User) {
         self.joinAPI = joinAPI
         
         joinAPI.getPrejoin(userId: user.uid).subscribe {[weak self] prejoins in

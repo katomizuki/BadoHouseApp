@@ -45,10 +45,10 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
         tableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.navigationController?.pushViewController(PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: self.viewModel.practices.value[indexPath.row],
-                                        userAPI: UserService(),
-                                        circleAPI: CircleService(),
+                                        userAPI: UserRepositryImpl(),
+                                        circleAPI: CircleRepositryImpl(),
                                         isModal: false,
-                                        joinAPI: JoinService())), animated: true)
+                                        joinAPI: JoinRepositryImpl())), animated: true)
         }).disposed(by: disposeBag)
     }
 }

@@ -28,9 +28,9 @@ final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInp
     }
     private let disposeBag = DisposeBag()
     let user: User
-    let applyAPI: ApplyServiceProtocol
+    let applyAPI: ApplyRepositry
     
-    init(userAPI: UserServiceProtocol, user: User, applyAPI: ApplyServiceProtocol) {
+    init(userAPI: UserRepositry, user: User, applyAPI: ApplyRepositry) {
         self.user = user
         self.applyAPI = applyAPI
         searchTextOutputs.subscribe(onNext: { [weak self] text in

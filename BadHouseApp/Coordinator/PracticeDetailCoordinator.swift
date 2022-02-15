@@ -17,14 +17,14 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
     }
     
     func toUserDetail(myData: User, user: User) {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), applyAPI: ApplyRepositryImpl())))
     }
     
     func toChat(myData: User, user: User) {
-        coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserService(), chatAPI: ChatService())))
+        coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), chatAPI: ChatRepositryImpl())))
     }
     
     func toCircleDetail(myData: User, circle: Circle) {
-        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleService())))
+        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleRepositryImpl())))
     }
 }

@@ -37,8 +37,8 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var applyButtonString = PublishSubject<String>()
     var user: User
     var myData: User
-    var userAPI: UserServiceProtocol
-    var applyAPI: ApplyServiceProtocol
+    var userAPI: UserRepositry
+    var applyAPI: ApplyRepositry
     let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     var isApplyButtonHidden: Bool {
         return ids.contains(user.uid) || myData.uid == user.uid
@@ -49,8 +49,8 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     private let disposeBag = DisposeBag()
     
     init(myData: User, user: User,
-         userAPI: UserServiceProtocol,
-         applyAPI: ApplyServiceProtocol) {
+         userAPI: UserRepositry,
+         applyAPI: ApplyRepositry) {
         self.user = user
         self.myData = myData
         self.userAPI = userAPI

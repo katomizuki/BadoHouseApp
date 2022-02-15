@@ -22,10 +22,10 @@ final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelO
     var isError = PublishSubject<Bool>()
     var practices = BehaviorRelay<[Practice]>(value: [])
     let user: User
-    let userAPI: UserServiceProtocol
+    let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
     
-    init(user: User, userAPI: UserServiceProtocol) {
+    init(user: User, userAPI: UserRepositry) {
         self.user = user
         self.userAPI = userAPI
         userAPI.getMyPractice(uid: user.uid).subscribe { [weak self] practices in

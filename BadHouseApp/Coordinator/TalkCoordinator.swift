@@ -9,18 +9,18 @@ final class TalkCoordinator: Coordinator, TalkFlow {
     }
     
     func start() {
-        let controller = TalkViewController.init(viewModel: TalkViewModel(userAPI: UserService(), chatAPI: ChatService()))
+        let controller = TalkViewController.init(viewModel: TalkViewModel(userAPI: UserRepositryImpl(), chatAPI: ChatRepositryImpl()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
     
     func toChat(userId: String, myDataId: String, chatId: String) {
-        UserService.getUserById(uid: userId) { user in
-            UserService.getUserById(uid: myDataId) { myData in
+        UserRepositryImpl.getUserById(uid: userId) { user in
+            UserRepositryImpl.getUserById(uid: myDataId) { myData in
                 self.coordinator(to: ChatCoordinator(navigationController: self.navigationController, viewModel: ChatViewModel(myData: myData,
                                                                         user: user,
-                                                                        userAPI: UserService(),
-                                                                        chatAPI: ChatService())))
+                                                                        userAPI: UserRepositryImpl(),
+                                                                        chatAPI: ChatRepositryImpl())))
             }
         }
     }

@@ -15,7 +15,7 @@ struct HomeActionCreator {
     
     func saveFriend() {
         if let uid =  Auth.auth().currentUser?.uid {
-            UserService.saveFriendId(uid: uid)
+            UserRepositryImpl.saveFriendId(uid: uid)
         }
     }
     

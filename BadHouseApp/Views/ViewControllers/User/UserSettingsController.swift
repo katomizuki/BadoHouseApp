@@ -1,5 +1,6 @@
 import UIKit
 import FirebaseAuth
+
 final class UserSettingsController: UIViewController {
     var user: User
     @IBOutlet private weak var settingsTableView: UITableView! {
@@ -63,7 +64,7 @@ extension UserSettingsController: UITableViewDelegate {
         case 0:
             navigationController?.pushViewController(BlockListController.init(viewModel: BlockListViewModel()), animated: true)
         case 1:
-            navigationController?.pushViewController(MyPracticeController.init(viewModel: MyPracticeViewModel(user: user, userAPI: UserService())), animated: true)
+            navigationController?.pushViewController(MyPracticeController.init(viewModel: MyPracticeViewModel(user: user, userAPI: UserRepositryImpl())), animated: true)
         case 2:
             let viewController = AppExplainController()
             viewController.modalPresentationStyle = .popover

@@ -18,7 +18,7 @@ protocol SearchCircleViewModelType {
 final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleViewModelOutputs, SearchCircleViewModelType {
     var inputs: SearchCircleViewModelInputs { return self }
     var outputs: SearchCircleViewModelOutputs { return self }
-    var circleAPI: CircleServiceProtocol
+    var circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     var isError = PublishSubject<Bool>()
     private var searchBarText = PublishSubject<String>()
@@ -28,7 +28,7 @@ final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleView
     }
     var user: User
     
-    init(circleAPI: CircleServiceProtocol, user: User) {
+    init(circleAPI: CircleRepositry, user: User) {
         self.circleAPI = circleAPI
         self.user = user
         searchBarText.subscribe(onNext: { [weak self] text in

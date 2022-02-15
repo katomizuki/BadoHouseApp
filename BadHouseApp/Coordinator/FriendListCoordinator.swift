@@ -17,6 +17,6 @@ final class FriendListCoordinator: Coordinator, FriendListFlow {
     }
     
     func toUserDetail(myData: User, user: User) {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserService(), applyAPI: ApplyService())))
+        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), applyAPI: ApplyRepositryImpl())))
     }
 }

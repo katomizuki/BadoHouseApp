@@ -40,10 +40,10 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     var name: String = String()
     var email: String = String()
     var password: String = String()
-    var authAPI: AuthServiceProtocol
-    var userAPI: UserServiceProtocol
+    var authAPI: AuthRepositry
+    var userAPI: UserRepositry
     // MARK: - initialize
-    init(authAPI: AuthServiceProtocol, userAPI: UserServiceProtocol) {
+    init(authAPI: AuthRepositry, userAPI: UserRepositry) {
         self.authAPI = authAPI
         self.userAPI = userAPI
         validRegisterDriver = valideRegisterSubject

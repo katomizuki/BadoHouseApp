@@ -21,7 +21,7 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
   
     var inputs: ScheduleViewModelInputs { return self }
     var outputs: ScheduleViewModelOutputs { return self }
-    var userAPI: UserServiceProtocol
+    var userAPI: UserRepositry
     var practiceAPI: PracticeRepositry
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
@@ -29,7 +29,7 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
     var practiceList = BehaviorRelay<[Practice]>(value: [])
     private let disposeBag = DisposeBag()
     
-    init(userAPI: UserServiceProtocol, practiceAPI: PracticeRepositry, user: User) {
+    init(userAPI: UserRepositry, practiceAPI: PracticeRepositry, user: User) {
         self.userAPI = userAPI
         self.practiceAPI = practiceAPI
         self.user = user

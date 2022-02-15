@@ -1,12 +1,7 @@
 import FirebaseAuth
 import Firebase
 
-protocol AuthServiceProtocol {
-    func register(credential: AuthCredential,
-                  completion: @escaping(Result<[String: Any], Error>) -> Void)
-}
-
-struct AuthService: AuthServiceProtocol {
+struct AuthRepositryImpl: AuthRepositry {
     
     func register(credential: AuthCredential,
                   completion: @escaping (Result<[String: Any], Error>) -> Void) {

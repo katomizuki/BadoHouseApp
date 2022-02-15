@@ -24,8 +24,8 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     var outputs: ChatViewModelOutputs { return self }
     let myData: User
     let user: User
-    let userAPI: UserServiceProtocol
-    let chatAPI: ChatServiceProtocol
+    let userAPI: UserRepositry
+    let chatAPI: ChatRepositry
     private let disposeBag = DisposeBag()
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
@@ -33,8 +33,8 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     var chatId: String?
     
     init(myData: User, user: User,
-         userAPI: UserServiceProtocol,
-         chatAPI: ChatServiceProtocol) {
+         userAPI: UserRepositry,
+         chatAPI: ChatRepositry) {
         self.myData = myData
         self.user = user
         self.chatAPI = chatAPI

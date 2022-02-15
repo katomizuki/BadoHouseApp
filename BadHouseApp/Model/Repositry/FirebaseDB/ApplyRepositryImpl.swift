@@ -1,20 +1,7 @@
 import Firebase
 import RxSwift
 
-protocol ApplyServiceProtocol {
-    func getApplyUser(user: User)->Single<[Apply]>
-    func getApplyedUser(user: User)->Single<[Applyed]>
-    func match(user: User,
-               friend: User,
-               completion: @escaping(Result<Void, Error>) -> Void)
-    func postApply(user: User,
-                   toUser: User,
-                   completion: @escaping(Result<Void, Error>) -> Void)
-    func notApplyFriend(uid: String,
-                        toUserId: String)
-}
-
-struct ApplyService: ApplyServiceProtocol {
+struct ApplyRepositryImpl: ApplyRepositry {
     
     func postApply(user: User,
                    toUser: User,
@@ -29,7 +16,7 @@ struct ApplyService: ApplyServiceProtocol {
                                                                    "imageUrl": user.profileImageUrlString,
                                                                    "createdAt": Timestamp(),
                                                                    "uid": toUser.uid])
-        NotificationService.postNotification(uid: toUser.uid, dic: [
+        NotificationRepositryImpl.postNotification(uid: toUser.uid, dic: [
             "id": user.uid,
             "urlString": user.profileImageUrlString,
             "notificationSelectionNumber": 0,
@@ -71,7 +58,7 @@ struct ApplyService: ApplyServiceProtocol {
         
         sendUserData(id1: friend.uid, id2: user.uid, dic: ["id": user.uid])
         
-        NotificationService.postNotification(uid: user.uid,
+        NotificationRepositryImpl.postNotification(uid: user.uid,
                                              dic: ["id": friend.uid,
                                                    "urlString": friend.profileImageUrlString,
                                                    "notificationSelectionNumber": 3,
@@ -82,7 +69,7 @@ struct ApplyService: ApplyServiceProtocol {
                                                             return
                                                         }
             
-            NotificationService.postNotification(uid: friend.uid,
+            NotificationRepositryImpl.postNotification(uid: friend.uid,
                                                  dic: ["id": user.uid,
                                                        "urlString": user.profileImageUrlString,
                                                        "notificationSelectionNumber": 3,
@@ -92,7 +79,7 @@ struct ApplyService: ApplyServiceProtocol {
                                                                 completion(.failure(error))
                                                                 return
                                                             }
-                UserService.saveFriendId(uid: user.uid)
+                UserRepositryImpl.saveFriendId(uid: user.uid)
                 completion(.success(()))
             }
         }

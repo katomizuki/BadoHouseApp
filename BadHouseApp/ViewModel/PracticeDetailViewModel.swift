@@ -34,16 +34,16 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var myData: User?
     var circle: Circle?
     var user: User?
-    let userAPI: UserServiceProtocol
-    let circleAPI: CircleServiceProtocol
-    let joinAPI: JoinServiceProtocol
+    let userAPI: UserRepositry
+    let circleAPI: CircleRepositry
+    let joinAPI: JoinRepositry
     private let disposeBag = DisposeBag()
     var isModal: Bool
     
     init(practice: Practice,
-         userAPI: UserServiceProtocol,
-         circleAPI: CircleServiceProtocol,
-         isModal: Bool, joinAPI: JoinServiceProtocol) {
+         userAPI: UserRepositry,
+         circleAPI: CircleRepositry,
+         isModal: Bool, joinAPI: JoinRepositry) {
         self.practice = practice
         self.userAPI = userAPI
         self.circleAPI = circleAPI
@@ -66,7 +66,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        UserService.getUserById(uid: uid) { myData in
+        UserRepositryImpl.getUserById(uid: uid) { myData in
             self.myData = myData
             if myData.uid == self.user?.uid || self.isModal == true {
                 self.isButtonHidden.onNext(true)

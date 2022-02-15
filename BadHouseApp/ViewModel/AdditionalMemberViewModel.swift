@@ -26,14 +26,14 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
     lazy var inviteIds = circle.member
     var friendsSubject = BehaviorRelay<[User]>(value: [])
     var user: User
-    let userAPI: UserServiceProtocol
+    let userAPI: UserRepositry
     var circle: Circle
-    let circleAPI: CircleServiceProtocol
+    let circleAPI: CircleRepositry
     
     init(user: User,
-         userAPI: UserServiceProtocol,
+         userAPI: UserRepositry,
          circle: Circle,
-         circleAPI: CircleServiceProtocol) {
+         circleAPI: CircleRepositry) {
         self.user = user
         self.userAPI = userAPI
         self.circle = circle

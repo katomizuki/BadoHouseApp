@@ -32,11 +32,11 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
     var friendsMembers = [User]()
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
-    var circleAPI: CircleServiceProtocol
+    var circleAPI: CircleRepositry
     
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     
-    init(myData: User, circle: Circle, circleAPI: CircleServiceProtocol) {
+    init(myData: User, circle: Circle, circleAPI: CircleRepositry) {
         self.myData = myData
         self.circle = circle
         self.circleAPI = circleAPI

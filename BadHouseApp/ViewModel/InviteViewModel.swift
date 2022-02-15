@@ -25,18 +25,18 @@ final class InviteViewModel: InviteViewModelType,
     var friendsList = BehaviorRelay<[User]>(value: [])
     var inputs: InviteViewModelInputs { return self }
     var outputs: InviteViewModelOutputs { return self }
-    var userAPI: UserServiceProtocol
+    var userAPI: UserRepositry
     var user: User
     var form: Form
     var inviteIds = [String]()
     private let disposeBag = DisposeBag()
     private var dic = [String: Any]()
-    let circleAPI: CircleServiceProtocol
+    let circleAPI: CircleRepositry
     
-    init(userAPI: UserServiceProtocol,
+    init(userAPI: UserRepositry,
          user: User,
          form: Form,
-         circleAPI: CircleServiceProtocol) {
+         circleAPI: CircleRepositry) {
         self.userAPI = userAPI
         self.user = user
         self.form = form

@@ -24,14 +24,14 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
     var reload = PublishSubject<Void>()
     var inputs: PreJoinedViewModelInputs { return self }
     var outputs: PreJoinedViewModelOutputs { return self }
-    var joinAPI: JoinServiceProtocol
+    var joinAPI: JoinRepositry
     var preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
     var navigationTitle = PublishSubject<String>()
     private let disposeBag = DisposeBag()
     var completed = PublishSubject<Void>()
     let user: User
     
-    init(joinAPI: JoinServiceProtocol, user: User) {
+    init(joinAPI: JoinRepositry, user: User) {
         self.joinAPI = joinAPI
         self.user = user
         joinAPI.getPreJoined(userId: user.uid).subscribe {[weak self] prejoineds in
@@ -50,7 +50,7 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
         list.remove(value: preJoined)
         preJoinedList.accept(list)
         reload.onNext(())
-        UserService.getUserById(uid: preJoined.fromUserId) { friend in
+        UserRepositryImpl.getUserById(uid: preJoined.fromUserId) { friend in
             self.joinAPI.postMatchJoin(preJoined: preJoined, user: friend, myData: self.user) { error in
                 if error != nil {
                     self.isError.onNext(true)

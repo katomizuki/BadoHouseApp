@@ -133,7 +133,7 @@ final class LoginController: UIViewController {
     private func login() {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        AuthService.login(email: email, password: password) { _, error in
+        AuthRepositryImpl.login(email: email, password: password) { _, error in
             if let error = error {
                 self.signInErrAlert(error as NSError)
                 return

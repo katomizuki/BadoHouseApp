@@ -1,20 +1,7 @@
 import Firebase
 import RxSwift
 
-protocol JoinServiceProtocol {
-    func getPrejoin(userId: String)->Single<[PreJoin]>
-    func getPreJoined(userId: String)->Single<[PreJoined]>
-    func postMatchJoin(preJoined: PreJoined,
-                       user: User,
-                       myData: User,
-                       completion: @escaping(Error?) -> Void)
-    func postPreJoin(user: User,
-                     toUser: User,
-                     practice: Practice,
-                     completion: @escaping(Result<Void, Error>) -> Void)
-}
-
-struct JoinService: JoinServiceProtocol {
+struct JoinRepositryImpl: JoinRepositry {
     
     func postPreJoin(user: User,
                      toUser: User, practice: Practice,
@@ -41,7 +28,7 @@ struct JoinService: JoinServiceProtocol {
                                          "circleImage": practice.circleUrlString,
                                          "id": practice.id])
         
-        NotificationService.postNotification(uid: toUser.uid,
+        NotificationRepositryImpl.postNotification(uid: toUser.uid,
                                              dic: ["id": user.uid,
                                                    "urlString": user.profileImageUrlString,
                                                    "notificationSelectionNumber": 1,
@@ -74,7 +61,7 @@ struct JoinService: JoinServiceProtocol {
         
         Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
         
-        NotificationService.postNotification(uid: user.uid,
+        NotificationRepositryImpl.postNotification(uid: user.uid,
                                              dic: ["id": myData.uid,
                                                    "urlString": myData.profileImageUrlString,
                                                    "notificationSelectionNumber": 2,

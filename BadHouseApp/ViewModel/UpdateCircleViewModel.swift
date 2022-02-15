@@ -25,7 +25,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     
     var inputs: UpdateCircleViewModelInputs { return self }
     var outputs: UpdateCircleViewModelOutputs { return self }
-    var circleAPI: CircleServiceProtocol
+    var circleAPI: CircleRepositry
     var circle: Circle
     private var nameTextSubject = PublishSubject<String>()
     private var priceTextSubject = PublishSubject<String>()
@@ -54,7 +54,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     private let disposeBag = DisposeBag()
     var completed = PublishSubject<Void>()
     
-    init(circleAPI: CircleServiceProtocol, circle: Circle) {
+    init(circleAPI: CircleRepositry, circle: Circle) {
         self.circle = circle
         self.circleAPI = circleAPI
         

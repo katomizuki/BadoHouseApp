@@ -34,10 +34,10 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
     var toUserDetail = PublishSubject<User>()
     var toPracticeDetail = PublishSubject<Practice>()
     let user: User
-    let notificationAPI: NotificationServiceProtocol
+    let notificationAPI: NotificationRepositry
     private let disposeBag = DisposeBag()
     
-    init(user: User, notificationAPI: NotificationServiceProtocol) {
+    init(user: User, notificationAPI: NotificationRepositry) {
         self.user = user
         self.notificationAPI = notificationAPI
     }
@@ -58,7 +58,7 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
         case .applyed:
             self.toApplyedFriend.onNext(())
         case .permissionFriend:
-            UserService.getUserById(uid: notification.id) { user in
+            UserRepositryImpl.getUserById(uid: notification.id) { user in
                 self.toUserDetail.onNext(user)
             }
         case .permissionJoin:

@@ -22,9 +22,9 @@ final class ScheduleCoordinator: Coordinator, ScheduleFlow {
     
     func toDetail(_ practice: Practice) {
         navigationController.pushViewController(PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice,
-                                    userAPI: UserService(),
-                                    circleAPI: CircleService(),
+                                    userAPI: UserRepositryImpl(),
+                                    circleAPI: CircleRepositryImpl(),
                                     isModal: true,
-                                    joinAPI: JoinService())), animated: true)
+                                    joinAPI: JoinRepositryImpl())), animated: true)
     }
 }

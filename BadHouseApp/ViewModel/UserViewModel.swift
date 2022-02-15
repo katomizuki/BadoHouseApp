@@ -40,15 +40,15 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     var reload = PublishSubject<Void>()
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
-    var userAPI: UserServiceProtocol
+    var userAPI: UserRepositry
     var user: User?
-    let applyAPI: ApplyServiceProtocol
-    let circleAPI: CircleServiceProtocol
+    let applyAPI: ApplyRepositry
+    let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     
-    init(userAPI: UserServiceProtocol,
-         applyAPI: ApplyServiceProtocol,
-         circleAPI: CircleServiceProtocol) {
+    init(userAPI: UserRepositry,
+         applyAPI: ApplyRepositry,
+         circleAPI: CircleRepositry) {
         self.userAPI = userAPI
         self.applyAPI = applyAPI
         self.circleAPI = circleAPI
@@ -73,7 +73,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 self.isError.onNext(true)
             }).disposed(by: disposeBag)
             
-            UserService.saveFriendId(uid: uid)
+            UserRepositryImpl.saveFriendId(uid: uid)
         } else {
             self.notAuth.onNext(())
         }

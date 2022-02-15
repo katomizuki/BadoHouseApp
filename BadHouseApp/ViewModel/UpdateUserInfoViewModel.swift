@@ -68,11 +68,11 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     var textViewInputs: AnyObserver<String> {
         return textViewSubject.asObserver()
     }
-    let userAPI: UserServiceProtocol
+    let userAPI: UserRepositry
     
-    init(userAPI: UserServiceProtocol) {
+    init(userAPI: UserRepositry) {
         self.userAPI = userAPI
-        if let uid = AuthService.getUid() {
+        if let uid = AuthRepositryImpl.getUid() {
             userAPI.getUser(uid: uid).subscribe { [weak self] user in
                 self?.user = user
                 self?.userSubject.onNext(user)
@@ -128,7 +128,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     }
     
     func postUser(dic: [String: Any]) {
-        userAPI.postUser(uid: AuthService.getUid()!, dic: dic) {[weak self] result in
+        userAPI.postUser(uid: AuthRepositryImpl.getUid()!, dic: dic) {[weak self] result in
             switch result {
             case .success:
                 self?.isCompleted.onNext(())

@@ -31,7 +31,7 @@ final class BlockListViewModel: BlockListViewModelInputs, BlockListViewModelOutp
         var blockUsers = [User]()
         blockIds.forEach {
             group.enter()
-            UserService.getUserById(uid: $0) { user in
+            UserRepositryImpl.getUserById(uid: $0) { user in
                 defer { group.leave() }
                 blockUsers.append(user)
             }

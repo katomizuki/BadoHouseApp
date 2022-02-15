@@ -31,10 +31,10 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
     var reload = PublishSubject<Void>()
     var completedFriend = PublishSubject<String>()
     var navigationTitle = PublishSubject<String>()
-    var applyAPI: ApplyServiceProtocol
+    var applyAPI: ApplyRepositry
     var user: User
     
-    init(applyAPI: ApplyServiceProtocol, user: User) {
+    init(applyAPI: ApplyRepositry, user: User) {
         self.applyAPI = applyAPI
         self.user = user
     }
@@ -60,7 +60,7 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         applyedRelay.accept(sbj)
         reload.onNext(())
         
-        UserService.getUserById(uid: applyed.fromUserId) { friend in
+        UserRepositryImpl.getUserById(uid: applyed.fromUserId) { friend in
             self.applyAPI.match(user: self.user, friend: friend) { [weak self] result in
                 switch result {
                 case .success:
