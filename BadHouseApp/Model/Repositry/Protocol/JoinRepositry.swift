@@ -18,4 +18,7 @@ protocol JoinRepositry {
                      toUser: User,
                      practice: Practice,
                      completion: @escaping(Result<Void, Error>) -> Void)
+    func postPreJoin(user: User,
+                     toUser: User,
+                     practice: Practice) -> Completable
 }
