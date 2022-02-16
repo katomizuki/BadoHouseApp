@@ -18,7 +18,8 @@ protocol SearchCircleViewModelType {
 final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleViewModelOutputs, SearchCircleViewModelType {
     var inputs: SearchCircleViewModelInputs { return self }
     var outputs: SearchCircleViewModelOutputs { return self }
-    var circleAPI: CircleRepositry
+    
+    private let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     var isError = PublishSubject<Bool>()
     private var searchBarText = PublishSubject<String>()

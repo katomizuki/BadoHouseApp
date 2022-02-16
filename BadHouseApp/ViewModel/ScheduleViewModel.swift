@@ -21,7 +21,8 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
   
     var inputs: ScheduleViewModelInputs { return self }
     var outputs: ScheduleViewModelOutputs { return self }
-    var userAPI: UserRepositry
+    
+    private let userAPI: UserRepositry
     var practiceAPI: PracticeRepositry
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()

@@ -8,22 +8,33 @@ protocol MyPracticeViewModelType {
 
 protocol MyPracticeViewModelInputs {
     func deletePractice(_ practice: Practice)
+    var errorInput: AnyObserver<Bool> { get }
 }
 
 protocol MyPracticeViewModelOutputs {
     var practices: BehaviorRelay<[Practice]> { get }
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
 }
 
 final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelOutputs, MyPracticeViewModelType {
     
     var inputs: MyPracticeViewModelInputs { return self }
     var outputs: MyPracticeViewModelOutputs { return self }
-    var isError = PublishSubject<Bool>()
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
     var practices = BehaviorRelay<[Practice]>(value: [])
     let user: User
     private let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
+    private let errorStream = PublishSubject<Bool>()
+    
     
     init(user: User, userAPI: UserRepositry) {
         self.user = user
@@ -31,7 +42,7 @@ final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelO
         userAPI.getMyPractice(uid: user.uid).subscribe { [weak self] practices in
             self?.practices.accept(practices)
         } onFailure: {[weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     

@@ -80,11 +80,11 @@ final class AddtionalEventLevelController: UIViewController {
     
     // MARK: - IBAction
     @IBAction private func minLevelSliderChanged(_ sender: UISlider) {
-        viewModel.inputs.minLevel.onNext(sender.value)
+        viewModel.inputs.minLevelInput.onNext(sender.value)
     }
     
     @IBAction private func maxLevelSliderChanged(_ sender: UISlider) {
-        viewModel.inputs.maxLevel.onNext(sender.value)
+        viewModel.inputs.maxLevelInput.onNext(sender.value)
     }
     
     @IBAction private func didTapLevelDetailButton(_ sender: Any) {

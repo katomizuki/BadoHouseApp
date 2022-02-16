@@ -3,12 +3,14 @@ import RxRelay
 
 protocol InviteViewModelInputs {
     func willAppear()
+    var errorInput: AnyObserver<Bool> { get }
+    var completedInput: AnyObserver<Void> { get }
 }
 
 protocol InviteViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
     var friendsList: BehaviorRelay<[User]> { get }
-    var isCompleted: PublishSubject<Void> { get }
+    var isCompleted: Observable<Void> { get }
 }
 
 protocol InviteViewModelType {
@@ -16,22 +18,23 @@ protocol InviteViewModelType {
     var outputs: InviteViewModelOutputs { get }
 }
 
-final class InviteViewModel: InviteViewModelType,
-                                InviteViewModelInputs,
-                            InviteViewModelOutputs {
+final class InviteViewModel: InviteViewModelType {
     
-    var isError = PublishSubject<Bool>()
-    var isCompleted = PublishSubject<Void>()
-    var friendsList = BehaviorRelay<[User]>(value: [])
+    
     var inputs: InviteViewModelInputs { return self }
     var outputs: InviteViewModelOutputs { return self }
+    
     var userAPI: UserRepositry
     var user: User
     var form: Form
     var inviteIds = [String]()
+    var friendsList = BehaviorRelay<[User]>(value: [])
+    
     private let disposeBag = DisposeBag()
     private var dic = [String: Any]()
     private let circleAPI: CircleRepositry
+    private let errorStream = PublishSubject<Bool>()
+    private let completedStream = PublishSubject<Void>()
     
     init(userAPI: UserRepositry,
          user: User,
@@ -44,22 +47,11 @@ final class InviteViewModel: InviteViewModelType,
         userAPI.getFriends(uid: user.uid).subscribe {[weak self] users in
             self?.friendsList.accept(users)
         } onFailure: {[weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
-    func willAppear() {
-        let id = Ref.CircleRef.document().documentID
-        dic = ["id": id,
-                   "name": form.name,
-                   "price": form.price,
-                   "place": form.place,
-                   "time": form.time,
-               "features": form.features,
-               "additionlText": form.additionlText]
-        setupBackGroundImage()
-        setupIconImage()
-    }
+    
     
     func setupBackGroundImage() {
         if let image = form.background {
@@ -68,7 +60,7 @@ final class InviteViewModel: InviteViewModelType,
                 case .success(let urlString):
                     self.dic["backGround"] = urlString
                 case .failure:
-                    self.isError.onNext(true)
+                    self.errorInput.onNext(true)
                 }
             }
         } else {
@@ -83,7 +75,7 @@ final class InviteViewModel: InviteViewModelType,
                 case .success(let urlString):
                     self.dic["icon"] = urlString
                 case .failure:
-                    self.isError.onNext(true)
+                    self.errorInput.onNext(true)
                 }
             }
         } else {
@@ -115,10 +107,45 @@ final class InviteViewModel: InviteViewModelType,
                                  memberId: inviteIds) { [weak self] result in
             switch result {
             case .success:
-                self?.isCompleted.onNext(())
+                self?.completedInput.onNext(())
             case .failure:
-                self?.isError.onNext(true)
+                self?.errorInput.onNext(true)
             }
         }
+    }
+}
+
+extension InviteViewModel: InviteViewModelInputs {
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    
+    func willAppear() {
+        let id = Ref.CircleRef.document().documentID
+        dic = ["id": id,
+                   "name": form.name,
+                   "price": form.price,
+                   "place": form.place,
+                   "time": form.time,
+               "features": form.features,
+               "additionlText": form.additionlText]
+        setupBackGroundImage()
+        setupIconImage()
+    }
+}
+
+extension InviteViewModel: InviteViewModelOutputs {
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var isCompleted: Observable<Void> {
+        completedStream.asObservable()
     }
 }

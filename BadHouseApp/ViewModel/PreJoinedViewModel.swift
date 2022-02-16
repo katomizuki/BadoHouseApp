@@ -24,7 +24,7 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
     var reload = PublishSubject<Void>()
     var inputs: PreJoinedViewModelInputs { return self }
     var outputs: PreJoinedViewModelOutputs { return self }
-    var joinAPI: JoinRepositry
+    private let joinAPI: JoinRepositry
     var preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
     var navigationTitle = PublishSubject<String>()
     private let disposeBag = DisposeBag()

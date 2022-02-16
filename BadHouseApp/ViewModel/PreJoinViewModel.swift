@@ -20,7 +20,7 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
     
     var inputs: PreJoinViewModelInputs { return self }
     var outputs: PreJoinViewModelOutputs { return self }
-    var joinAPI: JoinRepositry
+    private let joinAPI: JoinRepositry
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var preJoinList =  BehaviorRelay<[PreJoin]>(value: [])

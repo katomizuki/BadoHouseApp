@@ -9,7 +9,7 @@ protocol MakeEventFirstViewModelInputs {
 }
 
 protocol MakeEventFirstViewModelOutputs {
-    var titleTextOutputs: PublishSubject<String> { get }
+    var titleTextOutputs: Observable<String> { get }
     var isButtonValid: BehaviorRelay<Bool> { get }
     var buttonColor: UIColor { get }
     var isTitle: BehaviorRelay<Bool> { get }
@@ -26,14 +26,22 @@ final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirst
     var buttonTextColor: UIColor {
         return isButtonValid.value ? .white : .lightGray
     }
+    
     var isButtonValid = BehaviorRelay<Bool>(value: false)
     var hasImage = BehaviorRelay<Bool>(value: false)
     var inputs: MakeEventFirstViewModelInputs { return self }
     var outputs: MakeEventFirstViewModelOutputs { return self }
-    var titleTextOutputs = PublishSubject<String>()
+    
+    private let titleTextStream = PublishSubject<String>()
+    
     var titleTextInputs: AnyObserver<String> {
-        return titleTextOutputs.asObserver()
+        return titleTextStream.asObserver()
     }
+    
+    var titleTextOutputs: Observable<String> {
+        return titleTextStream.asObservable()
+    }
+    
     var buttonColor: UIColor {
         return isButtonValid.value ? .systemBlue : .darkGray
     }

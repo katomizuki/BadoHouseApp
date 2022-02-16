@@ -105,7 +105,7 @@ final class ChatViewModel: ChatViewModelType {
     }
 }
 
-extension ChatViewModel : ChatViewModelInputs {
+extension ChatViewModel: ChatViewModelInputs {
     
     var errorInput: AnyObserver<Bool> {
         errorStream.asObserver()
@@ -115,7 +115,7 @@ extension ChatViewModel : ChatViewModelInputs {
         reloadStream.asObserver()
     }
 }
-extension ChatViewModel : ChatViewModelOutputs {
+extension ChatViewModel: ChatViewModelOutputs {
     
     var reload: Observable<Void> {
         reloadStream.asObservable()

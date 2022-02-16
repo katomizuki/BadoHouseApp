@@ -37,8 +37,8 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var applyButtonString = PublishSubject<String>()
     var user: User
     var myData: User
-    var userAPI: UserRepositry
-    var applyAPI: ApplyRepositry
+    private let userAPI: UserRepositry
+    private let applyAPI: ApplyRepositry
     let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     var isApplyButtonHidden: Bool {
         return ids.contains(user.uid) || myData.uid == user.uid

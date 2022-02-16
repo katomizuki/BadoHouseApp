@@ -20,6 +20,7 @@ final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInp
     
     var inputs: SearchUserViewModelInputs { return self }
     var outputs: SearchUserViewModelOutputs { return self }
+
     var isError = PublishSubject<Bool>()
     var usersRelay = BehaviorRelay<[User]>(value: [])
     var searchTextOutputs = PublishSubject<String>()

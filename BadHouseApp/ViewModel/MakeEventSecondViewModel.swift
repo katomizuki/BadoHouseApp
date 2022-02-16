@@ -4,14 +4,16 @@ import FirebaseAuth
 import UIKit
 
 protocol MakeEventSecondViewModelInputs {
-    var minLevel: PublishSubject<Float> { get }
-    var maxLevel: PublishSubject<Float> { get }
+    var minLevelInput: AnyObserver<Float> { get }
+    var maxLevelInput: AnyObserver<Float> { get }
 }
 
 protocol MakeEventSecondViewModelOutputs {
     var minLevelText: BehaviorRelay<String> { get }
     var maxLevelText: BehaviorRelay<String> { get }
     var circleRelay: BehaviorRelay<[Circle]> { get }
+    var minLevelOutput: Observable<Float> { get }
+    var maxLevelOutput: Observable<Float> { get }
 }
 
 protocol MakeEventSecondViewModelType {
@@ -19,23 +21,26 @@ protocol MakeEventSecondViewModelType {
     var outputs: MakeEventSecondViewModelOutputs { get }
 }
 
-final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSecondViewModelOutputs, MakeEventSecondViewModelInputs {
+final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     
-    var minLevel = PublishSubject<Float>()
-    var maxLevel = PublishSubject<Float>()
     var inputs: MakeEventSecondViewModelInputs { return self }
     var outputs: MakeEventSecondViewModelOutputs { return self }
+    
     var minLevelText = BehaviorRelay<String>(value: "レベル1")
     var maxLevelText = BehaviorRelay<String>(value: "レベル10")
     var circleRelay = BehaviorRelay<[Circle]>(value: [])
-    private let userAPI: UserRepositry
+    
     var user: User?
     var circle: Circle?
-    private let disposeBag = DisposeBag()
     var title: String
     var image: UIImage
     var kind: String
     var dic: [String: Any] = [String: Any]()
+    
+    private let minLevelStream = PublishSubject<Float>()
+    private let maxLevelStream = PublishSubject<Float>()
+    private let disposeBag = DisposeBag()
+    private let userAPI: UserRepositry
     
     init(userAPI: UserRepositry, title: String, image: UIImage, kind: String) {
         self.userAPI = userAPI
@@ -50,17 +55,18 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
         userAPI.getMyCircles(uid: uid).subscribe { [weak self] circle in
             self?.circleRelay.accept(circle)
         }.disposed(by: disposeBag)
-
+        
         UserRepositryImpl.getUserById(uid: uid) { user in
             self.user = user
         }
         
-        minLevel.subscribe(onNext: { [weak self] value in
+        minLevelOutput.subscribe(onNext: { [weak self] value in
             guard let self = self else { return }
             let minText = self.changeNumber(num: value)
             self.minLevelText.accept(minText)
         }).disposed(by: disposeBag)
-        maxLevel.subscribe(onNext: {[weak self] value in
+        
+        maxLevelOutput.subscribe(onNext: {[weak self] value in
             guard let self = self else { return }
             let maxText = self.changeNumber(num: value)
             self.maxLevelText.accept(maxText)
@@ -96,4 +102,27 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
         }
         return message
     }
+}
+
+extension MakeEventSecondViewModel: MakeEventSecondViewModelInputs {
+    
+    var minLevelInput: AnyObserver<Float> {
+        minLevelStream.asObserver()
+    }
+    
+    var maxLevelInput: AnyObserver<Float> {
+        maxLevelStream.asObserver()
+    }
+}
+
+extension MakeEventSecondViewModel: MakeEventSecondViewModelOutputs {
+    
+    var maxLevelOutput: Observable<Float> {
+        maxLevelStream.asObservable()
+    }
+    
+    var minLevelOutput: Observable<Float> {
+        minLevelStream.asObservable()
+    }
+    
 }
