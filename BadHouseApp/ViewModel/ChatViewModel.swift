@@ -90,13 +90,12 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
                                  "text": text,
                                  "createdAt": Timestamp(),
                                  "senderId": myData.uid]
-        chatAPI.postChat(chatId: chatId, dic: dic) { [weak self] error in
-            guard let self = self else { return }
-            if error != nil {
-                self.isError.onNext(true)
-            }
+        
+        chatAPI.postChat(chatId: chatId, dic: dic).subscribe {
             self.getChat(chatId: chatId)
             self.userAPI.updateChatRoom(user: self.user, myData: self.myData, message: text)
-        }
+        } onError: { _ in
+            self.isError.onNext(true)
+        }.disposed(by: disposeBag)
     }
 }

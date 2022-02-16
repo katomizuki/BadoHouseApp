@@ -12,12 +12,8 @@ protocol JoinRepositry {
     func getPreJoined(userId: String)->Single<[PreJoined]>
     func postMatchJoin(preJoined: PreJoined,
                        user: User,
-                       myData: User,
-                       completion: @escaping(Error?) -> Void)
-    func postPreJoin(user: User,
-                     toUser: User,
-                     practice: Practice,
-                     completion: @escaping(Result<Void, Error>) -> Void)
+                       myData: User) -> Completable
+
     func postPreJoin(user: User,
                      toUser: User,
                      practice: Practice) -> Completable

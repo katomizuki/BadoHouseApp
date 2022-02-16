@@ -76,21 +76,18 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     }
     func didTapRegisterButton() {
         let credential = AuthCredential(name: name, email: email, password: password)
-        authAPI.register(credential: credential) { [weak self] result in
-            switch result {
-            case .success(let dic):
-                self?.userAPI.postUser(uid: dic["uid"] as! String, dic: dic, completion: { result in
-                    switch result {
-                    case .success:
-                        self?.isCompleted.onNext(true)
-                    case .failure(let error):
-                        self?.errorHandling.onNext(error)
-                    }
-                })
-            case .failure(let error):
-                self?.errorHandling.onNext(error)
-            }
-        }
+        authAPI.register(credential: credential).subscribe(onSuccess: { [weak self] dic in
+            self?.userAPI.postUser(uid: dic["uid"] as! String, dic: dic, completion: { result in
+                switch result {
+                case .success:
+                    self?.isCompleted.onNext(true)
+                case .failure(let error):
+                    self?.errorHandling.onNext(error)
+                }
+            })
+        }, onFailure: { [weak self] error  in
+            self?.errorHandling.onNext(error)
+        }).disposed(by: disposeBag)
     }
     
     func thirdPartyLogin(credential: AuthCredential, id: String) {

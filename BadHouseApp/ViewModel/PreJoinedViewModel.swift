@@ -51,12 +51,11 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
         preJoinedList.accept(list)
         reload.onNext(())
         UserRepositryImpl.getUserById(uid: preJoined.fromUserId) { friend in
-            self.joinAPI.postMatchJoin(preJoined: preJoined, user: friend, myData: self.user) { error in
-                if error != nil {
-                    self.isError.onNext(true)
-                }
+            self.joinAPI.postMatchJoin(preJoined: preJoined, user: friend, myData: self.user).subscribe(onCompleted: {
                 self.completed.onNext(())
-            }
+            }, onError: { _ in
+                self.isError.onNext(true)
+            }).disposed(by: self.disposeBag)
         }
     }
 }

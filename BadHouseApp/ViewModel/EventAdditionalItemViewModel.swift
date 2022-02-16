@@ -31,12 +31,12 @@ final class EventAdditionalItemViewModel {
                 self.dic["explain"] = self.textViewInputs
                 self.practiceAPI.postPractice(dic: self.dic,
                                             circle: self.circle,
-                                            user: self.user) { error in
-                    if error != nil {
+                                            user: self.user)
+                    .subscribe(onCompleted: {
+                        self.completed.onNext(())
+                    }, onError: { _ in
                         self.isError.onNext(true)
-                    }
-                    self.completed.onNext(())
-                }
+                    }).disposed(by: self.disposeBag)
             case .failure:
                 self.isError.onNext(true)
             }

@@ -11,11 +11,9 @@ protocol ApplyRepositry {
     func getApplyUser(user: User)->Single<[Apply]>
     func getApplyedUser(user: User)->Single<[Applyed]>
     func match(user: User,
-               friend: User,
-               completion: @escaping(Result<Void, Error>) -> Void)
+               friend: User) -> Completable
     func postApply(user: User,
-                   toUser: User,
-                   completion: @escaping(Result<Void, Error>) -> Void)
+                   toUser: User) -> Completable
     func notApplyFriend(uid: String,
                         toUserId: String)
 }

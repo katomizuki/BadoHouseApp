@@ -77,14 +77,11 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     func takePartInPractice() {
         guard let user = user else { return }
         guard let myData = myData else { return }
-        joinAPI.postPreJoin(user: myData, toUser: user, practice: practice) { result in
-            switch result {
-            case .success:
-                self.completed.onNext(())
-            case .failure:
-                self.isError.onNext(true)
-            }
-        }
+        joinAPI.postPreJoin(user: myData, toUser: user, practice: practice).subscribe {
+            self.completed.onNext(())
+        } onError: { _ in
+            self.isError.onNext(true)
+        }.disposed(by: disposeBag)
         checkUserDefault()
     }
     

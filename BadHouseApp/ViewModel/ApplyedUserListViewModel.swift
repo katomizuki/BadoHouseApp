@@ -61,15 +61,14 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType, ApplyedUser
         reload.onNext(())
         
         UserRepositryImpl.getUserById(uid: applyed.fromUserId) { friend in
-            self.applyAPI.match(user: self.user, friend: friend) { [weak self] result in
-                switch result {
-                case .success:
-                    self?.completedFriend.onNext(applyed.name)
-                    self?.saveFriendsId(id: applyed.fromUserId)
-                case .failure:
-                    self?.isError.onNext(true)
-                }
-            }
+            self.applyAPI.match(user: self.user,
+                                friend: friend)
+                .subscribe {
+                    self.completedFriend.onNext(applyed.name)
+                    self.saveFriendsId(id: applyed.fromUserId)
+            } onError: { _ in
+                self.isError.onNext(true)
+            }.disposed(by: self.disposeBag)
         }
     }
     

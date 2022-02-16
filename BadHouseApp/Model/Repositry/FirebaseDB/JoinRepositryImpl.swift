@@ -8,9 +8,9 @@ struct JoinRepositryImpl: JoinRepositry {
     func postPreJoin(user: User, toUser: User, practice: Practice) -> Completable {
         return Completable.create { observer in
                    Completable.zip(
-                    sss(user: user, toUser: toUser, practice: practice),
-                    p(user: user, toUser: toUser, practice: practice),
-                    notification(user: user, toUser: toUser, practice: practice)
+                    postToUserData(user: user, toUser: toUser, practice: practice),
+                    postUserData(user: user, toUser: toUser, practice: practice),
+                    postNotification(user: user, toUser: toUser, practice: practice)
                    )
                    .subscribe(onCompleted: {
                        observer(.completed)
@@ -22,7 +22,9 @@ struct JoinRepositryImpl: JoinRepositry {
                }
            }
 
-     func p(user: User,toUser: User, practice: Practice) -> Completable {
+     func postUserData(user: User, 
+                       toUser: User,
+                       practice: Practice) -> Completable {
         return Completable.create { observer -> Disposable in
             Ref.PreJoinRef.document(user.uid).collection("Users")
                 .document(toUser.uid).setData(["toUserId": toUser.uid,
@@ -42,8 +44,10 @@ struct JoinRepositryImpl: JoinRepositry {
             return Disposables.create()
         }
     }
-    private func sss(user: User,
-                     toUser: User, practice: Practice) -> Completable {
+    
+    private func postToUserData(user: User,
+                                toUser: User,
+                                practice: Practice) -> Completable {
         return Completable.create { observer -> Disposable in
             Ref.PreJoinedRef.document(toUser.uid)
                 .collection("Users")
@@ -57,6 +61,7 @@ struct JoinRepositryImpl: JoinRepositry {
                                              "id": practice.id]) { error in
                     if let error = error {
                         observer(.error(error))
+                        return
                     }
                     observer(.completed)
                 }
@@ -64,9 +69,9 @@ struct JoinRepositryImpl: JoinRepositry {
         }
     }
     
-    private func notification(user: User,
-                              toUser: User, practice: Practice) -> Completable {
-        return Completable.create { observer -> Disposable in
+    private func postNotification(user: User,
+                                  toUser: User,
+                                  practice: Practice) -> Completable {
             NotificationRepositryImpl.postNotification(uid: toUser.uid,
                                                  dic: ["id": user.uid,
                                                        "urlString": user.profileImageUrlString,
@@ -74,56 +79,7 @@ struct JoinRepositryImpl: JoinRepositry {
                                                        "titleText": user.name,
                                                        "practiceId": practice.id,
                                                        "practiceTitle": practice.title,
-                                                       "createdAt": Timestamp()]) { error in
-                if let error = error {
-                    observer(.error(error))
-                    return
-                }
-                observer(.completed)
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func postPreJoin(user: User,
-                     toUser: User, practice: Practice,
-                     completion: @escaping(Result<Void, Error>) -> Void) {
-        
-        Ref.PreJoinRef.document(user.uid).collection("Users")
-            .document(toUser.uid).setData(["toUserId": toUser.uid,
-                                           "name": toUser.name,
-                                           "imageUrl": toUser.profileImageUrlString,
-                                           "createdAt": Timestamp(),
-                                           "uid": user.uid,
-                                           "practiceName": practice.title,
-                                           "circleImage": practice.circleUrlString,
-                                           "id": practice.id])
-        
-        Ref.PreJoinedRef.document(toUser.uid)
-            .collection("Users")
-            .document(user.uid).setData(["fromUserId": user.uid,
-                                         "name": user.name,
-                                         "imageUrl": user.profileImageUrlString,
-                                         "createdAt": Timestamp(),
-                                         "uid": toUser.uid,
-                                         "practiceName": practice.title,
-                                         "circleImage": practice.circleUrlString,
-                                         "id": practice.id])
-        
-        NotificationRepositryImpl.postNotification(uid: toUser.uid,
-                                             dic: ["id": user.uid,
-                                                   "urlString": user.profileImageUrlString,
-                                                   "notificationSelectionNumber": 1,
-                                                   "titleText": user.name,
-                                                   "practiceId": practice.id,
-                                                   "practiceTitle": practice.title,
-                                                   "createdAt": Timestamp()]) { error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            completion(.success(()))
-        }
+                                                       "createdAt": Timestamp()])
     }
     
     func getPrejoin(userId: String) -> Single<[PreJoin]> {
@@ -136,20 +92,54 @@ struct JoinRepositryImpl: JoinRepositry {
     
     func postMatchJoin(preJoined: PreJoined,
                        user: User,
-                       myData: User,
-                       completion: @escaping(Error?) -> Void) {
-        
-        Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
-        
-        Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id])
-        
-        NotificationRepositryImpl.postNotification(uid: user.uid,
-                                             dic: ["id": myData.uid,
-                                                   "urlString": myData.profileImageUrlString,
-                                                   "notificationSelectionNumber": 2,
-                                                   "titleText": myData.name,
-                                                   "practiceId": preJoined.id,
-                                                   "practiceTitle": preJoined.practiceName,
-                                                   "createdAt": Timestamp()], completion: completion)
+                       myData: User) -> Completable {
+        return Completable.create { observer in
+            Completable.zip(postJoinFromUserData(preJoined: preJoined, user: user, myData: myData),
+                            postJoinUserData(preJoined: preJoined, user: user, myData: myData),
+                            NotificationRepositryImpl.postNotification(uid: user.uid,
+                                                                 dic: ["id": myData.uid,
+                                                                       "urlString": myData.profileImageUrlString,
+                                                                       "notificationSelectionNumber": 2,
+                                                                       "titleText": myData.name,
+                                                                       "practiceId": preJoined.id,
+                                                                       "practiceTitle": preJoined.practiceName,
+                                                                       "createdAt": Timestamp()]))
+                .subscribe {
+                    observer(.completed)
+            } onError: { error in
+                observer(.error(error))
+            }
+        }
     }
+    
+    private func postJoinFromUserData(preJoined: PreJoined,
+                                      user: User,
+                                      myData: User) -> Completable {
+        return Completable.create { observer  in
+            Ref.UsersRef.document(preJoined.fromUserId).collection("Join").document(preJoined.id).setData(["id": preJoined.id]) { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.completed)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    private func postJoinUserData(preJoined: PreJoined,
+                                  user: User,
+                                  myData: User) -> Completable {
+        return Completable.create { observer in
+            Ref.UsersRef.document(preJoined.uid).collection("Join").document(preJoined.id).setData(["id": preJoined.id]) { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.completed)
+            }
+            return Disposables.create()
+        }
+    }
+    
 }

@@ -8,8 +8,7 @@
 import RxSwift
 
 protocol ChatRepositry {
-    func getChat(chatId: String)->Single<[Chat]>
+    func getChat(chatId: String) -> Single<[Chat]>
     func postChat(chatId: String,
-                  dic: [String: Any],
-                  completion: @escaping(Error?) -> Void)
+                  dic: [String: Any]) -> Completable
 }

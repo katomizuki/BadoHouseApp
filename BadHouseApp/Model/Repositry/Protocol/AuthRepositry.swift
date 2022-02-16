@@ -5,7 +5,8 @@
 //  Created by ミズキ on 2022/02/15.
 //
 
+import RxSwift
+
 protocol AuthRepositry {
-    func register(credential: AuthCredential,
-                  completion: @escaping(Result<[String: Any], Error>) -> Void)
+    func register(credential: AuthCredential) -> Single<[String: Any]>
 }

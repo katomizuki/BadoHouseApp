@@ -44,14 +44,11 @@ final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInp
     }
     
     func applyFriend(_ user: User, myData: User) {
-         applyAPI.postApply(user: myData, toUser: user) { result in
-            switch result {
-            case .success:
-                print(#function)
-            case .failure:
-                self.isError.onNext(true)
-            }
-        }
+        applyAPI.postApply(user: myData, toUser: user).subscribe {
+            print(#function)
+        } onError: { _ in
+            self.isError.onNext(true)
+        }.disposed(by: disposeBag)
     }
     
     func notApplyFriend(_ user: User, myData: User) {

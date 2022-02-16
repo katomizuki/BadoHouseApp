@@ -90,14 +90,11 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     }
     
     func applyFriend() {
-        applyAPI.postApply(user: myData, toUser: user) { result in
-            switch result {
-            case .success:
-                self.completed.onNext(())
-            case .failure:
-                self.isError.onNext(true)
-            }
-        }
+        applyAPI.postApply(user: myData, toUser: user).subscribe {
+            self.completed.onNext(())
+        } onError: { _ in
+            self.isError.onNext(true)
+        }.disposed(by: self.disposeBag)
     }
     
     func notApplyedFriend() {

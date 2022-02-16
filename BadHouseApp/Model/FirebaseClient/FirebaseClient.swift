@@ -120,4 +120,17 @@ class FirebaseClient {
             }
         }
     }
+    
+    func postFirebaseData<T: FirebaseSubCollectionTargetType>(targetType: T) -> Completable {
+        return Completable.create { observer in
+            targetType.ref.document(targetType.id).collection(targetType.subCollectionName).document(targetType.subId).setData([:]) { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.completed)
+            }
+            return Disposables.create()
+        }
+    }
 }

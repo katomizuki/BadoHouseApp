@@ -11,6 +11,5 @@ protocol PracticeRepositry {
     func getPractices()->Single<[Practice]>
     func postPractice(dic: [String: Any],
                       circle: Circle,
-                      user: User,
-                      completion: @escaping(Error?) -> Void)
+                      user: User) -> Completable
 }
