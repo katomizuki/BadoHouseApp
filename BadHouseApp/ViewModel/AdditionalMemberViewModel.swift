@@ -8,27 +8,31 @@ protocol AdditionalMemberViewModelType {
 
 protocol AdditionalMemberViewModelInputs {
     func invite()
+    var errorInput: AnyObserver<Bool> { get }
+    var completedInput: AnyObserver<Void> { get }
 }
 
 protocol AdditionalMemberViewModelOutputs {
     var friendsSubject: BehaviorRelay<[User]> { get }
-    var isError: PublishSubject<Bool> { get }
-    var completed: PublishSubject<Void> { get }
+    var isError: Observable<Bool> { get }
+    var completed: Observable<Void> { get }
 }
 
-final class AdditionalMemberViewModel: AdditionalMemberViewModelType, AdditionalMemberViewModelInputs, AdditionalMemberViewModelOutputs {
+final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     
     var inputs: AdditionalMemberViewModelInputs { return self }
     var outputs: AdditionalMemberViewModelOutputs { return self }
-    var isError = PublishSubject<Bool>()
-    var completed = PublishSubject<Void>()
-    private let disposeBag = DisposeBag()
+    
     lazy var inviteIds = circle.member
     var friendsSubject = BehaviorRelay<[User]>(value: [])
-    var user: User
-    let userAPI: UserRepositry
-    var circle: Circle
-    let circleAPI: CircleRepositry
+    
+    private let errorStream = PublishSubject<Bool>()
+    private let completedStream = PublishSubject<Void>()
+    private let user: User
+    private let userAPI: UserRepositry
+    private let circle: Circle
+    private let circleAPI: CircleRepositry
+    private let disposeBag = DisposeBag()
     
     init(user: User,
          userAPI: UserRepositry,
@@ -38,12 +42,13 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         self.userAPI = userAPI
         self.circle = circle
         self.circleAPI = circleAPI
+        
         userAPI.getFriends(uid: user.uid).subscribe { [weak self] friends in
             guard let self = self else { return }
             let users = self.judgeInviter(members: self.circle.members, friends: friends)
             self.friendsSubject.accept(users)
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
@@ -64,9 +69,9 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
         circleAPI.inviteCircle(ids: inviteIds, circle: circle) { result in
             switch result {
             case .success:
-                self.completed.onNext(())
+                self.completedInput.onNext(())
             case .failure:
-                self.isError.onNext(true)
+                self.errorInput.onNext(true)
             }
         }
     }
@@ -77,5 +82,26 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType, Additional
             array.remove(value: $0)
         }
         return array
+    }
+}
+
+extension AdditionalMemberViewModel: AdditionalMemberViewModelInputs {
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+}
+
+extension AdditionalMemberViewModel: AdditionalMemberViewModelOutputs {
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var completed: Observable<Void> {
+        completedStream.asObservable()
     }
 }
