@@ -28,6 +28,8 @@ final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleView
         return searchBarText.asObserver()
     }
     var user: User
+    private let errorStream = PublishSubject<Bool>()
+    
     
     init(circleAPI: CircleRepositry, user: User) {
         self.circleAPI = circleAPI

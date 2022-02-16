@@ -22,8 +22,10 @@ protocol PracticeDetailViewModelOutputs {
 }
 
 final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetailViewModelInputs, PracticeDetailViewModelOutputs {
+
     var inputs: PracticeDetailViewModelInputs { return self }
     var outputs: PracticeDetailViewModelOutputs { return self }
+
     var userRelay = PublishRelay<User>()
     var circleRelay = PublishRelay<Circle>()
     var isButtonHidden = PublishSubject<Bool>()
@@ -34,11 +36,16 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var myData: User?
     var circle: Circle?
     var user: User?
+    
     private let userAPI: UserRepositry
     private let circleAPI: CircleRepositry
     private let joinAPI: JoinRepositry
     private let disposeBag = DisposeBag()
-    var isModal: Bool
+    private let errorStream = PublishSubject<Bool>()
+    private let buttonHiddenStream = PublishSubject<Bool>()
+    private let completedStream = PublishSubject<Void>()
+    private let takePartInButtonStream = PublishSubject<Bool>()
+    let isModal: Bool
     
     init(practice: Practice,
          userAPI: UserRepositry,

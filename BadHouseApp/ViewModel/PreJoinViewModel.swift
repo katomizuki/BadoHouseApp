@@ -24,7 +24,10 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
+    
     private let disposeBag = DisposeBag()
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
     
     init(joinAPI: JoinRepositry, user: User) {
         self.joinAPI = joinAPI

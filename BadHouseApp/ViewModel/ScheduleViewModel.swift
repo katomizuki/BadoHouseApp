@@ -29,6 +29,8 @@ final class ScheduleViewModel: ScheduleViewModelType, ScheduleViewModelInputs, S
     var user: User
     var practiceList = BehaviorRelay<[Practice]>(value: [])
     private let disposeBag = DisposeBag()
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
     
     init(userAPI: UserRepositry, practiceAPI: PracticeRepositry, user: User) {
         self.userAPI = userAPI

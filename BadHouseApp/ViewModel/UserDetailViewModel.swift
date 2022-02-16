@@ -39,15 +39,23 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     var myData: User
     private let userAPI: UserRepositry
     private let applyAPI: ApplyRepositry
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
+    private let completedStream = PublishSubject<Void>()
+    private let notApplyedCompletedStream = PublishSubject<Void>()
+    private let applyButtonStream = PublishSubject<String>()
+    private let disposeBag = DisposeBag()
+
     let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
+
     var isApplyButtonHidden: Bool {
         return ids.contains(user.uid) || myData.uid == user.uid
     }
+
     var isTalkButtonHidden: Bool {
         return !(ids.contains(user.uid) && myData.uid != user.uid)
     }
-    private let disposeBag = DisposeBag()
-    
+
     init(myData: User, user: User,
          userAPI: UserRepositry,
          applyAPI: ApplyRepositry) {

@@ -16,18 +16,10 @@ protocol MyPracticeViewModelOutputs {
     var isError: Observable<Bool> { get }
 }
 
-final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelOutputs, MyPracticeViewModelType {
+final class MyPracticeViewModel: MyPracticeViewModelType {
     
     var inputs: MyPracticeViewModelInputs { return self }
     var outputs: MyPracticeViewModelOutputs { return self }
-    
-    var isError: Observable<Bool> {
-        errorStream.asObservable()
-    }
-    
-    var errorInput: AnyObserver<Bool> {
-        errorStream.asObserver()
-    }
     
     var practices = BehaviorRelay<[Practice]>(value: [])
     let user: User
@@ -50,5 +42,17 @@ final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelO
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: user.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
         DeleteService.deleteCollectionData(collectionName: R.Collection.Practice, documentId: practice.id)
     }
+}
+
+extension MyPracticeViewModel: MyPracticeViewModelInputs {
     
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+}
+extension MyPracticeViewModel: MyPracticeViewModelOutputs {
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
 }

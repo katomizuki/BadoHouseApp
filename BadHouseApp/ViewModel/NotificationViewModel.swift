@@ -34,8 +34,15 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
     var toUserDetail = PublishSubject<User>()
     var toPracticeDetail = PublishSubject<Practice>()
     let user: User
+    
     private let notificationAPI: NotificationRepositry
     private let disposeBag = DisposeBag()
+    private let errorStream = PublishSubject<Error>()
+    private let reloadStream = PublishSubject<Void>()
+    private let prejoinedStream = PublishSubject<Void>()
+    private let applyedFriendStream = PublishSubject<Void>()
+    private let userDetailStream = PublishSubject<User>()
+    private let practiceDetailStream = PublishSubject<Practice>()
     
     init(user: User, notificationAPI: NotificationRepositry) {
         self.user = user

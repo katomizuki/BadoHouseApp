@@ -21,12 +21,15 @@ final class TalkViewModel: TalkViewModelType, TalkViewModelInputs, TalkViewModel
     
     var inputs: TalkViewModelInputs { return self }
     var outputs: TalkViewModelOutputs { return self }
+    
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()
     var chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
     private let disposeBag = DisposeBag()
     private let userAPI: UserRepositry
     private let chatAPI: ChatRepositry
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
     
     init(userAPI: UserRepositry, chatAPI: ChatRepositry) {
         self.chatAPI = chatAPI

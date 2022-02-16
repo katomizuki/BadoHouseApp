@@ -25,6 +25,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     
     var inputs: PracticeSearchViewModelInputs { return self }
     var outputs: PracticeSearchViewModelOutputs { return self }
+    
     var navigationStriing = PublishSubject<String>()
     var practiceAPI: PracticeRepositry
     var selectedLevel = String()
@@ -33,6 +34,9 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var practices = [Practice]()
     var fullPractices = [Practice]()
     var searchedPractices = [Practice]()
+    
+    private let reloadStream = PublishSubject<Void>()
+    private let navigationTitleStream = PublishSubject<String>()
     
     init(practiceAPI: PracticeRepositry, practices: [Practice]) {
         self.practiceAPI = practiceAPI

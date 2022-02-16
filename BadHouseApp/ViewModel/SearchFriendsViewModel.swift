@@ -29,7 +29,8 @@ final class SearchUserViewModel: SearchUserViewModelType, SearchUserViewModelInp
     }
     private let disposeBag = DisposeBag()
     let user: User
-    let applyAPI: ApplyRepositry
+    private let applyAPI: ApplyRepositry
+    private let errorStream = PublishSubject<Bool>()
     
     init(userAPI: UserRepositry, user: User, applyAPI: ApplyRepositry) {
         self.user = user

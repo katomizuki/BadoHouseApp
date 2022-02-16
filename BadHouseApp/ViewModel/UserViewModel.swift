@@ -40,11 +40,15 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
     var reload = PublishSubject<Void>()
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
-    var userAPI: UserRepositry
     var user: User?
-    let applyAPI: ApplyRepositry
-    let circleAPI: CircleRepositry
+    private let userAPI: UserRepositry
+    private let applyAPI: ApplyRepositry
+    private let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
+    private let errorStream = PublishSubject<Bool>()
+    private let notAuthStream = PublishSubject<Void>()
+    private let applyViewHiddenStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
     
     init(userAPI: UserRepositry,
          applyAPI: ApplyRepositry,

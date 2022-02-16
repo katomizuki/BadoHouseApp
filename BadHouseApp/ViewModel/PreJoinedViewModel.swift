@@ -31,6 +31,11 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
     var completed = PublishSubject<Void>()
     let user: User
     
+    private let reloadStream = PublishSubject<Void>()
+    private let errorStream = PublishSubject<Bool>()
+    private let completedStream = PublishSubject<Void>()
+    private let navigationTitleStream = PublishSubject<String>()
+    
     init(joinAPI: JoinRepositry, user: User) {
         self.joinAPI = joinAPI
         self.user = user
