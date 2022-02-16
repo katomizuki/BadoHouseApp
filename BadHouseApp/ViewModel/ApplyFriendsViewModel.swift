@@ -9,33 +9,49 @@ protocol ApplyFriendsViewModelType {
 
 protocol ApplyFriendsViewModelInputs {
     func onTrashButton(apply: Apply)
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol ApplyFriendsViewModelOutputs {
     var applyRelay: BehaviorRelay<[Apply]> { get }
-    var isError: PublishSubject<Bool> { get }
-    var reload: PublishSubject<Void> { get }
+    var isError: Observable<Bool> { get }
+    var reload: Observable<Void> { get }
 }
 
-final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsViewModelOutputs, ApplyFriendsViewModelType {
+final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
     var inputs: ApplyFriendsViewModelInputs { return self }
     var outputs: ApplyFriendsViewModelOutputs { return self }
-    var isError = PublishSubject<Bool>()
+    
     var applyRelay = BehaviorRelay<[Apply]>(value: [])
-    var reload = PublishSubject<Void>()
     private let user: User
     private let applyAPI: ApplyRepositry
     private let disposeBag = DisposeBag()
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
     
     init(user: User, applyAPI: ApplyRepositry) {
         self.user = user
         self.applyAPI = applyAPI
+        
         applyAPI.getApplyUser(user: user).subscribe {[weak self] apply in
             self?.applyRelay.accept(apply)
-            self?.reload.onNext(())
+            self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
+    }
+    
+}
+
+extension ApplyFriendsViewModel: ApplyFriendsViewModelInputs {
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
     }
     
     func onTrashButton(apply: Apply) {
@@ -44,6 +60,16 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
             $0.toUserId != apply.toUserId
         }
         applyRelay.accept(value)
-        reload.onNext(())
+        reloadInput.onNext(())
     }
 }
+
+extension  ApplyFriendsViewModel: ApplyFriendsViewModelOutputs {
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+}
+

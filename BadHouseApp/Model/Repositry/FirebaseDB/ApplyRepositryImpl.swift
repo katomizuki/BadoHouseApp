@@ -66,18 +66,21 @@ struct ApplyRepositryImpl: ApplyRepositry {
         UserRepositryImpl.saveFriendId(uid: user.uid)
         return Completable.create { observer in
             Completable.zip(sendUserData(id1: user.uid, id2: friend.uid, dic: ["id": friend.uid]),
-                            sendUserData(id1: friend.uid, id2: user.uid, dic: ["id": user.uid]), NotificationRepositryImpl.postNotification(uid: user.uid,
-                                                                           dic: ["id": friend.uid,
-                                                                                  "urlString": friend.profileImageUrlString,
-                                                                                   "notificationSelectionNumber": 3,
-                                                                                  "titleText": friend.name,
-                                                                                  "createdAt": Timestamp()]),
-                            NotificationRepositryImpl.postNotification(uid: friend.uid,
-                                                                       dic: ["id": user.uid,
-                                                                             "urlString": user.profileImageUrlString,
-                                                                              "notificationSelectionNumber": 3,
-                                                                              "titleText": user.name,
-                                                                             "createdAt": Timestamp()]))
+                            sendUserData(id1: friend.uid, id2: user.uid, dic: ["id": user.uid]),
+                            NotificationRepositryImpl.postNotification(
+                                uid: user.uid,
+                                dic: ["id": friend.uid,
+                                      "urlString": friend.profileImageUrlString,
+                                      "notificationSelectionNumber": 3,
+                                      "titleText": friend.name,
+                                      "createdAt": Timestamp()]),
+                            NotificationRepositryImpl.postNotification(
+                                uid: friend.uid,
+                                dic: ["id": user.uid,
+                                      "urlString": user.profileImageUrlString,
+                                      "notificationSelectionNumber": 3,
+                                      "titleText": user.name,
+                                      "createdAt": Timestamp()]))
                 .subscribe {
                     observer(.completed)
             } onError: { error in
@@ -86,7 +89,6 @@ struct ApplyRepositryImpl: ApplyRepositry {
             return Disposables.create()
         }
     }
-    
     
     private func sendUserData(id1: String, id2: String, dic: [String: Any]) -> Completable {
         return Completable.create { observer  in

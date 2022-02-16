@@ -3,13 +3,16 @@ import RxRelay
 
 protocol CircleDetailViewModelInputs {
     func changeMember(_ index: Int)
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
+    var rightButtonHiddenInput: AnyObserver<Bool> { get }
 }
 
 protocol CircleDetailViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
     var memberRelay: BehaviorRelay<[User]> { get }
-    var reload: PublishSubject<Void> { get }
-    var isRightButtonHidden: PublishSubject<Bool> { get }
+    var isRightButtonHidden: Observable<Bool> { get }
+    var isError: Observable<Bool> { get }
+    var reload: Observable<Void> { get }
 }
 
 protocol CircleDetailViewModelType {
@@ -17,14 +20,15 @@ protocol CircleDetailViewModelType {
     var outputs: CircleDetailViewModelOutputs { get }
 }
 
-final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailViewModelOutputs, CircleDetailViewModelType {
+final class CircleDetailViewModel: CircleDetailViewModelType {
     
     var inputs: CircleDetailViewModelInputs { return self }
     var outputs: CircleDetailViewModelOutputs { return self }
-    var isError = PublishSubject<Bool>()
+    
     var memberRelay = BehaviorRelay<[User]>(value: [])
-    var reload = PublishSubject<Void>()
-    var isRightButtonHidden = PublishSubject<Bool>()
+
+   
+    
     private let disposeBag = DisposeBag()
     var circle: Circle
     let myData: User
@@ -32,9 +36,12 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
     var friendsMembers = [User]()
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
-    private let circleAPI: CircleRepositry
     
+    private let circleAPI: CircleRepositry
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
+    private let buttonHiddenStream = PublishSubject<Bool>()
     
     init(myData: User, circle: Circle, circleAPI: CircleRepositry) {
         self.myData = myData
@@ -50,9 +57,9 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
             self.getPercentage()
             self.checkRightButtonHidden(self.allMembers)
             self.memberRelay.accept(circle.members)
-            self.reload.onNext(())
+            self.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
@@ -62,8 +69,9 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
         } else {
             memberRelay.accept(friendsMembers)
         }
-        reload.onNext(())
+        reloadInput.onNext(())
     }
+
     func getPercentage() {
         var (men, women, other) = (0, 0, 0)
         var (one, two, three, four, five, six, seven, eight, nine, ten) = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -98,7 +106,36 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
                isHidden = false
             }
         }
-        self.isRightButtonHidden.onNext(isHidden)
+        self.rightButtonHiddenInput.onNext(isHidden)
     }
     
+}
+
+extension CircleDetailViewModel: CircleDetailViewModelInputs {
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+    
+    var rightButtonHiddenInput: AnyObserver<Bool> {
+        buttonHiddenStream.asObserver()
+    }
+}
+
+extension CircleDetailViewModel: CircleDetailViewModelOutputs {
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var isRightButtonHidden: Observable<Bool> {
+        buttonHiddenStream.asObservable()
+    }
 }

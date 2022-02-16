@@ -34,9 +34,9 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetail
     var myData: User?
     var circle: Circle?
     var user: User?
-    let userAPI: UserRepositry
-    let circleAPI: CircleRepositry
-    let joinAPI: JoinRepositry
+    private let userAPI: UserRepositry
+    private let circleAPI: CircleRepositry
+    private let joinAPI: JoinRepositry
     private let disposeBag = DisposeBag()
     var isModal: Bool
     

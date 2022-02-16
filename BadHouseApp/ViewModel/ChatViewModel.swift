@@ -10,15 +10,17 @@ protocol ChatViewModelType {
 protocol ChatViewModelInputs {
     func didLoad()
     func sendText(_ text: String)
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol ChatViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
     var chatsList: BehaviorRelay<[Chat]> { get }
-    var reload: PublishSubject<Void> { get }
+    var isError: Observable<Bool> { get }
+    var reload: Observable<Void> { get }
 }
 
-final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewModelType {
+final class ChatViewModel: ChatViewModelType {
     
     var inputs: ChatViewModelInputs { return self }
     var outputs: ChatViewModelOutputs { return self }
@@ -28,8 +30,8 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     private let userAPI: UserRepositry
     private let chatAPI: ChatRepositry
     private let disposeBag = DisposeBag()
-    var isError = PublishSubject<Bool>()
-    var reload = PublishSubject<Void>()
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
     var chatsList = BehaviorRelay<[Chat]>(value: [])
     var chatId: String?
     
@@ -45,9 +47,9 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     private func getChat(chatId: String) {
         self.chatAPI.getChat(chatId: chatId).subscribe {[weak self] chats in
             self?.chatsList.accept(chats)
-            self?.reload.onNext(())
+            self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: self.disposeBag)
     }
     
@@ -80,9 +82,8 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
                                             myData: self.myData,
                                             chatId: id)
             }
-
-        }, onFailure: { error in
-            self.isError.onNext(true)
+        }, onFailure: { _ in
+            self.errorInput.onNext(true)
         }).disposed(by: disposeBag)
     }
     
@@ -99,7 +100,28 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
             self.getChat(chatId: chatId)
             self.userAPI.updateChatRoom(user: self.user, myData: self.myData, message: text)
         } onError: { _ in
-            self.isError.onNext(true)
+            self.errorInput.onNext(true)
         }.disposed(by: disposeBag)
+    }
+}
+
+extension ChatViewModel : ChatViewModelInputs {
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+}
+extension ChatViewModel : ChatViewModelOutputs {
+    
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
     }
 }

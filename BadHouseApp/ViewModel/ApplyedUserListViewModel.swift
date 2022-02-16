@@ -44,8 +44,6 @@ final class  ApplyedUserListViewModel: ApplyedUserListViewModelType {
         self.user = user
     }
     
-    
-    
     private func saveFriendsId(id: String) {
         if UserDefaults.standard.object(forKey: R.UserDefaultsKey.friends) != nil {
             let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
