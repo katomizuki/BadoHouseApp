@@ -24,8 +24,8 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
         passwordTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
-    var authAPI: AuthRepositry
-    var userAPI: UserRepositry
+    private let authAPI: AuthRepositry
+    private let userAPI: UserRepositry
     // MARK: - initialize
     init(authAPI: AuthRepositry, userAPI: UserRepositry) {
         self.authAPI = authAPI

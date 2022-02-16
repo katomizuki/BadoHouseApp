@@ -22,10 +22,11 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     
     var inputs: ChatViewModelInputs { return self }
     var outputs: ChatViewModelOutputs { return self }
+    
     let myData: User
     let user: User
-    let userAPI: UserRepositry
-    let chatAPI: ChatRepositry
+    private let userAPI: UserRepositry
+    private let chatAPI: ChatRepositry
     private let disposeBag = DisposeBag()
     var isError = PublishSubject<Bool>()
     var reload = PublishSubject<Void>()

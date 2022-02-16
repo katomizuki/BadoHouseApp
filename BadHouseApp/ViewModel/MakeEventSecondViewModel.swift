@@ -28,7 +28,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType, MakeEventSec
     var minLevelText = BehaviorRelay<String>(value: "レベル1")
     var maxLevelText = BehaviorRelay<String>(value: "レベル10")
     var circleRelay = BehaviorRelay<[Circle]>(value: [])
-    var userAPI: UserRepositry
+    private let userAPI: UserRepositry
     var user: User?
     var circle: Circle?
     private let disposeBag = DisposeBag()

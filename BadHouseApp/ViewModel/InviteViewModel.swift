@@ -31,7 +31,7 @@ final class InviteViewModel: InviteViewModelType,
     var inviteIds = [String]()
     private let disposeBag = DisposeBag()
     private var dic = [String: Any]()
-    let circleAPI: CircleRepositry
+    private let circleAPI: CircleRepositry
     
     init(userAPI: UserRepositry,
          user: User,

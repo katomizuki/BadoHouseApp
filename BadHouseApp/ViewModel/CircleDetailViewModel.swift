@@ -27,12 +27,12 @@ final class CircleDetailViewModel: CircleDetailViewModelInputs, CircleDetailView
     var isRightButtonHidden = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
     var circle: Circle
-    var myData: User
+    let myData: User
     var allMembers = [User]()
     var friendsMembers = [User]()
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
-    var circleAPI: CircleRepositry
+    private let circleAPI: CircleRepositry
     
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     

@@ -11,7 +11,7 @@ final class EventAdditionalItemViewModel {
     var isError = PublishSubject<Bool>()
     var completed = PublishSubject<Void>()
     var textViewInputs = String()
-    let practiceAPI: PracticeRepositry
+    private let practiceAPI: PracticeRepositry
     private let disposeBag = DisposeBag()
     
     init(image: UIImage, circle: Circle, user: User, dic: [String: Any], practiceAPI: PracticeRepositry) {

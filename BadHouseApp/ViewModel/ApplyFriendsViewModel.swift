@@ -23,8 +23,8 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelInputs, ApplyFriendsView
     var isError = PublishSubject<Bool>()
     var applyRelay = BehaviorRelay<[Apply]>(value: [])
     var reload = PublishSubject<Void>()
-    var user: User
-    var applyAPI: ApplyRepositry
+    private let user: User
+    private let applyAPI: ApplyRepositry
     private let disposeBag = DisposeBag()
     
     init(user: User, applyAPI: ApplyRepositry) {

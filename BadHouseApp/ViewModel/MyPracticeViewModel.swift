@@ -22,7 +22,7 @@ final class MyPracticeViewModel: MyPracticeViewModelInputs, MyPracticeViewModelO
     var isError = PublishSubject<Bool>()
     var practices = BehaviorRelay<[Practice]>(value: [])
     let user: User
-    let userAPI: UserRepositry
+    private let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
     
     init(user: User, userAPI: UserRepositry) {

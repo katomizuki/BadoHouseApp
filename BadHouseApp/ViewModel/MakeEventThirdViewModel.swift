@@ -27,6 +27,7 @@ final class MakeEventThirdViewModel: MakeEventThirdViewModelInputs, MakeEventThi
     
     var inputs: MakeEventThirdViewModelInputs { return self }
     var outputs: MakeEventThirdViewModelOutputs { return self }
+    
     var image: UIImage
     var dic: [String: Any]
     var circle: Circle

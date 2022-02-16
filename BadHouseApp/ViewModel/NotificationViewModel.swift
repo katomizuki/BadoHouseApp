@@ -34,7 +34,7 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
     var toUserDetail = PublishSubject<User>()
     var toPracticeDetail = PublishSubject<Practice>()
     let user: User
-    let notificationAPI: NotificationRepositry
+    private let notificationAPI: NotificationRepositry
     private let disposeBag = DisposeBag()
     
     init(user: User, notificationAPI: NotificationRepositry) {
