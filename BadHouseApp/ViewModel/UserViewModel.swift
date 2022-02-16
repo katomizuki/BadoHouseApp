@@ -146,10 +146,10 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                                               subCollectionName: R.Collection.Circle,
                                               subId: circle.id)
         circleAPI.withdrawCircle(user: user,
-                                   circle: circle) { error in
-            if error != nil {
-                self.isError.onNext(true)
-            }
-        }
+                                 circle: circle).subscribe(onCompleted: {
+            
+        }, onError: { [weak self] _ in
+            self?.isError.onNext(true)
+        }).disposed(by: disposeBag)
     }
 }

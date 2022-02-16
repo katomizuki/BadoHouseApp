@@ -51,7 +51,7 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
     }
     
     func didLoad() {
-        userAPI.judgeChatRoom(user: user, myData: myData) { isExits in
+        userAPI.judgeChatRoom(user: user, myData: myData).subscribe(onSuccess: { isExits in
             if isExits {
                 self.userAPI.getUserChatRoomById(myData: self.myData,
                                                  id: self.user.uid) { chatRoom in
@@ -79,7 +79,10 @@ final class ChatViewModel: ChatViewModelInputs, ChatViewModelOutputs, ChatViewMo
                                             myData: self.myData,
                                             chatId: id)
             }
-        }
+
+        }, onFailure: { error in
+            self.isError.onNext(true)
+        }).disposed(by: disposeBag)
     }
     
     func sendText(_ text: String) {

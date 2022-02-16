@@ -4,14 +4,16 @@ import RxSwift
 struct UserRepositryImpl: UserRepositry {
     
     func postUser(uid: String,
-                  dic: [String: Any],
-                  completion: @escaping (Result<Void, Error>) -> Void) {
-        Ref.UsersRef.document(uid).setData(dic) { error in
-            if let error = error {
-                completion(.failure(error))
-                return
+                  dic: [String: Any]) -> Completable {
+        return Completable.create { observer in
+            Ref.UsersRef.document(uid).setData(dic) { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.completed)
             }
-            completion(.success(()))
+            return Disposables.create()
         }
     }
     
@@ -69,15 +71,18 @@ struct UserRepositryImpl: UserRepositry {
         FirebaseClient.shared.requestFirebaseSubCollection(request: UserGetPracticeTargetType(id: uid))
     }
     
-    func judgeChatRoom(user: User, myData: User, completion: @escaping(Bool) -> Void) {
-        Ref.UsersRef.document(myData.uid).collection("ChatRoom").whereField("userId", isEqualTo: user.uid).getDocuments { snapShot, error in
-            if error != nil { completion(false) }
-            guard let snapShot = snapShot else { return }
-            if !snapShot.documents.isEmpty {
-                completion(true)
-            } else {
-                completion(false)
+    func judgeChatRoom(user: User, myData: User) -> Single<Bool> {
+        return Single.create { observer in
+            Ref.UsersRef.document(myData.uid).collection("ChatRoom").whereField("userId", isEqualTo: user.uid).getDocuments { snapShot, error in
+                if let error = error { observer(.failure(error)) }
+                guard let snapShot = snapShot else { return }
+                if !snapShot.documents.isEmpty {
+                    observer(.success(true))
+                } else {
+                    observer(.success(false))
+                }
             }
+            return Disposables.create()
         }
     }
     

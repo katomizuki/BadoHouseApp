@@ -137,11 +137,10 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     }
     
     func saveCircleAction(_ circle: Circle) {
-        circleAPI.updateCircle(circle: circle) { error in
-            if error != nil {
-                self.isError.onNext(true)
-            }
+        circleAPI.updateCircle(circle: circle).subscribe(onCompleted: {
             self.completed.onNext(())
-        }
+        }, onError: { [weak self] _ in
+            self?.isError.onNext(true)
+        }).disposed(by: disposeBag)
     }
 }

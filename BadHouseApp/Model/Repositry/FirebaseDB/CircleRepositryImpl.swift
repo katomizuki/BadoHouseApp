@@ -71,28 +71,40 @@ struct CircleRepositryImpl: CircleRepositry {
     }
     
     func withdrawCircle(user: User,
-                        circle: Circle,
-                        completion: @escaping(Error?) -> Void) {
+                        circle: Circle) -> Completable {
         let ids = circle.member.filter({ $0 != user.uid })
-        
-        Ref.CircleRef.document(circle.id).updateData(["member": ids],
-                                                     completion: completion)
-        
-        Ref.UsersRef.document(user.uid).collection("Circle").document(circle.id).delete()
+        return Completable.create { observer in
+            Ref.CircleRef.document(circle.id).updateData(["member": ids]) { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.completed)
+            }
+            return Disposables.create()
+        }
     }
     
-    func updateCircle(circle: Circle, completion: @escaping(Error?) -> Void) {
-        Ref.CircleRef.document(circle.id).updateData(["id": circle.id,
-                                                      "name": circle.name,
-                                                      "price": circle.price,
-                                                      "place": circle.place,
-                                                      "time": circle.time,
-                                                      "features": circle.features,
-                                                      "additionlText": circle.additionlText,
-                                                      "icon": circle.icon,
-                                                      "backGround": circle.backGround,
-                                                      "member": circle.member],
-                                                     completion: completion)
+    func updateCircle(circle: Circle) -> Completable {
+        return Completable.create { observer  in
+            Ref.CircleRef.document(circle.id).updateData(["id": circle.id,
+                                                          "name": circle.name,
+                                                          "price": circle.price,
+                                                          "place": circle.place,
+                                                          "time": circle.time,
+                                                          "features": circle.features,
+                                                          "additionlText": circle.additionlText,
+                                                          "icon": circle.icon,
+                                                          "backGround": circle.backGround,
+                                                          "member": circle.member]) { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.completed)
+            }
+            return Disposables.create()
+        }
     }
     
     func inviteCircle(ids: [String],

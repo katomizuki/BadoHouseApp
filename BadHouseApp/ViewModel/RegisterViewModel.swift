@@ -77,14 +77,13 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     func didTapRegisterButton() {
         let credential = AuthCredential(name: name, email: email, password: password)
         authAPI.register(credential: credential).subscribe(onSuccess: { [weak self] dic in
-            self?.userAPI.postUser(uid: dic["uid"] as! String, dic: dic, completion: { result in
-                switch result {
-                case .success:
-                    self?.isCompleted.onNext(true)
-                case .failure(let error):
-                    self?.errorHandling.onNext(error)
-                }
-            })
+            guard let self = self else { return }
+            self.userAPI.postUser(uid: dic["uid"] as! String, dic: dic).subscribe(onCompleted: {
+                self.isCompleted.onNext(true)
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.errorHandling.onNext(error)
+            }).disposed(by: self.disposeBag)
         }, onFailure: { [weak self] error  in
             self?.errorHandling.onNext(error)
         }).disposed(by: disposeBag)
@@ -96,13 +95,11 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
                                 "createdAt": Timestamp(),
                                 "updatedAt": Timestamp(),
                                 "email": credential.email]
-        userAPI.postUser(uid: id, dic: dic) { [weak self] result in
-            switch result {
-            case .success:
-                self?.isCompleted.onNext(true)
-            case .failure(let error):
-                self?.errorHandling.onNext(error)
-            }
-        }
+        
+        userAPI.postUser(uid: id, dic: dic).subscribe(onCompleted: {
+            self.isCompleted.onNext(true)
+        }, onError: { [weak self] error in
+            self?.errorHandling.onNext(error)
+        }).disposed(by: disposeBag)
     }
 }

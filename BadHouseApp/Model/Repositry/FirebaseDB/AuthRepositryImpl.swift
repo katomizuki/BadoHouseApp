@@ -23,20 +23,6 @@ struct AuthRepositryImpl: AuthRepositry {
             }
             return Disposables.create()
         }
-        //         { result, error in
-        //            if let error = error {
-        //                completion(.failure(error))
-        //                return
-        //            }
-        //            guard let uid = result?.user.uid else { return }
-        //            let dic: [String: Any] = ["uid": uid,
-        //                                    "email": credential.email,
-        //                                     "name": credential.name,
-        //                                     "createdAt": Timestamp(),
-        //                                     "updatedAt": Timestamp(),
-        //                                    "password": credential.password]
-        //            completion(.success(dic))
-        //        }
     }
     
     static func getUid() -> String? {

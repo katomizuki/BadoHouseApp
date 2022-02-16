@@ -128,14 +128,11 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     }
     
     func postUser(dic: [String: Any]) {
-        userAPI.postUser(uid: AuthRepositryImpl.getUid()!, dic: dic) {[weak self] result in
-            switch result {
-            case .success:
-                self?.isCompleted.onNext(())
-            case .failure:
-                self?.isError.onNext(true)
-            }
-        }
+        userAPI.postUser(uid: AuthRepositryImpl.getUid()!, dic: dic).subscribe(onCompleted: {
+            self.isCompleted.onNext(())
+        }, onError: { [weak self] _ in
+            self?.isError.onNext(true)
+        }).disposed(by: disposeBag)
     }
     
     func getUserData(_ selection: UserInfoSelection) -> String {
