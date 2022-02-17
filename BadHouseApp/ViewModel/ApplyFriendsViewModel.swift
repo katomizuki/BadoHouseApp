@@ -1,6 +1,7 @@
 import RxSwift
 import FirebaseAuth
 import RxRelay
+import ReSwift
 
 protocol ApplyFriendsViewModelType {
     var inputs: ApplyFriendsViewModelInputs { get }
@@ -25,21 +26,30 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
     
     var applyRelay = BehaviorRelay<[Apply]>(value: [])
     private let user: User
-    private let applyAPI: ApplyRepositry
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
+    private let actionCreator: ApplyFriendsActionCreator
     
-    init(user: User, applyAPI: ApplyRepositry) {
+    init(user: User, store: Store<AppState>, actionCreator: ApplyFriendsActionCreator) {
         self.user = user
-        self.applyAPI = applyAPI
+        self.store = store
+        self.actionCreator = actionCreator
         
-        applyAPI.getApplyUser(user: user).subscribe {[weak self] apply in
-            self?.applyRelay.accept(apply)
-            self?.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.applyFriendsState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
+        actionCreator.getApplyData(user)
     }
     
 }
@@ -55,12 +65,7 @@ extension ApplyFriendsViewModel: ApplyFriendsViewModelInputs {
     }
     
     func onTrashButton(apply: Apply) {
-        applyAPI.notApplyFriend(uid: self.user.uid, toUserId: apply.toUserId)
-        let value = applyRelay.value.filter {
-            $0.toUserId != apply.toUserId
-        }
-        applyRelay.accept(value)
-        reloadInput.onNext(())
+        actionCreator.onTrashButton(apply: apply, uid: self.user.uid, list: applyRelay.value)
     }
 }
 
@@ -73,3 +78,19 @@ extension  ApplyFriendsViewModel: ApplyFriendsViewModelOutputs {
     }
 }
 
+extension ApplyFriendsViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = ApplyFriendsState
+    
+    func newState(state: ApplyFriendsState) {
+        applyRelay.accept(state.applies)
+
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
+
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        
+    }
+}

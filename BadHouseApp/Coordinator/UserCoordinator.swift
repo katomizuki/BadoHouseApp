@@ -61,7 +61,14 @@ final class UserCoordinator: Coordinator, UserFlow {
     
     func toApplyUser(user: User?) {
         guard let user = user else { return }
-            navigationController.pushViewController( ApplyFriendController.init(viewModel: ApplyFriendsViewModel(user: user, applyAPI: ApplyRepositryImpl())), animated: true)
+            navigationController.pushViewController(
+                ApplyFriendController.init(
+                    viewModel:ApplyFriendsViewModel(
+                        user: user,
+                        store: appStore,
+                        actionCreator: ApplyFriendsActionCreator(
+                            applyAPI:
+                            ApplyRepositryImpl()))), animated: true)
     }
     
     func toApplyedUser(user: User?) {

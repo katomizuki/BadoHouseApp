@@ -27,8 +27,6 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     
     var memberRelay = BehaviorRelay<[User]>(value: [])
 
-   
-    
     private let disposeBag = DisposeBag()
     var circle: Circle
     let myData: User
@@ -47,6 +45,8 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
         self.myData = myData
         self.circle = circle
         self.circleAPI = circleAPI
+        
+        
         circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
             guard let self = self else { return }
             self.allMembers = circle.members
