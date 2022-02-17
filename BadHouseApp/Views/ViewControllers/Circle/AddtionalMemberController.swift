@@ -25,6 +25,16 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
         setupBinding()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
+    
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.buttonTitle.invite, style: .done, target: self, action: #selector(didTapRightButton))
     }

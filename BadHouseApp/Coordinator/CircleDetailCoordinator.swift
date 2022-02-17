@@ -22,10 +22,13 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
     }
     
     func toInvite(circle: Circle, myData: User) {
-        navigationController.pushViewController(AddtionalMemberController.init(viewModel: AdditionalMemberViewModel(user: myData,
-                                      userAPI: UserRepositryImpl(),
-                                      circle: circle,
-                                      circleAPI: CircleRepositryImpl())), animated: true)
+        navigationController.pushViewController(AddtionalMemberController.init(viewModel: AdditionalMemberViewModel(
+            user: myData,
+            circle: circle,
+            store: appStore,
+            actionCreator: AdditionalMemberActionCreator(
+                userAPI: UserRepositryImpl(),
+                circleAPI: CircleRepositryImpl()))), animated: true)
     }
     
     func toUpdate(circle: Circle) {

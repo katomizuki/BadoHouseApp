@@ -24,21 +24,12 @@ struct HomeActionCreator {
         appStore.dispatch(HomeState.HomeStateAction.changeRefreshStatus(true))
         practiceAPI.getPractices().subscribe { practices in
             appStore.dispatch(HomeState.HomeStateAction.setPractices(practices))
-            appStore.dispatch(HomeState
-                             .HomeStateAction
-                             .changeIndicatorStatus(false))
-            appStore.dispatch(HomeState
-                              .HomeStateAction
-                              .changeRefreshStatus(false))
-            appStore.dispatch(HomeState
-                                .HomeStateAction
-                                .reload)
-            appStore.dispatch(HomeState
-                                .HomeStateAction
-                                .reload)
+            appStore.dispatch(HomeState.HomeStateAction.changeIndicatorStatus(false))
+            appStore.dispatch(HomeState.HomeStateAction.changeRefreshStatus(false))
+            appStore.dispatch(HomeState.HomeStateAction.reload)
+            appStore.dispatch(HomeState.HomeStateAction.reload)
         } onFailure: { error in
-            appStore.dispatch(HomeState.HomeStateAction
-                                .chageErrorStatus(error))
+            appStore.dispatch(HomeState.HomeStateAction.chageErrorStatus(error))
         }.disposed(by: disposeBag)
     }
 }

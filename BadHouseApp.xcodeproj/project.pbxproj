@@ -118,6 +118,10 @@
 		D36E531127B9D7A500DC637C /* AddtionalPracticeElementFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E531027B9D7A500DC637C /* AddtionalPracticeElementFlow.swift */; };
 		D36E531327B9D83800DC637C /* AddtionalEventLevelFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */; };
 		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
+		D37C918727BE5E7A0040F88F /* AdditionalMemberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918627BE5E7A0040F88F /* AdditionalMemberState.swift */; };
+		D37C918927BE5ECB0040F88F /* AdditionalMemberAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */; };
+		D37C918B27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */; };
+		D37C918D27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918C27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -402,6 +406,10 @@
 		D36E530E27B9D77300DC637C /* EventAdditionlItemsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsFlow.swift; sourceTree = "<group>"; };
 		D36E531027B9D7A500DC637C /* AddtionalPracticeElementFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementFlow.swift; sourceTree = "<group>"; };
 		D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelFlow.swift; sourceTree = "<group>"; };
+		D37C918627BE5E7A0040F88F /* AdditionalMemberState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberState.swift; sourceTree = "<group>"; };
+		D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberAction.swift; sourceTree = "<group>"; };
+		D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberActionCreator.swift; sourceTree = "<group>"; };
+		D37C918C27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberActionReducer.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -815,6 +823,7 @@
 			children = (
 				D36E530027B9C3A800DC637C /* AppState.swift */,
 				D36E530227B9C5A800DC637C /* HomeState.swift */,
+				D37C918627BE5E7A0040F88F /* AdditionalMemberState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -823,6 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				D36E530627B9C69300DC637C /* HomeAction.swift */,
+				D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -831,6 +841,7 @@
 			isa = PBXGroup;
 			children = (
 				D36E530427B9C64000DC637C /* HomeActionCreators.swift */,
+				D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -840,6 +851,7 @@
 			children = (
 				D36E52FE27B9C36E00DC637C /* AppReducer.swift */,
 				D36E530827B9C6E200DC637C /* HomeReducer.swift */,
+				D37C918C27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1503,6 +1515,7 @@
 				D3886422276A0A6900FC4F07 /* Coordinator.swift in Sources */,
 				D32E59962774AC5A00C59548 /* R.generated.swift in Sources */,
 				D3629FA5276F5E4E0052B820 /* MakeCircleCoordinator.swift in Sources */,
+				D37C918D27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift in Sources */,
 				D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */,
 				D3B22D8A278172FF00EC8C10 /* PracticeSearchViewModel.swift in Sources */,
 				D3FF15E8277E7F00006355EF /* BlockListViewModel.swift in Sources */,
@@ -1543,6 +1556,7 @@
 				D36E530127B9C3A800DC637C /* AppState.swift in Sources */,
 				D3BDB55326E05E7A00C53780 /* Anchor+Extension.swift in Sources */,
 				D3B72CF1274A2EAA00253933 /* UIImageView+Extenstion.swift in Sources */,
+				D37C918B27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift in Sources */,
 				D31C163D272B78AB00A94FC6 /* RuleController.swift in Sources */,
 				D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */,
 				D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */,
@@ -1624,6 +1638,7 @@
 				D3D57DDC277EFD6600BCBF0C /* PracticeDetailViewModel.swift in Sources */,
 				D3B22D8E27829F0400EC8C10 /* ChatRoom.swift in Sources */,
 				D36E52F027B9383400DC637C /* MyTaskCoordinator.swift in Sources */,
+				D37C918727BE5E7A0040F88F /* AdditionalMemberState.swift in Sources */,
 				D3D62E9C278A863900DCA027 /* BlockListDataSourceDelegate.swift in Sources */,
 				D3FD195126E4993A00B6740E /* MakeEventViewModel.swift in Sources */,
 				D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */,
@@ -1715,6 +1730,7 @@
 				D3D62E9E278A885A00DCA027 /* PracticeDataSourceDelegate.swift in Sources */,
 				D3FF15A7277988BE006355EF /* CircleFeatures.swift in Sources */,
 				D31CD0032798C81400513587 /* CircleGetMembersTargetType.swift in Sources */,
+				D37C918927BE5ECB0040F88F /* AdditionalMemberAction.swift in Sources */,
 				D36E530F27B9D77300DC637C /* EventAdditionlItemsFlow.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,

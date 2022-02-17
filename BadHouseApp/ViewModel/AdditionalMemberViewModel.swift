@@ -1,5 +1,6 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol AdditionalMemberViewModelType {
     var inputs: AdditionalMemberViewModelInputs { get }
@@ -29,27 +30,37 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let user: User
-    private let userAPI: UserRepositry
     private let circle: Circle
-    private let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
+    private let actionCreator: AdditionalMemberActionCreator
     
     init(user: User,
-         userAPI: UserRepositry,
          circle: Circle,
-         circleAPI: CircleRepositry) {
+         store: Store<AppState>,
+         actionCreator: AdditionalMemberActionCreator) {
         self.user = user
-        self.userAPI = userAPI
         self.circle = circle
-        self.circleAPI = circleAPI
+        self.store = store
+        self.actionCreator = actionCreator
         
-        userAPI.getFriends(uid: user.uid).subscribe { [weak self] friends in
-            guard let self = self else { return }
-            let users = self.judgeInviter(members: self.circle.members, friends: friends)
-            self.friendsSubject.accept(users)
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.additionalMember }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
+        self.getFriends()
+    }
+    
+    func getFriends() {
+        actionCreator.getFriends(uid: user.uid, members: self.circle.members)
     }
     
     func inviteAction(user: User?) {
@@ -66,22 +77,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     }
     
     func invite() {
-        circleAPI.inviteCircle(ids: inviteIds, circle: circle) { result in
-            switch result {
-            case .success:
-                self.completedInput.onNext(())
-            case .failure:
-                self.errorInput.onNext(true)
-            }
-        }
-    }
-    
-    private func judgeInviter(members: [User], friends: [User]) -> [User] {
-        var array = friends
-        members.forEach {
-            array.remove(value: $0)
-        }
-        return array
+        actionCreator.invite(ids: inviteIds, circle: circle)
     }
 }
 
@@ -103,5 +99,22 @@ extension AdditionalMemberViewModel: AdditionalMemberViewModelOutputs {
     
     var completed: Observable<Void> {
         completedStream.asObservable()
+    }
+}
+
+extension AdditionalMemberViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = AdditionalMemberState
+    
+    func newState(state: AdditionalMemberState) {
+        friendsSubject.accept(state.members)
+
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
+
+        if state.errorStatus {
+            errorInput.onNext(state.errorStatus)
+        }
+        
     }
 }
