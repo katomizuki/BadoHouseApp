@@ -12,4 +12,5 @@ struct AppState: ReSwift.StateType {
     var additionalMember = AdditionalMemberState()
     var blockListState = BlockListState()
     var applyFriendsState = ApplyFriendsState()
+    var applyedUserListState = ApplyedUserListState()
 }

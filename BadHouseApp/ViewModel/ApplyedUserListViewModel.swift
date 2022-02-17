@@ -1,9 +1,9 @@
 import RxSwift
 import RxRelay
 import Foundation
+import ReSwift
 
 protocol ApplyedUserListViewModelInputs {
-    func willAppear()
     func makeFriends(_ applyed: Applyed)
     func deleteFriends(_ applyed: Applyed)
     var errorInput: AnyObserver<Bool> { get }
@@ -24,33 +24,43 @@ protocol ApplyedUserListViewModelType {
     var outputs: ApplyedUserListViewModelOutputs { get }
 }
 
-final class  ApplyedUserListViewModel: ApplyedUserListViewModelType {
+final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     
     var inputs: ApplyedUserListViewModelInputs { return self }
     var outputs: ApplyedUserListViewModelOutputs { return self }
     
     var applyedRelay = BehaviorRelay<[Applyed]>(value: [])
     var navigationTitle = PublishSubject<String>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
     
-    private let applyAPI: ApplyRepositry
     private let user: User
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<String>()
     private let reloadStream = PublishSubject<Void>()
+    private let store: Store<AppState>
+    private let actionCreator: ApplyedUserListActionCreator
     
-    init(applyAPI: ApplyRepositry, user: User) {
-        self.applyAPI = applyAPI
+    init(user: User, store: Store<AppState>, actionCreator: ApplyedUserListActionCreator) {
         self.user = user
+        self.actionCreator = actionCreator
+        self.store = store
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.applyedUserListState }
+            }
+            self.getApplyedUserList()
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
     private func saveFriendsId(id: String) {
-        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.friends) != nil {
-            let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.friends)
-        } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: R.UserDefaultsKey.friends)
-        }
+        self.actionCreator.saveId(id: id)
     }
 }
 
@@ -66,46 +76,16 @@ extension ApplyedUserListViewModel: ApplyedUserListViewModelInputs {
         reloadStream.asObserver()
     }
     
-    func willAppear() {
-        applyAPI.getApplyedUser(user: user)
-            .observe(on: MainScheduler.instance)
-            .subscribe {[weak self] applyeds in
-            self?.applyedRelay.accept(applyeds)
-                self?.navigationTitle.onNext("\(applyeds.count)人から友達申請が来ています")
-            self?.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+    func getApplyedUserList() {
+        self.actionCreator.getApplyedUserList(self.user)
     }
     
     func makeFriends(_ applyed: Applyed) {
-        applyAPI.notApplyFriend(uid: applyed.fromUserId,
-                                    toUserId: user.uid)
-        let sbj = applyedRelay.value.filter {
-            $0.fromUserId != applyed.fromUserId
-        }
-        applyedRelay.accept(sbj)
-        reloadInput.onNext(())
-        
-        UserRepositryImpl.getUserById(uid: applyed.fromUserId) { friend in
-            self.applyAPI.match(user: self.user,
-                                friend: friend)
-                .subscribe {
-                    self.completedFriendInput.onNext(applyed.name)
-                    self.saveFriendsId(id: applyed.fromUserId)
-            } onError: { _ in
-                self.errorInput.onNext(true)
-            }.disposed(by: self.disposeBag)
-        }
+        actionCreator.makeFriends(applyed, uid: user.uid, list: applyedRelay.value, user: user)
     }
     
     func deleteFriends(_ applyed: Applyed) {
-        applyAPI.notApplyFriend(uid: applyed.fromUserId, toUserId: user.uid)
-        let sbj = applyedRelay.value.filter {
-            $0.fromUserId != applyed.fromUserId
-        }
-        applyedRelay.accept(sbj)
-        reloadInput.onNext(())
+        self.actionCreator.deleteFriends(applyed, uid: user.uid, list: applyedRelay.value)
     }
 }
 
@@ -123,4 +103,26 @@ extension ApplyedUserListViewModel: ApplyedUserListViewModelOutputs {
         reloadStream.asObservable()
     }
     
+}
+
+extension ApplyedUserListViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = ApplyedUserListState
+    
+    func newState(state: ApplyedUserListState) {
+        
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
+        
+        applyedRelay.accept(state.applied)
+        navigationTitle.onNext(state.navigationTitle)
+        
+        if state.friendName != String() {
+            completedFriendInput.onNext(state.friendName)
+        }
+    }
 }

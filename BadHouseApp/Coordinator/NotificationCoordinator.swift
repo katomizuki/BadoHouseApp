@@ -18,15 +18,24 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     }
     
     func toUserDetail(_ myData: User, user: User) {
-    self.coordinator(to: UserDetailCoordinator(navigationController: self.navigationController, viewModel: UserDetailViewModel(myData: myData,
-                                                                  user: user,
-                                                                  userAPI: UserRepositryImpl(),
-                                                                  applyAPI: ApplyRepositryImpl())))
-        
+    self.coordinator(to: UserDetailCoordinator(
+        navigationController: self.navigationController,
+        viewModel: UserDetailViewModel(
+            myData: myData,
+            user: user,
+            userAPI: UserRepositryImpl(),
+            applyAPI: ApplyRepositryImpl())))
     }
     
     func toApplyedFriend(_ user: User) {
-        navigationController.pushViewController(ApplyedUserListController.init(viewModel: ApplyedUserListViewModel(applyAPI: ApplyRepositryImpl(), user: user)), animated: true)
+        navigationController.pushViewController(
+            ApplyedUserListController.init(
+                viewModel:
+                    ApplyedUserListViewModel(
+                        user: user,
+                        store: appStore,
+                        actionCreator: ApplyedUserListActionCreator(
+                            applyAPI: ApplyRepositryImpl()))), animated: true)
     }
     
     func toPreJoin(_ user: User) {

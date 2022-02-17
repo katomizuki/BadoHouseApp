@@ -24,8 +24,13 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.willAppear()
+        viewModel.willAppear.accept(())
         navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
     }
     
     private func setupTableView() {
