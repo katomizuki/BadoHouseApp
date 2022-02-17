@@ -8,19 +8,14 @@
 import ReSwift
 import RxSwift
 
-class AdditionalMemberActionCreator {
-    private let userAPI: UserRepositry
-    private let circleAPI: CircleRepositry
+struct AdditionalMemberActionCreator {
+
+    let userAPI: UserRepositry
+    let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     
-    init(userAPI: UserRepositry,circleAPI: CircleRepositry) {
-        self.userAPI = userAPI
-        self.circleAPI = circleAPI
-    }
-    
     func getFriends(uid: String, members: [User]) {
-        userAPI.getFriends(uid: uid).subscribe { [weak self] friends in
-            guard let self = self else { return }
+        userAPI.getFriends(uid: uid).subscribe { friends in
             let users = self.judgeInviter(members: members, friends: friends)
             appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.setMember(users))
             appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(false))

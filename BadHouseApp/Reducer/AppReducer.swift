@@ -11,5 +11,6 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     var state = state ?? AppState()
     state.homeState = HomeReducer.reducer(action: action, state: state.homeState)
     state.additionalMember = AdditionalMemberReducer.reducer(action: action, state: state.additionalMember)
+    state.blockListState = BlockListReducer.reducer(action: action, state: state.blockListState)
     return state
 }

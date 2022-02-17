@@ -10,4 +10,5 @@ import ReSwift
 struct AppState: ReSwift.StateType {
     var homeState = HomeState()
     var additionalMember = AdditionalMemberState()
+    var blockListState = BlockListState()
 }

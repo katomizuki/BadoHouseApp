@@ -1,6 +1,7 @@
 import RxRelay
 import RxSwift
 import Foundation
+import ReSwift
 
 protocol BlockListViewModelType {
     var inputs: BlockListViewModelInputs { get }
@@ -8,7 +9,6 @@ protocol BlockListViewModelType {
 }
 
 protocol BlockListViewModelInputs {
-    func willAppear()
     func removeBlock(_ user: User)
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
@@ -31,6 +31,31 @@ final class BlockListViewModel: BlockListViewModelType {
     var inputs: BlockListViewModelInputs { return self }
     var outputs: BlockListViewModelOutputs { return self }
     
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
+    private let disposeBag = DisposeBag()
+    private let actionCreator: BlockListActionCreator
+
+    init(store: Store<AppState>, actionCreator: BlockListActionCreator) {
+        self.store = store
+        self.actionCreator = actionCreator
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.blockListState }
+            }
+            self.getBlockUsers()
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+    }
+    
+    func getBlockUsers() {
+        actionCreator.getBlockList(self.blockIds)
+    }
 }
 
 extension BlockListViewModel: BlockListViewModelInputs {
@@ -43,31 +68,11 @@ extension BlockListViewModel: BlockListViewModelInputs {
         reloadStream.asObserver()
     }
     
-    func willAppear() {
-        let group = DispatchGroup()
-        var blockUsers = [User]()
-        blockIds.forEach {
-            group.enter()
-            UserRepositryImpl.getUserById(uid: $0) { user in
-                defer { group.leave() }
-                blockUsers.append(user)
-            }
-        }
-        group.notify(queue: .main) {
-            self.blockListRelay.accept(blockUsers)
-            self.reloadInput.onNext(())
-        }
-    }
-    
     func removeBlock(_ user: User) {
-        blockIds.remove(value: user.uid)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: R.UserDefaultsKey.blocks)
-        var list = blockListRelay.value
-        list.remove(value: user)
-        blockListRelay.accept(list)
-        reloadInput.onNext(())
+        actionCreator.removeBlock(user, ids: self.blockIds, blockList: blockListRelay.value)
     }
 }
+
 extension BlockListViewModel: BlockListViewModelOutputs {
     
     var reload: Observable<Void> {
@@ -76,5 +81,17 @@ extension BlockListViewModel: BlockListViewModelOutputs {
     
     var isError: Observable<Bool> {
         errorStream.asObservable()
+    }
+}
+
+extension BlockListViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = BlockListState
+    
+    func newState(state: BlockListState) {
+        blockListRelay.accept(state.users)
+        
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
     }
 }

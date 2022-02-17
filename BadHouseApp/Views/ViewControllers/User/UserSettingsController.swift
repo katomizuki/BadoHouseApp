@@ -62,7 +62,7 @@ extension UserSettingsController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         switch indexPath.row {
         case 0:
-            navigationController?.pushViewController(BlockListController.init(viewModel: BlockListViewModel()), animated: true)
+            navigationController?.pushViewController(BlockListController.init(viewModel: BlockListViewModel(store: appStore, actionCreator: BlockListActionCreator())), animated: true)
         case 1:
             navigationController?.pushViewController(MyPracticeController.init(viewModel: MyPracticeViewModel(user: user, userAPI: UserRepositryImpl())), animated: true)
         case 2:

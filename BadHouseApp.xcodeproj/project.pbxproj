@@ -122,6 +122,10 @@
 		D37C918927BE5ECB0040F88F /* AdditionalMemberAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */; };
 		D37C918B27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */; };
 		D37C918D27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918C27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift */; };
+		D37C919227BEF9830040F88F /* BlockListActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C919127BEF9830040F88F /* BlockListActionCreator.swift */; };
+		D37C919427BEFA480040F88F /* BlockListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C919327BEFA480040F88F /* BlockListState.swift */; };
+		D37C919627BEFAA90040F88F /* BlockListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C919527BEFAA90040F88F /* BlockListReducer.swift */; };
+		D37C919827BEFB0B0040F88F /* BlockListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C919727BEFB0B0040F88F /* BlockListAction.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -410,6 +414,10 @@
 		D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberAction.swift; sourceTree = "<group>"; };
 		D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberActionCreator.swift; sourceTree = "<group>"; };
 		D37C918C27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberActionReducer.swift; sourceTree = "<group>"; };
+		D37C919127BEF9830040F88F /* BlockListActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListActionCreator.swift; sourceTree = "<group>"; };
+		D37C919327BEFA480040F88F /* BlockListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListState.swift; sourceTree = "<group>"; };
+		D37C919527BEFAA90040F88F /* BlockListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListReducer.swift; sourceTree = "<group>"; };
+		D37C919727BEFB0B0040F88F /* BlockListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListAction.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -824,6 +832,7 @@
 				D36E530027B9C3A800DC637C /* AppState.swift */,
 				D36E530227B9C5A800DC637C /* HomeState.swift */,
 				D37C918627BE5E7A0040F88F /* AdditionalMemberState.swift */,
+				D37C919327BEFA480040F88F /* BlockListState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -833,6 +842,7 @@
 			children = (
 				D36E530627B9C69300DC637C /* HomeAction.swift */,
 				D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */,
+				D37C919727BEFB0B0040F88F /* BlockListAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -842,6 +852,7 @@
 			children = (
 				D36E530427B9C64000DC637C /* HomeActionCreators.swift */,
 				D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */,
+				D37C919127BEF9830040F88F /* BlockListActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -852,6 +863,7 @@
 				D36E52FE27B9C36E00DC637C /* AppReducer.swift */,
 				D36E530827B9C6E200DC637C /* HomeReducer.swift */,
 				D37C918C27BE5F4D0040F88F /* AdditionalMemberActionReducer.swift */,
+				D37C919527BEFAA90040F88F /* BlockListReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1532,6 +1544,7 @@
 				D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */,
 				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
 				D3FF15D8277DA78F006355EF /* UpdateCircleCoordinator.swift in Sources */,
+				D37C919227BEF9830040F88F /* BlockListActionCreator.swift in Sources */,
 				D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */,
 				D3F245A22775F58B0030DA1B /* SchduleCell.swift in Sources */,
 				D301E389278468960090CAF9 /* PreJoinViewModel.swift in Sources */,
@@ -1570,6 +1583,7 @@
 				D3886432276A1A5F00FC4F07 /* UserCoordinator.swift in Sources */,
 				D3FF15E1277E7D4B006355EF /* BlockListController.swift in Sources */,
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,
+				D37C919827BEFB0B0040F88F /* BlockListAction.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3D222F127BA6FFC0022059A /* MainUserDetailFlow.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
@@ -1646,12 +1660,14 @@
 				D388643D276A1F8000FC4F07 /* TalkViewController.swift in Sources */,
 				D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */,
 				D36E530327B9C5A800DC637C /* HomeState.swift in Sources */,
+				D37C919427BEFA480040F88F /* BlockListState.swift in Sources */,
 				D3D62E8627891F4A00DCA027 /* NotificationRepositryImpl.swift in Sources */,
 				D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,
 				D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */,
 				D3D222E727BA65FF0022059A /* CheckNotificationFlow.swift in Sources */,
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
+				D37C919627BEFAA90040F88F /* BlockListReducer.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D31CCFFF2798C40A00513587 /* UserGetPracticeTargetType.swift in Sources */,
 				D3D2231A27BBCABF0022059A /* NotificationRepositry.swift in Sources */,

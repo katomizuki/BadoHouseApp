@@ -24,13 +24,19 @@ final class BlockListController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.willAppear()
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
     }
     
     private func setupBinding() {
         tableView.delegate = dataSourceDelegate
         tableView.dataSource = dataSourceDelegate
         tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
+
         viewModel.outputs.isError.subscribe { [weak self] _ in
             self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
