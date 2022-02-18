@@ -145,8 +145,9 @@ import RxCocoa
      
     // MARK: - IBAction
      @IBAction private func didTapBadmintonFriend(_ sender: Any) {
-         coordinator?.toFriendList(friends: viewModel.friendListRelay.value,
-                                   myData: viewModel.myData)
+         coordinator?.toFriendList(
+            friends: viewModel.friendListRelay.value,
+            myData: viewModel.myData)
      }
      
      @IBAction func didTapTalkButton(_ sender: Any) {

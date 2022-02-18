@@ -13,5 +13,6 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.additionalMember = AdditionalMemberReducer.reducer(action: action, state: state.additionalMember)
     state.blockListState = BlockListReducer.reducer(action: action, state: state.blockListState)
     state.applyedUserListState = ApplyedUserListReducer.reducer(action: action, state: state.applyedUserListState)
+    state.makeEventSecond = MakeEventSecondReducer.reducer(action: action, state: state.makeEventSecond)
     return state
 }

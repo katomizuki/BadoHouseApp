@@ -23,6 +23,16 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
         navigationItem.title = R.navTitle.friends
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
+    
     private func setupBinding() {
         tableView.register(ApplyUserListCell.nib(), forCellReuseIdentifier: ApplyUserListCell.id)
         tableView.rowHeight = 60

@@ -15,7 +15,14 @@ final class AddtionalEventLevelCoordinator: Coordinator, AddtionalEventLevelFlow
     }
     
     func start() {
-        let controller = AddtionalEventLevelController.init(viewModel: MakeEventSecondViewModel(userAPI: UserRepositryImpl(), title: title, image: image, kind: kind))
+        let controller = AddtionalEventLevelController.init(
+            viewModel: MakeEventSecondViewModel(
+                title: title,
+                image: image,
+                kind: kind,
+                store: appStore,
+                actionCreator: MakeEventSecondActionCreator(
+                    userAPI: UserRepositryImpl())))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

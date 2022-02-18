@@ -46,7 +46,6 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
         self.circle = circle
         self.circleAPI = circleAPI
         
-        
         circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
             guard let self = self else { return }
             self.allMembers = circle.members

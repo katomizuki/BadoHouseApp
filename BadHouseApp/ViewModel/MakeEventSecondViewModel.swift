@@ -2,6 +2,7 @@ import RxSwift
 import RxCocoa
 import FirebaseAuth
 import UIKit
+import ReSwift
 
 protocol MakeEventSecondViewModelInputs {
     var minLevelInput: AnyObserver<Float> { get }
@@ -29,6 +30,8 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     var minLevelText = BehaviorRelay<String>(value: "レベル1")
     var maxLevelText = BehaviorRelay<String>(value: "レベル10")
     var circleRelay = BehaviorRelay<[Circle]>(value: [])
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
     
     var user: User?
     var circle: Circle?
@@ -40,26 +43,35 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     private let minLevelStream = PublishSubject<Float>()
     private let maxLevelStream = PublishSubject<Float>()
     private let disposeBag = DisposeBag()
-    private let userAPI: UserRepositry
+    private let store: Store<AppState>
+    private let actionCreator: MakeEventSecondActionCreator
     
-    init(userAPI: UserRepositry, title: String, image: UIImage, kind: String) {
-        self.userAPI = userAPI
+    init(title: String, image: UIImage, kind: String, store: Store<AppState>,actionCreator: MakeEventSecondActionCreator) {
+        self.store = store
+        self.actionCreator = actionCreator
         self.title = title
         self.image = image
         self.kind = kind
         self.dic["title"] = title
         self.dic["kind"] = kind
         
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.makeEventSecond }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        self.actionCreator.getCircle(uid)
         
-        userAPI.getMyCircles(uid: uid).subscribe { [weak self] circle in
-            self?.circleRelay.accept(circle)
-        }.disposed(by: disposeBag)
-        
-        UserRepositryImpl.getUserById(uid: uid) { user in
-            self.user = user
-        }
-        
+        bind()
+    }
+    
+    func bind() {
         minLevelOutput.subscribe(onNext: { [weak self] value in
             guard let self = self else { return }
             let minText = self.changeNumber(num: value)
@@ -71,6 +83,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
             let maxText = self.changeNumber(num: value)
             self.maxLevelText.accept(maxText)
         }).disposed(by: disposeBag)
+
     }
     
     // MARK: - Helper
@@ -123,6 +136,16 @@ extension MakeEventSecondViewModel: MakeEventSecondViewModelOutputs {
     
     var minLevelOutput: Observable<Float> {
         minLevelStream.asObservable()
+    }
+    
+}
+extension MakeEventSecondViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = MakeEventSecondState
+    func newState(state: MakeEventSecondState) {
+        circleRelay.accept(state.circle)
+        if let user = state.user {
+            self.user = user
+        }
     }
     
 }
