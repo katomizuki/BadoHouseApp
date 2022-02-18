@@ -14,11 +14,11 @@ struct MakeEventSecondActionCreator {
     
     func getCircle(_ uid: String) {
         userAPI.getMyCircles(uid: uid).subscribe { circle in
-//            self?.circleRelay.accept(circle)
+            appStore.dispatch(MakeEventSecondState.MakeEventSecondAction.setCircle(circle))
         }.disposed(by: disposeBag)
         
         UserRepositryImpl.getUserById(uid: uid) { user in
-//            self.user = user
+            appStore.dispatch(MakeEventSecondState.MakeEventSecondAction.setUser(user))
         }
     }
 }

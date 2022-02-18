@@ -138,6 +138,10 @@
 		D37C91AC27BF1CE60040F88F /* MakeEventSecondAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91AB27BF1CE60040F88F /* MakeEventSecondAction.swift */; };
 		D37C91AE27BF1D0A0040F88F /* MakeEventSecondActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91AD27BF1D0A0040F88F /* MakeEventSecondActionCreator.swift */; };
 		D37C91B027BF1D210040F88F /* MakeEventSecondReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91AF27BF1D210040F88F /* MakeEventSecondReducer.swift */; };
+		D37C91B227BFB6050040F88F /* CircleDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91B127BFB6040040F88F /* CircleDetailState.swift */; };
+		D37C91B427BFB6270040F88F /* CircleDetailAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91B327BFB6270040F88F /* CircleDetailAction.swift */; };
+		D37C91B627BFB6B60040F88F /* CircleDetailActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91B527BFB6B60040F88F /* CircleDetailActionCreator.swift */; };
+		D37C91B827BFB6E70040F88F /* CircleDetailReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C91B727BFB6E70040F88F /* CircleDetailReducer.swift */; };
 		D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FA52726EB091300B8559F /* EventInfoCell.swift */; };
 		D37FA52A26EB091300B8559F /* EventInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FA52826EB091300B8559F /* EventInfoCell.xib */; };
 		D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38863E52768B49700FC4F07 /* InviteToCircleController.swift */; };
@@ -442,6 +446,10 @@
 		D37C91AB27BF1CE60040F88F /* MakeEventSecondAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondAction.swift; sourceTree = "<group>"; };
 		D37C91AD27BF1D0A0040F88F /* MakeEventSecondActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondActionCreator.swift; sourceTree = "<group>"; };
 		D37C91AF27BF1D210040F88F /* MakeEventSecondReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeEventSecondReducer.swift; sourceTree = "<group>"; };
+		D37C91B127BFB6040040F88F /* CircleDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailState.swift; sourceTree = "<group>"; };
+		D37C91B327BFB6270040F88F /* CircleDetailAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailAction.swift; sourceTree = "<group>"; };
+		D37C91B527BFB6B60040F88F /* CircleDetailActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailActionCreator.swift; sourceTree = "<group>"; };
+		D37C91B727BFB6E70040F88F /* CircleDetailReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailReducer.swift; sourceTree = "<group>"; };
 		D37FA52726EB091300B8559F /* EventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCell.swift; sourceTree = "<group>"; };
 		D37FA52826EB091300B8559F /* EventInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInfoCell.xib; sourceTree = "<group>"; };
 		D38863E52768B49700FC4F07 /* InviteToCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToCircleController.swift; sourceTree = "<group>"; };
@@ -860,6 +868,7 @@
 				D37C919927BF03720040F88F /* ApplyFriendsState.swift */,
 				D37C91A127BF0C780040F88F /* ApplyedUserListState.swift */,
 				D37C91A927BF1CC90040F88F /* MakeEventSecondState.swift */,
+				D37C91B127BFB6040040F88F /* CircleDetailState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -873,6 +882,7 @@
 				D37C919B27BF039E0040F88F /* ApplyFriendsAction.swift */,
 				D37C91A327BF0C990040F88F /* ApplyedUserListAction.swift */,
 				D37C91AB27BF1CE60040F88F /* MakeEventSecondAction.swift */,
+				D37C91B327BFB6270040F88F /* CircleDetailAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -886,6 +896,7 @@
 				D37C919D27BF03EC0040F88F /* ApplyFriendsActionCreator.swift */,
 				D37C91A527BF0D000040F88F /* ApplyedUserListActionCreator.swift */,
 				D37C91AD27BF1D0A0040F88F /* MakeEventSecondActionCreator.swift */,
+				D37C91B527BFB6B60040F88F /* CircleDetailActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -900,6 +911,7 @@
 				D37C919F27BF04210040F88F /* ApplyFriendsReducer.swift */,
 				D37C91A727BF0D2C0040F88F /* ApplyedUserListReducer.swift */,
 				D37C91AF27BF1D210040F88F /* MakeEventSecondReducer.swift */,
+				D37C91B727BFB6E70040F88F /* CircleDetailReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1587,7 +1599,9 @@
 				D3F245A22775F58B0030DA1B /* SchduleCell.swift in Sources */,
 				D301E389278468960090CAF9 /* PreJoinViewModel.swift in Sources */,
 				D3D222F327BA702C0022059A /* UserFlow.swift in Sources */,
+				D37C91B827BFB6E70040F88F /* CircleDetailReducer.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoomRepositryImpl.swift in Sources */,
+				D37C91B427BFB6270040F88F /* CircleDetailAction.swift in Sources */,
 				D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */,
 				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
 				D31CCFF727984B7100513587 /* UserTargetType.swift in Sources */,
@@ -1632,6 +1646,7 @@
 				D3D57DDA277EF1CD00BCBF0C /* PracticeEntity.swift in Sources */,
 				D37C91AC27BF1CE60040F88F /* MakeEventSecondAction.swift in Sources */,
 				D3D62E8C278925B600DCA027 /* SearchUserCoordinator.swift in Sources */,
+				D37C91B227BFB6050040F88F /* CircleDetailState.swift in Sources */,
 				D3D7617F2776B8E7004381E4 /* SearchSelection.swift in Sources */,
 				D31CD00A2798D72B00513587 /* PracticeGetPreJoinTargetType.swift in Sources */,
 				D32E599327748C0C00C59548 /* FriendsListController.swift in Sources */,
@@ -1643,6 +1658,7 @@
 				D3FF15D6277DA680006355EF /* UpdateCircleViewModel.swift in Sources */,
 				D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */,
 				D37C919E27BF03EC0040F88F /* ApplyFriendsActionCreator.swift in Sources */,
+				D37C91B627BFB6B60040F88F /* CircleDetailActionCreator.swift in Sources */,
 				D36E530D27B9D74C00DC637C /* AddtionalPlaceFlow.swift in Sources */,
 				D3FF15CC277D46C0006355EF /* CircleDetailViewModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,

@@ -85,6 +85,16 @@ final class CircleDetailController: UIViewController {
         navigationItem.rightBarButtonItems = [updateButton, rightButton]
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
+    
     private func setupTableView() {
         teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
     }
@@ -103,10 +113,13 @@ final class CircleDetailController: UIViewController {
                 self?.teamMemberTableView.reloadData()
                 self?.setupPieChart()
                 self?.setupGraph()
+                self?.setupButtonUI()
             }.disposed(by: disposeBag)
         
-        viewModel.outputs.memberRelay.bind(to: teamMemberTableView.rx.items(cellIdentifier: MemberCell.id,
-                                        cellType: MemberCell.self)) { _, item, cell in
+        viewModel.outputs.memberRelay
+            .bind(to: teamMemberTableView.rx.items(
+                cellIdentifier: MemberCell.id,
+                cellType: MemberCell.self)) { _, item, cell in
             cell.configure(item)
         }.disposed(by: disposeBag)
         
@@ -125,14 +138,17 @@ final class CircleDetailController: UIViewController {
             if isHidden == true { self?.navigationItem.rightBarButtonItems = nil }
         }).disposed(by: disposeBag)
          
+    }
+    
+    private func setupButtonUI() {
         buttons.forEach { button in
             guard let title = button?.currentTitle else { return }
-            if viewModel.circle.features.contains(title) {
+            let list = viewModel.circle.features
+            if list.contains(title) {
                 button?.isEnabled = true
                 button?.backgroundColor = .systemBlue
             }
         }
-
     }
     
     @IBAction func changeSegment(_ sender: UISegmentedControl) {

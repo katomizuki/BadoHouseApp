@@ -21,10 +21,22 @@ final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
     }
     
     func toCircleDetail(myData: User, circle: Circle) {
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleRepositryImpl())))
+        coordinator(to: CircleDetailCoordinator(
+            navigationController: navigationController,
+            viewModel: CircleDetailViewModel(myData: myData,
+                                             circle: circle,
+                                             circleAPI: CircleRepositryImpl(),
+                                             store: appStore,
+                                             actionCreator:
+                                                CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))
     }
     
     func toChat(myData: User, user: User) {
-        coordinator(to: ChatCoordinator(navigationController: navigationController, viewModel: ChatViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), chatAPI: ChatRepositryImpl())))
+        coordinator(to: ChatCoordinator(
+            navigationController: navigationController,
+            viewModel: ChatViewModel(myData: myData,
+                                     user: user,
+                                     userAPI: UserRepositryImpl(),
+                                     chatAPI: ChatRepositryImpl())))
     }
 }

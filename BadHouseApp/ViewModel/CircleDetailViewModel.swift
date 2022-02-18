@@ -1,5 +1,6 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol CircleDetailViewModelInputs {
     func changeMember(_ index: Int)
@@ -34,32 +35,50 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     var friendsMembers = [User]()
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
     
     private let circleAPI: CircleRepositry
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let buttonHiddenStream = PublishSubject<Bool>()
+    private let store: Store<AppState>
+    private let actionCreator: CircleDetailActionCreator
     
-    init(myData: User, circle: Circle, circleAPI: CircleRepositry) {
+    init(myData: User, circle: Circle, circleAPI: CircleRepositry, store: Store<AppState>, actionCreator: CircleDetailActionCreator) {
         self.myData = myData
         self.circle = circle
         self.circleAPI = circleAPI
+        self.store = store
+        self.actionCreator = actionCreator
         
-        circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
-            guard let self = self else { return }
-            self.allMembers = circle.members
-            self.circle = circle
-            self.friendsMembers = circle.members.filter({ user in
-                self.ids.contains(user.uid)
-            })
-            self.getPercentage()
-            self.checkRightButtonHidden(self.allMembers)
-            self.memberRelay.accept(circle.members)
-            self.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.circleDetailState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
+        self.actionCreator.test(ids: self.ids, circle: self.circle)
+        
+//        circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
+//            guard let self = self else { return }
+//            self.allMembers = circle.members
+//            self.circle = circle
+//            self.friendsMembers = circle.members.filter({ user in
+//                self.ids.contains(user.uid)
+//            })
+//            self.getPercentage()
+//            self.checkRightButtonHidden(self.allMembers)
+//            self.memberRelay.accept(circle.members)
+//            self.reloadInput.onNext(())
+//        } onFailure: { [weak self] _ in
+//            self?.errorInput.onNext(true)
+//        }.disposed(by: disposeBag)
     }
     
     func changeMember(_ index: Int) {
@@ -136,5 +155,29 @@ extension CircleDetailViewModel: CircleDetailViewModelOutputs {
     
     var isRightButtonHidden: Observable<Bool> {
         buttonHiddenStream.asObservable()
+    }
+}
+
+extension CircleDetailViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = CircleDetailState
+    
+    func newState(state: CircleDetailState) {
+        self.allMembers = state.allMembers
+        self.friendsMembers = state.friendsMembers
+        if let circle = state.circle {
+            self.circle = circle
+            self.memberRelay.accept(circle.members)
+        }
+        
+        if state.errorStatus {
+            self.errorInput.onNext(true)
+        }
+        
+        if state.reloadStatus {
+            self.reloadInput.onNext(())
+        }
+        
+        self.checkRightButtonHidden(state.allMembers)
+        self.getPercentage()
     }
 }

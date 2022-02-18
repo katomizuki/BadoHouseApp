@@ -25,6 +25,13 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
     }
     
     func toCircleDetail(myData: User, circle: Circle) {
-        coordinator(to: CircleDetailCoordinator(navigationController: self.navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleRepositryImpl())))
+        coordinator(to: CircleDetailCoordinator(
+            navigationController: self.navigationController,
+            viewModel: CircleDetailViewModel(myData: myData,
+                                             circle: circle,
+                                             circleAPI: CircleRepositryImpl(),
+                                             store: appStore,
+                                             actionCreator:
+                                                CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))
     }
 }

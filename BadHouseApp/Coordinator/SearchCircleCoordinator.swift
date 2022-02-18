@@ -18,6 +18,13 @@ final class SearchCircleCoordinator: Coordinator, CircleSearchFlow {
     
     func toCircleDetail(myData: User, circle: Circle?) {
         guard let circle = circle else { return }
-        coordinator(to: CircleDetailCoordinator(navigationController: navigationController, viewModel: CircleDetailViewModel(myData: myData, circle: circle, circleAPI: CircleRepositryImpl())))
+        coordinator(to: CircleDetailCoordinator(
+            navigationController: navigationController,
+            viewModel: CircleDetailViewModel(myData: myData,
+                                             circle: circle,
+                                             circleAPI: CircleRepositryImpl(),
+                                             store: appStore,
+                                             actionCreator:
+                                                CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))
     }
 }

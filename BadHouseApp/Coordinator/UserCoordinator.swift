@@ -48,7 +48,10 @@ final class UserCoordinator: Coordinator, UserFlow {
             viewModel: CircleDetailViewModel(
                 myData: myData,
                 circle: circle,
-                circleAPI: CircleRepositryImpl())))
+                circleAPI: CircleRepositryImpl(),
+                store: appStore,
+                actionCreator: CircleDetailActionCreator(
+                    circleAPI: CircleRepositryImpl()))))
     }
     
     func toSearchCircle(user: User?) {
