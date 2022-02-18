@@ -58,10 +58,6 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
     }
-    
-    private func saveFriendsId(id: String) {
-        self.actionCreator.saveId(id: id)
-    }
 }
 
 extension ApplyedUserListViewModel: ApplyedUserListViewModelInputs {
@@ -85,7 +81,7 @@ extension ApplyedUserListViewModel: ApplyedUserListViewModelInputs {
     }
     
     func deleteFriends(_ applyed: Applyed) {
-        self.actionCreator.deleteFriends(applyed, uid: user.uid, list: applyedRelay.value)
+        actionCreator.deleteFriends(applyed, uid: user.uid, list: applyedRelay.value)
     }
 }
 
