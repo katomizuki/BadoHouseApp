@@ -64,6 +64,16 @@ final class PracticeDetailController: UIViewController {
         setupMapView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
+    
     private func setupMapView() {
         mapView.setRegion(defaultRegion, animated: true)
         let pin = MKPointAnnotation()

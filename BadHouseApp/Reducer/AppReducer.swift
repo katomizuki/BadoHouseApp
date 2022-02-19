@@ -18,5 +18,7 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.chatState = ChatReducer.reducer(action: action, state: state.chatState)
     state.myPracticeState = MyPracticeReducer.reducer(action: action, state: state.myPracticeState)
     state.inviteState = InviteReducer.reducer(action: action, state: state.inviteState)
+    state.notificationStatus = NotificationReducer.reducer(action: action, state: state.notificationStatus)
+    state.practiceDetailState = PracticeDetailReducer.reducer(action: action, state: state.practiceDetailState)
     return state
 }

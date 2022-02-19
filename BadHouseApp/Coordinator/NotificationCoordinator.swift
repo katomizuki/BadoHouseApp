@@ -11,7 +11,11 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     func start() {
         guard let uid = AuthRepositryImpl.getUid() else { return }
         UserRepositryImpl.getUserById(uid: uid) { user in
-            let controller = CheckNotificationController.init(viewModel: NotificationViewModel(user: user, notificationAPI: NotificationRepositryImpl()))
+            let controller = CheckNotificationController.init(
+                viewModel: NotificationViewModel(user: user,
+                                                 store: appStore,
+                                                 actionCreator: NotificationActionCreator(
+                                                    notificationAPI: NotificationRepositryImpl())))
             controller.coordinator = self
             self.navigationController.pushViewController(controller, animated: true)
         }
@@ -47,6 +51,14 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     }
     
     func toPracticeDetail(_ myData: User, practice: Practice) {
-    coordinator(to: PracticeDetailCoordinator(navigationController: navigationController, viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserRepositryImpl(), circleAPI: CircleRepositryImpl(), isModal: true, joinAPI: JoinRepositryImpl())))
+    coordinator(to: PracticeDetailCoordinator(
+        navigationController: navigationController,
+        viewModel: PracticeDetailViewModel(practice: practice,
+                                           isModal: true,
+                                           store: appStore,
+                                           actionCreator:
+                                            PracticeActionCreator(userAPI: UserRepositryImpl(),
+                                                                  circleAPI: CircleRepositryImpl(),
+                                                                  joinAPI: JoinRepositryImpl()))))
     }
 }

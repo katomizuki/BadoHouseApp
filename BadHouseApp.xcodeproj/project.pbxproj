@@ -32,6 +32,14 @@
 		D305EDE527C0742000BE4078 /* InviteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE427C0742000BE4078 /* InviteAction.swift */; };
 		D305EDE727C0746300BE4078 /* InviteActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE627C0746300BE4078 /* InviteActionCreator.swift */; };
 		D305EDE927C0747A00BE4078 /* InviteReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE827C0747A00BE4078 /* InviteReducer.swift */; };
+		D305EDEB27C08E6300BE4078 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDEA27C08E6300BE4078 /* NotificationStatus.swift */; };
+		D305EDED27C08E8100BE4078 /* NotificationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDEC27C08E8100BE4078 /* NotificationAction.swift */; };
+		D305EDEF27C08EB400BE4078 /* NotificationActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDEE27C08EB400BE4078 /* NotificationActionCreator.swift */; };
+		D305EDF127C08ED300BE4078 /* NotificationReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDF027C08ED300BE4078 /* NotificationReducer.swift */; };
+		D305EDF327C0959C00BE4078 /* PracticeDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDF227C0959C00BE4078 /* PracticeDetailState.swift */; };
+		D305EDF527C095BC00BE4078 /* PracticeDetailAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDF427C095BC00BE4078 /* PracticeDetailAction.swift */; };
+		D305EDF727C095E500BE4078 /* PracticeActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDF627C095E500BE4078 /* PracticeActionCreator.swift */; };
+		D305EDF927C0962600BE4078 /* PracticeDetailReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDF827C0962600BE4078 /* PracticeDetailReducer.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
@@ -368,6 +376,14 @@
 		D305EDE427C0742000BE4078 /* InviteAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAction.swift; sourceTree = "<group>"; };
 		D305EDE627C0746300BE4078 /* InviteActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteActionCreator.swift; sourceTree = "<group>"; };
 		D305EDE827C0747A00BE4078 /* InviteReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteReducer.swift; sourceTree = "<group>"; };
+		D305EDEA27C08E6300BE4078 /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
+		D305EDEC27C08E8100BE4078 /* NotificationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAction.swift; sourceTree = "<group>"; };
+		D305EDEE27C08EB400BE4078 /* NotificationActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationActionCreator.swift; sourceTree = "<group>"; };
+		D305EDF027C08ED300BE4078 /* NotificationReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReducer.swift; sourceTree = "<group>"; };
+		D305EDF227C0959C00BE4078 /* PracticeDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailState.swift; sourceTree = "<group>"; };
+		D305EDF427C095BC00BE4078 /* PracticeDetailAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailAction.swift; sourceTree = "<group>"; };
+		D305EDF627C095E500BE4078 /* PracticeActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeActionCreator.swift; sourceTree = "<group>"; };
+		D305EDF827C0962600BE4078 /* PracticeDetailReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailReducer.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
@@ -896,6 +912,8 @@
 				D305EDD227C0661A00BE4078 /* ChatState.swift */,
 				D305EDDA27C0702C00BE4078 /* MyPracticeState.swift */,
 				D305EDE227C0740800BE4078 /* InviteState.swift */,
+				D305EDEA27C08E6300BE4078 /* NotificationStatus.swift */,
+				D305EDF227C0959C00BE4078 /* PracticeDetailState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -913,6 +931,8 @@
 				D305EDD427C0663E00BE4078 /* ChatAction.swift */,
 				D305EDDC27C0704900BE4078 /* MyPracticeAction.swift */,
 				D305EDE427C0742000BE4078 /* InviteAction.swift */,
+				D305EDEC27C08E8100BE4078 /* NotificationAction.swift */,
+				D305EDF427C095BC00BE4078 /* PracticeDetailAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -930,6 +950,8 @@
 				D305EDD627C0668F00BE4078 /* ChatActionCreator.swift */,
 				D305EDDE27C0708900BE4078 /* MyPracticeActionCreator.swift */,
 				D305EDE627C0746300BE4078 /* InviteActionCreator.swift */,
+				D305EDEE27C08EB400BE4078 /* NotificationActionCreator.swift */,
+				D305EDF627C095E500BE4078 /* PracticeActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -948,6 +970,8 @@
 				D305EDD827C066D000BE4078 /* ChatReducer.swift */,
 				D305EDE027C070A900BE4078 /* MyPracticeReducer.swift */,
 				D305EDE827C0747A00BE4078 /* InviteReducer.swift */,
+				D305EDF027C08ED300BE4078 /* NotificationReducer.swift */,
+				D305EDF827C0962600BE4078 /* PracticeDetailReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1631,12 +1655,14 @@
 				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
 				D3FF15D8277DA78F006355EF /* UpdateCircleCoordinator.swift in Sources */,
 				D37C919227BEF9830040F88F /* BlockListActionCreator.swift in Sources */,
+				D305EDEF27C08EB400BE4078 /* NotificationActionCreator.swift in Sources */,
 				D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */,
 				D3F245A22775F58B0030DA1B /* SchduleCell.swift in Sources */,
 				D301E389278468960090CAF9 /* PreJoinViewModel.swift in Sources */,
 				D3D222F327BA702C0022059A /* UserFlow.swift in Sources */,
 				D37C91B827BFB6E70040F88F /* CircleDetailReducer.swift in Sources */,
 				D3FFD330271EC6E000DE54ED /* ChatRoomRepositryImpl.swift in Sources */,
+				D305EDED27C08E8100BE4078 /* NotificationAction.swift in Sources */,
 				D37C91B427BFB6270040F88F /* CircleDetailAction.swift in Sources */,
 				D3629F9F276F5DF00052B820 /* CircleDetailCoordinator.swift in Sources */,
 				D3698EFB2771FADE004FA773 /* UserProfileHeaderView.swift in Sources */,
@@ -1709,6 +1735,7 @@
 				D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */,
 				D3D2231027BBCA790022059A /* UserRepositry.swift in Sources */,
 				D305EDDB27C0702C00BE4078 /* MyPracticeState.swift in Sources */,
+				D305EDF527C095BC00BE4078 /* PracticeDetailAction.swift in Sources */,
 				D3D62EA6278A99AE00DCA027 /* UserDataSourceDelegate.swift in Sources */,
 				D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */,
 				D3D2230E27BBCA6A0022059A /* CircleRepositry.swift in Sources */,
@@ -1729,6 +1756,7 @@
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
 				D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */,
 				D305EDE127C070A900BE4078 /* MyPracticeReducer.swift in Sources */,
+				D305EDF927C0962600BE4078 /* PracticeDetailReducer.swift in Sources */,
 				D38863E72768B49700FC4F07 /* InviteToCircleController.swift in Sources */,
 				D3D761792776AA7D004381E4 /* CustomInputView.swift in Sources */,
 				D31CCFF02798453300513587 /* FirebaseTargetType.swift in Sources */,
@@ -1785,6 +1813,7 @@
 				D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */,
 				D305EDE527C0742000BE4078 /* InviteAction.swift in Sources */,
 				D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */,
+				D305EDF327C0959C00BE4078 /* PracticeDetailState.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,
 				D3B72CFD274A320000253933 /* BadmintonLevel.swift in Sources */,
@@ -1795,6 +1824,7 @@
 				D36E52EE27B9375900DC637C /* MyTaskViewModel.swift in Sources */,
 				D3B3C9B4275CE3EC00B2CD2C /* MakeEventSecondViewModel.swift in Sources */,
 				D37C91B027BF1D210040F88F /* MakeEventSecondReducer.swift in Sources */,
+				D305EDF127C08ED300BE4078 /* NotificationReducer.swift in Sources */,
 				D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
 				D305EDD927C066D000BE4078 /* ChatReducer.swift in Sources */,
@@ -1808,6 +1838,7 @@
 				D388640B2769FE7E00FC4F07 /* CircleChatController.swift in Sources */,
 				D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */,
 				D3886417276A059100FC4F07 /* LoginController.swift in Sources */,
+				D305EDF727C095E500BE4078 /* PracticeActionCreator.swift in Sources */,
 				D3D222F727BA70A10022059A /* SearchUserFlow.swift in Sources */,
 				D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
@@ -1830,6 +1861,7 @@
 				D38863F32768BE0E00FC4F07 /* UserPageController.swift in Sources */,
 				D36E52EB27B9353200DC637C /* MyTaskController.swift in Sources */,
 				D3629FAB276F5E830052B820 /* MakePracticeCoordinator.swift in Sources */,
+				D305EDEB27C08E6300BE4078 /* NotificationStatus.swift in Sources */,
 				D388641B276A05AF00FC4F07 /* RegisterController.swift in Sources */,
 				D3D222FD27BA71290022059A /* LoginFlow.swift in Sources */,
 				D31CD0012798C60100513587 /* UserGetFriendsTargeType.swift in Sources */,

@@ -2,7 +2,7 @@ import RxRelay
 import RxSwift
 import FirebaseAuth
 import UIKit
-
+import ReSwift
 protocol PracticeDetailViewModelType {
     var inputs: PracticeDetailViewModelInputs { get }
     var outputs: PracticeDetailViewModelOutputs { get }
@@ -10,95 +10,131 @@ protocol PracticeDetailViewModelType {
 
 protocol PracticeDetailViewModelInputs {
     func takePartInPractice()
+    var errorInput: AnyObserver<Bool> { get }
+    var completedInput: AnyObserver<Void> { get }
+    var takePartInButtonInput: AnyObserver<Bool> { get }
+    var buttonHiddenInput: AnyObserver<Bool> { get }
 }
 
 protocol PracticeDetailViewModelOutputs {
     var userRelay: PublishRelay<User> { get }
     var circleRelay: PublishRelay<Circle> { get }
-    var isError: PublishSubject<Bool> { get }
-    var isButtonHidden: PublishSubject<Bool> { get }
-    var completed: PublishSubject<Void> { get }
-    var isTakePartInButton: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
+    var isButtonHidden: Observable<Bool> { get }
+    var completed: Observable<Void> { get }
+    var isTakePartInButton: Observable<Bool> { get }
 }
 
-final class PracticeDetailViewModel: PracticeDetailViewModelType, PracticeDetailViewModelInputs, PracticeDetailViewModelOutputs {
+final class PracticeDetailViewModel: PracticeDetailViewModelType {
 
     var inputs: PracticeDetailViewModelInputs { return self }
     var outputs: PracticeDetailViewModelOutputs { return self }
 
     var userRelay = PublishRelay<User>()
     var circleRelay = PublishRelay<Circle>()
-    var isButtonHidden = PublishSubject<Bool>()
-    var isError = PublishSubject<Bool>()
-    var completed = PublishSubject<Void>()
-    var isTakePartInButton = PublishSubject<Bool>()
+
     let practice: Practice
     var myData: User?
     var circle: Circle?
     var user: User?
     
-    private let userAPI: UserRepositry
-    private let circleAPI: CircleRepositry
-    private let joinAPI: JoinRepositry
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let buttonHiddenStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let takePartInButtonStream = PublishSubject<Bool>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
+    private let actionCreator: PracticeActionCreator
     let isModal: Bool
     
     init(practice: Practice,
-         userAPI: UserRepositry,
-         circleAPI: CircleRepositry,
-         isModal: Bool, joinAPI: JoinRepositry) {
+         isModal: Bool, store: Store<AppState>,actionCreator: PracticeActionCreator) {
         self.practice = practice
-        self.userAPI = userAPI
-        self.circleAPI = circleAPI
         self.isModal = isModal
-        self.joinAPI = joinAPI
-        userAPI.getUser(uid: practice.userId).subscribe { [weak self] user in
-            self?.userRelay.accept(user)
-            self?.user = user
-            
-        } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
-        }.disposed(by: disposeBag)
+        self.store = store
+        self.actionCreator = actionCreator
         
-        circleAPI.getCircle(id: practice.circleId).subscribe {[weak self] circle in
-            self?.circleRelay.accept(circle)
-            self?.circle = circle
-        } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
-        }.disposed(by: disposeBag)
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.practiceDetailState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
+        self.actionCreator.getUser(uid: practice.userId)
+        self.actionCreator.getCircle(circleId: practice.circleId)
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        UserRepositryImpl.getUserById(uid: uid) { myData in
-            self.myData = myData
-            if myData.uid == self.user?.uid || self.isModal == true {
-                self.isButtonHidden.onNext(true)
-            }
-        }
+        guard let user = user else { return }
+        self.actionCreator.checkButtonHidden(uid: uid, user: user, isModal: self.isModal)
+ 
     }
     
     func takePartInPractice() {
         guard let user = user else { return }
         guard let myData = myData else { return }
-        joinAPI.postPreJoin(user: myData, toUser: user, practice: practice).subscribe {
-            self.completed.onNext(())
-        } onError: { _ in
-            self.isError.onNext(true)
-        }.disposed(by: disposeBag)
-        checkUserDefault()
+        self.actionCreator.takePartInPractice(user: user, myData: myData, practice: self.practice)
+    }
+}
+
+extension PracticeDetailViewModel: PracticeDetailViewModelInputs {
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    var buttonHiddenInput: AnyObserver<Bool> {
+        buttonHiddenStream.asObserver()
+    }
+    var takePartInButtonInput: AnyObserver<Bool> {
+        takePartInButtonStream.asObserver()
+    }
+}
+extension PracticeDetailViewModel: PracticeDetailViewModelOutputs {
+    var isError:Observable<Bool> {
+        errorStream.asObservable()
+    }
+    var completed: Observable<Void> {
+        completedStream.asObservable()
+    }
+    var isButtonHidden:Observable<Bool> {
+        buttonHiddenStream.asObservable()
     }
     
-    private func checkUserDefault() {
-        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.preJoin) != nil {
-            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
-            array.append(practice.id)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.preJoin)
-        } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: R.UserDefaultsKey.preJoin)
+    var isTakePartInButton:Observable<Bool> {
+        takePartInButtonStream.asObservable()
+    }
+}
+
+extension PracticeDetailViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = PracticeDetailState
+    
+    func newState(state: PracticeDetailState) {
+
+        if let user = state.user {
+            self.userRelay.accept(user)
+            self.user = user
         }
+        if let myData = state.myData {
+            self.myData = myData
+        }
+        if let circle = state.circle {
+            self.circle = circle
+            self.circleRelay.accept(circle)
+        }
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
+        buttonHiddenInput.onNext(state.buttonHidden)
+        takePartInButtonInput.onNext(state.isTakePartInButton)
     }
 }

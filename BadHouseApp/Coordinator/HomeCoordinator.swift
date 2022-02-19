@@ -44,10 +44,12 @@ final class HomeCoordinator: Coordinator, HomeFlow {
         coordinator(to: PracticeDetailCoordinator(
             navigationController: self.navigationController,
             viewModel: PracticeDetailViewModel(practice: practice,
-                                               userAPI: UserRepositryImpl(),
-                                               circleAPI: CircleRepositryImpl(),
-                                               isModal: false,
-                                               joinAPI: JoinRepositryImpl())))
+                                               isModal: true,
+                                               store: appStore,
+                                               actionCreator:
+                                                PracticeActionCreator(userAPI: UserRepositryImpl(),
+                                                                      circleAPI: CircleRepositryImpl(),
+                                                                      joinAPI: JoinRepositryImpl()))))
     }
     
 }

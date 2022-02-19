@@ -17,7 +17,15 @@ final class MapCoordinator: Coordinator, MapListFlow {
     }
     
     func halfModal(_ practice: Practice, _ vc: MapListController) {
-    let controller = PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: practice, userAPI: UserRepositryImpl(), circleAPI: CircleRepositryImpl(), isModal: true, joinAPI: JoinRepositryImpl()))
+    let controller = PracticeDetailController.init(
+        viewModel: PracticeDetailViewModel(
+            practice: practice,
+            isModal: true,
+            store: appStore,
+            actionCreator: PracticeActionCreator(
+                userAPI: UserRepositryImpl(),
+                circleAPI: CircleRepositryImpl(),
+                joinAPI: JoinRepositryImpl())))
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {
                 sheet.detents = [.medium(), .large()]

@@ -1,16 +1,18 @@
 import RxSwift
 import Foundation
 import RxRelay
+import ReSwift
 
 protocol NotificationViewModelInputs {
-    func willAppear()
     func didTapCell(_ row: Int)
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol NotificationViewModelOutputs {
     var notificationList: BehaviorRelay<[Notification]> { get }
-    var errorHandling: PublishSubject<Error> { get }
-    var reload: PublishSubject<Void> { get }
+    var errorOutput: Observable<Bool> { get }
+    var reloadOuput: Observable<Void> { get }
     var toPrejoined: PublishSubject<Void> { get }
     var toApplyedFriend: PublishSubject<Void> { get }
     var toUserDetail: PublishSubject<User> { get }
@@ -22,12 +24,10 @@ protocol NotificationViewModelType {
     var outputs: NotificationViewModelOutputs { get }
 }
 
-final class NotificationViewModel: NotificationViewModelType, NotificationViewModelInputs, NotificationViewModelOutputs {
+final class NotificationViewModel: NotificationViewModelType {
     
     var inputs: NotificationViewModelInputs { return self }
     var outputs: NotificationViewModelOutputs { return self }
-    var reload = PublishSubject<Void>()
-    var errorHandling = PublishSubject<Error>()
     var notificationList = BehaviorRelay<[Notification]>(value: [])
     var toPrejoined = PublishSubject<Void>()
     var toApplyedFriend = PublishSubject<Void>()
@@ -35,26 +35,38 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
     var toPracticeDetail = PublishSubject<Practice>()
     let user: User
     
-    private let notificationAPI: NotificationRepositry
     private let disposeBag = DisposeBag()
-    private let errorStream = PublishSubject<Error>()
+    private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let prejoinedStream = PublishSubject<Void>()
     private let applyedFriendStream = PublishSubject<Void>()
     private let userDetailStream = PublishSubject<User>()
     private let practiceDetailStream = PublishSubject<Practice>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
+    private let actionCreator: NotificationActionCreator
     
-    init(user: User, notificationAPI: NotificationRepositry) {
+    init(user: User, store: Store<AppState>,actionCreator: NotificationActionCreator) {
         self.user = user
-        self.notificationAPI = notificationAPI
+        self.store = store
+        self.actionCreator = actionCreator
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.notificationStatus }
+            }
+            self.getNotification()
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
     }
     
-    func willAppear() {
-        notificationAPI.getMyNotification(uid: user.uid).subscribe { [weak self] notifications in
-            self?.notificationList.accept(notifications)
-        } onFailure: { [weak self] error in
-            self?.errorHandling.onNext(error)
-        }.disposed(by: disposeBag)
+    func getNotification() {
+        self.actionCreator.getNotification(user: user)
     }
     
     func didTapCell(_ row: Int) {
@@ -72,6 +84,34 @@ final class NotificationViewModel: NotificationViewModelType, NotificationViewMo
             PracticeRepositryImpl.getPracticeById(id: notification.practiceId) { practice in
                 self.toPracticeDetail.onNext(practice)
             }
+        }
+    }
+}
+
+extension NotificationViewModel: NotificationViewModelInputs {
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+}
+extension NotificationViewModel: NotificationViewModelOutputs {
+    var errorOutput: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    var reloadOuput: Observable<Void> {
+        reloadStream.asObservable()
+    }
+}
+
+extension NotificationViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = NotificationStatus
+    
+    func newState(state: StoreSubscriberStateType) {
+        notificationList.accept(state.notifications)
+        if state.errorStatus {
+            errorInput.onNext(true)
         }
     }
 }

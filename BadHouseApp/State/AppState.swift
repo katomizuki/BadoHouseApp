@@ -18,4 +18,6 @@ struct AppState: ReSwift.StateType {
     var chatState = ChatState()
     var myPracticeState = MyPracticeState()
     var inviteState = InviteState()
+    var notificationStatus = NotificationStatus()
+    var practiceDetailState = PracticeDetailState()
 }

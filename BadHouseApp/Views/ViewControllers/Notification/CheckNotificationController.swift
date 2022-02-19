@@ -30,7 +30,12 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.willAppear()
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
     }
     
     private func setupCollectionView() {
