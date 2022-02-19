@@ -46,7 +46,9 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     private let store: Store<AppState>
     private let actionCreator: MakeEventSecondActionCreator
     
-    init(title: String, image: UIImage, kind: String, store: Store<AppState>,actionCreator: MakeEventSecondActionCreator) {
+    init(title: String, image: UIImage, kind: String,
+         store: Store<AppState>,
+         actionCreator: MakeEventSecondActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
         self.title = title

@@ -64,7 +64,11 @@ extension UserSettingsController: UITableViewDelegate {
         case 0:
             navigationController?.pushViewController(BlockListController.init(viewModel: BlockListViewModel(store: appStore, actionCreator: BlockListActionCreator())), animated: true)
         case 1:
-            navigationController?.pushViewController(MyPracticeController.init(viewModel: MyPracticeViewModel(user: user, userAPI: UserRepositryImpl())), animated: true)
+            navigationController?.pushViewController(MyPracticeController.init(
+                viewModel: MyPracticeViewModel(user: user,
+                                               store: appStore,
+                                               actionCreator: MyPracticeActionCreator(
+                                                userAPI: UserRepositryImpl()))), animated: true)
         case 2:
             let viewController = AppExplainController()
             viewController.modalPresentationStyle = .popover

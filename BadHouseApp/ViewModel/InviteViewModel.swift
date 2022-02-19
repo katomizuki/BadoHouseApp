@@ -50,8 +50,6 @@ final class InviteViewModel: InviteViewModelType {
         }.disposed(by: disposeBag)
     }
     
-    
-    
     func setupBackGroundImage() {
         if let image = form.background {
             StorageService.downLoadImage(image: image) { result in

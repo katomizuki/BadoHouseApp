@@ -1,5 +1,6 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol MyPracticeViewModelType {
     var inputs: MyPracticeViewModelInputs { get }
@@ -23,19 +24,30 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
     
     var practices = BehaviorRelay<[Practice]>(value: [])
     let user: User
-    private let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let actionCreator: MyPracticeActionCreator
+    private let store: Store<AppState>
     
-    
-    init(user: User, userAPI: UserRepositry) {
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: MyPracticeActionCreator) {
         self.user = user
-        self.userAPI = userAPI
-        userAPI.getMyPractice(uid: user.uid).subscribe { [weak self] practices in
-            self?.practices.accept(practices)
-        } onFailure: {[weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        self.store = store
+        self.actionCreator = actionCreator
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.myPracticeState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+
     }
     
     func deletePractice(_ practice: Practice) {
@@ -54,5 +66,16 @@ extension MyPracticeViewModel: MyPracticeViewModelOutputs {
     
     var isError: Observable<Bool> {
         errorStream.asObservable()
+    }
+}
+
+extension MyPracticeViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = MyPracticeState
+    
+    func newState(state: MyPracticeState) {
+        practices.accept(state.practices)
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
     }
 }
