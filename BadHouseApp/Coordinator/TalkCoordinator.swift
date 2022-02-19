@@ -17,10 +17,14 @@ final class TalkCoordinator: Coordinator, TalkFlow {
     func toChat(userId: String, myDataId: String, chatId: String) {
         UserRepositryImpl.getUserById(uid: userId) { user in
             UserRepositryImpl.getUserById(uid: myDataId) { myData in
-                self.coordinator(to: ChatCoordinator(navigationController: self.navigationController, viewModel: ChatViewModel(myData: myData,
-                                                                        user: user,
-                                                                        userAPI: UserRepositryImpl(),
-                                                                        chatAPI: ChatRepositryImpl())))
+                self.coordinator(to: ChatCoordinator(
+                    navigationController: self.navigationController,
+                    viewModel: ChatViewModel(myData: myData,
+                                             user: user,
+                                             store: appStore,
+                                             actionCreator:
+                                                ChatActionCreator(chatAPI: ChatRepositryImpl(),
+                                                                  userAPI: UserRepositryImpl()))))
             }
         }
     }

@@ -36,7 +36,9 @@ final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
             navigationController: navigationController,
             viewModel: ChatViewModel(myData: myData,
                                      user: user,
-                                     userAPI: UserRepositryImpl(),
-                                     chatAPI: ChatRepositryImpl())))
+                                     store: appStore,
+                                     actionCreator:
+                                        ChatActionCreator(chatAPI: ChatRepositryImpl(),
+                                                          userAPI: UserRepositryImpl()))))
     }
 }

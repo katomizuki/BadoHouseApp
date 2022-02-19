@@ -38,7 +38,6 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     var willAppear = PublishRelay<Void>()
     var willDisAppear = PublishRelay<Void>()
     
-    private let circleAPI: CircleRepositry
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
@@ -49,7 +48,6 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     init(myData: User, circle: Circle, circleAPI: CircleRepositry, store: Store<AppState>, actionCreator: CircleDetailActionCreator) {
         self.myData = myData
         self.circle = circle
-        self.circleAPI = circleAPI
         self.store = store
         self.actionCreator = actionCreator
         
@@ -63,22 +61,7 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
         
-        self.actionCreator.test(ids: self.ids, circle: self.circle)
-        
-//        circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { [weak self] circle in
-//            guard let self = self else { return }
-//            self.allMembers = circle.members
-//            self.circle = circle
-//            self.friendsMembers = circle.members.filter({ user in
-//                self.ids.contains(user.uid)
-//            })
-//            self.getPercentage()
-//            self.checkRightButtonHidden(self.allMembers)
-//            self.memberRelay.accept(circle.members)
-//            self.reloadInput.onNext(())
-//        } onFailure: { [weak self] _ in
-//            self?.errorInput.onNext(true)
-//        }.disposed(by: disposeBag)
+        self.actionCreator.getMembers(ids: self.ids, circle: self.circle)
     }
     
     func changeMember(_ index: Int) {

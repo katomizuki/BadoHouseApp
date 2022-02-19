@@ -20,6 +20,10 @@
 		D301E394278478D40090CAF9 /* PreJoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E392278478D40090CAF9 /* PreJoinCell.swift */; };
 		D301E395278478D40090CAF9 /* PreJoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E393278478D40090CAF9 /* PreJoinCell.xib */; };
 		D301E3972785D1F30090CAF9 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E3962785D1F20090CAF9 /* ScheduleViewModel.swift */; };
+		D305EDD327C0661A00BE4078 /* ChatState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDD227C0661A00BE4078 /* ChatState.swift */; };
+		D305EDD527C0663E00BE4078 /* ChatAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDD427C0663E00BE4078 /* ChatAction.swift */; };
+		D305EDD727C0668F00BE4078 /* ChatActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDD627C0668F00BE4078 /* ChatActionCreator.swift */; };
+		D305EDD927C066D000BE4078 /* ChatReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDD827C066D000BE4078 /* ChatReducer.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
@@ -344,6 +348,10 @@
 		D301E392278478D40090CAF9 /* PreJoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinCell.swift; sourceTree = "<group>"; };
 		D301E393278478D40090CAF9 /* PreJoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinCell.xib; sourceTree = "<group>"; };
 		D301E3962785D1F20090CAF9 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		D305EDD227C0661A00BE4078 /* ChatState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatState.swift; sourceTree = "<group>"; };
+		D305EDD427C0663E00BE4078 /* ChatAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAction.swift; sourceTree = "<group>"; };
+		D305EDD627C0668F00BE4078 /* ChatActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatActionCreator.swift; sourceTree = "<group>"; };
+		D305EDD827C066D000BE4078 /* ChatReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReducer.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
@@ -869,6 +877,7 @@
 				D37C91A127BF0C780040F88F /* ApplyedUserListState.swift */,
 				D37C91A927BF1CC90040F88F /* MakeEventSecondState.swift */,
 				D37C91B127BFB6040040F88F /* CircleDetailState.swift */,
+				D305EDD227C0661A00BE4078 /* ChatState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -883,6 +892,7 @@
 				D37C91A327BF0C990040F88F /* ApplyedUserListAction.swift */,
 				D37C91AB27BF1CE60040F88F /* MakeEventSecondAction.swift */,
 				D37C91B327BFB6270040F88F /* CircleDetailAction.swift */,
+				D305EDD427C0663E00BE4078 /* ChatAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -897,6 +907,7 @@
 				D37C91A527BF0D000040F88F /* ApplyedUserListActionCreator.swift */,
 				D37C91AD27BF1D0A0040F88F /* MakeEventSecondActionCreator.swift */,
 				D37C91B527BFB6B60040F88F /* CircleDetailActionCreator.swift */,
+				D305EDD627C0668F00BE4078 /* ChatActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -912,6 +923,7 @@
 				D37C91A727BF0D2C0040F88F /* ApplyedUserListReducer.swift */,
 				D37C91AF27BF1D210040F88F /* MakeEventSecondReducer.swift */,
 				D37C91B727BFB6E70040F88F /* CircleDetailReducer.swift */,
+				D305EDD827C066D000BE4078 /* ChatReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1614,6 +1626,7 @@
 				D3698EF42771E0FE004FA773 /* NotificationCell.swift in Sources */,
 				D3886428276A0C8400FC4F07 /* TabBarController.swift in Sources */,
 				D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */,
+				D305EDD527C0663E00BE4078 /* ChatAction.swift in Sources */,
 				D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */,
 				D3886439276A1B5300FC4F07 /* UserController.swift in Sources */,
 				D3FF15CA277D3C03006355EF /* FriendsListViewModel.swift in Sources */,
@@ -1663,6 +1676,7 @@
 				D3FF15CC277D46C0006355EF /* CircleDetailViewModel.swift in Sources */,
 				D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */,
 				D3FF15B1277ACBF8006355EF /* ApplyFriendsViewModel.swift in Sources */,
+				D305EDD327C0661A00BE4078 /* ChatState.swift in Sources */,
 				D3FF15C0277AF979006355EF /* ApplyedUserListCell.swift in Sources */,
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D31CCFF92798BFF800513587 /* UserGetCircleTargetType.swift in Sources */,
@@ -1724,6 +1738,7 @@
 				D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,
 				D3FF15E5277E7DF7006355EF /* MyPracticeController.swift in Sources */,
+				D305EDD727C0668F00BE4078 /* ChatActionCreator.swift in Sources */,
 				D3D222E727BA65FF0022059A /* CheckNotificationFlow.swift in Sources */,
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D37C919627BEFAA90040F88F /* BlockListReducer.swift in Sources */,
@@ -1750,6 +1765,7 @@
 				D37C91B027BF1D210040F88F /* MakeEventSecondReducer.swift in Sources */,
 				D3B22D8C2781DB4900EC8C10 /* MapListViewModel.swift in Sources */,
 				D3629FB3276F5F8E0052B820 /* SearchCircleCoordinator.swift in Sources */,
+				D305EDD927C066D000BE4078 /* ChatReducer.swift in Sources */,
 				D31CCFF327984B2C00513587 /* CircleTargetType.swift in Sources */,
 				D3D62E88278920D300DCA027 /* NotificationEnum.swift in Sources */,
 				D31CCFF527984B4000513587 /* FirebaseModel.swift in Sources */,

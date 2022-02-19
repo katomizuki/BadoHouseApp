@@ -5,14 +5,14 @@
 //  Created by ミズキ on 2022/02/18.
 //
 
-import ReSwift
+
 import RxSwift
 
 struct CircleDetailActionCreator {
     let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     
-    func test(ids: [String], circle: Circle) {
+    func getMembers(ids: [String], circle: Circle) {
         circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { circle in
             appStore.dispatch(CircleDetailState.CircleDetailAction.setAllMembers(circle.members))
             appStore.dispatch(CircleDetailState.CircleDetailAction.setCircle(circle))

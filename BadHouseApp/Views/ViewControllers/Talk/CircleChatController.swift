@@ -41,6 +41,16 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
         setupBinding()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
+    
     // MARK: - SetupMethod
     private func setupTableView() {
         tableView.separatorStyle = .none
