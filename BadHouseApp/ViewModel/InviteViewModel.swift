@@ -1,8 +1,8 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol InviteViewModelInputs {
-    func willAppear()
     var errorInput: AnyObserver<Bool> { get }
     var completedInput: AnyObserver<Void> { get }
 }
@@ -23,7 +23,6 @@ final class InviteViewModel: InviteViewModelType {
     var inputs: InviteViewModelInputs { return self }
     var outputs: InviteViewModelOutputs { return self }
     
-    var userAPI: UserRepositry
     var user: User
     var form: Form
     var inviteIds = [String]()
@@ -31,23 +30,31 @@ final class InviteViewModel: InviteViewModelType {
     
     private let disposeBag = DisposeBag()
     private var dic = [String: Any]()
-    private let circleAPI: CircleRepositry
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
+    private let store: Store<AppState>
+    private let actionCreator: InviteActionCreator
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
     
-    init(userAPI: UserRepositry,
-         user: User,
-         form: Form,
-         circleAPI: CircleRepositry) {
-        self.userAPI = userAPI
+    init(user: User,
+         form: Form, store: Store<AppState>, actionCreator: InviteActionCreator) {
         self.user = user
         self.form = form
-        self.circleAPI = circleAPI
-        userAPI.getFriends(uid: user.uid).subscribe {[weak self] users in
-            self?.friendsList.accept(users)
-        } onFailure: {[weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        self.store = store
+        self.actionCreator = actionCreator
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.inviteState }
+            }
+            self.makeDic()
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+        
+        self.actionCreator.getFriends(user: user)
     }
     
     func setupBackGroundImage() {
@@ -81,9 +88,7 @@ final class InviteViewModel: InviteViewModelType {
     }
     
     func inviteAction(user: User?) {
-        guard let user = user else {
-            return
-        }
+        guard let user = user else { return }
         if judgeInvite(id: user.uid) {
             inviteIds.remove(value: user.uid)
         } else {
@@ -98,31 +103,10 @@ final class InviteViewModel: InviteViewModelType {
     func makeCircle() {
         inviteIds.append(user.uid)
         dic["member"] = inviteIds
-        circleAPI.postCircle(id: dic["id"] as? String ?? "",
-                                 dic: dic,
-                                 user: user,
-                                 memberId: inviteIds) { [weak self] result in
-            switch result {
-            case .success:
-                self?.completedInput.onNext(())
-            case .failure:
-                self?.errorInput.onNext(true)
-            }
-        }
-    }
-}
-
-extension InviteViewModel: InviteViewModelInputs {
-    
-    var errorInput: AnyObserver<Bool> {
-        errorStream.asObserver()
+        self.actionCreator.makeCircle(user: user, dic: dic, inviteIds: inviteIds)
     }
     
-    var completedInput: AnyObserver<Void> {
-        completedStream.asObserver()
-    }
-    
-    func willAppear() {
+    private func makeDic() {
         let id = Ref.CircleRef.document().documentID
         dic = ["id": id,
                    "name": form.name,
@@ -136,6 +120,18 @@ extension InviteViewModel: InviteViewModelInputs {
     }
 }
 
+extension InviteViewModel: InviteViewModelInputs {
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    
+}
+
 extension InviteViewModel: InviteViewModelOutputs {
     
     var isError: Observable<Bool> {
@@ -144,5 +140,19 @@ extension InviteViewModel: InviteViewModelOutputs {
     
     var isCompleted: Observable<Void> {
         completedStream.asObservable()
+    }
+}
+
+extension InviteViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = InviteState
+    func newState(state: InviteState) {
+        friendsList.accept(state.friends)
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
+       
     }
 }

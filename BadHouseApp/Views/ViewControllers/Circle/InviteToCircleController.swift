@@ -23,7 +23,12 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.willAppear()
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
     }
     private func setupNavigationBar() {
         let rightButton = UIBarButtonItem(title: R.buttonTitle.inviteCircle,

@@ -28,6 +28,10 @@
 		D305EDDD27C0704900BE4078 /* MyPracticeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDDC27C0704900BE4078 /* MyPracticeAction.swift */; };
 		D305EDDF27C0708900BE4078 /* MyPracticeActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDDE27C0708900BE4078 /* MyPracticeActionCreator.swift */; };
 		D305EDE127C070A900BE4078 /* MyPracticeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE027C070A900BE4078 /* MyPracticeReducer.swift */; };
+		D305EDE327C0740800BE4078 /* InviteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE227C0740800BE4078 /* InviteState.swift */; };
+		D305EDE527C0742000BE4078 /* InviteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE427C0742000BE4078 /* InviteAction.swift */; };
+		D305EDE727C0746300BE4078 /* InviteActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE627C0746300BE4078 /* InviteActionCreator.swift */; };
+		D305EDE927C0747A00BE4078 /* InviteReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305EDE827C0747A00BE4078 /* InviteReducer.swift */; };
 		D30B793C2700A5940086456E /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B793B2700A5940086456E /* NotificationUtil.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
@@ -360,6 +364,10 @@
 		D305EDDC27C0704900BE4078 /* MyPracticeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeAction.swift; sourceTree = "<group>"; };
 		D305EDDE27C0708900BE4078 /* MyPracticeActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeActionCreator.swift; sourceTree = "<group>"; };
 		D305EDE027C070A900BE4078 /* MyPracticeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeReducer.swift; sourceTree = "<group>"; };
+		D305EDE227C0740800BE4078 /* InviteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteState.swift; sourceTree = "<group>"; };
+		D305EDE427C0742000BE4078 /* InviteAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAction.swift; sourceTree = "<group>"; };
+		D305EDE627C0746300BE4078 /* InviteActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteActionCreator.swift; sourceTree = "<group>"; };
+		D305EDE827C0747A00BE4078 /* InviteReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteReducer.swift; sourceTree = "<group>"; };
 		D30B793B2700A5940086456E /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
@@ -887,6 +895,7 @@
 				D37C91B127BFB6040040F88F /* CircleDetailState.swift */,
 				D305EDD227C0661A00BE4078 /* ChatState.swift */,
 				D305EDDA27C0702C00BE4078 /* MyPracticeState.swift */,
+				D305EDE227C0740800BE4078 /* InviteState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -903,6 +912,7 @@
 				D37C91B327BFB6270040F88F /* CircleDetailAction.swift */,
 				D305EDD427C0663E00BE4078 /* ChatAction.swift */,
 				D305EDDC27C0704900BE4078 /* MyPracticeAction.swift */,
+				D305EDE427C0742000BE4078 /* InviteAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -919,6 +929,7 @@
 				D37C91B527BFB6B60040F88F /* CircleDetailActionCreator.swift */,
 				D305EDD627C0668F00BE4078 /* ChatActionCreator.swift */,
 				D305EDDE27C0708900BE4078 /* MyPracticeActionCreator.swift */,
+				D305EDE627C0746300BE4078 /* InviteActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -936,6 +947,7 @@
 				D37C91B727BFB6E70040F88F /* CircleDetailReducer.swift */,
 				D305EDD827C066D000BE4078 /* ChatReducer.swift */,
 				D305EDE027C070A900BE4078 /* MyPracticeReducer.swift */,
+				D305EDE827C0747A00BE4078 /* InviteReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1724,6 +1736,7 @@
 				D37C91A227BF0C780040F88F /* ApplyedUserListState.swift in Sources */,
 				D36E530727B9C69300DC637C /* HomeAction.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
+				D305EDE327C0740800BE4078 /* InviteState.swift in Sources */,
 				D37C91A027BF04210040F88F /* ApplyFriendsReducer.swift in Sources */,
 				D31CD0122798DB3C00513587 /* NotificationGetTargetType.swift in Sources */,
 				D36E52FD27B9B29D00DC637C /* MakeCircleFlow.swift in Sources */,
@@ -1758,16 +1771,19 @@
 				D3D222E727BA65FF0022059A /* CheckNotificationFlow.swift in Sources */,
 				D3FF15BA277AF3C6006355EF /* ApplyedUserListController.swift in Sources */,
 				D37C919627BEFAA90040F88F /* BlockListReducer.swift in Sources */,
+				D305EDE927C0747A00BE4078 /* InviteReducer.swift in Sources */,
 				D3B72CF5274A30C700253933 /* MondeyEnum.swift in Sources */,
 				D37C91A627BF0D000040F88F /* ApplyedUserListActionCreator.swift in Sources */,
 				D31CCFFF2798C40A00513587 /* UserGetPracticeTargetType.swift in Sources */,
 				D3D2231A27BBCABF0022059A /* NotificationRepositry.swift in Sources */,
+				D305EDE727C0746300BE4078 /* InviteActionCreator.swift in Sources */,
 				D31CD0142798E7A500513587 /* PracticeGet.swift in Sources */,
 				D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */,
 				D36E530527B9C64000DC637C /* HomeActionCreators.swift in Sources */,
 				D3D222E527BA65880022059A /* TalkFlow.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
 				D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */,
+				D305EDE527C0742000BE4078 /* InviteAction.swift in Sources */,
 				D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */,
 				D3BDB52826E0525100C53780 /* AppDelegate.swift in Sources */,
 				D3FFD32A271EBECD00DE54ED /* Delete-Service.swift in Sources */,

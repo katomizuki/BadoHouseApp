@@ -7,7 +7,7 @@
 
 import ReSwift
 
-struct MyPracticeState {
+struct MyPracticeState: StateType {
     var practices = [Practice]()
     var errorStatus = false
 }
