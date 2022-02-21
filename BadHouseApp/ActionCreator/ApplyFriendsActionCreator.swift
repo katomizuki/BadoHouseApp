@@ -29,6 +29,4 @@ struct ApplyFriendsActionCreator {
         appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.setApplies(value))
         appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.changeReloadStatus(true))
     }
-    
-    
 }

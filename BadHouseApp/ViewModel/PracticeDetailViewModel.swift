@@ -50,7 +50,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
     let isModal: Bool
     
     init(practice: Practice,
-         isModal: Bool, store: Store<AppState>,actionCreator: PracticeActionCreator) {
+         isModal: Bool, store: Store<AppState>, actionCreator: PracticeActionCreator) {
         self.practice = practice
         self.isModal = isModal
         self.store = store
@@ -97,17 +97,17 @@ extension PracticeDetailViewModel: PracticeDetailViewModelInputs {
     }
 }
 extension PracticeDetailViewModel: PracticeDetailViewModelOutputs {
-    var isError:Observable<Bool> {
+    var isError: Observable<Bool> {
         errorStream.asObservable()
     }
     var completed: Observable<Void> {
         completedStream.asObservable()
     }
-    var isButtonHidden:Observable<Bool> {
+    var isButtonHidden: Observable<Bool> {
         buttonHiddenStream.asObservable()
     }
     
-    var isTakePartInButton:Observable<Bool> {
+    var isTakePartInButton: Observable<Bool> {
         takePartInButtonStream.asObservable()
     }
 }

@@ -28,7 +28,7 @@ struct BlockListActionCreator {
         }
     }
     
-    func removeBlock(_ user: User, ids: [String],blockList: [User]) {
+    func removeBlock(_ user: User, ids: [String], blockList: [User]) {
         var blockIds = ids
         blockIds.remove(value: user.uid)
         UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: R.UserDefaultsKey.blocks)

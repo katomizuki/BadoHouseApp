@@ -98,7 +98,7 @@ final class UserCoordinator: Coordinator, UserFlow {
         guard let user = user else { return }
             navigationController.pushViewController(
                 ApplyFriendController.init(
-                    viewModel:ApplyFriendsViewModel(
+                    viewModel: ApplyFriendsViewModel(
                         user: user,
                         store: appStore,
                         actionCreator: ApplyFriendsActionCreator(

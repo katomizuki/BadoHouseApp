@@ -9,7 +9,7 @@ import ReSwift
 
 extension CircleDetailState {
     enum CircleDetailAction: ReSwift.Action {
-        case setAllMembers(_ users:[User])
+        case setAllMembers(_ users: [User])
         case setCircle(_ circle: Circle)
         case setFriendsMembers(_ members: [User])
         case changeErrorStatus(_ isError: Bool)

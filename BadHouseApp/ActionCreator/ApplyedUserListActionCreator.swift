@@ -42,7 +42,7 @@ struct ApplyedUserListActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func makeFriends(_ applyed: Applyed, uid: String, list: [Applyed] ,user: User) {
+    func makeFriends(_ applyed: Applyed, uid: String, list: [Applyed], user: User) {
         applyAPI.notApplyFriend(uid: applyed.fromUserId,
                                     toUserId: uid)
         let value = list.filter {

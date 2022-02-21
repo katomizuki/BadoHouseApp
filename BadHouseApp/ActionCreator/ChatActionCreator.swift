@@ -13,7 +13,7 @@ struct ChatActionCreator {
     let chatAPI: ChatRepositry
     let userAPI: UserRepositry
     
-    func sendText(_ text: String,chatId: String, myData: User ,user: User) {
+    func sendText(_ text: String, chatId: String, myData: User, user: User) {
         let dic: [String: Any] = ["chatId": chatId,
                                  "text": text,
                                  "createdAt": Timestamp(),

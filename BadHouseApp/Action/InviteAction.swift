@@ -8,7 +8,7 @@
 import ReSwift
 
 extension InviteState {
-    enum InviteAction:ReSwift.Action {
+    enum InviteAction: ReSwift.Action {
         case setFriends(_ friends: [User])
         case changeErrorStatus(_ isError: Bool)
         case chageCompletedStatus(_ isCompleted: Bool)

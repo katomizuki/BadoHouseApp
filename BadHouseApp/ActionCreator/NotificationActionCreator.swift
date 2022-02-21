@@ -12,10 +12,10 @@ struct NotificationActionCreator {
     let notificationAPI: NotificationRepositry
     private let disposeBag = DisposeBag()
     
-    func getNotification(user :User) {
+    func getNotification(user: User) {
     notificationAPI.getMyNotification(uid: user.uid).subscribe { notifications in
         appStore.dispatch(NotificationStatus.NotificationAction.setNotifications(notifications))
-    } onFailure: {  error in
+    } onFailure: {  _ in
         appStore.dispatch(NotificationStatus.NotificationAction.chageErrorStatus(true))
     }.disposed(by: disposeBag)
     }

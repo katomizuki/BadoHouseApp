@@ -16,6 +16,11 @@ final class SearchUserCoordinator: Coordinator, SearchUserFlow {
     }
     
     func toUserDetail(_ user: User, _ myData: User) {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), applyAPI: ApplyRepositryImpl())))
+        coordinator(to: UserDetailCoordinator(
+            navigationController: navigationController,
+            viewModel: UserDetailViewModel(myData: myData,
+                                           user: user,
+                                           userAPI: UserRepositryImpl(),
+                                           applyAPI: ApplyRepositryImpl())))
     }
 }

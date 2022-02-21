@@ -7,7 +7,7 @@
 
 import ReSwift
 extension PracticeDetailState {
-    enum PracticeDetailAction:ReSwift.Action {
+    enum PracticeDetailAction: ReSwift.Action {
         case setUser(_ user: User)
         case setCircle(_ circle: Circle)
         case changeErrorStatus(_ isError: Bool)

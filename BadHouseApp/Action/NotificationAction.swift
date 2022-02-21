@@ -9,7 +9,7 @@ import ReSwift
 
 extension NotificationStatus {
     enum NotificationAction: ReSwift.Action {
-        case setNotifications(_ notifications:[Notification])
+        case setNotifications(_ notifications: [Notification])
         case chageErrorStatus(_ isError: Bool)
     }
 }

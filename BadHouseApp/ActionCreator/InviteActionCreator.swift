@@ -21,7 +21,7 @@ struct InviteActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func makeCircle(user: User,dic:[String: Any], inviteIds:[String]) {
+    func makeCircle(user: User, dic: [String: Any], inviteIds: [String]) {
 
         circleAPI.postCircle(id: dic["id"] as? String ?? "",
                                  dic: dic,

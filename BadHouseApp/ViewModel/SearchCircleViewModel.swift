@@ -30,7 +30,6 @@ final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleView
     var user: User
     private let errorStream = PublishSubject<Bool>()
     
-    
     init(circleAPI: CircleRepositry, user: User) {
         self.circleAPI = circleAPI
         self.user = user

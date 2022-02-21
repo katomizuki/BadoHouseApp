@@ -1,5 +1,5 @@
 import UIKit
-// swiftlint:disable line_length
+
 final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     
     let navigationController: UINavigationController
