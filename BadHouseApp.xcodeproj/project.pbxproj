@@ -88,6 +88,9 @@
 		D32E599427748C0C00C59548 /* FriendsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E599227748C0C00C59548 /* FriendsListController.xib */; };
 		D32E59962774AC5A00C59548 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59952774AC5A00C59548 /* R.generated.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
+		D346771D27C3392700825D34 /* BadHouseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346771C27C3392700825D34 /* BadHouseAppTests.swift */; };
+		D346772A27C339E700825D34 /* BadHouseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346772927C339E700825D34 /* BadHouseAppUITests.swift */; };
+		D346772C27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */; };
 		D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4B27A94D6700B87D74 /* FirebaseAuth */; };
 		D346BD4E27A94D6700B87D74 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4D27A94D6700B87D74 /* FirebaseCrashlytics */; };
 		D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4F27A94D6700B87D74 /* FirebaseFirestore */; };
@@ -349,6 +352,23 @@
 		D3FFD334271EDCC300DE54ED /* JoinRepositryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFD333271EDCC300DE54ED /* JoinRepositryImpl.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D346771E27C3392700825D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3BDB51C26E0525100C53780 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3BDB52326E0525100C53780;
+			remoteInfo = BadHouseApp;
+		};
+		D346772D27C339E700825D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3BDB51C26E0525100C53780 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3BDB52326E0525100C53780;
+			remoteInfo = BadHouseApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,6 +452,11 @@
 		D32E599227748C0C00C59548 /* FriendsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListController.xib; sourceTree = "<group>"; };
 		D32E59952774AC5A00C59548 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
+		D346771A27C3392700825D34 /* BadHouseAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHouseAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D346771C27C3392700825D34 /* BadHouseAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppTests.swift; sourceTree = "<group>"; };
+		D346772727C339E700825D34 /* BadHouseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHouseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D346772927C339E700825D34 /* BadHouseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppUITests.swift; sourceTree = "<group>"; };
+		D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D34852B526FD3EBD0027592A /* PreJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoin.swift; sourceTree = "<group>"; };
 		D353D8E026F1621F00221B7D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D353D8E126F1621F00221B7D /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -682,6 +707,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D346771727C3392700825D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D346772427C339E700825D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3BDB52126E0525100C53780 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -835,6 +874,23 @@
 				D301E385278467C80090CAF9 /* PreJoinController.xib */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		D346771B27C3392700825D34 /* BadHouseAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D346771C27C3392700825D34 /* BadHouseAppTests.swift */,
+			);
+			path = BadHouseAppTests;
+			sourceTree = "<group>";
+		};
+		D346772827C339E700825D34 /* BadHouseAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D346772927C339E700825D34 /* BadHouseAppUITests.swift */,
+				D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */,
+			);
+			path = BadHouseAppUITests;
 			sourceTree = "<group>";
 		};
 		D353D8E426F16C2F00221B7D /* Xib&Cell */ = {
@@ -1142,6 +1198,8 @@
 			isa = PBXGroup;
 			children = (
 				D3BDB52626E0525100C53780 /* BadHouseApp */,
+				D346771B27C3392700825D34 /* BadHouseAppTests */,
+				D346772827C339E700825D34 /* BadHouseAppUITests */,
 				D3BDB52526E0525100C53780 /* Products */,
 				EAB088E43E3400410089E7E8 /* Pods */,
 				A38EBCCD1805D889F56FAD63 /* Frameworks */,
@@ -1152,6 +1210,8 @@
 			isa = PBXGroup;
 			children = (
 				D3BDB52426E0525100C53780 /* BadHouseApp.app */,
+				D346771A27C3392700825D34 /* BadHouseAppTests.xctest */,
+				D346772727C339E700825D34 /* BadHouseAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1383,6 +1443,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D346771927C3392700825D34 /* BadHouseAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D346772227C3392700825D34 /* Build configuration list for PBXNativeTarget "BadHouseAppTests" */;
+			buildPhases = (
+				D346771627C3392700825D34 /* Sources */,
+				D346771727C3392700825D34 /* Frameworks */,
+				D346771827C3392700825D34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D346771F27C3392700825D34 /* PBXTargetDependency */,
+			);
+			name = BadHouseAppTests;
+			productName = BadHouseAppTests;
+			productReference = D346771A27C3392700825D34 /* BadHouseAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D346772627C339E700825D34 /* BadHouseAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D346772F27C339E700825D34 /* Build configuration list for PBXNativeTarget "BadHouseAppUITests" */;
+			buildPhases = (
+				D346772327C339E700825D34 /* Sources */,
+				D346772427C339E700825D34 /* Frameworks */,
+				D346772527C339E700825D34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D346772E27C339E700825D34 /* PBXTargetDependency */,
+			);
+			name = BadHouseAppUITests;
+			productName = BadHouseAppUITests;
+			productReference = D346772727C339E700825D34 /* BadHouseAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D3BDB52326E0525100C53780 /* BadHouseApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3BDB53826E0525200C53780 /* Build configuration list for PBXNativeTarget "BadHouseApp" */;
@@ -1429,9 +1525,17 @@
 		D3BDB51C26E0525100C53780 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					D346771927C3392700825D34 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D3BDB52326E0525100C53780;
+					};
+					D346772627C339E700825D34 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D3BDB52326E0525100C53780;
+					};
 					D3BDB52326E0525100C53780 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -1464,11 +1568,27 @@
 			projectRoot = "";
 			targets = (
 				D3BDB52326E0525100C53780 /* BadHouseApp */,
+				D346771927C3392700825D34 /* BadHouseAppTests */,
+				D346772627C339E700825D34 /* BadHouseAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D346771827C3392700825D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D346772527C339E700825D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3BDB52226E0525100C53780 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1628,6 +1748,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D346771627C3392700825D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D346771D27C3392700825D34 /* BadHouseAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D346772327C339E700825D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D346772A27C339E700825D34 /* BadHouseAppUITests.swift in Sources */,
+				D346772C27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3BDB52026E0525100C53780 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1908,7 +2045,100 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D346771F27C3392700825D34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3BDB52326E0525100C53780 /* BadHouseApp */;
+			targetProxy = D346771E27C3392700825D34 /* PBXContainerItemProxy */;
+		};
+		D346772E27C339E700825D34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3BDB52326E0525100C53780 /* BadHouseApp */;
+			targetProxy = D346772D27C339E700825D34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D346772027C3392700825D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LSUSGUW6L4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BadHouseApp.app/BadHouseApp";
+			};
+			name = Debug;
+		};
+		D346772127C3392700825D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LSUSGUW6L4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BadHouseApp.app/BadHouseApp";
+			};
+			name = Release;
+		};
+		D346773027C339E700825D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LSUSGUW6L4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BadHouseApp;
+			};
+			name = Debug;
+		};
+		D346773127C339E700825D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LSUSGUW6L4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.BadHouseAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BadHouseApp;
+			};
+			name = Release;
+		};
 		D3BDB53626E0525200C53780 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2079,6 +2309,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D346772227C3392700825D34 /* Build configuration list for PBXNativeTarget "BadHouseAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D346772027C3392700825D34 /* Debug */,
+				D346772127C3392700825D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D346772F27C339E700825D34 /* Build configuration list for PBXNativeTarget "BadHouseAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D346773027C339E700825D34 /* Debug */,
+				D346773127C339E700825D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D3BDB51F26E0525100C53780 /* Build configuration list for PBXProject "BadHouseApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

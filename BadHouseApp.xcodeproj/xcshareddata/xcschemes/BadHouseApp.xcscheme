@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D346771927C3392700825D34"
+               BuildableName = "BadHouseAppTests.xctest"
+               BlueprintName = "BadHouseAppTests"
+               ReferencedContainer = "container:BadHouseApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D346772627C339E700825D34"
+               BuildableName = "BadHouseAppUITests.xctest"
+               BlueprintName = "BadHouseAppUITests"
+               ReferencedContainer = "container:BadHouseApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

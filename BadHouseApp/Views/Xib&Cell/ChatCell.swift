@@ -90,4 +90,11 @@ final class ChatCell: UITableViewCell {
             timeLabel.text = chat.timeString
         }
     }
+    
+    override func prepareForReuse() {
+        timeLabel.text = nil
+        nameLabel.text = nil
+        mytimeLabel.text = nil
+        textView.text = nil
+    }
 }

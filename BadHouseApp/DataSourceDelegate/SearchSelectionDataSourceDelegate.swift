@@ -4,7 +4,7 @@ protocol SearchSelectionDataSourceDelegateProtocol: NSObjectProtocol {
     func searchSelectionDataSourceDelegate(_ text: String)
 }
 
- class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+ final class SearchSelectionDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var cellArray = [String]()
     weak var delegate: SearchSelectionDataSourceDelegateProtocol?

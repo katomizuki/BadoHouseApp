@@ -4,7 +4,7 @@ protocol MyPageInfoDataSourceDelegateProtocol: NSObjectProtocol {
     func myPageInfoDataSourceDelegate(_ text: String)
 }
 
-class MyPageInfoDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+final class MyPageInfoDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     weak var delegate: MyPageInfoDataSourceDelegateProtocol?
     private var cellArray = [String]()

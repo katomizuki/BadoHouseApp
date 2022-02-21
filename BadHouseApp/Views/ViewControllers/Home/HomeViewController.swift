@@ -154,7 +154,9 @@ final class HomeViewController: UIViewController {
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: collectionView.frame.width - 30, height: collectionView.frame.width - 50)
+        let width: Int = Int(collectionView.frame.width - 30)
+        let height: Int = Int(collectionView.frame.width - 50)
+        layout.itemSize = CGSize(width: width, height: height)
         collectionView.collectionViewLayout = layout
         collectionView.register(EventInfoCell.nib(), forCellWithReuseIdentifier: EventInfoCell.id)
         collectionView.showsVerticalScrollIndicator = false

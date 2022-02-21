@@ -61,4 +61,12 @@ final class EventInfoCell: UICollectionViewCell {
         }
         self.delegate?.didTapBlockButton(self, practice: practice)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        teamLabel.text = nil
+        titleLabel.text = nil
+        placeLabel.text = nil
+        timeLabel.text = nil
+    }
 }

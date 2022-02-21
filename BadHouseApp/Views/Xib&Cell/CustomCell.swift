@@ -87,4 +87,11 @@ final class CustomCell: UITableViewCell {
         timeLabel.isHidden = false
         timeLabel.text = chatRoom.latestTimeString
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        label.text = nil
+        commentLabel.text = nil
+        timeLabel.text = nil
+    }
 }
