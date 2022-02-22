@@ -28,7 +28,8 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func toDetailSearch(_ vc: HomeViewController, practices: [Practice]) {
-        let controller = PracticeSearchController.init(viewModel: PracticeSearchViewModel(practiceAPI: PracticeRepositryImpl(), practices: practices))
+        let controller = PracticeSearchController.init(viewModel:
+                                                        PracticeSearchViewModel(practices: practices,store: appStore))
         controller.delegate = vc
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)

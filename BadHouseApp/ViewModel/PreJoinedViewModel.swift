@@ -8,27 +8,27 @@ protocol PreJoinedViewModelType {
 
 protocol PreJoinedViewModelInputs {
     func permission(_ preJoined: PreJoined)
+    var reloadInput: AnyObserver<Void> { get }
+    var completedInput: AnyObserver<Void> { get }
+    var navigationTitleInput: AnyObserver<String> { get }
+    var errorInput: AnyObserver<Bool> { get }
 }
 
 protocol PreJoinedViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
     var preJoinedList: BehaviorRelay<[PreJoined]> { get }
-    var reload: PublishSubject<Void> { get }
-    var completed: PublishSubject<Void> { get }
-    var navigationTitle: PublishSubject<String> { get }
+    var reload: Observable<Void> { get }
+    var completed: Observable<Void> { get }
+    var navigationTitle: Observable<String> { get }
 }
 
-final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs, PreJoinedViewModelOutputs {
+final class PreJoinedViewModel: PreJoinedViewModelType {
     
-    var isError = PublishSubject<Bool>()
-    var reload = PublishSubject<Void>()
     var inputs: PreJoinedViewModelInputs { return self }
     var outputs: PreJoinedViewModelOutputs { return self }
     private let joinAPI: JoinRepositry
     var preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
-    var navigationTitle = PublishSubject<String>()
     private let disposeBag = DisposeBag()
-    var completed = PublishSubject<Void>()
     let user: User
     
     private let reloadStream = PublishSubject<Void>()
@@ -41,10 +41,10 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
         self.user = user
         joinAPI.getPreJoined(userId: user.uid).subscribe {[weak self] prejoineds in
             self?.preJoinedList.accept(prejoineds)
-            self?.navigationTitle.onNext("\(prejoineds.count)人から参加申請が来ています")
-            self?.reload.onNext(())
+            self?.navigationTitleInput.onNext("\(prejoineds.count)人から参加申請が来ています")
+            self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
@@ -54,13 +54,42 @@ final class PreJoinedViewModel: PreJoinedViewModelType, PreJoinedViewModelInputs
         var list = preJoinedList.value
         list.remove(value: preJoined)
         preJoinedList.accept(list)
-        reload.onNext(())
+        reloadInput.onNext(())
         UserRepositryImpl.getUserById(uid: preJoined.fromUserId) { friend in
             self.joinAPI.postMatchJoin(preJoined: preJoined, user: friend, myData: self.user).subscribe(onCompleted: {
-                self.completed.onNext(())
+                self.completedInput.onNext(())
             }, onError: { _ in
-                self.isError.onNext(true)
+                self.errorInput.onNext(true)
             }).disposed(by: self.disposeBag)
         }
+    }
+}
+
+extension PreJoinedViewModel: PreJoinedViewModelInputs {
+    var reloadInput: AnyObserver<Void>  {
+        reloadStream.asObserver()
+    }
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    var navigationTitleInput: AnyObserver<String> {
+        navigationTitleStream.asObserver()
+    }
+    var errorInput: AnyObserver<Bool> {
+        errorInput.asObserver()
+    }
+}
+extension PreJoinedViewModel: PreJoinedViewModelOutputs {
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+    var completed: Observable<Void> {
+        completedStream.asObservable()
+    }
+    var navigationTitle: Observable<String> {
+        navigationTitleStream.asObservable()
+    }
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
     }
 }

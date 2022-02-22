@@ -20,5 +20,6 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.inviteState = InviteReducer.reducer(action: action, state: state.inviteState)
     state.notificationStatus = NotificationReducer.reducer(action: action, state: state.notificationStatus)
     state.practiceDetailState = PracticeDetailReducer.reducer(action: action, state: state.practiceDetailState)
+    state.practiceSearchState = PracticeSearchReducer.reducer(action: action, state: state.practiceSearchState)
     return state
 }

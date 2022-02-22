@@ -1,5 +1,7 @@
 import RxSwift
 import Firebase
+import RxRelay
+import ReSwift
 
 protocol PracticeSearchViewModelType {
     var inputs: PracticeSearchViewModelInputs { get }
@@ -27,21 +29,34 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var outputs: PracticeSearchViewModelOutputs { return self }
     
     var navigationStriing = PublishSubject<String>()
-    var practiceAPI: PracticeRepositry
     var selectedLevel = String()
     var selectedPlace = String()
     var reload = PublishSubject<Void>()
     var practices = [Practice]()
     var fullPractices = [Practice]()
     var searchedPractices = [Practice]()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let disposeBag = DisposeBag()
     
     private let reloadStream = PublishSubject<Void>()
     private let navigationTitleStream = PublishSubject<String>()
+    private let store: Store<AppState>
     
-    init(practiceAPI: PracticeRepositry, practices: [Practice]) {
-        self.practiceAPI = practiceAPI
+    init(practices: [Practice], store: Store<AppState>) {
         self.practices = practices
         self.fullPractices = practices
+        self.store = store
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.practiceSearchState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
     func changeSelection(_ selection: SearchSelection, text: String) {
@@ -102,5 +117,12 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         practices = fullPractices
         navigationStriing.onNext("\(self.practices.count)件のヒット")
         reload.onNext(())
+    }
+}
+extension PracticeSearchViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = PracticeSearchState
+    
+    func newState(state: PracticeSearchState) {
+//        state.
     }
 }

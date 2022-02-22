@@ -252,6 +252,10 @@
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* Circle.swift */; };
 		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
+		D3CBF9BF27C4F8A1005F7021 /* PracticeSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9BE27C4F8A1005F7021 /* PracticeSearchState.swift */; };
+		D3CBF9C127C4F8C7005F7021 /* PracticeSearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */; };
+		D3CBF9C327C4F906005F7021 /* PracticeSearchActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */; };
+		D3CBF9C527C4F948005F7021 /* PracticeSearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C427C4F948005F7021 /* PracticeSearchReducer.swift */; };
 		D3D222E527BA65880022059A /* TalkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D222E427BA65880022059A /* TalkFlow.swift */; };
 		D3D222E727BA65FF0022059A /* CheckNotificationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D222E627BA65FF0022059A /* CheckNotificationFlow.swift */; };
 		D3D222E927BA672D0022059A /* MapListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D222E827BA672D0022059A /* MapListFlow.swift */; };
@@ -606,6 +610,10 @@
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		D3CBF9BE27C4F8A1005F7021 /* PracticeSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchState.swift; sourceTree = "<group>"; };
+		D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchAction.swift; sourceTree = "<group>"; };
+		D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchActionCreator.swift; sourceTree = "<group>"; };
+		D3CBF9C427C4F948005F7021 /* PracticeSearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchReducer.swift; sourceTree = "<group>"; };
 		D3D222E427BA65880022059A /* TalkFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFlow.swift; sourceTree = "<group>"; };
 		D3D222E627BA65FF0022059A /* CheckNotificationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNotificationFlow.swift; sourceTree = "<group>"; };
 		D3D222E827BA672D0022059A /* MapListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListFlow.swift; sourceTree = "<group>"; };
@@ -976,6 +984,7 @@
 				D305EDE227C0740800BE4078 /* InviteState.swift */,
 				D305EDEA27C08E6300BE4078 /* NotificationStatus.swift */,
 				D305EDF227C0959C00BE4078 /* PracticeDetailState.swift */,
+				D3CBF9BE27C4F8A1005F7021 /* PracticeSearchState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -995,6 +1004,7 @@
 				D305EDE427C0742000BE4078 /* InviteAction.swift */,
 				D305EDEC27C08E8100BE4078 /* NotificationAction.swift */,
 				D305EDF427C095BC00BE4078 /* PracticeDetailAction.swift */,
+				D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -1014,6 +1024,7 @@
 				D305EDE627C0746300BE4078 /* InviteActionCreator.swift */,
 				D305EDEE27C08EB400BE4078 /* NotificationActionCreator.swift */,
 				D305EDF627C095E500BE4078 /* PracticeActionCreator.swift */,
+				D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -1034,6 +1045,7 @@
 				D305EDE827C0747A00BE4078 /* InviteReducer.swift */,
 				D305EDF027C08ED300BE4078 /* NotificationReducer.swift */,
 				D305EDF827C0962600BE4078 /* PracticeDetailReducer.swift */,
+				D3CBF9C427C4F948005F7021 /* PracticeSearchReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1562,15 +1574,15 @@
 			mainGroup = D3BDB51B26E0525100C53780;
 			packageReferences = (
 				D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD.git" */,
-				D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
-				D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts.git" */,
-				D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
-				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */,
+				D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */,
+				D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */,
+				D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				D346BD7F27A96DD200B87D74 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture.git" */,
-				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
-				D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift.git" */,
+				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1886,6 +1898,7 @@
 				D3FF15A92779F19A006355EF /* UserDetailViewModel.swift in Sources */,
 				D3B72CFB274A31BD00253933 /* CircleEnum.swift in Sources */,
 				D3D2230927BBC5DC0022059A /* PracticeRepositry.swift in Sources */,
+				D3CBF9BF27C4F8A1005F7021 /* PracticeSearchState.swift in Sources */,
 				D37FA52926EB091300B8559F /* EventInfoCell.swift in Sources */,
 				D31CD0182799932D00513587 /* UserGetChatRoom.swift in Sources */,
 				D3FF15D6277DA680006355EF /* UpdateCircleViewModel.swift in Sources */,
@@ -1918,9 +1931,11 @@
 				D3B3C9B8275CE59B00B2CD2C /* HomeViewModel.swift in Sources */,
 				D3D222FF27BA71630022059A /* RegisterFlow.swift in Sources */,
 				D38864072768DA9200FC4F07 /* MainUserDetailController.swift in Sources */,
+				D3CBF9C127C4F8C7005F7021 /* PracticeSearchAction.swift in Sources */,
 				D301E38D27846B7D0090CAF9 /* PreJoined.swift in Sources */,
 				D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */,
 				D38864032768D41A00FC4F07 /* CircleDetailController.swift in Sources */,
+				D3CBF9C527C4F948005F7021 /* PracticeSearchReducer.swift in Sources */,
 				D3B72CFF274A322700253933 /* UserInfoEnum.swift in Sources */,
 				D3D7617D2776AF84004381E4 /* FriendListCoordinator.swift in Sources */,
 				D305EDE127C070A900BE4078 /* MyPracticeReducer.swift in Sources */,
@@ -2061,6 +2076,7 @@
 				D36E530F27B9D77300DC637C /* EventAdditionlItemsFlow.swift in Sources */,
 				D3B72CEB274A2E4100253933 /* ViewController+Extenstion.swift in Sources */,
 				D3629FA1276F5DFC0052B820 /* MyPageDetailCoordinator.swift in Sources */,
+				D3CBF9C327C4F906005F7021 /* PracticeSearchActionCreator.swift in Sources */,
 				D31CD01627998DF700513587 /* UserGetJoinPracticeTargetType.swift in Sources */,
 				D316072227675C31005FF41D /* AdditionalEventElementController.swift in Sources */,
 				D38863EB2768B80D00FC4F07 /* MakeCircleController.swift in Sources */,
@@ -2389,7 +2405,7 @@
 				kind = branch;
 			};
 		};
-		D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD.git" */ = {
+		D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pkluz/PKHUD.git";
 			requirement = {
@@ -2397,7 +2413,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
+		D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -2405,7 +2421,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts.git" */ = {
+		D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
@@ -2413,7 +2429,7 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
+		D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -2421,7 +2437,7 @@
 				kind = branch;
 			};
 		};
-		D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */ = {
+		D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
@@ -2437,7 +2453,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture.git" */ = {
+		D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
 			requirement = {
@@ -2445,7 +2461,7 @@
 				kind = branch;
 			};
 		};
-		D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift.git" */ = {
+		D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
 			requirement = {
@@ -2453,7 +2469,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
+		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -2491,27 +2507,27 @@
 		};
 		D346BD7127A966FA00B87D74 /* PKHUD */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD.git" */;
+			package = D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */;
 			productName = PKHUD;
 		};
 		D346BD7427A967D900B87D74 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
+			package = D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
 		};
 		D346BD7727A9687200B87D74 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts.git" */;
+			package = D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
 		};
 		D346BD7A27A968C100B87D74 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
+			package = D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
 		D346BD7D27A96BB000B87D74 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */;
+			package = D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
 		D346BD8027A96DD200B87D74 /* RxCocoa */ = {
@@ -2531,17 +2547,17 @@
 		};
 		D346BD8727A96E3C00B87D74 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture.git" */;
+			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
 		};
 		D36E52F827B9B12500DC637C /* ReSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift.git" */;
+			package = D36E52F727B9B12500DC637C /* XCRemoteSwiftPackageReference "ReSwift" */;
 			productName = ReSwift;
 		};
 		D370503327ABE91500373225 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
+			package = D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
