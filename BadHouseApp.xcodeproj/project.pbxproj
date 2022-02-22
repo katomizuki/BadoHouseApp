@@ -256,6 +256,10 @@
 		D3CBF9C127C4F8C7005F7021 /* PracticeSearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */; };
 		D3CBF9C327C4F906005F7021 /* PracticeSearchActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */; };
 		D3CBF9C527C4F948005F7021 /* PracticeSearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C427C4F948005F7021 /* PracticeSearchReducer.swift */; };
+		D3CBF9C727C4FE7B005F7021 /* PreJoinedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C627C4FE7B005F7021 /* PreJoinedState.swift */; };
+		D3CBF9C927C4FE9D005F7021 /* PreJoinedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C827C4FE9D005F7021 /* PreJoinedAction.swift */; };
+		D3CBF9CB27C4FEEF005F7021 /* PreJoinedActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9CA27C4FEEF005F7021 /* PreJoinedActionCreator.swift */; };
+		D3CBF9CD27C4FF0F005F7021 /* PreJoinedReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9CC27C4FF0F005F7021 /* PreJoinedReducer.swift */; };
 		D3D222E527BA65880022059A /* TalkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D222E427BA65880022059A /* TalkFlow.swift */; };
 		D3D222E727BA65FF0022059A /* CheckNotificationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D222E627BA65FF0022059A /* CheckNotificationFlow.swift */; };
 		D3D222E927BA672D0022059A /* MapListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D222E827BA672D0022059A /* MapListFlow.swift */; };
@@ -614,6 +618,10 @@
 		D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchAction.swift; sourceTree = "<group>"; };
 		D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchActionCreator.swift; sourceTree = "<group>"; };
 		D3CBF9C427C4F948005F7021 /* PracticeSearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchReducer.swift; sourceTree = "<group>"; };
+		D3CBF9C627C4FE7B005F7021 /* PreJoinedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedState.swift; sourceTree = "<group>"; };
+		D3CBF9C827C4FE9D005F7021 /* PreJoinedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedAction.swift; sourceTree = "<group>"; };
+		D3CBF9CA27C4FEEF005F7021 /* PreJoinedActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedActionCreator.swift; sourceTree = "<group>"; };
+		D3CBF9CC27C4FF0F005F7021 /* PreJoinedReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedReducer.swift; sourceTree = "<group>"; };
 		D3D222E427BA65880022059A /* TalkFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFlow.swift; sourceTree = "<group>"; };
 		D3D222E627BA65FF0022059A /* CheckNotificationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNotificationFlow.swift; sourceTree = "<group>"; };
 		D3D222E827BA672D0022059A /* MapListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListFlow.swift; sourceTree = "<group>"; };
@@ -985,6 +993,7 @@
 				D305EDEA27C08E6300BE4078 /* NotificationStatus.swift */,
 				D305EDF227C0959C00BE4078 /* PracticeDetailState.swift */,
 				D3CBF9BE27C4F8A1005F7021 /* PracticeSearchState.swift */,
+				D3CBF9C627C4FE7B005F7021 /* PreJoinedState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -1005,6 +1014,7 @@
 				D305EDEC27C08E8100BE4078 /* NotificationAction.swift */,
 				D305EDF427C095BC00BE4078 /* PracticeDetailAction.swift */,
 				D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */,
+				D3CBF9C827C4FE9D005F7021 /* PreJoinedAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -1025,6 +1035,7 @@
 				D305EDEE27C08EB400BE4078 /* NotificationActionCreator.swift */,
 				D305EDF627C095E500BE4078 /* PracticeActionCreator.swift */,
 				D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */,
+				D3CBF9CA27C4FEEF005F7021 /* PreJoinedActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -1046,6 +1057,7 @@
 				D305EDF027C08ED300BE4078 /* NotificationReducer.swift */,
 				D305EDF827C0962600BE4078 /* PracticeDetailReducer.swift */,
 				D3CBF9C427C4F948005F7021 /* PracticeSearchReducer.swift */,
+				D3CBF9CC27C4FF0F005F7021 /* PreJoinedReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1833,6 +1845,7 @@
 				D3B3C9BA275CE64E00B2CD2C /* NotificationViewModel.swift in Sources */,
 				D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */,
 				D3B3C9BC275CE6F400B2CD2C /* UserViewModel.swift in Sources */,
+				D3CBF9CB27C4FEEF005F7021 /* PreJoinedActionCreator.swift in Sources */,
 				D3FF15D8277DA78F006355EF /* UpdateCircleCoordinator.swift in Sources */,
 				D37C919227BEF9830040F88F /* BlockListActionCreator.swift in Sources */,
 				D305EDEF27C08EB400BE4078 /* NotificationActionCreator.swift in Sources */,
@@ -1946,6 +1959,7 @@
 				D31CD0102798DB2400513587 /* ChatGetTargetType.swift in Sources */,
 				D37C91A227BF0C780040F88F /* ApplyedUserListState.swift in Sources */,
 				D36E530727B9C69300DC637C /* HomeAction.swift in Sources */,
+				D3CBF9CD27C4FF0F005F7021 /* PreJoinedReducer.swift in Sources */,
 				D3FF15AE277ACB49006355EF /* ApplyFriendController.swift in Sources */,
 				D305EDE327C0740800BE4078 /* InviteState.swift in Sources */,
 				D37C91A027BF04210040F88F /* ApplyFriendsReducer.swift in Sources */,
@@ -2024,6 +2038,7 @@
 				D305EDF727C095E500BE4078 /* PracticeActionCreator.swift in Sources */,
 				D3D222F727BA70A10022059A /* SearchUserFlow.swift in Sources */,
 				D31606F42765822A005FF41D /* EventAdditionlItemsController.swift in Sources */,
+				D3CBF9C727C4FE7B005F7021 /* PreJoinedState.swift in Sources */,
 				D3D3D37F2721873A00E2853A /* AppExplainController.swift in Sources */,
 				D3FF15DD277E7D1A006355EF /* ProblemInformationController.swift in Sources */,
 				D3B72CF7274A30E600253933 /* BadomintonEnum.swift in Sources */,
@@ -2034,6 +2049,7 @@
 				D3FF15EA277ECB93006355EF /* EventAdditionalItemViewModel.swift in Sources */,
 				D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */,
 				D3B3C9BE275CE78600B2CD2C /* TalkViewModel.swift in Sources */,
+				D3CBF9C927C4FE9D005F7021 /* PreJoinedAction.swift in Sources */,
 				D3C1BFF62775A41400C6C761 /* AlertProvider.swift in Sources */,
 				D38863F72768C06D00FC4F07 /* CircleSearchController.swift in Sources */,
 				D3886430276A191500FC4F07 /* NotificationCoordinator.swift in Sources */,

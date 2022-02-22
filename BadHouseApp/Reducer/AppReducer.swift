@@ -21,5 +21,6 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.notificationStatus = NotificationReducer.reducer(action: action, state: state.notificationStatus)
     state.practiceDetailState = PracticeDetailReducer.reducer(action: action, state: state.practiceDetailState)
     state.practiceSearchState = PracticeSearchReducer.reducer(action: action, state: state.practiceSearchState)
+    state.prejoinedState = PreJoinedReducer.reducer(action: action, state: state.prejoinedState)
     return state
 }

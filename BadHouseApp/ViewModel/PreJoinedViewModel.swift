@@ -1,5 +1,6 @@
 import RxRelay
 import RxSwift
+import ReSwift
 
 protocol PreJoinedViewModelType {
     var inputs: PreJoinedViewModelInputs { get }
@@ -26,42 +27,46 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
     
     var inputs: PreJoinedViewModelInputs { return self }
     var outputs: PreJoinedViewModelOutputs { return self }
-    private let joinAPI: JoinRepositry
     var preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
-    private let disposeBag = DisposeBag()
     let user: User
-    
+    private let disposeBag = DisposeBag()
     private let reloadStream = PublishSubject<Void>()
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let navigationTitleStream = PublishSubject<String>()
+    private let store: Store<AppState>
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let actionCreator: PreJoinedActionCreator
     
-    init(joinAPI: JoinRepositry, user: User) {
-        self.joinAPI = joinAPI
+    init(user: User, store: Store<AppState>, actionCreator: PreJoinedActionCreator) {
         self.user = user
-        joinAPI.getPreJoined(userId: user.uid).subscribe {[weak self] prejoineds in
-            self?.preJoinedList.accept(prejoineds)
-            self?.navigationTitleInput.onNext("\(prejoineds.count)人から参加申請が来ています")
-            self?.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        self.store = store
+        self.actionCreator = actionCreator
+
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.prejoinedState }
+            }
+            self.getPreJoined()
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func getPreJoined() {
+        self.actionCreator.getPreJoined(user: user)
     }
     
     func permission(_ preJoined: PreJoined) {
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)
+        
         var list = preJoinedList.value
         list.remove(value: preJoined)
-        preJoinedList.accept(list)
-        reloadInput.onNext(())
-        UserRepositryImpl.getUserById(uid: preJoined.fromUserId) { friend in
-            self.joinAPI.postMatchJoin(preJoined: preJoined, user: friend, myData: self.user).subscribe(onCompleted: {
-                self.completedInput.onNext(())
-            }, onError: { _ in
-                self.errorInput.onNext(true)
-            }).disposed(by: self.disposeBag)
-        }
+        self.actionCreator.getUser(preJoined: preJoined, user: self.user, list: list)
     }
 }
 
@@ -76,7 +81,7 @@ extension PreJoinedViewModel: PreJoinedViewModelInputs {
         navigationTitleStream.asObserver()
     }
     var errorInput: AnyObserver<Bool> {
-        errorInput.asObserver()
+        errorStream.asObserver()
     }
 }
 extension PreJoinedViewModel: PreJoinedViewModelOutputs {
@@ -91,5 +96,27 @@ extension PreJoinedViewModel: PreJoinedViewModelOutputs {
     }
     var isError: Observable<Bool> {
         errorStream.asObservable()
+    }
+}
+
+extension PreJoinedViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = PreJoinedState
+    
+    func newState(state: PreJoinedState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
+        
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
+        preJoinedList.accept(state.preJoinedList)
+        
+        navigationTitleInput.onNext(state.navigationTitle)
+        
     }
 }
