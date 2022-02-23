@@ -9,18 +9,22 @@ protocol UpdateUserInfoViewModelInputs {
     var nameTextFieldInputs: AnyObserver<String> { get }
     var racketTextFieldInputs: AnyObserver<String> { get }
     var playerTextFieldInputs: AnyObserver<String> { get }
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
+    var completedInput: AnyObserver<Void> { get }
+    var placeInput: AnyObserver<String> { get }
 }
 
 protocol UpdateUserInfoViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
     var userSubject: PublishSubject<User> { get }
     var genderSubject: PublishSubject<String> { get }
     var badmintonTimeSubject: PublishSubject<String> { get }
-    var placeSubject: PublishSubject<String> { get }
+    var placeOutput: Observable<String> { get }
     var ageSubject: PublishSubject<String> { get }
     var levelSubject: PublishSubject<String> { get }
-    var reload: PublishSubject<Void> { get }
-    var isCompleted: PublishSubject<Void> { get }
+    var reload: Observable<Void> { get }
+    var isCompleted: Observable<Void> { get }
     var textViewSubject: BehaviorSubject<String> { get }
     var nameTextFieldSubject: BehaviorSubject<String> { get }
     var rackeTextFieldSubject: BehaviorSubject<String> { get }
@@ -33,52 +37,40 @@ protocol UpdateUserInfoViewModelType {
     var outputs: UpdateUserInfoViewModelOutputs { get }
 }
 
-final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
-                                     UpdateUserInfoViewModelOutputs,
-                                     UpdateUserInfoViewModelInputs {
+final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     
     var inputs: UpdateUserInfoViewModelInputs { return self }
     var outputs: UpdateUserInfoViewModelOutputs { return self }
-    private let disposeBag = DisposeBag()
+    
     var user: User?
-    var isError = PublishSubject<Bool>()
     var userSubject = PublishSubject<User>()
     var genderSubject = PublishSubject<String>()
     var badmintonTimeSubject = PublishSubject<String>()
     var levelSubject = PublishSubject<String>()
     var ageSubject = PublishSubject<String>()
-    var placeSubject = PublishSubject<String>()
-    var reload =  PublishSubject<Void>()
-    var isCompleted = PublishSubject<Void>()
+    
     var textViewSubject = BehaviorSubject<String>(value: "")
     var nameTextFieldSubject = BehaviorSubject<String>(value: "")
     var rackeTextFieldSubject = BehaviorSubject<String>(value: "")
     var playerTextFieldSubject = BehaviorSubject<String>(value: "")
     var userImage: UIImage?
     var isChangeImage = false
-    var playerTextFieldInputs: AnyObserver<String> {
-        return playerTextFieldSubject.asObserver()
-    }
-    var racketTextFieldInputs: AnyObserver<String> {
-        return rackeTextFieldSubject.asObserver()
-    }
-    var nameTextFieldInputs: AnyObserver<String> {
-        return nameTextFieldSubject.asObserver()
-    }
-    var textViewInputs: AnyObserver<String> {
-        return textViewSubject.asObserver()
-    }
-    let userAPI: UserRepositry
     
+    let userAPI: UserRepositry
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
+    private let completedStream = PublishSubject<Void>()
+    private let placeStream = PublishSubject<String>()
+    private let disposeBag = DisposeBag()
     init(userAPI: UserRepositry) {
         self.userAPI = userAPI
         if let uid = AuthRepositryImpl.getUid() {
             userAPI.getUser(uid: uid).subscribe { [weak self] user in
                 self?.user = user
                 self?.userSubject.onNext(user)
-                self?.reload.onNext(())
+                self?.reloadInput.onNext(())
             } onFailure: { [weak self] _ in
-                self?.isError.onNext(true)
+                self?.errorInput.onNext(true)
             }.disposed(by: disposeBag)
         }
         
@@ -119,7 +111,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
                     dic["profileImageUrl"] = urlString
                     self?.postUser(dic: dic)
                 case .failure:
-                    self?.isError.onNext(true)
+                    self?.errorInput.onNext(true)
                 }
             }
         } else {
@@ -129,9 +121,9 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
     
     func postUser(dic: [String: Any]) {
         userAPI.postUser(uid: AuthRepositryImpl.getUid()!, dic: dic).subscribe(onCompleted: {
-            self.isCompleted.onNext(())
+            self.completedInput.onNext(())
         }, onError: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }).disposed(by: disposeBag)
     }
     
@@ -167,6 +159,62 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType,
         case .age:
             user?.age = text
         }
-        self.reload.onNext(())
+        self.reloadInput.onNext(())
+    }
+}
+
+extension UpdateUserInfoViewModel: UpdateUserInfoViewModelInputs {
+
+    var placeInput: AnyObserver<String> {
+        placeStream.asObserver()
+    }
+    
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+    
+    var playerTextFieldInputs: AnyObserver<String> {
+         playerTextFieldSubject.asObserver()
+    }
+
+    var racketTextFieldInputs: AnyObserver<String> {
+         rackeTextFieldSubject.asObserver()
+    }
+
+    var nameTextFieldInputs: AnyObserver<String> {
+         nameTextFieldSubject.asObserver()
+    }
+
+    var textViewInputs: AnyObserver<String> {
+         textViewSubject.asObserver()
+    }
+    
+    
+}
+
+extension UpdateUserInfoViewModel: UpdateUserInfoViewModelOutputs {
+
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+
+    var isCompleted: Observable<Void> {
+        completedStream.asObservable()
+    }
+
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var placeOutput: Observable<String> {
+        placeStream.asObservable()
     }
 }

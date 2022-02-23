@@ -101,20 +101,20 @@ final class UserPageController: UIViewController {
             self?.userInfoTableView.reloadData()
         }.disposed(by: disposeBag)
         
-        userIntroductionTextView.rx.text.asDriver().drive { [weak self] text in
-            self?.viewModel.inputs.textViewInputs.onNext(text ?? "")
+        userIntroductionTextView.rx.text.orEmpty.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.textViewInputs.onNext(text)
         }.disposed(by: disposeBag)
         
-        nameTextField.rx.text.asDriver().drive { [weak self] text in
-            self?.viewModel.inputs.nameTextFieldInputs.onNext(text ?? "")
+        nameTextField.rx.text.orEmpty.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.nameTextFieldInputs.onNext(text)
         }.disposed(by: disposeBag)
         
-        racketTextField.rx.text.asDriver().drive { [weak self] text in
-            self?.viewModel.inputs.racketTextFieldInputs.onNext(text ?? "")
+        racketTextField.rx.text.orEmpty.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.racketTextFieldInputs.onNext(text)
         }.disposed(by: disposeBag)
         
-        playerTextField.rx.text.asDriver().drive { [weak self] text in
-            self?.viewModel.inputs.playerTextFieldInputs.onNext(text ?? "")
+        playerTextField.rx.text.orEmpty.asDriver().drive { [weak self] text in
+            self?.viewModel.inputs.playerTextFieldInputs.onNext(text)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isCompleted.subscribe { [weak self] _ in

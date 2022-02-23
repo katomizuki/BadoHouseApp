@@ -3,11 +3,12 @@ import RxRelay
 
 protocol SearchCircleViewModelInputs {
     var searchBarTextInput: AnyObserver<String> { get }
+    var errorInput: AnyObserver<Bool> { get }
 }
 
 protocol SearchCircleViewModelOutputs {
     var circleRelay: BehaviorRelay<[Circle]> { get }
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
 }
 
 protocol SearchCircleViewModelType {
@@ -15,19 +16,16 @@ protocol SearchCircleViewModelType {
     var outputs: SearchCircleViewModelOutputs { get }
 }
 
-final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleViewModelOutputs, SearchCircleViewModelType {
+final class SearchCircleViewModel: SearchCircleViewModelType {
+
     var inputs: SearchCircleViewModelInputs { return self }
     var outputs: SearchCircleViewModelOutputs { return self }
     
     private let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
-    var isError = PublishSubject<Bool>()
-    private var searchBarText = PublishSubject<String>()
-    var circleRelay = BehaviorRelay<[Circle]>(value: [])
-    var searchBarTextInput: AnyObserver<String> {
-        return searchBarText.asObserver()
-    }
-    var user: User
+    private let searchBarText = PublishSubject<String>()
+    let circleRelay = BehaviorRelay<[Circle]>(value: [])
+    let user: User
     private let errorStream = PublishSubject<Bool>()
     
     init(circleAPI: CircleRepositry, user: User) {
@@ -39,8 +37,27 @@ final class SearchCircleViewModel: SearchCircleViewModelInputs, SearchCircleView
                 guard let self = self else { return }
                 self.circleRelay.accept(circles)
             } onFailure: { [weak self] _ in
-                self?.isError.onNext(true)
+                self?.errorInput.onNext(true)
             }.disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
     }
+}
+extension SearchCircleViewModel: SearchCircleViewModelInputs {
+
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+
+    var searchBarTextInput: AnyObserver<String> {
+        return searchBarText.asObserver()
+    }
+    
+}
+
+extension SearchCircleViewModel: SearchCircleViewModelOutputs {
+
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+
 }

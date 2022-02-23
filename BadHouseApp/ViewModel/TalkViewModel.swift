@@ -4,11 +4,13 @@ import RxRelay
 
 protocol TalkViewModelInputs {
     func willAppear()
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol TalkViewModelOutputs {
-    var reload: PublishSubject<Void> { get }
-    var isError: PublishSubject<Bool> { get }
+    var reload: Observable<Void> { get }
+    var isError: Observable<Bool> { get }
     var chatRoomList: BehaviorRelay<[ChatRoom]> { get }
 }
 
@@ -17,22 +19,19 @@ protocol TalkViewModelType {
     var outputs: TalkViewModelOutputs { get }
 }
 
-final class TalkViewModel: TalkViewModelType, TalkViewModelInputs, TalkViewModelOutputs {
+final class TalkViewModel: TalkViewModelType {
     
     var inputs: TalkViewModelInputs { return self }
     var outputs: TalkViewModelOutputs { return self }
     
-    var isError = PublishSubject<Bool>()
-    var reload = PublishSubject<Void>()
-    var chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
+
+    let chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
     private let disposeBag = DisposeBag()
     private let userAPI: UserRepositry
-    private let chatAPI: ChatRepositry
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     
-    init(userAPI: UserRepositry, chatAPI: ChatRepositry) {
-        self.chatAPI = chatAPI
+    init(userAPI: UserRepositry) {
         self.userAPI = userAPI
     }
     
@@ -40,9 +39,30 @@ final class TalkViewModel: TalkViewModelType, TalkViewModelInputs, TalkViewModel
         guard let uid = Auth.auth().currentUser?.uid else { return }
         userAPI.getMyChatRooms(uid: uid).subscribe { [weak self] chatRooms in
             self?.chatRoomList.accept(chatRooms)
-            self?.reload.onNext(())
+            self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
+    }
+}
+
+extension TalkViewModel: TalkViewModelInputs {
+
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+}
+extension TalkViewModel: TalkViewModelOutputs {
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
     }
 }

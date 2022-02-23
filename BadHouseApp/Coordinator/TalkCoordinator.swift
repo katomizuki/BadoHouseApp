@@ -9,7 +9,8 @@ final class TalkCoordinator: Coordinator, TalkFlow {
     }
     
     func start() {
-        let controller = TalkViewController.init(viewModel: TalkViewModel(userAPI: UserRepositryImpl(), chatAPI: ChatRepositryImpl()))
+        let controller = TalkViewController.init(viewModel:
+                                                    TalkViewModel(userAPI: UserRepositryImpl()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
