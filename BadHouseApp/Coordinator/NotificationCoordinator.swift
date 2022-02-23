@@ -43,11 +43,20 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     }
     
     func toPreJoin(_ user: User) {
-        self.navigationController.pushViewController(PreJoinController.init(viewModel: PreJoinViewModel(joinAPI: JoinRepositryImpl(), user: user)), animated: true)
+        self.navigationController.pushViewController(
+            PreJoinController.init(viewModel:
+                                    PreJoinViewModel(joinAPI: JoinRepositryImpl(),
+                                                     user: user)), animated: true)
     }
     
     func toPreJoined(_ user: User) {
-        self.navigationController.pushViewController(PreJoinedListController.init(viewModel: PreJoinedViewModel(joinAPI: JoinRepositryImpl(), user: user)), animated: true)
+        self.navigationController.pushViewController(
+            PreJoinedListController.init(
+                viewModel: PreJoinedViewModel(user: user,
+                                              store: appStore,
+                                              actionCreator:
+                                                PreJoinedActionCreator(
+                                                    joinAPI: JoinRepositryImpl()))), animated: true)
     }
     
     func toPracticeDetail(_ myData: User, practice: Practice) {

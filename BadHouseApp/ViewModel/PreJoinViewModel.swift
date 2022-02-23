@@ -8,23 +8,23 @@ protocol PreJoinViewModelType {
 
 protocol PreJoinViewModelInputs {
     func delete(_ preJoin: PreJoin)
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol PreJoinViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
     var preJoinList: BehaviorRelay<[PreJoin]> { get }
-    var reload: PublishSubject<Void> { get }
+    var reload: Observable<Void> { get }
 }
 
-final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJoinViewModelOutputs {
+final class PreJoinViewModel: PreJoinViewModelType {
     
     var inputs: PreJoinViewModelInputs { return self }
     var outputs: PreJoinViewModelOutputs { return self }
     private let joinAPI: JoinRepositry
-    var isError = PublishSubject<Bool>()
-    var reload = PublishSubject<Void>()
-    var preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
     
+    let preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
@@ -34,9 +34,9 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
         
         joinAPI.getPrejoin(userId: user.uid).subscribe {[weak self] prejoins in
             self?.preJoinList.accept(prejoins)
-            self?.reload.onNext(())
+            self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
@@ -49,6 +49,25 @@ final class PreJoinViewModel: PreJoinViewModelType, PreJoinViewModelInputs, PreJ
         var list = preJoinList.value
         list.remove(value: preJoin)
         preJoinList.accept(list)
-        reload.onNext(())
+        reloadInput.onNext(())
+    }
+}
+
+extension PreJoinViewModel: PreJoinViewModelInputs {
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+}
+
+extension PreJoinViewModel: PreJoinViewModelOutputs {
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
     }
 }

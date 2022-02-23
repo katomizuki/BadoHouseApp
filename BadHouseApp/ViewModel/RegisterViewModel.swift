@@ -74,8 +74,10 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         }
         .disposed(by: disposeBag)
     }
+
     func didTapRegisterButton() {
         let credential = AuthCredential(name: name, email: email, password: password)
+
         authAPI.register(credential: credential).subscribe(onSuccess: { [weak self] dic in
             guard let self = self else { return }
             self.userAPI.postUser(uid: dic["uid"] as! String, dic: dic).subscribe(onCompleted: {

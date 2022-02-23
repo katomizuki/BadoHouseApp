@@ -8,12 +8,14 @@ protocol UpdateCircleViewModelInputs {
     var placeTextInputs: AnyObserver<String> { get }
     var dateTextInput: AnyObserver<String> { get }
     var textViewInputs: AnyObserver<String> { get }
+    var errorInput: AnyObserver<Bool> { get }
+    var completedInput: AnyObserver<Void> { get }
     func save()
 }
 
 protocol UpdateCircleViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
-    var completed: PublishSubject<Void> { get }
+    var isError: Observable<Bool> { get }
+    var completed: Observable<Void> { get }
 }
 
 protocol UpdateCircleViewModelType {
@@ -21,38 +23,25 @@ protocol UpdateCircleViewModelType {
     var outputs: UpdateCircleViewModelOutputs { get }
 }
 
-final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewModelInputs, UpdateCircleViewModelOutputs {
+final class UpdateCircleViewModel: UpdateCircleViewModelType {
     
     var inputs: UpdateCircleViewModelInputs { return self }
     var outputs: UpdateCircleViewModelOutputs { return self }
-    var circleAPI: CircleRepositry
+    let circleAPI: CircleRepositry
     var circle: Circle
-    private var nameTextSubject = PublishSubject<String>()
-    private var priceTextSubject = PublishSubject<String>()
-    private var placeTextSubject = PublishSubject<String>()
-    private var dateTextSubject = PublishSubject<String>()
-    private var textViewSubject = PublishSubject<String>()
-    var isError = PublishSubject<Bool>()
+    
+    private let nameTextSubject = PublishSubject<String>()
+    private let priceTextSubject = PublishSubject<String>()
+    private let placeTextSubject = PublishSubject<String>()
+    private let dateTextSubject = PublishSubject<String>()
+    private let textViewSubject = PublishSubject<String>()
+    private let errorStream = PublishSubject<Bool>()
+    private let completedStream = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
+    
     var iconImage: UIImage?
     var backgroundImage: UIImage?
     lazy var selectionsFeature = circle.features
-    var nameTextInputs: AnyObserver<String> {
-        return nameTextSubject.asObserver()
-    }
-    var priceTextInputs: AnyObserver<String> {
-        return priceTextSubject.asObserver()
-    }
-    var placeTextInputs: AnyObserver<String> {
-        return placeTextSubject.asObserver()
-    }
-    var textViewInputs: AnyObserver<String> {
-        return textViewSubject.asObserver()
-    }
-    var dateTextInput: AnyObserver<String> {
-        return dateTextSubject.asObserver()
-    }
-    private let disposeBag = DisposeBag()
-    var completed = PublishSubject<Void>()
     
     init(circleAPI: CircleRepositry, circle: Circle) {
         self.circle = circle
@@ -91,11 +80,11 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
                             self.circle.backGround = backGroundUrl
                             self.saveCircleAction(self.circle)
                         case .failure:
-                            self.isError.onNext(true)
+                            self.errorInput.onNext(true)
                         }
                     }
                 case .failure:
-                    self.isError.onNext(true)
+                    self.errorInput.onNext(true)
                 }
             }
         } else if iconImage == nil && backgroundImage == nil {
@@ -107,7 +96,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
                     self.circle.icon = iconUrlString
                     self.saveCircleAction(self.circle)
                 case .failure:
-                    self.isError.onNext(true)
+                    self.errorInput.onNext(true)
                 }
             }
         } else if backgroundImage != nil {
@@ -117,7 +106,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
                     self.circle.backGround = backGroundUrl
                     self.saveCircleAction(self.circle)
                 case .failure:
-                    self.isError.onNext(true)
+                    self.errorInput.onNext(true)
                 }
             }
         }
@@ -138,9 +127,47 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType, UpdateCircleViewMo
     
     func saveCircleAction(_ circle: Circle) {
         circleAPI.updateCircle(circle: circle).subscribe(onCompleted: {
-            self.completed.onNext(())
+            self.completedInput.onNext(())
         }, onError: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }).disposed(by: disposeBag)
     }
+}
+
+extension UpdateCircleViewModel: UpdateCircleViewModelInputs {
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    
+    var nameTextInputs: AnyObserver<String> {
+        return nameTextSubject.asObserver()
+    }
+    var priceTextInputs: AnyObserver<String> {
+        return priceTextSubject.asObserver()
+    }
+    var placeTextInputs: AnyObserver<String> {
+        return placeTextSubject.asObserver()
+    }
+    var textViewInputs: AnyObserver<String> {
+        return textViewSubject.asObserver()
+    }
+    var dateTextInput: AnyObserver<String> {
+        return dateTextSubject.asObserver()
+    }
+}
+
+extension UpdateCircleViewModel: UpdateCircleViewModelOutputs {
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var completed: Observable<Void> {
+        completedStream.asObservable()
+    }
+    
+    
 }
