@@ -13,16 +13,20 @@ protocol UpdateUserInfoViewModelInputs {
     var reloadInput: AnyObserver<Void> { get }
     var completedInput: AnyObserver<Void> { get }
     var placeInput: AnyObserver<String> { get }
+    var genderInput: AnyObserver<String> { get }
+    var ageInput: AnyObserver<String> { get }
+    var levelInput: AnyObserver<String> { get }
+    var badmintonTimeInput: AnyObserver<String> { get }
 }
 
 protocol UpdateUserInfoViewModelOutputs {
     var isError: Observable<Bool> { get }
     var userSubject: PublishSubject<User> { get }
-    var genderSubject: PublishSubject<String> { get }
-    var badmintonTimeSubject: PublishSubject<String> { get }
+    var genderOutput: Observable<String> { get }
+    var badmintonTimeOutput: Observable<String> { get }
     var placeOutput: Observable<String> { get }
-    var ageSubject: PublishSubject<String> { get }
-    var levelSubject: PublishSubject<String> { get }
+    var ageOutput: Observable<String> { get }
+    var levelOutput: Observable<String> { get }
     var reload: Observable<Void> { get }
     var isCompleted: Observable<Void> { get }
     var textViewSubject: BehaviorSubject<String> { get }
@@ -44,11 +48,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     
     var user: User?
     var userSubject = PublishSubject<User>()
-    var genderSubject = PublishSubject<String>()
-    var badmintonTimeSubject = PublishSubject<String>()
-    var levelSubject = PublishSubject<String>()
-    var ageSubject = PublishSubject<String>()
-    
+     
     var textViewSubject = BehaviorSubject<String>(value: "")
     var nameTextFieldSubject = BehaviorSubject<String>(value: "")
     var rackeTextFieldSubject = BehaviorSubject<String>(value: "")
@@ -61,9 +61,15 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let reloadStream = PublishSubject<Void>()
     private let completedStream = PublishSubject<Void>()
     private let placeStream = PublishSubject<String>()
+    private let genderStream = PublishSubject<String>()
+    private let levelStream = PublishSubject<String>()
+    private let badmintonTimeStream = PublishSubject<String>()
+    private let ageStream = PublishSubject<String>()
     private let disposeBag = DisposeBag()
+
     init(userAPI: UserRepositry) {
         self.userAPI = userAPI
+    
         if let uid = AuthRepositryImpl.getUid() {
             userAPI.getUser(uid: uid).subscribe { [weak self] user in
                 self?.user = user
@@ -164,7 +170,22 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
 }
 
 extension UpdateUserInfoViewModel: UpdateUserInfoViewModelInputs {
-
+    var genderInput: AnyObserver<String> {
+        genderStream.asObserver()
+    }
+    
+    var ageInput: AnyObserver<String> {
+        ageStream.asObserver()
+    }
+    
+    var levelInput: AnyObserver<String> {
+        levelStream.asObserver()
+    }
+    
+    var badmintonTimeInput: AnyObserver<String> {
+        badmintonTimeStream.asObserver()
+    }
+    
     var placeInput: AnyObserver<String> {
         placeStream.asObserver()
     }
@@ -197,11 +218,26 @@ extension UpdateUserInfoViewModel: UpdateUserInfoViewModelInputs {
          textViewSubject.asObserver()
     }
     
-    
 }
 
 extension UpdateUserInfoViewModel: UpdateUserInfoViewModelOutputs {
 
+    var genderOutput: Observable<String> {
+        genderStream.asObserver()
+    }
+    
+    var badmintonTimeOutput: Observable<String> {
+        badmintonTimeStream.asObservable()
+    }
+    
+    var ageOutput: Observable<String> {
+        ageStream.asObservable()
+    }
+    
+    var levelOutput: Observable<String> {
+        levelStream.asObservable()
+    }
+    
     var reload: Observable<Void> {
         reloadStream.asObservable()
     }
