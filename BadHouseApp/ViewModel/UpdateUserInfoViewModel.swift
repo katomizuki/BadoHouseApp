@@ -21,7 +21,7 @@ protocol UpdateUserInfoViewModelInputs {
 
 protocol UpdateUserInfoViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var userSubject: PublishSubject<User> { get }
+    var userOutput: Observable<User> { get }
     var genderOutput: Observable<String> { get }
     var badmintonTimeOutput: Observable<String> { get }
     var placeOutput: Observable<String> { get }
@@ -47,7 +47,6 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     var outputs: UpdateUserInfoViewModelOutputs { return self }
     
     var user: User?
-    var userSubject = PublishSubject<User>()
      
     var textViewSubject = BehaviorSubject<String>(value: "")
     var nameTextFieldSubject = BehaviorSubject<String>(value: "")
@@ -65,6 +64,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let levelStream = PublishSubject<String>()
     private let badmintonTimeStream = PublishSubject<String>()
     private let ageStream = PublishSubject<String>()
+    private let userStream = PublishRelay<User>()
     private let disposeBag = DisposeBag()
 
     init(userAPI: UserRepositry) {
@@ -73,7 +73,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
         if let uid = AuthRepositryImpl.getUid() {
             userAPI.getUser(uid: uid).subscribe { [weak self] user in
                 self?.user = user
-                self?.userSubject.onNext(user)
+                self?.userStream.accept(user)
                 self?.reloadInput.onNext(())
             } onFailure: { [weak self] _ in
                 self?.errorInput.onNext(true)
@@ -217,7 +217,7 @@ extension UpdateUserInfoViewModel: UpdateUserInfoViewModelInputs {
     var textViewInputs: AnyObserver<String> {
          textViewSubject.asObserver()
     }
-    
+
 }
 
 extension UpdateUserInfoViewModel: UpdateUserInfoViewModelOutputs {
@@ -252,5 +252,9 @@ extension UpdateUserInfoViewModel: UpdateUserInfoViewModelOutputs {
     
     var placeOutput: Observable<String> {
         placeStream.asObservable()
+    }
+    
+    var userOutput: Observable<User> {
+        userStream.asObservable()
     }
 }

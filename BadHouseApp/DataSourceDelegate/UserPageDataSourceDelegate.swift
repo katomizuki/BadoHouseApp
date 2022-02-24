@@ -43,7 +43,7 @@ final class UserPageDataSourceDelegate: NSObject, UITableViewDelegate, UITableVi
         } else {
             guard let cell = tableView.cellForRow(at: indexPath) else {
                 return }
-                let viewController = MyPageInfoPopoverController()
+            let viewController: MyPageInfoPopoverController = MyPageInfoPopoverController()
                 viewController.modalPresentationStyle = .popover
                 viewController.preferredContentSize = CGSize(width: 200, height: 150)
                 viewController.delegate = self

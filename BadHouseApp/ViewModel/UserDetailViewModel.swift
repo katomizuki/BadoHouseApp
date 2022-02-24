@@ -6,16 +6,21 @@ protocol UserDetailViewModelInputs {
     func fetchChatRoom(completion: @escaping(ChatRoom) -> Void)
     func applyFriend()
     func notApplyedFriend()
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
+    var completedInput: AnyObserver<Void> { get }
+    var notApplyedCompletedInput: AnyObserver<Void> { get }
+    var applyButtonTitleInput: AnyObserver<String> { get }
 }
 
 protocol UserDetailViewModelOutputs {
-    var isError: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
     var friendListRelay: BehaviorRelay<[User]> { get }
     var circleListRelay: BehaviorRelay<[Circle]> { get }
-    var reload: PublishSubject<Void> { get }
-    var completed: PublishSubject<Void> { get }
-    var notApplyedCompleted: PublishSubject<Void> { get }
-    var applyButtonString: PublishSubject<String> { get }
+    var reload: Observable<Void> { get }
+    var completed: Observable<Void> { get }
+    var notApplyedCompleted: Observable<Void> { get }
+    var applyButtonString: Observable<String> { get }
 }
 
 protocol UserDetailViewModelType {
@@ -23,18 +28,14 @@ protocol UserDetailViewModelType {
     var outputs: UserDetailViewModelOutputs { get }
 }
 
-final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInputs, UserDetailViewModelOutputs {
+final class UserDetailViewModel: UserDetailViewModelType {
     
     var inputs: UserDetailViewModelInputs { return self }
     var outputs: UserDetailViewModelOutputs { return self }
-    var isError = PublishSubject<Bool>()
+    
     var friendListRelay = BehaviorRelay<[User]>(value: [])
     var circleListRelay = BehaviorRelay<[Circle]>(value: [])
     private var applies = [Apply]()
-    var reload = PublishSubject<Void>()
-    var completed = PublishSubject<Void>()
-    var notApplyedCompleted = PublishSubject<Void>()
-    var applyButtonString = PublishSubject<String>()
     var user: User
     var myData: User
     private let userAPI: UserRepositry
@@ -69,26 +70,26 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
         userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
             self?.friendListRelay.accept(users)
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
 
         userAPI.getMyCircles(uid: user.uid).subscribe { [weak self] circles in
             self?.circleListRelay.accept(circles)
-            self?.reload.onNext(())
+            self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
         
         applyAPI.getApplyUser(user: myData).subscribe { [weak self] applies in
             guard let self = self else { return }
             self.applies = applies
             if applies.filter({$0.toUserId == self.user.uid}).count != 0 {
-                self.applyButtonString.onNext(R.buttonTitle.alreadyApply)
+                self.applyButtonTitleInput.onNext(R.buttonTitle.alreadyApply)
             } else {
-                self.applyButtonString.onNext(R.buttonTitle.apply)
+                self.applyButtonTitleInput.onNext(R.buttonTitle.apply)
             }
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
 
     }
@@ -99,14 +100,61 @@ final class UserDetailViewModel: UserDetailViewModelType, UserDetailViewModelInp
     
     func applyFriend() {
         applyAPI.postApply(user: myData, toUser: user).subscribe {
-            self.completed.onNext(())
+            self.completedInput.onNext(())
         } onError: { _ in
-            self.isError.onNext(true)
+            self.errorInput.onNext(true)
         }.disposed(by: self.disposeBag)
     }
     
     func notApplyedFriend() {
         applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
-        notApplyedCompleted.onNext(())
+        notApplyedCompletedInput.onNext(())
     }
+}
+
+extension UserDetailViewModel: UserDetailViewModelInputs {
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+    
+    var completedInput: AnyObserver<Void> {
+        completedStream.asObserver()
+    }
+    
+    var notApplyedCompletedInput: AnyObserver<Void> {
+        notApplyedCompletedStream.asObserver()
+    }
+    
+    var applyButtonTitleInput: AnyObserver<String> {
+        applyButtonStream.asObserver()
+    }
+    
+    
+}
+extension UserDetailViewModel: UserDetailViewModelOutputs  {
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+    
+    var completed: Observable<Void> {
+        completedStream.asObservable()
+    }
+    
+    var notApplyedCompleted: Observable<Void> {
+        notApplyedCompletedStream.asObservable()
+    }
+    
+    var applyButtonString: Observable<String> {
+        applyButtonStream.asObservable()
+    }
+    
+    
 }

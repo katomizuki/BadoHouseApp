@@ -89,7 +89,7 @@ final class UserPageController: UIViewController {
             self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
         }.disposed(by: disposeBag)
         
-        viewModel.outputs.userSubject.subscribe(onNext: { [weak self] user in
+        viewModel.outputs.userOutput.subscribe(onNext: { [weak self] user in
             self?.nameTextField.text = user.name
             self?.racketTextField.text = user.racket
             self?.playerTextField.text = user.player

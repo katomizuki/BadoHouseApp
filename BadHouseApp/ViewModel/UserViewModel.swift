@@ -6,6 +6,10 @@ protocol UserViewModelInputs {
     func willAppear()
     func blockUser(_ user: User?)
     func withDrawCircle(_ circle: Circle?)
+    var errorInput: AnyObserver<Bool> { get }
+    var reloadInput: AnyObserver<Void> { get }
+    var notAuthInput: AnyObserver<Void> { get }
+    var isApplyViewHiddenInput: AnyObserver<Bool> { get }
 }
 
 protocol UserViewModelOutputs {
@@ -13,12 +17,12 @@ protocol UserViewModelOutputs {
     var userUrl: BehaviorRelay<URL?> { get }
     var userCircleCountText: BehaviorRelay<String> { get }
     var userFriendsCountText: BehaviorRelay<String> { get }
-    var isError: PublishSubject<Bool> { get }
-    var isApplyViewHidden: PublishSubject<Bool> { get }
+    var isError: Observable<Bool> { get }
+    var isApplyViewHidden: Observable<Bool> { get }
     var friendsRelay: BehaviorRelay<[User]> { get }
-    var reload: PublishSubject<Void> { get }
+    var reload: Observable<Void> { get }
     var circleRelay: BehaviorRelay<[Circle]> { get }
-    var notAuth: PublishSubject<Void> { get }
+    var notAuth: Observable<Void> { get }
 }
 
 protocol UserViewModelType {
@@ -26,20 +30,19 @@ protocol UserViewModelType {
     var outputs: UserViewModelOutputs { get }
 }
 
-final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModelOutputs {
+final class UserViewModel: UserViewModelType {
     
     var userName = BehaviorRelay<String>(value: "")
     var userFriendsCountText = BehaviorRelay<String>(value: "")
     var userCircleCountText = BehaviorRelay<String>(value: "")
     var userUrl = BehaviorRelay<URL?>(value: nil)
-    var isError = PublishSubject<Bool>()
-    var notAuth = PublishSubject<Void>()
-    var isApplyViewHidden = PublishSubject<Bool>()
+
     var friendsRelay = BehaviorRelay<[User]>(value: [])
     var circleRelay = BehaviorRelay<[Circle]>(value: [])
-    var reload = PublishSubject<Void>()
+
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
+
     var user: User?
     private let userAPI: UserRepositry
     private let applyAPI: ApplyRepositry
@@ -74,20 +77,20 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                 }
             }, onFailure: {[weak self] _ in
                 guard let self = self else { return }
-                self.isError.onNext(true)
+                self.errorInput.onNext(true)
             }).disposed(by: disposeBag)
             
             UserRepositryImpl.saveFriendId(uid: uid)
         } else {
-            self.notAuth.onNext(())
+            self.notAuthInput.onNext(())
         }
     }
     
     private func bindApplyedUser(user: User) {
         applyAPI.getApplyedUser(user: user).subscribe {[weak self] applyed in
-            self?.isApplyViewHidden.onNext(applyed.count == 0)
+            self?.isApplyViewHiddenInput.onNext(applyed.count == 0)
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: self.disposeBag)
     }
     
@@ -96,9 +99,9 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             guard let self = self else { return }
             self.friendsRelay.accept(users)
             self.userFriendsCountText.accept("バド友　\(users.count)人")
-            self.reload.onNext(())
+            self.reloadInput.onNext(())
         } onFailure: {[weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
@@ -107,9 +110,9 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
             guard let self = self else { return }
             self.circleRelay.accept(circles)
             self.userCircleCountText.accept("所属サークル　\(circles.count)個")
-            self.reload.onNext(())
+            self.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
     }
     
@@ -120,7 +123,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         var users = friendsRelay.value
         users.remove(value: user)
         friendsRelay.accept(users)
-        reload.onNext(())
+        reloadInput.onNext(())
     }
     
     private func saveBlockUser(_ user: User) {
@@ -143,7 +146,7 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
         var circles = circleRelay.value
         circles.remove(value: circle)
         circleRelay.accept(circles)
-        reload.onNext(())
+        reloadInput.onNext(())
         
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
                                               documentId: user.uid,
@@ -153,7 +156,45 @@ final class UserViewModel: UserViewModelType, UserViewModelInputs, UserViewModel
                                  circle: circle).subscribe(onCompleted: {
             
         }, onError: { [weak self] _ in
-            self?.isError.onNext(true)
+            self?.errorInput.onNext(true)
         }).disposed(by: disposeBag)
+    }
+}
+
+extension UserViewModel: UserViewModelInputs {
+    var errorInput: AnyObserver<Bool> {
+        errorStream.asObserver()
+    }
+    
+    var reloadInput: AnyObserver<Void> {
+        reloadStream.asObserver()
+    }
+    
+    var notAuthInput: AnyObserver<Void> {
+        notAuthStream.asObserver()
+    }
+    
+    var isApplyViewHiddenInput: AnyObserver<Bool> {
+        applyViewHiddenStream.asObserver()
+    }
+    
+    
+}
+extension UserViewModel: UserViewModelOutputs {
+    
+    var isError: Observable<Bool> {
+        errorStream.asObservable()
+    }
+    
+    var reload: Observable<Void> {
+        reloadStream.asObservable()
+    }
+    
+    var isApplyViewHidden: Observable<Bool> {
+        applyViewHiddenStream.asObservable()
+    }
+    
+    var notAuth: Observable<Void> {
+        notAuthStream.asObservable()
     }
 }

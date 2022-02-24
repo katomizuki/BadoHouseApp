@@ -24,7 +24,6 @@ final class TalkViewModel: TalkViewModelType {
     var inputs: TalkViewModelInputs { return self }
     var outputs: TalkViewModelOutputs { return self }
     
-
     let chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
     private let disposeBag = DisposeBag()
     private let userAPI: UserRepositry
