@@ -168,6 +168,4 @@ extension UpdateCircleViewModel: UpdateCircleViewModelOutputs {
     var completed: Observable<Void> {
         completedStream.asObservable()
     }
-    
-    
 }
