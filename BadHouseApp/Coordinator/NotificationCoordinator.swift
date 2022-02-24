@@ -28,7 +28,8 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
             myData: myData,
             user: user,
             userAPI: UserRepositryImpl(),
-            applyAPI: ApplyRepositryImpl())))
+            applyAPI: ApplyRepositryImpl(),
+            store: appStore)))
     }
     
     func toApplyedFriend(_ user: User) {
@@ -46,7 +47,8 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
         self.navigationController.pushViewController(
             PreJoinController.init(viewModel:
                                     PreJoinViewModel(joinAPI: JoinRepositryImpl(),
-                                                     user: user)), animated: true)
+                                                     user: user,
+                                                     store: appStore)), animated: true)
     }
     
     func toPreJoined(_ user: User) {

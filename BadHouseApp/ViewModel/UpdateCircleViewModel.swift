@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import UIKit
+import ReSwift
 
 protocol UpdateCircleViewModelInputs {
     var nameTextInputs: AnyObserver<String> { get }
@@ -38,14 +39,27 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
     
     var iconImage: UIImage?
     var backgroundImage: UIImage?
     lazy var selectionsFeature = circle.features
     
-    init(circleAPI: CircleRepositry, circle: Circle) {
+    init(circleAPI: CircleRepositry, circle: Circle, store: Store<AppState>) {
         self.circle = circle
         self.circleAPI = circleAPI
+        self.store = store
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.updateCircleStaet }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
         
         nameTextSubject.subscribe(onNext: { [weak self] text in
             self?.circle.name = text
@@ -167,5 +181,12 @@ extension UpdateCircleViewModel: UpdateCircleViewModelOutputs {
     
     var completed: Observable<Void> {
         completedStream.asObservable()
+    }
+}
+extension UpdateCircleViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = UpdateCircleState
+    
+    func newState(state: UpdateCircleState) {
+        
     }
 }

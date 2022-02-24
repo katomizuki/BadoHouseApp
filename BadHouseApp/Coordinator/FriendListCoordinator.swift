@@ -23,6 +23,7 @@ final class FriendListCoordinator: Coordinator, FriendListFlow {
                 myData: myData,
                 user: user,
                 userAPI: UserRepositryImpl(),
-                applyAPI: ApplyRepositryImpl())))
+                applyAPI: ApplyRepositryImpl(),
+                store: appStore)))
     }
 }

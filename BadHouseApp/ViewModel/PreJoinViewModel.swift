@@ -1,5 +1,6 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol PreJoinViewModelType {
     var inputs: PreJoinViewModelInputs { get }
@@ -28,16 +29,29 @@ final class PreJoinViewModel: PreJoinViewModelType {
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
     
-    init(joinAPI: JoinRepositry, user: User) {
+    init(joinAPI: JoinRepositry, user: User, store:Store<AppState>) {
         self.joinAPI = joinAPI
-        
+        self.store = store
         joinAPI.getPrejoin(userId: user.uid).subscribe {[weak self] prejoins in
             self?.preJoinList.accept(prejoins)
             self?.reloadInput.onNext(())
         } onFailure: { [weak self] _ in
             self?.errorInput.onNext(true)
         }.disposed(by: disposeBag)
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.prejoinState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
     func delete(_ preJoin: PreJoin) {
@@ -69,5 +83,12 @@ extension PreJoinViewModel: PreJoinViewModelOutputs {
     }
     var reload: Observable<Void> {
         reloadStream.asObservable()
+    }
+}
+extension PreJoinViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = PreJoinState
+    
+    func newState(state: PreJoinState) {
+        
     }
 }

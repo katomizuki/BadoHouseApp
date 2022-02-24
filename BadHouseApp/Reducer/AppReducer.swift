@@ -30,5 +30,6 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.scheduleState = ScheduleReducer.reducer(action: action, state: state.scheduleState)
     state.updateCircleStaet = UpdateCircleReducer.reducer(action: action, state: state.updateCircleStaet)
     state.prejoinState = PreJoinReducer.reducer(action: action, state: state.prejoinState)
+    state.updateUserState = UpdateUserInfoReducer.reducer(action: action, state: state.updateUserState)
     return state
 }

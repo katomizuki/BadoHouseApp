@@ -17,7 +17,13 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
     }
     
     func toUserDetail(myData: User, user: User) {
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), applyAPI: ApplyRepositryImpl())))
+        coordinator(to: UserDetailCoordinator(
+            navigationController: navigationController,
+            viewModel: UserDetailViewModel(myData: myData,
+                                           user: user,
+                                           userAPI: UserRepositryImpl(),
+                                           applyAPI: ApplyRepositryImpl(),
+                                           store: appStore)))
     }
     
     func toChat(myData: User, user: User) {

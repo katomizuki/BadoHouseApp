@@ -1,8 +1,9 @@
 import RxRelay
 import RxSwift
+import ReSwift
 
 protocol ScheduleViewModelInputs {
-    func willAppear()
+    func willAppears()
     func deleteSchdule(_ index: Int)
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
@@ -32,14 +33,27 @@ final class ScheduleViewModel: ScheduleViewModelType {
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
     
-    init(userAPI: UserRepositry, practiceAPI: PracticeRepositry, user: User) {
+    init(userAPI: UserRepositry, practiceAPI: PracticeRepositry, user: User, store:Store<AppState>) {
         self.userAPI = userAPI
         self.practiceAPI = practiceAPI
         self.user = user
+        self.store = store
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.scheduleState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
-    func willAppear() {
+    func willAppears() {
         userAPI.getMyJoinPractice(user: user).subscribe {[weak self] practices in
             self?.practiceList.accept(practices)
             self?.reloadInput.onNext(())
@@ -71,5 +85,12 @@ extension ScheduleViewModel: ScheduleViewModelOutputs {
 
     var reload: Observable<Void> {
         reloadStream.asObservable()
+    }
+}
+extension ScheduleViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = ScheduleState
+    
+    func newState(state: ScheduleState) {
+        
     }
 }

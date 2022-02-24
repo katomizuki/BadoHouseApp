@@ -18,7 +18,13 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
     
     func toUserDetail(user: User?, myData: User) {
         guard let user = user else { return }
-        coordinator(to: UserDetailCoordinator(navigationController: navigationController, viewModel: UserDetailViewModel(myData: myData, user: user, userAPI: UserRepositryImpl(), applyAPI: ApplyRepositryImpl())))
+        coordinator(to: UserDetailCoordinator(
+            navigationController: navigationController,
+            viewModel: UserDetailViewModel(myData: myData,
+                                           user: user,
+                                           userAPI: UserRepositryImpl(),
+                                           applyAPI: ApplyRepositryImpl(),
+                                           store: appStore)))
     }
     
     func toInvite(circle: Circle, myData: User) {
@@ -32,6 +38,10 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
     }
     
     func toUpdate(circle: Circle) {
-        coordinator(to: UpdateCircleCoordinator(navigationController: navigationController, viewModel: UpdateCircleViewModel(circleAPI: CircleRepositryImpl(), circle: circle)))
+        coordinator(to: UpdateCircleCoordinator(
+            navigationController: navigationController,
+            viewModel: UpdateCircleViewModel(circleAPI: CircleRepositryImpl(),
+                                             circle: circle,
+                                             store: appStore)))
     }
 }

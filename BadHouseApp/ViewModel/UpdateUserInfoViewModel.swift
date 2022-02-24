@@ -2,6 +2,7 @@ import RxSwift
 import Firebase
 import RxRelay
 import UIKit
+import ReSwift
 
 protocol UpdateUserInfoViewModelInputs {
     func saveUser()
@@ -66,9 +67,22 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let ageStream = PublishSubject<String>()
     private let userStream = PublishRelay<User>()
     private let disposeBag = DisposeBag()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
 
-    init(userAPI: UserRepositry) {
+    init(userAPI: UserRepositry, store: Store<AppState>) {
         self.userAPI = userAPI
+        self.store = store
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.updateUserState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     
         if let uid = AuthRepositryImpl.getUid() {
             userAPI.getUser(uid: uid).subscribe { [weak self] user in
@@ -256,5 +270,12 @@ extension UpdateUserInfoViewModel: UpdateUserInfoViewModelOutputs {
     
     var userOutput: Observable<User> {
         userStream.asObservable()
+    }
+}
+extension UpdateUserInfoViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = UpdateUserInfoState
+    
+    func newState(state: UpdateUserInfoState) {
+        
     }
 }

@@ -1,5 +1,6 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol SearchUserViewModelInputs {
     var searchTextInput: AnyObserver<String> { get }
@@ -29,10 +30,14 @@ final class SearchUserViewModel: SearchUserViewModelType {
     private let applyAPI: ApplyRepositry
     private let errorStream = PublishSubject<Bool>()
     private let searchTextStream = PublishSubject<String>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
     
-    init(userAPI: UserRepositry, user: User, applyAPI: ApplyRepositry) {
+    init(userAPI: UserRepositry, user: User, applyAPI: ApplyRepositry, store: Store<AppState>) {
         self.user = user
         self.applyAPI = applyAPI
+        self.store = store
         searchTextOutputs.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             userAPI.searchUser(text: text).subscribe { [weak self] users in
@@ -40,6 +45,16 @@ final class SearchUserViewModel: SearchUserViewModelType {
             } onFailure: { [weak self] _ in
                 self?.errorInput.onNext(true)
             }.disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+        
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.searchUserState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
     }
     
@@ -78,4 +93,11 @@ extension SearchUserViewModel: SearchUserViewModelOutputs {
         searchTextStream.asObservable()
     }
     
+}
+extension SearchUserViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = SearchUserState
+    
+    func newState(state: SearchUserState) {
+        
+    }
 }

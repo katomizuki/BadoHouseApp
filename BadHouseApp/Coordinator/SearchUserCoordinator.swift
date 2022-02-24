@@ -21,6 +21,7 @@ final class SearchUserCoordinator: Coordinator, SearchUserFlow {
             viewModel: UserDetailViewModel(myData: myData,
                                            user: user,
                                            userAPI: UserRepositryImpl(),
-                                           applyAPI: ApplyRepositryImpl())))
+                                           applyAPI: ApplyRepositryImpl(),
+                                           store: appStore)))
     }
 }

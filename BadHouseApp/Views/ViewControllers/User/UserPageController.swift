@@ -47,6 +47,15 @@ final class UserPageController: UIViewController {
         setupTableView()
         setupNavigationBarItem()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

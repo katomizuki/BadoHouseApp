@@ -74,6 +74,10 @@
 		D3128EC727C7A6B000F57996 /* UpdateCircleReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128EC627C7A6B000F57996 /* UpdateCircleReducer.swift */; };
 		D3128EC927C7A6BF00F57996 /* TalkReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128EC827C7A6BF00F57996 /* TalkReducer.swift */; };
 		D3128ECB27C7A6D900F57996 /* ScheduleReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ECA27C7A6D900F57996 /* ScheduleReducer.swift */; };
+		D3128ECD27C7ACF400F57996 /* UpdateUserInfoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ECC27C7ACF400F57996 /* UpdateUserInfoState.swift */; };
+		D3128ECF27C7AD1F00F57996 /* UpdateUserInfoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ECE27C7AD1F00F57996 /* UpdateUserInfoAction.swift */; };
+		D3128ED127C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ED027C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift */; };
+		D3128ED327C7AD6200F57996 /* UpdateUserInfoReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ED227C7AD6200F57996 /* UpdateUserInfoReducer.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
 		D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EE27657FAC005FF41D /* LevelDetailController.swift */; };
@@ -480,6 +484,10 @@
 		D3128EC627C7A6B000F57996 /* UpdateCircleReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCircleReducer.swift; sourceTree = "<group>"; };
 		D3128EC827C7A6BF00F57996 /* TalkReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkReducer.swift; sourceTree = "<group>"; };
 		D3128ECA27C7A6D900F57996 /* ScheduleReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleReducer.swift; sourceTree = "<group>"; };
+		D3128ECC27C7ACF400F57996 /* UpdateUserInfoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoState.swift; sourceTree = "<group>"; };
+		D3128ECE27C7AD1F00F57996 /* UpdateUserInfoAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoAction.swift; sourceTree = "<group>"; };
+		D3128ED027C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoActionCreator.swift; sourceTree = "<group>"; };
+		D3128ED227C7AD6200F57996 /* UpdateUserInfoReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoReducer.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
 		D31606EE27657FAC005FF41D /* LevelDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailController.swift; sourceTree = "<group>"; };
@@ -1066,6 +1074,7 @@
 				D3128E9627C79DDC00F57996 /* UpdateCircleState.swift */,
 				D3128E9827C79DF900F57996 /* UserDetailState.swift */,
 				D3128E9A27C79E1700F57996 /* UserState.swift */,
+				D3128ECC27C7ACF400F57996 /* UpdateUserInfoState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -1095,6 +1104,7 @@
 				D3128EA627C7A14100F57996 /* UpdateCircleAction.swift */,
 				D3128EA827C7A15500F57996 /* UserDetailAction.swift */,
 				D3128EAA27C7A15E00F57996 /* UserAction.swift */,
+				D3128ECE27C7AD1F00F57996 /* UpdateUserInfoAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -1124,6 +1134,7 @@
 				D3128EB627C7A45100F57996 /* UserActionCreator.swift */,
 				D3128EB827C7A46200F57996 /* UserDetailActionCreator.swift */,
 				D3128EBA27C7A48300F57996 /* UpdateCircleActionCreator.swift */,
+				D3128ED027C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift */,
 			);
 			path = ActionCreator;
 			sourceTree = "<group>";
@@ -1154,6 +1165,7 @@
 				D3128EC627C7A6B000F57996 /* UpdateCircleReducer.swift */,
 				D3128EC827C7A6BF00F57996 /* TalkReducer.swift */,
 				D3128ECA27C7A6D900F57996 /* ScheduleReducer.swift */,
+				D3128ED227C7AD6200F57996 /* UpdateUserInfoReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -1998,6 +2010,7 @@
 				D3629FA9276F5E680052B820 /* MapCoordinator.swift in Sources */,
 				D37C919827BEFB0B0040F88F /* BlockListAction.swift in Sources */,
 				D305EDDD27C0704900BE4078 /* MyPracticeAction.swift in Sources */,
+				D3128ECF27C7AD1F00F57996 /* UpdateUserInfoAction.swift in Sources */,
 				D3FFD332271EDAC300DE54ED /* Stroage-Service.swift in Sources */,
 				D3D222F127BA6FFC0022059A /* MainUserDetailFlow.swift in Sources */,
 				D3629FB5276F60AC0052B820 /* SearchCircleViewModel.swift in Sources */,
@@ -2084,6 +2097,7 @@
 				D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */,
 				D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */,
 				D3FF15B6277AD558006355EF /* ApplyUserListCell.swift in Sources */,
+				D3128ED327C7AD6200F57996 /* UpdateUserInfoReducer.swift in Sources */,
 				D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */,
 				D3C1BFF92775DA9B00C6C761 /* InviteCell.swift in Sources */,
 				D3B3C9B6275CE4DF00B2CD2C /* MakeEventThirdViewModel.swift in Sources */,
@@ -2121,6 +2135,7 @@
 				D3D62EA0278A8EB800DCA027 /* UserPageDataSourceDelegate.swift in Sources */,
 				D36E530527B9C64000DC637C /* HomeActionCreators.swift in Sources */,
 				D3D222E527BA65880022059A /* TalkFlow.swift in Sources */,
+				D3128ED127C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift in Sources */,
 				D3886424276A0AC000FC4F07 /* AppCoordinator.swift in Sources */,
 				D3D62EA4278A971C00DCA027 /* MyPageInfoDataSourceDelegate.swift in Sources */,
 				D305EDE527C0742000BE4078 /* InviteAction.swift in Sources */,
@@ -2147,6 +2162,7 @@
 				D31CCFF527984B4000513587 /* FirebaseModel.swift in Sources */,
 				D316072E276764F9005FF41D /* MapListController.swift in Sources */,
 				D3D2231427BBCA9F0022059A /* ChatRepositry.swift in Sources */,
+				D3128ECD27C7ACF400F57996 /* UpdateUserInfoState.swift in Sources */,
 				D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */,
 				D31CD0072798CAE200513587 /* UserGetApplyedTargetType.swift in Sources */,
 				D388640B2769FE7E00FC4F07 /* CircleChatController.swift in Sources */,

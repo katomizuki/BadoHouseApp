@@ -20,6 +20,16 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
 
     required init?(coder: NSCoder) {
         fatalError()

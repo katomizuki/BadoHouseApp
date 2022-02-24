@@ -1,8 +1,9 @@
 import RxSwift
 import RxRelay
+import ReSwift
 
 protocol UserDetailViewModelInputs {
-    func willAppear()
+    func willAppears()
     func fetchChatRoom(completion: @escaping(ChatRoom) -> Void)
     func applyFriend()
     func notApplyedFriend()
@@ -46,6 +47,9 @@ final class UserDetailViewModel: UserDetailViewModelType {
     private let notApplyedCompletedStream = PublishSubject<Void>()
     private let applyButtonStream = PublishSubject<String>()
     private let disposeBag = DisposeBag()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
+    private let store: Store<AppState>
 
     let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
 
@@ -59,14 +63,24 @@ final class UserDetailViewModel: UserDetailViewModelType {
 
     init(myData: User, user: User,
          userAPI: UserRepositry,
-         applyAPI: ApplyRepositry) {
+         applyAPI: ApplyRepositry, store: Store<AppState>) {
         self.user = user
         self.myData = myData
         self.userAPI = userAPI
         self.applyAPI = applyAPI
+        self.store = store
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.userDetailState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
-    func willAppear() {
+    func willAppears() {
         userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
             self?.friendListRelay.accept(users)
         } onFailure: { [weak self] _ in
@@ -157,4 +171,11 @@ extension UserDetailViewModel: UserDetailViewModelOutputs  {
     }
     
     
+}
+extension UserDetailViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = UserDetailState
+    
+    func newState(state: UserDetailState) {
+        
+    }
 }
