@@ -22,4 +22,12 @@ struct AppState: ReSwift.StateType {
     var practiceDetailState = PracticeDetailState()
     var practiceSearchState = PracticeSearchState()
     var prejoinedState = PreJoinedState()
+    var prejoinState = PreJoinState()
+    var searchUserState = SearchUserState()
+    var searchCircleState = SearchCircleState()
+    var talkState = TalkState()
+    var updateCircleStaet = UpdateCircleState()
+    var userDetailState = UserDetailState()
+    var userState = UserState()
+    var scheduleState = ScheduleState()
 }

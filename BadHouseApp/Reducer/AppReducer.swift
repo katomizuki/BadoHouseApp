@@ -22,5 +22,13 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.practiceDetailState = PracticeDetailReducer.reducer(action: action, state: state.practiceDetailState)
     state.practiceSearchState = PracticeSearchReducer.reducer(action: action, state: state.practiceSearchState)
     state.prejoinedState = PreJoinedReducer.reducer(action: action, state: state.prejoinedState)
+    state.searchUserState = SearchUserReducer.reducer(action: action, state: state.searchUserState)
+    state.searchCircleState = SearchCircleReducer.reducer(action: action, state: state.searchCircleState)
+    state.talkState = TalkReducer.reducer(action: action, state: state.talkState)
+    state.userState = UserReducer.reducer(action: action, state: state.userState)
+    state.userDetailState = UserDetailReducer.reducer(action: action, state: state.userDetailState)
+    state.scheduleState = ScheduleReducer.reducer(action: action, state: state.scheduleState)
+    state.updateCircleStaet = UpdateCircleReducer.reducer(action: action, state: state.updateCircleStaet)
+    state.prejoinState = PreJoinReducer.reducer(action: action, state: state.prejoinState)
     return state
 }
