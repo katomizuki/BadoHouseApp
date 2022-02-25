@@ -9,6 +9,9 @@ import ReSwift
 
 extension UpdateUserInfoState {
     enum UpdateUserInfoAction: ReSwift.Action {
-        
+        case setUser(_ user: User)
+        case changeErrorStatus(_ isError: Bool)
+        case changeReloadStatus(_ isReload: Bool)
+        case changeCompletedStatus(_ isCompleted: Bool)
     }
 }

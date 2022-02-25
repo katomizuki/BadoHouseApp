@@ -4,7 +4,6 @@ import RxRelay
 import ReSwift
 
 protocol TalkViewModelInputs {
-    func willAppears()
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
 }
@@ -27,16 +26,17 @@ final class TalkViewModel: TalkViewModelType {
     
     let chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
     private let disposeBag = DisposeBag()
-    private let userAPI: UserRepositry
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
+    private let actionCreator: TalkActionCreator
     
-    init(userAPI: UserRepositry, store: Store<AppState>) {
-        self.userAPI = userAPI
+    init(store: Store<AppState>, actionCreator: TalkActionCreator) {
         self.store = store
+        self.actionCreator = actionCreator
+        
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.talkState }
@@ -46,16 +46,13 @@ final class TalkViewModel: TalkViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
+        
+        self.getChatRooms()
     }
     
-    func willAppears() {
+    func getChatRooms() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        userAPI.getMyChatRooms(uid: uid).subscribe { [weak self] chatRooms in
-            self?.chatRoomList.accept(chatRooms)
-            self?.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        self.actionCreator.getChatRooms(uid: uid)
     }
 }
 
@@ -83,6 +80,14 @@ extension TalkViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = TalkState
     
     func newState(state: TalkState) {
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
         
+        if state.reloadStauts {
+            reloadInput.onNext(())
+        }
+        
+        chatRoomList.accept(state.talks)
     }
 }

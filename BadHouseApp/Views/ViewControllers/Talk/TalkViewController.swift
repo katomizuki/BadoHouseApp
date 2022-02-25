@@ -34,7 +34,6 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.willAppears()
         viewModel.willAppear.accept(())
     }
     

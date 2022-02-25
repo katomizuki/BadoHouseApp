@@ -46,9 +46,9 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     func toPreJoin(_ user: User) {
         self.navigationController.pushViewController(
             PreJoinController.init(viewModel:
-                                    PreJoinViewModel(joinAPI: JoinRepositryImpl(),
-                                                     user: user,
-                                                     store: appStore)), animated: true)
+                                    PreJoinViewModel(user: user,
+                                                     store: appStore,
+                                                     actionCreator: PrejoinActionCreator(joinAPI: JoinRepositryImpl()))), animated: true)
     }
     
     func toPreJoined(_ user: User) {

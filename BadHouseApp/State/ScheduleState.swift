@@ -8,5 +8,7 @@
 import ReSwift
 
 struct ScheduleState: StateType {
-    
+    var reloadStatus = false
+    var errorStatus = false
+    var practices = [Practice]()
 }

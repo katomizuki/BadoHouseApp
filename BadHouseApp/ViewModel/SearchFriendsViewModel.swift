@@ -27,24 +27,23 @@ final class SearchUserViewModel: SearchUserViewModelType {
     let user: User
 
     private let disposeBag = DisposeBag()
-    private let applyAPI: ApplyRepositry
     private let errorStream = PublishSubject<Bool>()
     private let searchTextStream = PublishSubject<String>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
+    private let actionCreator: SearchUserActionCreator
     
-    init(userAPI: UserRepositry, user: User, applyAPI: ApplyRepositry, store: Store<AppState>) {
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: SearchUserActionCreator) {
         self.user = user
-        self.applyAPI = applyAPI
         self.store = store
+        self.actionCreator = actionCreator
+        
         searchTextOutputs.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
-            userAPI.searchUser(text: text).subscribe { [weak self] users in
-                self?.usersRelay.accept(users)
-            } onFailure: { [weak self] _ in
-                self?.errorInput.onNext(true)
-            }.disposed(by: self.disposeBag)
+            self.actionCreator.search(text)
         }).disposed(by: disposeBag)
         
         willAppear.subscribe(onNext: { [unowned self] _ in
@@ -59,15 +58,11 @@ final class SearchUserViewModel: SearchUserViewModelType {
     }
     
     func applyFriend(_ user: User, myData: User) {
-        applyAPI.postApply(user: myData, toUser: user).subscribe {
-            print(#function)
-        } onError: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
+        self.actionCreator.applyFriend(user, myData: myData)
     }
     
     func notApplyFriend(_ user: User, myData: User) {
-        applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
+        self.actionCreator.notApplyFriend(user, myData: myData)
     }
     
 }
@@ -98,6 +93,10 @@ extension SearchUserViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = SearchUserState
     
     func newState(state: SearchUserState) {
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
         
+        usersRelay.accept(state.users)
     }
 }

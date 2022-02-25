@@ -30,7 +30,6 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.willAppears()
         viewModel.willAppear.accept(())
     }
 

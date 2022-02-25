@@ -8,5 +8,8 @@
 import ReSwift
 
 struct UpdateUserInfoState: StateType {
-    
+    var user: User?
+    var errorStatus = false
+    var reloadStatus = false
+    var completedStatus = false
 }

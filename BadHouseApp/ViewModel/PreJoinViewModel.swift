@@ -23,7 +23,6 @@ final class PreJoinViewModel: PreJoinViewModelType {
     
     var inputs: PreJoinViewModelInputs { return self }
     var outputs: PreJoinViewModelOutputs { return self }
-    private let joinAPI: JoinRepositry
     
     let preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
     private let disposeBag = DisposeBag()
@@ -32,21 +31,19 @@ final class PreJoinViewModel: PreJoinViewModelType {
     var willAppear = PublishRelay<Void>()
     var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
-    
-    init(joinAPI: JoinRepositry, user: User, store:Store<AppState>) {
-        self.joinAPI = joinAPI
+    private let actionCreator: PrejoinActionCreator
+
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: PrejoinActionCreator) {
         self.store = store
-        joinAPI.getPrejoin(userId: user.uid).subscribe {[weak self] prejoins in
-            self?.preJoinList.accept(prejoins)
-            self?.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
-        
+        self.actionCreator = actionCreator
+
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.prejoinState }
             }
+            self.getPreJoin(user: user)
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -54,16 +51,14 @@ final class PreJoinViewModel: PreJoinViewModelType {
         }).disposed(by: disposeBag)
     }
     
+    func getPreJoin(user: User) {
+        self.actionCreator.getPreJoin(user: user)
+    }
+    
     func delete(_ preJoin: PreJoin) {
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoin.uid, subCollectionName: R.Collection.Users, subId: preJoin.toUserId)
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoin.toUserId, subCollectionName: R.Collection.Users, subId: preJoin.uid)
-        var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
-        prejoins.remove(value: preJoin.id)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: R.UserDefaultsKey.preJoin)
         var list = preJoinList.value
         list.remove(value: preJoin)
-        preJoinList.accept(list)
-        reloadInput.onNext(())
+        self.actionCreator.delete(preJoin, list: list)
     }
 }
 
@@ -89,6 +84,14 @@ extension PreJoinViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = PreJoinState
     
     func newState(state: PreJoinState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
         
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        
+        preJoinList.accept(state.preJoinList)
     }
 }

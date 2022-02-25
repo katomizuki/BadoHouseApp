@@ -8,5 +8,7 @@
 import ReSwift
 
 struct SearchUserState: StateType {
-    
+    var users = [User]()
+    var errorStatus = false
+    var completedStatus = false
 }

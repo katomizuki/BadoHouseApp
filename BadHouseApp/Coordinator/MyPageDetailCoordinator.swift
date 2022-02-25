@@ -12,8 +12,10 @@ final class MyPageDetailCoordinator: Coordinator, UserPageFlow {
     
     func start() {
         let controller = UserPageController.init(
-            viewModel: UpdateUserInfoViewModel(userAPI: UserRepositryImpl(),
-                                               store: appStore))
+            viewModel: UpdateUserInfoViewModel(store: appStore,
+                                               actionCreator:
+                                                UpdateUserInfoActionCreator(
+                                                    userAPI: UserRepositryImpl())))
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         viewController.present(nav, animated: true)

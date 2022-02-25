@@ -56,7 +56,6 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     var userImage: UIImage?
     var isChangeImage = false
     
-    let userAPI: UserRepositry
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let completedStream = PublishSubject<Void>()
@@ -67,13 +66,15 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let ageStream = PublishSubject<String>()
     private let userStream = PublishRelay<User>()
     private let disposeBag = DisposeBag()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
+    private let actionCreator: UpdateUserInfoActionCreator
 
-    init(userAPI: UserRepositry, store: Store<AppState>) {
-        self.userAPI = userAPI
+    init(store: Store<AppState>, actionCreator: UpdateUserInfoActionCreator) {
         self.store = store
+        self.actionCreator = actionCreator
+        
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.updateUserState }
@@ -84,15 +85,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
     
-        if let uid = AuthRepositryImpl.getUid() {
-            userAPI.getUser(uid: uid).subscribe { [weak self] user in
-                self?.user = user
-                self?.userStream.accept(user)
-                self?.reloadInput.onNext(())
-            } onFailure: { [weak self] _ in
-                self?.errorInput.onNext(true)
-            }.disposed(by: disposeBag)
-        }
+        self.getUser()
         
         playerTextFieldSubject.subscribe { [weak self] text in
             self?.user?.player = text
@@ -106,6 +99,11 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
             self?.user?.racket = text
         }.disposed(by: disposeBag)
         
+    }
+    
+    func getUser() {
+        guard let uid = AuthRepositryImpl.getUid() else { return }
+        self.actionCreator.getUser(uid: uid)
     }
     
     func saveUser() {
@@ -140,11 +138,8 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     }
     
     func postUser(dic: [String: Any]) {
-        userAPI.postUser(uid: AuthRepositryImpl.getUid()!, dic: dic).subscribe(onCompleted: {
-            self.completedInput.onNext(())
-        }, onError: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }).disposed(by: disposeBag)
+        guard let uid = AuthRepositryImpl.getUid() else { return }
+        self.actionCreator.postUser(dic: dic, uid: uid)
     }
     
     func getUserData(_ selection: UserInfoSelection) -> String {
@@ -276,6 +271,21 @@ extension UpdateUserInfoViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UpdateUserInfoState
     
     func newState(state: UpdateUserInfoState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
         
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
+        
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
+        
+        if let user = state.user {
+            self.user = user
+            userStream.accept(user)
+        }
     }
 }

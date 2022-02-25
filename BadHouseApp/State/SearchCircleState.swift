@@ -8,5 +8,6 @@
 import ReSwift
 
 struct SearchCircleState: StateType {
-    
+    var circles = [Circle]()
+    var errorStatus = false
 }

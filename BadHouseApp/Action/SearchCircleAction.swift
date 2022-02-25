@@ -8,6 +8,7 @@
 import ReSwift
 extension SearchCircleState {
     enum SearchCircleAction: ReSwift.Action {
-        
+        case setCircles(_ circles: [Circle])
+        case changeErrorStatus(_ isError: Bool)
     }
 }

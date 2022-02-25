@@ -24,10 +24,10 @@ final class UserCoordinator: Coordinator, UserFlow {
         coordinator(to: SearchUserCoordinator(
             navigationController: navigationController,
             viewModel: SearchUserViewModel(
-                userAPI: UserRepositryImpl(),
                 user: user,
-                applyAPI: ApplyRepositryImpl(),
-                store: appStore)))
+                store: appStore,
+                actionCreator: SearchUserActionCreator(userAPI: UserRepositryImpl(),
+                                                       applyAPI: ApplyRepositryImpl()))))
     }
     
     func toDetailUser(myData: User?, user: User?) {
@@ -62,16 +62,18 @@ final class UserCoordinator: Coordinator, UserFlow {
         coordinator(to: SearchCircleCoordinator(
             navigationController: navigationController,
             viewModel: SearchCircleViewModel(
-                circleAPI: CircleRepositryImpl(),
-                user: user, store: appStore)))
+                user: user,
+                store: appStore,
+                actionCreator: SearchCircleActionCreator(circleAPI: CircleRepositryImpl()))))
     }
     
     func toMyPage(_ vc: UIViewController) {
         let nav = UINavigationController(rootViewController:
                                             UserPageController.init(
                                                 viewModel: UpdateUserInfoViewModel(
-                                                    userAPI: UserRepositryImpl(),
-                                                    store: appStore)))
+                                                    store: appStore,
+                                                    actionCreator: UpdateUserInfoActionCreator(
+                                                        userAPI: UserRepositryImpl()))))
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }
@@ -93,10 +95,10 @@ final class UserCoordinator: Coordinator, UserFlow {
         coordinator(to: ScheduleCoordinator(
             navigationController: UINavigationController(),
             viewModel: ScheduleViewModel(
-                userAPI: UserRepositryImpl(),
-                practiceAPI: PracticeRepositryImpl(),
                 user: user,
-                store: appStore), vc: vc))
+                store: appStore,
+                actionCreator:
+                    ScheduleActionCreator(userAPI: UserRepositryImpl())), vc: vc))
     }
     
     func toApplyUser(user: User?) {

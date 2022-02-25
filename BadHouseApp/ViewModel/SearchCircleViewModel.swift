@@ -22,29 +22,22 @@ final class SearchCircleViewModel: SearchCircleViewModelType {
     var inputs: SearchCircleViewModelInputs { return self }
     var outputs: SearchCircleViewModelOutputs { return self }
     
-    private let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     private let searchBarText = PublishSubject<String>()
     let circleRelay = BehaviorRelay<[Circle]>(value: [])
     let user: User
     private let errorStream = PublishSubject<Bool>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
+    private let actionCreator: SearchCircleActionCreator
     
-    init(circleAPI: CircleRepositry, user: User, store: Store<AppState>) {
-        self.circleAPI = circleAPI
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: SearchCircleActionCreator) {
         self.user = user
         self.store = store
-        searchBarText.subscribe(onNext: { [weak self] text in
-            guard let self = self else { return }
-            circleAPI.searchCircles(text: text).subscribe { [weak self] circles in
-                guard let self = self else { return }
-                self.circleRelay.accept(circles)
-            } onFailure: { [weak self] _ in
-                self?.errorInput.onNext(true)
-            }.disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+        self.actionCreator = actionCreator
         
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
@@ -55,7 +48,13 @@ final class SearchCircleViewModel: SearchCircleViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
+        
+        searchBarText.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.actionCreator.search(text)
+        }).disposed(by: disposeBag)
     }
+    
 }
 extension SearchCircleViewModel: SearchCircleViewModelInputs {
 
@@ -80,6 +79,10 @@ extension SearchCircleViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = SearchCircleState
     
     func newState(state: SearchCircleState) {
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
         
+        circleRelay.accept(state.circles)
     }
 }

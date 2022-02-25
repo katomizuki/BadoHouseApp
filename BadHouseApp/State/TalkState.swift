@@ -8,5 +8,7 @@
 import ReSwift
 
 struct TalkState: StateType {
-    
+    var talks = [ChatRoom]()
+    var errorStatus = false
+    var reloadStauts = false
 }

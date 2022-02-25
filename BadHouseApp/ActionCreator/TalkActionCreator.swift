@@ -9,4 +9,15 @@ import RxSwift
 
 struct TalkActionCreator {
     
+    let userAPI: UserRepositry
+    private let disposeBag = DisposeBag()
+    
+    func getChatRooms(uid: String) {
+        userAPI.getMyChatRooms(uid: uid).subscribe { chatRooms in
+            appStore.dispatch(TalkState.TalkAction.setTalk(chatRooms))
+            appStore.dispatch(TalkState.TalkAction.changeReloadStatus(true))
+        } onFailure: { _ in
+            appStore.dispatch(TalkState.TalkAction.changeErrorStatus(true))
+        }.disposed(by: disposeBag)
+    }
 }

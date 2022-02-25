@@ -8,6 +8,8 @@
 import ReSwift
 extension ScheduleState {
     enum ScheduleAction: ReSwift.Action {
-        
+        case setPractices(_ practices: [Practice])
+        case changeErrorStatus(_ isError: Bool)
+        case changeReloadStatus(_ isError: Bool)
     }
 }
