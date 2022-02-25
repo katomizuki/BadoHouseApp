@@ -26,4 +26,14 @@ struct UpdateUserInfoActionCreator {
             appStore.dispatch(UpdateUserInfoState.UpdateUserInfoAction.changeErrorStatus(true))
         }).disposed(by: disposeBag)
     }
+    
+    func toggleReload() {
+        appStore.dispatch(UpdateUserInfoState.UpdateUserInfoAction.changeReloadStatus(false))
+    }
+    func toggleError() {
+        appStore.dispatch(UpdateUserInfoState.UpdateUserInfoAction.changeErrorStatus(false))
+    }
+    func toggleCompleted() {
+        appStore.dispatch(UpdateUserInfoState.UpdateUserInfoAction.changeCompletedStatus(false))
+    }
 }

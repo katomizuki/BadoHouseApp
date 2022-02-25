@@ -66,14 +66,16 @@ final class UserDetailViewModel: UserDetailViewModelType {
         self.myData = myData
         self.store = store
         self.actionCreator = actionCreator
+        
+        self.getFriends()
+        self.getApplyUser()
+        self.getMyCircles()
     
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.userDetailState }
             }
-            self.getFriends()
-            self.getApplyUser()
-            self.getMyCircles()
+            
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -127,7 +129,6 @@ extension UserDetailViewModel: UserDetailViewModelInputs {
         applyButtonStream.asObserver()
     }
     
-    
 }
 extension UserDetailViewModel: UserDetailViewModelOutputs  {
     var isError: Observable<Bool> {
@@ -149,8 +150,6 @@ extension UserDetailViewModel: UserDetailViewModelOutputs  {
     var applyButtonString: Observable<String> {
         applyButtonStream.asObservable()
     }
-    
-    
 }
 extension UserDetailViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UserDetailState
@@ -158,17 +157,21 @@ extension UserDetailViewModel: StoreSubscriber {
     func newState(state: UserDetailState) {
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
         
         if state.notApplyedCompleted {
             notApplyedCompletedInput.onNext(())
+            actionCreator.togglenotApplyedCompleted()
         }
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompledStatus()
         }
         
         applies = state.applies

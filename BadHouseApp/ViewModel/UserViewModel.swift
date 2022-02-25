@@ -56,14 +56,19 @@ final class UserViewModel: UserViewModelType {
     var willAppear = PublishRelay<Void>()
     var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
+    private let actionCreator: UserActionCreator
     
     init(userAPI: UserRepositry,
          applyAPI: ApplyRepositry,
-         circleAPI: CircleRepositry, store: Store<AppState>) {
+         circleAPI: CircleRepositry,
+         store: Store<AppState>,
+         actionCreator: UserActionCreator) {
         self.userAPI = userAPI
         self.applyAPI = applyAPI
         self.circleAPI = circleAPI
         self.store = store
+        self.actionCreator = actionCreator
+        
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.userState }

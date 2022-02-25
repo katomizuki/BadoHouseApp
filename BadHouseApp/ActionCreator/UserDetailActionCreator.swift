@@ -57,5 +57,21 @@ struct UserDetailActionCreator {
     func notApplyedFriend(myData: User, user: User) {
         applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
         appStore.dispatch(UserDetailState.UserDetailAction.changeNotApplyedStatus(true))
-        }
     }
+    
+    func toggleCompledStatus() {
+        appStore.dispatch(UserDetailState.UserDetailAction.changeCompletedStatus(false))
+    }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(UserDetailState.UserDetailAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(UserDetailState.UserDetailAction.changeErrorStatus(false))
+    }
+    
+    func togglenotApplyedCompleted() {
+        appStore.dispatch(UserDetailState.UserDetailAction.changeNotApplyedStatus(false))
+    }
+}

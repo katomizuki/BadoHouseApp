@@ -87,6 +87,10 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     
         self.getUser()
         
+        nameTextFieldSubject.subscribe { [weak self] text in
+            self?.user?.name = text
+        }.disposed(by: disposeBag)
+        
         playerTextFieldSubject.subscribe { [weak self] text in
             self?.user?.player = text
         }.disposed(by: disposeBag)
@@ -273,14 +277,17 @@ extension UpdateUserInfoViewModel: StoreSubscriber {
     func newState(state: UpdateUserInfoState) {
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReload()
         }
         
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleError()
         }
         
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompleted()
         }
         
         if let user = state.user {
