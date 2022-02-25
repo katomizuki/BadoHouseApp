@@ -8,5 +8,6 @@
 import ReSwift
 
 struct UpdateCircleState: StateType {
-    
+    var errorStatus = false
+    var completedStatus = false
 }

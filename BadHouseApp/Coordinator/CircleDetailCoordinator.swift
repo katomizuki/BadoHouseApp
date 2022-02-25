@@ -22,9 +22,11 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
             navigationController: navigationController,
             viewModel: UserDetailViewModel(myData: myData,
                                            user: user,
-                                           userAPI: UserRepositryImpl(),
-                                           applyAPI: ApplyRepositryImpl(),
-                                           store: appStore)))
+                                           store: appStore,
+                                           actionCreator:
+                                            UserDetailActionCreator(
+                                                userAPI: UserRepositryImpl(),
+                                                applyAPI: ApplyRepositryImpl()))))
     }
     
     func toInvite(circle: Circle, myData: User) {
@@ -40,8 +42,9 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
     func toUpdate(circle: Circle) {
         coordinator(to: UpdateCircleCoordinator(
             navigationController: navigationController,
-            viewModel: UpdateCircleViewModel(circleAPI: CircleRepositryImpl(),
-                                             circle: circle,
-                                             store: appStore)))
+            viewModel: UpdateCircleViewModel(circle: circle,
+                                             store: appStore,
+                                             actionCreator:
+                                                UpdateCircleActionCreator(circleAPI: CircleRepositryImpl()))))
     }
 }

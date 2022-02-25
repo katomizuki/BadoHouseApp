@@ -66,7 +66,6 @@ import RxCocoa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backButtonDisplayMode = .minimal
-        viewModel.willAppears()
         viewModel.willAppear.accept(())
     }
 

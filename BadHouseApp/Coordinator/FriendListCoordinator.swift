@@ -22,8 +22,9 @@ final class FriendListCoordinator: Coordinator, FriendListFlow {
             viewModel: UserDetailViewModel(
                 myData: myData,
                 user: user,
-                userAPI: UserRepositryImpl(),
-                applyAPI: ApplyRepositryImpl(),
-                store: appStore)))
+                store: appStore,
+                actionCreator: UserDetailActionCreator(
+                    userAPI: UserRepositryImpl(),
+                    applyAPI: ApplyRepositryImpl()))))
     }
 }

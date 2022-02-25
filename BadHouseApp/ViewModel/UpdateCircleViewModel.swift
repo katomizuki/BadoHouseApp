@@ -28,9 +28,8 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     
     var inputs: UpdateCircleViewModelInputs { return self }
     var outputs: UpdateCircleViewModelOutputs { return self }
-    let circleAPI: CircleRepositry
-    var circle: Circle
     
+    var circle: Circle
     private let nameTextSubject = PublishSubject<String>()
     private let priceTextSubject = PublishSubject<String>()
     private let placeTextSubject = PublishSubject<String>()
@@ -46,11 +45,15 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     var iconImage: UIImage?
     var backgroundImage: UIImage?
     lazy var selectionsFeature = circle.features
+    private let actionCreator: UpdateCircleActionCreator
     
-    init(circleAPI: CircleRepositry, circle: Circle, store: Store<AppState>) {
+    init(circle: Circle,
+         store: Store<AppState>,
+         actionCreator: UpdateCircleActionCreator) {
         self.circle = circle
-        self.circleAPI = circleAPI
         self.store = store
+        self.actionCreator = actionCreator
+        
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.updateCircleStaet }
@@ -81,8 +84,9 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
             self?.circle.additionlText = text
         }).disposed(by: disposeBag)
     }
-    
+    // 画像を毎回変えないようにする。
     func save() {
+        // アイコン画像と背景をどっちも更新
         if iconImage != nil && backgroundImage != nil {
             StorageService.downLoadImage(image: iconImage!) { result in
                 switch result {
@@ -101,8 +105,10 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
                     self.errorInput.onNext(true)
                 }
             }
+            // どっちも更新せず
         } else if iconImage == nil && backgroundImage == nil {
             self.saveCircleAction(circle)
+            // アイコン画像のみ
         } else if iconImage != nil {
             StorageService.downLoadImage(image: iconImage!) { result in
                 switch result {
@@ -113,6 +119,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
                     self.errorInput.onNext(true)
                 }
             }
+            // 背景画像のみ
         } else if backgroundImage != nil {
             StorageService.downLoadImage(image: self.backgroundImage!) { result in
                 switch result {
@@ -140,11 +147,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     }
     
     func saveCircleAction(_ circle: Circle) {
-        circleAPI.updateCircle(circle: circle).subscribe(onCompleted: {
-            self.completedInput.onNext(())
-        }, onError: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }).disposed(by: disposeBag)
+        self.actionCreator.saveCircleAction(circle)
     }
 }
 
@@ -187,6 +190,12 @@ extension UpdateCircleViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UpdateCircleState
     
     func newState(state: UpdateCircleState) {
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
         
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
     }
 }

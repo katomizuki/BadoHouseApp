@@ -3,7 +3,6 @@ import RxRelay
 import ReSwift
 
 protocol UserDetailViewModelInputs {
-    func willAppears()
     func fetchChatRoom(completion: @escaping(ChatRoom) -> Void)
     func applyFriend()
     func notApplyedFriend()
@@ -37,10 +36,8 @@ final class UserDetailViewModel: UserDetailViewModelType {
     var friendListRelay = BehaviorRelay<[User]>(value: [])
     var circleListRelay = BehaviorRelay<[Circle]>(value: [])
     private var applies = [Apply]()
-    var user: User
-    var myData: User
-    private let userAPI: UserRepositry
-    private let applyAPI: ApplyRepositry
+    let user: User
+    let myData: User
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let completedStream = PublishSubject<Void>()
@@ -50,6 +47,7 @@ final class UserDetailViewModel: UserDetailViewModelType {
     var willAppear = PublishRelay<Void>()
     var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
+    private let actionCreator: UserDetailActionCreator
 
     let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
 
@@ -62,17 +60,20 @@ final class UserDetailViewModel: UserDetailViewModelType {
     }
 
     init(myData: User, user: User,
-         userAPI: UserRepositry,
-         applyAPI: ApplyRepositry, store: Store<AppState>) {
+         store: Store<AppState>,
+         actionCreator: UserDetailActionCreator) {
         self.user = user
         self.myData = myData
-        self.userAPI = userAPI
-        self.applyAPI = applyAPI
         self.store = store
+        self.actionCreator = actionCreator
+    
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.userDetailState }
             }
+            self.getFriends()
+            self.getApplyUser()
+            self.getMyCircles()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -80,49 +81,28 @@ final class UserDetailViewModel: UserDetailViewModelType {
         }).disposed(by: disposeBag)
     }
     
-    func willAppears() {
-        userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
-            self?.friendListRelay.accept(users)
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
-
-        userAPI.getMyCircles(uid: user.uid).subscribe { [weak self] circles in
-            self?.circleListRelay.accept(circles)
-            self?.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
-        
-        applyAPI.getApplyUser(user: myData).subscribe { [weak self] applies in
-            guard let self = self else { return }
-            self.applies = applies
-            if applies.filter({$0.toUserId == self.user.uid}).count != 0 {
-                self.applyButtonTitleInput.onNext(R.buttonTitle.alreadyApply)
-            } else {
-                self.applyButtonTitleInput.onNext(R.buttonTitle.apply)
-            }
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
-
+    func getFriends() {
+        self.actionCreator.getFriends(user: user)
+    }
+    
+    func getMyCircles() {
+        self.actionCreator.getMyCircles(user: user)
+    }
+    
+    func getApplyUser() {
+        self.actionCreator.getApplyUser(myData: myData, user: self.user)
     }
     
     func fetchChatRoom(completion: @escaping (ChatRoom) -> Void) {
-        userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
+        self.actionCreator.fetchChatRoom(myData: myData, user: user, completion: completion)
     }
     
     func applyFriend() {
-        applyAPI.postApply(user: myData, toUser: user).subscribe {
-            self.completedInput.onNext(())
-        } onError: { _ in
-            self.errorInput.onNext(true)
-        }.disposed(by: self.disposeBag)
+        self.actionCreator.applyFriend(myData: myData, user: user)
     }
     
     func notApplyedFriend() {
-        applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
-        notApplyedCompletedInput.onNext(())
+        self.actionCreator.notApplyedFriend(myData: myData, user: user)
     }
 }
 
@@ -176,6 +156,24 @@ extension UserDetailViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UserDetailState
     
     func newState(state: UserDetailState) {
+        if state.errorStatus {
+            errorInput.onNext(true)
+        }
         
+        if state.reloadStatus {
+            reloadInput.onNext(())
+        }
+        
+        if state.notApplyedCompleted {
+            notApplyedCompletedInput.onNext(())
+        }
+        if state.completedStatus {
+            completedInput.onNext(())
+        }
+        
+        applies = state.applies
+        friendListRelay.accept(state.users)
+        circleListRelay.accept(state.circles)
+        applyButtonTitleInput.onNext(state.applyButtonTitle)
     }
 }
