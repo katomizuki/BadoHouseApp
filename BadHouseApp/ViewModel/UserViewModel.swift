@@ -4,7 +4,6 @@ import FirebaseAuth
 import ReSwift
 
 protocol UserViewModelInputs {
-    func willAppears()
     func blockUser(_ user: User?)
     func withDrawCircle(_ circle: Circle?)
     var errorInput: AnyObserver<Bool> { get }
@@ -45,27 +44,18 @@ final class UserViewModel: UserViewModelType {
     var outputs: UserViewModelOutputs { return self }
 
     var user: User?
-    private let userAPI: UserRepositry
-    private let applyAPI: ApplyRepositry
-    private let circleAPI: CircleRepositry
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let notAuthStream = PublishSubject<Void>()
     private let applyViewHiddenStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: UserActionCreator
     
-    init(userAPI: UserRepositry,
-         applyAPI: ApplyRepositry,
-         circleAPI: CircleRepositry,
-         store: Store<AppState>,
+    init(store: Store<AppState>,
          actionCreator: UserActionCreator) {
-        self.userAPI = userAPI
-        self.applyAPI = applyAPI
-        self.circleAPI = circleAPI
         self.store = store
         self.actionCreator = actionCreator
         
@@ -78,61 +68,16 @@ final class UserViewModel: UserViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
+        
+        getUser()
     }
     
-    func willAppears() {
+    func getUser() {
         if let uid = Auth.auth().currentUser?.uid {
-            userAPI.getUser(uid: uid).subscribe(onSuccess: {[weak self] user in
-                guard let self = self else { return }
-                self.userName.accept(user.name)
-                self.user = user
-                self.bindCircles(user: user)
-                self.bindApplyedUser(user: user)
-                self.bindFriends(user: user)
-                if let url = URL(string: user.profileImageUrlString) {
-                    self.userUrl.accept(url)
-                } else {
-                    self.userUrl.accept(nil)
-                }
-            }, onFailure: {[weak self] _ in
-                guard let self = self else { return }
-                self.errorInput.onNext(true)
-            }).disposed(by: disposeBag)
-            
-            UserRepositryImpl.saveFriendId(uid: uid)
+            self.actionCreator.getUser(uid: uid)
         } else {
             self.notAuthInput.onNext(())
         }
-    }
-    
-    private func bindApplyedUser(user: User) {
-        applyAPI.getApplyedUser(user: user).subscribe {[weak self] applyed in
-            self?.isApplyViewHiddenInput.onNext(applyed.count == 0)
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: self.disposeBag)
-    }
-    
-    private func bindFriends(user: User) {
-        userAPI.getFriends(uid: user.uid).subscribe { [weak self] users in
-            guard let self = self else { return }
-            self.friendsRelay.accept(users)
-            self.userFriendsCountText.accept("バド友　\(users.count)人")
-            self.reloadInput.onNext(())
-        } onFailure: {[weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
-    }
-    
-    private func bindCircles(user: User) {
-        userAPI.getMyCircles(uid: user.uid).subscribe { [weak self] circles in
-            guard let self = self else { return }
-            self.circleRelay.accept(circles)
-            self.userCircleCountText.accept("所属サークル　\(circles.count)個")
-            self.reloadInput.onNext(())
-        } onFailure: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }.disposed(by: disposeBag)
     }
     
     func blockUser(_ user: User?) {
@@ -156,27 +101,19 @@ final class UserViewModel: UserViewModelType {
     }
     
     func withDrawCircle(_ circle: Circle?) {
-        guard let circle = circle else {
-            return
-        }
-        guard let user = user else {
-            return
-        }
+        guard let circle = circle else { return }
+        guard let user = user else { return }
         var circles = circleRelay.value
         circles.remove(value: circle)
-        circleRelay.accept(circles)
-        reloadInput.onNext(())
-        
+        deleteCircle(user: user, circle: circle)
+        actionCreator.withDrawCircle(user: user, circle: circle, circles: circles)
+    }
+    
+    private func deleteCircle(user: User, circle: Circle) {
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
                                               documentId: user.uid,
                                               subCollectionName: R.Collection.Circle,
                                               subId: circle.id)
-        circleAPI.withdrawCircle(user: user,
-                                 circle: circle).subscribe(onCompleted: {
-            
-        }, onError: { [weak self] _ in
-            self?.errorInput.onNext(true)
-        }).disposed(by: disposeBag)
     }
 }
 
@@ -220,6 +157,25 @@ extension UserViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UserState
     
     func newState(state: UserState) {
+        if state.errorStatus {
+            errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
+        }
         
+        if let user = state.user {
+            userName.accept(user.name)
+            self.user = user
+        }
+        
+        if state.reloadStatus {
+            reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
+        }
+        isApplyViewHiddenInput.onNext(state.isApplyViewHidden)
+        circleRelay.accept(state.circles)
+        friendsRelay.accept(state.friends)
+        userCircleCountText.accept(state.userCircleCountText)
+        userFriendsCountText.accept(state.userFriendsCountText)
+        userUrl.accept(state.userUrl)
     }
 }

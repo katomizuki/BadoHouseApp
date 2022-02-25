@@ -11,10 +11,10 @@ final class UserCoordinator: Coordinator, UserFlow {
     func start() {
         let controller = UserController.init(viewModel:
                                                 UserViewModel(
-                                                    userAPI: UserRepositryImpl(),
-                                                    applyAPI: ApplyRepositryImpl(),
-                                                    circleAPI: CircleRepositryImpl(),
-                                                    store: appStore))
+                                                    store: appStore,
+                                                    actionCreator:
+                                                        UserActionCreator(userAPI: UserRepositryImpl(),
+                                                                          applyAPI: ApplyRepositryImpl(), circleAPI: CircleRepositryImpl())))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
