@@ -18,4 +18,8 @@ struct SearchCircleActionCreator {
             appStore.dispatch(SearchCircleState.SearchCircleAction.changeErrorStatus(true))
         }.disposed(by: self.disposeBag)
     }
+    
+    func toggleError() {
+        appStore.dispatch(SearchCircleState.SearchCircleAction.changeErrorStatus(false))
+    }
 }

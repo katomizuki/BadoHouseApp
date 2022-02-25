@@ -81,6 +81,7 @@ extension SearchCircleViewModel: StoreSubscriber {
     func newState(state: SearchCircleState) {
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleError()
         }
         
         circleRelay.accept(state.circles)

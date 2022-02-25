@@ -95,8 +95,8 @@ extension SearchUserViewModel: StoreSubscriber {
     func newState(state: SearchUserState) {
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleError()
         }
-        
         usersRelay.accept(state.users)
     }
 }

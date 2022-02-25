@@ -192,10 +192,12 @@ extension UpdateCircleViewModel: StoreSubscriber {
     func newState(state: UpdateCircleState) {
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleError()
         }
         
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompleted()
         }
     }
 }

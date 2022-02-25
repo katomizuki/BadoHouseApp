@@ -20,4 +20,11 @@ struct TalkActionCreator {
             appStore.dispatch(TalkState.TalkAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
+    
+    func toggleError() {
+        appStore.dispatch(TalkState.TalkAction.changeErrorStatus(false))
+    }
+    func toggleReload() {
+        appStore.dispatch(TalkState.TalkAction.changeReloadStatus(false))
+    }
 }

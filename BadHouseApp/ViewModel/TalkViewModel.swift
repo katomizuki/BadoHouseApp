@@ -82,10 +82,12 @@ extension TalkViewModel: StoreSubscriber {
     func newState(state: TalkState) {
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleError()
         }
         
         if state.reloadStauts {
             reloadInput.onNext(())
+            actionCreator.toggleReload()
         }
         
         chatRoomList.accept(state.talks)

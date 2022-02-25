@@ -19,4 +19,12 @@ struct UpdateCircleActionCreator {
             appStore.dispatch(UpdateCircleState.UpdateCircleAction.changeCompletedStatus(true))
         }).disposed(by: disposeBag)
     }
+    
+    func toggleError() {
+        appStore.dispatch(UpdateCircleState.UpdateCircleAction.changeCompletedStatus(false))
+    }
+    
+    func toggleCompleted() {
+        appStore.dispatch(UpdateCircleState.UpdateCircleAction.changeCompletedStatus(false))
+    }
 }

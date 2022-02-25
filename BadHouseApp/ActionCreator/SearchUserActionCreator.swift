@@ -32,4 +32,12 @@ struct SearchUserActionCreator {
             appStore.dispatch(SearchUserState.SearchUserAction.changeErrorStatus(true))
         }).disposed(by: disposeBag)
     }
+    
+    func toggleError() {
+        appStore.dispatch(SearchUserState.SearchUserAction.changeErrorStatus(false))
+    }
+    
+    func toggleCompleted() {
+        appStore.dispatch(SearchUserState.SearchUserAction.changeCompletedStatus(false))
+    }
 }
