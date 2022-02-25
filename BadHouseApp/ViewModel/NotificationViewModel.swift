@@ -42,8 +42,8 @@ final class NotificationViewModel: NotificationViewModelType {
     private let applyedFriendStream = PublishSubject<Void>()
     private let userDetailStream = PublishSubject<User>()
     private let practiceDetailStream = PublishSubject<Practice>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: NotificationActionCreator
     
@@ -112,6 +112,7 @@ extension NotificationViewModel: StoreSubscriber {
         notificationList.accept(state.notifications)
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
     }
 }

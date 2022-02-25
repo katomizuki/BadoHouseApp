@@ -76,6 +76,7 @@ extension MyPracticeViewModel: StoreSubscriber {
         practices.accept(state.practices)
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
     }
 }

@@ -71,7 +71,7 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
 }
 
 extension PreJoinedViewModel: PreJoinedViewModelInputs {
-    var reloadInput: AnyObserver<Void>  {
+    var reloadInput: AnyObserver<Void> {
         reloadStream.asObserver()
     }
     var completedInput: AnyObserver<Void> {
@@ -105,14 +105,17 @@ extension PreJoinedViewModel: StoreSubscriber {
     func newState(state: PreJoinedState) {
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
         
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompletedStatus()
         }
         preJoinedList.accept(state.preJoinedList)
         

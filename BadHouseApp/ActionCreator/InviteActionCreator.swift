@@ -35,5 +35,13 @@ struct InviteActionCreator {
             }
         }
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(InviteState.InviteAction.changeErrorStatus(false))
+    }
+    
+    func toggleCompletedStatus() {
+        appStore.dispatch(InviteState.InviteAction.chageCompletedStatus(false))
+    }
    
 }

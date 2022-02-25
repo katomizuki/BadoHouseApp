@@ -24,4 +24,12 @@ struct CircleDetailActionCreator {
             appStore.dispatch(CircleDetailState.CircleDetailAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
+    
+    func toggleErrorStauts() {
+        appStore.dispatch(CircleDetailState.CircleDetailAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStaus() {
+        appStore.dispatch(CircleDetailState.CircleDetailAction.changeReloadStatus(false))
+    }
 }

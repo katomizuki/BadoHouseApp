@@ -97,10 +97,12 @@ extension ChatViewModel: StoreSubscriber {
         chatsList.accept(state.chatsList)
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
         
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         
         if let chatId = state.chatId {

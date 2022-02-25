@@ -87,10 +87,12 @@ extension ScheduleViewModel: StoreSubscriber {
 
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
 
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         
         practiceList.accept(state.practices)

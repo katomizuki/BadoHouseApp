@@ -19,4 +19,8 @@ struct MyPracticeActionCreator {
         }.disposed(by: disposeBag)
     }
     
+    func toggleErrorStatus() {
+        appStore.dispatch(MyPracticeState.MyPracticeAction.changeErrorStatus(false))
+    }
+    
 }

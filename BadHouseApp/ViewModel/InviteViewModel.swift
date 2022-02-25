@@ -149,9 +149,11 @@ extension InviteViewModel: StoreSubscriber {
         friendsList.accept(state.friends)
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompletedStatus()
         }
        
     }

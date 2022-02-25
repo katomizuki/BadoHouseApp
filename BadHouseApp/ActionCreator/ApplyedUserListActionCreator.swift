@@ -65,4 +65,12 @@ struct ApplyedUserListActionCreator {
             }.disposed(by: self.disposeBag)
         }
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.changeReloadStatus(false))
+    }
 }

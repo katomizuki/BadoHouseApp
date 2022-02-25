@@ -18,7 +18,6 @@ struct AdditionalMemberActionCreator {
         userAPI.getFriends(uid: uid).subscribe { friends in
             let users = self.judgeInviter(members: members, friends: friends)
             appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.setMember(users))
-            appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(false))
         } onFailure: { _ in
             appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
@@ -29,7 +28,6 @@ struct AdditionalMemberActionCreator {
             switch result {
             case .success:
                 appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeCompledStatus(true))
-                appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(false))
             case .failure:
                 appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(true))
             }
@@ -42,5 +40,13 @@ struct AdditionalMemberActionCreator {
             array.remove(value: $0)
         }
         return array
+    }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(false))
+    }
+    
+    func toggleCompletedStatus() {
+        appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeCompledStatus(true))
     }
 }

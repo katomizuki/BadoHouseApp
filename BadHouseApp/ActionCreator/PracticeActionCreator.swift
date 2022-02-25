@@ -56,4 +56,11 @@ struct PracticeActionCreator {
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: R.UserDefaultsKey.preJoin)
         }
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeErrorStatus(false))
+    }
+    func toggleCompletedStatus() {
+        appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeCompletedStatus(false))
+    }
 }

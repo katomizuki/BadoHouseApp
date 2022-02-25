@@ -19,4 +19,8 @@ struct NotificationActionCreator {
         appStore.dispatch(NotificationStatus.NotificationAction.chageErrorStatus(true))
     }.disposed(by: disposeBag)
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(NotificationStatus.NotificationAction.chageErrorStatus(false))
+    }
 }

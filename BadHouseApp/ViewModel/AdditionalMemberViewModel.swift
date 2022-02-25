@@ -110,10 +110,12 @@ extension AdditionalMemberViewModel: StoreSubscriber {
 
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompletedStatus()
         }
 
         if state.errorStatus {
             errorInput.onNext(state.errorStatus)
+            actionCreator.toggleErrorStatus()
         }
         
     }

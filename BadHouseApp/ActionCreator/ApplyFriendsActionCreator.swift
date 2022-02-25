@@ -29,4 +29,12 @@ struct ApplyFriendsActionCreator {
         appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.setApplies(value))
         appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.changeReloadStatus(true))
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.changeReloadStatus(false))
+    }
 }

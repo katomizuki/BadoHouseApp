@@ -33,4 +33,16 @@ struct PreJoinedActionCreator {
             }).disposed(by: self.disposeBag)
         }
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(PreJoinedState.PreJoinedAction.changeReloadStatus(false))
+    }
+    
+    func toggleCompletedStatus() {
+        appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeCompletedStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(PreJoinedState.PreJoinedAction.changeReloadStatus(false))
+    }
 }

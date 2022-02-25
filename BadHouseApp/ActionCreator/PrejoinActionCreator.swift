@@ -27,11 +27,15 @@ struct PrejoinActionCreator {
         var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
         prejoins.remove(value: preJoin.id)
         UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: R.UserDefaultsKey.preJoin)
-//        var list = preJoinList.value
-//        list.remove(value: preJoin)
         appStore.dispatch(PreJoinState.PreJoinAction.setPreJoinList(list))
         appStore.dispatch(PreJoinState.PreJoinAction.changeReloadStatus(true))
-//        preJoinList.accept(list)
-//        reloadInput.onNext(())
+    }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(PreJoinState.PreJoinAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(PreJoinState.PreJoinAction.changeReloadStatus(false))
     }
 }

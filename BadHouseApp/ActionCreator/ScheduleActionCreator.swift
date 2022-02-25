@@ -19,4 +19,12 @@ struct ScheduleActionCreator {
             appStore.dispatch(ScheduleState.ScheduleAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(ScheduleState.ScheduleAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(ScheduleState.ScheduleAction.changeReloadStatus(false))
+    }
 }

@@ -86,10 +86,12 @@ extension PreJoinViewModel: StoreSubscriber {
     func newState(state: PreJoinState) {
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
         
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         
         preJoinList.accept(state.preJoinList)

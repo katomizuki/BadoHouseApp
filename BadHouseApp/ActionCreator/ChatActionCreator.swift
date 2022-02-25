@@ -69,4 +69,12 @@ struct ChatActionCreator {
             appStore.dispatch(ChatState.ChatAction.changeErrorStatus(true))
         }).disposed(by: disposeBag)
     }
+    
+    func toggleErrorStatus() {
+        appStore.dispatch(ChatState.ChatAction.changeErrorStatus(false))
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(ChatState.ChatAction.chageReloadStatus(false))
+    }
 }

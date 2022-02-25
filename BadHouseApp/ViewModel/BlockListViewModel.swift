@@ -92,6 +92,7 @@ extension BlockListViewModel: StoreSubscriber {
         
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
     }
 }

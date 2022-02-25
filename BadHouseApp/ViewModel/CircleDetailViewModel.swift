@@ -154,10 +154,12 @@ extension CircleDetailViewModel: StoreSubscriber {
         
         if state.errorStatus {
             self.errorInput.onNext(true)
+            actionCreator.toggleErrorStauts()
         }
         
         if state.reloadStatus {
             self.reloadInput.onNext(())
+            actionCreator.toggleReloadStaus()
         }
         
         self.checkRightButtonHidden(state.allMembers)

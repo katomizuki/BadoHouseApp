@@ -130,9 +130,11 @@ extension PracticeDetailViewModel: StoreSubscriber {
         }
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         if state.completedStatus {
             completedInput.onNext(())
+            actionCreator.toggleCompletedStatus()
         }
         buttonHiddenInput.onNext(state.buttonHidden)
         takePartInButtonInput.onNext(state.isTakePartInButton)

@@ -38,4 +38,8 @@ struct BlockListActionCreator {
         appStore.dispatch(BlockListState.BlockListAction.changeReloadStatus(true))
     }
     
+    func toggleReloadStatus() {
+        appStore.dispatch(BlockListState.BlockListAction.changeReloadStatus(false))
+    }
+    
 }

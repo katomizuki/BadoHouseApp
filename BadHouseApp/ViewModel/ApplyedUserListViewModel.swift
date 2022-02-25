@@ -108,10 +108,12 @@ extension ApplyedUserListViewModel: StoreSubscriber {
         
         if state.errorStatus {
             errorInput.onNext(true)
+            actionCreator.toggleErrorStatus()
         }
         
         if state.reloadStatus {
             reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
         
         applyedRelay.accept(state.applied)
