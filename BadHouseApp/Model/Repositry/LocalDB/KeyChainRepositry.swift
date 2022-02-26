@@ -9,7 +9,23 @@ import KeychainAccess
 import Foundation
 struct KeyChainRepositry {
     static var keychain: Keychain {
-        guard let identifier = Bundle.main.object(forInfoDictionaryKey: "friendsId") as? String else { return Keychain(service: "") }
+        guard let identifier = Bundle.main.object(forInfoDictionaryKey: "myId") as? String else { return Keychain(service: "") }
         return Keychain(service: identifier)
+    }
+    
+    static var myId: String? {
+        do {
+            return try KeyChainRepositry.keychain.get("myId")
+        } catch {
+            return nil
+        }
+    }
+    
+    static func save(id: String) {
+        do {
+            try? keychain.set(id, key: "myId")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

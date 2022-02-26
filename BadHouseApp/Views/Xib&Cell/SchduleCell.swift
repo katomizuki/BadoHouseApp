@@ -7,7 +7,7 @@ protocol SchduleCellDelegate: AnyObject {
 
 final class SchduleCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var circleImageView: UIImageView! {
         didSet {
             circleImageView.changeCorner(num: 25)

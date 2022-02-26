@@ -1,11 +1,8 @@
 import UIKit
-import Firebase
 import RxCocoa
 import RxSwift
 import CoreLocation
 import MapKit
-import UserNotifications
-import CDAlertView
 
 final class HomeViewController: UIViewController {
     
@@ -191,6 +188,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         myLatitude = latitude
         myLongitude = longitude
     }
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
         switch status {
@@ -206,6 +204,7 @@ extension HomeViewController: CLLocationManagerDelegate {
 }
 
 extension HomeViewController: EventInfoCellDelegate {
+
     func didTapBlockButton(_ cell: EventInfoCell, practice: Practice) {
         let alertVC = AlertProvider.postAlertVC(practice) { error in
             if error != nil {
@@ -218,6 +217,7 @@ extension HomeViewController: EventInfoCellDelegate {
 }
 
 extension HomeViewController: PracticeSearchControllerDelegate {
+
     func eventSearchControllerDismiss(practices: [Practice], vc: PracticeSearchController) {
         vc.dismiss(animated: true)
         viewModel.inputs.search(practices)

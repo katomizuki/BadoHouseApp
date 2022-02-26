@@ -1,5 +1,4 @@
 import UIKit
-import CDAlertView
 import Charts
 import CoreLocation
 import MapKit

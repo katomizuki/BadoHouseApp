@@ -8,6 +8,7 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
     private let viewModel: InviteViewModel
     private let disposeBag = DisposeBag()
     private var selectedCell: [String: Bool] = [String: Bool]()
+
     init(viewModel: InviteViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +64,7 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
             self?.viewModel.inviteAction(user: self?.viewModel.friendsList.value[indexPath.row])
         }).disposed(by: disposeBag)
     }
+
     @objc private func didTapRightButton() {
         viewModel.makeCircle()
         HUD.show(.success, onView: view)

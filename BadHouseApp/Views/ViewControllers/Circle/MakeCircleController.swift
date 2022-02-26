@@ -178,6 +178,7 @@ final class MakeCircleController: UIViewController {
             self.viewModel.textViewInput.onNext(text)
         }).disposed(by: disposeBag)
     }
+
     @objc private func didTapMakeCircleButton() {
         coordinator?.toInvite(viewModel.user, form: viewModel.form)
     }
@@ -194,9 +195,9 @@ extension MakeCircleController: UINavigationControllerDelegate, UIImagePickerCon
             case .icon:
                 groupImageView.image = image.withRenderingMode(.alwaysOriginal)
                 viewModel.form.icon = image.withRenderingMode(.alwaysOriginal)
-            case .none:print("")
+            case .none:
+                print("エラー")
             }
-            
         }
         self.dismiss(animated: true, completion: nil)
     }

@@ -72,12 +72,13 @@ final class HomeViewModel: HomeViewModelType {
         
     func willAppearAction() {
         
-        if Auth.auth().currentUser == nil {
-            isAuthInput.onNext(())
+        if let id = Auth.auth().currentUser {
+            KeyChainRepositry.save(id: id)
+            actionCreator.getPractices()
         } else if !Network.shared.isOnline() {
             isNetWorkErrorInput.onNext(())
         } else {
-            actionCreator.getPractices()
+            isAuthInput.onNext(())
         }
     }
     
