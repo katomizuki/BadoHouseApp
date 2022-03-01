@@ -155,14 +155,15 @@ import RxCocoa
             myData: viewModel.myData)
      }
      
-     @IBAction func didTapTalkButton(_ sender: Any) {
+     @IBAction private func didTapTalkButton(_ sender: Any) {
              self.coordinator?.toChat(
                 myData: self.viewModel.myData,
                 user: self.viewModel.user)
      }
      
-     @IBAction func didTapApplyFriendButton(_ sender: UIButton) {
-         if sender.titleLabel?.text == R.alertMessage.applyFriend {
+     @IBAction private func didTapApplyFriendButton(_ sender: UIButton) {
+         guard let text: String = sender.titleLabel?.text else { return }
+         if  text == R.alertMessage.applyFriend {
              viewModel.inputs.applyFriend()
          } else {
              viewModel.inputs.notApplyedFriend()

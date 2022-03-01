@@ -69,7 +69,7 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
         self.actionCreator.getUser(uid: practice.userId)
         self.actionCreator.getCircle(circleId: practice.circleId)
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = AuthRepositryImpl.getUid() else { return }
         guard let user = user else { return }
         self.actionCreator.checkButtonHidden(uid: uid, user: user, isModal: self.isModal)
  

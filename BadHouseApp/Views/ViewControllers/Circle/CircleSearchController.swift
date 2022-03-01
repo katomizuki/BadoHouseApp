@@ -36,7 +36,6 @@ final class CircleSearchController: UIViewController {
         super.viewWillDisappear(animated)
         viewModel.willDisAppear.accept(())
     }
-    
 
     // MARK: - setupMethod
     private func setupTableView() {

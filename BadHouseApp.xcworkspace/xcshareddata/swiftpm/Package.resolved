@@ -146,6 +146,15 @@
         }
       },
       {
+        "package": "ReSwift",
+        "repositoryURL": "https://github.com/ReSwift/ReSwift.git",
+        "state": {
+          "branch": "master",
+          "revision": "d240448910549947547feea887ee832f54841dd0",
+          "version": null
+        }
+      },
+      {
         "package": "RxGesture",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxGesture.git",
         "state": {

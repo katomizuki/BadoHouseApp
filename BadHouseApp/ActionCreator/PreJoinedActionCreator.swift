@@ -10,7 +10,7 @@ struct PreJoinedActionCreator {
     let joinAPI: JoinRepositry
     private let disposeBag = DisposeBag()
     
-     func getPreJoined(user:  User) {
+     func getPreJoined(user: User) {
         joinAPI.getPreJoined(userId: user.uid).subscribe { prejoineds in
             appStore.dispatch(PreJoinedState.PreJoinedAction.setPrejoinedList(prejoineds))
             appStore.dispatch(PreJoinedState.PreJoinedAction.setNavigationTitle("\(prejoineds.count)人から参加申請が来ています"))

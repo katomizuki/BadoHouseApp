@@ -42,7 +42,7 @@ struct UserDetailActionCreator {
             }.disposed(by: disposeBag)
         }
                    
-    func fetchChatRoom(myData: User,user:User, completion: @escaping (ChatRoom) -> Void) {
+    func fetchChatRoom(myData: User, user:User, completion: @escaping (ChatRoom) -> Void) {
             userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
         }
                    

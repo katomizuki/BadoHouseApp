@@ -25,7 +25,7 @@ struct User: FirebaseModel, Equatable {
         }
     }
     var isMyself: Bool {
-        return Auth.auth().currentUser?.uid == uid
+        return AuthRepositryImpl.getUid() == uid
     }
     
     init(dic: [String: Any]) {

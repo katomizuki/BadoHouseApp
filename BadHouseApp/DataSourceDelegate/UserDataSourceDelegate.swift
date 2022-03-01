@@ -11,7 +11,7 @@ protocol UserDataSourceDelegateProtocol: NSObjectProtocol {
 
 final class UserDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    let viewModel: UserViewModel
+    private let viewModel: UserViewModel
     weak var delegate: UserDataSourceDelegateProtocol?
     
     init(viewModel: UserViewModel) {

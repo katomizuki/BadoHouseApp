@@ -9,10 +9,10 @@ import ReSwift
 import Foundation
 
 struct UserState: StateType {
-    var user: User? = nil
+    var user: User?
     var userFriendsCountText = String()
     var userCircleCountText = String()
-    var userUrl: URL? = nil
+    var userUrl: URL?
     var friends = [User]()
     var circles = [Circle]()
     var isApplyViewHidden = false

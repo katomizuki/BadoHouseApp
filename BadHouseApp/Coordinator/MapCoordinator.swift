@@ -11,13 +11,13 @@ final class MapCoordinator: Coordinator, MapListFlow {
     }
     
     func start() {
-        let controller = MapListController.init(viewModel: viewModel)
+        let controller: MapListController = MapListController.init(viewModel: viewModel)
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
     
     func halfModal(_ practice: Practice, _ vc: MapListController) {
-    let controller = PracticeDetailController.init(
+        let controller: PracticeDetailController = PracticeDetailController.init(
         viewModel: PracticeDetailViewModel(
             practice: practice,
             isModal: true,
@@ -27,7 +27,7 @@ final class MapCoordinator: Coordinator, MapListFlow {
                 circleAPI: CircleRepositryImpl(),
                 joinAPI: JoinRepositryImpl())))
         if #available(iOS 15.0, *) {
-            if let sheet = controller.sheetPresentationController {
+            if let sheet: UISheetPresentationController = controller.sheetPresentationController {
                 sheet.detents = [.medium(), .large()]
             }
         }

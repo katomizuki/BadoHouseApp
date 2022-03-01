@@ -1,8 +1,8 @@
 import UIKit
 
 extension UIView {
-    func changeCorner(num: Int) {
+    func changeCorner(num: CGFloat) {
         layer.masksToBounds = true
-        layer.cornerRadius = CGFloat(num)
+        layer.cornerRadius = num
     }
 }

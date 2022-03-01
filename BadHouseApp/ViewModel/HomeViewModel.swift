@@ -67,12 +67,12 @@ final class HomeViewModel: HomeViewModelType {
         didLoadStream.subscribe { [weak self] _ in
             self?.actionCreator.saveFriend()
         }.disposed(by: disposeBag)
-        
+        NSLog("⚡️")
     }
         
     func willAppearAction() {
         
-        if let id = Auth.auth().currentUser {
+        if let id = Auth.auth().currentUser?.uid {
             KeyChainRepositry.save(id: id)
             actionCreator.getPractices()
         } else if !Network.shared.isOnline() {

@@ -67,7 +67,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = AuthRepositryImpl.getUid() else { return }
         self.actionCreator.getCircle(uid)
         
         bind()
@@ -90,8 +90,8 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     
     // MARK: - Helper
     func changeNumber(num: Float) -> String {
-        var message = String()
-        switch num * 10 {
+        var message: String = String()
+        switch num * Float(10) {
         case 0..<1:
             message = BadmintonLevel(rawValue: 0)!.description
         case 1..<2:

@@ -48,20 +48,20 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         self.userAPI = userAPI
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
-        let nameValid = nameTextOutput
+        let nameValid: Observable<Bool> = nameTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
                 self?.name = text
                 return text.count >= 2
             }
-        let emailValid = emailTextOutput
+        let emailValid: Observable<Bool> = emailTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
                 self?.email = text
                 let atMarkCount = Array(text).filter { $0 == "@"}.count
                 return text.count >= 5 && text.contains("@") && !text.contains(" ") && atMarkCount == 1
             }
-        let passwordValid = passwordTextOutput
+        let passwordValid: Observable<Bool> = passwordTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
                 self?.password = text

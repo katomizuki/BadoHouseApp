@@ -71,12 +71,12 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
             guard
-                let placemark = placemarks?.first, error == nil,
-                let administrativeArea = placemark.administrativeArea, // 都道府県
-                let locality = placemark.locality, // 市区町村
-                let thoroughfare = placemark.thoroughfare, // 地名(丁目)
-                let subThoroughfare = placemark.subThoroughfare, // 番地
-                let location = placemark.location // 緯度経度情報
+                let placemark: CLPlacemark = placemarks?.first, error == nil,
+                let administrativeArea: String = placemark.administrativeArea, // 都道府県
+                let locality: String = placemark.locality, // 市区町村
+                let thoroughfare: String = placemark.thoroughfare, // 地名(丁目)
+                let subThoroughfare: String = placemark.subThoroughfare, // 番地
+                let location: CLLocation = placemark.location // 緯度経度情報
             else {
                 return
             }

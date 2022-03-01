@@ -130,7 +130,7 @@ extension UserDetailViewModel: UserDetailViewModelInputs {
     }
     
 }
-extension UserDetailViewModel: UserDetailViewModelOutputs  {
+extension UserDetailViewModel: UserDetailViewModelOutputs {
     var isError: Observable<Bool> {
         errorStream.asObservable()
     }

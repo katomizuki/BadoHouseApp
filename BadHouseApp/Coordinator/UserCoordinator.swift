@@ -9,7 +9,7 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func start() {
-        let controller = UserController.init(viewModel:
+        let controller: UserController = UserController.init(viewModel:
                                                 UserViewModel(
                                                     store: appStore,
                                                     actionCreator:
@@ -20,7 +20,7 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func toSearchUser(user: User?) {
-        guard let user = user else { return }
+        guard let user: User = user else { return }
         coordinator(to: SearchUserCoordinator(
             navigationController: navigationController,
             viewModel: SearchUserViewModel(
@@ -31,8 +31,8 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func toDetailUser(myData: User?, user: User?) {
-        guard let user = user else { return }
-        guard let myData = myData else { return }
+        guard let user: User = user else { return }
+        guard let myData: User = myData else { return }
         coordinator(to: UserDetailCoordinator(
             navigationController: navigationController,
             viewModel: UserDetailViewModel(
@@ -45,8 +45,8 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func toDetailCircle(myData: User?, circle: Circle?) {
-        guard let circle = circle else { return }
-        guard let myData = myData else { return }
+        guard let circle: Circle = circle else { return }
+        guard let myData: User = myData else { return }
         coordinator(to: CircleDetailCoordinator(
             navigationController: navigationController,
             viewModel: CircleDetailViewModel(
@@ -59,7 +59,7 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func toSearchCircle(user: User?) {
-        guard let user = user else { return }
+        guard let user: User = user else { return }
         coordinator(to: SearchCircleCoordinator(
             navigationController: navigationController,
             viewModel: SearchCircleViewModel(
@@ -80,12 +80,12 @@ final class UserCoordinator: Coordinator, UserFlow {
     }
     
     func toMakeCircle(user: User?) {
-        guard let user = user else { return }
+        guard let user: User = user else { return }
         MakeCicleCoordinator(navigationController: self.navigationController).start(user: user)
     }
     
     func toSettings(_ vc: UIViewController, user: User?) {
-        guard let user = user else { return }
+        guard let user: User = user else { return }
         let nav = UINavigationController(rootViewController: UserSettingsController.init(user: user))
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)

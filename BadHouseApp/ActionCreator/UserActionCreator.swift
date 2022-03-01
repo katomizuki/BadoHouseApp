@@ -9,7 +9,7 @@ import RxSwift
 import Foundation
 
 struct UserActionCreator {
-    private let disposeBag = DisposeBag()
+    private let disposeBag: DisposeBag = DisposeBag()
     let userAPI: UserRepositry
     let applyAPI: ApplyRepositry
     let circleAPI: CircleRepositry
@@ -20,7 +20,7 @@ struct UserActionCreator {
             self.bindCircles(user: user)
             self.bindApplyedUser(user: user)
             self.bindFriends(user: user)
-            if let url = URL(string: user.profileImageUrlString) {
+            if let url: URL = URL(string: user.profileImageUrlString) {
                 appStore.dispatch(UserState.UserAction.setUserURL(url))
             } else {
                 appStore.dispatch(UserState.UserAction.setUserURL(nil))
@@ -59,6 +59,7 @@ struct UserActionCreator {
             appStore.dispatch(UserState.UserAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
+
     func withDrawCircle(user: User, circle: Circle, circles: [Circle]) {
         circleAPI.withdrawCircle(user: user,
                                  circle: circle)

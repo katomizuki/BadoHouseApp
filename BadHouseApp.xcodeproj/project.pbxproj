@@ -78,12 +78,6 @@
 		D3128ECF27C7AD1F00F57996 /* UpdateUserInfoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ECE27C7AD1F00F57996 /* UpdateUserInfoAction.swift */; };
 		D3128ED127C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ED027C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift */; };
 		D3128ED327C7AD6200F57996 /* UpdateUserInfoReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128ED227C7AD6200F57996 /* UpdateUserInfoReducer.swift */; };
-		D3128ED627C9B63F00F57996 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = D3128ED527C9B63F00F57996 /* RxBlocking */; };
-		D3128ED827C9B63F00F57996 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D3128ED727C9B63F00F57996 /* RxCocoa */; };
-		D3128EDA27C9B63F00F57996 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D3128ED927C9B63F00F57996 /* RxRelay */; };
-		D3128EDC27C9B63F00F57996 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3128EDB27C9B63F00F57996 /* RxSwift */; };
-		D3128EDE27C9B63F00F57996 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = D3128EDD27C9B63F00F57996 /* RxTest */; };
-		D3128EE027C9B88000F57996 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3128EDF27C9B88000F57996 /* HomeTest.swift */; };
 		D31606EC27657CF0005FF41D /* AddtionalPlaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */; };
 		D31606ED27657CF0005FF41D /* AddtionalPlaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */; };
 		D31606F027657FAC005FF41D /* LevelDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31606EE27657FAC005FF41D /* LevelDetailController.swift */; };
@@ -146,6 +140,11 @@
 		D346BD7E27A96BB000B87D74 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7D27A96BB000B87D74 /* KeychainAccess */; };
 		D346BD8827A96E3C00B87D74 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD8727A96E3C00B87D74 /* RxGesture */; };
 		D34852B626FD3EBD0027592A /* PreJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34852B526FD3EBD0027592A /* PreJoin.swift */; };
+		D3528FC927CCEB0A00B77D68 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = D3528FC827CCEB0A00B77D68 /* RxBlocking */; };
+		D3528FCB27CCEB0A00B77D68 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D3528FCA27CCEB0A00B77D68 /* RxCocoa */; };
+		D3528FCD27CCEB0A00B77D68 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D3528FCC27CCEB0A00B77D68 /* RxRelay */; };
+		D3528FCF27CCEB0A00B77D68 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3528FCE27CCEB0A00B77D68 /* RxSwift */; };
+		D3528FD127CCEB0A00B77D68 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = D3528FD027CCEB0A00B77D68 /* RxTest */; };
 		D353D8E226F1621F00221B7D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E026F1621F00221B7D /* ChatCell.swift */; };
 		D353D8E326F1621F00221B7D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D353D8E126F1621F00221B7D /* ChatCell.xib */; };
 		D353D8EA26F21A4F00221B7D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353D8E926F21A4F00221B7D /* Chat.swift */; };
@@ -248,6 +247,7 @@
 		D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */; };
 		D39F0A9B2770B26400580708 /* AdditionalPlaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */; };
 		D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */; };
+		D3A59B9E27CB4EAA002884F7 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3A59B9D27CB4EAA002884F7 /* ReSwift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */; };
@@ -490,7 +490,6 @@
 		D3128ECE27C7AD1F00F57996 /* UpdateUserInfoAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoAction.swift; sourceTree = "<group>"; };
 		D3128ED027C7AD4B00F57996 /* UpdateUserInfoActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoActionCreator.swift; sourceTree = "<group>"; };
 		D3128ED227C7AD6200F57996 /* UpdateUserInfoReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoReducer.swift; sourceTree = "<group>"; };
-		D3128EDF27C9B88000F57996 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
 		D31606EA27657CF0005FF41D /* AddtionalPlaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPlaceController.swift; sourceTree = "<group>"; };
 		D31606EB27657CF0005FF41D /* AddtionalPlaceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtionalPlaceController.xib; sourceTree = "<group>"; };
 		D31606EE27657FAC005FF41D /* LevelDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDetailController.swift; sourceTree = "<group>"; };
@@ -807,6 +806,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D15D2F46984AA8872F95B5EF /* Pods_BadHouseAppTests.framework in Frameworks */,
+				D3528FD127CCEB0A00B77D68 /* RxTest in Frameworks */,
+				D3528FC927CCEB0A00B77D68 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,21 +825,20 @@
 				D346BD4E27A94D6700B87D74 /* FirebaseCrashlytics in Frameworks */,
 				D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */,
 				D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				D3A59B9E27CB4EAA002884F7 /* ReSwift in Frameworks */,
 				53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */,
 				D346BD7E27A96BB000B87D74 /* KeychainAccess in Frameworks */,
 				D346BD7B27A968C100B87D74 /* SDWebImage in Frameworks */,
 				D346BD8827A96E3C00B87D74 /* RxGesture in Frameworks */,
+				D3528FCF27CCEB0A00B77D68 /* RxSwift in Frameworks */,
 				D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */,
-				D3128EDC27C9B63F00F57996 /* RxSwift in Frameworks */,
 				D346BD7827A9687200B87D74 /* Charts in Frameworks */,
-				D3128EDE27C9B63F00F57996 /* RxTest in Frameworks */,
 				D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */,
 				D346BD7527A967D900B87D74 /* FSCalendar in Frameworks */,
+				D3528FCB27CCEB0A00B77D68 /* RxCocoa in Frameworks */,
 				D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */,
-				D3128ED827C9B63F00F57996 /* RxCocoa in Frameworks */,
+				D3528FCD27CCEB0A00B77D68 /* RxRelay in Frameworks */,
 				D346BD7227A966FA00B87D74 /* PKHUD in Frameworks */,
-				D3128EDA27C9B63F00F57996 /* RxRelay in Frameworks */,
-				D3128ED627C9B63F00F57996 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,7 +978,6 @@
 			isa = PBXGroup;
 			children = (
 				D346771C27C3392700825D34 /* BadHouseAppTests.swift */,
-				D3128EDF27C9B88000F57996 /* HomeTest.swift */,
 			);
 			path = BadHouseAppTests;
 			sourceTree = "<group>";
@@ -1603,6 +1602,10 @@
 				D346771F27C3392700825D34 /* PBXTargetDependency */,
 			);
 			name = BadHouseAppTests;
+			packageProductDependencies = (
+				D3528FC827CCEB0A00B77D68 /* RxBlocking */,
+				D3528FD027CCEB0A00B77D68 /* RxTest */,
+			);
 			productName = BadHouseAppTests;
 			productReference = D346771A27C3392700825D34 /* BadHouseAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1656,11 +1659,10 @@
 				D346BD7D27A96BB000B87D74 /* KeychainAccess */,
 				D346BD8727A96E3C00B87D74 /* RxGesture */,
 				D370503327ABE91500373225 /* IQKeyboardManagerSwift */,
-				D3128ED527C9B63F00F57996 /* RxBlocking */,
-				D3128ED727C9B63F00F57996 /* RxCocoa */,
-				D3128ED927C9B63F00F57996 /* RxRelay */,
-				D3128EDB27C9B63F00F57996 /* RxSwift */,
-				D3128EDD27C9B63F00F57996 /* RxTest */,
+				D3A59B9D27CB4EAA002884F7 /* ReSwift */,
+				D3528FCA27CCEB0A00B77D68 /* RxCocoa */,
+				D3528FCC27CCEB0A00B77D68 /* RxRelay */,
+				D3528FCE27CCEB0A00B77D68 /* RxSwift */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -1707,7 +1709,8 @@
 				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */,
+				D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1920,7 +1923,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3128EE027C9B88000F57996 /* HomeTest.swift in Sources */,
 				D346771D27C3392700825D34 /* BadHouseAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2563,14 +2565,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -2627,6 +2621,14 @@
 				kind = branch;
 			};
 		};
+		D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -2635,34 +2637,17 @@
 				kind = branch;
 			};
 		};
+		D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D3128ED527C9B63F00F57996 /* RxBlocking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxBlocking;
-		};
-		D3128ED727C9B63F00F57996 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		D3128ED927C9B63F00F57996 /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
-		};
-		D3128EDB27C9B63F00F57996 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		D3128EDD27C9B63F00F57996 /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3128ED427C9B63F00F57996 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
-		};
 		D346BD4B27A94D6700B87D74 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -2718,10 +2703,40 @@
 			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
 		};
+		D3528FC827CCEB0A00B77D68 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		D3528FCA27CCEB0A00B77D68 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		D3528FCC27CCEB0A00B77D68 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		D3528FCE27CCEB0A00B77D68 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		D3528FD027CCEB0A00B77D68 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
 		D370503327ABE91500373225 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		D3A59B9D27CB4EAA002884F7 /* ReSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */;
+			productName = ReSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

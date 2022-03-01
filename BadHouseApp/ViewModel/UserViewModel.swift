@@ -73,7 +73,7 @@ final class UserViewModel: UserViewModelType {
     }
     
     func getUser() {
-        if let uid = Auth.auth().currentUser?.uid {
+        if let uid = AuthRepositryImpl.getUid() {
             self.actionCreator.getUser(uid: uid)
         } else {
             self.notAuthInput.onNext(())

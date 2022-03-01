@@ -51,7 +51,7 @@ final class TalkViewModel: TalkViewModelType {
     }
     
     func getChatRooms() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = AuthRepositryImpl.getUid() else { return }
         self.actionCreator.getChatRooms(uid: uid)
     }
 }

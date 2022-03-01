@@ -9,7 +9,7 @@ protocol UserPageDataSourceDelegateProtocol: NSObjectProtocol {
 final class UserPageDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, PopDismissDelegate, UserLevelDelegate {
     
     let viewModel: UpdateUserInfoViewModel
-    private let cellId = R.cellId
+    private let cellId: String = R.cellId
     weak var delegate: UserPageDataSourceDelegateProtocol?
     
     init(viewModel: UpdateUserInfoViewModel) {
@@ -37,17 +37,17 @@ final class UserPageDataSourceDelegate: NSObject, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if UserInfoSelection(rawValue: indexPath.row) == .level {
-            let controller = BadHouseApp.UserLevelController.init(user: viewModel.user!)
+            let controller: UserLevelController = BadHouseApp.UserLevelController.init(user: viewModel.user!)
             controller.delegate = self
             self.delegate?.push(controller)
         } else {
-            guard let cell = tableView.cellForRow(at: indexPath) else {
+            guard let cell: UITableViewCell = tableView.cellForRow(at: indexPath) else {
                 return }
             let viewController: MyPageInfoPopoverController = MyPageInfoPopoverController()
                 viewController.modalPresentationStyle = .popover
                 viewController.preferredContentSize = CGSize(width: 200, height: 150)
                 viewController.delegate = self
-                let presentationController = viewController.popoverPresentationController
+            let presentationController: UIPopoverPresentationController? = viewController.popoverPresentationController
                 presentationController?.delegate = self
                 presentationController?.permittedArrowDirections = .up
                 presentationController?.sourceView = cell

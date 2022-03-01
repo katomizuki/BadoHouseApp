@@ -2,18 +2,18 @@ import UIKit
 import SDWebImage
 final class ChatCell: UITableViewCell {
     // MARK: - Properties
-    static let id = String(describing: self)
+    static let id: String = String(describing: self)
     var message: String? {
         didSet {
-            guard let message = message else { return }
-            let width = estimateFrameSize(text: message).width + 15
+            guard let message: String = message else { return }
+            let width: CGFloat = CGFloat(estimateFrameSize(text: message).width) + CGFloat(15)
             messageConstraint.constant = width
             mytextView.text = message
         }
     }
     var yourMessaege: String? {
         didSet {
-            guard let message = yourMessaege else { return }
+            guard let message: String = yourMessaege else { return }
             let width = estimateFrameSize(text: message).width + 15
             widthConstraint.constant = width
             textView.text = message
@@ -40,7 +40,7 @@ final class ChatCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
     private let formatter: DateFormatter = {
-        let formatter = DateFormatter()
+        let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         formatter.locale = Locale(identifier: "ja-JP")
@@ -59,8 +59,8 @@ final class ChatCell: UITableViewCell {
     }
     // MARK: - helperMethod
     private func estimateFrameSize(text: String) -> CGRect {
-        let size = CGSize(width: 200, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let size: CGSize = CGSize(width: 200, height: 1000)
+        let options: NSStringDrawingOptions = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size,
                                                    options: options,
                                                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)],

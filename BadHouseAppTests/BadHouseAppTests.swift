@@ -6,13 +6,8 @@
 //
 
 import XCTest
-import RxSwift
-import RxBlocking
-import RxTest
-
-@testable import BadHouseApp
 class BadHouseAppTests: XCTestCase {
-    let viewModel = HomeViewModel(store: appStore, actionCreator: HomeActionCreator(practiceAPI: PracticeRepositryImpl()))
+ 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

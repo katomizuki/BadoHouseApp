@@ -75,7 +75,7 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
 // MARK: - InputDelegate
 extension CircleChatController: InputDelegate {
     func inputView(inputView: CustomInputAccessoryView, message: String) {
-        guard let text = inputView.messageInputTextView.text else { return }
+        guard let text: String = inputView.messageInputTextView.text else { return }
         viewModel.inputs.sendText(text)
         if text == "" { return }
         inputView.messageInputTextView.text = ""

@@ -14,7 +14,7 @@ struct HomeActionCreator {
     private let disposeBag = DisposeBag()
     
     func saveFriend() {
-        if let uid =  Auth.auth().currentUser?.uid {
+        if let uid =  AuthRepositryImpl.getUid() {
             UserRepositryImpl.saveFriendId(uid: uid)
         }
     }
