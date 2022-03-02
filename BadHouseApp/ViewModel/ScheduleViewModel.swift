@@ -24,21 +24,26 @@ final class ScheduleViewModel: ScheduleViewModelType {
     var inputs: ScheduleViewModelInputs { return self }
     var outputs: ScheduleViewModelOutputs { return self }
     
-    private let user: User
+    let user: User
     let practiceList = BehaviorRelay<[Practice]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    
+    private let store: Store<AppState>
+    private let actionCreator: ScheduleActionCreator
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    let willAppear = PublishRelay<Void>()
-    let willDisAppear = PublishRelay<Void>()
-    private let store: Store<AppState>
-    private let actionCreator: ScheduleActionCreator
     
     init(user: User, store: Store<AppState>, actionCreator: ScheduleActionCreator) {
         self.user = user
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.scheduleState }

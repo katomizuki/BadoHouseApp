@@ -14,4 +14,5 @@ struct HomeState: StateType {
     var isRefreshAnimating = false
     var errorStatus: Error?
     var reload = PublishSubject<Void>()
+    var user: User?
 }

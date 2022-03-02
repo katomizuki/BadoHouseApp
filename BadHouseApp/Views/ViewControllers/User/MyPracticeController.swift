@@ -7,6 +7,7 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: MyPracticeViewModel
     private let disposeBag = DisposeBag()
+    var coordinator: MyPracticeFlow?
     
     init(viewModel: MyPracticeViewModel) {
         self.viewModel = viewModel
@@ -44,13 +45,9 @@ final class MyPracticeController: UIViewController, UIScrollViewDelegate {
         
         tableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
             guard let self = self else { return }
-            self.navigationController?.pushViewController(PracticeDetailController.init(viewModel: PracticeDetailViewModel(practice: self.viewModel.practices.value[indexPath.row],
-                                        isModal: false,
-                                        store: appStore,
-                                        actionCreator: PracticeActionCreator(userAPI: UserRepositryImpl(),
-                                                                             circleAPI: CircleRepositryImpl(),
-                                                                             joinAPI: JoinRepositryImpl()))),
-                                                          animated: true)
+            self.coordinator?.toPracticeDetail(
+                myData: self.viewModel.myData,
+                practice: self.viewModel.practices.value[indexPath.row])
         }).disposed(by: disposeBag)
     }
 }

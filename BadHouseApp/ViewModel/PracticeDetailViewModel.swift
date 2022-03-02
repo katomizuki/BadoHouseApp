@@ -9,7 +9,7 @@ protocol PracticeDetailViewModelType {
 }
 
 protocol PracticeDetailViewModelInputs {
-    func takePartInPractice()
+    func onTapTakePartInButton()
     var errorInput: AnyObserver<Bool> { get }
     var completedInput: AnyObserver<Void> { get }
     var takePartInButtonInput: AnyObserver<Bool> { get }
@@ -32,9 +32,11 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
 
     var userRelay = PublishRelay<User>()
     var circleRelay = PublishRelay<Circle>()
+    var willAppear = PublishRelay<Void>()
+    var willDisAppear = PublishRelay<Void>()
 
     let practice: Practice
-    var myData: User?
+    let myData: User
     var circle: Circle?
     var user: User?
     
@@ -43,19 +45,26 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
     private let buttonHiddenStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let takePartInButtonStream = PublishSubject<Bool>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: PracticeActionCreator
     let isModal: Bool
     
     init(practice: Practice,
-         isModal: Bool, store: Store<AppState>, actionCreator: PracticeActionCreator) {
+         isModal: Bool,
+         store: Store<AppState>,
+         actionCreator: PracticeActionCreator, myData: User) {
         self.practice = practice
         self.isModal = isModal
         self.store = store
         self.actionCreator = actionCreator
+        self.myData = myData
         
+        setupSubscribe()
+        setupData()
+        setupUI()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.practiceDetailState }
@@ -65,20 +74,22 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-        self.actionCreator.getUser(uid: practice.userId)
-        self.actionCreator.getCircle(circleId: practice.circleId)
-        
-        guard let uid = AuthRepositryImpl.getUid() else { return }
-        guard let user = user else { return }
-        self.actionCreator.checkButtonHidden(uid: uid, user: user, isModal: self.isModal)
- 
     }
     
-    func takePartInPractice() {
+    func setupData() {
+        self.actionCreator.getUser(uid: practice.userId)
+        self.actionCreator.getCircle(circleId: practice.circleId)
+    }
+    
+    func setupUI() {
         guard let user = user else { return }
-        guard let myData = myData else { return }
+        self.actionCreator.checkButtonHidden(uid: myData.uid, user: user, isModal: self.isModal)
+    }
+    
+    func onTapTakePartInButton() {
+        guard let user = user else { return }
         self.actionCreator.takePartInPractice(user: user, myData: myData, practice: self.practice)
+        self.actionCreator.saveUserDefaults(practice: self.practice)
     }
 }
 
@@ -116,27 +127,47 @@ extension PracticeDetailViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = PracticeDetailState
     
     func newState(state: PracticeDetailState) {
-
-        if let user = state.user {
-            self.userRelay.accept(user)
-            self.user = user
-        }
-        if let myData = state.myData {
-            self.myData = myData
-        }
-        if let circle = state.circle {
-            self.circle = circle
-            self.circleRelay.accept(circle)
-        }
+        userStateSubscribe(state)
+        circleStateSubscribe(state)
+        errroStatusSubscribe(state)
+        completedStatusSubscribe(state)
+        buttonHiddenStatusSubscribe(state)
+        takePartInButtonSubscribe(state)
+    }
+    
+    func errroStatusSubscribe(_ state: PracticeDetailState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
+    }
+    
+    func circleStateSubscribe(_ state: PracticeDetailState) {
+        if let circle = state.circle {
+            self.circle = circle
+            self.circleRelay.accept(circle)
+        }
+    }
+    
+    func userStateSubscribe(_ state: PracticeDetailState) {
+        if let user = state.user {
+            self.userRelay.accept(user)
+            self.user = user
+        }
+    }
+    
+    func completedStatusSubscribe(_ state: PracticeDetailState) {
         if state.completedStatus {
             completedInput.onNext(())
             actionCreator.toggleCompletedStatus()
         }
+    }
+    
+    func buttonHiddenStatusSubscribe(_ state: PracticeDetailState) {
         buttonHiddenInput.onNext(state.buttonHidden)
+    }
+    
+    func takePartInButtonSubscribe(_ state: PracticeDetailState) {
         takePartInButtonInput.onNext(state.isTakePartInButton)
     }
 }

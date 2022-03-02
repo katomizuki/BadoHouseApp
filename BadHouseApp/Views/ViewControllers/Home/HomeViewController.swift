@@ -7,11 +7,6 @@ import MapKit
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    private var locationManager: CLLocationManager!
-    private var (myLatitude, myLongitude) = (Double(), Double())
-    private let disposeBag = DisposeBag()
-    var coordinator: HomeFlow?
-    private let viewModel: HomeViewModel
     @IBOutlet private weak var collectionView: UICollectionView!
     private let indicatorView: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -23,6 +18,11 @@ final class HomeViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
         return refreshControl
     }()
+    private var locationManager: CLLocationManager!
+    private var (myLatitude, myLongitude) = (Double(), Double())
+    private let disposeBag = DisposeBag()
+    private let viewModel: HomeViewModel
+    var coordinator: HomeFlow?
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -85,7 +85,8 @@ final class HomeViewController: UIViewController {
     @objc private func didTapMapButton() {
         coordinator?.toMap(practices: viewModel.practiceRelay.value,
                            lat: myLatitude,
-                           lon: myLongitude)
+                           lon: myLongitude,
+                           myData: viewModel.myData)
     }
     
     @objc private func didTapDetailSearchButton() {
@@ -119,7 +120,7 @@ final class HomeViewController: UIViewController {
         
         collectionView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
             guard let self = self else { return }
-            self.coordinator?.toPracticeDetail(self.viewModel.practiceRelay.value[indexPath.row])
+            self.coordinator?.toPracticeDetail(self.viewModel.practiceRelay.value[indexPath.row], myData: self.viewModel.myData)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe(onNext: { [weak self] _ in
@@ -145,7 +146,6 @@ final class HomeViewController: UIViewController {
                 self?.refreshControl.endRefreshing()
             }
         }).disposed(by: disposeBag)
-        
     }
     
     private func setupCollectionView() {

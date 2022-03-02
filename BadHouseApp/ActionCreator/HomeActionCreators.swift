@@ -19,6 +19,12 @@ struct HomeActionCreator {
         }
     }
     
+    func getUser(id: String) {
+        UserRepositryImpl.getUserById(uid: id) { user in
+            appStore.dispatch(HomeState.HomeStateAction.setUser(user))
+        }
+    }
+    
     func getPractices() {
         appStore.dispatch(HomeState.HomeStateAction.changeIndicatorStatus(true))
         appStore.dispatch(HomeState.HomeStateAction.changeRefreshStatus(true))
@@ -26,7 +32,6 @@ struct HomeActionCreator {
             appStore.dispatch(HomeState.HomeStateAction.setPractices(practices))
             appStore.dispatch(HomeState.HomeStateAction.changeIndicatorStatus(false))
             appStore.dispatch(HomeState.HomeStateAction.changeRefreshStatus(false))
-            appStore.dispatch(HomeState.HomeStateAction.reload)
             appStore.dispatch(HomeState.HomeStateAction.reload)
         } onFailure: { error in
             appStore.dispatch(HomeState.HomeStateAction.chageErrorStatus(error))

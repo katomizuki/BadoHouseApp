@@ -54,7 +54,7 @@ extension MapListController: MKMapViewDelegate {
             let practice = viewModel.practices.filter {
                 $0.title == annotation.title && $0.placeName == annotation.subtitle
             }
-            coordinator?.halfModal(practice[0], self)
+            coordinator?.halfModal(practice[0], self, myData: viewModel.myData)
         }
     }
 }

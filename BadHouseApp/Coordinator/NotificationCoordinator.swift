@@ -71,6 +71,6 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                                            actionCreator:
                                             PracticeActionCreator(userAPI: UserRepositryImpl(),
                                                                   circleAPI: CircleRepositryImpl(),
-                                                                  joinAPI: JoinRepositryImpl()))))
+                                                                  joinAPI: JoinRepositryImpl()), myData: myData)))
     }
 }

@@ -65,7 +65,7 @@ extension UserSettingsController: UITableViewDelegate {
             navigationController?.pushViewController(BlockListController.init(viewModel: BlockListViewModel(store: appStore, actionCreator: BlockListActionCreator())), animated: true)
         case 1:
             navigationController?.pushViewController(MyPracticeController.init(
-                viewModel: MyPracticeViewModel(user: user,
+                viewModel: MyPracticeViewModel(myData: user,
                                                store: appStore,
                                                actionCreator: MyPracticeActionCreator(
                                                 userAPI: UserRepositryImpl()))), animated: true)

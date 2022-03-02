@@ -73,7 +73,7 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         
         practiceTableView.rx.itemSelected.bind { [weak self] indexPath in
             guard let self = self else { return }
-            self.coordinator?.toDetail(self.viewModel.outputs.practiceList.value[indexPath.row])
+            self.coordinator?.toDetail(self.viewModel.outputs.practiceList.value[indexPath.row], myData: self.viewModel.user)
         }.disposed(by: disposeBag)
     }
     

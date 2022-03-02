@@ -6,5 +6,5 @@
 //
 
 protocol MapListFlow: AnyObject {
-    func halfModal(_ practice: Practice, _ vc: MapListController)
+    func halfModal(_ practice: Practice, _ vc: MapListController, myData: User)
 }

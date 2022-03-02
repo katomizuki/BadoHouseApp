@@ -37,6 +37,8 @@ final class HomeViewModel: HomeViewModelType {
     var outputs: HomeViewModelOutputs { return self }
    
     var practiceRelay = BehaviorRelay<[Practice]>(value: [])
+    var myData: User?
+
     private let didLoadStream = PublishSubject<Void>()
     private let willAppearStream = PublishSubject<Void>()
     private let willDisAppearStream = PublishSubject<Void>()
@@ -54,6 +56,13 @@ final class HomeViewModel: HomeViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+        prepare()
+        
+        
+    }
+    
+    func setupSubscribe() {
         willAppearStream.subscribe { [unowned self] _ in
             self.store.subscribe(self) { subscription in
                 subscription.select({ $0.homeState }) }
@@ -63,11 +72,16 @@ final class HomeViewModel: HomeViewModelType {
         willDisAppearStream.subscribe { [unowned self] _ in
             self.store.unsubscribe(self)
         }.disposed(by: disposeBag)
-        
+    }
+    
+    func prepare() {
+        didLoadAction()
+    }
+    
+    func didLoadAction() {
         didLoadStream.subscribe { [weak self] _ in
             self?.actionCreator.saveFriend()
         }.disposed(by: disposeBag)
-        NSLog("⚡️")
     }
         
     func willAppearAction() {
@@ -75,6 +89,7 @@ final class HomeViewModel: HomeViewModelType {
         if let id = Auth.auth().currentUser?.uid {
             KeyChainRepositry.save(id: id)
             actionCreator.getPractices()
+            actionCreator.getUser(id: id)
         } else if !Network.shared.isOnline() {
             isNetWorkErrorInput.onNext(())
         } else {
@@ -163,11 +178,18 @@ extension HomeViewModel: StoreSubscriber {
         self.practiceRelay.accept(state.practices)
         self.isRefreshInput.onNext(state.isRefreshAnimating)
         self.indicatorInput.onNext(state.isIndicatorAnimating)
+        userStateSubscribe(state)
         
         state.reload
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] _ in
                 self?.reloadInput.onNext(())
         }.disposed(by: disposeBag)
+    }
+    
+    func userStateSubscribe(_ state: HomeState) {
+        if let user = state.user {
+            self.myData = user
+        }
     }
 }

@@ -22,6 +22,8 @@ struct HomeReducer {
             state.errorStatus = error
         case .reload:
             state.reload.onNext(())
+        case .setUser(let user):
+            state.user = user
         }
         return state
     }

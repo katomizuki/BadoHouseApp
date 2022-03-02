@@ -15,11 +15,13 @@ final class HomeCoordinator: Coordinator, HomeFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toMap(practices: [Practice], lat: Double, lon: Double) {
+    func toMap(practices: [Practice], lat: Double, lon: Double, myData: User?) {
+        guard let myData = myData else { return }
         coordinator(to: MapCoordinator(navigationController: navigationController,
                                        viewModel: MapListViewModel(currnetLatitude: lat,
                                                                    currentLongitude: lon,
-                                                                   practices: practices)))
+                                                                   practices: practices,
+                                                                   myData: myData)))
      
     }
     
@@ -41,7 +43,8 @@ final class HomeCoordinator: Coordinator, HomeFlow {
        
     }
     
-    func toPracticeDetail(_ practice: Practice) {
+    func toPracticeDetail(_ practice: Practice, myData: User?) {
+        guard let myData = myData else { return }
         coordinator(to: PracticeDetailCoordinator(
             navigationController: self.navigationController,
             viewModel: PracticeDetailViewModel(practice: practice,
@@ -50,7 +53,8 @@ final class HomeCoordinator: Coordinator, HomeFlow {
                                                actionCreator:
                                                 PracticeActionCreator(userAPI: UserRepositryImpl(),
                                                                       circleAPI: CircleRepositryImpl(),
-                                                                      joinAPI: JoinRepositryImpl()))))
+                                                                      joinAPI: JoinRepositryImpl()),
+                                               myData: myData)))
     }
     
 }

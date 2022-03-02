@@ -60,6 +60,7 @@ final class PracticeDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupUI()
         setupMapView()
     }
     
@@ -81,14 +82,14 @@ final class PracticeDetailController: UIViewController {
     }
     
     @IBAction private func didTapChatButton(_ sender: Any) {
-        coordinator?.toChat(myData: viewModel.myData!, user: viewModel.user!)
+        coordinator?.toChat(myData: viewModel.myData, user: viewModel.user!)
     }
     
     @IBAction private func didTapCircleDetailButton(_ sender: Any) {
-        coordinator?.toCircleDetail(myData: viewModel.myData!, circle: viewModel.circle!)
+        coordinator?.toCircleDetail(myData: viewModel.myData, circle: viewModel.circle!)
     }
-
-    private func setupBinding() {
+    
+    func setupUI() {
         priceLabel.text = viewModel.practice.price
         practiceImageView.sd_setImage(with: viewModel.practice.mainUrl)
         textView.text = viewModel.practice.explain
@@ -102,32 +103,40 @@ final class PracticeDetailController: UIViewController {
         circleDetailButton.isHidden = viewModel.isModal
         userDetailButton.isHidden = viewModel.isModal
         navigationItem.rightBarButtonItem = viewModel.practice.isPreJoined ? nil : rightButton
+    }
+
+    private func setupBinding() {
+        
         viewModel.outputs.userRelay.subscribe(onNext: {[weak self] user in
-            self?.userImageView.sd_setImage(with: user.profileImageUrl)
-            self?.userNameLabel.text = user.name
+            guard let self = self else { return }
+            self.userImageView.sd_setImage(with: user.profileImageUrl)
+            self.userNameLabel.text = user.name
         }).disposed(by: disposeBag)
         
         viewModel.outputs.circleRelay.subscribe(onNext: { [weak self] circle in
-            self?.circleImageView.sd_setImage(with: circle.iconUrl)
-            self?.circleNameLabel.text = circle.name
+            guard let self = self else { return }
+            self.circleImageView.sd_setImage(with: circle.iconUrl)
+            self.circleNameLabel.text = circle.name
         }).disposed(by: disposeBag)
         
         viewModel.outputs.isButtonHidden.subscribe { [weak self] _ in
-            self?.navigationItem.rightBarButtonItem = nil
-            self?.chatButton.isHidden = true
+            guard let self = self else { return }
+            self.navigationItem.rightBarButtonItem = nil
+            self.chatButton.isHidden = true
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe {[weak self] _  in
-            self?.showCDAlert(title: R.alertMessage.joinMessage, message: "", action: R.alertMessage.ok, alertType: .success)
-            self?.navigationController?.popViewController(animated: true)
+            guard let self = self else { return }
+            self.showCDAlert(title: R.alertMessage.joinMessage, message: "", action: R.alertMessage.ok, alertType: .success)
+            self.navigationController?.popViewController(animated: true)
         }.disposed(by: disposeBag)
     }
     
     @objc private func didTapRightButton() {
-        viewModel.inputs.takePartInPractice()
+        viewModel.inputs.onTapTakePartInButton()
     }
     
     @IBAction private func didTapUserButton(_ sender: Any) {
-        coordinator?.toUserDetail(myData: viewModel.myData!, user: viewModel.user!)
+        coordinator?.toUserDetail(myData: viewModel.myData, user: viewModel.user!)
     }
 }

@@ -6,5 +6,5 @@
 //
 
 protocol ScheduleFlow {
-    func toDetail(_ practice: Practice)
+    func toDetail(_ practice: Practice, myData: User)
 }

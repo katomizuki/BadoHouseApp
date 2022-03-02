@@ -20,7 +20,7 @@ final class ScheduleCoordinator: Coordinator, ScheduleFlow {
         vc.present(navigationController, animated: true, completion: nil)
     }
     
-    func toDetail(_ practice: Practice) {
+    func toDetail(_ practice: Practice, myData: User) {
         navigationController.pushViewController(
             PracticeDetailController.init(
                 viewModel: PracticeDetailViewModel(
@@ -30,6 +30,7 @@ final class ScheduleCoordinator: Coordinator, ScheduleFlow {
                     actionCreator: PracticeActionCreator(
                         userAPI: UserRepositryImpl(),
                         circleAPI: CircleRepositryImpl(),
-                        joinAPI: JoinRepositryImpl()))), animated: true)
+                        joinAPI: JoinRepositryImpl()),
+                    myData: myData)), animated: true)
     }
 }

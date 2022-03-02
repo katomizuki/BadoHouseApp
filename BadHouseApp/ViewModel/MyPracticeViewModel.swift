@@ -22,22 +22,27 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
     var inputs: MyPracticeViewModelInputs { return self }
     var outputs: MyPracticeViewModelOutputs { return self }
     
-    var practices = BehaviorRelay<[Practice]>(value: [])
-    let user: User
+    let practices = BehaviorRelay<[Practice]>(value: [])
+    let myData: User
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let actionCreator: MyPracticeActionCreator
     private let store: Store<AppState>
     
-    init(user: User,
+    init(myData: User,
          store: Store<AppState>,
          actionCreator: MyPracticeActionCreator) {
-        self.user = user
+        self.myData = myData
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.myPracticeState }
@@ -47,11 +52,10 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-
     }
     
     func deletePractice(_ practice: Practice) {
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: user.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: myData.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
         DeleteService.deleteCollectionData(collectionName: R.Collection.Practice, documentId: practice.id)
     }
 }
@@ -73,7 +77,15 @@ extension MyPracticeViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = MyPracticeState
     
     func newState(state: MyPracticeState) {
+        practiceStateSubscribe(state)
+        errorStateSubscribe(state)
+    }
+    
+    func practiceStateSubscribe(_ state: MyPracticeState) {
         practices.accept(state.practices)
+    }
+    
+    func errorStateSubscribe(_ state: MyPracticeState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()

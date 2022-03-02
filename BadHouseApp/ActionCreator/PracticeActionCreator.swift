@@ -39,16 +39,15 @@ struct PracticeActionCreator {
         }
     }
     func takePartInPractice(user: User, myData: User, practice: Practice) {
-
         joinAPI.postPreJoin(user: myData, toUser: user, practice: practice).subscribe {
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeCompletedStatus(true))
         } onError: { _ in
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
-        checkUserDefault(practice: practice)
     }
-    private func checkUserDefault(practice: Practice) {
-        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.preJoin) != nil {
+    
+    func saveUserDefaults(practice: Practice) {
+        if existsPreJoinId() {
             var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
             array.append(practice.id)
             UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.preJoin)
@@ -56,6 +55,11 @@ struct PracticeActionCreator {
             UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: R.UserDefaultsKey.preJoin)
         }
     }
+
+    private func existsPreJoinId() -> Bool {
+        return  UserDefaults.standard.object(forKey: R.UserDefaultsKey.preJoin) != nil
+    }
+    
     
     func toggleErrorStatus() {
         appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeErrorStatus(false))
