@@ -4,14 +4,14 @@ import RxCocoa
 
 final class AddtionalEventLevelController: UIViewController {
     
-    private let disposeBag = DisposeBag()
     @IBOutlet private weak var maxLabel: UILabel!
     @IBOutlet private weak var maxSlider: UISlider!
     @IBOutlet private weak var minLabel: UILabel!
     @IBOutlet private weak var circleTableView: UITableView!
     @IBOutlet private weak var minSlider: UISlider!
+
     private let viewModel: MakeEventSecondViewModel
-    var coordinator: AddtionalEventLevelFlow?
+    private let disposeBag = DisposeBag()
     private lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.buttonTitle.next,
                                      style: .done,
@@ -19,6 +19,8 @@ final class AddtionalEventLevelController: UIViewController {
                                      action: #selector(didTapNextButton))
         return button
     }()
+
+    var coordinator: AddtionalEventLevelFlow?
     
     init(viewModel: MakeEventSecondViewModel) {
         self.viewModel = viewModel
@@ -32,9 +34,21 @@ final class AddtionalEventLevelController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupUI()
+    }
+
+    private func setupUI() {
+        setupTableView()
+        setupSlider()
+        setupNavigationItem()
+    }
+
+    private func setupSlider() {
         minSlider.value = 0.0
         maxSlider.value = 1.0
-        setupTableView()
+    }
+
+    private func setupNavigationItem() {
         navigationItem.title = R.navTitle.two
         navigationItem.rightBarButtonItem = rightButton
     }

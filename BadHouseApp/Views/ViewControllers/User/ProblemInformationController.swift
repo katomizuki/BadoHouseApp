@@ -6,6 +6,10 @@ final class ProblemInformationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationItem()
+    }
+    
+    private func setupNavigationItem() {
         navigationItem.title = R.navTitle.problem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.buttonTitle.report, style: .done, target: self, action: #selector(didTapRightButton))
     }

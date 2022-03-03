@@ -2,10 +2,12 @@ import UIKit
 import RxSwift
 // swiftlint:disable weak_delegate
 final class BlockListController: UIViewController, UIScrollViewDelegate {
+    
+    @IBOutlet private weak var tableView: UITableView!
+    
     private let disposeBag = DisposeBag()
     private let viewModel: BlockListViewModel
     private let dataSourceDelegate = BlockListDataSourceDelegate()
-    @IBOutlet private weak var tableView: UITableView!
     
     init(viewModel: BlockListViewModel) {
         self.viewModel = viewModel
@@ -19,6 +21,10 @@ final class BlockListController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupViewModel()
+    }
+    
+    private func setupViewModel() {
         dataSourceDelegate.initViewModel(viewModel: viewModel)
     }
     

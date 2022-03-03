@@ -9,8 +9,7 @@ protocol PopDismissDelegate: AnyObject {
 
 final class MyPageInfoPopoverController: UIViewController {
     // MARK: Properties
-    weak var delegate: PopDismissDelegate?
-    var keyword: UserInfoSelection = .level
+   
     private let dataSourceDelegate = MyPageInfoDataSourceDelegate()
     private lazy var tableView: UITableView = {
         let tb = UITableView()
@@ -20,10 +19,14 @@ final class MyPageInfoPopoverController: UIViewController {
         tb.register(UITableViewCell.self, forCellReuseIdentifier: R.cellId)
         return tb
     }()
+    
+    weak var delegate: PopDismissDelegate?
+    var keyword: UserInfoSelection = .level
     var (age,
          place,
          badmintonTime,
          gender) = (String(), String(), String(), String())
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

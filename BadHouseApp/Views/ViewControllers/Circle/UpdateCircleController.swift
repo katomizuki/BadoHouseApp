@@ -26,13 +26,16 @@ final class UpdateCircleController: UIViewController {
     @IBOutlet private weak var matchButton: UIButton!
     @IBOutlet private weak var moneyTextField: UITextField!
     @IBOutlet private weak var ageButton: UIButton!
+
     private let viewModel: UpdateCircleViewModel
-    var coordinator: UpdateCircleCoordinator?
-    private var imageSelection: ImageSelection?
     private let imagePicker = UIImagePickerController()
-    private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
     private let disposeBag = DisposeBag()
+    private var imageSelection: ImageSelection?
+    private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
+    
+    var coordinator: UpdateCircleCoordinator?
     weak var delegate: UpdateCircleControllerDelegate?
+    
     
     init(viewModel: UpdateCircleViewModel) {
         self.viewModel = viewModel
@@ -46,10 +49,9 @@ final class UpdateCircleController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavigationBar()
         setupBinding()
-        setupImagePicker()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear.accept(())
@@ -64,7 +66,7 @@ final class UpdateCircleController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapRightButton))
     }
     
-    private func setupUI() {
+    private func setupViewData() {
         nameTextField.text = viewModel.circle.name
         backGroundImage.sd_setImage(with: viewModel.circle.backGroundUrl)
         iconImage.sd_setImage(with: viewModel.circle.iconUrl)
@@ -80,6 +82,12 @@ final class UpdateCircleController: UIViewController {
                 button?.backgroundColor = .lightGray
             }
         }
+    }
+    
+    private func setupUI() {
+        setupViewData()
+        setupImagePicker()
+        setupNavigationBar()
     }
     
     private func setupImagePicker() {

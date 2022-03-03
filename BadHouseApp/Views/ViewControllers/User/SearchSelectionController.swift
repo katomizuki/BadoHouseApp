@@ -7,10 +7,8 @@ protocol SearchSelectionControllerDelegate: AnyObject {
 }
 final class SearchSelectionController: UIViewController {
 
-    private var cellArray = [String]()
-    var keyWord: SearchSelection = .level
-    weak var delegate: SearchSelectionControllerDelegate?
     private let dataSourceDelegate = SearchSelectionDataSourceDelegate()
+    private var cellArray = [String]()
     private lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.delegate = dataSourceDelegate
@@ -23,6 +21,8 @@ final class SearchSelectionController: UIViewController {
          place,
          badmintonTime,
          gender) = (String(), String(), String(), String())
+    var keyWord: SearchSelection = .level
+    weak var delegate: SearchSelectionControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

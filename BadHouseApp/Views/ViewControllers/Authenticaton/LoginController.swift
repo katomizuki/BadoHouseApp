@@ -14,7 +14,7 @@ final class LoginController: UIViewController {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var notRegisterButton: UIButton!
     @IBOutlet private weak var emailTextField: UITextField!
-    var coordinator: LoginFlow?
+
     private var currentNonce: String?
     private let disposeBag = DisposeBag()
     private let viewModel: LoginViewModel
@@ -29,6 +29,8 @@ final class LoginController: UIViewController {
         return button
     }()
     
+    var coordinator: LoginFlow?
+    
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -42,10 +44,12 @@ final class LoginController: UIViewController {
         setupBinding()
         setupGoogleLogin()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
     }
+
     private func setupGoogleLogin() {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
@@ -53,6 +57,7 @@ final class LoginController: UIViewController {
         stackView.addArrangedSubview(appleButton)
         appleButton.anchor(height: 40)
     }
+
     private func setupBinding() {
         
         emailTextField.rx.text
@@ -93,6 +98,7 @@ final class LoginController: UIViewController {
             return String(format: "%02x", $0)}.joined()
         return hashString
     }
+
     private func randomNonceString(length: Int = 32) -> String {
         let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
@@ -118,6 +124,7 @@ final class LoginController: UIViewController {
             }
             return result
     }
+
     @objc private func appleLogin() {
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()

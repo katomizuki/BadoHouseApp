@@ -4,9 +4,9 @@ import RxCocoa
 
 final class PreJoinController: UIViewController, UIScrollViewDelegate {
     
-    private let viewModel: PreJoinViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
+    private let viewModel: PreJoinViewModel
     
     init(viewModel: PreJoinViewModel) {
         self.viewModel = viewModel
@@ -19,9 +19,17 @@ final class PreJoinController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBinding()
+    }
+    
+    private func setupUI() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
         tableView.register(PreJoinCell.nib(), forCellReuseIdentifier: PreJoinCell.id)
         tableView.rowHeight = 60
-        setupBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {

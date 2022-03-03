@@ -24,9 +24,9 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
     }
     @IBOutlet private weak var navItem: UINavigationItem!
     @IBOutlet private weak var navigationBar: UINavigationBar!
+
     private var (placeLatitude, placeLongitude) = (Double(), Double())
     private var (placeName, placeAddress) = (String(), String())
-    var locManager: CLLocationManager!
     private var defaultRegion: MKCoordinateRegion {
         let coordinate = CLLocationCoordinate2D(
             latitude: 35.680,
@@ -38,15 +38,33 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    
+
+    var locManager: CLLocationManager!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.setRegion(defaultRegion, animated: false)
-        searchBar.delegate = self
+        setupUI()
+    }
+    
+    private func setupUI() {
+        setupNavigationItem()
+        setupSearchBar()
+        setupRegionDefault()
+    }
+    
+    private func setupNavigationItem() {
         navItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
                                                     target: self,
                                                     action: #selector(didTapLeftButton))
         navItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapRightButton))
+    }
+    
+    private func setupSearchBar() {
+        searchBar.delegate = self
+    }
+    
+    private func setupRegionDefault() {
+        mapView.setRegion(defaultRegion, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

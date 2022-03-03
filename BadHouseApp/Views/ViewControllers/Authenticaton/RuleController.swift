@@ -4,12 +4,7 @@ protocol RuleControllerDelegate: AnyObject {
     func didTapBackButton(_ vc: RuleController)
 }
 final class RuleController: UIViewController {
-    weak var delegate: RuleControllerDelegate?
-    private lazy var backButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        return button
-    }()
+    
     private let textview: UITextView = {
         let tv = UITextView()
         tv.showsVerticalScrollIndicator = false
@@ -21,9 +16,20 @@ final class RuleController: UIViewController {
         tv.text = R.appRule
         return tv
     }()
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return button
+    }()
+    
+    weak var delegate: RuleControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setupUI() {
         view.backgroundColor = .systemGray5
         view.addSubview(textview)
         textview.anchor(top: view.safeAreaLayoutGuide.topAnchor,

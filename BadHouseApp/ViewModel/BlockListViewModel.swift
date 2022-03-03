@@ -1,6 +1,5 @@
 import RxRelay
 import RxSwift
-import Foundation
 import ReSwift
 
 protocol BlockListViewModelType {
@@ -22,30 +21,33 @@ protocol BlockListViewModelOutputs {
 
 final class BlockListViewModel: BlockListViewModelType {
     
-    var blockListRelay = BehaviorRelay<[User]>(value: [])
-    
-    private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
-    private let errorStream = PublishSubject<Bool>()
-    private let reloadStream = PublishSubject<Void>()
-    
     var inputs: BlockListViewModelInputs { return self }
     var outputs: BlockListViewModelOutputs { return self }
     
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    let blockListRelay = BehaviorRelay<[User]>(value: [])
+
     private let store: Store<AppState>
     private let disposeBag = DisposeBag()
     private let actionCreator: BlockListActionCreator
+    private let errorStream = PublishSubject<Bool>()
+    private let reloadStream = PublishSubject<Void>()
+    private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
 
     init(store: Store<AppState>, actionCreator: BlockListActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
-        
+
+        setupSubscribe()
+        setupData()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.blockListState }
             }
-            self.getBlockUsers()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -53,8 +55,8 @@ final class BlockListViewModel: BlockListViewModelType {
         }).disposed(by: disposeBag)
     }
     
-    func getBlockUsers() {
-        actionCreator.getBlockList(self.blockIds)
+    func setupData() {
+        actionCreator.getBlockList(blockIds)
     }
 }
 
@@ -88,11 +90,19 @@ extension BlockListViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = BlockListState
     
     func newState(state: BlockListState) {
+       reloadStateSubscribe(state)
+       blockListStateSubscribe(state)
+    }
+
+    func blockListStateSubscribe(_ state: BlockListState) {
         blockListRelay.accept(state.users)
-        
+    }
+    
+    func reloadStateSubscribe(_ state: BlockListState) {
         if state.reloadStatus {
             reloadInput.onNext(())
             actionCreator.toggleReloadStatus()
         }
     }
+    
 }

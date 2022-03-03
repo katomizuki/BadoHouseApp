@@ -2,7 +2,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
-
 enum ImageSelection {
     case backGround
     case icon
@@ -11,10 +10,6 @@ enum ImageSelection {
 final class MakeCircleController: UIViewController {
 
     // MARK: - Properties
-    private let disposeBag = DisposeBag()
-    private let viewModel: TeamRegisterViewModel
-    private let imagePicker = UIImagePickerController()
-    var coordinator: MakeCircleFlow?
     @IBOutlet private weak var groupImageView: UIImageView! {
         didSet {
             groupImageView.layer.cornerRadius = 30
@@ -39,7 +34,14 @@ final class MakeCircleController: UIViewController {
     @IBOutlet private weak var dateTextField: UITextField!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var placeNameTextField: UITextField!
+
     private var imageSelection: ImageSelection?
+    private let disposeBag = DisposeBag()
+    private let viewModel: TeamRegisterViewModel
+    private let imagePicker = UIImagePickerController()
+
+    var coordinator: MakeCircleFlow?
+
     init(viewModel: TeamRegisterViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -51,20 +53,29 @@ final class MakeCircleController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        setupImagePicker()
+        setupUI()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBarItem()
     }
+
+    private func setupUI() {
+        setupNavigationBarItem()
+        setupImagePicker()
+    }
+
     private func setupNavigationBarItem() {
         navigationController?.toolbar.tintColor = .systemBlue
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.buttonTitle.inviteFriend, style: .done, target: self, action: #selector(didTapMakeCircleButton))
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
+
     private func setupImagePicker() {
         imagePicker.delegate = self
     }
+
     private func setupBinding() {
         groupImageView.rx.tapGesture()
             .when(.recognized)

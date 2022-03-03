@@ -9,8 +9,6 @@ import SDWebImage
 final class UserPageController: UIViewController {
     
     // MARK: - Properties
-    private let disposeBag = DisposeBag()
-    var coordinator: UserPageFlow?
     @IBOutlet private weak var userInfoTableView: UITableView!
     @IBOutlet private weak var scrollView: UIView!
     @IBOutlet private weak var racketView: UIView! {
@@ -28,9 +26,13 @@ final class UserPageController: UIViewController {
         didSet { userIntroductionTextView.changeCorner(num: 8) }
     }
     @IBOutlet private weak var nameTextField: UITextField!
+
     private let viewModel: UpdateUserInfoViewModel
-    private lazy var dataSourceDelegate = UserPageDataSourceDelegate(viewModel: viewModel)
     private let imagePicker = UIImagePickerController()
+    private let disposeBag = DisposeBag()
+    private lazy var dataSourceDelegate = UserPageDataSourceDelegate(viewModel: viewModel)
+
+    var coordinator: UserPageFlow?
     
     init(viewModel: UpdateUserInfoViewModel) {
         self.viewModel = viewModel
@@ -44,9 +46,14 @@ final class UserPageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupUI()
+    }
+
+    private func setupUI() {
         setupTableView()
         setupNavigationBarItem()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear.accept(())

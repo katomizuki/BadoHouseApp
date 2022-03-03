@@ -15,20 +15,22 @@ final class RegisterController: UIViewController {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var alreadyButton: UIButton!
+    
+    private let disposeBag = DisposeBag()
+    private let viewModel: RegisterViewModel
+    private var currentNonce: String?
+    private lazy var appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
+        return button
+    }()
     private lazy var  googleView: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .wide
         button.addTarget(self, action: #selector(didTapGidButton), for: .touchUpInside)
         return button
     }()
-    private let disposeBag = DisposeBag()
-    private let viewModel: RegisterViewModel
-    private lazy var appleButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton()
-        button.addTarget(self, action: #selector(appleRegister), for: .touchUpInside)
-        return button
-    }()
-    private var currentNonce: String?
+    
     var coordinator: RegisterFlow?
     
     init(viewModel: RegisterViewModel) {
@@ -45,6 +47,7 @@ final class RegisterController: UIViewController {
         setupBinding()
         setupGoogleLogin()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = true
@@ -57,8 +60,8 @@ final class RegisterController: UIViewController {
         stackView.addArrangedSubview(appleButton)
         googleView.anchor(height: 40)
         appleButton.anchor(height: 40)
-       
     }
+
     private func setupBinding() {
         
         nameTextField.rx.text.orEmpty
@@ -107,8 +110,8 @@ final class RegisterController: UIViewController {
             guard let self = self else { return }
             self.coordinator?.toMain()
         }.disposed(by: disposeBag)
-
     }
+
     @objc private func didTapGidButton() {
         GIDSignIn.sharedInstance()?.signIn()
     }
@@ -121,6 +124,7 @@ final class RegisterController: UIViewController {
         }.joined()
         return hashString
     }
+
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: [Character] =
@@ -158,7 +162,6 @@ final class RegisterController: UIViewController {
     }
     // MARK: - SelectorMethod
     @objc private func appleRegister() {
-        print(#function)
         let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()

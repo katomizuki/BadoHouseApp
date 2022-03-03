@@ -4,10 +4,10 @@ import PKHUD
 
 final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     
-    private let viewModel: AdditionalMemberViewModel
     @IBOutlet private weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
     private var selectedCell: [String: Bool] = [String: Bool]()
+    private let viewModel: AdditionalMemberViewModel
     
     init(viewModel: AdditionalMemberViewModel) {
         self.viewModel = viewModel
@@ -20,9 +20,13 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBinding()
+    }
+    
+    private func setupUI() {
         setupNavigationBar()
         setupTableView()
-        setupBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {

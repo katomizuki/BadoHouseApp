@@ -19,7 +19,7 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+        setupUI()
         setupBinding()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -38,11 +38,20 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
                                           action: #selector(didTapRightButton))
         navigationItem.rightBarButtonItem = rightButton
     }
-    private func setupBinding() {
+    
+    private func setupUI() {
+        setupNavigationBar()
+        setupTableView()
+    }
+    
+    private func setupTableView() {
         friendTableView.register(InviteCell.nib(), forCellReuseIdentifier: InviteCell.id)
         friendTableView.rowHeight = 50
         friendTableView.rx.setDelegate(self).disposed(by: disposeBag)
         friendTableView.allowsMultipleSelection = true
+    }
+
+    private func setupBinding() {
         
         viewModel.outputs.friendsList
             .bind(to: friendTableView.rx.items(cellIdentifier: InviteCell.id, cellType: InviteCell.self)) {[weak self] row, item, cell in

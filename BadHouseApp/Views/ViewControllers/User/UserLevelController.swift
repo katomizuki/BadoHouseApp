@@ -14,15 +14,25 @@ final class UserLevelController: UIViewController {
             slider.addTarget(self, action: #selector(changeLevel(sender:)), for: .valueChanged)
         }
     }
-    @IBOutlet private weak var levelLabel: UILabel! 
-    var user: User
+    @IBOutlet private weak var levelLabel: UILabel!
+
     weak var delegate: UserLevelDelegate?
+    var user: User
+   
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSlider(level: user.level)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
+        setupUI()
    }
+    
+    private func setupNavigationItem() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
+    }
+    
+    private func setupUI() {
+        setupSlider(level: user.level)
+        setupNavigationItem()
+    }
     
     init(user: User) {
         self.user = user

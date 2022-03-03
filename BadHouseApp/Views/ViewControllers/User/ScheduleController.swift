@@ -22,10 +22,14 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBinding()
+    }
+    
+    private func setupUI() {
+        setupCalendarView()
         setupTableView()
         setupNavigationBar()
-        setupBinding()
-        setupCalendarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

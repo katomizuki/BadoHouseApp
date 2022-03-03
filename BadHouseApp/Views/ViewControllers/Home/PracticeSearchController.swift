@@ -37,14 +37,22 @@ final class PracticeSearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewModel()
+        setupUI()
+        setupBinding()
+    }
+    
+    private func setupViewModel() {
         dataSourceDelegate.initViewModel(viewModel: viewModel)
+    }
+    
+    private func setupUI() {
         setupTableView()
         setupNavigationBar()
-        setupBinding()
-        navigationItem.title = "\(viewModel.fullPractices.count)件のヒット"
     }
     
     private func setupNavigationBar() {
+        navigationItem.title = "\(viewModel.fullPractices.count)件のヒット"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
         navigationItem.rightBarButtonItems = [UIBarButtonItem(
             barButtonSystemItem: .search,

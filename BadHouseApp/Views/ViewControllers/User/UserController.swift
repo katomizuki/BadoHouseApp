@@ -31,24 +31,31 @@ final class UserController: UIViewController {
         }
     }
     @IBOutlet private weak var friendCountLabel: UILabel!
+
     private let disposeBag = DisposeBag()
     private let viewModel: UserViewModel
     private lazy var dataSourceDelegate = UserDataSourceDelegate(viewModel: viewModel)
+
     var coordinator: UserFlow?
     
     init(viewModel: UserViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+
     required init?(coder: NSCoder) {
         fatalError()
     }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBinding()
+    }
+    
+    private func setupUI() {
         setupTableView()
         setupNavigationItem()
-        setupBinding()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

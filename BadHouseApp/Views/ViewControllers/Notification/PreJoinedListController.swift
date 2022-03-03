@@ -3,9 +3,9 @@ import RxSwift
 
 final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
     
-    private let disposeBag = DisposeBag()
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel: PreJoinedViewModel
+    private let disposeBag = DisposeBag()
     
     init(viewModel: PreJoinedViewModel) {
         self.viewModel = viewModel
@@ -19,6 +19,14 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
         tableView.register(PreJoinedCell.nib(), forCellReuseIdentifier: PreJoinedCell.id)
         tableView.rowHeight = 60
     }

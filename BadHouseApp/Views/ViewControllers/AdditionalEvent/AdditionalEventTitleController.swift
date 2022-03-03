@@ -18,26 +18,40 @@ final class AdditionalEventTitleController: UIViewController {
     }
     @IBOutlet private weak var noImageView: UIImageView!
     @IBOutlet private weak var notTitleLabel: UILabel!
+
     private let disposeBag = DisposeBag()
+    private let pickerView = UIImagePickerController()
+    private let viewModel = MakeEventFirstViewModel()
     private var selectedTeam: Circle?
     private var eventTitle = String()
     private var kindCircle = BadmintonCircle(rawValue: 0)?.name
     private var team: Circle?
-    private let pickerView = UIImagePickerController()
-    private let viewModel = MakeEventFirstViewModel()
-    var coordinator: AdditionalEventTitleFlow?
     private lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.buttonTitle.next, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     
+    var coordinator: AdditionalEventTitleFlow?
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
-        pickerView.delegate = self
+        setupUI()
+    }
+    
+    private func setupUI() {
+        setupNavigationItem()
+        setupPickerView()
+    }
+    
+    private func setupNavigationItem() {
         navigationItem.rightBarButtonItem = rightButton
         navigationItem.title = R.navTitle.one
+    }
+    
+    private func setupPickerView() {
+        pickerView.delegate = self
     }
 
     private func setupBinding() {

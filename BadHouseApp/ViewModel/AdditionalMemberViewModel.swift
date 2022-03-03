@@ -23,17 +23,18 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     
     var inputs: AdditionalMemberViewModelInputs { return self }
     var outputs: AdditionalMemberViewModelOutputs { return self }
-    
-    lazy var inviteIds = circle.member
+
     var friendsSubject = BehaviorRelay<[User]>(value: [])
+    lazy var inviteIds = circle.member
     
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let user: User
     private let circle: Circle
     private let disposeBag = DisposeBag()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: AdditionalMemberActionCreator
     
@@ -46,6 +47,11 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+        setupData()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.additionalMember }
@@ -55,12 +61,15 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-        self.getFriends()
+    }
+    
+    // 取ってくるデータが増えてもいいようにこのように書く
+    func setupData() {
+        getFriends()
     }
     
     func getFriends() {
-        actionCreator.getFriends(uid: user.uid, members: self.circle.members)
+        actionCreator.getFriends(uid: user.uid, members: circle.members)
     }
     
     func inviteAction(user: User?) {
@@ -72,7 +81,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
         }
     }
     
-    func judgeInvite(id: String) -> Bool {
+    private func judgeInvite(id: String) -> Bool {
         return inviteIds.contains(id)
     }
     
@@ -106,17 +115,26 @@ extension AdditionalMemberViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = AdditionalMemberState
     
     func newState(state: AdditionalMemberState) {
-        friendsSubject.accept(state.members)
-
-        if state.completedStatus {
-            completedInput.onNext(())
-            actionCreator.toggleCompletedStatus()
-        }
-
+        completionState(state)
+        friendsStateSubscribe(state)
+        errorStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: AdditionalMemberState) {
         if state.errorStatus {
             errorInput.onNext(state.errorStatus)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func completionState(_ state: AdditionalMemberState) {
+        if state.completedStatus {
+            completedInput.onNext(())
+            actionCreator.toggleCompletedStatus()
+        }
+    }
+    
+    func friendsStateSubscribe(_ state: AdditionalMemberState) {
+        friendsSubject.accept(state.members)
     }
 }

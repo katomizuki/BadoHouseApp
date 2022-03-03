@@ -27,9 +27,17 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        navigationItem.backButtonDisplayMode = .minimal
+        setupUI()
         setupBinding()
+    }
+    
+    private func setupUI() {
+        setupTableView()
+        setupNavigationItem()
+    }
+    
+    private func setupNavigationItem() {
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     override func viewWillAppear(_ animated: Bool) {

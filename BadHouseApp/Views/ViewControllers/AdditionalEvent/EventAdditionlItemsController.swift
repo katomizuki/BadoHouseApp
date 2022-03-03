@@ -12,14 +12,16 @@ final class EventAdditionlItemsController: UIViewController {
         }
     }
     @IBOutlet private weak var makeEventButton: UIButton!
+
     private lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.buttonTitle.post, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
     private let disposeBag = DisposeBag()
-    var coordinator: EventAdditionlItemsFlow?
     private let viewModel: EventAdditionalItemViewModel
-    
+
+    var coordinator: EventAdditionlItemsFlow?
+
     init(viewModel: EventAdditionalItemViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -32,6 +34,10 @@ final class EventAdditionlItemsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupNavigationItem()
+    }
+    
+    private func setupNavigationItem() {
         navigationItem.title = R.navTitle.four
         navigationItem.rightBarButtonItem = rightButton
     }

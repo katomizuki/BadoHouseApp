@@ -4,9 +4,11 @@ import RxSwift
 final class FriendsListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var friendListTableView: UITableView!
-    var coordinator: FriendListFlow?
+    
     private let viewModel: FriendsListViewModel
     private let disposeBag = DisposeBag()
+    
+    var coordinator: FriendListFlow?
     
     init(viewModel: FriendsListViewModel) {
         self.viewModel = viewModel
@@ -20,6 +22,10 @@ final class FriendsListController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
         navigationItem.backButtonDisplayMode = .minimal
     }
     

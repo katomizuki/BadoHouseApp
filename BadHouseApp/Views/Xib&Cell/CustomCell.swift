@@ -9,6 +9,7 @@ protocol CalendarEventDelegate: AnyObject {
 final class CustomCell: UITableViewCell {
     // MARK: - Properties
     static let id = String(describing: self)
+    
     @IBOutlet weak var cellImagevView: UIImageView! {
         didSet {
             self.cellImagevView.layer.cornerRadius = 25
@@ -27,6 +28,7 @@ final class CustomCell: UITableViewCell {
         }
     }
     @IBOutlet weak var timeLabel: UILabel!
+
     weak var trashDelegate: CalendarEventDelegate?
    
     private let formatter: DateFormatter = {

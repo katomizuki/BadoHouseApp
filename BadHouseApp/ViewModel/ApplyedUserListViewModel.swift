@@ -29,10 +29,10 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     var inputs: ApplyedUserListViewModelInputs { return self }
     var outputs: ApplyedUserListViewModelOutputs { return self }
     
-    var applyedRelay = BehaviorRelay<[Applyed]>(value: [])
-    var navigationTitle = PublishSubject<String>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let applyedRelay = BehaviorRelay<[Applyed]>(value: [])
+    let navigationTitle = PublishSubject<String>()
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     
     private let user: User
     private let disposeBag = DisposeBag()
@@ -47,33 +47,45 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
         self.actionCreator = actionCreator
         self.store = store
         
+        setupSubscribe()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.applyedUserListState }
             }
-            self.getApplyedUserList()
+            self.setupData()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
     }
+    
+    func setupData() {
+        getApplyedUserList()
+    }
+    
+    func getApplyedUserList() {
+        self.actionCreator.getApplyedUserList(self.user)
+    }
+    
+
 }
 
 extension ApplyedUserListViewModel: ApplyedUserListViewModelInputs {
+
     var errorInput: AnyObserver<Bool> {
         errorStream.asObserver()
     }
+
     var completedFriendInput: AnyObserver<String> {
         completedStream.asObserver()
     }
     
     var reloadInput: AnyObserver<Void> {
         reloadStream.asObserver()
-    }
-    
-    func getApplyedUserList() {
-        self.actionCreator.getApplyedUserList(self.user)
     }
     
     func makeFriends(_ applyed: Applyed) {
@@ -105,20 +117,36 @@ extension ApplyedUserListViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = ApplyedUserListState
     
     func newState(state: ApplyedUserListState) {
-        
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+        applyedStateSubscribe(state)
+        navigationTitleStateSubscribe(state)
+        friendsNameStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: ApplyedUserListState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func reloadStateSubscribe(_ state: ApplyedUserListState) {
         if state.reloadStatus {
             reloadInput.onNext(())
             actionCreator.toggleReloadStatus()
         }
-        
+    }
+    
+    func applyedStateSubscribe(_ state: ApplyedUserListState) {
         applyedRelay.accept(state.applied)
+    }
+    
+    func navigationTitleStateSubscribe(_ state: ApplyedUserListState) {
         navigationTitle.onNext(state.navigationTitle)
-        
+    }
+    
+    func friendsNameStateSubscribe(_ state: ApplyedUserListState) {
         if state.friendName != String() {
             completedFriendInput.onNext(state.friendName)
         }

@@ -49,7 +49,6 @@ final class CircleDetailController: UIViewController {
             barChartView.legend.enabled = false
         }
     }
-    private let disposeBag = DisposeBag()
     @IBOutlet private weak var teamMemberTableView: UITableView!
     @IBOutlet private weak var singleButton: UIButton!
     @IBOutlet private weak var doubleButton: UIButton!
@@ -59,15 +58,19 @@ final class CircleDetailController: UIViewController {
     @IBOutlet private weak var weekEndButton: UIButton!
     @IBOutlet private weak var matchButton: UIButton!
     @IBOutlet private weak var practiceButton: UIButton!
-    private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
-    @IBOutlet weak var ageButton: UIButton!
+    @IBOutlet private weak var ageButton: UIButton!
+
     private let viewModel: CircleDetailViewModel
-    var coordinator: CircleDetailFlow?
+    private let disposeBag = DisposeBag()
+
+    private lazy var buttons = [singleButton, doubleButton, mixButton, weekDayButton, weekEndButton, practiceButton, matchButton, genderButton, ageButton]
     private lazy var rightButton = UIBarButtonItem(barButtonSystemItem: .add,
                                       target: self,
                                       action: #selector(didTapRightButton))
     private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
-    
+
+    var coordinator: CircleDetailFlow?
+
     init(viewModel: CircleDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -79,10 +82,15 @@ final class CircleDetailController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setupUI()
         setupBinding()
-        navigationItem.backButtonDisplayMode = .minimal
-        navigationItem.rightBarButtonItems = [updateButton, rightButton]
+       
+    }
+    
+    private func setupUI() {
+        setupNavigationItem()
+        setupTableView()
+        setupViewData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,8 +106,13 @@ final class CircleDetailController: UIViewController {
     private func setupTableView() {
         teamMemberTableView.register(MemberCell.nib(), forCellReuseIdentifier: MemberCell.id)
     }
+
+    private func setupNavigationItem() {
+        navigationItem.backButtonDisplayMode = .minimal
+        navigationItem.rightBarButtonItems = [updateButton, rightButton]
+    }
     
-    private func setupBinding() {
+    private func setupViewData() {
         backGroundImageView.sd_setImage(with: viewModel.circle.backGroundUrl)
         iconImageView.sd_setImage(with: viewModel.circle.iconUrl)
         nameLabel.text = viewModel.circle.name
@@ -107,13 +120,17 @@ final class CircleDetailController: UIViewController {
         priceLabel.text = viewModel.circle.price
         dateLabel.text = viewModel.circle.time
         textView.text = viewModel.circle.additionlText
+    }
+    
+    private func setupBinding() {
         
         viewModel.outputs.reload.observe(on: MainScheduler.instance)
             .subscribe { [weak self] _ in
-                self?.teamMemberTableView.reloadData()
-                self?.setupPieChart()
-                self?.setupGraph()
-                self?.setupButtonUI()
+                guard let self = self else { return }
+                self.teamMemberTableView.reloadData()
+                self.setupPieChart()
+                self.setupGraph()
+                self.setupButtonUI()
             }.disposed(by: disposeBag)
         
         viewModel.outputs.memberRelay
@@ -134,10 +151,13 @@ final class CircleDetailController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.isRightButtonHidden.subscribe(onNext: { [weak self] isHidden in
-            if isHidden == true { self?.navigationItem.rightBarButtonItems = nil }
+        viewModel.isRightButtonHidden
+            .subscribe(onNext: { [weak self] isHidden in
+                guard let self = self else { return }
+            if isHidden == true {
+                self.navigationItem.rightBarButtonItems = nil
+            }
         }).disposed(by: disposeBag)
-         
     }
     
     private func setupButtonUI() {
@@ -151,7 +171,8 @@ final class CircleDetailController: UIViewController {
         }
     }
     
-    @IBAction func changeSegment(_ sender: UISegmentedControl) {
+    
+    @IBAction private func changeSegment(_ sender: UISegmentedControl) {
         viewModel.inputs.changeMember(sender.selectedSegmentIndex)
     }
     

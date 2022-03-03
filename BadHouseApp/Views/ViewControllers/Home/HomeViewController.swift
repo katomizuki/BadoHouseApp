@@ -8,20 +8,22 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Properties
     @IBOutlet private weak var collectionView: UICollectionView!
+
     private let indicatorView: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         return indicator
     }()
+    private let disposeBag = DisposeBag()
+    private let viewModel: HomeViewModel
+    private var locationManager: CLLocationManager!
+    private var (myLatitude, myLongitude) = (Double(), Double())
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
         return refreshControl
     }()
-    private var locationManager: CLLocationManager!
-    private var (myLatitude, myLongitude) = (Double(), Double())
-    private let disposeBag = DisposeBag()
-    private let viewModel: HomeViewModel
+    
     var coordinator: HomeFlow?
     
     init(viewModel: HomeViewModel) {
@@ -37,12 +39,10 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.inputs.didLoadInput.onNext(())
-        setupLocationManager()
-        setupCollectionView()
         setupBinding()
-        setupNavBarButton()
         setupUI()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,8 +55,19 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupUI() {
+        setupIndicatorView()
+        setupRefreshControl()
+        setupNavBarButton()
+        setupLocationManager()
+        setupCollectionView()
+    }
+    
+    private func setupIndicatorView() {
         indicatorView.center = self.view.center
         view.addSubview(indicatorView)
+    }
+    
+    private func setupRefreshControl() {
         collectionView.refreshControl = refreshControl
     }
     

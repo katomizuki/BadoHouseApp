@@ -59,6 +59,11 @@ final class UserViewModel: UserViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+        setupData()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.userState }
@@ -68,13 +73,12 @@ final class UserViewModel: UserViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-        getUser()
     }
     
-    func getUser() {
+    private func setupData() {
         if let uid = AuthRepositryImpl.getUid() {
-            self.actionCreator.getUser(uid: uid)
+            actionCreator.getUser(uid: uid)
+            actionCreator.saveFriendId(uid: uid)
         } else {
             self.notAuthInput.onNext(())
         }

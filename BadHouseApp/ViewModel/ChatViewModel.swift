@@ -26,17 +26,19 @@ final class ChatViewModel: ChatViewModelType {
     var inputs: ChatViewModelInputs { return self }
     var outputs: ChatViewModelOutputs { return self }
     
+    var chatId: String?
+    
     let myData: User
     let user: User
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    let chatsList = BehaviorRelay<[Chat]>(value: [])
+    
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let store: Store<AppState>
     private let actionCreator: ChatActionCreator
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
-    var chatsList = BehaviorRelay<[Chat]>(value: [])
-    var chatId: String?
     
     init(myData: User,
          user: User,
@@ -47,6 +49,14 @@ final class ChatViewModel: ChatViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+    }
+    
+    func didLoad() {
+        actionCreator.didLoad(user: user, myData: myData)
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.chatState }
@@ -56,11 +66,6 @@ final class ChatViewModel: ChatViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-    }
-    
-    func didLoad() {
-        actionCreator.didLoad(user: user, myData: myData)
     }
     
     func sendText(_ text: String) {
@@ -94,17 +99,31 @@ extension ChatViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = ChatState
     
     func newState(state: ChatState) {
-        chatsList.accept(state.chatsList)
+        chatListSubscribe(state)
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+        chatIdSubscribe(state)
+    }
+    
+    func reloadStateSubscribe(_ state: ChatState) {
         if state.reloadStatus {
             reloadInput.onNext(())
             actionCreator.toggleReloadStatus()
         }
-        
+    }
+    
+    func errorStateSubscribe(_ state: ChatState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func chatListSubscribe(_ state: ChatState) {
+        chatsList.accept(state.chatsList)
+    }
+    
+    func chatIdSubscribe(_ state: ChatState) {
         if let chatId = state.chatId {
             self.chatId = chatId
         }

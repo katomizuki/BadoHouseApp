@@ -25,14 +25,16 @@ final class AdditionalEventElementController: UIViewController {
     @IBOutlet private weak var placeNameLabel: UILabel!
     @IBOutlet private weak var addressNameLabel: UILabel!
     @IBOutlet private weak var placeButton: UIButton!
+
     private let moneyPicker = UIPickerView()
     private let disposeBag = DisposeBag()
-    var coordinator: AddtionalPracticeElementFlow?
     private let viewModel: MakeEventThirdViewModel
     private lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.buttonTitle.next, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
+
+    var coordinator: AddtionalPracticeElementFlow?
     
     init(viewModel: MakeEventThirdViewModel) {
         self.viewModel = viewModel
@@ -46,7 +48,15 @@ final class AdditionalEventElementController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        setupNavigationItem()
         setPicker(pickerView: moneyPicker, textField: moneyTextField)
+    }
+    
+    private func setupNavigationItem() {
         navigationItem.title = R.navTitle.three
         navigationItem.rightBarButtonItem = rightButton
     }

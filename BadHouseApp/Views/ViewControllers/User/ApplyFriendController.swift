@@ -5,6 +5,7 @@ import SDWebImage
 final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
+
     private let viewModel: ApplyFriendsViewModel
     private let disposeBag = DisposeBag()
     
@@ -20,6 +21,10 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinding()
+        setupNavigationItem()
+    }
+    
+    private func setupNavigationItem() {
         navigationItem.title = R.navTitle.friends
     }
     

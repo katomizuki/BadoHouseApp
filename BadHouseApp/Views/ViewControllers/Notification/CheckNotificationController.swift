@@ -6,9 +6,10 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     @IBOutlet private weak var notificationCollectionView: UICollectionView! {
         didSet { notificationCollectionView.backgroundColor = .white }
     }
-    var coordinator: CheckNotificationFlow?
     private let viewModel: NotificationViewModel
     private let disposeBag = DisposeBag()
+    
+    var coordinator: CheckNotificationFlow?
     
     init(viewModel: NotificationViewModel) {
         self.viewModel = viewModel
@@ -21,11 +22,14 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBinding()
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = .white
         setupCollectionView()
         setupNavigationBar()
-        setupBinding()
-        navigationItem.backButtonDisplayMode = .minimal
-        view.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +86,7 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     }
     
     private func setupNavigationBar() {
+        navigationItem.backButtonDisplayMode = .minimal
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: R.image.shuttle.name)?.withRenderingMode(.alwaysOriginal),
                                                             style: .done,
                                                             target: self,

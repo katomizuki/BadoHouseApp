@@ -5,7 +5,6 @@ import RxCocoa
 
  final class MainUserDetailController: UIViewController {
     // MARK: - Properties
-     private let viewModel: UserDetailViewModel
      @IBOutlet private weak var ageLabel: UILabel!
      @IBOutlet private weak var genderLabel: UILabel!
      @IBOutlet private weak var talkButton: UIButton! {
@@ -43,8 +42,11 @@ import RxCocoa
      }
      @IBOutlet private weak var circleCollectionView: UICollectionView!
      @IBOutlet private weak var nameLabel: UILabel!
-     var coordinator: MainUserDetailFlow?
+    
      private let disposeBag = DisposeBag()
+     private let viewModel: UserDetailViewModel
+     
+     var coordinator: MainUserDetailFlow?
      
      init(viewModel: UserDetailViewModel) {
          self.viewModel = viewModel
@@ -57,17 +59,15 @@ import RxCocoa
      // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-      setupCollectionView()
-      setupNavigationBar()
       setupUI()
       setupBinding()
     }
      
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.backButtonDisplayMode = .minimal
         viewModel.willAppear.accept(())
     }
+     
 
      override func viewWillDisappear(_ animated: Bool) {
          super.viewWillDisappear(animated)
@@ -81,9 +81,10 @@ import RxCocoa
      private func setupNavigationBar() {
          let rightBarButton = UIBarButtonItem(title: "...", style: .done, target: self, action: #selector(didTapExpandedMenu))
          navigationItem.rightBarButtonItem = rightBarButton
+         navigationItem.backButtonDisplayMode = .minimal
      }
      
-     private func setupUI() {
+     private func setupViewData() {
          ageLabel.text = viewModel.user.age
          genderLabel.text = viewModel.user.gender
          levelLabel.text = viewModel.user.level
@@ -96,6 +97,12 @@ import RxCocoa
          applyFriendButton.isHidden = viewModel.isApplyButtonHidden
          talkButton.isHidden = viewModel.isTalkButtonHidden
          userImageView.sd_setImage(with: viewModel.user.profileImageUrl)
+     }
+     
+     private func setupUI() {
+         setupCollectionView()
+         setupNavigationBar()
+         setupViewData()
      }
      
      private func setupBinding() {

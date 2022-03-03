@@ -28,7 +28,9 @@ struct UserActionCreator {
         }, onFailure: { _ in
             appStore.dispatch(UserState.UserAction.changeErrorStatus(true))
         }).disposed(by: disposeBag)
-        
+    }
+    
+    func saveFriendId(uid: String) {
         UserRepositryImpl.saveFriendId(uid: uid)
     }
     

@@ -4,19 +4,23 @@ import RxSwift
 
 final class CircleSearchController: UIViewController {
     // MARK: - properties
-    private let viewModel: SearchCircleViewModel
-    private let disposeBag = DisposeBag()
-    var coordinator: CircleSearchFlow?
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.placeholder = R.placeholder.basic
         }
     }
     @IBOutlet private weak var tableView: UITableView!
+
+    private let viewModel: SearchCircleViewModel
+    private let disposeBag = DisposeBag()
+
+    var coordinator: CircleSearchFlow?
+
     init(viewModel: SearchCircleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+
     required init?(coder: NSCoder) {
         fatalError()
     }

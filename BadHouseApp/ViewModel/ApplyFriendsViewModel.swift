@@ -1,5 +1,4 @@
 import RxSwift
-import FirebaseAuth
 import RxRelay
 import ReSwift
 
@@ -21,16 +20,18 @@ protocol ApplyFriendsViewModelOutputs {
 }
 
 final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
+
     var inputs: ApplyFriendsViewModelInputs { return self }
     var outputs: ApplyFriendsViewModelOutputs { return self }
     
-    var applyRelay = BehaviorRelay<[Apply]>(value: [])
+    let applyRelay = BehaviorRelay<[Apply]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+
     private let user: User
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: ApplyFriendsActionCreator
     
@@ -39,16 +40,24 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+        setupData()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.applyFriendsState }
             }
+            
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
+    }
+    
+    func setupData() {
         actionCreator.getApplyData(user)
     }
     
@@ -82,17 +91,26 @@ extension ApplyFriendsViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = ApplyFriendsState
     
     func newState(state: ApplyFriendsState) {
-        applyRelay.accept(state.applies)
-
-        if state.reloadStatus {
-            reloadInput.onNext(())
-            actionCreator.toggleReloadStatus()
-        }
-
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+        applyStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: ApplyFriendsState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func reloadStateSubscribe(_ state: ApplyFriendsState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
+        }
+    }
+    
+    func applyStateSubscribe(_ state: ApplyFriendsState) {
+        applyRelay.accept(state.applies)
     }
 }

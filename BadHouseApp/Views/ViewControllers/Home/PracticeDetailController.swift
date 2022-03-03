@@ -29,6 +29,9 @@ final class PracticeDetailController: UIViewController {
     @IBOutlet private weak var gatherLabel: UILabel!
     @IBOutlet private weak var levelLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
+    
+    private let viewModel: PracticeDetailViewModel
+    private let disposeBag = DisposeBag()
     private var defaultRegion: MKCoordinateRegion {
         let x =  viewModel.practice.latitude
         let y = viewModel.practice.longitude
@@ -42,10 +45,10 @@ final class PracticeDetailController: UIViewController {
         )
         return MKCoordinateRegion(center: coordinate, span: span)
     }
-    var coordinator: PracticeDetailFlow?
-    private let viewModel: PracticeDetailViewModel
     private lazy var rightButton = UIBarButtonItem(title: R.buttonTitle.takePartIn, style: .done, target: self, action: #selector(didTapRightButton))
-    private let disposeBag = DisposeBag()
+   
+    
+    var coordinator: PracticeDetailFlow?
     
     init(viewModel: PracticeDetailViewModel) {
         self.viewModel = viewModel
@@ -61,7 +64,6 @@ final class PracticeDetailController: UIViewController {
         super.viewDidLoad()
         setupBinding()
         setupUI()
-        setupMapView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +92,11 @@ final class PracticeDetailController: UIViewController {
     }
     
     func setupUI() {
+        setupMapView()
+        setupViewData()
+    }
+    
+    private func setupViewData() {
         priceLabel.text = viewModel.practice.price
         practiceImageView.sd_setImage(with: viewModel.practice.mainUrl)
         textView.text = viewModel.practice.explain

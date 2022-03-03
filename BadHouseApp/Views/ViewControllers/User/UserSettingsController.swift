@@ -2,12 +2,14 @@ import UIKit
 import FirebaseAuth
 
 final class UserSettingsController: UIViewController {
-    var user: User
+    
     @IBOutlet private weak var settingsTableView: UITableView! {
         didSet {
             settingsTableView.changeCorner(num: 8)
         }
     }
+    
+    let user: User
     
     init(user: User) {
         self.user = user
@@ -20,6 +22,10 @@ final class UserSettingsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setupUI() {
         setupTableView()
         setupNavigationBar()
     }

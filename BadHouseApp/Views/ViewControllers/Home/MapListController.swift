@@ -5,8 +5,10 @@ import CoreLocation
 final class MapListController: UIViewController {
     
     @IBOutlet private weak var mapView: MKMapView!
-    var coordinator: MapListFlow?
+
     private let viewModel: MapListViewModel
+
+    var coordinator: MapListFlow?
     
     init(viewModel: MapListViewModel) {
         self.viewModel = viewModel

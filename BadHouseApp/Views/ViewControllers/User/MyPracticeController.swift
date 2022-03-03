@@ -5,8 +5,10 @@ import RxCocoa
 final class MyPracticeController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
+
     private let viewModel: MyPracticeViewModel
     private let disposeBag = DisposeBag()
+
     var coordinator: MyPracticeFlow?
     
     init(viewModel: MyPracticeViewModel) {

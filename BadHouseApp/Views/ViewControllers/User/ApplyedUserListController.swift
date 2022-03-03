@@ -4,6 +4,7 @@ import RxSwift
 final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
+
     private let viewModel: ApplyedUserListViewModel
     private let disposeBag = DisposeBag()
     
@@ -22,10 +23,14 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
         setupBinding()
     }
     
+    private func setupNavigationItem() {
+        navigationItem.backButtonDisplayMode = .minimal
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear.accept(())
-        navigationItem.backButtonDisplayMode = .minimal
+        setupNavigationItem()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

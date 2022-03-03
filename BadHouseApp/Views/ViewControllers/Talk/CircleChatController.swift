@@ -4,6 +4,8 @@ import RxSwift
 final class CircleChatController: UIViewController, UIScrollViewDelegate {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
+    private let viewModel: ChatViewModel
+    private let disposeBag = DisposeBag()
     private lazy var customInputView: CustomInputAccessoryView = {
         let ci = CustomInputAccessoryView(frame: CGRect(x: 0,
                                                         y: 0,
@@ -12,10 +14,9 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
         ci.delegate = self
         return ci
     }()
+
     var coordinator: ChatCoordinator?
-    private let viewModel: ChatViewModel
-    private let disposeBag = DisposeBag()
-    
+
     override var inputAccessoryView: UIView? {
         return customInputView
     }
