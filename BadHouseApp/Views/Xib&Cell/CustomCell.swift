@@ -10,26 +10,24 @@ final class CustomCell: UITableViewCell {
     // MARK: - Properties
     static let id = String(describing: self)
     
-    @IBOutlet weak var cellImagevView: UIImageView! {
+    @IBOutlet private weak var cellImagevView: UIImageView! {
         didSet {
             self.cellImagevView.layer.cornerRadius = 25
             self.cellImagevView.layer.masksToBounds = true
             self.cellImagevView.contentMode = .scaleAspectFill
         }
     }
-    @IBOutlet weak var label: UILabel! {
+    @IBOutlet private weak var label: UILabel! {
         didSet {
             label.font = UIFont.boldSystemFont(ofSize: 16)
         }
     }
-    @IBOutlet weak var commentLabel: UILabel! {
+    @IBOutlet private weak var commentLabel: UILabel! {
         didSet {
             commentLabel.font = .boldSystemFont(ofSize: 12)
         }
     }
-    @IBOutlet weak var timeLabel: UILabel!
-
-    weak var trashDelegate: CalendarEventDelegate?
+    @IBOutlet private weak var timeLabel: UILabel!
    
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -38,16 +36,26 @@ final class CustomCell: UITableViewCell {
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter
     }()
-    let trashButton: UIButton = {
+    
+    private let trashButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: R.SFSymbols.trash), for: UIControl.State.normal)
         return button
     }()
+    
+    weak var trashDelegate: CalendarEventDelegate?
     // MARK: - LifeCycle
     override  func awakeFromNib() {
         super.awakeFromNib()
-        accessoryType = .disclosureIndicator
-        self.selectionStyle = .none
+        setupUI()
+    }
+    
+    private func setupUI() {
+        setupCellStyle()
+        setupTrashButton()
+    }
+    
+    private func setupTrashButton() {
         addSubview(trashButton)
         trashButton.isHidden = true
         trashButton.anchor(bottom: bottomAnchor,
@@ -57,6 +65,11 @@ final class CustomCell: UITableViewCell {
                            width: 30,
                            height: 30)
         trashButton.addTarget(self, action: #selector(handleTrash), for: .touchUpInside)
+    }
+    
+    private func setupCellStyle() {
+        accessoryType = .disclosureIndicator
+        self.selectionStyle = .none
     }
     // MARK: - nibMethod
     static func nib() -> UINib {

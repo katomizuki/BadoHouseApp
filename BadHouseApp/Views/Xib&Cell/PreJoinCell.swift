@@ -6,7 +6,8 @@ protocol PreJoinCellDelegate: AnyObject {
 }
 final class PreJoinCell: UITableViewCell {
     
-    weak var delegate: PreJoinCellDelegate?
+    static let id = String(describing: self)
+    
     @IBOutlet private weak var circleImageView: UIImageView! {
         didSet {
             circleImageView.layer.cornerRadius = 25
@@ -14,8 +15,9 @@ final class PreJoinCell: UITableViewCell {
         }
     }
     @IBOutlet private weak var label: UILabel!
-    static let id = String(describing: self)
+   
     var preJoin: PreJoin?
+    weak var delegate: PreJoinCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,10 +37,8 @@ final class PreJoinCell: UITableViewCell {
         label.text = "「\(prejoin.practiceName)」に参加申請中です"
     }
     
-    @IBAction func didTapTrashButton(_ sender: Any) {
-        guard let preJoin = preJoin else {
-            return
-        }
+    @IBAction private func didTapTrashButton(_ sender: Any) {
+        guard let preJoin = preJoin else { return }
         self.delegate?.preJoinCell(self, preJoin: preJoin)
     }
 }

@@ -3,22 +3,7 @@ import SDWebImage
 final class ChatCell: UITableViewCell {
     // MARK: - Properties
     static let id: String = String(describing: self)
-    var message: String? {
-        didSet {
-            guard let message: String = message else { return }
-            let width: CGFloat = CGFloat(estimateFrameSize(text: message).width) + CGFloat(15)
-            messageConstraint.constant = width
-            mytextView.text = message
-        }
-    }
-    var yourMessaege: String? {
-        didSet {
-            guard let message: String = yourMessaege else { return }
-            let width = estimateFrameSize(text: message).width + 15
-            widthConstraint.constant = width
-            textView.text = message
-        }
-    }
+
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet { userImageView.changeCorner(num: 30) }
     }
@@ -39,6 +24,7 @@ final class ChatCell: UITableViewCell {
     @IBOutlet private weak var messageConstraint: NSLayoutConstraint!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
+
     private let formatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .short
@@ -46,9 +32,34 @@ final class ChatCell: UITableViewCell {
         formatter.locale = Locale(identifier: "ja-JP")
         return formatter
     }()
+    
+    var message: String? {
+        didSet {
+            guard let message: String = message else { return }
+            let width: CGFloat = CGFloat(estimateFrameSize(text: message).width) + CGFloat(15)
+            messageConstraint.constant = width
+            mytextView.text = message
+        }
+    }
+    var yourMessaege: String? {
+        didSet {
+            guard let message: String = yourMessaege else { return }
+            let width = estimateFrameSize(text: message).width + 15
+            widthConstraint.constant = width
+            textView.text = message
+        }
+    }
     // MARK: - LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        setupCellStyle()
+    }
+    
+    private func setupCellStyle() {
         backgroundColor = .clear
         selectionStyle = .none
         isHighlighted = false

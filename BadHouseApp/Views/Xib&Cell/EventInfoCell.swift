@@ -5,6 +5,8 @@ protocol EventInfoCellDelegate: AnyObject {
 }
 
 final class EventInfoCell: UICollectionViewCell {
+    
+    static let id = String(describing: self)
     // MARK: - Properties
     @IBOutlet weak var teamLabel: UILabel! {
         didSet {
@@ -32,11 +34,10 @@ final class EventInfoCell: UICollectionViewCell {
             userImageView.layer.masksToBounds = true
         }
     }
-    weak var delegate: EventInfoCellDelegate?
     var practice: Practice?
-    // MARK: - LifeCycle
-    static let id = String(describing: self)
+    weak var delegate: EventInfoCellDelegate?
     
+    // MARK: - LifeCycle
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
@@ -56,9 +57,7 @@ final class EventInfoCell: UICollectionViewCell {
     }
     
     @IBAction private func didTapAlertButton(_ sender: Any) {
-        guard let practice = practice else {
-            return
-        }
+        guard let practice = practice else { return }
         self.delegate?.didTapBlockButton(self, practice: practice)
     }
     

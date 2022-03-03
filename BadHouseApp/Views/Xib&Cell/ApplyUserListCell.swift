@@ -6,15 +6,19 @@ protocol ApplyUserListCellDelegate: AnyObject {
 }
 
 final class ApplyUserListCell: UITableViewCell {
+    
+    static let id = String(describing: self)
+    
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
             userImageView.changeCorner(num: 25)
         }
     }
     @IBOutlet private weak var nameLabel: UILabel!
+    
     private var apply: Apply?
+    
     weak var delegate: ApplyUserListCellDelegate?
-    static let id = String(describing: self)
     
     override func awakeFromNib() {
         super.awakeFromNib()

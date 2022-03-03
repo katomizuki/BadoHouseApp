@@ -8,9 +8,9 @@ protocol SearchUserCellDelegate: AnyObject {
 }
 
 final class SearchUserCell: UITableViewCell {
+    
     static let id = String(describing: self)
-    var user: User?
-    weak var delegate: SearchUserCellDelegate?
+    
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
             userImageView.layer.cornerRadius = 20
@@ -27,6 +27,9 @@ final class SearchUserCell: UITableViewCell {
     }
     @IBOutlet private weak var nameLabel: UILabel!
     
+    var user: User?
+    weak var delegate: SearchUserCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
@@ -38,16 +41,13 @@ final class SearchUserCell: UITableViewCell {
     }
 
     @IBAction private func didTapApplyFriendsButton(_ sender: Any) {
-        guard let user = user else {
-            return
-        }
+        guard let user = user else { return }
         if judgeButtonAction(applyFriendButton.currentTitle) {
             self.delegate?.searchUserCellNotApply(user, cell: self)
         } else {
             self.delegate?.searchUserCellApply(user, cell: self)
         }
         applyFriendButton.setTitle(changeButtonTitle(applyFriendButton.currentTitle), for: .normal)
-      
     }
     
     func configure(_ user: User) {

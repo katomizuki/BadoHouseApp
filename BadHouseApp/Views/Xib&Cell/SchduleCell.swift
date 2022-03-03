@@ -6,14 +6,16 @@ protocol SchduleCellDelegate: AnyObject {
 }
 
 final class SchduleCell: UITableViewCell {
-
+    
+    static let id = String(describing: self)
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var circleImageView: UIImageView! {
         didSet {
             circleImageView.changeCorner(num: 25)
         }
     }
-    static let id = String(describing: self)
+    
     weak var delegate: SchduleCellDelegate?
     
     override func awakeFromNib() {
@@ -24,7 +26,7 @@ final class SchduleCell: UITableViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    @IBAction func didTapTrashButton(_ sender: Any) {
+    @IBAction private func didTapTrashButton(_ sender: Any) {
         self.delegate?.onTapTrashButton(self)
     }
     

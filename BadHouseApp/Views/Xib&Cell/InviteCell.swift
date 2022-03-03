@@ -4,6 +4,7 @@ import SDWebImage
 final class InviteCell: UITableViewCell {
     
     static let id = String(describing: self)
+    
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
             userImageView.layer.cornerRadius = 20
@@ -14,8 +15,11 @@ final class InviteCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupCellStyle()
+    }
+    
+    private func setupCellStyle() {
         selectionStyle = .none
-        // Initialization code
     }
     
     static func nib() -> UINib {

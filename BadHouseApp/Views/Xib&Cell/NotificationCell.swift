@@ -2,7 +2,9 @@ import UIKit
 import SDWebImage
 
 final class NotificationCell: UICollectionViewCell {
-    
+
+    static let id = String(describing: self)
+
     @IBOutlet private weak var notificationImageView: UIImageView! {
         didSet {
             notificationImageView.layer.cornerRadius = 20
@@ -10,8 +12,7 @@ final class NotificationCell: UICollectionViewCell {
         }
     }
     @IBOutlet private weak var titleLabel: UILabel!
-    static let id = String(describing: self)
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
     }

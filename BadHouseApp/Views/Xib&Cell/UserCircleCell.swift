@@ -2,6 +2,8 @@ import UIKit
 
 final class UserCircleCell: UICollectionViewCell {
     
+    static let id = String(describing: self)
+
     @IBOutlet private weak var circleImageView: UIImageView! {
         didSet {
             circleImageView.layer.cornerRadius = 25
@@ -10,7 +12,6 @@ final class UserCircleCell: UICollectionViewCell {
     }
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet weak var permissionButton: UIButton!
-    static let id = String(describing: self)
     
     override func awakeFromNib() {
         super.awakeFromNib()

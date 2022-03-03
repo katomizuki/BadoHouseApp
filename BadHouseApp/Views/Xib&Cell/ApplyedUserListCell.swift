@@ -6,13 +6,16 @@ protocol ApplyedUserListCellDelegate: AnyObject {
 }
 
 final class ApplyedUserListCell: UITableViewCell {
+
     static let id = String(describing: self)
+
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
             userImageView.changeCorner(num: 25)
         }
     }
     @IBOutlet private weak var nameLabel: UILabel!
+    
     weak var delegate: ApplyedUserListCellDelegate?
     var applyed: Applyed?
     

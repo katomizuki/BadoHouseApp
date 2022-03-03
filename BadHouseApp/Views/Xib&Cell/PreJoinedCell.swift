@@ -6,8 +6,9 @@ protocol PreJoinedCellDelegate: AnyObject {
 }
 
 final class PreJoinedCell: UITableViewCell {
+    
     static let id = String(describing: self)
-    weak var delegate: PreJoinedCellDelegate?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var userImageView: UIImageView! {
         didSet {
@@ -16,7 +17,9 @@ final class PreJoinedCell: UITableViewCell {
         }
     }
     @IBOutlet private weak var label: UILabel!
+    
     var preJoined: PreJoined?
+    weak var delegate: PreJoinedCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +40,7 @@ final class PreJoinedCell: UITableViewCell {
         titleLabel.text = "「\(prejoined.practiceName)」"
     }
     
-    @IBAction func didTapPermissionButton(_ sender: Any) {
+    @IBAction private func didTapPermissionButton(_ sender: Any) {
         guard let preJoined = preJoined else { return }
         self.delegate?.preJoinedCell(prejoined: preJoined)
     }

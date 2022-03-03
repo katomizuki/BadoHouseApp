@@ -3,6 +3,8 @@ import SDWebImage
 
 final class MemberCell: UITableViewCell {
     
+    static let id = String(describing: self)
+    
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var memberImageView: UIImageView! {
         didSet {
@@ -10,7 +12,6 @@ final class MemberCell: UITableViewCell {
             memberImageView.layer.cornerRadius = 15
         }
     }
-    static let id = String(describing: self)
     
     override func awakeFromNib() {
         super.awakeFromNib()
