@@ -57,42 +57,36 @@ final class HomeViewModel: HomeViewModelType {
         self.actionCreator = actionCreator
         
         setupSubscribe()
-        prepare()
     }
     
     func setupSubscribe() {
         willAppearStream.subscribe { [unowned self] _ in
             self.store.subscribe(self) { subscription in
                 subscription.select({ $0.homeState }) }
-            self.willAppearAction()
+            checkIsAuthUser()
         }.disposed(by: disposeBag)
         
         willDisAppearStream.subscribe { [unowned self] _ in
             self.store.unsubscribe(self)
         }.disposed(by: disposeBag)
     }
-    
-    func prepare() {
-        didLoadAction()
-    }
-    
-    func didLoadAction() {
-        didLoadStream.subscribe { [weak self] _ in
-            self?.actionCreator.saveFriend()
-        }.disposed(by: disposeBag)
-    }
         
-    func willAppearAction() {
+    func checkIsAuthUser() {
         
         if let id = Auth.auth().currentUser?.uid {
-            KeyChainRepositry.save(id: id)
-            actionCreator.getPractices()
-            actionCreator.getUser(id: id)
+           setupData(id)
         } else if !Network.shared.isOnline() {
             isNetWorkErrorInput.onNext(())
         } else {
             isAuthInput.onNext(())
         }
+    }
+    
+    private func setupData(_ id: String) {
+        actionCreator.saveId(id)
+        actionCreator.getPractices()
+        actionCreator.getUser(id: id)
+        actionCreator.saveFriend()
     }
     
     func search(_ practices: [Practice]) {
@@ -173,21 +167,35 @@ extension HomeViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = HomeState
     
     func newState(state: HomeState) {
-        self.practiceRelay.accept(state.practices)
-        self.isRefreshInput.onNext(state.isRefreshAnimating)
-        self.indicatorInput.onNext(state.isIndicatorAnimating)
+        practiceStateSubscribe(state)
+        isRefreshStateSubscribe(state)
+        indicatorStateSubscribe(state)
         userStateSubscribe(state)
-        
-        state.reload
-            .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] _ in
-                self?.reloadInput.onNext(())
-        }.disposed(by: disposeBag)
+        reloadStateSubscribe(state)
+    }
+    
+    func practiceStateSubscribe(_ state: HomeState) {
+        practiceRelay.accept(state.practices)
+    }
+    
+    func isRefreshStateSubscribe(_ state: HomeState) {
+        isRefreshInput.onNext(state.isRefreshAnimating)
+    }
+    
+    func indicatorStateSubscribe(_ state: HomeState) {
+        indicatorInput.onNext(state.isIndicatorAnimating)
     }
     
     func userStateSubscribe(_ state: HomeState) {
         if let user = state.user {
             self.myData = user
+        }
+    }
+    
+    func reloadStateSubscribe(_ state: HomeState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
         }
     }
 }

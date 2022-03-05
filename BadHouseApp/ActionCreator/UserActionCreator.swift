@@ -73,12 +73,34 @@ struct UserActionCreator {
         }).disposed(by: disposeBag)
     }
     
+    func deleteCircle(user: User, circle: Circle) {
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
+                                              documentId: user.uid,
+                                              subCollectionName: R.Collection.Circle,
+                                              subId: circle.id)
+    }
+    
     func toggleErrorStatus() {
         appStore.dispatch(UserState.UserAction.changeErrorStatus(true))
     }
     
     func toggleReloadStatus() {
         appStore.dispatch(UserState.UserAction.changeReloadStatus(false))
+    }
+    
+    func setFriends(_ users: [User]) {
+        appStore.dispatch(UserState.UserAction.setFriends(users))
+        appStore.dispatch(UserState.UserAction.changeReloadStatus(true))
+    }
+    
+    func updateBlockIds(user: User) {
+        var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
+        array.append(user.uid)
+        UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.blocks)
+    }
+    
+    func saveBlocksIds(user: User) {
+        UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: R.UserDefaultsKey.blocks)
     }
    
 }

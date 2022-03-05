@@ -18,4 +18,5 @@ struct UserState: StateType {
     var isApplyViewHidden = false
     var errorStatus = false
     var reloadStatus = false
+    var isAuth = false
 }

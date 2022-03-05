@@ -48,6 +48,7 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
         self.store = store
         
         setupSubscribe()
+        setupData()
     }
     
     func setupSubscribe() {
@@ -55,7 +56,6 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.applyedUserListState }
             }
-            self.setupData()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -64,13 +64,9 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     }
     
     func setupData() {
-        getApplyedUserList()
+        actionCreator.getApplyedUserList(user)
     }
-    
-    func getApplyedUserList() {
-        self.actionCreator.getApplyedUserList(self.user)
-    }
-    
+
 
 }
 

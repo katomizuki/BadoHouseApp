@@ -50,7 +50,7 @@ final class PreJoinViewModel: PreJoinViewModelType {
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.prejoinState }
             }
-            self.setupData()
+            setupData()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -59,17 +59,17 @@ final class PreJoinViewModel: PreJoinViewModelType {
     }
     
     private func setupData() {
-        getPreJoin()
-    }
-    
-    func getPreJoin() {
         actionCreator.getPreJoin(user: user)
     }
     
     func delete(_ preJoin: PreJoin) {
+        actionCreator.delete(preJoin, list: makeRemovedList(value: preJoin))
+    }
+    
+    private func makeRemovedList(value: PreJoin) -> [PreJoin] {
         var list = preJoinList.value
-        list.remove(value: preJoin)
-        actionCreator.delete(preJoin, list: list)
+        list.remove(value: value)
+        return list
     }
 }
 

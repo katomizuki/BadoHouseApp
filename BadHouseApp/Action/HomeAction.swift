@@ -13,6 +13,6 @@ extension HomeState {
         case changeIndicatorStatus(_ isAnimating: Bool)
         case changeRefreshStatus(_ isAnimating: Bool)
         case chageErrorStatus(_ error: Error)
-        case reload
+        case changeReloadStatus(_ isReload: Bool)
     }
 }

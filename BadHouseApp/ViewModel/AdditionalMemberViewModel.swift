@@ -65,10 +65,6 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     
     // 取ってくるデータが増えてもいいようにこのように書く
     func setupData() {
-        getFriends()
-    }
-    
-    func getFriends() {
         actionCreator.getFriends(uid: user.uid, members: circle.members)
     }
     

@@ -92,31 +92,32 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     }
     
     private func setupBinding() {
-        nameTextFieldSubject.subscribe { [weak self] text in
-            self?.user?.name = text
-        }.disposed(by: disposeBag)
+        nameTextFieldSubject.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.user?.name = text
+        }).disposed(by: disposeBag)
         
-        playerTextFieldSubject.subscribe { [weak self] text in
-            self?.user?.player = text
-        }.disposed(by: disposeBag)
+        playerTextFieldSubject.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.user?.player = text
+        }).disposed(by: disposeBag)
         
-        textViewSubject.subscribe { [weak self] text in
-            self?.user?.introduction = text
-        }.disposed(by: disposeBag)
+        textViewSubject.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.user?.introduction = text
+        }).disposed(by: disposeBag)
         
-        rackeTextFieldSubject.subscribe { [weak self] text in
-            self?.user?.racket = text
-        }.disposed(by: disposeBag)
+        rackeTextFieldSubject.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.user?.racket = text
+        }).disposed(by: disposeBag)
     }
     
     private func setupData() {
-        getUser()
-    }
-    
-    func getUser() {
         guard let uid = AuthRepositryImpl.getUid() else { return }
         self.actionCreator.getUser(uid: uid)
     }
+
     
     func saveUser() {
         guard let user = user else { return }

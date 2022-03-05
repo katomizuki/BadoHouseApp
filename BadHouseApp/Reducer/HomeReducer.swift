@@ -20,8 +20,8 @@ struct HomeReducer {
             state.isRefreshAnimating = isAnimating
         case .chageErrorStatus(let error):
             state.errorStatus = error
-        case .reload:
-            state.reload.onNext(())
+        case .changeReloadStatus(let isReload):
+            state.reloadStatus = isReload
         case .setUser(let user):
             state.user = user
         }

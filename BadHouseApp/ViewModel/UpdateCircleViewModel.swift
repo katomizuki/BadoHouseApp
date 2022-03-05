@@ -73,23 +73,28 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     
     func setupBind() {
         nameTextSubject.subscribe(onNext: { [weak self] text in
-            self?.circle.name = text
+            guard let self = self else { return }
+            self.circle.name = text
         }).disposed(by: disposeBag)
         
         placeTextSubject.subscribe(onNext: { [weak self] text in
-            self?.circle.place = text
+            guard let self = self else { return }
+            self.circle.place = text
         }).disposed(by: disposeBag)
         
         priceTextSubject.subscribe(onNext: { [weak self] text in
-            self?.circle.price = text
+            guard let self = self else { return }
+            self.circle.price = text
         }).disposed(by: disposeBag)
         
         dateTextSubject.subscribe(onNext: { [weak self] text in
-            self?.circle.time = text
+            guard let self = self else { return }
+            self.circle.time = text
         }).disposed(by: disposeBag)
         
         textViewSubject.subscribe(onNext: { [weak self] text in
-            self?.circle.additionlText = text
+            guard let self = self else { return }
+            self.circle.additionlText = text
         }).disposed(by: disposeBag)
     }
     // 画像を毎回変えないようにする。
@@ -147,7 +152,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
         } else {
             selectionsFeature.remove(value: feature.description)
         }
-        circle.features = self.selectionsFeature
+        circle.features = selectionsFeature
     }
     
     func judgeFeatures(_ feature: CircleFeatures) -> Bool {

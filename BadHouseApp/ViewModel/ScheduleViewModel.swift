@@ -57,7 +57,7 @@ final class ScheduleViewModel: ScheduleViewModelType {
     }
     
     func getMyJoinPractice() {
-        self.actionCreator.getMyJoinPractice(user: user)
+        actionCreator.getMyJoinPractice(user: user)
     }
     func deleteSchdule(_ row: Int) {
         //  ここで削除する

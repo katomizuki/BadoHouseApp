@@ -23,4 +23,9 @@ struct MyPracticeActionCreator {
         appStore.dispatch(MyPracticeState.MyPracticeAction.changeErrorStatus(false))
     }
     
+    func deletePractice(_ practice: Practice, myData: User) {
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: myData.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
+        DeleteService.deleteCollectionData(collectionName: R.Collection.Practice, documentId: practice.id)
+    }
+    
 }

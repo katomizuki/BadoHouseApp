@@ -63,11 +63,11 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
     }
     
     private func setupData() {
-        self.actionCreator.getPreJoined(user: user)
+        actionCreator.getPreJoined(user: user)
     }
     
     func onTapPermissionButton(_ preJoined: PreJoined) {
-        deletePreJoinedData(preJoined)
+        actionCreator.deletePreJoinedData(preJoined)
         actionCreator.getUser(preJoined: preJoined,
                               user: user,
                               list: makePreJoinedListToSend(preJoined))
@@ -77,12 +77,6 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
         var list = preJoinedList.value
         list.remove(value: preJoined)
         return list
-    }
-    
-    private func deletePreJoinedData(_ preJoined: PreJoined) {
-        // ここ変える
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)
     }
 }
 

@@ -69,7 +69,7 @@ final class ChatViewModel: ChatViewModelType {
     
     func sendText(_ text: String) {
         guard let chatId = chatId else { return }
-        self.actionCreator.sendText(text, chatId: chatId, myData: myData, user: user)
+        actionCreator.sendText(text, chatId: chatId, myData: myData, user: user)
     }
 }
 

@@ -32,9 +32,17 @@ struct HomeActionCreator {
             appStore.dispatch(HomeState.HomeStateAction.setPractices(practices))
             appStore.dispatch(HomeState.HomeStateAction.changeIndicatorStatus(false))
             appStore.dispatch(HomeState.HomeStateAction.changeRefreshStatus(false))
-            appStore.dispatch(HomeState.HomeStateAction.reload)
+            appStore.dispatch(HomeState.HomeStateAction.changeReloadStatus(true))
         } onFailure: { error in
             appStore.dispatch(HomeState.HomeStateAction.chageErrorStatus(error))
         }.disposed(by: disposeBag)
+    }
+    
+    func toggleReloadStatus() {
+        appStore.dispatch(HomeState.HomeStateAction.changeReloadStatus(false))
+    }
+    
+    func saveId(_ id: String) {
+        KeyChainRepositry.save(id: id)
     }
 }

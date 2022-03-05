@@ -68,7 +68,7 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     }
     
     private func setupData() {
-        self.actionCreator.getMembers(ids: self.ids, circle: self.circle)
+        actionCreator.getMembers(ids: ids, circle: circle)
     }
     
     func changeMember(_ index: Int) {
@@ -81,6 +81,7 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     }
 
     func getPercentage() {
+        // ここらへん書き換えたい
         var (men, women, other) = (0, 0, 0)
         var (one, two, three, four, five, six, seven, eight, nine, ten) = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         allMembers.forEach {
@@ -100,7 +101,7 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
             case "レベル8":eight += 1
             case "レベル9":nine += 1
             case "レベル10":ten += 1
-            default:break
+            default: break
             }
         }
         genderPercentage = [men, women, other]

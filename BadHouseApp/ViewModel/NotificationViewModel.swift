@@ -69,7 +69,7 @@ final class NotificationViewModel: NotificationViewModelType {
     }
     
     func setupData() {
-        self.actionCreator.getNotification(user: user)
+        actionCreator.getNotification(user: user)
     }
     
     func didTapCell(_ row: Int) {

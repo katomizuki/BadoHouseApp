@@ -66,11 +66,11 @@ final class SearchUserViewModel: SearchUserViewModelType {
     }
     
     func applyFriend(_ user: User, myData: User) {
-        self.actionCreator.applyFriend(user, myData: myData)
+        actionCreator.applyFriend(user, myData: myData)
     }
     
     func notApplyFriend(_ user: User, myData: User) {
-        self.actionCreator.notApplyFriend(user, myData: myData)
+        actionCreator.notApplyFriend(user, myData: myData)
     }
     
 }

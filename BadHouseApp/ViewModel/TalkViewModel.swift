@@ -54,10 +54,6 @@ final class TalkViewModel: TalkViewModelType {
     }
     
     private func setupData() {
-        getChatRooms()
-    }
-    
-    func getChatRooms() {
         guard let uid = AuthRepositryImpl.getUid() else { return }
         actionCreator.getChatRooms(uid: uid)
     }

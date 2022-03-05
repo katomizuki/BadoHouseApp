@@ -18,5 +18,6 @@ extension UserState {
         case setUserFriendsCountText(_ text: String)
         case setUserCircleCountText(_ text: String)
         case changeApplyViewHidden(_ isHidden: Bool)
+        case changeUserState(_ isAuth: Bool)
     }
 }

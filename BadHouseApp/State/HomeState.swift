@@ -13,6 +13,6 @@ struct HomeState: StateType {
     var isIndicatorAnimating = false
     var isRefreshAnimating = false
     var errorStatus: Error?
-    var reload = PublishSubject<Void>()
+    var reloadStatus = false
     var user: User?
 }

@@ -46,4 +46,10 @@ struct PreJoinedActionCreator {
     func toggleReloadStatus() {
         appStore.dispatch(PreJoinedState.PreJoinedAction.changeReloadStatus(false))
     }
+    
+    func deletePreJoinedData(_ preJoined: PreJoined) {
+        // ここ変える
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)
+    }
 }

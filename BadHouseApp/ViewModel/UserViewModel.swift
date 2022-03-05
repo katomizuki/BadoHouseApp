@@ -80,7 +80,6 @@ final class UserViewModel: UserViewModelType {
             actionCreator.getUser(uid: uid)
             actionCreator.saveFriendId(uid: uid)
         } else {
-            // TODO: - ActionCreatorを通して通知するようにする。
             notAuthInput.onNext(())
         }
     }
@@ -89,29 +88,31 @@ final class UserViewModel: UserViewModelType {
         guard let user = user else { return }
         // ブロック処理
         saveBlockUser(user)
-        
-        // TODO: - ActionCreatorを通して通知するようにする
+        actionCreator.setFriends(makeRemovedFriends(friendsRelay.value, user: user))
+    }
+    
+    private func makeRemovedFriends(_ value: [User], user: User) -> [User] {
         var users = friendsRelay.value
         users.remove(value: user)
-        friendsRelay.accept(users)
-        reloadInput.onNext(())
+        return users
     }
     
     private func saveBlockUser(_ user: User) {
-        // TODO: - ここどうにかする
-        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.blocks) != nil {
-            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
-            array.append(user.uid)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.blocks)
+        if isExistsUserDefaults() {
+            actionCreator.updateBlockIds(user: user)
         } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: R.UserDefaultsKey.blocks)
+            actionCreator.saveBlocksIds(user: user)
         }
+    }
+    
+    private func isExistsUserDefaults() -> Bool {
+        return UserDefaults.standard.object(forKey: R.UserDefaultsKey.blocks) != nil
     }
     
     func withDrawCircle(_ circle: Circle?) {
         guard let circle = circle else { return }
         guard let user = user else { return }
-        deleteCircle(user: user, circle: circle)
+        actionCreator.deleteCircle(user: user, circle: circle)
         actionCreator.withDrawCircle(user: user,
                                      circle: circle,
                                      circles: makeRemovedCirclesList(circle))
@@ -121,14 +122,6 @@ final class UserViewModel: UserViewModelType {
         var circles = circleRelay.value
         circles.remove(value: circle)
         return circles
-    }
-    
-    private func deleteCircle(user: User, circle: Circle) {
-        // TODO: - ここどうにかする
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
-                                              documentId: user.uid,
-                                              subCollectionName: R.Collection.Circle,
-                                              subId: circle.id)
     }
 }
 

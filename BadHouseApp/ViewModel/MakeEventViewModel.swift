@@ -61,11 +61,13 @@ final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirst
         let isTitleValid = titleTextOutputs.asObservable().map { text->Bool in
             return text.count >= 1
         }
-        isTitleValid.subscribe(onNext: { isTitle in
+        isTitleValid.subscribe(onNext: { [weak self] isTitle in
+            guard let self = self else { return }
             self.isTitle.accept(isTitle)
         }).disposed(by: disposeBag)
         
-        titleTextOutputs.subscribe(onNext: { text in
+        titleTextOutputs.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
             self.title = text
             let isButtonValid = text.count >= 1
             self.isButtonValid.accept(isButtonValid)

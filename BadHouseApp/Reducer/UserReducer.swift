@@ -30,6 +30,8 @@ struct UserReducer {
             state.userUrl = url
         case .setUser(let user):
             state.user = user
+        case .changeUserState(let isAuth):
+            state.isAuth = isAuth
         }
         return state
     }

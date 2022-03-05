@@ -63,12 +63,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     }
     
     private func setupData() {
-        getCircle()
-    }
-    
-    private func getCircle() {
-        guard let uid = AuthRepositryImpl.getUid() else { return }
-        self.actionCreator.getCircle(uid)
+        actionCreator.getCircle(AuthRepositryImpl.getUid() ?? "")
     }
     
     private func setupSubscribe() {
