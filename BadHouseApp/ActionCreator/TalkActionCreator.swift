@@ -14,7 +14,6 @@ struct TalkActionCreator {
     
     func getChatRooms(uid: String) {
         userAPI.getMyChatRooms(uid: uid).subscribe { chatRooms in
-            print(chatRooms)
             appStore.dispatch(TalkState.TalkAction.setTalk(chatRooms))
             appStore.dispatch(TalkState.TalkAction.changeReloadStatus(true))
         } onFailure: { _ in

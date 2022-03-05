@@ -94,6 +94,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     
     // MARK: - Helper
     func changeNumber(num: Float) -> String {
+        // TODO: - ここのヘルパー関数どうにかする
         var message: String = String()
         switch num * Float(10) {
         case 0..<1:

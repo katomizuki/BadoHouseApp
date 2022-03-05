@@ -10,6 +10,7 @@ import RxSwift
 struct UpdateUserInfoActionCreator {
     let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
+    
     func getUser(uid: String) {
             userAPI.getUser(uid: uid).subscribe { user in
                 appStore.dispatch(UpdateUserInfoState.UpdateUserInfoAction.setUser(user))

@@ -54,12 +54,14 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     private func setupValidation() {
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
+        
         let nameValid: Observable<Bool> = nameTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
                 self?.name = text
                 return text.count >= 2
             }
+        
         let emailValid: Observable<Bool> = emailTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
@@ -67,13 +69,14 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
                 let atMarkCount = Array(text).filter { $0 == "@"}.count
                 return text.count >= 5 && text.contains("@") && !text.contains(" ") && atMarkCount == 1
             }
+        
         let passwordValid: Observable<Bool> = passwordTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
                 self?.password = text
                 return text.count >= 6 && !text.contains(" ")
             }
-        // Mark combine
+
         Observable.combineLatest(nameValid, emailValid, passwordValid) { $0 && $1 && $2 }
         .subscribe { validAll in
             self.valideRegisterSubject.onNext(validAll)
@@ -82,7 +85,7 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
 
     func didTapRegisterButton() {
         let credential = AuthCredential(name: name, email: email, password: password)
-
+// TODO: - ここら辺は要修正
         authAPI.register(credential: credential).subscribe(onSuccess: { [weak self] dic in
             guard let self = self else { return }
             self.userAPI.postUser(uid: dic["uid"] as! String, dic: dic).subscribe(onCompleted: {
