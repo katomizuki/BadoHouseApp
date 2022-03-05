@@ -24,13 +24,13 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
         passwordTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
-    private let authAPI: AuthRepositry
-    private let userAPI: UserRepositry
+
     // MARK: - initialize
-    init(authAPI: AuthRepositry, userAPI: UserRepositry) {
-        self.authAPI = authAPI
-        self.userAPI = userAPI
-        
+    init() {
+        setupBinding()
+    }
+    
+    private func setupBinding() {
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
         
@@ -49,7 +49,6 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
         Observable.combineLatest(emailValid, passwordValid) { $0 && $1 }
         .subscribe { validAll in
             self.valideRegisterSubject.onNext(validAll)
-        }
-        .disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
     }
 }

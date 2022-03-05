@@ -37,22 +37,29 @@ final class TalkViewModel: TalkViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+    }
+    
+    private func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.talkState }
             }
+            setupData()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-        self.getChatRooms()
+    }
+    
+    private func setupData() {
+        getChatRooms()
     }
     
     func getChatRooms() {
         guard let uid = AuthRepositryImpl.getUid() else { return }
-        self.actionCreator.getChatRooms(uid: uid)
+        actionCreator.getChatRooms(uid: uid)
     }
 }
 
@@ -80,16 +87,26 @@ extension TalkViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = TalkState
     
     func newState(state: TalkState) {
+        errorStateSubscribe(state)
+        chatRoomStateSubscribe(state)
+        reloadStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: TalkState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleError()
         }
-        
+    }
+    
+    func reloadStateSubscribe(_ state: TalkState) {
         if state.reloadStauts {
             reloadInput.onNext(())
             actionCreator.toggleReload()
         }
-        
+    }
+    
+    func chatRoomStateSubscribe(_ state: TalkState) {
         chatRoomList.accept(state.talks)
     }
 }

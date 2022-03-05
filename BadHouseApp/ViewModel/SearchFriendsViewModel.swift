@@ -25,12 +25,12 @@ final class SearchUserViewModel: SearchUserViewModelType {
 
     let usersRelay = BehaviorRelay<[User]>(value: [])
     let user: User
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
 
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let searchTextStream = PublishSubject<String>()
-    let willAppear = PublishRelay<Void>()
-    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: SearchUserActionCreator
     
@@ -41,11 +41,19 @@ final class SearchUserViewModel: SearchUserViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+        searchFriends()
+        
+    }
+    
+    private func searchFriends() {
         searchTextOutputs.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             self.actionCreator.search(text)
         }).disposed(by: disposeBag)
-        
+    }
+    
+    private func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.searchUserState }

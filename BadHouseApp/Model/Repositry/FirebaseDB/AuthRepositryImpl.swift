@@ -26,11 +26,11 @@ struct AuthRepositryImpl: AuthRepositry {
     }
     
     static func getUid() -> String? {
-        if let id = KeyChainRepositry.myId {
-            return id
-        } else {
+//        if let id = KeyChainRepositry.myId {
+//            return id
+//        } else {
             return Auth.auth().currentUser?.uid
-        }
+//        }
     }
     
     static func login(email: String,

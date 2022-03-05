@@ -27,11 +27,11 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     var inputs: MakeEventSecondViewModelInputs { return self }
     var outputs: MakeEventSecondViewModelOutputs { return self }
     
-    var minLevelText = BehaviorRelay<String>(value: "レベル1")
-    var maxLevelText = BehaviorRelay<String>(value: "レベル10")
-    var circleRelay = BehaviorRelay<[Circle]>(value: [])
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    let minLevelText = BehaviorRelay<String>(value: "レベル1")
+    let maxLevelText = BehaviorRelay<String>(value: "レベル10")
+    let circleRelay = BehaviorRelay<[Circle]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     
     var user: User?
     var circle: Circle?
@@ -57,6 +57,21 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
         self.dic["title"] = title
         self.dic["kind"] = kind
         
+        setupSubscribe()
+        setupData()
+        setupBind()
+    }
+    
+    private func setupData() {
+        getCircle()
+    }
+    
+    private func getCircle() {
+        guard let uid = AuthRepositryImpl.getUid() else { return }
+        self.actionCreator.getCircle(uid)
+    }
+    
+    private func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.makeEventSecond }
@@ -66,14 +81,9 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-        guard let uid = AuthRepositryImpl.getUid() else { return }
-        self.actionCreator.getCircle(uid)
-        
-        bind()
     }
     
-    func bind() {
+    func setupBind() {
         minLevelOutput.subscribe(onNext: { [weak self] value in
             guard let self = self else { return }
             let minText = self.changeNumber(num: value)
@@ -85,7 +95,6 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
             let maxText = self.changeNumber(num: value)
             self.maxLevelText.accept(maxText)
         }).disposed(by: disposeBag)
-
     }
     
     // MARK: - Helper
@@ -144,10 +153,17 @@ extension MakeEventSecondViewModel: MakeEventSecondViewModelOutputs {
 extension MakeEventSecondViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = MakeEventSecondState
     func newState(state: MakeEventSecondState) {
+        circleStateSubscribe(state)
+        userStateSubscribe(state)
+    }
+    
+    func circleStateSubscribe(_ state: MakeEventSecondState) {
         circleRelay.accept(state.circle)
+    }
+    
+    func userStateSubscribe(_ state: MakeEventSecondState) {
         if let user = state.user {
             self.user = user
         }
     }
-    
 }

@@ -55,6 +55,7 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
     }
     
     func deletePractice(_ practice: Practice) {
+        // TODO: - ここを書き換える。
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: myData.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
         DeleteService.deleteCollectionData(collectionName: R.Collection.Practice, documentId: practice.id)
     }

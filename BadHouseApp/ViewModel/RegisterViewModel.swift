@@ -18,14 +18,6 @@ protocol RegisterBindingsOutputs {
 }
 final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     
-    private let disposeBag = DisposeBag()
-    // MARK: - Observable(状態を保持している監視対象）
-    var nameTextOutput = PublishSubject<String>()
-    var emailTextOutput = PublishSubject<String>()
-    var passwordTextOutput = PublishSubject<String>()
-    var errorHandling = PublishSubject<Error>()
-    var isCompleted: PublishSubject<Bool> = PublishSubject<Bool>()
-    var valideRegisterSubject = BehaviorSubject<Bool>(value: false)
     // MARK: - Observer(監視者)
     var nameTextInput: AnyObserver<String> {
         nameTextOutput.asObserver()
@@ -40,12 +32,26 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     var name: String = String()
     var email: String = String()
     var password: String = String()
-    var authAPI: AuthRepositry
-    var userAPI: UserRepositry
+    // MARK: - Observable(状態を保持している監視対象）
+    let nameTextOutput = PublishSubject<String>()
+    let emailTextOutput = PublishSubject<String>()
+    let passwordTextOutput = PublishSubject<String>()
+    let errorHandling = PublishSubject<Error>()
+    let isCompleted: PublishSubject<Bool> = PublishSubject<Bool>()
+    let valideRegisterSubject = BehaviorSubject<Bool>(value: false)
+    
+    private let authAPI: AuthRepositry
+    private let userAPI: UserRepositry
+    private let disposeBag = DisposeBag()
     // MARK: - initialize
     init(authAPI: AuthRepositry, userAPI: UserRepositry) {
         self.authAPI = authAPI
         self.userAPI = userAPI
+        
+        setupValidation()
+    }
+    
+    private func setupValidation() {
         validRegisterDriver = valideRegisterSubject
             .asDriver(onErrorDriveWith: Driver.empty())
         let nameValid: Observable<Bool> = nameTextOutput
@@ -71,8 +77,7 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         Observable.combineLatest(nameValid, emailValid, passwordValid) { $0 && $1 && $2 }
         .subscribe { validAll in
             self.valideRegisterSubject.onNext(validAll)
-        }
-        .disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
     }
 
     func didTapRegisterButton() {

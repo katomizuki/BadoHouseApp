@@ -89,17 +89,26 @@ extension ScheduleViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = ScheduleState
     
     func newState(state: ScheduleState) {
-
-        if state.reloadStatus {
-            reloadInput.onNext(())
-            actionCreator.toggleReloadStatus()
-        }
-
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+        practiceStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: ScheduleState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func reloadStateSubscribe(_ state: ScheduleState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
+        }
+    }
+    
+    func practiceStateSubscribe(_ state: ScheduleState) {
         practiceList.accept(state.practices)
     }
 }

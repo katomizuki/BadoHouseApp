@@ -16,6 +16,7 @@ struct UserDetailReducer {
         case .setCircles(let circles):
             state.circles = circles
         case .changeReloadStatus(let isReload):
+//            print("⚡️")
             state.reloadStatus = isReload
         case .changeErrorStatus(let isError):
             state.errorStatus = isError

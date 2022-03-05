@@ -244,6 +244,8 @@
 		D3886446276A214B00FC4F07 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3886444276A214B00FC4F07 /* HomeViewController.xib */; };
 		D38C3A2727D02FC7003FE304 /* MyPracticeFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C3A2627D02FC7003FE304 /* MyPracticeFlow.swift */; };
 		D38C3A2927D03006003FE304 /* MyPracticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C3A2827D03006003FE304 /* MyPracticeCoordinator.swift */; };
+		D38C3A2B27D0E38E003FE304 /* UpdateCircleTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C3A2A27D0E38E003FE304 /* UpdateCircleTargetType.swift */; };
+		D38C3A2D27D0E3E2003FE304 /* CompletableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C3A2C27D0E3E2003FE304 /* CompletableEntity.swift */; };
 		D39F0A932770A9A700580708 /* AddtionalEventLevelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */; };
 		D39F0A952770AC8600580708 /* AddtionalPracticeElementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */; };
 		D39F0A992770B22B00580708 /* EventAdditionlItemsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */; };
@@ -643,6 +645,8 @@
 		D3886444276A214B00FC4F07 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		D38C3A2627D02FC7003FE304 /* MyPracticeFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeFlow.swift; sourceTree = "<group>"; };
 		D38C3A2827D03006003FE304 /* MyPracticeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeCoordinator.swift; sourceTree = "<group>"; };
+		D38C3A2A27D0E38E003FE304 /* UpdateCircleTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCircleTargetType.swift; sourceTree = "<group>"; };
+		D38C3A2C27D0E3E2003FE304 /* CompletableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletableEntity.swift; sourceTree = "<group>"; };
 		D39F0A922770A9A700580708 /* AddtionalEventLevelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A942770AC8600580708 /* AddtionalPracticeElementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsCoordinator.swift; sourceTree = "<group>"; };
@@ -920,6 +924,7 @@
 			children = (
 				D31CCFF227984B2C00513587 /* CircleTargetType.swift */,
 				D31CD0022798C81400513587 /* CircleGetMembersTargetType.swift */,
+				D38C3A2A27D0E38E003FE304 /* UpdateCircleTargetType.swift */,
 			);
 			path = CircleTargetType;
 			sourceTree = "<group>";
@@ -1533,6 +1538,7 @@
 				D3B22D8D27829F0300EC8C10 /* ChatRoom.swift */,
 				D301E38C27846B7D0090CAF9 /* PreJoined.swift */,
 				D3D62E89278921F500DCA027 /* Notification.swift */,
+				D38C3A2C27D0E3E2003FE304 /* CompletableEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -2063,6 +2069,7 @@
 				D316072A276761EE005FF41D /* AdditionalEventTitleController.swift in Sources */,
 				D31CCFF92798BFF800513587 /* UserGetCircleTargetType.swift in Sources */,
 				D3128EC727C7A6B000F57996 /* UpdateCircleReducer.swift in Sources */,
+				D38C3A2B27D0E38E003FE304 /* UpdateCircleTargetType.swift in Sources */,
 				D3D761832776C231004381E4 /* RegisterCoordinator.swift in Sources */,
 				D3D2231027BBCA790022059A /* UserRepositry.swift in Sources */,
 				D305EDDB27C0702C00BE4078 /* MyPracticeState.swift in Sources */,
@@ -2131,6 +2138,7 @@
 				D36E530327B9C5A800DC637C /* HomeState.swift in Sources */,
 				D37C919427BEFA480040F88F /* BlockListState.swift in Sources */,
 				D3D62E8627891F4A00DCA027 /* NotificationRepositryImpl.swift in Sources */,
+				D38C3A2D27D0E3E2003FE304 /* CompletableEntity.swift in Sources */,
 				D301E38B278468A70090CAF9 /* PreJoinedViewModel.swift in Sources */,
 				D3128EB527C7A43500F57996 /* TalkActionCreator.swift in Sources */,
 				D3F2459E2775F4140030DA1B /* ScheduleController.swift in Sources */,

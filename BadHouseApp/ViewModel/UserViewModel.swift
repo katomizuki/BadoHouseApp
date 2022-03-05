@@ -32,25 +32,25 @@ protocol UserViewModelType {
 
 final class UserViewModel: UserViewModelType {
     
-    var userName = BehaviorRelay<String>(value: "")
-    var userFriendsCountText = BehaviorRelay<String>(value: "")
-    var userCircleCountText = BehaviorRelay<String>(value: "")
-    var userUrl = BehaviorRelay<URL?>(value: nil)
-
-    var friendsRelay = BehaviorRelay<[User]>(value: [])
-    var circleRelay = BehaviorRelay<[Circle]>(value: [])
-
     var inputs: UserViewModelInputs { return self }
     var outputs: UserViewModelOutputs { return self }
-
+    
+    let userName = BehaviorRelay<String>(value: "")
+    let userFriendsCountText = BehaviorRelay<String>(value: "")
+    let userCircleCountText = BehaviorRelay<String>(value: "")
+    let userUrl = BehaviorRelay<URL?>(value: nil)
+    let friendsRelay = BehaviorRelay<[User]>(value: [])
+    let circleRelay = BehaviorRelay<[Circle]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    
     var user: User?
+    
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let notAuthStream = PublishSubject<Void>()
     private let applyViewHiddenStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    let willAppear = PublishRelay<Void>()
-    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: UserActionCreator
     
@@ -80,7 +80,8 @@ final class UserViewModel: UserViewModelType {
             actionCreator.getUser(uid: uid)
             actionCreator.saveFriendId(uid: uid)
         } else {
-            self.notAuthInput.onNext(())
+            // TODO: - ActionCreatorを通して通知するようにする。
+            notAuthInput.onNext(())
         }
     }
     
@@ -88,6 +89,8 @@ final class UserViewModel: UserViewModelType {
         guard let user = user else { return }
         // ブロック処理
         saveBlockUser(user)
+        
+        // TODO: - ActionCreatorを通して通知するようにする
         var users = friendsRelay.value
         users.remove(value: user)
         friendsRelay.accept(users)
@@ -95,6 +98,7 @@ final class UserViewModel: UserViewModelType {
     }
     
     private func saveBlockUser(_ user: User) {
+        // TODO: - ここどうにかする
         if UserDefaults.standard.object(forKey: R.UserDefaultsKey.blocks) != nil {
             var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
             array.append(user.uid)
@@ -107,13 +111,20 @@ final class UserViewModel: UserViewModelType {
     func withDrawCircle(_ circle: Circle?) {
         guard let circle = circle else { return }
         guard let user = user else { return }
+        deleteCircle(user: user, circle: circle)
+        actionCreator.withDrawCircle(user: user,
+                                     circle: circle,
+                                     circles: makeRemovedCirclesList(circle))
+    }
+    
+    private func makeRemovedCirclesList(_ circle: Circle) -> [Circle] {
         var circles = circleRelay.value
         circles.remove(value: circle)
-        deleteCircle(user: user, circle: circle)
-        actionCreator.withDrawCircle(user: user, circle: circle, circles: circles)
+        return circles
     }
     
     private func deleteCircle(user: User, circle: Circle) {
+        // TODO: - ここどうにかする
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
                                               documentId: user.uid,
                                               subCollectionName: R.Collection.Circle,
@@ -139,6 +150,7 @@ extension UserViewModel: UserViewModelInputs {
     }
     
 }
+
 extension UserViewModel: UserViewModelOutputs {
     
     var isError: Observable<Bool> {
@@ -157,29 +169,65 @@ extension UserViewModel: UserViewModelOutputs {
         notAuthStream.asObservable()
     }
 }
+
 extension UserViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UserState
     
     func newState(state: UserState) {
+        errorStateSubscriber(state)
+        userStateSubscriber(state)
+        reloadStateSubscriber(state)
+        circleStateSubscriber(state)
+        friendsStateSubscriber(state)
+        userURLSubscriber(state)
+        userCircleCountTextSubscriber(state)
+        userFriendsCountTextSubscriber(state)
+        isApplyViewHiddenSubscriber(state)
+    }
+    
+    func errorStateSubscriber(_ state: UserState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func userStateSubscriber(_ state: UserState) {
         if let user = state.user {
             userName.accept(user.name)
             self.user = user
         }
-        
+    }
+    
+    func reloadStateSubscriber(_ state: UserState) {
         if state.reloadStatus {
             reloadInput.onNext(())
             actionCreator.toggleReloadStatus()
         }
-        isApplyViewHiddenInput.onNext(state.isApplyViewHidden)
+    }
+    
+    func circleStateSubscriber(_ state: UserState) {
         circleRelay.accept(state.circles)
+    }
+    
+    func friendsStateSubscriber(_ state: UserState) {
         friendsRelay.accept(state.friends)
-        userCircleCountText.accept(state.userCircleCountText)
-        userFriendsCountText.accept(state.userFriendsCountText)
+    }
+    
+    func userURLSubscriber(_ state: UserState) {
         userUrl.accept(state.userUrl)
     }
+    
+    func userCircleCountTextSubscriber(_ state: UserState) {
+        userCircleCountText.accept(state.userCircleCountText)
+    }
+    
+    func userFriendsCountTextSubscriber(_ state: UserState) {
+        userFriendsCountText.accept(state.userFriendsCountText)
+    }
+    
+    func isApplyViewHiddenSubscriber(_ state: UserState) {
+        isApplyViewHiddenInput.onNext(state.isApplyViewHidden)
+    }
+    
 }

@@ -86,25 +86,17 @@ struct CircleRepositryImpl: CircleRepositry {
     }
     
     func updateCircle(circle: Circle) -> Completable {
-        return Completable.create { observer  in
-            Ref.CircleRef.document(circle.id).updateData(["id": circle.id,
-                                                          "name": circle.name,
-                                                          "price": circle.price,
-                                                          "place": circle.place,
-                                                          "time": circle.time,
-                                                          "features": circle.features,
-                                                          "additionlText": circle.additionlText,
-                                                          "icon": circle.icon,
-                                                          "backGround": circle.backGround,
-                                                          "member": circle.member]) { error in
-                if let error = error {
-                    observer(.error(error))
-                    return
-                }
-                observer(.completed)
-            }
-            return Disposables.create()
-        }
+        let dic: [String: Any] = ["id": circle.id,
+                                  "name": circle.name,
+                                  "price": circle.price,
+                                  "place": circle.place,
+                                  "time": circle.time,
+                                  "features": circle.features,
+                                  "additionlText": circle.additionlText,
+                                  "icon": circle.icon,
+                                  "backGround": circle.backGround,
+                                  "member": circle.member]
+        return FirebaseClient.shared.updateFirebaseData(targetType: UpdateCircleTargetType(id: circle.id), dic: dic)
     }
     
     func inviteCircle(ids: [String],

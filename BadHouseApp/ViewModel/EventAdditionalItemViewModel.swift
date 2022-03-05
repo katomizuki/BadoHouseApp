@@ -25,7 +25,7 @@ final class EventAdditionalItemViewModel {
         self.dic = dic
         self.practiceAPI = practiceAPI
     }
-    
+    // ここら辺書き換えたい
     func postPractice() {
         StorageService.downLoadImage(image: image) { [weak self] result in
             guard let self = self else { return }

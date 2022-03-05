@@ -8,7 +8,7 @@ protocol PreJoinedViewModelType {
 }
 
 protocol PreJoinedViewModelInputs {
-    func permission(_ preJoined: PreJoined)
+    func onTapPermissionButton(_ preJoined: PreJoined)
     var reloadInput: AnyObserver<Void> { get }
     var completedInput: AnyObserver<Void> { get }
     var navigationTitleInput: AnyObserver<String> { get }
@@ -27,16 +27,18 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
     
     var inputs: PreJoinedViewModelInputs { return self }
     var outputs: PreJoinedViewModelOutputs { return self }
-    var preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
+    
+    let preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
     let user: User
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    
     private let disposeBag = DisposeBag()
     private let reloadStream = PublishSubject<Void>()
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let navigationTitleStream = PublishSubject<String>()
     private let store: Store<AppState>
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let actionCreator: PreJoinedActionCreator
     
     init(user: User, store: Store<AppState>, actionCreator: PreJoinedActionCreator) {
@@ -44,11 +46,15 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
         self.store = store
         self.actionCreator = actionCreator
 
+        setupSubscribe()
+        setupData()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.prejoinedState }
             }
-            self.getPreJoined()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -56,17 +62,27 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
         }).disposed(by: disposeBag)
     }
     
-    private func getPreJoined() {
+    private func setupData() {
         self.actionCreator.getPreJoined(user: user)
     }
     
-    func permission(_ preJoined: PreJoined) {
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)
-        
+    func onTapPermissionButton(_ preJoined: PreJoined) {
+        deletePreJoinedData(preJoined)
+        actionCreator.getUser(preJoined: preJoined,
+                              user: user,
+                              list: makePreJoinedListToSend(preJoined))
+    }
+    
+    private func makePreJoinedListToSend(_ preJoined: PreJoined) -> [PreJoined] {
         var list = preJoinedList.value
         list.remove(value: preJoined)
-        self.actionCreator.getUser(preJoined: preJoined, user: self.user, list: list)
+        return list
+    }
+    
+    private func deletePreJoinedData(_ preJoined: PreJoined) {
+        // ここ変える
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)
     }
 }
 
@@ -103,23 +119,39 @@ extension PreJoinedViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = PreJoinedState
     
     func newState(state: PreJoinedState) {
+        reloadStateSubscribe(state)
+        errorStateSubscribe(state)
+        completedStateSubscribe(state)
+        prejoinStateSubscribe(state)
+        navigationTitleStateSubscribe(state)
+    }
+    
+    func reloadStateSubscribe(_ state: PreJoinedState) {
         if state.reloadStatus {
             reloadInput.onNext(())
             actionCreator.toggleReloadStatus()
         }
-        
+    }
+    
+    func errorStateSubscribe(_ state: PreJoinedState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
+    }
+    
+    func completedStateSubscribe(_ state: PreJoinedState) {
         if state.completedStatus {
             completedInput.onNext(())
             actionCreator.toggleCompletedStatus()
         }
+    }
+    
+    func prejoinStateSubscribe(_ state: PreJoinedState) {
         preJoinedList.accept(state.preJoinedList)
-        
+    }
+    
+    func navigationTitleStateSubscribe(_ state: PreJoinedState) {
         navigationTitleInput.onNext(state.navigationTitle)
-        
     }
 }

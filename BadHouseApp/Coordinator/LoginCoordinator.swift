@@ -9,7 +9,7 @@ final class LoginCoordinator: Coordinator, LoginFlow {
     }
     
     func start() {
-        let controller = LoginController.init(viewModel: LoginViewModel(authAPI: AuthRepositryImpl(), userAPI: UserRepositryImpl()))
+        let controller = LoginController.init(viewModel: LoginViewModel())
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

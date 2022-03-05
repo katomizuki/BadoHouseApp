@@ -30,23 +30,6 @@ struct Form {
 }
 
 final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
-    private let disposeBag = DisposeBag()
-    // MARK: - Observable
-    var nameTextOutPut = PublishSubject<String>()
-    var placeTextOutput = PublishSubject<String>()
-    var timeTextOutput = PublishSubject<String>()
-    var priceTextOutput = PublishSubject<String>()
-    var textViewInput = BehaviorSubject<String>(value: "")
-    var validRegisterSubject = BehaviorSubject<Bool>(value: false)
-    var selectionsFeature = [String]()
-    var form = Form(name: "",
-                    price: "",
-                    place: "",
-                    time: "",
-                    icon: nil,
-                    background: nil,
-                    features: [],
-                    additionlText: "")
     // MARK: - Observer
     var nameTextInput: AnyObserver<String> {
         nameTextOutPut.asObserver()
@@ -64,12 +47,35 @@ final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
     var validTextInput: AnyObserver<String> {
         priceTextOutput.asObserver()
     }
+    // MARK: - Observable
+    let nameTextOutPut = PublishSubject<String>()
+    let placeTextOutput = PublishSubject<String>()
+    let timeTextOutput = PublishSubject<String>()
+    let priceTextOutput = PublishSubject<String>()
+    let textViewInput = BehaviorSubject<String>(value: "")
+    let validRegisterSubject = BehaviorSubject<Bool>(value: false)
+    
     var validRegisterDriver: Driver<Bool> = Driver.never()
+    var selectionsFeature = [String]()
     var user: User
+    var form = Form(name: "",
+                    price: "",
+                    place: "",
+                    time: "",
+                    icon: nil,
+                    background: nil,
+                    features: [],
+                    additionlText: "")
+    
+    private let disposeBag = DisposeBag()
     // MARK: - initialize
     init(user: User) {
         self.user = user
         
+        setupValidation()
+    }
+    
+    private func setupValidation() {
         self.textViewInput.subscribe(onNext: { [weak self] text in
             self?.form.additionlText = text
         }).disposed(by: disposeBag)
@@ -105,8 +111,7 @@ final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
         Observable.combineLatest(nameValid, placeValid, timeValid, levelValid) { $0 && $1 && $2 && $3 }
         .subscribe { validAll in
             self.validRegisterSubject.onNext(validAll)
-        }
-        .disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
     }
     
     func addFeatures(_ feature: CircleFeatures) {

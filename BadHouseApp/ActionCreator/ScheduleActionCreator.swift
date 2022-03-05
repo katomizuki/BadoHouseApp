@@ -11,6 +11,7 @@ struct ScheduleActionCreator {
     
     private let disposeBag = DisposeBag()
     let userAPI: UserRepositryImpl
+    
     func getMyJoinPractice(user: User) {
         userAPI.getMyJoinPractice(user: user).subscribe { practices in
             appStore.dispatch(ScheduleState.ScheduleAction.setPractices(practices))

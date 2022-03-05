@@ -70,6 +70,6 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
 
 extension PreJoinedListController: PreJoinedCellDelegate {
     func preJoinedCell(prejoined: PreJoined) {
-        viewModel.inputs.permission(prejoined)
+        viewModel.inputs.onTapPermissionButton(prejoined)
     }
 }

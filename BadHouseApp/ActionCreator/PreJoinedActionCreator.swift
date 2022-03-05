@@ -7,6 +7,7 @@
 import RxSwift
 
 struct PreJoinedActionCreator {
+    
     let joinAPI: JoinRepositry
     private let disposeBag = DisposeBag()
     

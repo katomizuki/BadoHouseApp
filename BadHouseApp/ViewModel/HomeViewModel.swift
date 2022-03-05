@@ -58,8 +58,6 @@ final class HomeViewModel: HomeViewModelType {
         
         setupSubscribe()
         prepare()
-        
-        
     }
     
     func setupSubscribe() {

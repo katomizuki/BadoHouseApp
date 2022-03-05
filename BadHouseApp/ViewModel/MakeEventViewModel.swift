@@ -23,16 +23,12 @@ protocol MakeEventFirstViewModelType {
 
 final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirstViewModelInputs, MakeEventFirstViewModelOutputs {
     
-    var buttonTextColor: UIColor {
-        return isButtonValid.value ? .white : .lightGray
-    }
-    
-    var isButtonValid = BehaviorRelay<Bool>(value: false)
-    var hasImage = BehaviorRelay<Bool>(value: false)
     var inputs: MakeEventFirstViewModelInputs { return self }
     var outputs: MakeEventFirstViewModelOutputs { return self }
     
-    private let titleTextStream = PublishSubject<String>()
+    var buttonTextColor: UIColor {
+        return isButtonValid.value ? .white : .lightGray
+    }
     
     var titleTextInputs: AnyObserver<String> {
         return titleTextStream.asObserver()
@@ -45,13 +41,23 @@ final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirst
     var buttonColor: UIColor {
         return isButtonValid.value ? .systemBlue : .darkGray
     }
-    var isTitle = BehaviorRelay<Bool>(value: false)
+    
     var title: String?
     var practiceImage: UIImage = UIImage(named: R.image.noImages.name)!
     var practiceKind: String = BadmintonCircle(rawValue: 0)!.name
+    
+    let isButtonValid = BehaviorRelay<Bool>(value: false)
+    let hasImage = BehaviorRelay<Bool>(value: false)
+    let isTitle = BehaviorRelay<Bool>(value: false)
+    
+    private let titleTextStream = PublishSubject<String>()
     private let disposeBag = DisposeBag()
     
     init() {
+        setupBinding()
+    }
+    
+    private func setupBinding() {
         let isTitleValid = titleTextOutputs.asObservable().map { text->Bool in
             return text.count >= 1
         }
@@ -64,6 +70,5 @@ final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirst
             let isButtonValid = text.count >= 1
             self.isButtonValid.accept(isButtonValid)
         }).disposed(by: disposeBag)
-
     }
 }

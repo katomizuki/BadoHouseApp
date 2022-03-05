@@ -43,18 +43,26 @@ final class InviteViewModel: InviteViewModelType {
         self.form = form
         self.store = store
         self.actionCreator = actionCreator
+        
+        setupSubscribe()
+        setupData()
+        makeDic()
+    }
+    
+    func setupData() {
+        actionCreator.getFriends(user: user)
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.inviteState }
             }
-            self.makeDic()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
-        self.actionCreator.getFriends(user: user)
     }
     
     func setupBackGroundImage() {
@@ -145,16 +153,28 @@ extension InviteViewModel: InviteViewModelOutputs {
 
 extension InviteViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = InviteState
+    
     func newState(state: InviteState) {
-        friendsList.accept(state.friends)
+        errorStateSubscribe(state)
+        completedStateSubscribe(state)
+        friendsStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: InviteState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
+    }
+    
+    func completedStateSubscribe(_ state: InviteState) {
         if state.completedStatus {
             completedInput.onNext(())
             actionCreator.toggleCompletedStatus()
         }
-       
+    }
+    
+    func friendsStateSubscribe(_ state: InviteState) {
+        friendsList.accept(state.friends)
     }
 }

@@ -25,25 +25,32 @@ final class PreJoinViewModel: PreJoinViewModelType {
     var outputs: PreJoinViewModelOutputs { return self }
     
     let preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: PrejoinActionCreator
+    private let user: User
 
     init(user: User,
          store: Store<AppState>,
          actionCreator: PrejoinActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
-
+        self.user = user
+        
+        setupSubscribe()
+    }
+    
+    private func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.prejoinState }
             }
-            self.getPreJoin(user: user)
+            self.setupData()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -51,14 +58,18 @@ final class PreJoinViewModel: PreJoinViewModelType {
         }).disposed(by: disposeBag)
     }
     
-    func getPreJoin(user: User) {
-        self.actionCreator.getPreJoin(user: user)
+    private func setupData() {
+        getPreJoin()
+    }
+    
+    func getPreJoin() {
+        actionCreator.getPreJoin(user: user)
     }
     
     func delete(_ preJoin: PreJoin) {
         var list = preJoinList.value
         list.remove(value: preJoin)
-        self.actionCreator.delete(preJoin, list: list)
+        actionCreator.delete(preJoin, list: list)
     }
 }
 
@@ -84,16 +95,26 @@ extension PreJoinViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = PreJoinState
     
     func newState(state: PreJoinState) {
-        if state.reloadStatus {
-            reloadInput.onNext(())
-            actionCreator.toggleReloadStatus()
-        }
-        
+        prejoinStateSubscribe(state)
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+    }
+    
+    func prejoinStateSubscribe(_ state: PreJoinState) {
+        preJoinList.accept(state.preJoinList)
+    }
+    
+    func errorStateSubscribe(_ state: PreJoinState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()
         }
-        
-        preJoinList.accept(state.preJoinList)
+    }
+    
+    func reloadStateSubscribe(_ state: PreJoinState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+            actionCreator.toggleReloadStatus()
+        }
     }
 }

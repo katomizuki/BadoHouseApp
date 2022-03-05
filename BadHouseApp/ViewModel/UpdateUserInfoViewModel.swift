@@ -48,13 +48,14 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     var outputs: UpdateUserInfoViewModelOutputs { return self }
     
     var user: User?
-     
-    var textViewSubject = BehaviorSubject<String>(value: "")
-    var nameTextFieldSubject = BehaviorSubject<String>(value: "")
-    var rackeTextFieldSubject = BehaviorSubject<String>(value: "")
-    var playerTextFieldSubject = BehaviorSubject<String>(value: "")
     var userImage: UIImage?
     var isChangeImage = false
+    let textViewSubject = BehaviorSubject<String>(value: "")
+    let nameTextFieldSubject = BehaviorSubject<String>(value: "")
+    let rackeTextFieldSubject = BehaviorSubject<String>(value: "")
+    let playerTextFieldSubject = BehaviorSubject<String>(value: "")
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
@@ -66,8 +67,6 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let ageStream = PublishSubject<String>()
     private let userStream = PublishRelay<User>()
     private let disposeBag = DisposeBag()
-    let willAppear = PublishRelay<Void>()
-    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: UpdateUserInfoActionCreator
 
@@ -75,6 +74,12 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupSubscribe()
+        setupData()
+        setupBinding()
+    }
+    
+    private func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.updateUserState }
@@ -84,9 +89,9 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
+    }
     
-        self.getUser()
-        
+    private func setupBinding() {
         nameTextFieldSubject.subscribe { [weak self] text in
             self?.user?.name = text
         }.disposed(by: disposeBag)
@@ -102,7 +107,10 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
         rackeTextFieldSubject.subscribe { [weak self] text in
             self?.user?.racket = text
         }.disposed(by: disposeBag)
-        
+    }
+    
+    private func setupData() {
+        getUser()
     }
     
     func getUser() {
@@ -147,9 +155,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     }
     
     func getUserData(_ selection: UserInfoSelection) -> String {
-        guard let user = user else {
-            return "未設定"
-        }
+        guard let user = user else { return "未設定" }
         switch selection {
         case .level:
             return user.level
@@ -275,21 +281,34 @@ extension UpdateUserInfoViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UpdateUserInfoState
     
     func newState(state: UpdateUserInfoState) {
-        if state.reloadStatus {
-            reloadInput.onNext(())
-            actionCreator.toggleReload()
-        }
-        
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+        completedStateSubscribe(state)
+        userStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: UpdateUserInfoState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleError()
         }
-        
+    }
+    
+    func reloadStateSubscribe(_ state: UpdateUserInfoState) {
+        if state.reloadStatus {
+            reloadInput.onNext(())
+            actionCreator.toggleReload()
+        }
+    }
+    
+    func completedStateSubscribe(_ state: UpdateUserInfoState) {
         if state.completedStatus {
             completedInput.onNext(())
             actionCreator.toggleCompleted()
         }
-        
+    }
+    
+    func userStateSubscribe(_ state: UpdateUserInfoState) {
         if let user = state.user {
             self.user = user
             userStream.accept(user)

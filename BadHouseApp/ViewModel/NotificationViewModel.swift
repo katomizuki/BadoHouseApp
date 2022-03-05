@@ -52,20 +52,23 @@ final class NotificationViewModel: NotificationViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupData()
+        setupSubscribe()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.notificationStatus }
             }
-            self.getNotification()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
     }
     
-    func getNotification() {
+    func setupData() {
         self.actionCreator.getNotification(user: user)
     }
     
@@ -109,7 +112,15 @@ extension NotificationViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = NotificationStatus
     
     func newState(state: StoreSubscriberStateType) {
+        notificationStateSubscribe(state)
+        errorStateSubscribe(state)
+    }
+    
+    func notificationStateSubscribe(_ state: NotificationStatus) {
         notificationList.accept(state.notifications)
+    }
+    
+    func errorStateSubscribe(_ state: NotificationStatus) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleErrorStatus()

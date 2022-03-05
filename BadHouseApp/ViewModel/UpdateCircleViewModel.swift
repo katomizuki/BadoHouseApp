@@ -54,6 +54,12 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+       setupSubscribe()
+       setupBind()
+        
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.updateCircleStaet }
@@ -63,7 +69,9 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
+    }
+    
+    func setupBind() {
         nameTextSubject.subscribe(onNext: { [weak self] text in
             self?.circle.name = text
         }).disposed(by: disposeBag)
@@ -190,11 +198,18 @@ extension UpdateCircleViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = UpdateCircleState
     
     func newState(state: UpdateCircleState) {
+        errorStateSubscribe(state)
+        completedStateSubscribe(state)
+    }
+    
+    func errorStateSubscribe(_ state: UpdateCircleState) {
         if state.errorStatus {
             errorInput.onNext(true)
             actionCreator.toggleError()
         }
-        
+    }
+    
+    func completedStateSubscribe(_ state: UpdateCircleState) {
         if state.completedStatus {
             completedInput.onNext(())
             actionCreator.toggleCompleted()

@@ -1,4 +1,3 @@
-import Firebase
 import RxSwift
 import RxRelay
 import ReSwift

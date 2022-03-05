@@ -32,7 +32,7 @@ struct UserDetailActionCreator {
     func getApplyUser(myData: User, user: User) {
             applyAPI.getApplyUser(user: myData).subscribe { applies in
                 appStore.dispatch(UserDetailState.UserDetailAction.setApplies(applies))
-                if applies.filter({$0.toUserId == user.uid}).count != 0 {
+                if isExistsAppliesMember(applies: applies, uid: user.uid) {
                     appStore.dispatch(UserDetailState.UserDetailAction.setApplyButtonTitle(R.buttonTitle.alreadyApply))
                 } else {
                     appStore.dispatch(UserDetailState.UserDetailAction.setApplyButtonTitle(R.buttonTitle.apply))
@@ -41,6 +41,10 @@ struct UserDetailActionCreator {
                 appStore.dispatch(UserDetailState.UserDetailAction.changeErrorStatus(true))
             }.disposed(by: disposeBag)
         }
+    
+    private func isExistsAppliesMember(applies: [Apply], uid: String) -> Bool {
+        return applies.filter({$0.toUserId == uid}).count != 0
+    }
                    
     func fetchChatRoom(myData: User, user: User, completion: @escaping (ChatRoom) -> Void) {
             userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
@@ -68,7 +72,7 @@ struct UserDetailActionCreator {
     }
     
     func toggleReloadStatus() {
-        appStore.dispatch(UserDetailState.UserDetailAction.changeErrorStatus(false))
+        appStore.dispatch(UserDetailState.UserDetailAction.changeReloadStatus(false))
     }
     
     func togglenotApplyedCompleted() {

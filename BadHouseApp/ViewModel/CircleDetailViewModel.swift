@@ -26,17 +26,16 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     var inputs: CircleDetailViewModelInputs { return self }
     var outputs: CircleDetailViewModelOutputs { return self }
     
-    var memberRelay = BehaviorRelay<[User]>(value: [])
-
-    private let disposeBag = DisposeBag()
-    var circle: Circle
-    let myData: User
     var allMembers = [User]()
     var friendsMembers = [User]()
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
+    var circle: Circle
+
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    let myData: User
+    let memberRelay = BehaviorRelay<[User]>(value: [])
     
     private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     private let errorStream = PublishSubject<Bool>()
@@ -44,6 +43,7 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     private let buttonHiddenStream = PublishSubject<Bool>()
     private let store: Store<AppState>
     private let actionCreator: CircleDetailActionCreator
+    private let disposeBag = DisposeBag()
     
     init(myData: User, circle: Circle, circleAPI: CircleRepositry, store: Store<AppState>, actionCreator: CircleDetailActionCreator) {
         self.myData = myData
@@ -51,6 +51,11 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
         self.store = store
         self.actionCreator = actionCreator
         
+        setupData()
+        setupSubscribe()
+    }
+    
+    private func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.circleDetailState }
@@ -60,7 +65,9 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
         willDisAppear.subscribe(onNext: { [unowned self] _ in
             self.store.unsubscribe(self)
         }).disposed(by: disposeBag)
-        
+    }
+    
+    private func setupData() {
         self.actionCreator.getMembers(ids: self.ids, circle: self.circle)
     }
     
@@ -145,24 +152,41 @@ extension CircleDetailViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = CircleDetailState
     
     func newState(state: CircleDetailState) {
+        allMembersStateSubscribe(state)
+        friendsMembers(state)
+        errorStateSubscribe(state)
+        reloadStateSubscribe(state)
+        circleStateSubscribe(state)
+    }
+    
+    func allMembersStateSubscribe(_ state: CircleDetailState) {
         self.allMembers = state.allMembers
+        self.checkRightButtonHidden(state.allMembers)
+        self.getPercentage()
+    }
+    
+    func friendsMembers(_ state: CircleDetailState) {
         self.friendsMembers = state.friendsMembers
-        if let circle = state.circle {
-            self.circle = circle
-            self.memberRelay.accept(circle.members)
-        }
-        
+    }
+    
+    func errorStateSubscribe(_ state: CircleDetailState) {
         if state.errorStatus {
             self.errorInput.onNext(true)
             actionCreator.toggleErrorStauts()
         }
-        
+    }
+    
+    func reloadStateSubscribe(_ state: CircleDetailState) {
         if state.reloadStatus {
             self.reloadInput.onNext(())
             actionCreator.toggleReloadStaus()
         }
-        
-        self.checkRightButtonHidden(state.allMembers)
-        self.getPercentage()
+    }
+    
+    func circleStateSubscribe(_ state: CircleDetailState) {
+        if let circle = state.circle {
+            self.circle = circle
+            self.memberRelay.accept(circle.members)
+        }
     }
 }

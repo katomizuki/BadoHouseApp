@@ -68,7 +68,6 @@ import RxCocoa
         viewModel.willAppear.accept(())
     }
      
-
      override func viewWillDisappear(_ animated: Bool) {
          super.viewWillDisappear(animated)
          viewModel.willDisAppear.accept(())

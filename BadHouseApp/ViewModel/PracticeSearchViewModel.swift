@@ -48,6 +48,10 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         self.fullPractices = practices
         self.store = store
         
+        setupSubscribe()
+    }
+    
+    func setupSubscribe() {
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.practiceSearchState }

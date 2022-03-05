@@ -43,7 +43,6 @@ final class HomeViewController: UIViewController {
         setupUI()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.willAppear.onNext(())
