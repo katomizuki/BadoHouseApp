@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
-		D15D2F46984AA8872F95B5EF /* Pods_BadHouseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E83935D9903C9C0769D65C /* Pods_BadHouseAppTests.framework */; };
 		D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E380278467500090CAF9 /* PreJoinedListController.swift */; };
 		D301E383278467500090CAF9 /* PreJoinedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E381278467500090CAF9 /* PreJoinedListController.xib */; };
 		D301E386278467C80090CAF9 /* PreJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E384278467C80090CAF9 /* PreJoinController.swift */; };
@@ -136,7 +135,6 @@
 		D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4F27A94D6700B87D74 /* FirebaseFirestore */; };
 		D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */; };
 		D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD5327A94D6700B87D74 /* FirebaseStorage */; };
-		D346BD7227A966FA00B87D74 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7127A966FA00B87D74 /* PKHUD */; };
 		D346BD7527A967D900B87D74 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7427A967D900B87D74 /* FSCalendar */; };
 		D346BD7827A9687200B87D74 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7727A9687200B87D74 /* Charts */; };
 		D346BD7B27A968C100B87D74 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7A27A968C100B87D74 /* SDWebImage */; };
@@ -287,6 +285,7 @@
 		D3BDB55C26E0965200C53780 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55B26E0965200C53780 /* RegisterViewModel.swift */; };
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* User.swift */; };
+		D3C0C2CA27D5652B00480EAE /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = D3C0C2C927D5652B00480EAE /* Nimble */; };
 		D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFED27753BE700C6C761 /* SearchUserController.swift */; };
 		D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */; };
 		D3C1BFF3277542E400C6C761 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */; };
@@ -425,8 +424,6 @@
 
 /* Begin PBXFileReference section */
 		179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.debug.xcconfig"; sourceTree = "<group>"; };
-		49DD3D88B4A265D08582C9B3 /* Pods-BadHouseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseAppTests.release.xcconfig"; path = "Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		65E83935D9903C9C0769D65C /* Pods_BadHouseAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D301E380278467500090CAF9 /* PreJoinedListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedListController.swift; sourceTree = "<group>"; };
 		D301E381278467500090CAF9 /* PreJoinedListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinedListController.xib; sourceTree = "<group>"; };
@@ -810,7 +807,6 @@
 		D3FFD32F271EC6E000DE54ED /* ChatRoomRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomRepositryImpl.swift; sourceTree = "<group>"; };
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
 		D3FFD333271EDCC300DE54ED /* JoinRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRepositryImpl.swift; sourceTree = "<group>"; };
-		D89A3E44493092BFE1BCE8F8 /* Pods-BadHouseAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -819,7 +815,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D15D2F46984AA8872F95B5EF /* Pods_BadHouseAppTests.framework in Frameworks */,
+				D3C0C2CA27D5652B00480EAE /* Nimble in Frameworks */,
 				D3528FD127CCEB0A00B77D68 /* RxTest in Frameworks */,
 				D3528FC927CCEB0A00B77D68 /* RxBlocking in Frameworks */,
 			);
@@ -852,7 +848,6 @@
 				D3528FCB27CCEB0A00B77D68 /* RxCocoa in Frameworks */,
 				D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */,
 				D3528FCD27CCEB0A00B77D68 /* RxRelay in Frameworks */,
-				D346BD7227A966FA00B87D74 /* PKHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,7 +858,6 @@
 			isa = PBXGroup;
 			children = (
 				B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */,
-				65E83935D9903C9C0769D65C /* Pods_BadHouseAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1607,8 +1601,6 @@
 			children = (
 				179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */,
 				EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */,
-				D89A3E44493092BFE1BCE8F8 /* Pods-BadHouseAppTests.debug.xcconfig */,
-				49DD3D88B4A265D08582C9B3 /* Pods-BadHouseAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1620,7 +1612,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D346772227C3392700825D34 /* Build configuration list for PBXNativeTarget "BadHouseAppTests" */;
 			buildPhases = (
-				C80FAE93E2F5FE72FC37FA8D /* [CP] Check Pods Manifest.lock */,
 				D346771627C3392700825D34 /* Sources */,
 				D346771727C3392700825D34 /* Frameworks */,
 				D346771827C3392700825D34 /* Resources */,
@@ -1634,6 +1625,7 @@
 			packageProductDependencies = (
 				D3528FC827CCEB0A00B77D68 /* RxBlocking */,
 				D3528FD027CCEB0A00B77D68 /* RxTest */,
+				D3C0C2C927D5652B00480EAE /* Nimble */,
 			);
 			productName = BadHouseAppTests;
 			productReference = D346771A27C3392700825D34 /* BadHouseAppTests.xctest */;
@@ -1681,7 +1673,6 @@
 				D346BD4F27A94D6700B87D74 /* FirebaseFirestore */,
 				D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */,
 				D346BD5327A94D6700B87D74 /* FirebaseStorage */,
-				D346BD7127A966FA00B87D74 /* PKHUD */,
 				D346BD7427A967D900B87D74 /* FSCalendar */,
 				D346BD7727A9687200B87D74 /* Charts */,
 				D346BD7A27A968C100B87D74 /* SDWebImage */,
@@ -1731,7 +1722,6 @@
 			mainGroup = D3BDB51B26E0525100C53780;
 			packageReferences = (
 				D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */,
 				D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */,
 				D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */,
@@ -1740,6 +1730,7 @@
 				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */,
 				D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1844,28 +1835,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C80FAE93E2F5FE72FC37FA8D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BadHouseAppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */ = {
@@ -2312,7 +2281,6 @@
 /* Begin XCBuildConfiguration section */
 		D346772027C3392700825D34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D89A3E44493092BFE1BCE8F8 /* Pods-BadHouseAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2333,7 +2301,6 @@
 		};
 		D346772127C3392700825D34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DD3D88B4A265D08582C9B3 /* Pods-BadHouseAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2609,14 +2576,6 @@
 				kind = branch;
 			};
 		};
-		D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pkluz/PKHUD.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -2681,6 +2640,14 @@
 				kind = branch;
 			};
 		};
+		D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2708,11 +2675,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		D346BD7127A966FA00B87D74 /* PKHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D346BD7027A966FA00B87D74 /* XCRemoteSwiftPackageReference "PKHUD" */;
-			productName = PKHUD;
 		};
 		D346BD7427A967D900B87D74 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2773,6 +2735,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */;
 			productName = ReSwift;
+		};
+		D3C0C2C927D5652B00480EAE /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

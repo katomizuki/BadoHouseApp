@@ -51,11 +51,13 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completedFriend.subscribe(onNext: { [weak self] text in
-            self?.showCDAlert(title: "\(text)さんとバド友になりました", message: "", action: R.alertMessage.ok, alertType: .success)
+            self?.showAlert(title: "\(text)さんとバド友になりました",
+                              message: "",
+                              action: R.alertMessage.ok)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.applyedRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyedUserListCell.id, cellType: ApplyedUserListCell.self)) {_, item, cell in

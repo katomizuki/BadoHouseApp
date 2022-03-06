@@ -1,7 +1,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import PKHUD
 
 final class EventAdditionlItemsController: UIViewController {
     
@@ -45,15 +44,20 @@ final class EventAdditionlItemsController: UIViewController {
     private func setupBinding() {
         
         viewModel.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            guard let self = self else { return }
+            self.showAlert(title: R.alertMessage.netError,
+                              message: "",
+                              action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.completed.subscribe { [weak self] _ in
-            self?.popAnimation()
+            guard let self = self else { return }
+            self.popAnimation()
         }.disposed(by: disposeBag)
         
-        textView.rx.text.orEmpty.subscribe(onNext: {[weak self] text in
-            self?.viewModel.textViewInputs = text
+        textView.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.viewModel.textViewInputs = text
         }).disposed(by: disposeBag)
     }
 
@@ -62,7 +66,7 @@ final class EventAdditionlItemsController: UIViewController {
     }
     
     private func popAnimation() {
-        HUD.show(.success, onView: view)
+        // TODO: - 何かしらのFBが欲しいかも
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.coordinator?.popToRoot()
         }

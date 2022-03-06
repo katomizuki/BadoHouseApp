@@ -51,7 +51,9 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError,
+                              message: "",
+                              action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe { [weak self] _ in
@@ -59,7 +61,9 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.buttonTitle.join, message: "", action: R.alertMessage.ok, alertType: .success)
+            self?.showAlert(title: R.buttonTitle.join,
+                              message: "",
+                              action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.navigationTitle.subscribe(onNext: { [weak self] text in

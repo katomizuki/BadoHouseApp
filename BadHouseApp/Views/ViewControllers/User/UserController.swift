@@ -85,7 +85,9 @@ final class UserController: UIViewController {
         }).disposed(by: disposeBag)
 
         viewModel.outputs.isError.subscribe(onNext: { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError,
+                              message: "",
+                              action: R.alertMessage.ok)
         }).disposed(by: disposeBag)
         
         applyView.rx.tapGesture()

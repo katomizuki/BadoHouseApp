@@ -151,7 +151,9 @@ final class LoginController: UIViewController {
     // MARK: - LoginError
     private func signInErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
-        self.showCDAlert(title: R.alertMessage.notLogin, message: message, action: R.alertMessage.ok, alertType: .error)
+        self.showAlert(title: R.alertMessage.notLogin,
+                         message: message,
+                         action: R.alertMessage.ok)
     }
 }
 // MARK: - GoogleSigninDelegate

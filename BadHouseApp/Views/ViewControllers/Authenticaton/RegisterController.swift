@@ -155,10 +155,9 @@ final class RegisterController: UIViewController {
     
     func signUpErrAlert(_ error: NSError) {
         let message = setupErrorMessage(error: error)
-        self.showCDAlert(title: R.alertMessage.notRegister,
+        self.showAlert(title: R.alertMessage.notRegister,
                           message: message,
-                         action: R.alertMessage.ok,
-                          alertType: .error)
+                         action: R.alertMessage.ok)
     }
     // MARK: - SelectorMethod
     @objc private func appleRegister() {

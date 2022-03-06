@@ -133,12 +133,12 @@ import RxCocoa
          viewModel.outputs.completed.subscribe { [weak self] _ in
              guard let self = self else { return }
              self.applyFriendButton.setTitle(R.buttonTitle.alreadyApply, for: .normal)
-             self.showCDAlert(title: R.alertMessage.applyFriend, message: "", action: R.alertMessage.ok, alertType: .success)
+             self.showAlert(title: R.alertMessage.applyFriend, message: "", action: R.alertMessage.ok)
          }.disposed(by: disposeBag)
          
          viewModel.outputs.notApplyedCompleted.subscribe { [weak self] _ in
              self?.applyFriendButton.setTitle(R.buttonTitle.apply, for: .normal)
-             self?.showCDAlert(title: R.alertMessage.noApplyFriend, message: "", action: R.alertMessage.ok, alertType: .success)
+             self?.showAlert(title: R.alertMessage.noApplyFriend, message: "", action: R.alertMessage.ok)
          }.disposed(by: disposeBag)
      }
   
@@ -146,10 +146,10 @@ import RxCocoa
      @objc private func didTapExpandedMenu() {
          let alertVC = AlertProvider.makeAlertVC(viewModel.user) { [weak self] error in
              if error != nil {
-                 self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .error)
+                 self?.showAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok)
                  return
              }
-             self?.showCDAlert(title: R.alertMessage.block, message: "", action: R.alertMessage.ok, alertType: .success)
+             self?.showAlert(title: R.alertMessage.block, message: "", action: R.alertMessage.ok)
          }
          present(alertVC, animated: true)
      }

@@ -1,6 +1,5 @@
 import UIKit
 import RxSwift
-import PKHUD
 
 final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     
@@ -49,34 +48,38 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     
     private func setupBinding() {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        viewModel.outputs.friendsSubject.bind(to: tableView.rx.items(cellIdentifier: InviteCell.id, cellType: InviteCell.self)) {[weak self] row, item, cell in
+        viewModel.outputs.friendsSubject.bind(to: tableView.rx.items(cellIdentifier: InviteCell.id, cellType: InviteCell.self)) { [weak self] row, item, cell in
+            guard let self = self else { return }
             cell.configure(item)
-            cell.accessoryType = self?.selectedCell["\(row)"] != nil ? .checkmark : .none
+            cell.accessoryType = self.selectedCell["\(row)"] != nil ? .checkmark : .none
         }.disposed(by: disposeBag)
         
         tableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
-            guard let cell = self?.tableView.cellForRow(at: indexPath) else { return }
+            guard let self = self else { return }
+            guard let cell = self.tableView.cellForRow(at: indexPath) else { return }
             cell.accessoryType = .checkmark
-            self?.selectedCell["\(indexPath.row)"] = true
-            self?.viewModel.inviteAction(user: self?.viewModel.outputs.friendsSubject.value[indexPath.row])
+            self.selectedCell["\(indexPath.row)"] = true
+            self.viewModel.inviteAction(user: self.viewModel.outputs.friendsSubject.value[indexPath.row])
         }).disposed(by: disposeBag)
         
         tableView.rx.itemDeselected.asDriver().drive(onNext: {[weak self] indexPath in
-            guard let cell = self?.tableView.cellForRow(at: indexPath) else { return }
+            guard let self = self else { return }
+            guard let cell = self.tableView.cellForRow(at: indexPath) else { return }
             cell.accessoryType = .none
-            self?.selectedCell["\(indexPath.row)"] = nil
-            self?.viewModel.inviteAction(user: self?.viewModel.outputs.friendsSubject.value[indexPath.row])
+            self.selectedCell["\(indexPath.row)"] = nil
+            self.viewModel.inviteAction(user: self.viewModel.outputs.friendsSubject.value[indexPath.row])
         }).disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError,
+            guard let self = self else { return }
+            self.showAlert(title: R.alertMessage.netError,
                               message: "",
-                              action: R.alertMessage.ok,
-                              alertType: .warning)
+                              action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe { [weak self] _ in
-            self?.popAnimation()
+            guard let self = self else { return }
+            self.popAnimation()
         }.disposed(by: disposeBag)
 
     }
@@ -86,7 +89,7 @@ final class AddtionalMemberController: UIViewController, UIScrollViewDelegate {
     }
     
     private func popAnimation() {
-        HUD.show(.success, onView: view)
+        // TODO: - 何かしらのFBが欲しい
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.navigationController?.popToRootViewController(animated: true)
         }

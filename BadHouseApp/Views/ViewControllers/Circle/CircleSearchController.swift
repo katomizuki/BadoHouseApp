@@ -1,5 +1,4 @@
 import UIKit
-import CDAlertView
 import RxSwift
 
 final class CircleSearchController: UIViewController {

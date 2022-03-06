@@ -44,7 +44,7 @@ final class BlockListController: UIViewController, UIScrollViewDelegate {
         tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
 
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.reload.subscribe { [weak self] _ in

@@ -67,7 +67,7 @@ final class ScheduleController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.practiceList.bind(to: practiceTableView.rx.items(cellIdentifier: SchduleCell.id, cellType: SchduleCell.self)) { _, item, cell in

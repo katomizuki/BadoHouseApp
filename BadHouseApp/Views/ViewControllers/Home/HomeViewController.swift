@@ -120,7 +120,9 @@ final class HomeViewController: UIViewController {
         
         viewModel.outputs.isNetWorkError.bind { [weak self] _ in
             guard let self = self else { return }
-            self.showCDAlert(title: R.alertMessage.notNet, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self.showAlert(title: R.alertMessage.notNet,
+                             message: "",
+                             action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.practiceRelay.bind(to: collectionView.rx.items(cellIdentifier: EventInfoCell.id, cellType: EventInfoCell.self)) { _, item, cell in
@@ -218,9 +220,13 @@ extension HomeViewController: EventInfoCellDelegate {
     func didTapBlockButton(_ cell: EventInfoCell, practice: Practice) {
         let alertVC = AlertProvider.postAlertVC(practice) { error in
             if error != nil {
-                self.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .error)
+                self.showAlert(title: R.alertMessage.netError,
+                                 message: "",
+                                 action: R.alertMessage.ok)
             }
-            self.showCDAlert(title: R.alertMessage.block, message: "", action: R.alertMessage.ok, alertType: .success)
+            self.showAlert(title: R.alertMessage.block,
+                             message: "",
+                             action: R.alertMessage.ok)
         }
         present(alertVC, animated: true)
     }

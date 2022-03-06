@@ -102,7 +102,9 @@ final class UserPageController: UIViewController {
             }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError,
+                              message: "",
+                              action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.userOutput.subscribe(onNext: { [weak self] user in

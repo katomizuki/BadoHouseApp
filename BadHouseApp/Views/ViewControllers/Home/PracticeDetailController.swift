@@ -134,7 +134,9 @@ final class PracticeDetailController: UIViewController {
         
         viewModel.outputs.completed.subscribe {[weak self] _  in
             guard let self = self else { return }
-            self.showCDAlert(title: R.alertMessage.joinMessage, message: "", action: R.alertMessage.ok, alertType: .success)
+            self.showAlert(title: R.alertMessage.joinMessage,
+                             message: "",
+                             action: R.alertMessage.ok)
             self.navigationController?.popViewController(animated: true)
         }.disposed(by: disposeBag)
     }

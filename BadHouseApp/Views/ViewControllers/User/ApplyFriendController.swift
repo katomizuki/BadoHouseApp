@@ -47,7 +47,9 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: disposeBag)
         
         viewModel.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            self?.showAlert(title: R.alertMessage.netError,
+                              message: "",
+                              action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.applyRelay.bind(to: tableView.rx.items(cellIdentifier: ApplyUserListCell.id, cellType: ApplyUserListCell.self)) { _, item, cell in

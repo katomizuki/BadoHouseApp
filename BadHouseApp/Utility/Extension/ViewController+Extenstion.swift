@@ -1,20 +1,16 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import CDAlertView
 
 extension UIViewController {
    
-    func showCDAlert(title: String, message: String, action: String, alertType: CDAlertViewType) {
-        let alert = CDAlertView(title: title, message: message, type: alertType)
-        let alertAction = CDAlertViewAction(title: action, font: UIFont.boldSystemFont(ofSize: 14), textColor: UIColor.blue, backgroundColor: .white)
-        alert.add(action: alertAction)
-        alert.hideAnimations = { (_, transform, alpha) in
-            transform = .identity
-            alpha = 0
-        }
-        alert.show()
+    func showAlert(title: String, message: String, action: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: action, style: .default)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true)
     }
+
     func formatterUtil(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss Z"
@@ -22,6 +18,7 @@ extension UIViewController {
         let dateString = formatter.string(from: date)
         return dateString
     }
+
     func setupErrorMessage(error: NSError) -> String {
         var message = ""
         if let errCode = AuthErrorCode(rawValue: error.code) {
@@ -37,6 +34,7 @@ extension UIViewController {
         }
         return message
     }
+
     func setupFirestoreErrorMessage(error: NSError) -> String {
         var message = ""
         if let errCode = FirestoreErrorCode(rawValue: error.code) {

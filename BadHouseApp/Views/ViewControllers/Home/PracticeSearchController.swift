@@ -81,7 +81,7 @@ final class PracticeSearchController: UIViewController {
     }
     
     @objc private func didTapReloadButton() {
-        self.showCDAlert(title: R.alertMessage.searchClear, message: "", action: R.alertMessage.ok, alertType: .success)
+        self.showAlert(title: R.alertMessage.searchClear, message: "", action: R.alertMessage.ok)
         viewModel.inputs.refresh()
     }
     

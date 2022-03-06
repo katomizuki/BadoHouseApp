@@ -19,6 +19,8 @@ final class ProblemInformationController: UIViewController {
         guard let text = textView.text else { return }
         textView.text = ""
         Ref.ReportRef.document(id).setData(["problem": text])
-        self.showCDAlert(title: R.alertMessage.thankYou, message: "", action: R.alertMessage.ok, alertType: .success)
+        self.showAlert(title: R.alertMessage.thankYou,
+                         message: "",
+                         action: R.alertMessage.ok)
     }
 }

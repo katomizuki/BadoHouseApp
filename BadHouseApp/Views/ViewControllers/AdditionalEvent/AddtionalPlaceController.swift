@@ -118,10 +118,9 @@ extension AddtionalPlaceController: UISearchBarDelegate {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(search) { placemark, error in
                 if  error != nil {
-                    self.showCDAlert(title: R.alertMessage.searchError,
+                    self.showAlert(title: R.alertMessage.searchError,
                                      message: R.alertMessage.placeError,
-                                     action: R.alertMessage.ok,
-                                      alertType: .error)
+                                     action: R.alertMessage.ok)
                     return
                 }
                 if let safePlacemark = placemark {

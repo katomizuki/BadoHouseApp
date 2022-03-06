@@ -1,6 +1,5 @@
 import UIKit
 import RxSwift
-import PKHUD
 
 protocol UpdateCircleControllerDelegate: AnyObject {
     func pop(_ vc: UpdateCircleController)
@@ -210,10 +209,9 @@ final class UpdateCircleController: UIViewController {
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
             guard let self = self else { return }
-            self.showCDAlert(title: R.alertMessage.netError,
+            self.showAlert(title: R.alertMessage.netError,
                              message: "",
-                             action: R.alertMessage.ok,
-                             alertType: .warning)
+                             action: R.alertMessage.ok)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe { [weak self] _ in
@@ -247,7 +245,7 @@ extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerC
     }
     
     private func popAnimation() {
-        HUD.show(.success, onView: view)
+        // TODO: - 何かしらのFBが欲しいかも
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.navigationController?.popToRootViewController(animated: true)
         }
