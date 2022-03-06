@@ -9,15 +9,19 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func start() {
-        let controller = HomeViewController.init(viewModel: HomeViewModel(store: appStore,
-                                                                          actionCreator: HomeActionCreator(practiceAPI: PracticeRepositryImpl())))
+        let controller = HomeViewController.init(viewModel:
+                                                    HomeViewModel(
+                                                        store: appStore,
+                                                        actionCreator: HomeActionCreator(
+                                                            practiceAPI: PracticeRepositryImpl())))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
     
     func toMap(practices: [Practice], lat: Double, lon: Double, myData: User?) {
         guard let myData = myData else { return }
-        coordinator(to: MapCoordinator(navigationController: navigationController,
+        coordinator(to: MapCoordinator(navigationController:
+                                        navigationController,
                                        viewModel: MapListViewModel(currnetLatitude: lat,
                                                                    currentLongitude: lon,
                                                                    practices: practices,
@@ -31,7 +35,9 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     
     func toDetailSearch(_ vc: HomeViewController, practices: [Practice]) {
         let controller = PracticeSearchController.init(viewModel:
-                                                        PracticeSearchViewModel(practices: practices,store: appStore))
+                                                        PracticeSearchViewModel(
+                                                            practices: practices,
+                                                            store: appStore))
         controller.delegate = vc
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)
@@ -51,9 +57,10 @@ final class HomeCoordinator: Coordinator, HomeFlow {
                                                isModal: true,
                                                store: appStore,
                                                actionCreator:
-                                                PracticeActionCreator(userAPI: UserRepositryImpl(),
-                                                                      circleAPI: CircleRepositryImpl(),
-                                                                      joinAPI: JoinRepositryImpl()),
+                                                PracticeActionCreator(
+                                                    userAPI: UserRepositryImpl(),
+                                                    circleAPI: CircleRepositryImpl(),
+                                                    joinAPI: JoinRepositryImpl()),
                                                myData: myData)))
     }
     

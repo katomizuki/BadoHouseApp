@@ -55,7 +55,6 @@ final class HomeViewModel: HomeViewModelType {
     init(store: Store<AppState>, actionCreator: HomeActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
-        
         setupSubscribe()
     }
     
