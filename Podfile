@@ -8,5 +8,4 @@ target 'BadHouseApp' do
   # Pods for BadHouseApp
 
 pod 'GoogleSignIn', '~> 5.0.0'
-pod 'R.swift'
 end

@@ -164,6 +164,15 @@
         }
       },
       {
+        "package": "R.swift.Library",
+        "repositoryURL": "https://github.com/mac-cain13/R.swift.Library",
+        "state": {
+          "branch": "master",
+          "revision": "3a64127e8113cc33179504dfadc91b361d55a0b1",
+          "version": null
+        }
+      },
+      {
         "package": "ReSwift",
         "repositoryURL": "https://github.com/ReSwift/ReSwift.git",
         "state": {

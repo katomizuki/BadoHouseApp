@@ -286,6 +286,7 @@
 		D3BDB56026E0AC9C00C53780 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB55F26E0AC9C00C53780 /* Ref.swift */; };
 		D3BDB56426E0B05D00C53780 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDB56326E0B05D00C53780 /* User.swift */; };
 		D3C0C2CA27D5652B00480EAE /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = D3C0C2C927D5652B00480EAE /* Nimble */; };
+		D3C0C2CD27D56B3B00480EAE /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = D3C0C2CC27D56B3B00480EAE /* Rswift */; };
 		D3C1BFEF27753BE700C6C761 /* SearchUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFED27753BE700C6C761 /* SearchUserController.swift */; };
 		D3C1BFF027753BE700C6C761 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C1BFEE27753BE700C6C761 /* SearchUserController.xib */; };
 		D3C1BFF3277542E400C6C761 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1BFF1277542E400C6C761 /* SearchUserCell.swift */; };
@@ -834,6 +835,7 @@
 			files = (
 				D346BD4E27A94D6700B87D74 /* FirebaseCrashlytics in Frameworks */,
 				D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */,
+				D3C0C2CD27D56B3B00480EAE /* Rswift in Frameworks */,
 				D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				D3A59B9E27CB4EAA002884F7 /* ReSwift in Frameworks */,
 				53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */,
@@ -1658,9 +1660,9 @@
 				D3BDB52026E0525100C53780 /* Sources */,
 				D3BDB52126E0525100C53780 /* Frameworks */,
 				D3BDB52226E0525100C53780 /* Resources */,
-				CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */,
 				D3A789CB26F3F8710088E8BC /* Run SwiftLint */,
-				4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */,
+				7299D300ADF488AEBE3FB802 /* [CP] Embed Pods Frameworks */,
+				67CA77FEDE1D9123DF3E5602 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1683,6 +1685,7 @@
 				D3528FCA27CCEB0A00B77D68 /* RxCocoa */,
 				D3528FCC27CCEB0A00B77D68 /* RxRelay */,
 				D3528FCE27CCEB0A00B77D68 /* RxSwift */,
+				D3C0C2CC27D56B3B00480EAE /* Rswift */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -1722,15 +1725,16 @@
 			mainGroup = D3BDB51B26E0525100C53780;
 			packageReferences = (
 				D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-				D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */,
-				D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */,
-				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */,
+				D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
+				D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts.git" */,
+				D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
+				D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */,
+				D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture.git" */,
+				D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
+				D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift.git" */,
 				D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble" */,
+				D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble.git" */,
+				D3C0C2CB27D56B3B00480EAE /* XCRemoteSwiftPackageReference "R.swift.Library" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1820,7 +1824,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4D23C1C6A1E00E5DA9BF8A7A /* [CP] Copy Pods Resources */ = {
+		67CA77FEDE1D9123DF3E5602 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1837,9 +1841,9 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CBBC3DE5FF7E33046764E175 /* [CP] Embed Pods Frameworks */ = {
+		7299D300ADF488AEBE3FB802 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
@@ -2576,7 +2580,7 @@
 				kind = branch;
 			};
 		};
-		D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+		D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -2584,7 +2588,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */ = {
+		D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
@@ -2592,7 +2596,7 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -2600,7 +2604,7 @@
 				kind = branch;
 			};
 		};
-		D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+		D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
@@ -2608,7 +2612,7 @@
 				kind = branch;
 			};
 		};
-		D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+		D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
 			requirement = {
@@ -2624,7 +2628,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -2632,7 +2636,7 @@
 				kind = branch;
 			};
 		};
-		D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
+		D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
 			requirement = {
@@ -2640,11 +2644,19 @@
 				kind = branch;
 			};
 		};
-		D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble" */ = {
+		D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Nimble.git";
 			requirement = {
 				branch = main;
+				kind = branch;
+			};
+		};
+		D3C0C2CB27D56B3B00480EAE /* XCRemoteSwiftPackageReference "R.swift.Library" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
+			requirement = {
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -2678,27 +2690,27 @@
 		};
 		D346BD7427A967D900B87D74 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			package = D346BD7327A967D800B87D74 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
 			productName = FSCalendar;
 		};
 		D346BD7727A9687200B87D74 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts" */;
+			package = D346BD7627A9687200B87D74 /* XCRemoteSwiftPackageReference "Charts.git" */;
 			productName = Charts;
 		};
 		D346BD7A27A968C100B87D74 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = D346BD7927A968C100B87D74 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
 			productName = SDWebImage;
 		};
 		D346BD7D27A96BB000B87D74 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			package = D346BD7C27A96BAF00B87D74 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */;
 			productName = KeychainAccess;
 		};
 		D346BD8727A96E3C00B87D74 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			package = D346BD8627A96E3C00B87D74 /* XCRemoteSwiftPackageReference "RxGesture.git" */;
 			productName = RxGesture;
 		};
 		D3528FC827CCEB0A00B77D68 /* RxBlocking */ = {
@@ -2728,18 +2740,23 @@
 		};
 		D370503327ABE91500373225 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = D370503227ABE91500373225 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
 			productName = IQKeyboardManagerSwift;
 		};
 		D3A59B9D27CB4EAA002884F7 /* ReSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */;
+			package = D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift.git" */;
 			productName = ReSwift;
 		};
 		D3C0C2C927D5652B00480EAE /* Nimble */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble" */;
+			package = D3C0C2C827D5652B00480EAE /* XCRemoteSwiftPackageReference "Nimble.git" */;
 			productName = Nimble;
+		};
+		D3C0C2CC27D56B3B00480EAE /* Rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3C0C2CB27D56B3B00480EAE /* XCRemoteSwiftPackageReference "R.swift.Library" */;
+			productName = Rswift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
