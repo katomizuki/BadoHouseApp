@@ -36,7 +36,6 @@ final class UpdateCircleController: UIViewController {
     var coordinator: UpdateCircleCoordinator?
     weak var delegate: UpdateCircleControllerDelegate?
     
-    
     init(viewModel: UpdateCircleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -113,94 +112,113 @@ final class UpdateCircleController: UIViewController {
             }).disposed(by: disposeBag)
         
         nameTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-            self?.viewModel.nameTextInputs.onNext(text)
+            guard let self = self else { return }
+            self.viewModel.nameTextInputs.onNext(text)
         }).disposed(by: disposeBag)
         
         moneyTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-            self?.viewModel.priceTextInputs.onNext(text)
+            guard let self = self else { return }
+            self.viewModel.priceTextInputs.onNext(text)
         }).disposed(by: disposeBag)
         
         placeTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-            self?.viewModel.placeTextInputs.onNext(text)
+            guard let self = self else { return }
+            self.viewModel.placeTextInputs.onNext(text)
         }).disposed(by: disposeBag)
         
         dateTextField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-            self?.viewModel.dateTextInput.onNext(text)
+            guard let self = self else { return }
+            self.viewModel.dateTextInput.onNext(text)
         }).disposed(by: disposeBag)
         
         textView.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-            self?.viewModel.textViewInputs.onNext(text)
+            guard let self = self else { return }
+            self.viewModel.textViewInputs.onNext(text)
         }).disposed(by: disposeBag)
 
         singleButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.singleButton.backgroundColor = self?.singleButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-            self?.viewModel.addFeatures(.single)
+                guard let self = self else { return }
+                self.singleButton.backgroundColor = self.singleButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+            self.viewModel.addFeatures(.single)
         }.disposed(by: disposeBag)
         
         doubleButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.doubleButton.backgroundColor = self?.doubleButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-                self?.viewModel.addFeatures(.double)
+                guard let self = self else { return }
+                self.doubleButton.backgroundColor = self.doubleButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+                self.viewModel.addFeatures(.double)
         }.disposed(by: disposeBag)
 
         mixButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.mixButton.backgroundColor = self?.mixButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-            self?.viewModel.addFeatures(.mix)
+                guard let self = self else { return }
+                self.mixButton.backgroundColor = self.mixButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+            self.viewModel.addFeatures(.mix)
         }.disposed(by: disposeBag)
         
         weekDayButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.weekDayButton.backgroundColor = self?.weekDayButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-            self?.viewModel.addFeatures(.weekDay)
+                guard let self = self else { return }
+                self.weekDayButton.backgroundColor = self.weekDayButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+            self.viewModel.addFeatures(.weekDay)
         }.disposed(by: disposeBag)
         
         weekEndButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.weekEndButton.backgroundColor = self?.weekEndButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-                self?.viewModel.addFeatures(.weekEnd)
+                guard let self = self else { return }
+                self.weekEndButton.backgroundColor = self.weekEndButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+                self.viewModel.addFeatures(.weekEnd)
             }.disposed(by: disposeBag)
         
         ageButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.ageButton.backgroundColor = self?.ageButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-                self?.viewModel.addFeatures(.notAge)
+                guard let self = self else { return }
+                self.ageButton.backgroundColor = self.ageButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+                self.viewModel.addFeatures(.notAge)
             }.disposed(by: disposeBag)
         
         genderButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.genderButton.backgroundColor = self?.genderButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-                self?.viewModel.addFeatures(.notGender)
+                guard let self = self else { return }
+                self.genderButton.backgroundColor = self.genderButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+                self.viewModel.addFeatures(.notGender)
             }.disposed(by: disposeBag)
         
         matchButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.matchButton.backgroundColor = self?.matchButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-                self?.viewModel.addFeatures(.gameMain)
+                guard let self = self else { return }
+                self.matchButton.backgroundColor = self.matchButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+                self.viewModel.addFeatures(.gameMain)
             }.disposed(by: disposeBag)
         
         practiceButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
-                self?.practiceButton.backgroundColor = self?.practiceButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
-                self?.viewModel.addFeatures(.practiceMain)
+                guard let self = self else { return }
+                self.practiceButton.backgroundColor = self.practiceButton.backgroundColor == .lightGray ? .systemBlue : .lightGray
+                self.viewModel.addFeatures(.practiceMain)
             }.disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in
-            self?.showCDAlert(title: R.alertMessage.netError, message: "", action: R.alertMessage.ok, alertType: .warning)
+            guard let self = self else { return }
+            self.showCDAlert(title: R.alertMessage.netError,
+                             message: "",
+                             action: R.alertMessage.ok,
+                             alertType: .warning)
         }.disposed(by: disposeBag)
         
         viewModel.outputs.completed.subscribe { [weak self] _ in
-            self?.popAnimation()
+            guard let self = self else { return }
+            self.popAnimation()
         }.disposed(by: disposeBag)
     }
     
