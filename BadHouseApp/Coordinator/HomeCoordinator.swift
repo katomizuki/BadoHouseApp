@@ -30,7 +30,7 @@ final class HomeCoordinator: Coordinator, HomeFlow {
     }
     
     func toMakeEvent() {
-        coordinator(to: MakePracticeCoordinator(navigationController: self.navigationController))
+        coordinator(to: MakePracticeCoordinator(navigationController: navigationController))
     }
     
     func toDetailSearch(_ vc: HomeViewController, practices: [Practice]) {

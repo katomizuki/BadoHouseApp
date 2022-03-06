@@ -30,6 +30,7 @@
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="名前" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sW8-YM-T9a">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
+                            <accessibility key="accessibilityConfiguration" identifier="nameTextField"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="hx1-fo-g9c"/>
                             </constraints>
@@ -38,6 +39,7 @@
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgg-Hb-UaX">
                             <rect key="frame" x="0.0" y="60" width="315" height="40"/>
+                            <accessibility key="accessibilityConfiguration" identifier="mailTextField"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="fLk-ZW-47P"/>
                             </constraints>
@@ -46,6 +48,7 @@
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yY7-en-nnT">
                             <rect key="frame" x="0.0" y="120" width="315" height="40"/>
+                            <accessibility key="accessibilityConfiguration" identifier="passwordTextField"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="WbW-eo-Z89"/>
                             </constraints>
