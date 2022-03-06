@@ -13,7 +13,7 @@ struct ApplyedUserListActionCreator {
     private let disposeBag = DisposeBag()
     
     func saveId(id: String) {
-        if UserDefaults.standard.object(forKey: R.UserDefaultsKey.friends) != nil {
+        if isExistsUserDefaults() {
             let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
             UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.friends)
         } else {
@@ -21,18 +21,19 @@ struct ApplyedUserListActionCreator {
         }
     }
     
+    private func isExistsUserDefaults() -> Bool {
+        return UserDefaults.standard.object(forKey: R.UserDefaultsKey.friends) != nil
+    }
+    
     func deleteFriends(_ applyed: Applyed, uid: String, list: [Applyed]) {
         applyAPI.notApplyFriend(uid: applyed.fromUserId, toUserId: uid)
-        let value = list.filter {
-            $0.fromUserId != applyed.fromUserId
-        }
+        let value = list.filter { $0.fromUserId != applyed.fromUserId }
         appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.setApplies(value))
         appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.changeReloadStatus(true))
     }
     
     func getApplyedUserList(_ user: User) {
         applyAPI.getApplyedUser(user: user)
-            .observe(on: MainScheduler.instance)
             .subscribe { value in
             appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.setApplies(value))
             appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.setNavigationTitle("\(value.count)人から友達申請が来ています"))
@@ -45,9 +46,7 @@ struct ApplyedUserListActionCreator {
     func makeFriends(_ applyed: Applyed, uid: String, list: [Applyed], user: User) {
         applyAPI.notApplyFriend(uid: applyed.fromUserId,
                                     toUserId: uid)
-        let value = list.filter {
-            $0.fromUserId != applyed.fromUserId
-        }
+        let value = list.filter { $0.fromUserId != applyed.fromUserId }
         appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.setApplies(value))
         appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.changeReloadStatus(true))
         self.match(applyed: applyed, user: user)

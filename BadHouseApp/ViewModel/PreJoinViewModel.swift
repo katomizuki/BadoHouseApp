@@ -43,6 +43,7 @@ final class PreJoinViewModel: PreJoinViewModelType {
         self.user = user
         
         setupSubscribe()
+        setupData()
     }
     
     private func setupSubscribe() {
@@ -50,7 +51,6 @@ final class PreJoinViewModel: PreJoinViewModelType {
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.prejoinState }
             }
-            setupData()
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in
@@ -63,6 +63,7 @@ final class PreJoinViewModel: PreJoinViewModelType {
     }
     
     func delete(_ preJoin: PreJoin) {
+        actionCreator.deleteDataFromFirebase(preJoin, list: makeRemovedList(value: preJoin))
         actionCreator.delete(preJoin, list: makeRemovedList(value: preJoin))
     }
     

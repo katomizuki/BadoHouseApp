@@ -41,33 +41,32 @@ struct ChatActionCreator {
             if isExits {
                 self.userAPI.getUserChatRoomById(myData: myData,
                                                  id: user.uid) { chatRoom in
-                    appStore.dispatch(ChatState.ChatAction.setChatId(chatRoom.id))
                     self.getChat(chatId: chatRoom.id)
+                    appStore.dispatch(ChatState.ChatAction.setChatId(chatRoom.id))
                 }
             } else {
-                let id = Ref.UsersRef.document(myData.uid).collection(R.Collection.ChatRoom).document().documentID
-                appStore.dispatch(ChatState.ChatAction.setChatId(id))
-                let dic: [String: Any] = ["id": id,
-                                        "userId": user.uid,
-                                        "latestTime": Timestamp(),
-                                        "latestMessage": String(),
-                                        "partnerName": user.name,
-                                        "partnerUrlString": user.profileImageUrlString]
-                let partnerDic: [String: Any] = ["id": id,
-                                                "userId": myData.uid,
-                                                "latestTime": Timestamp(),
-                                                "latestMessage": String(),
-                                                "partnerName": myData.name,
-                                                "partnerUrlString": myData.profileImageUrlString]
-                self.userAPI.postMyChatRoom(dic: dic,
-                                            partnerDic: partnerDic,
+                let id = Ref.UsersRef.document(myData.uid)
+                    .collection(R.Collection.ChatRoom).document().documentID
+                
+                self.userAPI.postMyChatRoom(dic: makeDic(user, id: id),
+                                            partnerDic: makeDic(myData, id: id),
                                             user: user,
                                             myData: myData,
                                             chatId: id)
+                appStore.dispatch(ChatState.ChatAction.setChatId(id))
             }
         }, onFailure: { _ in
             appStore.dispatch(ChatState.ChatAction.changeErrorStatus(true))
         }).disposed(by: disposeBag)
+    }
+    
+    private func makeDic(_ user: User, id: String) -> [String: Any] {
+            return ["id": id,
+                    "userId": user.uid,
+                    "latestTime": Timestamp(),
+                    "latestMessage": String(),
+                    "partnerName": user.name,
+                    "partnerUrlString": user.profileImageUrlString]
     }
     
     func toggleErrorStatus() {

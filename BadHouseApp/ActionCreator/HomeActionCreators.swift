@@ -7,7 +7,7 @@
 
 import ReSwift
 import RxSwift
-import FirebaseAuth
+
 struct HomeActionCreator {
     
     let practiceAPI: PracticeRepositry
@@ -28,6 +28,7 @@ struct HomeActionCreator {
     func getPractices() {
         appStore.dispatch(HomeState.HomeStateAction.changeIndicatorStatus(true))
         appStore.dispatch(HomeState.HomeStateAction.changeRefreshStatus(true))
+        
         practiceAPI.getPractices().subscribe { practices in
             appStore.dispatch(HomeState.HomeStateAction.setPractices(practices))
             appStore.dispatch(HomeState.HomeStateAction.changeIndicatorStatus(false))

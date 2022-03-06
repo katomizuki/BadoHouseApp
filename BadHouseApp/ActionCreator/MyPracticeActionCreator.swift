@@ -11,6 +11,7 @@ import RxSwift
 struct MyPracticeActionCreator {
     let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
+
     func getMyPractice(user: User) {
         userAPI.getMyPractice(uid: user.uid).subscribe { practices in
             appStore.dispatch(MyPracticeState.MyPracticeAction.setPractice(practices))

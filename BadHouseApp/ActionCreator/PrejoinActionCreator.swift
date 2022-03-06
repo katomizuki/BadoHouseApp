@@ -23,13 +23,17 @@ struct PrejoinActionCreator {
     
     func delete(_ preJoin: PreJoin, list: [PreJoin]) {
         // TODO: - ここ分けるか、、
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoin.uid, subCollectionName: R.Collection.Users, subId: preJoin.toUserId)
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoin.toUserId, subCollectionName: R.Collection.Users, subId: preJoin.uid)
+        
         var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
         prejoins.remove(value: preJoin.id)
         UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: R.UserDefaultsKey.preJoin)
         appStore.dispatch(PreJoinState.PreJoinAction.setPreJoinList(list))
         appStore.dispatch(PreJoinState.PreJoinAction.changeReloadStatus(true))
+    }
+    
+    func deleteDataFromFirebase(_ preJoin: PreJoin, list: [PreJoin]) {
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoin.uid, subCollectionName: R.Collection.Users, subId: preJoin.toUserId)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoin.toUserId, subCollectionName: R.Collection.Users, subId: preJoin.uid)
     }
     
     func toggleErrorStatus() {
