@@ -33,7 +33,8 @@ final class TalkViewModel: TalkViewModelType {
     private let store: Store<AppState>
     private let actionCreator: TalkActionCreator
     
-    init(store: Store<AppState>, actionCreator: TalkActionCreator) {
+    init(store: Store<AppState>,
+         actionCreator: TalkActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
         

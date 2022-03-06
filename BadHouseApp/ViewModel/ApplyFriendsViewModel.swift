@@ -35,7 +35,9 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
     private let store: Store<AppState>
     private let actionCreator: ApplyFriendsActionCreator
     
-    init(user: User, store: Store<AppState>, actionCreator: ApplyFriendsActionCreator) {
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: ApplyFriendsActionCreator) {
         self.user = user
         self.store = store
         self.actionCreator = actionCreator
@@ -49,7 +51,6 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
             self.store.subscribe(self) { subcription in
                 subcription.select { state in state.applyFriendsState }
             }
-            
         }).disposed(by: disposeBag)
         
         willDisAppear.subscribe(onNext: { [unowned self] _ in

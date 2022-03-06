@@ -8,5 +8,5 @@
 import RxSwift
 
 protocol NotificationRepositry {
-    func getMyNotification(uid: String)->Single<[Notification]>
+    func getMyNotification(uid: String) -> Single<[Notification]>
 }

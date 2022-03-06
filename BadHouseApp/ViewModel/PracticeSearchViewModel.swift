@@ -43,7 +43,8 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     private let navigationTitleStream = PublishSubject<String>()
     private let store: Store<AppState>
     
-    init(practices: [Practice], store: Store<AppState>) {
+    init(practices: [Practice],
+         store: Store<AppState>) {
         self.practices = practices
         self.fullPractices = practices
         self.store = store

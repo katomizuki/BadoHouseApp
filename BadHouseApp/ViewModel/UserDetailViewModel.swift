@@ -59,7 +59,8 @@ final class UserDetailViewModel: UserDetailViewModelType {
     private let store: Store<AppState>
     private let actionCreator: UserDetailActionCreator
 
-    init(myData: User, user: User,
+    init(myData: User,
+         user: User,
          store: Store<AppState>,
          actionCreator: UserDetailActionCreator) {
         self.user = user

@@ -35,7 +35,9 @@ final class ScheduleViewModel: ScheduleViewModelType {
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     
-    init(user: User, store: Store<AppState>, actionCreator: ScheduleActionCreator) {
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: ScheduleActionCreator) {
         self.user = user
         self.store = store
         self.actionCreator = actionCreator

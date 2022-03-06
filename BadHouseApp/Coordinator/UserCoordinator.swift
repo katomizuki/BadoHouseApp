@@ -52,7 +52,6 @@ final class UserCoordinator: Coordinator, UserFlow {
             viewModel: CircleDetailViewModel(
                 myData: myData,
                 circle: circle,
-                circleAPI: CircleRepositryImpl(),
                 store: appStore,
                 actionCreator: CircleDetailActionCreator(
                     circleAPI: CircleRepositryImpl()))))

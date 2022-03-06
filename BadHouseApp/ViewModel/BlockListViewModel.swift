@@ -35,7 +35,8 @@ final class BlockListViewModel: BlockListViewModelType {
     private let reloadStream = PublishSubject<Void>()
     private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
 
-    init(store: Store<AppState>, actionCreator: BlockListActionCreator) {
+    init(store: Store<AppState>,
+         actionCreator: BlockListActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
 

@@ -42,7 +42,9 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     private let store: Store<AppState>
     private let actionCreator: ApplyedUserListActionCreator
     
-    init(user: User, store: Store<AppState>, actionCreator: ApplyedUserListActionCreator) {
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: ApplyedUserListActionCreator) {
         self.user = user
         self.actionCreator = actionCreator
         self.store = store

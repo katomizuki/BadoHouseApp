@@ -45,7 +45,10 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     private let actionCreator: CircleDetailActionCreator
     private let disposeBag = DisposeBag()
     
-    init(myData: User, circle: Circle, circleAPI: CircleRepositry, store: Store<AppState>, actionCreator: CircleDetailActionCreator) {
+    init(myData: User,
+         circle: Circle,
+         store: Store<AppState>,
+         actionCreator: CircleDetailActionCreator) {
         self.myData = myData
         self.circle = circle
         self.store = store

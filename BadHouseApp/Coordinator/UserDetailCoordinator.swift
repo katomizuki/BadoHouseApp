@@ -25,7 +25,6 @@ final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
             navigationController: navigationController,
             viewModel: CircleDetailViewModel(myData: myData,
                                              circle: circle,
-                                             circleAPI: CircleRepositryImpl(),
                                              store: appStore,
                                              actionCreator:
                                                 CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))

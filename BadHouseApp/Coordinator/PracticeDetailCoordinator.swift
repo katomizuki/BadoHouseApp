@@ -44,7 +44,6 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
             navigationController: self.navigationController,
             viewModel: CircleDetailViewModel(myData: myData,
                                              circle: circle,
-                                             circleAPI: CircleRepositryImpl(),
                                              store: appStore,
                                              actionCreator:
                                                 CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))

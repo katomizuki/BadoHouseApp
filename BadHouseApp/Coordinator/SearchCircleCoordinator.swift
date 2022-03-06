@@ -22,7 +22,6 @@ final class SearchCircleCoordinator: Coordinator, CircleSearchFlow {
             navigationController: navigationController,
             viewModel: CircleDetailViewModel(myData: myData,
                                              circle: circle,
-                                             circleAPI: CircleRepositryImpl(),
                                              store: appStore,
                                              actionCreator:
                                                 CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))

@@ -70,7 +70,8 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let store: Store<AppState>
     private let actionCreator: UpdateUserInfoActionCreator
 
-    init(store: Store<AppState>, actionCreator: UpdateUserInfoActionCreator) {
+    init(store: Store<AppState>,
+         actionCreator: UpdateUserInfoActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
         

@@ -38,7 +38,9 @@ final class InviteViewModel: InviteViewModelType {
     var willDisAppear = PublishRelay<Void>()
     
     init(user: User,
-         form: Form, store: Store<AppState>, actionCreator: InviteActionCreator) {
+         form: Form,
+         store: Store<AppState>,
+         actionCreator: InviteActionCreator) {
         self.user = user
         self.form = form
         self.store = store

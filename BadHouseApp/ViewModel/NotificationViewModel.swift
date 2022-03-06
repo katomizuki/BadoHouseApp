@@ -47,7 +47,9 @@ final class NotificationViewModel: NotificationViewModelType {
     private let store: Store<AppState>
     private let actionCreator: NotificationActionCreator
     
-    init(user: User, store: Store<AppState>, actionCreator: NotificationActionCreator) {
+    init(user: User,
+         store: Store<AppState>,
+         actionCreator: NotificationActionCreator) {
         self.user = user
         self.store = store
         self.actionCreator = actionCreator
