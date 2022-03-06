@@ -125,6 +125,9 @@
 		D32E599427748C0C00C59548 /* FriendsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32E599227748C0C00C59548 /* FriendsListController.xib */; };
 		D32E59962774AC5A00C59548 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E59952774AC5A00C59548 /* R.generated.swift */; };
 		D330032626E61A2E00208525 /* MyPageInfoPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */; };
+		D345FB2B27D4DFE500E0805A /* LoginPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345FB2A27D4DFE500E0805A /* LoginPageObject.swift */; };
+		D345FB2D27D4DFF000E0805A /* RegisterPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345FB2C27D4DFF000E0805A /* RegisterPageObject.swift */; };
+		D345FB2F27D4E02B00E0805A /* TeamRegisterPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345FB2E27D4E02B00E0805A /* TeamRegisterPageObject.swift */; };
 		D346771D27C3392700825D34 /* BadHouseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346771C27C3392700825D34 /* BadHouseAppTests.swift */; };
 		D346772A27C339E700825D34 /* BadHouseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346772927C339E700825D34 /* BadHouseAppUITests.swift */; };
 		D346772C27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */; };
@@ -541,6 +544,9 @@
 		D32E599227748C0C00C59548 /* FriendsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListController.xib; sourceTree = "<group>"; };
 		D32E59952774AC5A00C59548 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D330032526E61A2E00208525 /* MyPageInfoPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInfoPopoverController.swift; sourceTree = "<group>"; };
+		D345FB2A27D4DFE500E0805A /* LoginPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageObject.swift; sourceTree = "<group>"; };
+		D345FB2C27D4DFF000E0805A /* RegisterPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageObject.swift; sourceTree = "<group>"; };
+		D345FB2E27D4E02B00E0805A /* TeamRegisterPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterPageObject.swift; sourceTree = "<group>"; };
 		D346771A27C3392700825D34 /* BadHouseAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHouseAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D346771C27C3392700825D34 /* BadHouseAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppTests.swift; sourceTree = "<group>"; };
 		D346772727C339E700825D34 /* BadHouseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHouseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -984,6 +990,16 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		D345FB2927D4DF8400E0805A /* PageObject */ = {
+			isa = PBXGroup;
+			children = (
+				D345FB2A27D4DFE500E0805A /* LoginPageObject.swift */,
+				D345FB2C27D4DFF000E0805A /* RegisterPageObject.swift */,
+				D345FB2E27D4E02B00E0805A /* TeamRegisterPageObject.swift */,
+			);
+			path = PageObject;
+			sourceTree = "<group>";
+		};
 		D346771B27C3392700825D34 /* BadHouseAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -995,6 +1011,7 @@
 		D346772827C339E700825D34 /* BadHouseAppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D345FB2927D4DF8400E0805A /* PageObject */,
 				D346772927C339E700825D34 /* BadHouseAppUITests.swift */,
 				D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */,
 			);
@@ -1943,8 +1960,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D345FB2F27D4E02B00E0805A /* TeamRegisterPageObject.swift in Sources */,
+				D345FB2D27D4DFF000E0805A /* RegisterPageObject.swift in Sources */,
 				D346772A27C339E700825D34 /* BadHouseAppUITests.swift in Sources */,
 				D346772C27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift in Sources */,
+				D345FB2B27D4DFE500E0805A /* LoginPageObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

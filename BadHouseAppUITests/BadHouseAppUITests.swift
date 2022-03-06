@@ -8,6 +8,18 @@
 import XCTest
 
 class BadHouseAppUITests: XCTestCase {
+    
+    private var loginPageObject: LoginPageObject!
+    private var registerPageObject: RegisterPageObject!
+    private var teamRegisterObject: TeamRegisterPageObject!
+
+    
+    override func setUp() {
+        self.loginPageObject = LoginPageObject(app: XCUIApplication())
+        self.registerPageObject = RegisterPageObject(app: XCUIApplication())
+        self.teamRegisterObject = TeamRegisterPageObject(app: XCUIApplication())
+        continueAfterFailure = false
+    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -26,8 +38,6 @@ class BadHouseAppUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-        let nameTextField = app.textFields["nameTextField"]
-//        nameTextField.tap()
-//        nameTextField.typeText("")
+        
     }
 }
