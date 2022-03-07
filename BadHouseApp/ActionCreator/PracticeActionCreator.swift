@@ -59,8 +59,7 @@ struct PracticeActionCreator {
     private func existsPreJoinId() -> Bool {
         return  UserDefaults.standard.object(forKey: R.UserDefaultsKey.preJoin) != nil
     }
-    
-    
+
     func toggleErrorStatus() {
         appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeErrorStatus(false))
     }

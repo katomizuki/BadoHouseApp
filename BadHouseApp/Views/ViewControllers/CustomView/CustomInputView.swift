@@ -69,13 +69,12 @@ final class CustomInputAccessoryView: UIView {
         return .zero
     }
     // MARK: - selector
-    @objc func sendMessage() {
-        print(#function)
+    @objc private func sendMessage() {
         guard let text = messageInputTextView.text else { return }
         self.delegate?.inputView(inputView: self, message: text)
     }
     
-    @objc func textDidChange() {
+    @objc private func textDidChange() {
         placeholder.isHidden = !self.messageInputTextView.isHidden
     }
     

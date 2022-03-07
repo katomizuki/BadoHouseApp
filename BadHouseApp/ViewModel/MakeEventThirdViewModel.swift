@@ -33,7 +33,10 @@ final class MakeEventThirdViewModel: MakeEventThirdViewModelInputs, MakeEventThi
     var circle: Circle
     var user: User
     
-    init(image: UIImage, dic: [String: Any], circle: Circle, user: User) {
+    init(image: UIImage,
+         dic: [String: Any],
+         circle: Circle,
+         user: User) {
         self.image = image
         self.dic = dic
         self.circle = circle

@@ -15,8 +15,6 @@ class LoginPageObject {
         self.app = app
     }
     
-    
-    
     var emailTextField: XCUIElement {
         return app.textFields["emailTextField"]
     }

@@ -46,10 +46,6 @@ struct UserDetailActionCreator {
         return applies.filter({$0.toUserId == uid}).count != 0
     }
                    
-    func fetchChatRoom(myData: User, user: User, completion: @escaping (ChatRoom) -> Void) {
-            userAPI.getUserChatRoomById(myData: myData, id: user.uid, completion: completion)
-        }
-                   
     func applyFriend(myData: User, user: User) {
             applyAPI.postApply(user: myData, toUser: user).subscribe {
                 appStore.dispatch(UserDetailState.UserDetailAction.changeCompletedStatus(true))

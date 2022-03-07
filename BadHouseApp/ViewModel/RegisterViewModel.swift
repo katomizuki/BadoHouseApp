@@ -94,8 +94,9 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
                 guard let self = self else { return }
                 self.errorHandling.onNext(error)
             }).disposed(by: self.disposeBag)
-        }, onFailure: { [weak self] error  in
-            self?.errorHandling.onNext(error)
+        }, onFailure: { [weak self] error in
+            guard let self = self else { return }
+            self.errorHandling.onNext(error)
         }).disposed(by: disposeBag)
     }
     

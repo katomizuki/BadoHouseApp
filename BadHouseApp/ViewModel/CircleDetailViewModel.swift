@@ -84,31 +84,9 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     }
 
     func getPercentage() {
-        // ここらへん書き換えたい
-        var (men, women, other) = (0, 0, 0)
-        var (one, two, three, four, five, six, seven, eight, nine, ten) = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-        allMembers.forEach {
-            switch $0.gender {
-            case "男性":men += 1
-            case "女性":women += 1
-            default:other += 1
-            }
-            switch $0.level {
-            case "レベル1":one += 1
-            case "レベル2":two += 1
-            case "レベル3":three += 1
-            case "レベル4":four += 1
-            case "レベル5":five += 1
-            case "レベル6":six += 1
-            case "レベル7": seven += 1
-            case "レベル8":eight += 1
-            case "レベル9":nine += 1
-            case "レベル10":ten += 1
-            default: break
-            }
-        }
-        genderPercentage = [men, women, other]
-        levelPercentage = [one, two, three, four, five, six, seven, eight, nine, ten]
+        circle.charts = Circle.ChartsObject(members: allMembers)
+        genderPercentage = circle.charts?.makeGenderPer() ?? [0]
+        levelPercentage = circle.charts?.makeLevelPer() ?? [0]
     }
     
     private func checkRightButtonHidden(_ users: [User]) {

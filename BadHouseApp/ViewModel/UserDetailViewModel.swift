@@ -3,7 +3,6 @@ import RxRelay
 import ReSwift
 
 protocol UserDetailViewModelInputs {
-    func fetchChatRoom(completion: @escaping(ChatRoom) -> Void)
     func applyFriend()
     func notApplyedFriend()
     var errorInput: AnyObserver<Bool> { get }
@@ -88,10 +87,6 @@ final class UserDetailViewModel: UserDetailViewModelType {
         actionCreator.getFriends(user: user)
         actionCreator.getMyCircles(user: user)
         actionCreator.getApplyUser(myData: myData, user: user)
-    }
-    
-    func fetchChatRoom(completion: @escaping (ChatRoom) -> Void) {
-        actionCreator.fetchChatRoom(myData: myData, user: user, completion: completion)
     }
     
     func applyFriend() {

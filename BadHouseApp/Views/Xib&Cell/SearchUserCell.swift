@@ -33,7 +33,6 @@ final class SearchUserCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        // Initialization code
     }
     
     static func nib() -> UINib {
