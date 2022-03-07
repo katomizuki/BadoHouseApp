@@ -8,4 +8,11 @@ target 'BadHouseApp' do
   # Pods for BadHouseApp
 
 pod 'GoogleSignIn', '~> 5.0.0'
+
+ target 'BadHouseAppTests' do
+    inherit! :search_paths
+    pod 'Quick'
+    pod 'Nimble'
+   end
+ 
 end

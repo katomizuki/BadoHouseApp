@@ -12,9 +12,13 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
+  - Nimble (9.2.1)
+  - Quick (4.0.0)
 
 DEPENDENCIES:
   - GoogleSignIn (~> 5.0.0)
+  - Nimble
+  - Quick
 
 SPEC REPOS:
   trunk:
@@ -22,13 +26,17 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - Nimble
+    - Quick
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
 
-PODFILE CHECKSUM: 59a0d03ece09228359d9a6a59445b94c44dc3de9
+PODFILE CHECKSUM: 5b1d4f54eee345b5a15020cda010d46c50865a9d
 
 COCOAPODS: 1.11.2

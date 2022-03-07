@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import Nimble
+import Quick
 class BadHouseAppTests: XCTestCase {
  
     override func setUpWithError() throws {
