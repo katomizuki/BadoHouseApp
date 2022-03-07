@@ -26,7 +26,10 @@ final class InviteViewModel: InviteViewModelType {
     var user: User
     var form: Form
     var inviteIds = [String]()
-    var friendsList = BehaviorRelay<[User]>(value: [])
+    
+    let friendsList = BehaviorRelay<[User]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     
     private let disposeBag = DisposeBag()
     private var dic = [String: Any]()
@@ -34,8 +37,6 @@ final class InviteViewModel: InviteViewModelType {
     private let completedStream = PublishSubject<Void>()
     private let store: Store<AppState>
     private let actionCreator: InviteActionCreator
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     
     init(user: User,
          form: Form,

@@ -12,8 +12,15 @@ final class RegisterCoordinator: Coordinator, RegisterFlow {
     }
     
     func start() {
-        let controller = RegisterController.init(viewModel: RegisterViewModel(authAPI: AuthRepositryImpl(),
-                                                                              userAPI: UserRepositryImpl()))
+        let controller = RegisterController.init(viewModel:
+                                                    RegisterViewModel(
+                                                        authAPI: AuthRepositryImpl(),
+                                                        userAPI: UserRepositryImpl(),
+                                                        store: appStore,
+                                                        actionCreator:
+                                                            RegisterActionCreator(
+                                                                authAPI: AuthRepositryImpl(),
+                                                                userAPI: UserRepositryImpl())))
         self.navigationController.setViewControllers([controller], animated: true)
         controller.coordinator = self
         navigationController.modalPresentationStyle = .fullScreen

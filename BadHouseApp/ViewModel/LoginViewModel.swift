@@ -1,5 +1,6 @@
 import RxSwift
 import RxCocoa
+import ReSwift
 // MARK: - InputProtocol
 protocol LoginBindingInputs {
     var emailTextInput: AnyObserver<String> { get }
@@ -24,10 +25,32 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
         passwordTextOutput.asObserver()
     }
     var validRegisterDriver: Driver<Bool> = Driver.never()
+    
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
 
+    private let store: Store<AppState>
+    private let actionCreator: LoginActionCreator
+    
     // MARK: - initialize
-    init() {
+    init(store: Store<AppState>, actionCreator: LoginActionCreator) {
+        self.store = store
+        self.actionCreator = actionCreator
+        
+        setupSubscribe()
         setupBinding()
+    }
+    
+    private func setupSubscribe() {
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.loginState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
     private func setupBinding() {
@@ -50,5 +73,13 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
         .subscribe { validAll in
             self.valideRegisterSubject.onNext(validAll)
         }.disposed(by: disposeBag)
+    }
+}
+
+extension LoginViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = LoginState
+    
+    func newState(state: LoginState) {
+        
     }
 }

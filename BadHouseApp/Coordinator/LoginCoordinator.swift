@@ -9,7 +9,9 @@ final class LoginCoordinator: Coordinator, LoginFlow {
     }
     
     func start() {
-        let controller = LoginController.init(viewModel: LoginViewModel())
+        let controller = LoginController.init(viewModel:
+                                                LoginViewModel(store: appStore,
+                                                               actionCreator: LoginActionCreator()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

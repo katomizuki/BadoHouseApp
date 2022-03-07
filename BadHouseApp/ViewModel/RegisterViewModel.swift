@@ -1,6 +1,8 @@
 import RxSwift
 import RxCocoa
 import Firebase
+import ReSwift
+
 // MARK: - Input Protocol
 protocol RegisterBindingInputs {
     var nameTextInput: AnyObserver<String> { get }
@@ -39,16 +41,38 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     let errorHandling = PublishSubject<Error>()
     let isCompleted: PublishSubject<Bool> = PublishSubject<Bool>()
     let valideRegisterSubject = BehaviorSubject<Bool>(value: false)
-    
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+
+    private let store: Store<AppState>
     private let authAPI: AuthRepositry
     private let userAPI: UserRepositry
     private let disposeBag = DisposeBag()
+    private let actionCreator: RegisterActionCreator
     // MARK: - initialize
-    init(authAPI: AuthRepositry, userAPI: UserRepositry) {
+    init(authAPI: AuthRepositry,
+         userAPI: UserRepositry,
+         store: Store<AppState>,
+         actionCreator: RegisterActionCreator) {
         self.authAPI = authAPI
         self.userAPI = userAPI
+        self.store = store
+        self.actionCreator = actionCreator
         
         setupValidation()
+        setupSubscribe()
+    }
+    
+    private func setupSubscribe() {
+        willAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.subscribe(self) { subcription in
+                subcription.select { state in state.registerState }
+            }
+        }).disposed(by: disposeBag)
+        
+        willDisAppear.subscribe(onNext: { [unowned self] _ in
+            self.store.unsubscribe(self)
+        }).disposed(by: disposeBag)
     }
     
     private func setupValidation() {
@@ -112,5 +136,13 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         }, onError: { [weak self] error in
             self?.errorHandling.onNext(error)
         }).disposed(by: disposeBag)
+    }
+}
+
+extension RegisterViewModel: StoreSubscriber {
+    typealias StoreSubscriberStateType = RegisterState
+    
+    func newState(state: RegisterState) {
+        
     }
 }
