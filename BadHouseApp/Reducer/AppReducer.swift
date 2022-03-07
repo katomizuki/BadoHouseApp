@@ -33,5 +33,6 @@ func appReduce(action: Action, state: AppState?) -> AppState {
     state.updateUserState = UpdateUserInfoReducer.reducer(action: action, state: state.updateUserState)
     state.loginState = LoginReducer.reducer(action: action, state: state.loginState)
     state.registerState = RegisterReducer.reducer(action: action, state: state.registerState)
+    state.eventAdditionlItemsState = EventAdditionlItemsReducer.reducer(action: action, state: state.eventAdditionlItemsState)
     return state
 }

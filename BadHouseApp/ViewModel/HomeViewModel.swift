@@ -71,7 +71,7 @@ final class HomeViewModel: HomeViewModelType {
     }
         
     func checkIsAuthUser() {
-        
+        // TODO: ここにロジック書くのははあんまし良くない
         if let id = Auth.auth().currentUser?.uid {
            setupData(id)
         } else if !Network.shared.isOnline() {

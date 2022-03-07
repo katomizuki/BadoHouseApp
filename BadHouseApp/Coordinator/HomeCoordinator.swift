@@ -37,7 +37,8 @@ final class HomeCoordinator: Coordinator, HomeFlow {
         let controller = PracticeSearchController.init(viewModel:
                                                         PracticeSearchViewModel(
                                                             practices: practices,
-                                                            store: appStore))
+                                                            store: appStore,
+                                                            actionCreator: PracticeSearchActionCreator()))
         controller.delegate = vc
         let nav = UINavigationController(rootViewController: controller)
         vc.present(nav, animated: true)

@@ -33,4 +33,5 @@ struct AppState: ReSwift.StateType {
     var updateUserState = UpdateUserInfoState()
     var loginState = LoginState()
     var registerState = RegisterState()
+    var eventAdditionlItemsState = EventAdditionlItemsState()
 }

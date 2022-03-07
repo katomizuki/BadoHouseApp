@@ -28,26 +28,30 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     var inputs: PracticeSearchViewModelInputs { return self }
     var outputs: PracticeSearchViewModelOutputs { return self }
     
-    var navigationStriing = PublishSubject<String>()
     var selectedLevel = String()
     var selectedPlace = String()
-    var reload = PublishSubject<Void>()
     var practices = [Practice]()
     var fullPractices = [Practice]()
     var searchedPractices = [Practice]()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
-    private let disposeBag = DisposeBag()
     
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    let navigationStriing = PublishSubject<String>()
+    let reload = PublishSubject<Void>()
+    
+    private let disposeBag = DisposeBag()
     private let reloadStream = PublishSubject<Void>()
     private let navigationTitleStream = PublishSubject<String>()
     private let store: Store<AppState>
+    private let actionCreator: PracticeSearchActionCreator
     
     init(practices: [Practice],
-         store: Store<AppState>) {
+         store: Store<AppState>,
+         actionCreator: PracticeSearchActionCreator) {
         self.practices = practices
         self.fullPractices = practices
         self.store = store
+        self.actionCreator = actionCreator
         
         setupSubscribe()
     }
@@ -78,6 +82,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     }
     
     func seachLevel(_ text: String) -> [Practice] {
+        // TODO: - ここら辺はどうにかする。
         var array = [Practice]()
         let levelText = text
         var level = Int(levelText.suffix(1))!

@@ -1,29 +1,36 @@
 import UIKit
 import RxSwift
 import RxRelay
+import ReSwift
 
 final class EventAdditionalItemViewModel {
     
+    var dic: [String: Any]
+    var textViewInputs = String()
+
+    let isError = PublishSubject<Bool>()
+    let completed = PublishSubject<Void>()
     let image: UIImage
     let circle: Circle
     let user: User
-    var dic: [String: Any]
-    var isError = PublishSubject<Bool>()
-    var completed = PublishSubject<Void>()
-    var textViewInputs = String()
+
     private let practiceAPI: PracticeRepositry
     private let disposeBag = DisposeBag()
+    private let store: Store<AppState>
+//    private let
     
     init(image: UIImage,
          circle: Circle,
          user: User,
          dic: [String: Any],
-         practiceAPI: PracticeRepositry) {
+         practiceAPI: PracticeRepositry,
+         store: Store<AppState>) {
         self.image = image
         self.circle = circle
         self.user = user
         self.dic = dic
         self.practiceAPI = practiceAPI
+        self.store = store
     }
     // ここら辺書き換えたい
     func postPractice() {

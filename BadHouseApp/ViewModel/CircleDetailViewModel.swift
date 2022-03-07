@@ -92,11 +92,11 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     private func checkRightButtonHidden(_ users: [User]) {
         var isHidden = true
         users.forEach { user in
-           if user.uid == myData.uid {
+            if user.isMyself {
                isHidden = false
             }
         }
-        self.rightButtonHiddenInput.onNext(isHidden)
+        rightButtonHiddenInput.onNext(isHidden)
     }
     
 }
@@ -142,25 +142,25 @@ extension CircleDetailViewModel: StoreSubscriber {
     }
     
     func allMembersStateSubscribe(_ state: CircleDetailState) {
-        self.allMembers = state.allMembers
-        self.checkRightButtonHidden(state.allMembers)
-        self.getPercentage()
+        allMembers = state.allMembers
+        checkRightButtonHidden(state.allMembers)
+        getPercentage()
     }
     
     func friendsMembers(_ state: CircleDetailState) {
-        self.friendsMembers = state.friendsMembers
+        friendsMembers = state.friendsMembers
     }
     
     func errorStateSubscribe(_ state: CircleDetailState) {
         if state.errorStatus {
-            self.errorInput.onNext(true)
+            errorInput.onNext(true)
             actionCreator.toggleErrorStauts()
         }
     }
     
     func reloadStateSubscribe(_ state: CircleDetailState) {
         if state.reloadStatus {
-            self.reloadInput.onNext(())
+            reloadInput.onNext(())
             actionCreator.toggleReloadStaus()
         }
     }
@@ -168,7 +168,7 @@ extension CircleDetailViewModel: StoreSubscriber {
     func circleStateSubscribe(_ state: CircleDetailState) {
         if let circle = state.circle {
             self.circle = circle
-            self.memberRelay.accept(circle.members)
+            memberRelay.accept(circle.members)
         }
     }
 }
