@@ -136,7 +136,7 @@
 		D345FB2B27D4DFE500E0805A /* LoginPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345FB2A27D4DFE500E0805A /* LoginPageObject.swift */; };
 		D345FB2D27D4DFF000E0805A /* RegisterPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345FB2C27D4DFF000E0805A /* RegisterPageObject.swift */; };
 		D345FB2F27D4E02B00E0805A /* TeamRegisterPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345FB2E27D4E02B00E0805A /* TeamRegisterPageObject.swift */; };
-		D346771D27C3392700825D34 /* BadHouseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346771C27C3392700825D34 /* BadHouseAppTests.swift */; };
+		D346771D27C3392700825D34 /* CiclesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346771C27C3392700825D34 /* CiclesTests.swift */; };
 		D346772A27C339E700825D34 /* BadHouseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346772927C339E700825D34 /* BadHouseAppUITests.swift */; };
 		D346772C27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */; };
 		D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4B27A94D6700B87D74 /* FirebaseAuth */; };
@@ -364,6 +364,9 @@
 		D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761842776C23C004381E4 /* LoginCoordinator.swift */; };
 		D3D761892776D38D004381E4 /* AuthCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761882776D38D004381E4 /* AuthCredential.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
+		D3F1503427D7778B0028237E /* HomeStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1503327D7778B0028237E /* HomeStateTests.swift */; };
+		D3F1503627D77E960028237E /* ValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1503527D77E960028237E /* ValidationTests.swift */; };
+		D3F1503827D8101D0028237E /* CircleDetailStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */; };
 		D3F2458B2775E1B80030DA1B /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */; };
 		D3F2458D2775E22F0030DA1B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */; };
 		D3F2458F2775EA270030DA1B /* SettingsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2458E2775EA270030DA1B /* SettingsSelection.swift */; };
@@ -568,7 +571,7 @@
 		D345FB2C27D4DFF000E0805A /* RegisterPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageObject.swift; sourceTree = "<group>"; };
 		D345FB2E27D4E02B00E0805A /* TeamRegisterPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterPageObject.swift; sourceTree = "<group>"; };
 		D346771A27C3392700825D34 /* BadHouseAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHouseAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D346771C27C3392700825D34 /* BadHouseAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppTests.swift; sourceTree = "<group>"; };
+		D346771C27C3392700825D34 /* CiclesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiclesTests.swift; sourceTree = "<group>"; };
 		D346772727C339E700825D34 /* BadHouseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHouseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D346772927C339E700825D34 /* BadHouseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppUITests.swift; sourceTree = "<group>"; };
 		D346772B27C339E700825D34 /* BadHouseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadHouseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -782,6 +785,9 @@
 		D3D761842776C23C004381E4 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		D3D761882776D38D004381E4 /* AuthCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredential.swift; sourceTree = "<group>"; };
 		D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewModel.swift; sourceTree = "<group>"; };
+		D3F1503327D7778B0028237E /* HomeStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStateTests.swift; sourceTree = "<group>"; };
+		D3F1503527D77E960028237E /* ValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTests.swift; sourceTree = "<group>"; };
+		D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailStateTests.swift; sourceTree = "<group>"; };
 		D3F2458A2775E1B80030DA1B /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
 		D3F2458C2775E22F0030DA1B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D3F2458E2775EA270030DA1B /* SettingsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelection.swift; sourceTree = "<group>"; };
@@ -1027,7 +1033,10 @@
 		D346771B27C3392700825D34 /* BadHouseAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				D346771C27C3392700825D34 /* BadHouseAppTests.swift */,
+				D346771C27C3392700825D34 /* CiclesTests.swift */,
+				D3F1503327D7778B0028237E /* HomeStateTests.swift */,
+				D3F1503527D77E960028237E /* ValidationTests.swift */,
+				D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */,
 			);
 			path = BadHouseAppTests;
 			sourceTree = "<group>";
@@ -2006,7 +2015,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D346771D27C3392700825D34 /* BadHouseAppTests.swift in Sources */,
+				D3F1503827D8101D0028237E /* CircleDetailStateTests.swift in Sources */,
+				D3F1503427D7778B0028237E /* HomeStateTests.swift in Sources */,
+				D346771D27C3392700825D34 /* CiclesTests.swift in Sources */,
+				D3F1503627D77E960028237E /* ValidationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

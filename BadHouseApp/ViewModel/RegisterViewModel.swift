@@ -89,22 +89,36 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         let emailValid: Observable<Bool> = emailTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
-                self?.email = text
-                let atMarkCount = Array(text).filter { $0 == "@"}.count
-                return text.count >= 5 && text.contains("@") && !text.contains(" ") && atMarkCount == 1
+                guard let self = self else { return false }
+                self.email = text
+                let atMarkCount = self.makeAtMarkCount(text)
+                return self.validateMailAddress(text, atMarkCount: atMarkCount)
             }
         
         let passwordValid: Observable<Bool> = passwordTextOutput
             .asObservable()
             .map { [weak self] text -> Bool in
-                self?.password = text
-                return text.count >= 6 && !text.contains(" ")
+                guard let self = self else { return false }
+                self.password = text
+                return self.validatePassword(text)
             }
 
         Observable.combineLatest(nameValid, emailValid, passwordValid) { $0 && $1 && $2 }
         .subscribe { validAll in
             self.valideRegisterSubject.onNext(validAll)
         }.disposed(by: disposeBag)
+    }
+    
+    private func validateMailAddress(_ mailAddress: String, atMarkCount: Int) -> Bool {
+        return mailAddress.count >= 5 && mailAddress.contains("@") && !mailAddress.contains(" ") && atMarkCount == 1
+    }
+    
+    private func makeAtMarkCount(_ mailAddress: String) -> Int {
+        return Array(mailAddress).filter { $0 == "@"}.count
+    }
+    
+    private func validatePassword(_ password: String) -> Bool {
+        return password.count >= 6 && !password.contains(" ")
     }
 
     func didTapRegisterButton() {
