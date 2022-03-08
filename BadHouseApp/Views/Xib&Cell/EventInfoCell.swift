@@ -34,7 +34,7 @@ final class EventInfoCell: UICollectionViewCell {
             userImageView.layer.masksToBounds = true
         }
     }
-    var practice: Practice?
+    private var practice: Practice?
     weak var delegate: EventInfoCellDelegate?
     
     // MARK: - LifeCycle

@@ -16,7 +16,7 @@ final class PreJoinCell: UITableViewCell {
     }
     @IBOutlet private weak var label: UILabel!
    
-    var preJoin: PreJoin?
+    private var preJoin: PreJoin?
     weak var delegate: PreJoinCellDelegate?
     
     override func awakeFromNib() {

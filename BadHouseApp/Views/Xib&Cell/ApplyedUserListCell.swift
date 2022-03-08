@@ -17,7 +17,7 @@ final class ApplyedUserListCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     
     weak var delegate: ApplyedUserListCellDelegate?
-    var applyed: Applyed?
+    private var applyed: Applyed?
     
     override func awakeFromNib() {
         super.awakeFromNib()

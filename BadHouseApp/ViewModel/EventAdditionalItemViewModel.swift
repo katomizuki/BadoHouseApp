@@ -32,6 +32,7 @@ final class EventAdditionalItemViewModel {
         self.dic = dic
         self.practiceAPI = practiceAPI
         self.store = store
+        self.actionCreator = actionCreator
     }
     // ここら辺書き換えたい
     func postPractice() {

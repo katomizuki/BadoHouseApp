@@ -35,7 +35,7 @@ final class ApplyUserListCell: UITableViewCell {
         nameLabel.text = apply.name
     }
 
-    @IBAction func didTapTrashButton(_ sender: Any) {
+    @IBAction private func didTapTrashButton(_ sender: Any) {
         if let apply = apply {
             self.delegate?.onTapTrashButton(apply, cell: self)
         }

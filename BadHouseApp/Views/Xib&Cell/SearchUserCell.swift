@@ -27,7 +27,7 @@ final class SearchUserCell: UITableViewCell {
     }
     @IBOutlet private weak var nameLabel: UILabel!
     
-    var user: User?
+    private var user: User?
     weak var delegate: SearchUserCellDelegate?
     
     override func awakeFromNib() {

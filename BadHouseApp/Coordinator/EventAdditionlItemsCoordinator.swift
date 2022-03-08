@@ -24,7 +24,8 @@ final class EventAdditionlItemsCoordinator: Coordinator, EventAdditionlItemsFlow
                                          user: user,
                                          dic: dic,
                                          practiceAPI: PracticeRepositryImpl(),
-                                         store: appStore))
+                                                    store: appStore,
+                                                    actionCreator: EventAdditionlItemsActionCreator()))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
