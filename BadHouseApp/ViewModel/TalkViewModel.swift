@@ -25,11 +25,12 @@ final class TalkViewModel: TalkViewModelType {
     var outputs: TalkViewModelOutputs { return self }
     
     let chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    let willAppear = PublishRelay<Void>()
-    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: TalkActionCreator
     

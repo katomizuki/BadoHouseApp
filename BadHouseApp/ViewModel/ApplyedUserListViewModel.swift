@@ -68,8 +68,6 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     func setupData() {
         actionCreator.getApplyedUserList(user)
     }
-
-
 }
 
 extension ApplyedUserListViewModel: ApplyedUserListViewModelInputs {

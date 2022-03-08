@@ -123,7 +123,6 @@ final class CircleDetailController: UIViewController {
     }
     
     private func setupBinding() {
-        
         viewModel.outputs.reload.observe(on: MainScheduler.instance)
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
@@ -170,7 +169,6 @@ final class CircleDetailController: UIViewController {
             }
         }
     }
-    
     
     @IBAction private func changeSegment(_ sender: UISegmentedControl) {
         viewModel.inputs.changeMember(sender.selectedSegmentIndex)

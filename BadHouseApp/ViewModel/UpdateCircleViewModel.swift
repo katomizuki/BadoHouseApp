@@ -30,6 +30,14 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     var outputs: UpdateCircleViewModelOutputs { return self }
     
     var circle: Circle
+    var iconImage: UIImage?
+    var backgroundImage: UIImage?
+    lazy var selectionsFeature = circle.features
+    
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
+    
+    private let actionCreator: UpdateCircleActionCreator
     private let nameTextSubject = PublishSubject<String>()
     private let priceTextSubject = PublishSubject<String>()
     private let placeTextSubject = PublishSubject<String>()
@@ -38,14 +46,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
-    var willAppear = PublishRelay<Void>()
-    var willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
-    
-    var iconImage: UIImage?
-    var backgroundImage: UIImage?
-    lazy var selectionsFeature = circle.features
-    private let actionCreator: UpdateCircleActionCreator
     
     init(circle: Circle,
          store: Store<AppState>,

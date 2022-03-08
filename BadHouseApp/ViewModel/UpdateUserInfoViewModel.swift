@@ -50,6 +50,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     var user: User?
     var userImage: UIImage?
     var isChangeImage = false
+
     let textViewSubject = BehaviorSubject<String>(value: "")
     let nameTextFieldSubject = BehaviorSubject<String>(value: "")
     let rackeTextFieldSubject = BehaviorSubject<String>(value: "")

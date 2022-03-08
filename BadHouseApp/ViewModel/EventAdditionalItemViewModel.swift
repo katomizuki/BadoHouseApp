@@ -17,14 +17,15 @@ final class EventAdditionalItemViewModel {
     private let practiceAPI: PracticeRepositry
     private let disposeBag = DisposeBag()
     private let store: Store<AppState>
-//    private let
+    private let actionCreator: EventAdditionlItemsActionCreator
     
     init(image: UIImage,
          circle: Circle,
          user: User,
          dic: [String: Any],
          practiceAPI: PracticeRepositry,
-         store: Store<AppState>) {
+         store: Store<AppState>,
+         actionCreator: EventAdditionlItemsActionCreator) {
         self.image = image
         self.circle = circle
         self.user = user

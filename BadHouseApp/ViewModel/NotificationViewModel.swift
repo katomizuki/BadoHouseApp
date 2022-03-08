@@ -28,12 +28,15 @@ final class NotificationViewModel: NotificationViewModelType {
     
     var inputs: NotificationViewModelInputs { return self }
     var outputs: NotificationViewModelOutputs { return self }
-    var notificationList = BehaviorRelay<[Notification]>(value: [])
-    var toPrejoined = PublishSubject<Void>()
-    var toApplyedFriend = PublishSubject<Void>()
-    var toUserDetail = PublishSubject<User>()
-    var toPracticeDetail = PublishSubject<Practice>()
+
+    let notificationList = BehaviorRelay<[Notification]>(value: [])
+    let toPrejoined = PublishSubject<Void>()
+    let toApplyedFriend = PublishSubject<Void>()
+    let toUserDetail = PublishSubject<User>()
+    let toPracticeDetail = PublishSubject<Practice>()
     let user: User
+    let willAppear = PublishRelay<Void>()
+    let willDisAppear = PublishRelay<Void>()
     
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
@@ -42,8 +45,6 @@ final class NotificationViewModel: NotificationViewModelType {
     private let applyedFriendStream = PublishSubject<Void>()
     private let userDetailStream = PublishSubject<User>()
     private let practiceDetailStream = PublishSubject<Practice>()
-    let willAppear = PublishRelay<Void>()
-    let willDisAppear = PublishRelay<Void>()
     private let store: Store<AppState>
     private let actionCreator: NotificationActionCreator
     

@@ -20,8 +20,8 @@ final class MapListViewModel: MapListViewModelType, MapListViewModelInputs, MapL
     
     var currnetLatitude: CLLocationDegrees
     var currentLongitude: CLLocationDegrees
-    
     var practices = [Practice]()
+    
     let myData: User
     
     init(currnetLatitude: CLLocationDegrees,

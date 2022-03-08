@@ -35,10 +35,11 @@ final class HomeViewModel: HomeViewModelType {
 
     var inputs: HomeViewModelInputs { return self }
     var outputs: HomeViewModelOutputs { return self }
-   
-    var practiceRelay = BehaviorRelay<[Practice]>(value: [])
+    
     var myData: User?
-
+    
+    let practiceRelay = BehaviorRelay<[Practice]>(value: [])
+    
     private let didLoadStream = PublishSubject<Void>()
     private let willAppearStream = PublishSubject<Void>()
     private let willDisAppearStream = PublishSubject<Void>()
