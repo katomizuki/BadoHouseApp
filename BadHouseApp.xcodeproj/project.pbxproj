@@ -1033,10 +1033,10 @@
 		D346771B27C3392700825D34 /* BadHouseAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				D346771C27C3392700825D34 /* CiclesTests.swift */,
-				D3F1503327D7778B0028237E /* HomeStateTests.swift */,
-				D3F1503527D77E960028237E /* ValidationTests.swift */,
-				D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */,
+				D3C8539727DAB22E00EF0123 /* RepositryTests */,
+				D3C8539627DAB22200EF0123 /* ViewModelTests */,
+				D3C8539527DAB20D00EF0123 /* CommonTests */,
+				D3C8539427DAB1E400EF0123 /* StateTests */,
 			);
 			path = BadHouseAppTests;
 			sourceTree = "<group>";
@@ -1545,6 +1545,38 @@
 				D36E52ED27B9375900DC637C /* MyTaskViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D3C8539427DAB1E400EF0123 /* StateTests */ = {
+			isa = PBXGroup;
+			children = (
+				D3F1503327D7778B0028237E /* HomeStateTests.swift */,
+				D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */,
+			);
+			path = StateTests;
+			sourceTree = "<group>";
+		};
+		D3C8539527DAB20D00EF0123 /* CommonTests */ = {
+			isa = PBXGroup;
+			children = (
+				D3F1503527D77E960028237E /* ValidationTests.swift */,
+				D346771C27C3392700825D34 /* CiclesTests.swift */,
+			);
+			path = CommonTests;
+			sourceTree = "<group>";
+		};
+		D3C8539627DAB22200EF0123 /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModelTests;
+			sourceTree = "<group>";
+		};
+		D3C8539727DAB22E00EF0123 /* RepositryTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RepositryTests;
 			sourceTree = "<group>";
 		};
 		D3D2230727BBC59B0022059A /* Protocol */ = {

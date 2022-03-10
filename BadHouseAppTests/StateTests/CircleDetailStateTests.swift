@@ -18,8 +18,8 @@ class CircleDetailStateTests: QuickSpec {
         let beforeError = appStore.state.circleDetailState.errorStatus
         let beforeAllMembers = appStore.state.circleDetailState.allMembers
         let beforeFriendsMembers = appStore.state.circleDetailState.friendsMembers
-        let am = [User(dic: ["": ""]), User(dic: ["":""]), User(dic: ["":""])]
-        let fm = [User(dic: ["": ""]), User(dic: ["":""])]
+        let am = [User(dic: ["": ""]), User(dic: ["": ""]), User(dic: ["": ""])]
+        let fm = [User(dic: ["": ""]), User(dic: ["": ""])]
         describe("CircleDetail Status") {
             context("before") {
                 it("it false") {

@@ -7,6 +7,8 @@ protocol CircleDetailViewModelInputs {
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
     var rightButtonHiddenInput: AnyObserver<Bool> { get }
+    var willAppear: PublishRelay<Void> { get }
+    var willDisAppear: PublishRelay<Void> { get }
 }
 
 protocol CircleDetailViewModelOutputs {

@@ -1,6 +1,5 @@
 import UIKit
 import SDWebImage
-import Firebase
 import Charts
 import RxSwift
 
