@@ -305,6 +305,9 @@
 		D3C4E94526E1ACBC00C21E46 /* TeamRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */; };
 		D3C4E94726E1C2B400C21E46 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E94626E1C2B400C21E46 /* Circle.swift */; };
 		D3C4E95726E33A5700C21E46 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E95626E33A5700C21E46 /* CustomCell.swift */; };
+		D3C8539927DAC24E00EF0123 /* UserStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8539827DAC24E00EF0123 /* UserStateTest.swift */; };
+		D3C8539B27DAC28500EF0123 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8539A27DAC28500EF0123 /* HomeViewModelTest.swift */; };
+		D3C8539D27DAC2A300EF0123 /* UserRepositryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8539C27DAC2A300EF0123 /* UserRepositryTest.swift */; };
 		D3CBF9BF27C4F8A1005F7021 /* PracticeSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9BE27C4F8A1005F7021 /* PracticeSearchState.swift */; };
 		D3CBF9C127C4F8C7005F7021 /* PracticeSearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */; };
 		D3CBF9C327C4F906005F7021 /* PracticeSearchActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */; };
@@ -725,6 +728,9 @@
 		D3C4E94426E1ACBC00C21E46 /* TeamRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRegisterViewModel.swift; sourceTree = "<group>"; };
 		D3C4E94626E1C2B400C21E46 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		D3C4E95626E33A5700C21E46 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		D3C8539827DAC24E00EF0123 /* UserStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateTest.swift; sourceTree = "<group>"; };
+		D3C8539A27DAC28500EF0123 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
+		D3C8539C27DAC2A300EF0123 /* UserRepositryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositryTest.swift; sourceTree = "<group>"; };
 		D3CBF9BE27C4F8A1005F7021 /* PracticeSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchState.swift; sourceTree = "<group>"; };
 		D3CBF9C027C4F8C7005F7021 /* PracticeSearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchAction.swift; sourceTree = "<group>"; };
 		D3CBF9C227C4F906005F7021 /* PracticeSearchActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSearchActionCreator.swift; sourceTree = "<group>"; };
@@ -1552,6 +1558,7 @@
 			children = (
 				D3F1503327D7778B0028237E /* HomeStateTests.swift */,
 				D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */,
+				D3C8539827DAC24E00EF0123 /* UserStateTest.swift */,
 			);
 			path = StateTests;
 			sourceTree = "<group>";
@@ -1568,6 +1575,7 @@
 		D3C8539627DAB22200EF0123 /* ViewModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3C8539A27DAC28500EF0123 /* HomeViewModelTest.swift */,
 			);
 			path = ViewModelTests;
 			sourceTree = "<group>";
@@ -1575,6 +1583,7 @@
 		D3C8539727DAB22E00EF0123 /* RepositryTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3C8539C27DAC2A300EF0123 /* UserRepositryTest.swift */,
 			);
 			path = RepositryTests;
 			sourceTree = "<group>";
@@ -2048,7 +2057,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3F1503827D8101D0028237E /* CircleDetailStateTests.swift in Sources */,
+				D3C8539927DAC24E00EF0123 /* UserStateTest.swift in Sources */,
+				D3C8539D27DAC2A300EF0123 /* UserRepositryTest.swift in Sources */,
 				D3F1503427D7778B0028237E /* HomeStateTests.swift in Sources */,
+				D3C8539B27DAC28500EF0123 /* HomeViewModelTest.swift in Sources */,
 				D346771D27C3392700825D34 /* CiclesTests.swift in Sources */,
 				D3F1503627D77E960028237E /* ValidationTests.swift in Sources */,
 			);
