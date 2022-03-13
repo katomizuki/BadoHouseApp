@@ -11,6 +11,6 @@ import Quick
 import Nimble
 class CircleDetailStateTests: QuickSpec {
     override func spec() {
-        
+        let a = "ssss"
     }
 }
