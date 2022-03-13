@@ -12,5 +12,12 @@ import Nimble
 class CircleDetailStateTests: QuickSpec {
     override func spec() {
         
+        let appStore = Store(reducer: appReduce, state: AppState())
+        let beforeReload = appStore.state.circleDetailState.reloadStatus
+        let beforeError = appStore.state.circleDetailState.errorStatus
+        let beforeCircle = appStore.state.circleDetailState.circle
+        let beforeFriends = appStore.state.circleDetailState.friendsMembers
+        let beforeMembers = appStore.state.circleDetailState.allMembers
+        
     }
 }
