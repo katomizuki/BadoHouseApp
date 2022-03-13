@@ -27,7 +27,7 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
         super.viewWillAppear(animated)
         viewModel.willAppear.accept(())
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         viewModel.willDisAppear.accept(())
@@ -40,12 +40,12 @@ final class InviteToCircleController: UIViewController, UIScrollViewDelegate {
                                           action: #selector(didTapRightButton))
         navigationItem.rightBarButtonItem = rightButton
     }
-    
+
     private func setupUI() {
         setupNavigationBar()
         setupTableView()
     }
-    
+
     private func setupTableView() {
         friendTableView.register(InviteCell.nib(), forCellReuseIdentifier: InviteCell.id)
         friendTableView.rowHeight = 50

@@ -29,12 +29,12 @@ final class CircleSearchController: UIViewController {
         setupTableView()
         setupBinding()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear.accept(())
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         viewModel.willDisAppear.accept(())
@@ -44,6 +44,7 @@ final class CircleSearchController: UIViewController {
     private func setupTableView() {
         tableView.register(CustomCell.nib(), forCellReuseIdentifier: CustomCell.id)
     }
+
     private func setupBinding() {
         
         searchBar.rx.text.orEmpty.subscribe(onNext: { [weak self] text in

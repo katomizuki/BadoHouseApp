@@ -6,7 +6,7 @@ final class BlockListDataSourceDelegate: NSObject, UITableViewDataSource, UITabl
     func initViewModel(viewModel: BlockListViewModel) {
         self.viewModel = viewModel
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else { return }
         viewModel.inputs.removeBlock(viewModel.outputs.blockListRelay.value[indexPath.row])

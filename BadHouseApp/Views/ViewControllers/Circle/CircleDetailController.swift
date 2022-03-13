@@ -172,7 +172,7 @@ final class CircleDetailController: UIViewController {
     @IBAction private func changeSegment(_ sender: UISegmentedControl) {
         viewModel.inputs.changeMember(sender.selectedSegmentIndex)
     }
-    
+
     private func setupPieChart() {
         let genderArray = viewModel.genderPercentage
         var entry = [ChartDataEntry]()

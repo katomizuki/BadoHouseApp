@@ -226,7 +226,7 @@ final class UpdateCircleController: UIViewController {
 }
 
 extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
+
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -243,7 +243,7 @@ extension UpdateCircleController: UINavigationControllerDelegate, UIImagePickerC
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     private func popAnimation() {
         // TODO: - 何かしらのFBが欲しいかも
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

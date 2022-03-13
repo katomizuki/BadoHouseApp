@@ -2,6 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+
 enum ImageSelection {
     case backGround
     case icon
@@ -46,6 +47,7 @@ final class MakeCircleController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+
     required init?(coder: NSCoder) {
         fatalError()
     }
