@@ -18,6 +18,5 @@ class CircleDetailStateTests: QuickSpec {
         let beforeCircle = appStore.state.circleDetailState.circle
         let beforeFriends = appStore.state.circleDetailState.friendsMembers
         let beforeMembers = appStore.state.circleDetailState.allMembers
-        
     }
 }
