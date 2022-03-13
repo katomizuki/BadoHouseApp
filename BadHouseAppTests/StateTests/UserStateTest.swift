@@ -19,7 +19,7 @@ class CircleDetailStateTests: QuickSpec {
         let beforeFriends = appStore.state.circleDetailState.friendsMembers
         let beforeMembers = appStore.state.circleDetailState.allMembers
         
-        describe("Circle Detail State") {
+        describe("User Detail State") {
             context("Before") {
                 it("reload false") {
                     expect(beforeReload).to(beFalse())
