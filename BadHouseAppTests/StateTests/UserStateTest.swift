@@ -71,8 +71,6 @@ class CircleDetailStateTests: QuickSpec {
                     expect(afterCircle).notTo(beNil())
                 }
             }
-            
         }
-        
     }
 }
