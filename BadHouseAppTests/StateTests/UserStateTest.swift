@@ -27,10 +27,10 @@ class CircleDetailStateTests: QuickSpec {
                 it("error false") {
                     expect(beforeError).to(beFalse())
                 }
-                it ("circle nil") {
+                it("circle nil") {
                     expect(beforeCircle).to(beNil())
                 }
-                it ("friend count 0") {
+                it("friend count 0") {
                     expect(beforeFriends).to(haveCount(0))
                 }
                 it("members count 0") {
@@ -43,7 +43,7 @@ class CircleDetailStateTests: QuickSpec {
             appStore.dispatch(CircleDetailState.CircleDetailAction.changeReloadStatus(true))
             appStore.dispatch(CircleDetailState.CircleDetailAction.changeErrorStatus(true))
             appStore.dispatch(CircleDetailState.CircleDetailAction.setAllMembers(users))
-            appStore.dispatch(CircleDetailState.CircleDetailAction.setCircle(Circle(dic: ["":""])))
+            appStore.dispatch(CircleDetailState.CircleDetailAction.setCircle(Circle(dic: ["": ""])))
             appStore.dispatch(CircleDetailState.CircleDetailAction.setFriendsMembers(users))
             
             // MARK: - AfterStatus
@@ -55,13 +55,13 @@ class CircleDetailStateTests: QuickSpec {
             let afterFriends = appStore.state.circleDetailState.friendsMembers
             
             context("After") {
-                it ("reload true") {
+                it("reload true") {
                     expect(afterReload).to(beTrue())
                 }
-                it ("error true") {
+                it("error true") {
                     expect(afterError).to(beTrue())
                 }
-                it ("members haveCount 2") {
+                it("members haveCount 2") {
                     expect(afterAllMembers).to(haveCount(2))
                 }
                 it("friends haveCount 2") {
