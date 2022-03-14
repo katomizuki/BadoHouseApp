@@ -31,6 +31,7 @@ class NotificationStateTest: QuickSpec {
             appStore.dispatch(NotificationStatus.NotificationAction.setNotifications([Notification(dic: ["":""])]))
             let afterError = appStore.state.notificationStatus.errorStatus
             let afterNotifications = appStore.state.notificationStatus.notifications
+            
             context("after status") {
                 it("error true") {
                     expect(afterError).to(beTrue())

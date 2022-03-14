@@ -9,17 +9,17 @@ import ReSwift
 @testable import BadHouseApp
 import Quick
 import Nimble
-class CircleDetailStateTests: QuickSpec {
+class UserStateTests: QuickSpec {
     override func spec() {
         
         let appStore = Store(reducer: appReduce, state: AppState())
-        let beforeReload = appStore.state.circleDetailState.reloadStatus
-        let beforeError = appStore.state.circleDetailState.errorStatus
-        let beforeCircle = appStore.state.circleDetailState.circle
-        let beforeFriends = appStore.state.circleDetailState.friendsMembers
-        let beforeMembers = appStore.state.circleDetailState.allMembers
+        let beforeReload = appStore.state.userState.reloadStatus
+        let beforeError = appStore.state.userState.errorStatus
+        let beforeCircles = appStore.state.userState.circles
+        let beforeFriends = appStore.state.userState.friends
+        let beforeUser = appStore.state.userState.user
         
-        describe("User Detail State") {
+        describe("User State") {
             context("Before") {
                 it("reload false") {
                     expect(beforeReload).to(beFalse())
@@ -27,32 +27,32 @@ class CircleDetailStateTests: QuickSpec {
                 it("error false") {
                     expect(beforeError).to(beFalse())
                 }
-                it("circle nil") {
-                    expect(beforeCircle).to(beNil())
+                it("user nil") {
+                    expect(beforeUser).to(beNil())
                 }
                 it("friend count 0") {
                     expect(beforeFriends).to(haveCount(0))
                 }
-                it("members count 0") {
-                    expect(beforeMembers).to(haveCount(0))
+                it("circles count 0") {
+                    expect(beforeCircles).to(haveCount(0))
                 }
             }
             
             // MARK: - AfterAction
-            let users = [User(dic: ["":""]), User(dic: ["":""])]
-            appStore.dispatch(CircleDetailState.CircleDetailAction.changeReloadStatus(true))
-            appStore.dispatch(CircleDetailState.CircleDetailAction.changeErrorStatus(true))
-            appStore.dispatch(CircleDetailState.CircleDetailAction.setAllMembers(users))
-            appStore.dispatch(CircleDetailState.CircleDetailAction.setCircle(Circle(dic: ["": ""])))
-            appStore.dispatch(CircleDetailState.CircleDetailAction.setFriendsMembers(users))
+            let users = [User(dic: ["": ""]), User(dic: ["": ""])]
+            appStore.dispatch(UserState.UserAction.changeReloadStatus(true))
+            appStore.dispatch(UserState.UserAction.changeErrorStatus(true))
+            appStore.dispatch(UserState.UserAction.setCircle([Circle(dic: ["":""])]))
+            appStore.dispatch(UserState.UserAction.setUser(User(dic: ["":""])))
+            appStore.dispatch(UserState.UserAction.setFriends(users))
             
             // MARK: - AfterStatus
             
-            let afterReload = appStore.state.circleDetailState.reloadStatus
-            let afterError = appStore.state.circleDetailState.errorStatus
-            let afterCircle = appStore.state.circleDetailState.circle
-            let afterAllMembers = appStore.state.circleDetailState.allMembers
-            let afterFriends = appStore.state.circleDetailState.friendsMembers
+            let afterReload = appStore.state.userState.reloadStatus
+            let afterError = appStore.state.userState.errorStatus
+            let afterCircles = appStore.state.userState.circles
+            let afterFriends = appStore.state.userState.friends
+            let afterUser = appStore.state.userState.user
             
             context("After") {
                 it("reload true") {
@@ -61,14 +61,14 @@ class CircleDetailStateTests: QuickSpec {
                 it("error true") {
                     expect(afterError).to(beTrue())
                 }
-                it("members haveCount 2") {
-                    expect(afterAllMembers).to(haveCount(2))
+                it("circles haveCount 2") {
+                    expect(afterCircles).to(haveCount(1))
                 }
                 it("friends haveCount 2") {
                     expect(afterFriends).to(haveCount(2))
                 }
-                it("circle notNil") {
-                    expect(afterCircle).notTo(beNil())
+                it("user notNil") {
+                    expect(afterUser).notTo(beNil())
                 }
             }
         }

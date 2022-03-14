@@ -190,6 +190,7 @@
 		D36E531327B9D83800DC637C /* AddtionalEventLevelFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */; };
 		D370503427ABE91500373225 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D370503327ABE91500373225 /* IQKeyboardManagerSwift */; };
 		D375D6EF27DEB8EF00287736 /* NotificationStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375D6EE27DEB8EF00287736 /* NotificationStateTest.swift */; };
+		D375D6F127DF6BBD00287736 /* UserDetailStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375D6F027DF6BBD00287736 /* UserDetailStateTest.swift */; };
 		D37C918727BE5E7A0040F88F /* AdditionalMemberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918627BE5E7A0040F88F /* AdditionalMemberState.swift */; };
 		D37C918927BE5ECB0040F88F /* AdditionalMemberAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */; };
 		D37C918B27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */; };
@@ -614,6 +615,7 @@
 		D36E531027B9D7A500DC637C /* AddtionalPracticeElementFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalPracticeElementFlow.swift; sourceTree = "<group>"; };
 		D36E531227B9D83800DC637C /* AddtionalEventLevelFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtionalEventLevelFlow.swift; sourceTree = "<group>"; };
 		D375D6EE27DEB8EF00287736 /* NotificationStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStateTest.swift; sourceTree = "<group>"; };
+		D375D6F027DF6BBD00287736 /* UserDetailStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailStateTest.swift; sourceTree = "<group>"; };
 		D37C918627BE5E7A0040F88F /* AdditionalMemberState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberState.swift; sourceTree = "<group>"; };
 		D37C918827BE5ECB0040F88F /* AdditionalMemberAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberAction.swift; sourceTree = "<group>"; };
 		D37C918A27BE5EFA0040F88F /* AdditionalMemberActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMemberActionCreator.swift; sourceTree = "<group>"; };
@@ -1562,6 +1564,7 @@
 				D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */,
 				D3C8539827DAC24E00EF0123 /* UserStateTest.swift */,
 				D375D6EE27DEB8EF00287736 /* NotificationStateTest.swift */,
+				D375D6F027DF6BBD00287736 /* UserDetailStateTest.swift */,
 			);
 			path = StateTests;
 			sourceTree = "<group>";
@@ -2063,6 +2066,7 @@
 				D3C8539927DAC24E00EF0123 /* UserStateTest.swift in Sources */,
 				D3C8539D27DAC2A300EF0123 /* UserRepositryTest.swift in Sources */,
 				D3F1503427D7778B0028237E /* HomeStateTests.swift in Sources */,
+				D375D6F127DF6BBD00287736 /* UserDetailStateTest.swift in Sources */,
 				D3C8539B27DAC28500EF0123 /* HomeViewModelTest.swift in Sources */,
 				D346771D27C3392700825D34 /* CiclesTests.swift in Sources */,
 				D375D6EF27DEB8EF00287736 /* NotificationStateTest.swift in Sources */,
