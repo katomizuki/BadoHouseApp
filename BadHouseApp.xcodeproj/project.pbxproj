@@ -265,6 +265,7 @@
 		D39F0A9D2771454E00580708 /* PracticeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */; };
 		D3A59B9E27CB4EAA002884F7 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3A59B9D27CB4EAA002884F7 /* ReSwift */; };
 		D3A82BAE2705F6CA00DDB4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BDB53026E0525200C53780 /* Assets.xcassets */; };
+		D3AB439827E0018200F61208 /* BlockListStatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB439727E0018200F61208 /* BlockListStatesTests.swift */; };
 		D3AC05ED26EE274200F40A51 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC05EC26EE274100F40A51 /* DateUtil.swift */; };
 		D3B22D822781310C00EC8C10 /* MyPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */; };
 		D3B22D842781625800EC8C10 /* SearchSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B22D832781625800EC8C10 /* SearchSelectionController.swift */; };
@@ -688,6 +689,7 @@
 		D39F0A982770B22B00580708 /* EventAdditionlItemsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionlItemsCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9A2770B26400580708 /* AdditionalPlaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalPlaceCoordinator.swift; sourceTree = "<group>"; };
 		D39F0A9C2771454E00580708 /* PracticeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailCoordinator.swift; sourceTree = "<group>"; };
+		D3AB439727E0018200F61208 /* BlockListStatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListStatesTests.swift; sourceTree = "<group>"; };
 		D3AC05EC26EE274100F40A51 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D3B22D812781310C00EC8C10 /* MyPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticeViewModel.swift; sourceTree = "<group>"; };
 		D3B22D832781625800EC8C10 /* SearchSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionController.swift; sourceTree = "<group>"; };
@@ -1565,6 +1567,7 @@
 				D3C8539827DAC24E00EF0123 /* UserStateTest.swift */,
 				D375D6EE27DEB8EF00287736 /* NotificationStateTest.swift */,
 				D375D6F027DF6BBD00287736 /* UserDetailStateTest.swift */,
+				D3AB439727E0018200F61208 /* BlockListStatesTests.swift */,
 			);
 			path = StateTests;
 			sourceTree = "<group>";
@@ -2067,6 +2070,7 @@
 				D3C8539D27DAC2A300EF0123 /* UserRepositryTest.swift in Sources */,
 				D3F1503427D7778B0028237E /* HomeStateTests.swift in Sources */,
 				D375D6F127DF6BBD00287736 /* UserDetailStateTest.swift in Sources */,
+				D3AB439827E0018200F61208 /* BlockListStatesTests.swift in Sources */,
 				D3C8539B27DAC28500EF0123 /* HomeViewModelTest.swift in Sources */,
 				D346771D27C3392700825D34 /* CiclesTests.swift in Sources */,
 				D375D6EF27DEB8EF00287736 /* NotificationStateTest.swift in Sources */,
