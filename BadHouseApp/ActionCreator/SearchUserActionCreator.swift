@@ -9,8 +9,8 @@ import RxSwift
 
 struct SearchUserActionCreator {
     
-    let userAPI: UserRepositry
-    let applyAPI: ApplyRepositry
+    let userAPI: any UserRepositry
+    let applyAPI: any ApplyRepositry
     private let disposeBag = DisposeBag()
     
     func search(_ text: String) {

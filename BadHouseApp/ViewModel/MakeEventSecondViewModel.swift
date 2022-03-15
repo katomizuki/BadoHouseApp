@@ -24,8 +24,8 @@ protocol MakeEventSecondViewModelType {
 
 final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     
-    var inputs: MakeEventSecondViewModelInputs { return self }
-    var outputs: MakeEventSecondViewModelOutputs { return self }
+    var inputs: any MakeEventSecondViewModelInputs { self }
+    var outputs: any MakeEventSecondViewModelOutputs { self }
     
     let minLevelText = BehaviorRelay<String>(value: "レベル1")
     let maxLevelText = BehaviorRelay<String>(value: "レベル10")
@@ -96,7 +96,7 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     
     // MARK: - Helper
     func changeNumber(num: Float) -> String {
-        // TODO: - ここのヘルパー関数どうにかする
+        // TODO: - ここのヘルパー関数はドメインロジックに近い気もするのでここに書いてはダメ
         var message: String = String()
         switch num * Float(10) {
         case 0..<1:

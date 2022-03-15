@@ -9,7 +9,7 @@ import ReSwift
 import RxSwift
 
 struct MakeEventSecondActionCreator {
-     let userAPI: UserRepositry
+     let userAPI: any UserRepositry
      private let disposeBag = DisposeBag()
     
     func getCircle(_ uid: String) {

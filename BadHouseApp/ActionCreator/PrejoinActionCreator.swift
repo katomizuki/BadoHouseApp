@@ -9,7 +9,7 @@ import RxSwift
 
 struct PrejoinActionCreator {
     
-    let joinAPI: JoinRepositry
+    let joinAPI: any JoinRepositry
     private let disposeBag = DisposeBag()
     
     func getPreJoin(user: User) {

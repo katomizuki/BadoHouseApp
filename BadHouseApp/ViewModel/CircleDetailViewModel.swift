@@ -19,8 +19,8 @@ protocol CircleDetailViewModelOutputs {
 }
 
 protocol CircleDetailViewModelType {
-    var inputs: CircleDetailViewModelInputs { get }
-    var outputs: CircleDetailViewModelOutputs { get }
+    var inputs: any CircleDetailViewModelInputs { get }
+    var outputs: any CircleDetailViewModelOutputs { get }
 }
 
 final class CircleDetailViewModel: CircleDetailViewModelType {

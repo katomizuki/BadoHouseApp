@@ -20,8 +20,8 @@ protocol InviteViewModelType {
 
 final class InviteViewModel: InviteViewModelType {
     
-    var inputs: InviteViewModelInputs { return self }
-    var outputs: InviteViewModelOutputs { return self }
+    var inputs: any InviteViewModelInputs { return self }
+    var outputs: any InviteViewModelOutputs { return self }
     
     var user: User
     var form: Form

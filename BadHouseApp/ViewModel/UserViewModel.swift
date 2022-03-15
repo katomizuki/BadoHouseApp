@@ -32,8 +32,8 @@ protocol UserViewModelType {
 
 final class UserViewModel: UserViewModelType {
     
-    var inputs: UserViewModelInputs { return self }
-    var outputs: UserViewModelOutputs { return self }
+    var inputs: any UserViewModelInputs { self }
+    var outputs: any UserViewModelOutputs { self }
     
     let userName = BehaviorRelay<String>(value: "")
     let userFriendsCountText = BehaviorRelay<String>(value: "")

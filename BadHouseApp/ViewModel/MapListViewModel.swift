@@ -15,8 +15,8 @@ protocol MapListViewModelOutputs {
 
 final class MapListViewModel: MapListViewModelType, MapListViewModelInputs, MapListViewModelOutputs {
     
-    var inputs: MapListViewModelInputs { return self }
-    var outputs: MapListViewModelOutputs { return self }
+    var inputs: any MapListViewModelInputs { self }
+    var outputs: any MapListViewModelOutputs { self }
     
     var currnetLatitude: CLLocationDegrees
     var currentLongitude: CLLocationDegrees

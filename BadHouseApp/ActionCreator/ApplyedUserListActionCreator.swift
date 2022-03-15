@@ -8,8 +8,9 @@
 import ReSwift
 import Foundation
 import RxSwift
+
 struct ApplyedUserListActionCreator {
-    let applyAPI: ApplyRepositry
+    let applyAPI: any ApplyRepositry
     private let disposeBag = DisposeBag()
     
     func saveId(id: String) {

@@ -8,7 +8,7 @@
 import RxSwift
 
 struct UpdateUserInfoActionCreator {
-    let userAPI: UserRepositry
+    let userAPI: any UserRepositry
     private let disposeBag = DisposeBag()
     
     func getUser(uid: String) {

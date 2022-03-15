@@ -25,8 +25,8 @@ protocol PracticeSearchViewModelOutputs {
 final class PracticeSearchViewModel: PracticeSearchViewModelType,
                                      PracticeSearchViewModelInputs, PracticeSearchViewModelOutputs {
     
-    var inputs: PracticeSearchViewModelInputs { return self }
-    var outputs: PracticeSearchViewModelOutputs { return self }
+    var inputs: any PracticeSearchViewModelInputs { self }
+    var outputs: any PracticeSearchViewModelOutputs { self }
     
     var selectedLevel = String()
     var selectedPlace = String()

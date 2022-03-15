@@ -10,9 +10,9 @@ import Foundation
 
 struct UserActionCreator {
     private let disposeBag: DisposeBag = DisposeBag()
-    let userAPI: UserRepositry
-    let applyAPI: ApplyRepositry
-    let circleAPI: CircleRepositry
+    let userAPI: any UserRepositry
+    let applyAPI: any ApplyRepositry
+    let circleAPI: any CircleRepositry
     
     func getUser(uid: String) {
         userAPI.getUser(uid: uid).subscribe(onSuccess: { user in

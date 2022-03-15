@@ -26,8 +26,8 @@ protocol UpdateCircleViewModelType {
 
 final class UpdateCircleViewModel: UpdateCircleViewModelType {
     
-    var inputs: UpdateCircleViewModelInputs { return self }
-    var outputs: UpdateCircleViewModelOutputs { return self }
+    var inputs: any UpdateCircleViewModelInputs { self }
+    var outputs: any UpdateCircleViewModelOutputs { self }
     
     var circle: Circle
     var iconImage: UIImage?

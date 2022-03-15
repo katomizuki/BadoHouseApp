@@ -21,8 +21,8 @@ protocol AdditionalMemberViewModelOutputs {
 
 final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     
-    var inputs: AdditionalMemberViewModelInputs { self }
-    var outputs: AdditionalMemberViewModelOutputs { self }
+    var inputs: any AdditionalMemberViewModelInputs { self }
+    var outputs: any AdditionalMemberViewModelOutputs { self }
 
     var friendsSubject = BehaviorRelay<[User]>(value: [])
     lazy var inviteIds = circle.member

@@ -10,7 +10,7 @@ import RxSwift
 struct UpdateCircleActionCreator {
     
     private let disposeBag = DisposeBag()
-    let circleAPI: CircleRepositry
+    let circleAPI: any CircleRepositry
 
     func saveCircleAction(_ circle: Circle) {
         circleAPI.updateCircle(circle: circle).subscribe(onCompleted: {

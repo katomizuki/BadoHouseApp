@@ -9,8 +9,8 @@ import RxSwift
 
 struct UserDetailActionCreator {
     private let disposeBag = DisposeBag()
-    let userAPI: UserRepositry
-    let applyAPI: ApplyRepositry
+    let userAPI: any UserRepositry
+    let applyAPI: any ApplyRepositry
     
     func getFriends(user: User) {
         userAPI.getFriends(uid: user.uid).subscribe { users in

@@ -19,7 +19,7 @@ protocol ChatViewModelOutputs {
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
 }
-//
+//any 型としてのプロトコル 制約としてのプロトコル some
 final class ChatViewModel: ChatViewModelType {
     
     var inputs: any ChatViewModelInputs { self }

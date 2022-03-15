@@ -9,7 +9,7 @@ import ReSwift
 import RxSwift
 
 struct MyPracticeActionCreator {
-    let userAPI: UserRepositry
+    let userAPI: any UserRepositry
     private let disposeBag = DisposeBag()
 
     func getMyPractice(user: User) {

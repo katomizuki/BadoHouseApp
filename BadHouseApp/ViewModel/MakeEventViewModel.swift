@@ -23,23 +23,23 @@ protocol MakeEventFirstViewModelType {
 
 final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirstViewModelInputs, MakeEventFirstViewModelOutputs {
     
-    var inputs: MakeEventFirstViewModelInputs { return self }
-    var outputs: MakeEventFirstViewModelOutputs { return self }
+    var inputs: any MakeEventFirstViewModelInputs { self }
+    var outputs: any MakeEventFirstViewModelOutputs { self }
     
     var buttonTextColor: UIColor {
-        return isButtonValid.value ? .white : .lightGray
+         isButtonValid.value ? .white : .lightGray
     }
     
     var titleTextInputs: AnyObserver<String> {
-        return titleTextStream.asObserver()
+         titleTextStream.asObserver()
     }
     
     var titleTextOutputs: Observable<String> {
-        return titleTextStream.asObservable()
+         titleTextStream.asObservable()
     }
     
     var buttonColor: UIColor {
-        return isButtonValid.value ? .systemBlue : .darkGray
+         isButtonValid.value ? .systemBlue : .darkGray
     }
     
     var title: String?
@@ -61,6 +61,7 @@ final class MakeEventFirstViewModel: MakeEventFirstViewModelType, MakeEventFirst
         let isTitleValid = titleTextOutputs.asObservable().map { text->Bool in
             return text.count >= 1
         }
+        
         isTitleValid.subscribe(onNext: { [weak self] isTitle in
             guard let self = self else { return }
             self.isTitle.accept(isTitle)

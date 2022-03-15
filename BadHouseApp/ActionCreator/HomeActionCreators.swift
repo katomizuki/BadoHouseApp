@@ -10,7 +10,7 @@ import RxSwift
 
 struct HomeActionCreator {
     
-    let practiceAPI: PracticeRepositry
+    let practiceAPI: any PracticeRepositry
     private let disposeBag = DisposeBag()
     
     func saveFriend() {

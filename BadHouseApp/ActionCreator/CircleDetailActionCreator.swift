@@ -8,7 +8,7 @@
 import RxSwift
 
 struct CircleDetailActionCreator {
-    let circleAPI: CircleRepositry
+    let circleAPI: any CircleRepositry
     private let disposeBag = DisposeBag()
     
     func getMembers(ids: [String], circle: Circle) {

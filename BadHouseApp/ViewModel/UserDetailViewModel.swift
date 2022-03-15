@@ -29,8 +29,8 @@ protocol UserDetailViewModelType {
 
 final class UserDetailViewModel: UserDetailViewModelType {
     
-    var inputs: UserDetailViewModelInputs { return self }
-    var outputs: UserDetailViewModelOutputs { return self }
+    var inputs: any UserDetailViewModelInputs { self }
+    var outputs: any UserDetailViewModelOutputs { self }
     
     var isApplyButtonHidden: Bool {
         return ids.contains(user.uid) || myData.uid == user.uid

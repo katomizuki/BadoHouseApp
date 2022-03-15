@@ -26,8 +26,8 @@ protocol NotificationViewModelType {
 
 final class NotificationViewModel: NotificationViewModelType {
     
-    var inputs: NotificationViewModelInputs { return self }
-    var outputs: NotificationViewModelOutputs { return self }
+    var inputs: any NotificationViewModelInputs { self }
+    var outputs: any NotificationViewModelOutputs { self }
 
     let notificationList = BehaviorRelay<[Notification]>(value: [])
     let toPrejoined = PublishSubject<Void>()

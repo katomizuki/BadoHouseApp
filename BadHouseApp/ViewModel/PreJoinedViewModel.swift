@@ -25,8 +25,8 @@ protocol PreJoinedViewModelOutputs {
 
 final class PreJoinedViewModel: PreJoinedViewModelType {
     
-    var inputs: PreJoinedViewModelInputs { return self }
-    var outputs: PreJoinedViewModelOutputs { return self }
+    var inputs: any PreJoinedViewModelInputs { self }
+    var outputs: any PreJoinedViewModelOutputs { self }
     
     let preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
     let user: User

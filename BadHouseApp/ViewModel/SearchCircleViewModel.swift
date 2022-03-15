@@ -19,8 +19,8 @@ protocol SearchCircleViewModelType {
 
 final class SearchCircleViewModel: SearchCircleViewModelType {
 
-    var inputs: SearchCircleViewModelInputs { return self }
-    var outputs: SearchCircleViewModelOutputs { return self }
+    var inputs: any SearchCircleViewModelInputs { self }
+    var outputs: any SearchCircleViewModelOutputs { self }
     
     let circleRelay = BehaviorRelay<[Circle]>(value: [])
     let user: User

@@ -21,8 +21,8 @@ protocol TalkViewModelType {
 
 final class TalkViewModel: TalkViewModelType {
     
-    var inputs: TalkViewModelInputs { return self }
-    var outputs: TalkViewModelOutputs { return self }
+    var inputs: any TalkViewModelInputs { self }
+    var outputs: any TalkViewModelOutputs { self }
     
     let chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
     let willAppear = PublishRelay<Void>()

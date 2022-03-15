@@ -10,8 +10,8 @@ import Firebase
 
 struct ChatActionCreator {
     private let disposeBag = DisposeBag()
-    let chatAPI: ChatRepositry
-    let userAPI: UserRepositry
+    let chatAPI: any ChatRepositry
+    let userAPI: any UserRepositry
     
     func sendText(_ text: String, chatId: String, myData: User, user: User) {
         let dic: [String: Any] = ["chatId": chatId,

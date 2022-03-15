@@ -33,8 +33,8 @@ protocol HomeViewModelType {
 
 final class HomeViewModel: HomeViewModelType {
 
-    var inputs: HomeViewModelInputs { return self }
-    var outputs: HomeViewModelOutputs { return self }
+    var inputs: any HomeViewModelInputs { return self }
+    var outputs: any HomeViewModelOutputs { return self }
     
     var myData: User?
     

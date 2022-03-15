@@ -6,6 +6,6 @@
 //
 
 struct RegisterActionCreator {
-    let authAPI: AuthRepositry
-    let userAPI: UserRepositry
+    let authAPI: any AuthRepositry
+    let userAPI: any UserRepositry
 }

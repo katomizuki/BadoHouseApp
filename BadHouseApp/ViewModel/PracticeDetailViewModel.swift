@@ -26,8 +26,8 @@ protocol PracticeDetailViewModelOutputs {
 
 final class PracticeDetailViewModel: PracticeDetailViewModelType {
 
-    var inputs: PracticeDetailViewModelInputs { return self }
-    var outputs: PracticeDetailViewModelOutputs { return self }
+    var inputs: any PracticeDetailViewModelInputs { self }
+    var outputs: any PracticeDetailViewModelOutputs { self }
 
     var circle: Circle?
     var user: User?

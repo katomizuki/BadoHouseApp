@@ -9,7 +9,7 @@ import ReSwift
 import RxSwift
 
 struct NotificationActionCreator {
-    let notificationAPI: NotificationRepositry
+    let notificationAPI: any NotificationRepositry
     private let disposeBag = DisposeBag()
     
     func getNotification(user: User) {

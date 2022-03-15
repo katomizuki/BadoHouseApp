@@ -21,8 +21,8 @@ protocol PreJoinViewModelOutputs {
 
 final class PreJoinViewModel: PreJoinViewModelType {
     
-    var inputs: PreJoinViewModelInputs { return self }
-    var outputs: PreJoinViewModelOutputs { return self }
+    var inputs: any PreJoinViewModelInputs { self }
+    var outputs: any PreJoinViewModelOutputs { self }
     
     let preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
     let willAppear = PublishRelay<Void>()

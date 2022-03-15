@@ -9,7 +9,7 @@ import RxSwift
 
 struct SearchCircleActionCreator {
     private let disposeBag = DisposeBag()
-    let circleAPI: CircleRepositry
+    let circleAPI: any CircleRepositry
     
     func search(_ text: String) {
         self.circleAPI.searchCircles(text: text).subscribe { circles in

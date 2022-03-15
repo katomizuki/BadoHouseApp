@@ -44,8 +44,8 @@ protocol UpdateUserInfoViewModelType {
 
 final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     
-    var inputs: UpdateUserInfoViewModelInputs { return self }
-    var outputs: UpdateUserInfoViewModelOutputs { return self }
+    var inputs: any UpdateUserInfoViewModelInputs { self }
+    var outputs: any UpdateUserInfoViewModelOutputs { self }
     
     var user: User?
     var userImage: UIImage?

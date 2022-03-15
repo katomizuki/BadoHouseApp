@@ -21,8 +21,8 @@ protocol ScheduleViewModelType {
 
 final class ScheduleViewModel: ScheduleViewModelType {
   
-    var inputs: ScheduleViewModelInputs { return self }
-    var outputs: ScheduleViewModelOutputs { return self }
+    var inputs: any ScheduleViewModelInputs { self }
+    var outputs: any ScheduleViewModelOutputs { self }
     
     let user: User
     let practiceList = BehaviorRelay<[Practice]>(value: [])

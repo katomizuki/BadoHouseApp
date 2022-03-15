@@ -19,8 +19,8 @@ protocol MyPracticeViewModelOutputs {
 
 final class MyPracticeViewModel: MyPracticeViewModelType {
     
-    var inputs: MyPracticeViewModelInputs { return self }
-    var outputs: MyPracticeViewModelOutputs { return self }
+    var inputs: any MyPracticeViewModelInputs { self }
+    var outputs: any MyPracticeViewModelOutputs { self }
     
     let practices = BehaviorRelay<[Practice]>(value: [])
     let myData: User

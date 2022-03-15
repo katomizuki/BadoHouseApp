@@ -45,8 +45,8 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     let willDisAppear = PublishRelay<Void>()
 
     private let store: Store<AppState>
-    private let authAPI: AuthRepositry
-    private let userAPI: UserRepositry
+    private let authAPI: any AuthRepositry
+    private let userAPI: any UserRepositry
     private let disposeBag = DisposeBag()
     private let actionCreator: RegisterActionCreator
     // MARK: - initialize

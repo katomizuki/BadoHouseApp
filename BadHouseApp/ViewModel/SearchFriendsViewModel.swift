@@ -20,8 +20,8 @@ protocol SearchUserViewModelType {
 
 final class SearchUserViewModel: SearchUserViewModelType {
     
-    var inputs: SearchUserViewModelInputs { return self }
-    var outputs: SearchUserViewModelOutputs { return self }
+    var inputs: any SearchUserViewModelInputs { self }
+    var outputs: any SearchUserViewModelOutputs { self }
 
     let usersRelay = BehaviorRelay<[User]>(value: [])
     let user: User

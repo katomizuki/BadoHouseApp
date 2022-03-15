@@ -9,7 +9,7 @@ import RxSwift
 
 struct TalkActionCreator {
     
-    let userAPI: UserRepositry
+    let userAPI: any UserRepositry
     private let disposeBag = DisposeBag()
     
     func getChatRooms(uid: String) {

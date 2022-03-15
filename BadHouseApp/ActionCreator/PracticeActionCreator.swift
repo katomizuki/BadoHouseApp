@@ -9,9 +9,9 @@ import ReSwift
 import RxSwift
 import Foundation
 struct PracticeActionCreator {
-    let userAPI: UserRepositry
-    let circleAPI: CircleRepositry
-    let joinAPI: JoinRepositry
+    let userAPI: any UserRepositry
+    let circleAPI: any CircleRepositry
+    let joinAPI: any JoinRepositry
     private let disposeBag = DisposeBag()
     
     func getUser(uid: String) {
