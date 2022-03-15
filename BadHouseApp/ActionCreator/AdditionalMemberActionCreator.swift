@@ -10,8 +10,8 @@ import RxSwift
 
 struct AdditionalMemberActionCreator {
 
-    let userAPI: UserRepositry
-    let circleAPI: CircleRepositry
+    let userAPI: any UserRepositry
+    let circleAPI: any CircleRepositry
     private let disposeBag = DisposeBag()
     
     func getFriends(uid: String, members: [User]) {

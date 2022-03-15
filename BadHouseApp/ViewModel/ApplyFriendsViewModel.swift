@@ -21,8 +21,8 @@ protocol ApplyFriendsViewModelOutputs {
 
 final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
 
-    var inputs: ApplyFriendsViewModelInputs { return self }
-    var outputs: ApplyFriendsViewModelOutputs { return self }
+    var inputs: ApplyFriendsViewModelInputs { self }
+    var outputs: ApplyFriendsViewModelOutputs { self }
     
     let applyRelay = BehaviorRelay<[Apply]>(value: [])
     let willAppear = PublishRelay<Void>()

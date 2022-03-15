@@ -19,11 +19,11 @@ protocol ChatViewModelOutputs {
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
 }
-
+//
 final class ChatViewModel: ChatViewModelType {
     
-    var inputs: ChatViewModelInputs { return self }
-    var outputs: ChatViewModelOutputs { return self }
+    var inputs: any ChatViewModelInputs { self }
+    var outputs: any ChatViewModelOutputs { self }
     
     var chatId: String?
     

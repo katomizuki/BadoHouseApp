@@ -26,8 +26,8 @@ protocol ApplyedUserListViewModelType {
 
 final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     
-    var inputs: ApplyedUserListViewModelInputs { return self }
-    var outputs: ApplyedUserListViewModelOutputs { return self }
+    var inputs: ApplyedUserListViewModelInputs {  self }
+    var outputs: ApplyedUserListViewModelOutputs {  self }
     
     let applyedRelay = BehaviorRelay<[Applyed]>(value: [])
     let navigationTitle = PublishSubject<String>()

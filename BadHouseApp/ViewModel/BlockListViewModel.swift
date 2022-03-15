@@ -21,8 +21,8 @@ protocol BlockListViewModelOutputs {
 
 final class BlockListViewModel: BlockListViewModelType {
     
-    var inputs: BlockListViewModelInputs { return self }
-    var outputs: BlockListViewModelOutputs { return self }
+    var inputs: BlockListViewModelInputs { self }
+    var outputs: BlockListViewModelOutputs { self }
     
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
