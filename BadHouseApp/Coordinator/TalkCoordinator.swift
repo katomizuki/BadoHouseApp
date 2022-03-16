@@ -13,8 +13,8 @@ final class TalkCoordinator: Coordinator, TalkFlow {
                                                     TalkViewModel(
                                                         store: appStore,
                                                         actionCreator:
-                                                            TalkActionCreator(userAPI: UserRepositryImpl())))
-        controller.coordinator = self
+                                                            TalkActionCreator(userAPI: UserRepositryImpl())),
+                                                 coordinator: self)
         navigationController.pushViewController(controller, animated: true)
     }
     

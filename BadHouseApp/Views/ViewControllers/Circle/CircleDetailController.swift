@@ -67,11 +67,12 @@ final class CircleDetailController: UIViewController {
                                       target: self,
                                       action: #selector(didTapRightButton))
     private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
+    private let coordinator: any CircleDetailFlow
 
-    var coordinator: CircleDetailFlow?
-
-    init(viewModel: CircleDetailViewModel) {
+    init(viewModel: CircleDetailViewModel,
+         coordinator: any CircleDetailFlow) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -141,10 +142,10 @@ final class CircleDetailController: UIViewController {
         teamMemberTableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             if self.tableViewSegment.selectedSegmentIndex == 0 {
-                self.coordinator?.toUserDetail(user: self.viewModel.allMembers[indexPath.row],
+                self.coordinator.toUserDetail(user: self.viewModel.allMembers[indexPath.row],
                                                myData: self.viewModel.myData)
             } else {
-                self.coordinator?.toUserDetail(user: self.viewModel.friendsMembers[indexPath.row],
+                self.coordinator.toUserDetail(user: self.viewModel.friendsMembers[indexPath.row],
                                                myData: self.viewModel.myData)
             }
         }).disposed(by: disposeBag)
@@ -205,10 +206,10 @@ final class CircleDetailController: UIViewController {
     }
     
     @objc private func didTapRightButton() {
-        coordinator?.toInvite(circle: viewModel.circle, myData: viewModel.myData)
+        coordinator.toInvite(circle: viewModel.circle, myData: viewModel.myData)
     }
     
     @objc private func didTapEditButton() {
-        coordinator?.toUpdate(circle: viewModel.circle)
+        coordinator.toUpdate(circle: viewModel.circle)
     }
 }

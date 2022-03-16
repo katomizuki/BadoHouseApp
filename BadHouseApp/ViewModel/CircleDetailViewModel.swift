@@ -25,8 +25,8 @@ protocol CircleDetailViewModelType {
 
 final class CircleDetailViewModel: CircleDetailViewModelType {
     
-    var inputs: CircleDetailViewModelInputs { return self }
-    var outputs: CircleDetailViewModelOutputs { return self }
+    var inputs: any CircleDetailViewModelInputs { self }
+    var outputs: any CircleDetailViewModelOutputs { self }
     
     var allMembers = [User]()
     var friendsMembers = [User]()

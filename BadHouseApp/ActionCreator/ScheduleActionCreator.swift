@@ -10,7 +10,7 @@ import RxSwift
 struct ScheduleActionCreator {
     
     private let disposeBag = DisposeBag()
-    let userAPI: any UserRepositryImpl
+    let userAPI: any UserRepositry
     
     func getMyJoinPractice(user: User) {
         userAPI.getMyJoinPractice(user: user).subscribe { practices in

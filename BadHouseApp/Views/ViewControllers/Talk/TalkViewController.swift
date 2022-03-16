@@ -11,11 +11,12 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     private let viewModel: TalkViewModel
-    var coordinator: TalkFlow?
+    var coordinator: any TalkFlow
     private let disposeBag = DisposeBag()
     
-    init(viewModel: TalkViewModel) {
+    init(viewModel: TalkViewModel, coordinator: TalkFlow) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -64,7 +65,7 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
         tableView.rx.itemSelected.bind(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             guard let uid = AuthRepositryImpl.getUid() else { return }
-            self.coordinator?.toChat(userId: self.viewModel.outputs.chatRoomList.value[indexPath.row].userId, myDataId: uid, chatId: self.viewModel.outputs.chatRoomList.value[indexPath.row].id)
+            self.coordinator.toChat(userId: self.viewModel.outputs.chatRoomList.value[indexPath.row].userId, myDataId: uid, chatId: self.viewModel.outputs.chatRoomList.value[indexPath.row].id)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.isError.subscribe { [weak self] _ in

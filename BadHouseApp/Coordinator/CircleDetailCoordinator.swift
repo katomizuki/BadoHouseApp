@@ -11,8 +11,8 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
     }
     
     func start() {
-        let controller = CircleDetailController.init(viewModel: viewModel)
-        controller.coordinator = self
+        let controller = CircleDetailController.init(viewModel: viewModel,
+                                                     coordinator: self)
         navigationController.pushViewController(controller, animated: true)
     }
     

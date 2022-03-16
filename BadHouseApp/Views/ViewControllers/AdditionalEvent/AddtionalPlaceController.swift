@@ -12,8 +12,6 @@ protocol AddtionalPlaceControllerDelegate: AnyObject {
 
 final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     
-    var coordinator: AddtionalPlaceFlow?
-    weak var delegate: AddtionalPlaceControllerDelegate?
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -40,7 +38,18 @@ final class AddtionalPlaceController: UIViewController, CLLocationManagerDelegat
     }
 
     var locManager: CLLocationManager!
-
+    private let coordinator: AddtionalPlaceFlow
+    weak var delegate: AddtionalPlaceControllerDelegate?
+    
+    init(coordinator: AddtionalPlaceFlow) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
