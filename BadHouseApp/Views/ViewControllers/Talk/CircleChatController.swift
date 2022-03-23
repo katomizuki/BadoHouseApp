@@ -15,7 +15,7 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
         return ci
     }()
 
-    var coordinator: ChatCoordinator?
+    private let coordinator: ChatCoordinator
 
     override var inputAccessoryView: UIView? {
         return customInputView
@@ -25,8 +25,9 @@ final class CircleChatController: UIViewController, UIScrollViewDelegate {
         return true
     }
     
-    init(viewModel: ChatViewModel) {
+    init(viewModel: ChatViewModel, coordinator: ChatCoordinator) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     

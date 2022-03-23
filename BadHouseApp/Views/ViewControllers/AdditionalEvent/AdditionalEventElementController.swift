@@ -29,15 +29,15 @@ final class AdditionalEventElementController: UIViewController {
     private let moneyPicker = UIPickerView()
     private let disposeBag = DisposeBag()
     private let viewModel: MakeEventThirdViewModel
+    private let coordinator: AddtionalPracticeElementFlow
     private lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.buttonTitle.next, style: .done, target: self, action: #selector(didTapNextButton))
         return button
     }()
 
-    var coordinator: AddtionalPracticeElementFlow?
-    
-    init(viewModel: MakeEventThirdViewModel) {
+    init(viewModel: MakeEventThirdViewModel, coordinator: AddtionalPracticeElementFlow) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,7 +65,7 @@ final class AdditionalEventElementController: UIViewController {
         
         placeButton.rx.tap.asDriver().drive(onNext: { [weak self] _  in
             guard let self = self else { return }
-            self.coordinator?.toAddtionalPlace()
+            self.coordinator.toAddtionalPlace()
         }).disposed(by: disposeBag)
     }
     
@@ -117,7 +117,7 @@ final class AdditionalEventElementController: UIViewController {
         guard let text = self.moneyTextField.text else { return }
         var dic = self.viewModel.dic
         dic["price"] = text
-        self.coordinator?.toNext(image: self.viewModel.image,
+        self.coordinator.toNext(image: self.viewModel.image,
                                  circle: self.viewModel.circle,
                                  user: self.viewModel.user,
                                  dic: dic)

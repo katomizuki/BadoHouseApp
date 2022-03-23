@@ -22,9 +22,10 @@ final class AddtionalPracticeElementCoordinator: Coordinator, AddtionalPracticeE
     }
     
     func start() {
-        let controller = AdditionalEventElementController.init(viewModel: MakeEventThirdViewModel(image: image, dic: dic, circle: circle, user: user))
+        let controller = AdditionalEventElementController.init(
+            viewModel: MakeEventThirdViewModel(image: image, dic: dic, circle: circle, user: user),
+            coordinator: self)
         self.viewController = controller
-        controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
     

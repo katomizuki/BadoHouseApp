@@ -8,11 +8,11 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     }
     private let viewModel: NotificationViewModel
     private let disposeBag = DisposeBag()
+    private let coordinator: CheckNotificationFlow
     
-    var coordinator: CheckNotificationFlow?
-    
-    init(viewModel: NotificationViewModel) {
+    init(viewModel: NotificationViewModel, coordinator: CheckNotificationFlow) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,25 +63,25 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
         viewModel.outputs.toPrejoined.observe(on: MainScheduler.instance)
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
-                self.coordinator?.toPreJoined(self.viewModel.user)
+                self.coordinator.toPreJoined(self.viewModel.user)
             }.disposed(by: disposeBag)
         
         viewModel.outputs.toApplyedFriend.observe(on: MainScheduler.instance)
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
-                self.coordinator?.toApplyedFriend(self.viewModel.user)
+                self.coordinator.toApplyedFriend(self.viewModel.user)
             }.disposed(by: disposeBag)
         
         viewModel.outputs.toPracticeDetail.observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] practice in
                 guard let self = self else { return }
-                self.coordinator?.toPracticeDetail(self.viewModel.user, practice: practice)
+                self.coordinator.toPracticeDetail(self.viewModel.user, practice: practice)
             }).disposed(by: disposeBag)
         
         viewModel.outputs.toUserDetail.observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] user in
                 guard let self = self else { return }
-                self.coordinator?.toUserDetail(self.viewModel.user, user: user)
+                self.coordinator.toUserDetail(self.viewModel.user, user: user)
             }).disposed(by: disposeBag)
     }
     
@@ -98,11 +98,11 @@ final class CheckNotificationController: UIViewController, UIScrollViewDelegate 
     }
     
     @objc private func didTapRightButton() {
-        coordinator?.toPreJoined(viewModel.user)
+        coordinator.toPreJoined(viewModel.user)
     }
     
     @objc private func didTapLeftButton() {
-        coordinator?.toPreJoin(viewModel.user)
+        coordinator.toPreJoin(viewModel.user)
     }
 
 }

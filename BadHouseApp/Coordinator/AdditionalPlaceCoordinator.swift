@@ -8,15 +8,14 @@ final class AdditionalPlaceCoordinator: Coordinator, AddtionalPlaceFlow {
     }
     
     func start() {
-        let controller = AddtionalPlaceController.init(nibName: R.nib.addtionalPlaceController.name, bundle: nil)
+        let controller = AddtionalPlaceController(coordinator: self)
         controller.modalPresentationStyle = .fullScreen
         controller.delegate = viewController
-        controller.coordinator = self
         viewController.present(controller, animated: true, completion: nil)
     }
     
     func dismiss() {
-        let controller = AddtionalPlaceController.init(nibName: R.nib.addtionalPlaceController.name, bundle: nil)
+        let controller = AddtionalPlaceController(coordinator: self)
         controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -11,7 +11,7 @@ final class TalkViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     private let viewModel: TalkViewModel
-    var coordinator: any TalkFlow
+    private let coordinator: any TalkFlow
     private let disposeBag = DisposeBag()
     
     init(viewModel: TalkViewModel, coordinator: TalkFlow) {

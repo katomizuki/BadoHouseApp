@@ -15,8 +15,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                 viewModel: NotificationViewModel(user: user,
                                                  store: appStore,
                                                  actionCreator: NotificationActionCreator(
-                                                    notificationAPI: NotificationRepositryImpl())))
-            controller.coordinator = self
+                                                    notificationAPI: NotificationRepositryImpl())), coordinator: self)
             self.navigationController.pushViewController(controller, animated: true)
         }
     }

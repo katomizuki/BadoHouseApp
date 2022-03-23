@@ -11,8 +11,8 @@ final class ChatCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = CircleChatController.init(viewModel: viewModel)
-        controller.coordinator = self
+        let controller = CircleChatController.init(viewModel: viewModel,
+                                                   coordinator: self)
         navigationController.pushViewController(controller, animated: true)
     }
 }
