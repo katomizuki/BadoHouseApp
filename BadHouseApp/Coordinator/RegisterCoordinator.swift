@@ -26,7 +26,7 @@ final class RegisterCoordinator: Coordinator, RegisterFlow {
         navigationController.modalPresentationStyle = .fullScreen
         viewController.present(navigationController, animated: true, completion: nil)
     }
-    
+
     func toLogin() {
         coordinator(to: LoginCoordinator(navigationController: navigationController))
     }
