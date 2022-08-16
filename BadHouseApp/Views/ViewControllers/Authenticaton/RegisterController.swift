@@ -54,8 +54,8 @@ final class RegisterController: UIViewController {
     }
     // MARK: - SetupMethod
     private func setupGoogleLogin() {
-        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance?.delegate = self
+//        GIDSignIn.sharedInstance?.presentingViewController = self
         stackView.addArrangedSubview(googleView)
         stackView.addArrangedSubview(appleButton)
         googleView.anchor(height: 40)
@@ -113,7 +113,7 @@ final class RegisterController: UIViewController {
     }
 
     @objc private func didTapGidButton() {
-        GIDSignIn.sharedInstance()?.signIn()
+//        GIDSignIn.sharedInstance?.signIn()
     }
 
     private func sha256(_ input: String) -> String {
@@ -174,33 +174,33 @@ final class RegisterController: UIViewController {
     }
 }
 // MARK: - GIDSignInDelegate
-extension RegisterController: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if error != nil {
-            return
-        } else {
-            let fullName = user.profile.name
-            let email = user.profile.email
-            guard let auth = user.authentication else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
-            Auth.auth().signIn(with: credential) { result, error in
-                if error != nil {
-                    return
-                } else {
-                    guard let id = result?.user.uid else { return }
-                    guard let email = email else { return }
-                    guard let name = fullName else { return }
-                    let credential = AuthCredential(name: name, email: email, password: "")
-                    self.viewModel.thirdPartyLogin(credential: credential, id: id)
-                }
-            }
-        }
-    }
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        print(error.localizedDescription)
-    }
-}
+//extension RegisterController: GIDSignInDelegate {
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        if error != nil {
+//            return
+//        } else {
+//            let fullName = user.profile?.name
+//            let email = user.profile.email
+//            guard let auth = user.authentication else { return }
+//            let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+//            Auth.auth().signIn(with: credential) { result, error in
+//                if error != nil {
+//                    return
+//                } else {
+//                    guard let id = result?.user.uid else { return }
+//                    guard let email = email else { return }
+//                    guard let name = fullName else { return }
+//                    let credential = AuthCredential(name: name, email: email, password: "")
+//                    self.viewModel.thirdPartyLogin(credential: credential, id: id)
+//                }
+//            }
+//        }
+//    }
+//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+//              withError error: Error!) {
+//        print(error.localizedDescription)
+//    }
+//}
 
 // MARK: - ASAuthorizationControllerDelegate
 extension RegisterController: ASAuthorizationControllerDelegate {

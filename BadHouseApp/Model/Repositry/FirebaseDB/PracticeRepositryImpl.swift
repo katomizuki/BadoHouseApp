@@ -1,5 +1,5 @@
 import RxSwift
-import FirebaseFirestoreSwift
+
 struct PracticeRepositryImpl: PracticeRepositry {
     
     func postPractice(dic: [String: Any],

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */; };
-		8D6606DC54293BE8DB9FC607 /* Pods_BadHouseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8028CBB3AD5E8832CF4ED6C /* Pods_BadHouseAppTests.framework */; };
 		D301E382278467500090CAF9 /* PreJoinedListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E380278467500090CAF9 /* PreJoinedListController.swift */; };
 		D301E383278467500090CAF9 /* PreJoinedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D301E381278467500090CAF9 /* PreJoinedListController.xib */; };
 		D301E386278467C80090CAF9 /* PreJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301E384278467C80090CAF9 /* PreJoinController.swift */; };
@@ -142,7 +140,6 @@
 		D346BD4C27A94D6700B87D74 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4B27A94D6700B87D74 /* FirebaseAuth */; };
 		D346BD4E27A94D6700B87D74 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4D27A94D6700B87D74 /* FirebaseCrashlytics */; };
 		D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD4F27A94D6700B87D74 /* FirebaseFirestore */; };
-		D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */; };
 		D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD5327A94D6700B87D74 /* FirebaseStorage */; };
 		D346BD7527A967D900B87D74 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7427A967D900B87D74 /* FSCalendar */; };
 		D346BD7827A9687200B87D74 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = D346BD7727A9687200B87D74 /* Charts */; };
@@ -370,6 +367,10 @@
 		D3D761852776C23C004381E4 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761842776C23C004381E4 /* LoginCoordinator.swift */; };
 		D3D761892776D38D004381E4 /* AuthCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D761882776D38D004381E4 /* AuthCredential.swift */; };
 		D3D81113274CC1F800A380B1 /* SearchFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81112274CC1F800A380B1 /* SearchFriendsViewModel.swift */; };
+		D3DEEA1B28AB737A006C50D5 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = D3DEEA1A28AB737A006C50D5 /* Quick */; };
+		D3DEEA1E28AB73B8006C50D5 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = D3DEEA1D28AB73B8006C50D5 /* Nimble */; };
+		D3DEEA2128AB7588006C50D5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D3DEEA2028AB7588006C50D5 /* GoogleSignIn */; };
+		D3DEEA2328AB7588006C50D5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3DEEA2228AB7588006C50D5 /* GoogleSignInSwift */; };
 		D3F1503427D7778B0028237E /* HomeStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1503327D7778B0028237E /* HomeStateTests.swift */; };
 		D3F1503627D77E960028237E /* ValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1503527D77E960028237E /* ValidationTests.swift */; };
 		D3F1503827D8101D0028237E /* CircleDetailStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1503727D8101D0028237E /* CircleDetailStateTests.swift */; };
@@ -445,9 +446,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.debug.xcconfig"; sourceTree = "<group>"; };
-		41AFFD0082E4D8C9FF36182D /* Pods-BadHouseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseAppTests.release.xcconfig"; path = "Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		9B8B4F5FE30256B135D990C9 /* Pods-BadHouseAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D301E380278467500090CAF9 /* PreJoinedListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreJoinedListController.swift; sourceTree = "<group>"; };
 		D301E381278467500090CAF9 /* PreJoinedListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreJoinedListController.xib; sourceTree = "<group>"; };
@@ -852,8 +850,6 @@
 		D3FFD32F271EC6E000DE54ED /* ChatRoomRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomRepositryImpl.swift; sourceTree = "<group>"; };
 		D3FFD331271EDAC300DE54ED /* Stroage-Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stroage-Service.swift"; sourceTree = "<group>"; };
 		D3FFD333271EDCC300DE54ED /* JoinRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRepositryImpl.swift; sourceTree = "<group>"; };
-		D8028CBB3AD5E8832CF4ED6C /* Pods_BadHouseAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadHouseAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadHouseApp.release.xcconfig"; path = "Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -861,9 +857,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3DEEA1B28AB737A006C50D5 /* Quick in Frameworks */,
+				D3DEEA1E28AB73B8006C50D5 /* Nimble in Frameworks */,
 				D3528FD127CCEB0A00B77D68 /* RxTest in Frameworks */,
 				D3528FC927CCEB0A00B77D68 /* RxBlocking in Frameworks */,
-				8D6606DC54293BE8DB9FC607 /* Pods_BadHouseAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,12 +875,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3DEEA2328AB7588006C50D5 /* GoogleSignInSwift in Frameworks */,
 				D346BD4E27A94D6700B87D74 /* FirebaseCrashlytics in Frameworks */,
 				D346BD5027A94D6700B87D74 /* FirebaseFirestore in Frameworks */,
 				D3C0C2CD27D56B3B00480EAE /* Rswift in Frameworks */,
-				D346BD5227A94D6700B87D74 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				D3A59B9E27CB4EAA002884F7 /* ReSwift in Frameworks */,
-				53BD2E62060C922C5FFE4E4B /* Pods_BadHouseApp.framework in Frameworks */,
 				D346BD7E27A96BB000B87D74 /* KeychainAccess in Frameworks */,
 				D346BD7B27A968C100B87D74 /* SDWebImage in Frameworks */,
 				D346BD8827A96E3C00B87D74 /* RxGesture in Frameworks */,
@@ -895,6 +891,7 @@
 				D3528FCB27CCEB0A00B77D68 /* RxCocoa in Frameworks */,
 				D346BD5427A94D6700B87D74 /* FirebaseStorage in Frameworks */,
 				D3528FCD27CCEB0A00B77D68 /* RxRelay in Frameworks */,
+				D3DEEA2128AB7588006C50D5 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +902,6 @@
 			isa = PBXGroup;
 			children = (
 				B38755E5F33A751CC5955591 /* Pods_BadHouseApp.framework */,
-				D8028CBB3AD5E8832CF4ED6C /* Pods_BadHouseAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1428,7 +1424,6 @@
 				D346771B27C3392700825D34 /* BadHouseAppTests */,
 				D346772827C339E700825D34 /* BadHouseAppUITests */,
 				D3BDB52526E0525100C53780 /* Products */,
-				EAB088E43E3400410089E7E8 /* Pods */,
 				A38EBCCD1805D889F56FAD63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1697,17 +1692,6 @@
 			path = Repositry;
 			sourceTree = "<group>";
 		};
-		EAB088E43E3400410089E7E8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */,
-				EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */,
-				9B8B4F5FE30256B135D990C9 /* Pods-BadHouseAppTests.debug.xcconfig */,
-				41AFFD0082E4D8C9FF36182D /* Pods-BadHouseAppTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1715,11 +1699,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D346772227C3392700825D34 /* Build configuration list for PBXNativeTarget "BadHouseAppTests" */;
 			buildPhases = (
-				70841FA59FBB6790B2F8D406 /* [CP] Check Pods Manifest.lock */,
 				D346771627C3392700825D34 /* Sources */,
 				D346771727C3392700825D34 /* Frameworks */,
 				D346771827C3392700825D34 /* Resources */,
-				B2ADD3655222A969ABBE7E44 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1730,6 +1712,8 @@
 			packageProductDependencies = (
 				D3528FC827CCEB0A00B77D68 /* RxBlocking */,
 				D3528FD027CCEB0A00B77D68 /* RxTest */,
+				D3DEEA1A28AB737A006C50D5 /* Quick */,
+				D3DEEA1D28AB73B8006C50D5 /* Nimble */,
 			);
 			productName = BadHouseAppTests;
 			productReference = D346771A27C3392700825D34 /* BadHouseAppTests.xctest */;
@@ -1763,8 +1747,6 @@
 				D3BDB52126E0525100C53780 /* Frameworks */,
 				D3BDB52226E0525100C53780 /* Resources */,
 				D3A789CB26F3F8710088E8BC /* Run SwiftLint */,
-				7299D300ADF488AEBE3FB802 /* [CP] Embed Pods Frameworks */,
-				67CA77FEDE1D9123DF3E5602 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1775,7 +1757,6 @@
 				D346BD4B27A94D6700B87D74 /* FirebaseAuth */,
 				D346BD4D27A94D6700B87D74 /* FirebaseCrashlytics */,
 				D346BD4F27A94D6700B87D74 /* FirebaseFirestore */,
-				D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */,
 				D346BD5327A94D6700B87D74 /* FirebaseStorage */,
 				D346BD7427A967D900B87D74 /* FSCalendar */,
 				D346BD7727A9687200B87D74 /* Charts */,
@@ -1788,6 +1769,8 @@
 				D3528FCC27CCEB0A00B77D68 /* RxRelay */,
 				D3528FCE27CCEB0A00B77D68 /* RxSwift */,
 				D3C0C2CC27D56B3B00480EAE /* Rswift */,
+				D3DEEA2028AB7588006C50D5 /* GoogleSignIn */,
+				D3DEEA2228AB7588006C50D5 /* GoogleSignInSwift */,
 			);
 			productName = BadHouseApp;
 			productReference = D3BDB52426E0525100C53780 /* BadHouseApp.app */;
@@ -1836,6 +1819,9 @@
 				D3A59B9C27CB4EAA002884F7 /* XCRemoteSwiftPackageReference "ReSwift" */,
 				D3528FC727CCEB0A00B77D68 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D3C0C2CB27D56B3B00480EAE /* XCRemoteSwiftPackageReference "R.swift" */,
+				D3DEEA1928AB737A006C50D5 /* XCRemoteSwiftPackageReference "Quick" */,
+				D3DEEA1C28AB73B8006C50D5 /* XCRemoteSwiftPackageReference "Nimble" */,
+				D3DEEA1F28AB7588006C50D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = D3BDB52526E0525100C53780 /* Products */;
 			projectDirPath = "";
@@ -1925,79 +1911,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67CA77FEDE1D9123DF3E5602 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		70841FA59FBB6790B2F8D406 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BadHouseAppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7299D300ADF488AEBE3FB802 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseApp/Pods-BadHouseApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B2ADD3655222A969ABBE7E44 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadHouseAppTests/Pods-BadHouseAppTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D39F0AA42771536800580708 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -2055,7 +1968,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "##diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\n##if [ $? != 0 ] ; then\n    # print error to STDERR\n##    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n#    exit 1\n# fi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\n## echo \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2446,7 +2359,6 @@
 /* Begin XCBuildConfiguration section */
 		D346772027C3392700825D34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B8B4F5FE30256B135D990C9 /* Pods-BadHouseAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2467,7 +2379,6 @@
 		};
 		D346772127C3392700825D34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41AFFD0082E4D8C9FF36182D /* Pods-BadHouseAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2649,7 +2560,6 @@
 		};
 		D3BDB53926E0525200C53780 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 179A38C4CE9A5788447F9009 /* Pods-BadHouseApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2672,7 +2582,6 @@
 		};
 		D3BDB53A26E0525200C53780 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC305325AEAC331B24E51D2A /* Pods-BadHouseApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2815,6 +2724,30 @@
 				kind = branch;
 			};
 		};
+		D3DEEA1928AB737A006C50D5 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		D3DEEA1C28AB73B8006C50D5 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		D3DEEA1F28AB7588006C50D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2832,11 +2765,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		D346BD5127A94D6700B87D74 /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D346BD4A27A94D6700B87D74 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
 		};
 		D346BD5327A94D6700B87D74 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2907,6 +2835,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D3C0C2CB27D56B3B00480EAE /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
+		};
+		D3DEEA1A28AB737A006C50D5 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3DEEA1928AB737A006C50D5 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		D3DEEA1D28AB73B8006C50D5 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3DEEA1C28AB73B8006C50D5 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		D3DEEA2028AB7588006C50D5 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3DEEA1F28AB7588006C50D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		D3DEEA2228AB7588006C50D5 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3DEEA1F28AB7588006C50D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

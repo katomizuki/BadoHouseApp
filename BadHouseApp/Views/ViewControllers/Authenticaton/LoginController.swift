@@ -51,8 +51,8 @@ final class LoginController: UIViewController {
     }
 
     private func setupGoogleLogin() {
-        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance()?.delegate = self
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
         stackView.addArrangedSubview(googleView)
         stackView.addArrangedSubview(appleButton)
         appleButton.anchor(height: 40)
@@ -157,24 +157,24 @@ final class LoginController: UIViewController {
     }
 }
 // MARK: - GoogleSigninDelegate
-extension LoginController: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            guard let auth = user.authentication else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
-            Auth.auth().signIn(with: credential) { _, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-    }
-}
+//extension LoginController: GIDSignInDelegate {
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        if let error = error {
+//            print("\(error.localizedDescription)")
+//        } else {
+//            guard let auth = user.authentication else { return }
+//            let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+//            Auth.auth().signIn(with: credential) { _, error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//                } else {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//        }
+//    }
+//}
 
 // MARK: - ASAuthorizationControllerDelegate
 extension LoginController: ASAuthorizationControllerDelegate {

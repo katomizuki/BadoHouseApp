@@ -21,7 +21,7 @@ extension UIViewController {
 
     func setupErrorMessage(error: NSError) -> String {
         var message = ""
-        if let errCode = AuthErrorCode(rawValue: error.code) {
+        if let errCode = AuthErrorCode.Code(rawValue: error.code) {
             switch errCode {
             case .invalidEmail:      message =  "有効なメールアドレスを入力してください"
             case .emailAlreadyInUse: message = "既に登録されているメールアドレスです"
@@ -37,7 +37,7 @@ extension UIViewController {
 
     func setupFirestoreErrorMessage(error: NSError) -> String {
         var message = ""
-        if let errCode = FirestoreErrorCode(rawValue: error.code) {
+        if let errCode = FirestoreErrorCode.Code(rawValue: error.code) {
             switch errCode {
             case .cancelled:
                 message = "データの送信がキャンセルされました"

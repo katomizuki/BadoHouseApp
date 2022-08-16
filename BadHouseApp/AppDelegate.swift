@@ -13,15 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
-        GIDSignIn.sharedInstance()?.clientID = "517884035996-me558ijehkt7r7sjmgt57li9ddvjkq0e.apps.googleusercontent.com"
-//        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        let signInConfig = GIDConfiguration(clientID: "517884035996-me558ijehkt7r7sjmgt57li9ddvjkq0e.apps.googleusercontent.com")
+//        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self)
+
         setupNotifications(on: application)
         UIApplication.shared.applicationIconBadgeNumber = 0
         Network.shared.setupNetPathMonitor()
         return true
     }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        var handled: Bool
+
+          handled = GIDSignIn.sharedInstance.handle(url)
+          if handled {
+            return true
+          }
+          return false
+    }
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
+        return GIDSignIn.sharedInstance.handle(url)
     }
 
     // MARK: UISceneSession Lifecycle
