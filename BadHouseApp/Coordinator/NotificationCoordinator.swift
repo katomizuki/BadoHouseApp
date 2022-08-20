@@ -1,4 +1,7 @@
 import UIKit
+import Domain
+import Infra
+
 
 final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
     
@@ -20,7 +23,8 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
         }
     }
     
-    func toUserDetail(_ myData: User, user: User) {
+    func toUserDetail(_ myData: Domain.UserModel,
+                      user: Domain.UserModel) {
     self.coordinator(to: UserDetailCoordinator(
         navigationController: self.navigationController,
         viewModel: UserDetailViewModel(
@@ -32,7 +36,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                                         applyAPI: ApplyRepositryImpl()))))
     }
     
-    func toApplyedFriend(_ user: User) {
+    func toApplyedFriend(_ user: Domain.UserModel) {
         navigationController.pushViewController(
             ApplyedUserListController.init(
                 viewModel:
@@ -43,7 +47,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                             applyAPI: ApplyRepositryImpl()))), animated: true)
     }
     
-    func toPreJoin(_ user: User) {
+    func toPreJoin(_ user: Domain.UserModel) {
         self.navigationController.pushViewController(
             PreJoinController.init(viewModel:
                                     PreJoinViewModel(user: user,
@@ -51,7 +55,7 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                                                      actionCreator: PrejoinActionCreator(joinAPI: JoinRepositryImpl()))), animated: true)
     }
     
-    func toPreJoined(_ user: User) {
+    func toPreJoined(_ user: Domain.UserModel) {
         self.navigationController.pushViewController(
             PreJoinedListController.init(
                 viewModel: PreJoinedViewModel(user: user,
@@ -61,7 +65,8 @@ final class NotificationCoordinator: Coordinator, CheckNotificationFlow {
                                                     joinAPI: JoinRepositryImpl()))), animated: true)
     }
     
-    func toPracticeDetail(_ myData: User, practice: Practice) {
+    func toPracticeDetail(_ myData: Domain.UserModel,
+                          practice: Domain.Practice) {
     coordinator(to: PracticeDetailCoordinator(
         navigationController: navigationController,
         viewModel: PracticeDetailViewModel(practice: practice,

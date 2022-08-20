@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension BlockListState {
     enum BlockListAction: ReSwift.Action {
-        case setUsers(_ users: [User])
+        case setUsers(_ users: [Domain.UserModel])
         case changeReloadStatus(_ isReload: Bool)
     }
 }

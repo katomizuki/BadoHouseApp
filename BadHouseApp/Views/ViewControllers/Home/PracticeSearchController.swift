@@ -1,9 +1,11 @@
 import UIKit
 import RxSwift
+import Domain
 
 // swiftlint:disable weak_delegate
 protocol PracticeSearchControllerDelegate: AnyObject {
-    func eventSearchControllerDismiss(practices: [Practice], vc: PracticeSearchController)
+    func eventSearchControllerDismiss(practices: [Domain.Practice],
+                                      vc: PracticeSearchController)
 }
 
 final class PracticeSearchController: UIViewController {

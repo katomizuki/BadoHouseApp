@@ -1,5 +1,6 @@
 import UIKit
 import SDWebImage
+import Domain
 
 final class InviteCell: UITableViewCell {
     
@@ -26,7 +27,7 @@ final class InviteCell: UITableViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    func configure(_ user: User) {
+    func configure(_ user: Domain.UserModel) {
         namaLabel.text = user.name
         userImageView.sd_setImage(with: user.profileImageUrl)
     }

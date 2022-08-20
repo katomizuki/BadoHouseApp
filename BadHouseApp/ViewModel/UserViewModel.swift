@@ -2,10 +2,12 @@ import RxSwift
 import RxCocoa
 import FirebaseAuth
 import ReSwift
+import Domain
+import Infra
 
 protocol UserViewModelInputs {
-    func blockUser(_ user: User?)
-    func withDrawCircle(_ circle: Circle?)
+    func blockUser(_ user: Domain.UserModel?)
+    func withDrawCircle(_ circle: Domain.CircleModel?)
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
     var notAuthInput: AnyObserver<Void> { get }
@@ -19,9 +21,9 @@ protocol UserViewModelOutputs {
     var userFriendsCountText: BehaviorRelay<String> { get }
     var isError: Observable<Bool> { get }
     var isApplyViewHidden: Observable<Bool> { get }
-    var friendsRelay: BehaviorRelay<[User]> { get }
+    var friendsRelay: BehaviorRelay<[Domain.UserModel]> { get }
     var reload: Observable<Void> { get }
-    var circleRelay: BehaviorRelay<[Circle]> { get }
+    var circleRelay: BehaviorRelay<[Domain.CircleModel]> { get }
     var notAuth: Observable<Void> { get }
 }
 
@@ -39,12 +41,12 @@ final class UserViewModel: UserViewModelType {
     let userFriendsCountText = BehaviorRelay<String>(value: "")
     let userCircleCountText = BehaviorRelay<String>(value: "")
     let userUrl = BehaviorRelay<URL?>(value: nil)
-    let friendsRelay = BehaviorRelay<[User]>(value: [])
-    let circleRelay = BehaviorRelay<[Circle]>(value: [])
+    let friendsRelay = BehaviorRelay<[Domain.UserModel]>(value: [])
+    let circleRelay = BehaviorRelay<[Domain.CircleModel]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
-    var user: User?
+    var user: Domain.UserModel?
     
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
@@ -84,20 +86,21 @@ final class UserViewModel: UserViewModelType {
         }
     }
     
-    func blockUser(_ user: User?) {
+    func blockUser(_ user: Domain.UserModel?) {
         guard let user = user else { return }
         // ブロック処理
         saveBlockUser(user)
         actionCreator.setFriends(makeRemovedFriends(friendsRelay.value, user: user))
     }
     
-    private func makeRemovedFriends(_ value: [User], user: User) -> [User] {
+    private func makeRemovedFriends(_ value: [Domain.UserModel],
+                                    user: Domain.UserModel) -> [Domain.UserModel] {
         var users = friendsRelay.value
         users.remove(value: user)
         return users
     }
     
-    private func saveBlockUser(_ user: User) {
+    private func saveBlockUser(_ user: Domain.UserModel) {
         if isExistsUserDefaults() {
             actionCreator.updateBlockIds(user: user)
         } else {
@@ -109,16 +112,17 @@ final class UserViewModel: UserViewModelType {
         return UserDefaults.standard.object(forKey: R.UserDefaultsKey.blocks) != nil
     }
     
-    func withDrawCircle(_ circle: Circle?) {
+    func withDrawCircle(_ circle: Domain.CircleModel?) {
         guard let circle = circle else { return }
         guard let user = user else { return }
-        actionCreator.deleteCircle(user: user, circle: circle)
+        actionCreator.deleteCircle(user: user,
+                                   circle: circle)
         actionCreator.withDrawCircle(user: user,
                                      circle: circle,
                                      circles: makeRemovedCirclesList(circle))
     }
     
-    private func makeRemovedCirclesList(_ circle: Circle) -> [Circle] {
+    private func makeRemovedCirclesList(_ circle: Domain.CircleModel) -> [Domain.CircleModel] {
         var circles = circleRelay.value
         circles.remove(value: circle)
         return circles

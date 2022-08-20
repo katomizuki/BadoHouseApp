@@ -8,17 +8,20 @@
 import ReSwift
 import Foundation
 import RxSwift
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct ApplyedUserListActionCreator {
-    let applyAPI: any ApplyRepositry
+    let applyAPI: any Domain.ApplyRepositry
     private let disposeBag = DisposeBag()
     
     func saveId(id: String) {
         if isExistsUserDefaults() {
-            let array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.friends)
+            let array: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
+            Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.friends)
         } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: R.UserDefaultsKey.friends)
+            Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: [id], key: R.UserDefaultsKey.friends)
         }
     }
     
@@ -26,14 +29,17 @@ struct ApplyedUserListActionCreator {
         return UserDefaults.standard.object(forKey: R.UserDefaultsKey.friends) != nil
     }
     
-    func deleteFriends(_ applyed: Applyed, uid: String, list: [Applyed]) {
-        applyAPI.notApplyFriend(uid: applyed.fromUserId, toUserId: uid)
+    func deleteFriends(_ applyed: Domain.ApplyedModel,
+                       uid: String,
+                       list: [Domain.ApplyedModel]) {
+        applyAPI.notApplyFriend(uid: applyed.fromUserId,
+                                toUserId: uid)
         let value = list.filter { $0.fromUserId != applyed.fromUserId }
         appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.setApplies(value))
         appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.changeReloadStatus(true))
     }
     
-    func getApplyedUserList(_ user: User) {
+    func getApplyedUserList(_ user: Domain.UserModel) {
         applyAPI.getApplyedUser(user: user)
             .subscribe { value in
             appStore.dispatch(ApplyedUserListState.ApplyedUserListStateAction.setApplies(value))
@@ -44,7 +50,10 @@ struct ApplyedUserListActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func makeFriends(_ applyed: Applyed, uid: String, list: [Applyed], user: User) {
+    func makeFriends(_ applyed: Domain.ApplyedModel,
+                     uid: String,
+                     list: [Domain.ApplyedModel],
+                     user: Domain.UserModel) {
         applyAPI.notApplyFriend(uid: applyed.fromUserId,
                                     toUserId: uid)
         let value = list.filter { $0.fromUserId != applyed.fromUserId }
@@ -53,7 +62,8 @@ struct ApplyedUserListActionCreator {
         self.match(applyed: applyed, user: user)
     }
     
-    private func match(applyed: Applyed, user: User) {
+    private func match(applyed: Domain.ApplyedModel,
+                       user: Domain.UserModel) {
         UserRepositryImpl.getUserById(uid: applyed.fromUserId) { friend in
             self.applyAPI
                 .match(user: user,

@@ -1,5 +1,6 @@
 import RxSwift
 import CoreLocation
+import Domain
 
 protocol MapListViewModelType {
     var inputs: MapListViewModelInputs { get }
@@ -20,13 +21,14 @@ final class MapListViewModel: MapListViewModelType, MapListViewModelInputs, MapL
     
     var currnetLatitude: CLLocationDegrees
     var currentLongitude: CLLocationDegrees
-    var practices = [Practice]()
+    var practices = [Domain.Practice]()
     
-    let myData: User
+    let myData: Domain.UserModel
     
     init(currnetLatitude: CLLocationDegrees,
          currentLongitude: CLLocationDegrees,
-         practices: [Practice], myData: User) {
+         practices: [Domain.Practice],
+         myData: Domain.UserModel) {
         self.currnetLatitude = currnetLatitude
         self.currentLongitude = currentLongitude
         self.practices = practices

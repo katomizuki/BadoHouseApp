@@ -1,11 +1,14 @@
 import UIKit
+import Domain
+import Infra
 
 final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
     
     let navigationController: UINavigationController
     let viewModel: PracticeDetailViewModel
     
-    init(navigationController: UINavigationController, viewModel: PracticeDetailViewModel) {
+    init(navigationController: UINavigationController,
+         viewModel: PracticeDetailViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -16,7 +19,8 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toUserDetail(myData: User, user: User) {
+    func toUserDetail(myData: Domain.UserModel,
+                      user: Domain.UserModel) {
         coordinator(to: UserDetailCoordinator(
             navigationController: navigationController,
             viewModel: UserDetailViewModel(myData: myData,
@@ -28,7 +32,8 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
                                                 applyAPI: ApplyRepositryImpl()))))
     }
     
-    func toChat(myData: User, user: User) {
+    func toChat(myData: Domain.UserModel,
+                user: Domain.UserModel) {
         coordinator(to: ChatCoordinator(
             navigationController: navigationController,
             viewModel: ChatViewModel(myData: myData,
@@ -39,7 +44,8 @@ final class PracticeDetailCoordinator: Coordinator, PracticeDetailFlow {
                                                           userAPI: UserRepositryImpl()))))
     }
     
-    func toCircleDetail(myData: User, circle: Circle) {
+    func toCircleDetail(myData: Domain.UserModel,
+                        circle: Domain.CircleModel) {
         coordinator(to: CircleDetailCoordinator(
             navigationController: self.navigationController,
             viewModel: CircleDetailViewModel(myData: myData,

@@ -6,6 +6,8 @@ import Firebase
 import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
+import Infra
+import Domain
 
 final class RegisterController: UIViewController {
     // MARK: - Properties
@@ -223,7 +225,9 @@ extension RegisterController: ASAuthorizationControllerDelegate {
                 } else {
                     guard let email = result?.user.email else { return }
                     guard let uid = result?.user.uid else { return }
-                    let credential = AuthCredential(name: name, email: email, password: "")
+                    let credential = Domain.AuthCredential(name: name,
+                                                           email: email,
+                                                           password: "")
                     self.viewModel.thirdPartyLogin(credential: credential, id: uid)
                 }
             }

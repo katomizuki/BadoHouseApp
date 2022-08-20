@@ -3,6 +3,8 @@ import RxCocoa
 import FirebaseAuth
 import UIKit
 import ReSwift
+import Domain
+import Infra
 
 protocol MakeEventSecondViewModelInputs {
     var minLevelInput: AnyObserver<Float> { get }
@@ -12,7 +14,7 @@ protocol MakeEventSecondViewModelInputs {
 protocol MakeEventSecondViewModelOutputs {
     var minLevelText: BehaviorRelay<String> { get }
     var maxLevelText: BehaviorRelay<String> { get }
-    var circleRelay: BehaviorRelay<[Circle]> { get }
+    var circleRelay: BehaviorRelay<[Domain.CircleModel]> { get }
     var minLevelOutput: Observable<Float> { get }
     var maxLevelOutput: Observable<Float> { get }
 }
@@ -29,12 +31,12 @@ final class MakeEventSecondViewModel: MakeEventSecondViewModelType {
     
     let minLevelText = BehaviorRelay<String>(value: "レベル1")
     let maxLevelText = BehaviorRelay<String>(value: "レベル10")
-    let circleRelay = BehaviorRelay<[Circle]>(value: [])
+    let circleRelay = BehaviorRelay<[Domain.CircleModel]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
-    var user: User?
-    var circle: Circle?
+    var user: Domain.UserModel?
+    var circle: Domain.CircleModel?
     var title: String
     var image: UIImage
     var kind: String

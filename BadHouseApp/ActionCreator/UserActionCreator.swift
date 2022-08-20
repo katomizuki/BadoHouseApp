@@ -7,15 +7,19 @@
 
 import RxSwift
 import Foundation
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct UserActionCreator {
     private let disposeBag: DisposeBag = DisposeBag()
-    let userAPI: any UserRepositry
-    let applyAPI: any ApplyRepositry
-    let circleAPI: any CircleRepositry
+    let userAPI: any Domain.UserRepositry
+    let applyAPI: any Domain.ApplyRepositry
+    let circleAPI: any Domain.CircleRepositry
     
     func getUser(uid: String) {
-        userAPI.getUser(uid: uid).subscribe(onSuccess: { user in
+        userAPI.getUser(uid: uid)
+            .subscribe(onSuccess: { user in
             appStore.dispatch(UserState.UserAction.setUser(user))
             self.bindCircles(user: user)
             self.bindApplyedUser(user: user)
@@ -34,16 +38,18 @@ struct UserActionCreator {
         UserRepositryImpl.saveFriendId(uid: uid)
     }
     
-    private func bindApplyedUser(user: User) {
-        applyAPI.getApplyedUser(user: user).subscribe { applyed in
+    private func bindApplyedUser(user: Domain.UserModel) {
+        applyAPI.getApplyedUser(user: user)
+            .subscribe { applyed in
             appStore.dispatch(UserState.UserAction.changeApplyViewHidden(applyed.count == 0))
         } onFailure: { _ in
             appStore.dispatch(UserState.UserAction.changeErrorStatus(true))
         }.disposed(by: self.disposeBag)
     }
     
-    private func bindFriends(user: User) {
-        userAPI.getFriends(uid: user.uid).subscribe { users in
+    private func bindFriends(user: Domain.UserModel) {
+        userAPI.getFriends(uid: user.uid)
+            .subscribe { users in
             appStore.dispatch(UserState.UserAction.setUserFriendsCountText("バド友　\(users.count)人"))
             appStore.dispatch(UserState.UserAction.setFriends(users))
             appStore.dispatch(UserState.UserAction.changeReloadStatus(true))
@@ -52,8 +58,9 @@ struct UserActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    private func bindCircles(user: User) {
-        userAPI.getMyCircles(uid: user.uid).subscribe { circles in
+    private func bindCircles(user: Domain.UserModel) {
+        userAPI.getMyCircles(uid: user.uid)
+            .subscribe { circles in
             appStore.dispatch(UserState.UserAction.setUserCircleCountText("所属サークル　\(circles.count)個"))
             appStore.dispatch(UserState.UserAction.setCircle(circles))
             appStore.dispatch(UserState.UserAction.changeReloadStatus(true))
@@ -62,7 +69,9 @@ struct UserActionCreator {
         }.disposed(by: disposeBag)
     }
 
-    func withDrawCircle(user: User, circle: Circle, circles: [Circle]) {
+    func withDrawCircle(user: Domain.UserModel,
+                        circle: Domain.CircleModel,
+                        circles: [Domain.CircleModel]) {
         circleAPI.withdrawCircle(user: user,
                                  circle: circle)
             .subscribe(onCompleted: {
@@ -73,7 +82,8 @@ struct UserActionCreator {
         }).disposed(by: disposeBag)
     }
     
-    func deleteCircle(user: User, circle: Circle) {
+    func deleteCircle(user: Domain.UserModel,
+                      circle: Domain.CircleModel) {
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users,
                                               documentId: user.uid,
                                               subCollectionName: R.Collection.Circle,
@@ -88,19 +98,19 @@ struct UserActionCreator {
         appStore.dispatch(UserState.UserAction.changeReloadStatus(false))
     }
     
-    func setFriends(_ users: [User]) {
+    func setFriends(_ users: [Domain.UserModel]) {
         appStore.dispatch(UserState.UserAction.setFriends(users))
         appStore.dispatch(UserState.UserAction.changeReloadStatus(true))
     }
     
-    func updateBlockIds(user: User) {
-        var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
+    func updateBlockIds(user: Domain.UserModel) {
+        var array: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
         array.append(user.uid)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.blocks)
+        Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.blocks)
     }
     
-    func saveBlocksIds(user: User) {
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: R.UserDefaultsKey.blocks)
+    func saveBlocksIds(user: Domain.UserModel) {
+        Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: [user.uid], key: R.UserDefaultsKey.blocks)
     }
    
 }

@@ -2,6 +2,8 @@ import RxSwift
 import FirebaseAuth
 import RxRelay
 import ReSwift
+import Domain
+import Infra
 
 protocol TalkViewModelInputs {
     var errorInput: AnyObserver<Bool> { get }
@@ -11,7 +13,7 @@ protocol TalkViewModelInputs {
 protocol TalkViewModelOutputs {
     var reload: Observable<Void> { get }
     var isError: Observable<Bool> { get }
-    var chatRoomList: BehaviorRelay<[ChatRoom]> { get }
+    var chatRoomList: BehaviorRelay<[Domain.ChatRoom]> { get }
 }
 
 protocol TalkViewModelType {
@@ -24,7 +26,7 @@ final class TalkViewModel: TalkViewModelType {
     var inputs: any TalkViewModelInputs { self }
     var outputs: any TalkViewModelOutputs { self }
     
-    let chatRoomList = BehaviorRelay<[ChatRoom]>(value: [])
+    let chatRoomList = BehaviorRelay<[Domain.ChatRoom]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     

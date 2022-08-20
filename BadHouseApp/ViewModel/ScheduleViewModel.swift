@@ -1,6 +1,7 @@
 import RxRelay
 import RxSwift
 import ReSwift
+import Domain
 
 protocol ScheduleViewModelInputs {
     func deleteSchdule(_ index: Int)
@@ -11,7 +12,7 @@ protocol ScheduleViewModelInputs {
 protocol ScheduleViewModelOutputs {
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
-    var practiceList: BehaviorRelay<[Practice]> { get }
+    var practiceList: BehaviorRelay<[Domain.Practice]> { get }
 }
 
 protocol ScheduleViewModelType {
@@ -24,8 +25,8 @@ final class ScheduleViewModel: ScheduleViewModelType {
     var inputs: any ScheduleViewModelInputs { self }
     var outputs: any ScheduleViewModelOutputs { self }
     
-    let user: User
-    let practiceList = BehaviorRelay<[Practice]>(value: [])
+    let user: Domain.UserModel
+    let practiceList = BehaviorRelay<[Domain.Practice]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -35,7 +36,7 @@ final class ScheduleViewModel: ScheduleViewModelType {
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     
-    init(user: User,
+    init(user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: ScheduleActionCreator) {
         self.user = user

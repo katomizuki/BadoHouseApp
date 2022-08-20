@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension ApplyedUserListState {
     enum ApplyedUserListStateAction: ReSwift.Action {
-        case setApplies(_ applied: [Applyed])
+        case setApplies(_ applied: [Domain.ApplyedModel])
         case changeReloadStatus(_ isReload: Bool)
         case changeErrorStatus(_ isError: Bool)
         case setNavigationTitle(_ title: String)

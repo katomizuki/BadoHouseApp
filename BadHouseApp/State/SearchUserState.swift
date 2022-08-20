@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct SearchUserState: StateType {
-    var users = [User]()
+    var users = [Domain.UserModel]()
     var errorStatus = false
     var completedStatus = false
 }

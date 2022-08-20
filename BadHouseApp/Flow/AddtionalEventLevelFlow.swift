@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Domain
 
 protocol AddtionalEventLevelFlow {
     func toNext(image: UIImage,
                 dic: [String: Any],
-                circle: Circle,
-                user: User)
+                circle: Domain.CircleModel,
+                user: Domain.UserModel)
 }

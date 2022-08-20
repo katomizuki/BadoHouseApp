@@ -7,14 +7,15 @@
 
 import ReSwift
 import Foundation
+import Domain
 
 struct UserState: StateType {
-    var user: User?
+    var user: Domain.UserModel?
     var userFriendsCountText = String()
     var userCircleCountText = String()
     var userUrl: URL?
-    var friends = [User]()
-    var circles = [Circle]()
+    var friends = [Domain.UserModel]()
+    var circles = [Domain.CircleModel]()
     var isApplyViewHidden = false
     var errorStatus = false
     var reloadStatus = false

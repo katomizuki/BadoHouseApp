@@ -6,9 +6,11 @@
 //
 
 import ReSwift
+import Domain
+
 extension ScheduleState {
     enum ScheduleAction: ReSwift.Action {
-        case setPractices(_ practices: [Practice])
+        case setPractices(_ practices: [Domain.Practice])
         case changeErrorStatus(_ isError: Bool)
         case changeReloadStatus(_ isError: Bool)
     }

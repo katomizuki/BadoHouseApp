@@ -1,6 +1,8 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
+import Infra
 
 protocol InviteViewModelInputs {
     var errorInput: AnyObserver<Bool> { get }
@@ -9,7 +11,7 @@ protocol InviteViewModelInputs {
 
 protocol InviteViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var friendsList: BehaviorRelay<[User]> { get }
+    var friendsList: BehaviorRelay<[Domain.UserModel]> { get }
     var isCompleted: Observable<Void> { get }
 }
 
@@ -23,11 +25,11 @@ final class InviteViewModel: InviteViewModelType {
     var inputs: any InviteViewModelInputs { self }
     var outputs: any InviteViewModelOutputs { self }
     
-    var user: User
+    var user: Domain.UserModel
     var form: Form
     var inviteIds = [String]()
     
-    let friendsList = BehaviorRelay<[User]>(value: [])
+    let friendsList = BehaviorRelay<[Domain.UserModel]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -38,7 +40,7 @@ final class InviteViewModel: InviteViewModelType {
     private let store: Store<AppState>
     private let actionCreator: InviteActionCreator
     
-    init(user: User,
+    init(user: Domain.UserModel,
          form: Form,
          store: Store<AppState>,
          actionCreator: InviteActionCreator) {
@@ -98,7 +100,7 @@ final class InviteViewModel: InviteViewModelType {
         }
     }
     
-    func inviteAction(user: User?) {
+    func inviteAction(user: Domain.UserModel?) {
         guard let user = user else { return }
         if judgeInvite(id: user.uid) {
             inviteIds.remove(value: user.uid)

@@ -6,13 +6,16 @@
 //
 
 import RxSwift
+import Domain
 
 struct CircleDetailActionCreator {
     let circleAPI: any CircleRepositry
     private let disposeBag = DisposeBag()
     
-    func getMembers(ids: [String], circle: Circle) {
-        circleAPI.getMembers(ids: circle.member, circle: circle).subscribe { circle in
+    func getMembers(ids: [String],
+                    circle: Domain.CircleModel) {
+        circleAPI.getMembers(ids: circle.member,
+                             circle: circle).subscribe { circle in
             appStore.dispatch(CircleDetailState.CircleDetailAction.setAllMembers(circle.members))
             appStore.dispatch(CircleDetailState.CircleDetailAction.setCircle(circle))
             let friendsMembers = circle.members.filter({ user in

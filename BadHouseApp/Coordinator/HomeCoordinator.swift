@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class HomeCoordinator: Coordinator, HomeFlow {
     
@@ -18,7 +20,10 @@ final class HomeCoordinator: Coordinator, HomeFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toMap(practices: [Practice], lat: Double, lon: Double, myData: User?) {
+    func toMap(practices: [Domain.Practice],
+               lat: Double,
+               lon: Double,
+               myData: Domain.UserModel?) {
         guard let myData = myData else { return }
         coordinator(to: MapCoordinator(navigationController:
                                         navigationController,
@@ -33,7 +38,7 @@ final class HomeCoordinator: Coordinator, HomeFlow {
         coordinator(to: MakePracticeCoordinator(navigationController: navigationController))
     }
     
-    func toDetailSearch(_ vc: HomeViewController, practices: [Practice]) {
+    func toDetailSearch(_ vc: HomeViewController, practices: [Domain.Practice]) {
         let controller = PracticeSearchController.init(viewModel:
                                                         PracticeSearchViewModel(
                                                             practices: practices,
@@ -50,7 +55,8 @@ final class HomeCoordinator: Coordinator, HomeFlow {
        
     }
     
-    func toPracticeDetail(_ practice: Practice, myData: User?) {
+    func toPracticeDetail(_ practice: Domain.Practice,
+                          myData: Domain.UserModel?) {
         guard let myData = myData else { return }
         coordinator(to: PracticeDetailCoordinator(
             navigationController: self.navigationController,

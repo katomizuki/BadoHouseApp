@@ -6,13 +6,14 @@
 //
 
 import ReSwift
+import Domain
 
 struct PracticeDetailState: StateType {
     var errorStatus = false
     var completedStatus = false
     var buttonHidden = false
     var isTakePartInButton = false
-    var user: User?
-    var circle: Circle?
-    var myData: User?
+    var user: Domain.UserModel?
+    var circle: Domain.CircleModel?
+    var myData: Domain.UserModel?
 }

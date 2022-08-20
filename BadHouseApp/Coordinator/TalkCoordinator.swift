@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class TalkCoordinator: Coordinator, TalkFlow {
    
@@ -18,7 +20,9 @@ final class TalkCoordinator: Coordinator, TalkFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toChat(userId: String, myDataId: String, chatId: String) {
+    func toChat(userId: String,
+                myDataId: String,
+                chatId: String) {
         UserRepositryImpl.getUserById(uid: userId) { user in
             UserRepositryImpl.getUserById(uid: myDataId) { myData in
                 self.coordinator(to: ChatCoordinator(

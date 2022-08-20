@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol AdditionalMemberViewModelType {
     var inputs: AdditionalMemberViewModelInputs { get }
@@ -14,7 +15,7 @@ protocol AdditionalMemberViewModelInputs {
 }
 
 protocol AdditionalMemberViewModelOutputs {
-    var friendsSubject: BehaviorRelay<[User]> { get }
+    var friendsSubject: BehaviorRelay<[Domain.UserModel]> { get }
     var isError: Observable<Bool> { get }
     var completed: Observable<Void> { get }
 }
@@ -24,7 +25,7 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     var inputs: any AdditionalMemberViewModelInputs { self }
     var outputs: any AdditionalMemberViewModelOutputs { self }
 
-    var friendsSubject = BehaviorRelay<[User]>(value: [])
+    var friendsSubject = BehaviorRelay<[Domain.UserModel]>(value: [])
     lazy var inviteIds = circle.member
     
     let willAppear = PublishRelay<Void>()
@@ -32,14 +33,14 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
 
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<Void>()
-    private let user: User
-    private let circle: Circle
+    private let user: Domain.UserModel
+    private let circle: Domain.CircleModel
     private let disposeBag = DisposeBag()
     private let store: Store<AppState>
     private let actionCreator: AdditionalMemberActionCreator
     
-    init(user: User,
-         circle: Circle,
+    init(user: Domain.UserModel,
+         circle: Domain.CircleModel,
          store: Store<AppState>,
          actionCreator: AdditionalMemberActionCreator) {
         self.user = user
@@ -65,10 +66,11 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     
     // 取ってくるデータが増えてもいいようにこのように書く
     func setupData() {
-        actionCreator.getFriends(uid: user.uid, members: circle.members)
+        actionCreator.getFriends(uid: user.uid,
+                                 members: circle.members)
     }
     
-    func inviteAction(user: User?) {
+    func inviteAction(user: Domain.UserModel?) {
         guard let user = user else { return }
         if judgeInvite(id: user.uid) {
             inviteIds.remove(value: user.uid)
@@ -82,7 +84,8 @@ final class AdditionalMemberViewModel: AdditionalMemberViewModelType {
     }
     
     func invite() {
-        actionCreator.invite(ids: inviteIds, circle: circle)
+        actionCreator.invite(ids: inviteIds,
+                             circle: circle)
     }
 }
 

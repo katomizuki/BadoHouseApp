@@ -1,11 +1,14 @@
 import UIKit
+import Domain
+import Infra
 
 final class UpdateCircleCoordinator: Coordinator {
     
     let navigationController: UINavigationController
     let viewModel: UpdateCircleViewModel
     
-    init(navigationController: UINavigationController, viewModel: UpdateCircleViewModel) {
+    init(navigationController: UINavigationController,
+         viewModel: UpdateCircleViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }

@@ -1,11 +1,14 @@
 import UIKit
+import Domain
+import Infra
 
 final class FriendListCoordinator: Coordinator, FriendListFlow {
     
     let navigationController: UINavigationController
     let viewModel: FriendsListViewModel
     
-    init(navigationController: UINavigationController, viewModel: FriendsListViewModel) {
+    init(navigationController: UINavigationController,
+         viewModel: FriendsListViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -16,7 +19,8 @@ final class FriendListCoordinator: Coordinator, FriendListFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toUserDetail(myData: User, user: User) {
+    func toUserDetail(myData: Domain.UserModel,
+                      user: Domain.UserModel) {
         coordinator(to: UserDetailCoordinator(
             navigationController: navigationController,
             viewModel: UserDetailViewModel(

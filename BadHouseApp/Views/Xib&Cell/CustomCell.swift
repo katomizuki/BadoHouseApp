@@ -1,9 +1,10 @@
 import Foundation
 import UIKit
 import SDWebImage
+import Domain
 
 protocol CalendarEventDelegate: AnyObject {
-    func removeEvent(eventModel: Practice, cell: UITableViewCell)
+    func removeEvent(eventModel: Domain.Practice, cell: UITableViewCell)
 }
 
 final class CustomCell: UITableViewCell {
@@ -79,12 +80,12 @@ final class CustomCell: UITableViewCell {
     @objc private func handleTrash() {
     }
     
-    func configure(user: User) {
+    func configure(user: Domain.UserModel) {
         cellImagevView.sd_setImage(with: user.profileImageUrl)
         label.text = user.name
     }
     
-    func configure(circle: Circle) {
+    func configure(circle: Domain.CircleModel) {
         cellImagevView.sd_setImage(with: circle.iconUrl)
         label.text = circle.name
     }

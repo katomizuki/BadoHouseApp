@@ -4,11 +4,14 @@
 //
 //  Created by ミズキ on 2022/02/14.
 //
+import Domain
 
 protocol CheckNotificationFlow: AnyObject {
-    func toUserDetail(_ myData: User, user: User)
-    func toPracticeDetail(_ myData: User, practice: Practice)
-    func toPreJoin(_ user: User)
-    func toPreJoined(_ user: User)
-    func toApplyedFriend(_ user: User)
+    func toUserDetail(_ myData: Domain.UserModel,
+                      user: Domain.UserModel)
+    func toPracticeDetail(_ myData: Domain.UserModel,
+                          practice: Domain.Practice)
+    func toPreJoin(_ user: Domain.UserModel)
+    func toPreJoined(_ user: Domain.UserModel)
+    func toApplyedFriend(_ user: Domain.UserModel)
 }

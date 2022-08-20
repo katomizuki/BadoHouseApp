@@ -3,6 +3,9 @@ import Firebase
 import RxRelay
 import UIKit
 import ReSwift
+import Domain
+import Infra
+
 
 protocol UpdateUserInfoViewModelInputs {
     func saveUser()
@@ -22,7 +25,7 @@ protocol UpdateUserInfoViewModelInputs {
 
 protocol UpdateUserInfoViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var userOutput: Observable<User> { get }
+    var userOutput: Observable<Domain.UserModel> { get }
     var genderOutput: Observable<String> { get }
     var badmintonTimeOutput: Observable<String> { get }
     var placeOutput: Observable<String> { get }
@@ -47,7 +50,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     var inputs: any UpdateUserInfoViewModelInputs { self }
     var outputs: any UpdateUserInfoViewModelOutputs { self }
     
-    var user: User?
+    var user: Domain.UserModel?
     var userImage: UIImage?
     var isChangeImage = false
 
@@ -66,7 +69,7 @@ final class UpdateUserInfoViewModel: UpdateUserInfoViewModelType {
     private let levelStream = PublishSubject<String>()
     private let badmintonTimeStream = PublishSubject<String>()
     private let ageStream = PublishSubject<String>()
-    private let userStream = PublishRelay<User>()
+    private let userStream = PublishRelay<Domain.UserModel>()
     private let disposeBag = DisposeBag()
     private let store: Store<AppState>
     private let actionCreator: UpdateUserInfoActionCreator
@@ -276,7 +279,7 @@ extension UpdateUserInfoViewModel: UpdateUserInfoViewModelOutputs {
         placeStream.asObservable()
     }
     
-    var userOutput: Observable<User> {
+    var userOutput: Observable<Domain.UserModel> {
         userStream.asObservable()
     }
 }

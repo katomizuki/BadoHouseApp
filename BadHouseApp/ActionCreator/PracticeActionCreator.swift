@@ -8,10 +8,14 @@
 import ReSwift
 import RxSwift
 import Foundation
+import Domain
+// infra層がここにあるの良くない
+import Infra
+
 struct PracticeActionCreator {
-    let userAPI: any UserRepositry
-    let circleAPI: any CircleRepositry
-    let joinAPI: any JoinRepositry
+    let userAPI: any Domain.UserRepositry
+    let circleAPI: any Domain.CircleRepositry
+    let joinAPI: any Domain.JoinRepositry
     private let disposeBag = DisposeBag()
     
     func getUser(uid: String) {
@@ -23,14 +27,17 @@ struct PracticeActionCreator {
     }
     
     func getCircle(circleId: String) {
-        circleAPI.getCircle(id: circleId).subscribe { circle in
+        circleAPI.getCircle(id: circleId)
+            .subscribe { circle in
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.setCircle(circle))
         } onFailure: { _ in
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
     
-    func checkButtonHidden(uid: String, user: User, isModal: Bool) {
+    func checkButtonHidden(uid: String,
+                           user: Domain.UserModel,
+                           isModal: Bool) {
         UserRepositryImpl.getUserById(uid: uid) { myData in
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.setMyData(myData))
             if myData.uid == user.uid || isModal == true {
@@ -38,8 +45,12 @@ struct PracticeActionCreator {
             }
         }
     }
-    func takePartInPractice(user: User, myData: User, practice: Practice) {
-        joinAPI.postPreJoin(user: myData, toUser: user, practice: practice).subscribe {
+    func takePartInPractice(user: Domain.UserModel,
+                            myData: Domain.UserModel,
+                            practice: Domain.Practice) {
+        joinAPI.postPreJoin(user: myData,
+                            toUser: user,
+                            practice: practice).subscribe {
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeCompletedStatus(true))
         } onError: { _ in
             appStore.dispatch(PracticeDetailState.PracticeDetailAction.changeErrorStatus(true))
@@ -48,11 +59,11 @@ struct PracticeActionCreator {
     
     func saveUserDefaults(practice: Practice) {
         if existsPreJoinId() {
-            var array: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
+            var array: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
             array.append(practice.id)
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.preJoin)
+            Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: array, key: R.UserDefaultsKey.preJoin)
         } else {
-            UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: R.UserDefaultsKey.preJoin)
+            Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: [practice.id], key: R.UserDefaultsKey.preJoin)
         }
     }
 

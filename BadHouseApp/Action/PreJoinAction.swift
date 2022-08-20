@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension PreJoinState {
     enum PreJoinAction: ReSwift.Action {
-        case setPreJoinList(_ preJoinList: [PreJoin])
+        case setPreJoinList(_ preJoinList: [Domain.PreJoin])
         case changeReloadStatus(_ isReload: Bool)
         case changeErrorStatus(_ isError: Bool)
     }

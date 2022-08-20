@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol SearchCircleViewModelInputs {
     var searchBarTextInput: AnyObserver<String> { get }
@@ -8,7 +9,7 @@ protocol SearchCircleViewModelInputs {
 }
 
 protocol SearchCircleViewModelOutputs {
-    var circleRelay: BehaviorRelay<[Circle]> { get }
+    var circleRelay: BehaviorRelay<[Domain.CircleModel]> { get }
     var isError: Observable<Bool> { get }
 }
 
@@ -22,8 +23,8 @@ final class SearchCircleViewModel: SearchCircleViewModelType {
     var inputs: any SearchCircleViewModelInputs { self }
     var outputs: any SearchCircleViewModelOutputs { self }
     
-    let circleRelay = BehaviorRelay<[Circle]>(value: [])
-    let user: User
+    let circleRelay = BehaviorRelay<[Domain.CircleModel]>(value: [])
+    let user: Domain.UserModel
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -33,7 +34,7 @@ final class SearchCircleViewModel: SearchCircleViewModelType {
     private let store: Store<AppState>
     private let actionCreator: SearchCircleActionCreator
     
-    init(user: User,
+    init(user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: SearchCircleActionCreator) {
         self.user = user

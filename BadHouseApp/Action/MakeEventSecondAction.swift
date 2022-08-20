@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension MakeEventSecondState {
     enum MakeEventSecondAction: ReSwift.Action {
-        case setCircle(_ circles: [Circle])
-        case setUser(_ user: User)
+        case setCircle(_ circles: [Domain.CircleModel])
+        case setUser(_ user: Domain.UserModel)
     }
 }

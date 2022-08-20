@@ -6,11 +6,12 @@
 //
 
 import ReSwift
+import Domain
 
 struct CircleDetailState: StateType {
-    var allMembers = [User]()
-    var circle: Circle?
-    var friendsMembers = [User]()
+    var allMembers = [Domain.UserModel]()
+    var circle: Domain.CircleModel?
+    var friendsMembers = [Domain.UserModel]()
     var errorStatus = false
     var reloadStatus = false
 }

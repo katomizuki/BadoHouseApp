@@ -2,6 +2,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 import UIKit
+import Domain
+
 // MARK: - InputProtocol
 protocol TeamRegisterInput {
     var nameTextInput: AnyObserver<String> { get }
@@ -57,7 +59,7 @@ final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
     
     var validRegisterDriver: Driver<Bool> = Driver.never()
     var selectionsFeature = [String]()
-    var user: User
+    var user: Domain.UserModel
     var form = Form(name: "",
                     price: "",
                     place: "",
@@ -69,7 +71,7 @@ final class TeamRegisterViewModel: TeamRegisterInput, TeamRegisterOutput {
     
     private let disposeBag = DisposeBag()
     // MARK: - initialize
-    init(user: User) {
+    init(user: Domain.UserModel) {
         self.user = user
         
         setupValidation()

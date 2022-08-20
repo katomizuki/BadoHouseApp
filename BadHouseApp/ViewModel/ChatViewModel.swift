@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol ChatViewModelType {
     var inputs: ChatViewModelInputs { get }
@@ -15,7 +16,7 @@ protocol ChatViewModelInputs {
 }
 
 protocol ChatViewModelOutputs {
-    var chatsList: BehaviorRelay<[Chat]> { get }
+    var chatsList: BehaviorRelay<[Domain.ChatModel]> { get }
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
 }
@@ -27,11 +28,11 @@ final class ChatViewModel: ChatViewModelType {
     
     var chatId: String?
     
-    let myData: User
-    let user: User
+    let myData: Domain.UserModel
+    let user: Domain.UserModel
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
-    let chatsList = BehaviorRelay<[Chat]>(value: [])
+    let chatsList = BehaviorRelay<[Domain.ChatModel]>(value: [])
     
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
@@ -39,8 +40,8 @@ final class ChatViewModel: ChatViewModelType {
     private let store: Store<AppState>
     private let actionCreator: ChatActionCreator
     
-    init(myData: User,
-         user: User,
+    init(myData: Domain.UserModel,
+         user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: ChatActionCreator) {
         self.myData = myData

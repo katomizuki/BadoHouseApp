@@ -6,17 +6,22 @@
 //
 
 import UIKit
+import Domain
 
 protocol UserFlow: AnyObject {
-    func toSearchCircle(user: User?)
+    func toSearchCircle(user: Domain.UserModel?)
     func toMyPage(_ vc: UIViewController)
-    func toSearchUser(user: User?)
-    func toDetailUser(myData: User?, user: User?)
-    func toDetailCircle(myData: User?, circle: Circle?)
-    func toMakeCircle(user: User?)
-    func toSettings(_ vc: UIViewController, user: User?)
-    func toSchedule(_ vc: UIViewController, user: User?)
-    func toApplyUser(user: User?)
-    func toApplyedUser(user: User?)
+    func toSearchUser(user: Domain.UserModel?)
+    func toDetailUser(myData: Domain.UserModel?,
+                      user: Domain.UserModel?)
+    func toDetailCircle(myData: Domain.UserModel?,
+                        circle: Domain.CircleModel?)
+    func toMakeCircle(user: Domain.UserModel?)
+    func toSettings(_ vc: UIViewController,
+                    user: Domain.UserModel?)
+    func toSchedule(_ vc: UIViewController,
+                    user: Domain.UserModel?)
+    func toApplyUser(user: Domain.UserModel?)
+    func toApplyedUser(user: Domain.UserModel?)
     func toTodo()
 }

@@ -6,8 +6,9 @@
 //
 
 import ReSwift
+import Domain
 
 struct BlockListState: StateType {
-    var users = [User]()
+    var users = [Domain.UserModel]()
     var reloadStatus = false
 }

@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Domain
 
 final class PreJoinController: UIViewController, UIScrollViewDelegate {
     
@@ -61,7 +62,8 @@ final class PreJoinController: UIViewController, UIScrollViewDelegate {
 }
 
 extension PreJoinController: PreJoinCellDelegate {
-    func preJoinCell(_ cell: PreJoinCell, preJoin: PreJoin) {
+    func preJoinCell(_ cell: PreJoinCell,
+                     preJoin: Domain.PreJoin) {
         viewModel.inputs.delete(preJoin)
     }
 }

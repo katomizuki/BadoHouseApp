@@ -6,22 +6,25 @@
 //
 
 import RxSwift
+import Domain
 
 struct UserDetailActionCreator {
     private let disposeBag = DisposeBag()
-    let userAPI: any UserRepositry
-    let applyAPI: any ApplyRepositry
+    let userAPI: any Domain.UserRepositry
+    let applyAPI: any Domain.ApplyRepositry
     
-    func getFriends(user: User) {
-        userAPI.getFriends(uid: user.uid).subscribe { users in
+    func getFriends(user: Domain.UserModel) {
+        userAPI.getFriends(uid: user.uid)
+            .subscribe { users in
             appStore.dispatch(UserDetailState.UserDetailAction.setUsers(users))
         } onFailure: { _ in
             appStore.dispatch(UserDetailState.UserDetailAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
     
-    func getMyCircles(user: User) {
-        userAPI.getMyCircles(uid: user.uid).subscribe { circles in
+    func getMyCircles(user: Domain.UserModel) {
+        userAPI.getMyCircles(uid: user.uid)
+            .subscribe { circles in
             appStore.dispatch(UserDetailState.UserDetailAction.setCircles(circles))
             appStore.dispatch(UserDetailState.UserDetailAction.changeReloadStatus(true))
         } onFailure: { _ in
@@ -29,10 +32,13 @@ struct UserDetailActionCreator {
         }.disposed(by: disposeBag)
     }
                    
-    func getApplyUser(myData: User, user: User) {
-            applyAPI.getApplyUser(user: myData).subscribe { applies in
+    func getApplyUser(myData: Domain.UserModel,
+                      user: Domain.UserModel) {
+            applyAPI.getApplyUser(user: myData)
+            .subscribe { applies in
                 appStore.dispatch(UserDetailState.UserDetailAction.setApplies(applies))
-                if isExistsAppliesMember(applies: applies, uid: user.uid) {
+                if isExistsAppliesMember(applies: applies,
+                                         uid: user.uid) {
                     appStore.dispatch(UserDetailState.UserDetailAction.setApplyButtonTitle(R.buttonTitle.alreadyApply))
                 } else {
                     appStore.dispatch(UserDetailState.UserDetailAction.setApplyButtonTitle(R.buttonTitle.apply))
@@ -42,20 +48,26 @@ struct UserDetailActionCreator {
             }.disposed(by: disposeBag)
         }
     
-    private func isExistsAppliesMember(applies: [Apply], uid: String) -> Bool {
+    private func isExistsAppliesMember(applies: [Domain.ApplyModel],
+                                       uid: String) -> Bool {
         return applies.filter({$0.toUserId == uid}).count != 0
     }
                    
-    func applyFriend(myData: User, user: User) {
-            applyAPI.postApply(user: myData, toUser: user).subscribe {
+    func applyFriend(myData: Domain.UserModel,
+                     user: Domain.UserModel) {
+            applyAPI.postApply(user: myData,
+                               toUser: user)
+            .subscribe {
                 appStore.dispatch(UserDetailState.UserDetailAction.changeCompletedStatus(true))
             } onError: { _ in
                 appStore.dispatch(UserDetailState.UserDetailAction.changeErrorStatus(true))
             }.disposed(by: self.disposeBag)
         }
                    
-    func notApplyedFriend(myData: User, user: User) {
-        applyAPI.notApplyFriend(uid: myData.uid, toUserId: user.uid)
+    func notApplyedFriend(myData: Domain.UserModel,
+                          user: Domain.UserModel) {
+        applyAPI.notApplyFriend(uid: myData.uid,
+                                toUserId: user.uid)
         appStore.dispatch(UserDetailState.UserDetailAction.changeNotApplyedStatus(true))
     }
     

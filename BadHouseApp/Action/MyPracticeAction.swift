@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension MyPracticeState {
     enum MyPracticeAction: ReSwift.Action {
         case changeErrorStatus(_ isError: Bool)
-        case setPractice(_ practices: [Practice])
+        case setPractice(_ practices: [Domain.Practice])
     }
 }

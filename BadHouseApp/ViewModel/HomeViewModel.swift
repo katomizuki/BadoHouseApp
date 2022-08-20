@@ -2,9 +2,10 @@ import RxSwift
 import FirebaseAuth
 import RxRelay
 import ReSwift
+import Domain
 
 protocol HomeViewModelInputs {
-    func search(_ practices: [Practice])
+    func search(_ practices: [Domain.Practice])
     var didLoadInput: AnyObserver<Void> { get }
     func refresh()
     var reloadInput: AnyObserver<Void> { get }
@@ -20,7 +21,7 @@ protocol HomeViewModelOutputs {
     var isNetWorkError: Observable<Void> { get }
     var isAuth: Observable<Void> { get }
     var isError: Observable<Bool> { get }
-    var practiceRelay: BehaviorRelay<[Practice]> { get }
+    var practiceRelay: BehaviorRelay<[Domain.Practice]> { get }
     var reload: Observable<Void> { get }
     var isIndicatorAnimating: Observable<Bool> { get }
     var isRefreshAnimating: Observable<Bool> { get }
@@ -36,9 +37,9 @@ final class HomeViewModel: HomeViewModelType {
     var inputs: any HomeViewModelInputs { self }
     var outputs: any HomeViewModelOutputs { self }
     
-    var myData: User?
+    var myData: Domain.UserModel?
     
-    let practiceRelay = BehaviorRelay<[Practice]>(value: [])
+    let practiceRelay = BehaviorRelay<[Domain.Practice]>(value: [])
     
     private let didLoadStream = PublishSubject<Void>()
     private let willAppearStream = PublishSubject<Void>()
@@ -53,7 +54,8 @@ final class HomeViewModel: HomeViewModelType {
     private let store: Store<AppState>
     private let actionCreator: HomeActionCreator
     
-    init(store: Store<AppState>, actionCreator: HomeActionCreator) {
+    init(store: Store<AppState>,
+         actionCreator: HomeActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
         setupSubscribe()
@@ -89,7 +91,7 @@ final class HomeViewModel: HomeViewModelType {
         actionCreator.saveFriend()
     }
     
-    func search(_ practices: [Practice]) {
+    func search(_ practices: [Domain.Practice]) {
         practiceRelay.accept(practices)
     }
 }

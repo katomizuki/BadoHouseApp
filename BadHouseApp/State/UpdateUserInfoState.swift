@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct UpdateUserInfoState: StateType {
-    var user: User?
+    var user: Domain.UserModel?
     var errorStatus = false
     var reloadStatus = false
     var completedStatus = false

@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct InviteState: StateType {
-    var friends = [User]()
+    var friends = [Domain.UserModel]()
     var errorStatus = false
     var completedStatus = false
 }

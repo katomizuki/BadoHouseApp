@@ -6,14 +6,16 @@
 //
 
 import RxSwift
+import Domain
 
 struct ScheduleActionCreator {
     
     private let disposeBag = DisposeBag()
-    let userAPI: any UserRepositry
+    let userAPI: any Domain.UserRepositry
     
-    func getMyJoinPractice(user: User) {
-        userAPI.getMyJoinPractice(user: user).subscribe { practices in
+    func getMyJoinPractice(user: Domain.UserModel) {
+        userAPI.getMyJoinPractice(user: user)
+            .subscribe { practices in
             appStore.dispatch(ScheduleState.ScheduleAction.setPractices(practices))
             appStore.dispatch(ScheduleState.ScheduleAction.changeReloadStatus(true))
         } onFailure: { _ in

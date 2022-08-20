@@ -1,6 +1,8 @@
 import RxRelay
 import RxSwift
 import ReSwift
+import Domain
+import Infra
 
 protocol BlockListViewModelType {
     var inputs: BlockListViewModelInputs { get }
@@ -8,13 +10,13 @@ protocol BlockListViewModelType {
 }
 
 protocol BlockListViewModelInputs {
-    func removeBlock(_ user: User)
+    func removeBlock(_ user: Domain.UserModel)
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol BlockListViewModelOutputs {
-    var blockListRelay: BehaviorRelay<[User]> { get }
+    var blockListRelay: BehaviorRelay<[Domain.UserModel]> { get }
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
 }
@@ -26,14 +28,14 @@ final class BlockListViewModel: BlockListViewModelType {
     
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
-    let blockListRelay = BehaviorRelay<[User]>(value: [])
+    let blockListRelay = BehaviorRelay<[Domain.UserModel]>(value: [])
 
     private let store: Store<AppState>
     private let disposeBag = DisposeBag()
     private let actionCreator: BlockListActionCreator
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
-    private var blockIds: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
+    private var blockIds: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.blocks)
 
     init(store: Store<AppState>,
          actionCreator: BlockListActionCreator) {
@@ -71,7 +73,7 @@ extension BlockListViewModel: BlockListViewModelInputs {
         reloadStream.asObserver()
     }
     
-    func removeBlock(_ user: User) {
+    func removeBlock(_ user: Domain.UserModel) {
         actionCreator.removeBlock(user, ids: self.blockIds, blockList: blockListRelay.value)
     }
 }

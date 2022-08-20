@@ -1,12 +1,15 @@
 import UIKit
+import Domain
 
 protocol UserDataSourceDelegateProtocol: NSObjectProtocol {
-    func userDataSourceDelegate(toSearchUser user: User?)
-    func userDataSourceDelegate(toSearchCircle user: User?)
-    func userDataSourceDelegate(toApplyUser user: User?)
-    func userDataSourceDelegate(toMakeCircle user: User?)
-    func userDataSourceDelegate(toCircleDetail user: User?, circle: Circle)
-    func userDataSourceDelegate(toUserDetail myData: User?, user: User)
+    func userDataSourceDelegate(toSearchUser user: Domain.UserModel?)
+    func userDataSourceDelegate(toSearchCircle user: Domain.UserModel?)
+    func userDataSourceDelegate(toApplyUser user: Domain.UserModel?)
+    func userDataSourceDelegate(toMakeCircle user: Domain.UserModel?)
+    func userDataSourceDelegate(toCircleDetail user: Domain.UserModel?,
+                                circle: Domain.CircleModel)
+    func userDataSourceDelegate(toUserDetail myData: Domain.UserModel?,
+                                user: Domain.UserModel)
 }
 
 final class UserDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -45,7 +48,8 @@ final class UserDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDa
             self.delegate?.userDataSourceDelegate(toCircleDetail: viewModel.user,
                                                   circle: viewModel.circleRelay.value[indexPath.row])
         } else if indexPath.section == 1 {
-            self.delegate?.userDataSourceDelegate(toUserDetail: viewModel.user, user: viewModel.friendsRelay.value[indexPath.row])
+            self.delegate?.userDataSourceDelegate(toUserDetail: viewModel.user,
+                                                  user: viewModel.friendsRelay.value[indexPath.row])
         }
     }
     
@@ -75,9 +79,9 @@ final class UserDataSourceDelegate: NSObject, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         switch indexPath.section {
-        case 0:return R.swipeAction.withDraw
-        case 1:return R.swipeAction.block
-        default:return R.swipeAction.withDraw
+        case 0: return R.swipeAction.withDraw
+        case 1: return R.swipeAction.block
+        default: return R.swipeAction.withDraw
         }
     }
 }

@@ -2,6 +2,9 @@ import RxSwift
 import RxCocoa
 import Firebase
 import ReSwift
+import Infra
+import Domain
+
 
 // MARK: - Input Protocol
 protocol RegisterBindingInputs {
@@ -122,7 +125,9 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
     }
 
     func didTapRegisterButton() {
-        let credential = AuthCredential(name: name, email: email, password: password)
+        let credential = Domain.AuthCredential(name: name,
+                                               email: email,
+                                               password: password)
 // TODO: - ここら辺は要修正
         authAPI.register(credential: credential).subscribe(onSuccess: { [weak self] dic in
             guard let self = self else { return }
@@ -138,7 +143,8 @@ final class RegisterViewModel: RegisterBindingInputs, RegisterBindingsOutputs {
         }).disposed(by: disposeBag)
     }
     
-    func thirdPartyLogin(credential: AuthCredential, id: String) {
+    func thirdPartyLogin(credential: Domain.AuthCredential,
+                         id: String) {
         let dic: [String: Any] = ["name": credential.name,
                                 "uid": id,
                                 "createdAt": Timestamp(),

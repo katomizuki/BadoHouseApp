@@ -6,8 +6,9 @@
 //
 
 import ReSwift
+import Domain
 
 struct MyPracticeState: StateType {
-    var practices = [Practice]()
+    var practices = [Domain.Practice]()
     var errorStatus = false
 }

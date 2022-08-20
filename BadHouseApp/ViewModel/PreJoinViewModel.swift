@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol PreJoinViewModelType {
     var inputs: PreJoinViewModelInputs { get }
@@ -15,7 +16,7 @@ protocol PreJoinViewModelInputs {
 
 protocol PreJoinViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var preJoinList: BehaviorRelay<[PreJoin]> { get }
+    var preJoinList: BehaviorRelay<[Domain.PreJoin]> { get }
     var reload: Observable<Void> { get }
 }
 
@@ -24,7 +25,7 @@ final class PreJoinViewModel: PreJoinViewModelType {
     var inputs: any PreJoinViewModelInputs { self }
     var outputs: any PreJoinViewModelOutputs { self }
     
-    let preJoinList =  BehaviorRelay<[PreJoin]>(value: [])
+    let preJoinList =  BehaviorRelay<[Domain.PreJoin]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
 
@@ -33,9 +34,9 @@ final class PreJoinViewModel: PreJoinViewModelType {
     private let reloadStream = PublishSubject<Void>()
     private let store: Store<AppState>
     private let actionCreator: PrejoinActionCreator
-    private let user: User
+    private let user: Domain.UserModel
 
-    init(user: User,
+    init(user:Domain.UserModel,
          store: Store<AppState>,
          actionCreator: PrejoinActionCreator) {
         self.store = store
@@ -62,12 +63,12 @@ final class PreJoinViewModel: PreJoinViewModelType {
         actionCreator.getPreJoin(user: user)
     }
     
-    func delete(_ preJoin: PreJoin) {
+    func delete(_ preJoin: Domain.PreJoin) {
         actionCreator.deleteDataFromFirebase(preJoin, list: makeRemovedList(value: preJoin))
         actionCreator.delete(preJoin, list: makeRemovedList(value: preJoin))
     }
     
-    private func makeRemovedList(value: PreJoin) -> [PreJoin] {
+    private func makeRemovedList(value: Domain.PreJoin) -> [PreJoin] {
         var list = preJoinList.value
         list.remove(value: value)
         return list

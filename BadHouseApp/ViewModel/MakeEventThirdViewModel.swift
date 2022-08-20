@@ -1,6 +1,8 @@
 import RxSwift
 import Firebase
 import UIKit
+import Domain
+
 protocol MakeEventThirdViewModelInputs {
     func changedStartPicker(_ date: Date)
     func changedDeadLinePicker(_ date: Date)
@@ -30,13 +32,13 @@ final class MakeEventThirdViewModel: MakeEventThirdViewModelInputs, MakeEventThi
     
     var image: UIImage
     var dic: [String: Any]
-    var circle: Circle
-    var user: User
+    var circle: Domain.CircleModel
+    var user: Domain.UserModel
     
     init(image: UIImage,
          dic: [String: Any],
-         circle: Circle,
-         user: User) {
+         circle: Domain.CircleModel,
+         user: Domain.UserModel) {
         self.image = image
         self.dic = dic
         self.circle = circle

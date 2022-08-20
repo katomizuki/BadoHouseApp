@@ -7,13 +7,14 @@
 
 import ReSwift
 import RxSwift
+import Domain
 
 struct InviteActionCreator {
-    let userAPI: any UserRepositry
-    let circleAPI: any CircleRepositry
+    let userAPI: any Domain.UserRepositry
+    let circleAPI: any Domain.CircleRepositry
     private let disposeBag = DisposeBag()
     
-    func getFriends(user: User) {
+    func getFriends(user: Domain.UserModel) {
         userAPI.getFriends(uid: user.uid).subscribe { users in
             appStore.dispatch(InviteState.InviteAction.setFriends(users))
         } onFailure: { _ in
@@ -21,7 +22,9 @@ struct InviteActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func makeCircle(user: User, dic: [String: Any], inviteIds: [String]) {
+    func makeCircle(user: Domain.UserModel,
+                    dic: [String: Any],
+                    inviteIds: [String]) {
 
         circleAPI.postCircle(id: dic["id"] as? String ?? "",
                                  dic: dic,

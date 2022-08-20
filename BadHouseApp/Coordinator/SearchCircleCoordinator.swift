@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class SearchCircleCoordinator: Coordinator, CircleSearchFlow {
     
@@ -16,7 +18,8 @@ final class SearchCircleCoordinator: Coordinator, CircleSearchFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toCircleDetail(myData: User, circle: Circle?) {
+    func toCircleDetail(myData: Domain.UserModel,
+                        circle: Domain.CircleModel?) {
         guard let circle = circle else { return }
         coordinator(to: CircleDetailCoordinator(
             navigationController: navigationController,

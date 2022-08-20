@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol MyPracticeViewModelType {
     var inputs: MyPracticeViewModelInputs { get }
@@ -8,12 +9,12 @@ protocol MyPracticeViewModelType {
 }
 
 protocol MyPracticeViewModelInputs {
-    func deletePractice(_ practice: Practice)
+    func deletePractice(_ practice: Domain.Practice)
     var errorInput: AnyObserver<Bool> { get }
 }
 
 protocol MyPracticeViewModelOutputs {
-    var practices: BehaviorRelay<[Practice]> { get }
+    var practices: BehaviorRelay<[Domain.Practice]> { get }
     var isError: Observable<Bool> { get }
 }
 
@@ -22,8 +23,8 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
     var inputs: any MyPracticeViewModelInputs { self }
     var outputs: any MyPracticeViewModelOutputs { self }
     
-    let practices = BehaviorRelay<[Practice]>(value: [])
-    let myData: User
+    let practices = BehaviorRelay<[Domain.Practice]>(value: [])
+    let myData: Domain.UserModel
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -32,7 +33,7 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
     private let actionCreator: MyPracticeActionCreator
     private let store: Store<AppState>
     
-    init(myData: User,
+    init(myData: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: MyPracticeActionCreator) {
         self.myData = myData
@@ -54,7 +55,7 @@ final class MyPracticeViewModel: MyPracticeViewModelType {
         }).disposed(by: disposeBag)
     }
     
-    func deletePractice(_ practice: Practice) {
+    func deletePractice(_ practice: Domain.Practice) {
         actionCreator.deletePractice(practice, myData: myData)
     }
 }

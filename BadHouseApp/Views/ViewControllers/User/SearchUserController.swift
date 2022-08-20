@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import SDWebImage
+import Domain
 
 final class SearchUserController: UIViewController, UIScrollViewDelegate {
 
@@ -61,10 +62,14 @@ final class SearchUserController: UIViewController, UIScrollViewDelegate {
 }
 
 extension SearchUserController: SearchUserCellDelegate {
-    func searchUserCellNotApply(_ user: User, cell: SearchUserCell) {
-        viewModel.notApplyFriend(user, myData: viewModel.user)
+    func searchUserCellNotApply(_ user: Domain.UserModel,
+                                cell: SearchUserCell) {
+        viewModel.notApplyFriend(user,
+                                 myData: viewModel.user)
     }
-    func searchUserCellApply(_ user: User, cell: SearchUserCell) {
-        viewModel.applyFriend(user, myData: viewModel.user)
+    func searchUserCellApply(_ user: Domain.UserModel,
+                             cell: SearchUserCell) {
+        viewModel.applyFriend(user,
+                              myData: viewModel.user)
     }
 }

@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol ApplyFriendsViewModelType {
     var inputs: ApplyFriendsViewModelInputs { get }
@@ -8,13 +9,13 @@ protocol ApplyFriendsViewModelType {
 }
 
 protocol ApplyFriendsViewModelInputs {
-    func onTrashButton(apply: Apply)
+    func onTrashButton(apply: Domain.ApplyModel)
     var errorInput: AnyObserver<Bool> { get }
     var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol ApplyFriendsViewModelOutputs {
-    var applyRelay: BehaviorRelay<[Apply]> { get }
+    var applyRelay: BehaviorRelay<[Domain.ApplyModel]> { get }
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
 }
@@ -24,18 +25,18 @@ final class ApplyFriendsViewModel: ApplyFriendsViewModelType {
     var inputs: any ApplyFriendsViewModelInputs { self }
     var outputs: any ApplyFriendsViewModelOutputs { self }
     
-    let applyRelay = BehaviorRelay<[Apply]>(value: [])
+    let applyRelay = BehaviorRelay<[Domain.ApplyModel]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
 
-    private let user: User
+    private let user: Domain.UserModel
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let store: Store<AppState>
     private let actionCreator: ApplyFriendsActionCreator
     
-    init(user: User,
+    init(user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: ApplyFriendsActionCreator) {
         self.user = user
@@ -74,7 +75,7 @@ extension ApplyFriendsViewModel: ApplyFriendsViewModelInputs {
         reloadStream.asObserver()
     }
     
-    func onTrashButton(apply: Apply) {
+    func onTrashButton(apply: Domain.ApplyModel) {
         actionCreator.onTrashButton(apply: apply, uid: self.user.uid, list: applyRelay.value)
     }
 }

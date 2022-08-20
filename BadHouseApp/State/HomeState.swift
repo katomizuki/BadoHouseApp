@@ -7,12 +7,13 @@
 
 import ReSwift
 import RxSwift
+import Domain
 
 struct HomeState: StateType {
-    var practices: [Practice] = []
+    var practices: [Domain.Practice] = []
     var isIndicatorAnimating = false
     var isRefreshAnimating = false
     var errorStatus: Error?
     var reloadStatus = false
-    var user: User?
+    var user: Domain.UserModel?
 }

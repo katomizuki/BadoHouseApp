@@ -6,7 +6,9 @@
 //
 
 import ReSwift
+import Domain
+
 struct MakeEventSecondState: StateType {
-    var user: User?
-    var circle = [Circle]()
+    var user: Domain.UserModel?
+    var circle = [Domain.CircleModel]()
 }

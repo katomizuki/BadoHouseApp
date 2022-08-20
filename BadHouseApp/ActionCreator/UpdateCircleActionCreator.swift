@@ -6,14 +6,16 @@
 //
 
 import RxSwift
+import Domain
 
 struct UpdateCircleActionCreator {
     
     private let disposeBag = DisposeBag()
-    let circleAPI: any CircleRepositry
+    let circleAPI: any Domain.CircleRepositry
 
-    func saveCircleAction(_ circle: Circle) {
-        circleAPI.updateCircle(circle: circle).subscribe(onCompleted: {
+    func saveCircleAction(_ circle: Domain.CircleModel) {
+        circleAPI.updateCircle(circle: circle)
+            .subscribe(onCompleted: {
             appStore.dispatch(UpdateCircleState.UpdateCircleAction.changeCompletedStatus(true))
         }, onError: { _ in
             appStore.dispatch(UpdateCircleState.UpdateCircleAction.changeCompletedStatus(true))

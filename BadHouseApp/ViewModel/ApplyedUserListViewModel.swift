@@ -2,17 +2,18 @@ import RxSwift
 import RxRelay
 import Foundation
 import ReSwift
+import Domain
 
 protocol ApplyedUserListViewModelInputs {
-    func makeFriends(_ applyed: Applyed)
-    func deleteFriends(_ applyed: Applyed)
+    func makeFriends(_ applyed: Domain.ApplyedModel)
+    func deleteFriends(_ applyed: Domain.ApplyedModel)
     var errorInput: AnyObserver<Bool> { get }
     var completedFriendInput: AnyObserver<String> { get }
     var reloadInput: AnyObserver<Void> { get }
 }
 
 protocol ApplyedUserListViewModelOutputs {
-    var applyedRelay: BehaviorRelay<[Applyed]> { get }
+    var applyedRelay: BehaviorRelay<[Domain.ApplyedModel]> { get }
     var completedFriend: Observable<String> { get }
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
@@ -29,12 +30,12 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     var inputs: any ApplyedUserListViewModelInputs {  self }
     var outputs: any ApplyedUserListViewModelOutputs {  self }
     
-    let applyedRelay = BehaviorRelay<[Applyed]>(value: [])
+    let applyedRelay = BehaviorRelay<[Domain.ApplyedModel]>(value: [])
     let navigationTitle = PublishSubject<String>()
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
-    private let user: User
+    private let user: Domain.UserModel
     private let disposeBag = DisposeBag()
     private let errorStream = PublishSubject<Bool>()
     private let completedStream = PublishSubject<String>()
@@ -42,7 +43,7 @@ final class ApplyedUserListViewModel: ApplyedUserListViewModelType {
     private let store: Store<AppState>
     private let actionCreator: ApplyedUserListActionCreator
     
-    init(user: User,
+    init(user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: ApplyedUserListActionCreator) {
         self.user = user
@@ -84,12 +85,17 @@ extension ApplyedUserListViewModel: ApplyedUserListViewModelInputs {
         reloadStream.asObserver()
     }
     
-    func makeFriends(_ applyed: Applyed) {
-        actionCreator.makeFriends(applyed, uid: user.uid, list: applyedRelay.value, user: user)
+    func makeFriends(_ applyed: Domain.ApplyedModel) {
+        actionCreator.makeFriends(applyed,
+                                  uid: user.uid,
+                                  list: applyedRelay.value,
+                                  user: user)
     }
     
-    func deleteFriends(_ applyed: Applyed) {
-        actionCreator.deleteFriends(applyed, uid: user.uid, list: applyedRelay.value)
+    func deleteFriends(_ applyed: Domain.ApplyedModel) {
+        actionCreator.deleteFriends(applyed,
+                                    uid: user.uid,
+                                    list: applyedRelay.value)
     }
 }
 

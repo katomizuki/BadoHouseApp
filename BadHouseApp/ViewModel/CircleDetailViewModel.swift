@@ -1,6 +1,8 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
+import Infra
 
 protocol CircleDetailViewModelInputs {
     func changeMember(_ index: Int)
@@ -12,7 +14,7 @@ protocol CircleDetailViewModelInputs {
 }
 
 protocol CircleDetailViewModelOutputs {
-    var memberRelay: BehaviorRelay<[User]> { get }
+    var memberRelay: BehaviorRelay<[Domain.UserModel]> { get }
     var isRightButtonHidden: Observable<Bool> { get }
     var isError: Observable<Bool> { get }
     var reload: Observable<Void> { get }
@@ -28,18 +30,18 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     var inputs: any CircleDetailViewModelInputs { self }
     var outputs: any CircleDetailViewModelOutputs { self }
     
-    var allMembers = [User]()
-    var friendsMembers = [User]()
+    var allMembers = [Domain.UserModel]()
+    var friendsMembers = [Domain.UserModel]()
     var genderPercentage = [Int]()
     var levelPercentage = [Int]()
-    var circle: Circle
+    var circle: Domain.CircleModel
 
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
-    let myData: User
-    let memberRelay = BehaviorRelay<[User]>(value: [])
+    let myData: Domain.UserModel
+    let memberRelay = BehaviorRelay<[Domain.UserModel]>(value: [])
     
-    private let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
+    private let ids: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
     private let buttonHiddenStream = PublishSubject<Bool>()
@@ -47,8 +49,8 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     private let actionCreator: CircleDetailActionCreator
     private let disposeBag = DisposeBag()
     
-    init(myData: User,
-         circle: Circle,
+    init(myData: Domain.UserModel,
+         circle: Domain.CircleModel,
          store: Store<AppState>,
          actionCreator: CircleDetailActionCreator) {
         self.myData = myData
@@ -73,7 +75,8 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     }
     
     private func setupData() {
-        actionCreator.getMembers(ids: ids, circle: circle)
+        actionCreator.getMembers(ids: ids,
+                                 circle: circle)
     }
     
     func changeMember(_ index: Int) {
@@ -86,12 +89,12 @@ final class CircleDetailViewModel: CircleDetailViewModelType {
     }
 
     func getPercentage() {
-        circle.charts = Circle.ChartsObject(members: allMembers)
+        circle.charts = CircleModel.ChartsObject(members: allMembers)
         genderPercentage = circle.charts?.makeGenderPer() ?? [0]
         levelPercentage = circle.charts?.makeLevelPer() ?? [0]
     }
     
-    private func checkRightButtonHidden(_ users: [User]) {
+    private func checkRightButtonHidden(_ users: [Domain.UserModel]) {
         var isHidden = true
         users.forEach { user in
             if user.isMyself {

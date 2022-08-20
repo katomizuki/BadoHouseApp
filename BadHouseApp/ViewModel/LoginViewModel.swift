@@ -33,7 +33,8 @@ final class LoginViewModel: LoginBindingInputs, LoginBindingsOutputs {
     private let actionCreator: LoginActionCreator
     
     // MARK: - initialize
-    init(store: Store<AppState>, actionCreator: LoginActionCreator) {
+    init(store: Store<AppState>,
+         actionCreator: LoginActionCreator) {
         self.store = store
         self.actionCreator = actionCreator
         

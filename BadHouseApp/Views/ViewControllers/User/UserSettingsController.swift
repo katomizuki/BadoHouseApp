@@ -1,5 +1,7 @@
 import UIKit
 import FirebaseAuth
+import Infra
+import Domain
 
 final class UserSettingsController: UIViewController {
     
@@ -9,9 +11,9 @@ final class UserSettingsController: UIViewController {
         }
     }
     
-    let user: User
+    let user: Domain.UserModel
     
-    init(user: User) {
+    init(user: Domain.UserModel) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }

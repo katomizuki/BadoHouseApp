@@ -7,12 +7,13 @@
 
 import ReSwift
 import RxSwift
+import Domain
 
 struct ApplyFriendsActionCreator {
     let applyAPI: any ApplyRepositry
     private let disposeBag = DisposeBag()
     
-    func getApplyData(_ user: User) {
+    func getApplyData(_ user: Domain.UserModel) {
         applyAPI.getApplyUser(user: user).subscribe { applies in
             appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.setApplies(applies))
             appStore.dispatch(ApplyFriendsState.ApplyFriendsAction.changeReloadStatus(true))
@@ -21,8 +22,11 @@ struct ApplyFriendsActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func onTrashButton(apply: Apply, uid: String, list: [Apply]) {
-        applyAPI.notApplyFriend(uid: uid, toUserId: apply.toUserId)
+    func onTrashButton(apply: Domain.ApplyModel,
+                       uid: String,
+                       list: [Domain.ApplyModel]) {
+        applyAPI.notApplyFriend(uid: uid,
+                                toUserId: apply.toUserId)
         let value = list.filter {
             $0.toUserId != apply.toUserId
         }

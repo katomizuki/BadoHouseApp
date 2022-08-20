@@ -2,6 +2,8 @@ import RxSwift
 import Foundation
 import RxRelay
 import ReSwift
+import Domain
+import Infra
 
 protocol NotificationViewModelInputs {
     func didTapCell(_ row: Int)
@@ -10,13 +12,13 @@ protocol NotificationViewModelInputs {
 }
 
 protocol NotificationViewModelOutputs {
-    var notificationList: BehaviorRelay<[Notification]> { get }
+    var notificationList: BehaviorRelay<[Domain.Notification]> { get }
     var errorOutput: Observable<Bool> { get }
     var reloadOuput: Observable<Void> { get }
     var toPrejoined: PublishSubject<Void> { get }
     var toApplyedFriend: PublishSubject<Void> { get }
-    var toUserDetail: PublishSubject<User> { get }
-    var toPracticeDetail: PublishSubject<Practice> { get }
+    var toUserDetail: PublishSubject<Domain.UserModel> { get }
+    var toPracticeDetail: PublishSubject<Domain.Practice> { get }
 }
 
 protocol NotificationViewModelType {
@@ -29,12 +31,12 @@ final class NotificationViewModel: NotificationViewModelType {
     var inputs: any NotificationViewModelInputs { self }
     var outputs: any NotificationViewModelOutputs { self }
 
-    let notificationList = BehaviorRelay<[Notification]>(value: [])
+    let notificationList = BehaviorRelay<[Domain.Notification]>(value: [])
     let toPrejoined = PublishSubject<Void>()
     let toApplyedFriend = PublishSubject<Void>()
-    let toUserDetail = PublishSubject<User>()
-    let toPracticeDetail = PublishSubject<Practice>()
-    let user: User
+    let toUserDetail = PublishSubject<Domain.UserModel>()
+    let toPracticeDetail = PublishSubject<Domain.Practice>()
+    let user: Domain.UserModel
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -43,12 +45,12 @@ final class NotificationViewModel: NotificationViewModelType {
     private let reloadStream = PublishSubject<Void>()
     private let prejoinedStream = PublishSubject<Void>()
     private let applyedFriendStream = PublishSubject<Void>()
-    private let userDetailStream = PublishSubject<User>()
+    private let userDetailStream = PublishSubject<Domain.UserModel>()
     private let practiceDetailStream = PublishSubject<Practice>()
     private let store: Store<AppState>
     private let actionCreator: NotificationActionCreator
     
-    init(user: User,
+    init(user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: NotificationActionCreator) {
         self.user = user

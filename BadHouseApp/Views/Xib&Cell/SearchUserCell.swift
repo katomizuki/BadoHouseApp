@@ -1,9 +1,12 @@
 import UIKit
 import SDWebImage
+import Domain
 
 protocol SearchUserCellDelegate: AnyObject {
-    func searchUserCellApply(_ user: User, cell: SearchUserCell)
-    func searchUserCellNotApply(_ user: User, cell: SearchUserCell)
+    func searchUserCellApply(_ user: Domain.UserModel,
+                             cell: SearchUserCell)
+    func searchUserCellNotApply(_ user: Domain.UserModel,
+                                cell: SearchUserCell)
 
 }
 
@@ -27,7 +30,7 @@ final class SearchUserCell: UITableViewCell {
     }
     @IBOutlet private weak var nameLabel: UILabel!
     
-    private var user: User?
+    private var user: Domain.UserModel?
     weak var delegate: SearchUserCellDelegate?
     
     override func awakeFromNib() {
@@ -49,7 +52,7 @@ final class SearchUserCell: UITableViewCell {
         applyFriendButton.setTitle(changeButtonTitle(applyFriendButton.currentTitle), for: .normal)
     }
     
-    func configure(_ user: User) {
+    func configure(_ user: Domain.UserModel) {
         self.user = user
         userImageView.sd_setImage(with: user.profileImageUrl)
         nameLabel.text = user.name

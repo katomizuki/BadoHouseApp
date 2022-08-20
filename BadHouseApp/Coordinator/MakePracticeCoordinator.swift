@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class MakePracticeCoordinator: Coordinator, AdditionalEventTitleFlow {
     
@@ -14,7 +16,9 @@ final class MakePracticeCoordinator: Coordinator, AdditionalEventTitleFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toNext(title: String, image: UIImage, kind: String) {
+    func toNext(title: String,
+                image: UIImage,
+                kind: String) {
         coordinator(to: AddtionalEventLevelCoordinator(navigationController: self.navigationController, title: title,
                                        image: image,
                                        kind: kind))

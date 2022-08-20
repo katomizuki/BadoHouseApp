@@ -1,15 +1,20 @@
 import UIKit
+import Domain
+import Infra
 
 final class EventAdditionlItemsCoordinator: Coordinator, EventAdditionlItemsFlow {
     
     let navigationController: UINavigationController
     let image: UIImage
-    let user: User
+    let user: Domain.UserModel
     let dic: [String: Any]
-    let circle: Circle
+    let circle: Domain.CircleModel
     
     init(navigationController: UINavigationController,
-         image: UIImage, circle: Circle, user: User, dic: [String: Any]) {
+         image: UIImage,
+         circle: Domain.CircleModel,
+         user: Domain.UserModel,
+         dic: [String: Any]) {
         self.navigationController = navigationController
         self.dic = dic
         self.circle = circle

@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct ScheduleState: StateType {
     var reloadStatus = false
     var errorStatus = false
-    var practices = [Practice]()
+    var practices = [Domain.Practice]()
 }

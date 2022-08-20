@@ -1,8 +1,9 @@
 import UIKit
 import SDWebImage
-
+import Domain
 protocol ApplyUserListCellDelegate: AnyObject {
-    func onTapTrashButton(_ apply: Apply, cell: ApplyUserListCell)
+    func onTapTrashButton(_ apply: Domain.ApplyModel,
+                          cell: ApplyUserListCell)
 }
 
 final class ApplyUserListCell: UITableViewCell {
@@ -16,7 +17,7 @@ final class ApplyUserListCell: UITableViewCell {
     }
     @IBOutlet private weak var nameLabel: UILabel!
     
-    private var apply: Apply?
+    private var apply: Domain.ApplyModel?
     
     weak var delegate: ApplyUserListCellDelegate?
     
@@ -29,7 +30,7 @@ final class ApplyUserListCell: UITableViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    func configure(_ apply: Apply) {
+    func configure(_ apply: Domain.ApplyModel) {
         self.apply = apply
         userImageView.sd_setImage(with: apply.url)
         nameLabel.text = apply.name

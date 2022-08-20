@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
     
@@ -16,7 +18,8 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toUserDetail(user: User?, myData: User) {
+    func toUserDetail(user: Domain.UserModel?,
+                      myData: Domain.UserModel) {
         guard let user = user else { return }
         coordinator(to: UserDetailCoordinator(
             navigationController: navigationController,
@@ -29,7 +32,8 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
                                                 applyAPI: ApplyRepositryImpl()))))
     }
     
-    func toInvite(circle: Circle, myData: User) {
+    func toInvite(circle: Domain.CircleModel,
+                  myData: Domain.UserModel) {
         navigationController.pushViewController(AddtionalMemberController.init(viewModel: AdditionalMemberViewModel(
             user: myData,
             circle: circle,
@@ -39,7 +43,7 @@ final class CircleDetailCoordinator: Coordinator, CircleDetailFlow {
                 circleAPI: CircleRepositryImpl()))), animated: true)
     }
     
-    func toUpdate(circle: Circle) {
+    func toUpdate(circle: Domain.CircleModel) {
         coordinator(to: UpdateCircleCoordinator(
             navigationController: navigationController,
             viewModel: UpdateCircleViewModel(circle: circle,

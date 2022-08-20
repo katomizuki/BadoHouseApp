@@ -2,6 +2,8 @@ import UIKit
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
+import Infra
 
 final class EventAdditionalItemViewModel {
     
@@ -11,8 +13,8 @@ final class EventAdditionalItemViewModel {
     let isError = PublishSubject<Bool>()
     let completed = PublishSubject<Void>()
     let image: UIImage
-    let circle: Circle
-    let user: User
+    let circle: Domain.CircleModel
+    let user: Domain.UserModel
 
     private let practiceAPI: PracticeRepositry
     private let disposeBag = DisposeBag()
@@ -20,8 +22,8 @@ final class EventAdditionalItemViewModel {
     private let actionCreator: EventAdditionlItemsActionCreator
     
     init(image: UIImage,
-         circle: Circle,
-         user: User,
+         circle: Domain.CircleModel,
+         user: Domain.UserModel,
          dic: [String: Any],
          practiceAPI: PracticeRepositry,
          store: Store<AppState>,

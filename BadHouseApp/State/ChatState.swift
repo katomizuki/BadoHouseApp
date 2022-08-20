@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct ChatState: StateType {
-    var chatsList = [Chat]()
+    var chatsList = [Domain.ChatModel]()
     var reloadStatus = false
     var errorStatus = false
     var chatId: String?

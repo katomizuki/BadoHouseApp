@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension InviteState {
     enum InviteAction: ReSwift.Action {
-        case setFriends(_ friends: [User])
+        case setFriends(_ friends: [Domain.UserModel])
         case changeErrorStatus(_ isError: Bool)
         case chageCompletedStatus(_ isCompleted: Bool)
     }

@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
     
@@ -8,7 +10,8 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
         self.navigationController = navigationController
     }
     
-    func toInvite(_ user: User, form: Form?) {
+    func toInvite(_ user: Domain.UserModel,
+                  form: Form?) {
         guard let form = form else { return }
         let controller = InviteToCircleController.init(viewModel:
                                                         InviteViewModel(user: user,
@@ -28,7 +31,7 @@ final class MakeCicleCoordinator: Coordinator, MakeCircleFlow {
         
     }
     
-    func start(user: User) {
+    func start(user: Domain.UserModel) {
         let controller = MakeCircleController.init(viewModel: TeamRegisterViewModel(user: user))
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)

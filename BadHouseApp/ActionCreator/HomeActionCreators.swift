@@ -7,6 +7,9 @@
 
 import ReSwift
 import RxSwift
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct HomeActionCreator {
     

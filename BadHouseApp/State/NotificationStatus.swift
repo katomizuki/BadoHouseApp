@@ -6,8 +6,9 @@
 //
 
 import ReSwift
+import Domain
 
 struct NotificationStatus: StateType {
-    var notifications = [Notification]()
+    var notifications = [Domain.Notification]()
     var errorStatus = false
 }

@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class UserCoordinator: Coordinator, UserFlow {
     
@@ -19,8 +21,8 @@ final class UserCoordinator: Coordinator, UserFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toSearchUser(user: User?) {
-        guard let user: User = user else { return }
+    func toSearchUser(user: Domain.UserModel?) {
+        guard let user = user else { return }
         coordinator(to: SearchUserCoordinator(
             navigationController: navigationController,
             viewModel: SearchUserViewModel(
@@ -30,9 +32,9 @@ final class UserCoordinator: Coordinator, UserFlow {
                                                        applyAPI: ApplyRepositryImpl()))))
     }
     
-    func toDetailUser(myData: User?, user: User?) {
-        guard let user: User = user else { return }
-        guard let myData: User = myData else { return }
+    func toDetailUser(myData: Domain.UserModel?, user: Domain.UserModel?) {
+        guard let user = user else { return }
+        guard let myData = myData else { return }
         coordinator(to: UserDetailCoordinator(
             navigationController: navigationController,
             viewModel: UserDetailViewModel(
@@ -44,9 +46,9 @@ final class UserCoordinator: Coordinator, UserFlow {
                                             applyAPI: ApplyRepositryImpl()))))
     }
     
-    func toDetailCircle(myData: User?, circle: Circle?) {
-        guard let circle: Circle = circle else { return }
-        guard let myData: User = myData else { return }
+    func toDetailCircle(myData: Domain.UserModel?, circle: Domain.CircleModel?) {
+        guard let circle = circle else { return }
+        guard let myData = myData else { return }
         coordinator(to: CircleDetailCoordinator(
             navigationController: navigationController,
             viewModel: CircleDetailViewModel(
@@ -57,8 +59,8 @@ final class UserCoordinator: Coordinator, UserFlow {
                     circleAPI: CircleRepositryImpl()))))
     }
     
-    func toSearchCircle(user: User?) {
-        guard let user: User = user else { return }
+    func toSearchCircle(user: Domain.UserModel?) {
+        guard let user = user else { return }
         coordinator(to: SearchCircleCoordinator(
             navigationController: navigationController,
             viewModel: SearchCircleViewModel(
@@ -78,19 +80,19 @@ final class UserCoordinator: Coordinator, UserFlow {
         vc.present(nav, animated: true)
     }
     
-    func toMakeCircle(user: User?) {
-        guard let user: User = user else { return }
+    func toMakeCircle(user: Domain.UserModel?) {
+        guard let user = user else { return }
         MakeCicleCoordinator(navigationController: self.navigationController).start(user: user)
     }
     
-    func toSettings(_ vc: UIViewController, user: User?) {
-        guard let user: User = user else { return }
+    func toSettings(_ vc: UIViewController, user: Domain.UserModel?) {
+        guard let user = user else { return }
         let nav = UINavigationController(rootViewController: UserSettingsController.init(user: user))
         nav.modalPresentationStyle = .fullScreen
         vc.present(nav, animated: true)
     }
     
-    func toSchedule(_ vc: UIViewController, user: User?) {
+    func toSchedule(_ vc: UIViewController, user: Domain.UserModel?) {
         guard let user = user else { return }
         coordinator(to: ScheduleCoordinator(
             navigationController: UINavigationController(),
@@ -101,7 +103,7 @@ final class UserCoordinator: Coordinator, UserFlow {
                     ScheduleActionCreator(userAPI: UserRepositryImpl())), vc: vc))
     }
     
-    func toApplyUser(user: User?) {
+    func toApplyUser(user: Domain.UserModel?) {
         guard let user = user else { return }
             navigationController.pushViewController(
                 ApplyFriendController.init(
@@ -113,7 +115,7 @@ final class UserCoordinator: Coordinator, UserFlow {
                             ApplyRepositryImpl()))), animated: true)
     }
     
-    func toApplyedUser(user: User?) {
+    func toApplyedUser(user: Domain.UserModel?) {
         guard let user = user  else { return }
             navigationController.pushViewController(
                 ApplyedUserListController.init(

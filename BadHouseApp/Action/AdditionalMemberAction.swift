@@ -6,10 +6,12 @@
 //
 
 import ReSwift
+import Domain
+
 extension AdditionalMemberState {
     enum AdditionalMemberAction: ReSwift.Action {
         case changeErrorStatus(_ isError: Bool)
-        case setMember(_ members: [User])
+        case setMember(_ members: [Domain.UserModel])
         case changeCompledStatus(_ isCompletd: Bool)
     }
 }

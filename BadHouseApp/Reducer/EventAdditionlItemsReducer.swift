@@ -6,6 +6,7 @@
 //
 
 import ReSwift
+
 struct EventAdditionlItemsReducer {
     static func reducer(action: ReSwift.Action, state: EventAdditionlItemsState?) -> EventAdditionlItemsState {
         var state = state ?? EventAdditionlItemsState()

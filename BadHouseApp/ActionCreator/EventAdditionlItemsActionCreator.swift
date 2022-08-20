@@ -6,6 +6,7 @@
 //
 
 import ReSwift
+import Domain
 
 struct EventAdditionlItemsActionCreator {
     

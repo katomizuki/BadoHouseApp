@@ -2,6 +2,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import FirebaseAuth
+import Domain
+
 // swiftlint:disable weak_delegate
 
 final class UserController: UIViewController {
@@ -167,27 +169,31 @@ final class UserController: UIViewController {
 
 extension UserController: UserDataSourceDelegateProtocol {
     
-    func userDataSourceDelegate(toSearchUser user: User?) {
+    func userDataSourceDelegate(toSearchUser user: Domain.UserModel?) {
         coordinator?.toSearchUser(user: user)
     }
     
-    func userDataSourceDelegate(toSearchCircle user: User?) {
+    func userDataSourceDelegate(toSearchCircle user: Domain.UserModel?) {
         coordinator?.toSearchCircle(user: user)
     }
     
-    func userDataSourceDelegate(toApplyUser user: User?) {
+    func userDataSourceDelegate(toApplyUser user: Domain.UserModel?) {
         coordinator?.toApplyUser(user: user)
     }
     
-    func userDataSourceDelegate(toMakeCircle user: User?) {
+    func userDataSourceDelegate(toMakeCircle user: Domain.UserModel?) {
         coordinator?.toMakeCircle(user: user)
     }
     
-    func userDataSourceDelegate(toCircleDetail user: User?, circle: Circle) {
-        coordinator?.toDetailCircle(myData: user, circle: circle)
+    func userDataSourceDelegate(toCircleDetail user: Domain.UserModel?,
+                                circle: Domain.CircleModel) {
+        coordinator?.toDetailCircle(myData: user,
+                                    circle: circle)
     }
     
-    func userDataSourceDelegate(toUserDetail myData: User?, user: User) {
-        coordinator?.toDetailUser(myData: myData, user: user)
+    func userDataSourceDelegate(toUserDetail myData: Domain.UserModel?,
+                                user: Domain.UserModel) {
+        coordinator?.toDetailUser(myData: myData,
+                                  user: user)
     }
 }

@@ -6,9 +6,11 @@
 //
 
 import ReSwift
+import Domain
+
 extension TalkState {
     enum TalkAction: ReSwift.Action {
-        case setTalk(_ talk: [ChatRoom])
+        case setTalk(_ talk: [Domain.ChatRoom])
         case changeErrorStatus(_ isError: Bool)
         case changeReloadStatus(_ isReload: Bool)
     }

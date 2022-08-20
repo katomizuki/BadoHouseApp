@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class RegisterCoordinator: Coordinator, RegisterFlow {
     

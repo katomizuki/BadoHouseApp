@@ -2,6 +2,8 @@ import RxSwift
 import RxRelay
 import UIKit
 import ReSwift
+import Domain
+import Infra
 
 protocol UpdateCircleViewModelInputs {
     var nameTextInputs: AnyObserver<String> { get }
@@ -29,7 +31,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     var inputs: any UpdateCircleViewModelInputs { self }
     var outputs: any UpdateCircleViewModelOutputs { self }
     
-    var circle: Circle
+    var circle: Domain.CircleModel
     var iconImage: UIImage?
     var backgroundImage: UIImage?
     lazy var selectionsFeature = circle.features
@@ -48,7 +50,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
     private let disposeBag = DisposeBag()
     private let store: Store<AppState>
     
-    init(circle: Circle,
+    init(circle: Domain.CircleModel,
          store: Store<AppState>,
          actionCreator: UpdateCircleActionCreator) {
         self.circle = circle
@@ -160,7 +162,7 @@ final class UpdateCircleViewModel: UpdateCircleViewModelType {
         return selectionsFeature.contains(feature.description)
     }
     
-    func saveCircleAction(_ circle: Circle) {
+    func saveCircleAction(_ circle: Domain.CircleModel) {
         self.actionCreator.saveCircleAction(circle)
     }
 }

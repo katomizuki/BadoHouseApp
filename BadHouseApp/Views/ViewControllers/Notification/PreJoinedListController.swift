@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import Domain
 
 final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
     
@@ -73,7 +74,7 @@ final class PreJoinedListController: UIViewController, UIScrollViewDelegate {
 }
 
 extension PreJoinedListController: PreJoinedCellDelegate {
-    func preJoinedCell(prejoined: PreJoined) {
+    func preJoinedCell(prejoined: Domain.PreJoined) {
         viewModel.inputs.onTapPermissionButton(prejoined)
     }
 }

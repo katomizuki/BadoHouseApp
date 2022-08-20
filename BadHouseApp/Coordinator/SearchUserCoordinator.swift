@@ -1,10 +1,13 @@
 import UIKit
+import Domain
+import Infra
 
 final class SearchUserCoordinator: Coordinator, SearchUserFlow {
     let navigationController: UINavigationController
     let viewModel: SearchUserViewModel
     
-    init(navigationController: UINavigationController, viewModel: SearchUserViewModel) {
+    init(navigationController: UINavigationController,
+         viewModel: SearchUserViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -15,7 +18,8 @@ final class SearchUserCoordinator: Coordinator, SearchUserFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toUserDetail(_ user: User, _ myData: User) {
+    func toUserDetail(_ user: Domain.UserModel,
+                      _ myData: Domain.UserModel) {
         coordinator(to: UserDetailCoordinator(
             navigationController: navigationController,
             viewModel: UserDetailViewModel(myData: myData,

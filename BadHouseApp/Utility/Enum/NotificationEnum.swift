@@ -1,6 +1,6 @@
-enum NotificationEnum: Int, CaseIterable {
+public enum NotificationEnum: Int, CaseIterable {
     case applyed, prejoined, permissionJoin, permissionFriend
-    var description: String {
+    public var description: String {
         switch self {
         case .applyed: return "さんから友だち申請がきました"
         case .prejoined: return "さんから参加申請がきました"

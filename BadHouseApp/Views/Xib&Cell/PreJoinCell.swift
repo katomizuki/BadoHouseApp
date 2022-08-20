@@ -1,9 +1,12 @@
 import UIKit
 import SDWebImage
+import Domain
 
 protocol PreJoinCellDelegate: AnyObject {
-    func preJoinCell(_ cell: PreJoinCell, preJoin: PreJoin)
+    func preJoinCell(_ cell: PreJoinCell,
+                     preJoin: Domain.PreJoin)
 }
+
 final class PreJoinCell: UITableViewCell {
     
     static let id = String(describing: self)
@@ -16,7 +19,7 @@ final class PreJoinCell: UITableViewCell {
     }
     @IBOutlet private weak var label: UILabel!
    
-    private var preJoin: PreJoin?
+    private var preJoin: Domain.PreJoin?
     weak var delegate: PreJoinCellDelegate?
     
     override func awakeFromNib() {
@@ -31,7 +34,7 @@ final class PreJoinCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(_ prejoin: PreJoin) {
+    func configure(_ prejoin: Domain.PreJoin) {
         self.preJoin = prejoin
         circleImageView.sd_setImage(with: prejoin.url)
         label.text = "「\(prejoin.practiceName)」に参加申請中です"

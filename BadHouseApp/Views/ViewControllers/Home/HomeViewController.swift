@@ -3,6 +3,7 @@ import RxCocoa
 import RxSwift
 import CoreLocation
 import MapKit
+import Domain
 
 final class HomeViewController: UIViewController {
     
@@ -217,7 +218,8 @@ extension HomeViewController: CLLocationManagerDelegate {
 
 extension HomeViewController: EventInfoCellDelegate {
 
-    func didTapBlockButton(_ cell: EventInfoCell, practice: Practice) {
+    func didTapBlockButton(_ cell: EventInfoCell,
+                           practice: Domain.Practice) {
         let alertVC = AlertProvider.postAlertVC(practice) { error in
             if error != nil {
                 self.showAlert(title: R.alertMessage.netError,
@@ -234,7 +236,8 @@ extension HomeViewController: EventInfoCellDelegate {
 
 extension HomeViewController: PracticeSearchControllerDelegate {
 
-    func eventSearchControllerDismiss(practices: [Practice], vc: PracticeSearchController) {
+    func eventSearchControllerDismiss(practices: [Domain.Practice],
+                                      vc: PracticeSearchController) {
         vc.dismiss(animated: true)
         viewModel.inputs.search(practices)
     }

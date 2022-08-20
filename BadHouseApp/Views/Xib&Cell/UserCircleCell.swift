@@ -1,4 +1,5 @@
 import UIKit
+import Domain
 
 final class UserCircleCell: UICollectionViewCell {
     
@@ -21,7 +22,7 @@ final class UserCircleCell: UICollectionViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    func configure(_ circle: Circle) {
+    func configure(_ circle: Domain.CircleModel) {
         circleImageView.sd_setImage(with: circle.iconUrl)
         nameLabel.text = circle.name
     }

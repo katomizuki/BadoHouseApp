@@ -6,8 +6,9 @@
 //
 
 import ReSwift
+import Domain
 
 struct SearchCircleState: StateType {
-    var circles = [Circle]()
+    var circles = [Domain.CircleModel]()
     var errorStatus = false
 }

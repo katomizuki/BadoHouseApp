@@ -4,7 +4,9 @@
 //
 //  Created by ミズキ on 2022/02/14.
 //
+import Domain
 
 protocol CircleSearchFlow {
-    func toCircleDetail(myData: User, circle: Circle?)
+    func toCircleDetail(myData: Domain.UserModel,
+                        circle: Domain.CircleModel?)
 }

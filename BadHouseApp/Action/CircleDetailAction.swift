@@ -6,12 +6,13 @@
 //
 
 import ReSwift
+import Domain
 
 extension CircleDetailState {
     enum CircleDetailAction: ReSwift.Action {
-        case setAllMembers(_ users: [User])
-        case setCircle(_ circle: Circle)
-        case setFriendsMembers(_ members: [User])
+        case setAllMembers(_ users: [Domain.UserModel])
+        case setCircle(_ circle: Domain.CircleModel)
+        case setFriendsMembers(_ members: [Domain.UserModel])
         case changeErrorStatus(_ isError: Bool)
         case changeReloadStatus(_ isReload: Bool)
     }

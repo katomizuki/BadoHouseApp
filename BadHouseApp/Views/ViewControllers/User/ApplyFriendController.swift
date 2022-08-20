@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import SDWebImage
+import Domain
 
 final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
     
@@ -60,7 +61,8 @@ final class ApplyFriendController: UIViewController, UIScrollViewDelegate {
 }
 
 extension ApplyFriendController: ApplyUserListCellDelegate {
-    func onTapTrashButton(_ apply: Apply, cell: ApplyUserListCell) {
+    func onTapTrashButton(_ apply: Domain.ApplyModel,
+                          cell: ApplyUserListCell) {
         viewModel.inputs.onTrashButton(apply: apply)
     }
 }

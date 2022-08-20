@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
 
 protocol SearchUserViewModelInputs {
     var searchTextInput: AnyObserver<String> { get }
@@ -9,7 +10,7 @@ protocol SearchUserViewModelInputs {
 
 protocol SearchUserViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var usersRelay: BehaviorRelay<[User]> { get }
+    var usersRelay: BehaviorRelay<[Domain.UserModel]> { get }
     var searchTextOutputs: Observable<String> { get }
 }
 
@@ -23,8 +24,8 @@ final class SearchUserViewModel: SearchUserViewModelType {
     var inputs: any SearchUserViewModelInputs { self }
     var outputs: any SearchUserViewModelOutputs { self }
 
-    let usersRelay = BehaviorRelay<[User]>(value: [])
-    let user: User
+    let usersRelay = BehaviorRelay<[Domain.UserModel]>(value: [])
+    let user: Domain.UserModel
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
 
@@ -34,7 +35,7 @@ final class SearchUserViewModel: SearchUserViewModelType {
     private let store: Store<AppState>
     private let actionCreator: SearchUserActionCreator
     
-    init(user: User,
+    init(user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: SearchUserActionCreator) {
         self.user = user
@@ -65,11 +66,13 @@ final class SearchUserViewModel: SearchUserViewModelType {
         }).disposed(by: disposeBag)
     }
     
-    func applyFriend(_ user: User, myData: User) {
+    func applyFriend(_ user: Domain.UserModel,
+                     myData: Domain.UserModel) {
         actionCreator.applyFriend(user, myData: myData)
     }
     
-    func notApplyFriend(_ user: User, myData: User) {
+    func notApplyFriend(_ user: Domain.UserModel,
+                        myData: Domain.UserModel) {
         actionCreator.notApplyFriend(user, myData: myData)
     }
     

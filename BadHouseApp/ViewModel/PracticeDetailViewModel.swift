@@ -1,6 +1,7 @@
 import RxRelay
 import RxSwift
 import ReSwift
+import Domain
 
 protocol PracticeDetailViewModelType {
     var inputs: PracticeDetailViewModelInputs { get }
@@ -16,8 +17,8 @@ protocol PracticeDetailViewModelInputs {
 }
 
 protocol PracticeDetailViewModelOutputs {
-    var userRelay: PublishRelay<User> { get }
-    var circleRelay: PublishRelay<Circle> { get }
+    var userRelay: PublishRelay<Domain.UserModel> { get }
+    var circleRelay: PublishRelay<Domain.CircleModel> { get }
     var isError: Observable<Bool> { get }
     var isButtonHidden: Observable<Bool> { get }
     var completed: Observable<Void> { get }
@@ -29,14 +30,14 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
     var inputs: any PracticeDetailViewModelInputs { self }
     var outputs: any PracticeDetailViewModelOutputs { self }
 
-    var circle: Circle?
-    var user: User?
+    var circle: Domain.CircleModel?
+    var user: Domain.UserModel?
 
-    let practice: Practice
-    let myData: User
+    let practice: Domain.Practice
+    let myData: Domain.UserModel
     let isModal: Bool
-    let userRelay = PublishRelay<User>()
-    let circleRelay = PublishRelay<Circle>()
+    let userRelay = PublishRelay<Domain.UserModel>()
+    let circleRelay = PublishRelay<Domain.CircleModel>()
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -48,11 +49,11 @@ final class PracticeDetailViewModel: PracticeDetailViewModelType {
     private let store: Store<AppState>
     private let actionCreator: PracticeActionCreator
    
-    init(practice: Practice,
+    init(practice: Domain.Practice,
          isModal: Bool,
          store: Store<AppState>,
          actionCreator: PracticeActionCreator,
-         myData: User) {
+         myData: Domain.UserModel) {
         self.practice = practice
         self.isModal = isModal
         self.store = store

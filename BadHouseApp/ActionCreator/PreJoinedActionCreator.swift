@@ -5,14 +5,18 @@
 //  Created by ミズキ on 2022/02/22.
 //
 import RxSwift
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct PreJoinedActionCreator {
     
-    let joinAPI: any JoinRepositry
+    let joinAPI: any Domain.JoinRepositry
     private let disposeBag = DisposeBag()
     
-     func getPreJoined(user: User) {
-        joinAPI.getPreJoined(userId: user.uid).subscribe { prejoineds in
+    func getPreJoined(user: Domain.UserModel) {
+        joinAPI.getPreJoined(userId: user.uid)
+            .subscribe { prejoineds in
             appStore.dispatch(PreJoinedState.PreJoinedAction.setPrejoinedList(prejoineds))
             appStore.dispatch(PreJoinedState.PreJoinedAction.setNavigationTitle("\(prejoineds.count)人から参加申請が来ています"))
             appStore.dispatch(PreJoinedState.PreJoinedAction.changeReloadStatus(true))
@@ -21,7 +25,9 @@ struct PreJoinedActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func getUser(preJoined: PreJoined, user: User, list: [PreJoined]) {
+    func getUser(preJoined: Domain.PreJoined,
+                 user: Domain.UserModel,
+                 list: [Domain.PreJoined]) {
         appStore.dispatch(PreJoinedState.PreJoinedAction.setPrejoinedList(list))
         UserRepositryImpl.getUserById(uid: preJoined.fromUserId) { friend in
             self.joinAPI.postMatchJoin(preJoined: preJoined,
@@ -47,7 +53,7 @@ struct PreJoinedActionCreator {
         appStore.dispatch(PreJoinedState.PreJoinedAction.changeReloadStatus(false))
     }
     
-    func deletePreJoinedData(_ preJoined: PreJoined) {
+    func deletePreJoinedData(_ preJoined: Domain.PreJoined) {
         // ここ変える
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoined.fromUserId, subCollectionName: R.Collection.Users, subId: preJoined.uid)
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoined.uid, subCollectionName: R.Collection.Users, subId: preJoined.fromUserId)

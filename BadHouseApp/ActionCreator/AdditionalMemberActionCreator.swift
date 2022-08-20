@@ -7,6 +7,7 @@
 
 import ReSwift
 import RxSwift
+import Domain
 
 struct AdditionalMemberActionCreator {
 
@@ -14,17 +15,21 @@ struct AdditionalMemberActionCreator {
     let circleAPI: any CircleRepositry
     private let disposeBag = DisposeBag()
     
-    func getFriends(uid: String, members: [User]) {
+    func getFriends(uid: String,
+                    members: [Domain.UserModel]) {
         userAPI.getFriends(uid: uid).subscribe { friends in
-            let users = self.judgeInviter(members: members, friends: friends)
+            let users = self.judgeInviter(members: members,
+                                          friends: friends)
             appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.setMember(users))
         } onFailure: { _ in
             appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
     }
     
-    func invite(ids: [String], circle: Circle) {
-        circleAPI.inviteCircle(ids: ids, circle: circle) { result in
+    func invite(ids: [String],
+                circle: Domain.CircleModel) {
+        circleAPI.inviteCircle(ids: ids,
+                               circle: circle) { result in
             switch result {
             case .success:
                 appStore.dispatch(AdditionalMemberState.AdditionalMemberAction.changeCompledStatus(true))
@@ -34,7 +39,8 @@ struct AdditionalMemberActionCreator {
         }
     }
     
-    private func judgeInviter(members: [User], friends: [User]) -> [User] {
+    private func judgeInviter(members: [Domain.UserModel],
+                              friends: [Domain.UserModel]) -> [Domain.UserModel] {
         var array = friends
         members.forEach {
             array.remove(value: $0)

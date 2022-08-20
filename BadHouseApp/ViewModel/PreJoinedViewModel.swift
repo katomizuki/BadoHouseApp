@@ -1,6 +1,7 @@
 import RxRelay
 import RxSwift
 import ReSwift
+import Domain
 
 protocol PreJoinedViewModelType {
     var inputs: PreJoinedViewModelInputs { get }
@@ -8,7 +9,7 @@ protocol PreJoinedViewModelType {
 }
 
 protocol PreJoinedViewModelInputs {
-    func onTapPermissionButton(_ preJoined: PreJoined)
+    func onTapPermissionButton(_ preJoined: Domain.PreJoined)
     var reloadInput: AnyObserver<Void> { get }
     var completedInput: AnyObserver<Void> { get }
     var navigationTitleInput: AnyObserver<String> { get }
@@ -17,7 +18,7 @@ protocol PreJoinedViewModelInputs {
 
 protocol PreJoinedViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var preJoinedList: BehaviorRelay<[PreJoined]> { get }
+    var preJoinedList: BehaviorRelay<[Domain.PreJoined]> { get }
     var reload: Observable<Void> { get }
     var completed: Observable<Void> { get }
     var navigationTitle: Observable<String> { get }
@@ -28,8 +29,8 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
     var inputs: any PreJoinedViewModelInputs { self }
     var outputs: any PreJoinedViewModelOutputs { self }
     
-    let preJoinedList = BehaviorRelay<[PreJoined]>(value: [])
-    let user: User
+    let preJoinedList = BehaviorRelay<[Domain.PreJoined]>(value: [])
+    let user: Domain.UserModel
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
     
@@ -41,7 +42,9 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
     private let store: Store<AppState>
     private let actionCreator: PreJoinedActionCreator
     
-    init(user: User, store: Store<AppState>, actionCreator: PreJoinedActionCreator) {
+    init(user: Domain.UserModel,
+         store: Store<AppState>,
+         actionCreator: PreJoinedActionCreator) {
         self.user = user
         self.store = store
         self.actionCreator = actionCreator
@@ -73,7 +76,7 @@ final class PreJoinedViewModel: PreJoinedViewModelType {
                               list: makePreJoinedListToSend(preJoined))
     }
     
-    private func makePreJoinedListToSend(_ preJoined: PreJoined) -> [PreJoined] {
+    private func makePreJoinedListToSend(_ preJoined: Domain.PreJoined) -> [Domain.PreJoined] {
         var list = preJoinedList.value
         list.remove(value: preJoined)
         return list

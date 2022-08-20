@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class AddtionalEventLevelCoordinator: Coordinator, AddtionalEventLevelFlow {
    
@@ -7,7 +9,9 @@ final class AddtionalEventLevelCoordinator: Coordinator, AddtionalEventLevelFlow
     let image: UIImage
     let kind: String
     
-    init(navigationController: UINavigationController, title: String, image: UIImage, kind: String) {
+    init(navigationController: UINavigationController, title: String,
+         image: UIImage,
+         kind: String) {
         self.navigationController = navigationController
         self.title = title
         self.image = image
@@ -27,7 +31,10 @@ final class AddtionalEventLevelCoordinator: Coordinator, AddtionalEventLevelFlow
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toNext(image: UIImage, dic: [String: Any], circle: Circle, user: User) {
+    func toNext(image: UIImage,
+                dic: [String: Any],
+                circle: Domain.CircleModel,
+                user: Domain.UserModel) {
         coordinator(to: AddtionalPracticeElementCoordinator(navigationController: self.navigationController, dic: dic,
                                        image: image,
                                        circle: circle,

@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import Domain
 
 final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
 
@@ -80,7 +81,7 @@ final class ApplyedUserListController: UIViewController, UIScrollViewDelegate {
 }
 
 extension ApplyedUserListController: ApplyedUserListCellDelegate {
-    func onTapPermissionButton(_ applyed: Applyed) {
+    func onTapPermissionButton(_ applyed: Domain.ApplyedModel) {
         viewModel.inputs.makeFriends(applyed)
     }
 }

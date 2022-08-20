@@ -1,7 +1,9 @@
 import UIKit
+import Domain
 
 protocol EventInfoCellDelegate: AnyObject {
-    func didTapBlockButton(_ cell: EventInfoCell, practice: Practice)
+    func didTapBlockButton(_ cell: EventInfoCell,
+                           practice: Domain.Practice)
 }
 
 final class EventInfoCell: UICollectionViewCell {
@@ -34,7 +36,7 @@ final class EventInfoCell: UICollectionViewCell {
             userImageView.layer.masksToBounds = true
         }
     }
-    private var practice: Practice?
+    private var practice: Domain.Practice?
     weak var delegate: EventInfoCellDelegate?
     
     // MARK: - LifeCycle
@@ -46,7 +48,7 @@ final class EventInfoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(_ practice: Practice) {
+    func configure(_ practice: Domain.Practice) {
         self.practice = practice
         teamLabel.text = practice.circleName
         teamImage.sd_setImage(with: practice.mainUrl)

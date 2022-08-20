@@ -6,6 +6,7 @@
 //
 
 import ReSwift
+import Domain
 
 struct UpdateCircleState: StateType {
     var errorStatus = false

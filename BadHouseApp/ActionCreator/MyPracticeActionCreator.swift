@@ -7,12 +7,15 @@
 
 import ReSwift
 import RxSwift
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct MyPracticeActionCreator {
     let userAPI: any UserRepositry
     private let disposeBag = DisposeBag()
 
-    func getMyPractice(user: User) {
+    func getMyPractice(user: Domain.UserModel) {
         userAPI.getMyPractice(uid: user.uid).subscribe { practices in
             appStore.dispatch(MyPracticeState.MyPracticeAction.setPractice(practices))
         } onFailure: { _ in
@@ -24,7 +27,8 @@ struct MyPracticeActionCreator {
         appStore.dispatch(MyPracticeState.MyPracticeAction.changeErrorStatus(false))
     }
     
-    func deletePractice(_ practice: Practice, myData: User) {
+    func deletePractice(_ practice: Domain.Practice,
+                        myData: Domain.UserModel) {
         DeleteService.deleteSubCollectionData(collecionName: R.Collection.Users, documentId: myData.uid, subCollectionName: R.Collection.Practice, subId: practice.id)
         DeleteService.deleteCollectionData(collectionName: R.Collection.Practice, documentId: practice.id)
     }

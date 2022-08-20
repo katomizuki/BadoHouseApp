@@ -1,8 +1,8 @@
 import UIKit
 import SDWebImage
-
+import Domain
 protocol PreJoinedCellDelegate: AnyObject {
-    func preJoinedCell(prejoined: PreJoined)
+    func preJoinedCell(prejoined: Domain.PreJoined)
 }
 
 final class PreJoinedCell: UITableViewCell {
@@ -18,7 +18,7 @@ final class PreJoinedCell: UITableViewCell {
     }
     @IBOutlet private weak var label: UILabel!
     
-    private var preJoined: PreJoined?
+    private var preJoined: Domain.PreJoined?
     weak var delegate: PreJoinedCellDelegate?
     
     override func awakeFromNib() {
@@ -33,7 +33,7 @@ final class PreJoinedCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(_ prejoined: PreJoined) {
+    func configure(_ prejoined: Domain.PreJoined) {
         self.preJoined = prejoined
         userImageView.sd_setImage(with: prejoined.url)
         label.text = "\(prejoined.name) さん から参加申請がきております"

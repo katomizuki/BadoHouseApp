@@ -6,10 +6,11 @@
 //
 
 import ReSwift
+import Domain
 
 extension PreJoinedState {
     enum PreJoinedAction: ReSwift.Action {
-        case setPrejoinedList(_ list: [PreJoined])
+        case setPrejoinedList(_ list: [Domain.PreJoined])
         case setNavigationTitle(_ title: String)
         case changeReloadStatus(_ isReload: Bool)
         case changeErrorStatus(_ isError: Bool)

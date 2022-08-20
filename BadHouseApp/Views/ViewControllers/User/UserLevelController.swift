@@ -1,5 +1,5 @@
 import UIKit
-
+import Domain
 protocol UserLevelDelegate: AnyObject {
     func UserLevelController(vc: UserLevelController,
                              text: String)
@@ -17,7 +17,7 @@ final class UserLevelController: UIViewController {
     @IBOutlet private weak var levelLabel: UILabel!
 
     weak var delegate: UserLevelDelegate?
-    var user: User
+    var user: Domain.UserModel
    
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ final class UserLevelController: UIViewController {
         setupNavigationItem()
     }
     
-    init(user: User) {
+    init(user: Domain.UserModel) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }

@@ -7,21 +7,30 @@
 
 import RxSwift
 import Firebase
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct ChatActionCreator {
     private let disposeBag = DisposeBag()
     let chatAPI: any ChatRepositry
     let userAPI: any UserRepositry
     
-    func sendText(_ text: String, chatId: String, myData: User, user: User) {
+    func sendText(_ text: String,
+                  chatId: String,
+                  myData: Domain.UserModel,
+                  user: Domain.UserModel) {
         let dic: [String: Any] = ["chatId": chatId,
                                  "text": text,
                                  "createdAt": Timestamp(),
                                  "senderId": myData.uid]
         
-        chatAPI.postChat(chatId: chatId, dic: dic).subscribe {
+        chatAPI.postChat(chatId: chatId,
+                         dic: dic).subscribe {
             self.getChat(chatId: chatId)
-            self.userAPI.updateChatRoom(user: user, myData: myData, message: text)
+            self.userAPI.updateChatRoom(user: user,
+                                        myData: myData,
+                                        message: text)
         } onError: { _ in
             appStore.dispatch(ChatState.ChatAction.changeErrorStatus(true))
         }.disposed(by: disposeBag)
@@ -36,8 +45,11 @@ struct ChatActionCreator {
         }.disposed(by: self.disposeBag)
     }
     
-    func didLoad(user: User, myData: User) {
-        userAPI.judgeChatRoom(user: user, myData: myData).subscribe(onSuccess: { isExits in
+    func didLoad(user: Domain.UserModel,
+                 myData: Domain.UserModel) {
+        userAPI.judgeChatRoom(user: user,
+                              myData: myData)
+        .subscribe(onSuccess: { isExits in
             if isExits {
                 self.userAPI.getUserChatRoomById(myData: myData,
                                                  id: user.uid) { chatRoom in
@@ -48,8 +60,10 @@ struct ChatActionCreator {
                 let id = Ref.UsersRef.document(myData.uid)
                     .collection(R.Collection.ChatRoom).document().documentID
                 
-                self.userAPI.postMyChatRoom(dic: makeDic(user, id: id),
-                                            partnerDic: makeDic(myData, id: id),
+                self.userAPI.postMyChatRoom(dic: makeDic(user,
+                                                         id: id),
+                                            partnerDic: makeDic(myData,
+                                                                id: id),
                                             user: user,
                                             myData: myData,
                                             chatId: id)
@@ -60,7 +74,8 @@ struct ChatActionCreator {
         }).disposed(by: disposeBag)
     }
     
-    private func makeDic(_ user: User, id: String) -> [String: Any] {
+    private func makeDic(_ user: Domain.UserModel,
+                         id: String) -> [String: Any] {
             return ["id": id,
                     "userId": user.uid,
                     "latestTime": Timestamp(),

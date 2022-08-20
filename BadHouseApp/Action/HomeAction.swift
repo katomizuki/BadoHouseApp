@@ -6,10 +6,12 @@
 //
 
 import ReSwift
+import Domain
+
 extension HomeState {
     enum HomeStateAction: ReSwift.Action {
-        case setPractices(_ practies: [Practice])
-        case setUser(_ user: User)
+        case setPractices(_ practies: [Domain.Practice])
+        case setUser(_ user: Domain.UserModel)
         case changeIndicatorStatus(_ isAnimating: Bool)
         case changeRefreshStatus(_ isAnimating: Bool)
         case chageErrorStatus(_ error: Error)

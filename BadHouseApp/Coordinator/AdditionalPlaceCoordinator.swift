@@ -1,4 +1,6 @@
 import UIKit
+import Infra
+import Domain
 
 final class AdditionalPlaceCoordinator: Coordinator, AddtionalPlaceFlow {
     let viewController: AdditionalEventElementController
@@ -11,11 +13,11 @@ final class AdditionalPlaceCoordinator: Coordinator, AddtionalPlaceFlow {
         let controller = AddtionalPlaceController(coordinator: self)
         controller.modalPresentationStyle = .fullScreen
         controller.delegate = viewController
-        viewController.present(controller, animated: true, completion: nil)
+        viewController.present(controller, animated: true)
     }
     
     func dismiss() {
         let controller = AddtionalPlaceController(coordinator: self)
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true)
     }
 }

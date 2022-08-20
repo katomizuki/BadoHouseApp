@@ -6,14 +6,18 @@
 //
 
 import RxSwift
+import Domain
+// infra層がここにあるの良くない
+import Infra
 
 struct PrejoinActionCreator {
     
-    let joinAPI: any JoinRepositry
+    let joinAPI: any Domain.JoinRepositry
     private let disposeBag = DisposeBag()
     
-    func getPreJoin(user: User) {
-        joinAPI.getPrejoin(userId: user.uid).subscribe { prejoins in
+    func getPreJoin(user: Domain.UserModel) {
+        joinAPI.getPrejoin(userId: user.uid)
+            .subscribe { prejoins in
             appStore.dispatch(PreJoinState.PreJoinAction.setPreJoinList(prejoins))
             appStore.dispatch(PreJoinState.PreJoinAction.changeReloadStatus(true))
         } onFailure: { _ in
@@ -21,19 +25,27 @@ struct PrejoinActionCreator {
         }.disposed(by: disposeBag)
     }
     
-    func delete(_ preJoin: PreJoin, list: [PreJoin]) {
+    func delete(_ preJoin: Domain.PreJoin,
+                list: [Domain.PreJoin]) {
         // TODO: - ここ分けるか、、
         
-        var prejoins: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
+        var prejoins: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.preJoin)
         prejoins.remove(value: preJoin.id)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: R.UserDefaultsKey.preJoin)
+        Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: prejoins, key: R.UserDefaultsKey.preJoin)
         appStore.dispatch(PreJoinState.PreJoinAction.setPreJoinList(list))
         appStore.dispatch(PreJoinState.PreJoinAction.changeReloadStatus(true))
     }
     
-    func deleteDataFromFirebase(_ preJoin: PreJoin, list: [PreJoin]) {
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin, documentId: preJoin.uid, subCollectionName: R.Collection.Users, subId: preJoin.toUserId)
-        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined, documentId: preJoin.toUserId, subCollectionName: R.Collection.Users, subId: preJoin.uid)
+    func deleteDataFromFirebase(_ preJoin: Domain.PreJoin,
+                                list: [Domain.PreJoin]) {
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoin,
+                                              documentId: preJoin.uid,
+                                              subCollectionName: R.Collection.Users,
+                                              subId: preJoin.toUserId)
+        DeleteService.deleteSubCollectionData(collecionName: R.Collection.PreJoined,
+                                              documentId: preJoin.toUserId,
+                                              subCollectionName: R.Collection.Users,
+                                              subId: preJoin.uid)
     }
     
     func toggleErrorStatus() {

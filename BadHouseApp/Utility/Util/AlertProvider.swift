@@ -1,8 +1,10 @@
 import UIKit
+import Domain
+import Infra
 
 final class AlertProvider {
     
-    static func makeAlertVC(_ user: User,
+    static func makeAlertVC(_ user: Domain.UserModel,
                             completion: @escaping(Error?) -> Void) -> UIAlertController {
         let alertVC = UIAlertController(title: "このユーザーに関して", message: "", preferredStyle: .actionSheet)
         let problemAction = UIAlertAction(title: "不適切なユーザーである", style: .destructive) {  _ in
@@ -27,7 +29,7 @@ final class AlertProvider {
         return alertVC
     }
     
-    static func postAlertVC(_ practice: Practice,
+    static func postAlertVC(_ practice: Domain.Practice,
                             completion: @escaping(Error?)->Void)->UIAlertController {
         let alertVC = UIAlertController(title: "この投稿に関して", message: "", preferredStyle: .actionSheet)
         let problemAction = UIAlertAction(title: "不適切な投稿である", style: .destructive) {  _ in

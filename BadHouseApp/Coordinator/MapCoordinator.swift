@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class MapCoordinator: Coordinator, MapListFlow {
     
@@ -16,7 +18,9 @@ final class MapCoordinator: Coordinator, MapListFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func halfModal(_ practice: Practice, _ vc: MapListController, myData: User) {
+    func halfModal(_ practice: Domain.Practice,
+                   _ vc: MapListController,
+                   myData: Domain.UserModel) {
         let controller: PracticeDetailController = PracticeDetailController.init(
         viewModel: PracticeDetailViewModel(
             practice: practice,

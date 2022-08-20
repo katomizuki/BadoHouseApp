@@ -1,4 +1,6 @@
 import UIKit
+import Domain
+import Infra
 
 final class ScheduleCoordinator: Coordinator, ScheduleFlow {
    
@@ -6,7 +8,9 @@ final class ScheduleCoordinator: Coordinator, ScheduleFlow {
     let viewModel: ScheduleViewModel
     let vc: UIViewController
     
-    init(navigationController: UINavigationController, viewModel: ScheduleViewModel, vc: UIViewController) {
+    init(navigationController: UINavigationController,
+         viewModel: ScheduleViewModel,
+         vc: UIViewController) {
         self.navigationController = navigationController
         self.viewModel = viewModel
         self.vc = vc
@@ -20,7 +24,8 @@ final class ScheduleCoordinator: Coordinator, ScheduleFlow {
         vc.present(navigationController, animated: true, completion: nil)
     }
     
-    func toDetail(_ practice: Practice, myData: User) {
+    func toDetail(_ practice: Domain.Practice,
+                  myData: Domain.UserModel) {
         navigationController.pushViewController(
             PracticeDetailController.init(
                 viewModel: PracticeDetailViewModel(

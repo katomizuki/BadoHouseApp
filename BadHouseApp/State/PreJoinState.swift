@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct PreJoinState: StateType {
-    var preJoinList = [PreJoin]()
+    var preJoinList = [Domain.PreJoin]()
     var reloadStatus = false
     var errorStatus = false
 }

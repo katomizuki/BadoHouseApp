@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Domain
+import Infra
 
 final class MyPracticeCoordinator: Coordinator, MyPracticeFlow {
     let navigationController: UINavigationController
     let viewModel: MyPracticeViewModel
-    init(navigationController: UINavigationController, viewModel: MyPracticeViewModel) {
+    
+    init(navigationController: UINavigationController,
+         viewModel: MyPracticeViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -21,7 +25,8 @@ final class MyPracticeCoordinator: Coordinator, MyPracticeFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toPracticeDetail(myData: User, practice: Practice) {
+    func toPracticeDetail(myData: Domain.UserModel,
+                          practice: Domain.Practice) {
         navigationController.pushViewController(
             PracticeDetailController.init(
                 viewModel: PracticeDetailViewModel(

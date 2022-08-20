@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct PreJoinedState: StateType {
-    var preJoinedList = [PreJoined]()
+    var preJoinedList = [Domain.PreJoined]()
     var navigationTitle = String()
     var reloadStatus = false
     var errorStatus = false

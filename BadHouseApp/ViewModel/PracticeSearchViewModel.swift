@@ -2,6 +2,7 @@ import RxSwift
 import Firebase
 import RxRelay
 import ReSwift
+import Domain
 
 protocol PracticeSearchViewModelType {
     var inputs: PracticeSearchViewModelInputs { get }
@@ -30,9 +31,9 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     
     var selectedLevel = String()
     var selectedPlace = String()
-    var practices = [Practice]()
-    var fullPractices = [Practice]()
-    var searchedPractices = [Practice]()
+    var practices = [Domain.Practice]()
+    var fullPractices = [Domain.Practice]()
+    var searchedPractices = [Domain.Practice]()
     
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
@@ -45,7 +46,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
     private let store: Store<AppState>
     private let actionCreator: PracticeSearchActionCreator
     
-    init(practices: [Practice],
+    init(practices: [Domain.Practice],
          store: Store<AppState>,
          actionCreator: PracticeSearchActionCreator) {
         self.practices = practices
@@ -81,7 +82,7 @@ final class PracticeSearchViewModel: PracticeSearchViewModelType,
         navigationStriing.onNext("\(self.practices.count)件のヒット")
     }
     
-    func seachLevel(_ text: String) -> [Practice] {
+    func seachLevel(_ text: String) -> [Domain.Practice] {
         // TODO: - ここら辺はどうにかする。
         var array = [Practice]()
         let levelText = text

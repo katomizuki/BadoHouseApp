@@ -1,5 +1,7 @@
 import UIKit
 import SDWebImage
+import Domain
+
 final class ChatCell: UITableViewCell {
     // MARK: - Properties
     static let id: String = String(describing: self)
@@ -78,7 +80,9 @@ final class ChatCell: UITableViewCell {
                                                    context: nil)
     }
 
-    func configure(chat: Chat, user: User, myData: User) {
+    func configure(chat: Domain.ChatModel,
+                   user: Domain.UserModel,
+                   myData: Domain.UserModel) {
         if chat.senderId == myData.uid {
             timeLabel.isHidden = true
             textView.isHidden = true

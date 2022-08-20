@@ -7,13 +7,15 @@
 
 import ReSwift
 import RxSwift
+import Domain
 
 struct NotificationActionCreator {
-    let notificationAPI: any NotificationRepositry
+    let notificationAPI: any Domain.NotificationRepositry
     private let disposeBag = DisposeBag()
     
-    func getNotification(user: User) {
-    notificationAPI.getMyNotification(uid: user.uid).subscribe { notifications in
+    func getNotification(user: Domain.UserModel) {
+    notificationAPI.getMyNotification(uid: user.uid)
+            .subscribe { notifications in
         appStore.dispatch(NotificationStatus.NotificationAction.setNotifications(notifications))
     } onFailure: {  _ in
         appStore.dispatch(NotificationStatus.NotificationAction.chageErrorStatus(true))

@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct ApplyedUserListState: StateType {
-    var applied = [Applyed]()
+    var applied = [Domain.ApplyedModel]()
     var reloadStatus = false
     var errorStatus = false
     var friendName = String()

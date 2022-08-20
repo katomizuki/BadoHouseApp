@@ -6,9 +6,10 @@
 //
 
 import ReSwift
+import Domain
 
 struct TalkState: StateType {
-    var talks = [ChatRoom]()
+    var talks = [Domain.ChatRoom]()
     var errorStatus = false
     var reloadStauts = false
 }

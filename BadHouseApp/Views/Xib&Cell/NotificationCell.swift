@@ -1,5 +1,6 @@
 import UIKit
 import SDWebImage
+import Domain
 
 final class NotificationCell: UICollectionViewCell {
 
@@ -21,7 +22,7 @@ final class NotificationCell: UICollectionViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    func configure(_ notification: Notification) {
+    func configure(_ notification: Domain.Notification) {
         notificationImageView.sd_setImage(with: notification.url)
         switch notification.notificationSelection {
         case .applyed:

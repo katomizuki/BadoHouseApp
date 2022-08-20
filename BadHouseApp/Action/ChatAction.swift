@@ -6,11 +6,12 @@
 //
 
 import ReSwift
+import Domain
 
 extension ChatState {
     
     enum ChatAction: ReSwift.Action {
-        case setChatList(_ chat: [Chat])
+        case setChatList(_ chat: [Domain.ChatModel])
         case chageReloadStatus(_ isReload: Bool)
         case changeErrorStatus(_ isError: Bool)
         case setChatId(_ chatId: String)

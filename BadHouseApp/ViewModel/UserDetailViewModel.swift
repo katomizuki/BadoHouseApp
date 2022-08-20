@@ -1,6 +1,8 @@
 import RxSwift
 import RxRelay
 import ReSwift
+import Domain
+import Infra
 
 protocol UserDetailViewModelInputs {
     func applyFriend()
@@ -14,8 +16,8 @@ protocol UserDetailViewModelInputs {
 
 protocol UserDetailViewModelOutputs {
     var isError: Observable<Bool> { get }
-    var friendListRelay: BehaviorRelay<[User]> { get }
-    var circleListRelay: BehaviorRelay<[Circle]> { get }
+    var friendListRelay: BehaviorRelay<[Domain.UserModel]> { get }
+    var circleListRelay: BehaviorRelay<[Domain.CircleModel]> { get }
     var reload: Observable<Void> { get }
     var completed: Observable<Void> { get }
     var notApplyedCompleted: Observable<Void> { get }
@@ -40,13 +42,13 @@ final class UserDetailViewModel: UserDetailViewModelType {
         return !(ids.contains(user.uid) && myData.uid != user.uid)
     }
     
-    let friendListRelay = BehaviorRelay<[User]>(value: [])
-    let circleListRelay = BehaviorRelay<[Circle]>(value: [])
+    let friendListRelay = BehaviorRelay<[Domain.UserModel]>(value: [])
+    let circleListRelay = BehaviorRelay<[Domain.CircleModel]>(value: [])
     let willAppear = PublishRelay<Void>()
     let willDisAppear = PublishRelay<Void>()
-    let user: User
-    let myData: User
-    let ids: [String] = UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
+    let user: Domain.UserModel
+    let myData: Domain.UserModel
+    let ids: [String] = Infra.UserDefaultsRepositry.shared.loadFromUserDefaults(key: R.UserDefaultsKey.friends)
     
     private let errorStream = PublishSubject<Bool>()
     private let reloadStream = PublishSubject<Void>()
@@ -54,12 +56,12 @@ final class UserDetailViewModel: UserDetailViewModelType {
     private let notApplyedCompletedStream = PublishSubject<Void>()
     private let applyButtonStream = PublishSubject<String>()
     private let disposeBag = DisposeBag()
-    private var applies = [Apply]()
+    private var applies = [Domain.ApplyModel]()
     private let store: Store<AppState>
     private let actionCreator: UserDetailActionCreator
 
-    init(myData: User,
-         user: User,
+    init(myData: Domain.UserModel,
+         user: Domain.UserModel,
          store: Store<AppState>,
          actionCreator: UserDetailActionCreator) {
         self.user = user

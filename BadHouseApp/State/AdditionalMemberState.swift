@@ -6,8 +6,9 @@
 //
 
 import ReSwift
+import Domain
 struct AdditionalMemberState: StateType {
-    var members = [User]()
+    var members = [Domain.UserModel]()
     var errorStatus = false
     var completedStatus = false
 }

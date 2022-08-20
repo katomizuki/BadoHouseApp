@@ -1,11 +1,14 @@
 import UIKit
+import Domain
+import Infra
 
 final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
 
     let navigationController: UINavigationController
     let viewModel: UserDetailViewModel
     
-    init(navigationController: UINavigationController, viewModel: UserDetailViewModel) {
+    init(navigationController: UINavigationController,
+         viewModel: UserDetailViewModel) {
         self.navigationController = navigationController
         self.viewModel = viewModel
     }
@@ -16,11 +19,13 @@ final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func toFriendList(friends: [User], myData: User) {
+    func toFriendList(friends: [Domain.UserModel],
+                      myData: Domain.UserModel) {
         coordinator(to: FriendListCoordinator(navigationController: navigationController, viewModel: FriendsListViewModel(users: friends, myData: myData)))
     }
     
-    func toCircleDetail(myData: User, circle: Circle) {
+    func toCircleDetail(myData: Domain.UserModel,
+                        circle: Domain.CircleModel) {
         coordinator(to: CircleDetailCoordinator(
             navigationController: navigationController,
             viewModel: CircleDetailViewModel(myData: myData,
@@ -30,7 +35,8 @@ final class UserDetailCoordinator: Coordinator, MainUserDetailFlow {
                                                 CircleDetailActionCreator(circleAPI: CircleRepositryImpl()))))
     }
     
-    func toChat(myData: User, user: User) {
+    func toChat(myData: Domain.UserModel,
+                user: Domain.UserModel) {
         coordinator(to: ChatCoordinator(
             navigationController: navigationController,
             viewModel: ChatViewModel(myData: myData,

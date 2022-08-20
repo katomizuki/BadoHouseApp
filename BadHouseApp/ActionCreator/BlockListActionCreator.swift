@@ -8,13 +8,15 @@
 import ReSwift
 import RxSwift
 import Foundation
+import Domain
+import Infra
 
 struct BlockListActionCreator {
     private let disposeBag = DisposeBag()
 
     func getBlockList(_ blockIds: [String]) {
         let group = DispatchGroup()
-        var blockUsers = [User]()
+        var blockUsers = [Domain.UserModel]()
         blockIds.forEach {
             group.enter()
             UserRepositryImpl.getUserById(uid: $0) { user in
@@ -28,10 +30,12 @@ struct BlockListActionCreator {
         }
     }
     
-    func removeBlock(_ user: User, ids: [String], blockList: [User]) {
+    func removeBlock(_ user: Domain.UserModel,
+                     ids: [String],
+                     blockList: [Domain.UserModel]) {
         var blockIds = ids
         blockIds.remove(value: user.uid)
-        UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: R.UserDefaultsKey.blocks)
+        Infra.UserDefaultsRepositry.shared.saveToUserDefaults(element: blockIds, key: R.UserDefaultsKey.blocks)
         var list = blockList
         list.remove(value: user)
         appStore.dispatch(BlockListState.BlockListAction.setUsers(list))

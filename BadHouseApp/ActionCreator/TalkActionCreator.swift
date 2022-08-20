@@ -6,14 +6,16 @@
 //
 
 import RxSwift
+import Domain
 
 struct TalkActionCreator {
     
-    let userAPI: any UserRepositry
+    let userAPI: any Domain.UserRepositry
     private let disposeBag = DisposeBag()
     
     func getChatRooms(uid: String) {
-        userAPI.getMyChatRooms(uid: uid).subscribe { chatRooms in
+        userAPI.getMyChatRooms(uid: uid)
+            .subscribe { chatRooms in
             appStore.dispatch(TalkState.TalkAction.setTalk(chatRooms))
             appStore.dispatch(TalkState.TalkAction.changeReloadStatus(true))
         } onFailure: { _ in

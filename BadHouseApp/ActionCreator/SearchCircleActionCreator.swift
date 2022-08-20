@@ -6,13 +6,15 @@
 //
 
 import RxSwift
+import Domain
 
 struct SearchCircleActionCreator {
     private let disposeBag = DisposeBag()
-    let circleAPI: any CircleRepositry
+    let circleAPI: any Domain.CircleRepositry
     
     func search(_ text: String) {
-        self.circleAPI.searchCircles(text: text).subscribe { circles in
+        self.circleAPI.searchCircles(text: text)
+            .subscribe { circles in
             appStore.dispatch(SearchCircleState.SearchCircleAction.setCircles(circles))
         } onFailure: { _ in
             appStore.dispatch(SearchCircleState.SearchCircleAction.changeErrorStatus(true))

@@ -1,8 +1,9 @@
 import UIKit
 import SDWebImage
+import Domain
 
 protocol ApplyedUserListCellDelegate: AnyObject {
-    func onTapPermissionButton(_ applyed: Applyed)
+    func onTapPermissionButton(_ applyed: Domain.ApplyedModel)
 }
 
 final class ApplyedUserListCell: UITableViewCell {
@@ -17,7 +18,7 @@ final class ApplyedUserListCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     
     weak var delegate: ApplyedUserListCellDelegate?
-    private var applyed: Applyed?
+    private var applyed: Domain.ApplyedModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +35,7 @@ final class ApplyedUserListCell: UITableViewCell {
         }
     }
     
-    func configure(_ applyed: Applyed) {
+    func configure(_ applyed: Domain.ApplyedModel) {
         self.applyed = applyed
         nameLabel.text = applyed.name
         userImageView.sd_setImage(with: applyed.url)

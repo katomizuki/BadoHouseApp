@@ -2,9 +2,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import Domain
 
 protocol AdditionalEventTitleFlow {
-    func toNext(title: String, image: UIImage, kind: String)
+    func toNext(title: String,
+                image: UIImage,
+                kind: String)
 }
 
 final class AdditionalEventTitleController: UIViewController {
@@ -22,10 +25,10 @@ final class AdditionalEventTitleController: UIViewController {
     private let disposeBag = DisposeBag()
     private let pickerView = UIImagePickerController()
     private let viewModel = MakeEventFirstViewModel()
-    private var selectedTeam: Circle?
+    private var selectedTeam: Domain.CircleModel?
     private var eventTitle = String()
     private var kindCircle = BadmintonCircle(rawValue: 0)?.name
-    private var team: Circle?
+    private var team: Domain.CircleModel?
     private lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.buttonTitle.next, style: .done, target: self, action: #selector(didTapNextButton))
         return button

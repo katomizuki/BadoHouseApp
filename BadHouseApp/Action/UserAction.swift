@@ -7,14 +7,16 @@
 
 import ReSwift
 import Foundation
+import Domain
+
 extension UserState {
     enum UserAction: ReSwift.Action {
         case setUserURL(_ url: URL?)
         case changeErrorStatus(_ isErro: Bool)
         case changeReloadStatus(_ isReload: Bool)
-        case setUser(_ user: User)
-        case setFriends(_ friends: [User])
-        case setCircle(_ circle: [Circle])
+        case setUser(_ user: Domain.UserModel)
+        case setFriends(_ friends: [Domain.UserModel])
+        case setCircle(_ circle: [Domain.CircleModel])
         case setUserFriendsCountText(_ text: String)
         case setUserCircleCountText(_ text: String)
         case changeApplyViewHidden(_ isHidden: Bool)
